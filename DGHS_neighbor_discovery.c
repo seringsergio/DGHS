@@ -95,6 +95,7 @@ static void broadcast_recv(struct broadcast_conn *c, const linkaddr_t *from)
   /* Remember last seqno we heard. */
   n->last_seqno = m->seqno;
 
+
   /* Print out a message. */
   printf("broadcast message received from %d.%d with seqno %d, RSSI %u, LQI %u, avg seqno gap %d.%02d\n",
          from->u8[0], from->u8[1],
@@ -173,12 +174,12 @@ PROCESS_THREAD(send_neighbor_discovery, ev, data)
             msg.seqno = seqno;
                 if(broadcast_num <= NUM_BROADCAST_NEIGHBOR_DISCOVERY)
                 {
-                    msg.flags &= ~FLAG_BROADCAST_INTERVAL_POST;
+                    msg.flags &= ~FLAG_BROADCAST_POST; //git
                 }
                 else
                 if(broadcast_num > NUM_BROADCAST_NEIGHBOR_DISCOVERY)
                 {
-                    msg.flags |= FLAG_BROADCAST_INTERVAL_POST;
+                    msg.flags |= FLAG_BROADCAST_POST;
                 }
             packetbuf_copyfrom(&msg, sizeof(struct broadcast_message));
             broadcast_send(&broadcast);
