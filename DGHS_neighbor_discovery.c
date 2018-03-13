@@ -141,7 +141,7 @@ PROCESS_THREAD(master_neighbor_discovery, ev, data)
 
                 fill_broadcast_msg(&msg, seqno, FLAG_BROADCAST_POST);
                 process_post(&send_neighbor_discovery, e_send_broadcast, &msg);
-                seqno++; //git
+                seqno++;
 
             }
 
@@ -170,7 +170,7 @@ PROCESS_THREAD(send_neighbor_discovery, ev, data)
         PROCESS_WAIT_EVENT();
         if(ev == e_send_broadcast)
         {
-            //git
+            
             packetbuf_copyfrom((struct broadcast_message *)data, sizeof(struct broadcast_message));
             broadcast_send(&broadcast);
 
