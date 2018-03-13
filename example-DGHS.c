@@ -60,7 +60,6 @@ PROCESS_THREAD(master_DGHS, ev, data)
 
     e_execute = process_alloc_event();
 
-
     process_post(&master_neighbor_discovery, e_execute , NULL);
 
     PROCESS_END();

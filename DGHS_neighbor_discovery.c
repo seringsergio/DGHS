@@ -113,8 +113,9 @@ PROCESS(send_neighbor_discovery, "send_neighbor_discovery");
 
 PROCESS_THREAD(master_neighbor_discovery, ev, data)
 {
-    static uint8_t broadcast_num;
+    static uint8_t seqno;
     static struct s_wait sw;
+    static struct broadcast_message msg;
     PROCESS_BEGIN();
 
     while(1)
@@ -122,23 +123,25 @@ PROCESS_THREAD(master_neighbor_discovery, ev, data)
         PROCESS_WAIT_EVENT();
         if(ev == e_execute)
         {
-            if(broadcast_num <= NUM_BROADCAST_NEIGHBOR_DISCOVERY)
+            if(seqno <= NUM_BROADCAST_NEIGHBOR_DISCOVERY)
             {
                 fill_wait_struct(&sw, BROADCAST_INTERVAL_PRE, PROCESS_CURRENT() );
                 process_post(&wait, e_execute , &sw );
                 PROCESS_WAIT_EVENT_UNTIL(ev == e_end_wait);
 
-                process_post(&send_neighbor_discovery, e_send_broadcast, &broadcast_num);
-                broadcast_num++;
+                fill_broadcast_msg(&msg, seqno, ~FLAG_BROADCAST_POST);
+                process_post(&send_neighbor_discovery, e_send_broadcast, &msg);
+                seqno++;
             }else
-            if(broadcast_num > NUM_BROADCAST_NEIGHBOR_DISCOVERY)
+            if(seqno > NUM_BROADCAST_NEIGHBOR_DISCOVERY)
             {
                 fill_wait_struct(&sw, BROADCAST_INTERVAL_POST, PROCESS_CURRENT() );
                 process_post(&wait, e_execute , &sw );
                 PROCESS_WAIT_EVENT_UNTIL(ev == e_end_wait);
 
-                process_post(&send_neighbor_discovery, e_send_broadcast, &broadcast_num);
-                broadcast_num++;
+                fill_broadcast_msg(&msg, seqno, FLAG_BROADCAST_POST);
+                process_post(&send_neighbor_discovery, e_send_broadcast, &msg);
+                seqno++;
             }
 
         }
@@ -150,9 +153,6 @@ PROCESS_THREAD(master_neighbor_discovery, ev, data)
 
 PROCESS_THREAD(send_neighbor_discovery, ev, data)
 {
-    static uint8_t broadcast_num;
-    static uint8_t seqno;
-    struct broadcast_message msg;
 
     PROCESS_EXITHANDLER(broadcast_close(&broadcast);)
 
@@ -169,21 +169,9 @@ PROCESS_THREAD(send_neighbor_discovery, ev, data)
         PROCESS_WAIT_EVENT();
         if(ev == e_send_broadcast)
         {
-            broadcast_num = *((uint8_t *) data);
-
-            msg.seqno = seqno;
-                if(broadcast_num <= NUM_BROADCAST_NEIGHBOR_DISCOVERY)
-                {
-                    msg.flags &= ~FLAG_BROADCAST_POST; //git
-                }
-                else
-                if(broadcast_num > NUM_BROADCAST_NEIGHBOR_DISCOVERY)
-                {
-                    msg.flags |= FLAG_BROADCAST_POST;
-                }
-            packetbuf_copyfrom(&msg, sizeof(struct broadcast_message));
+            //git
+            packetbuf_copyfrom((struct broadcast_message *)data, sizeof(struct broadcast_message));
             broadcast_send(&broadcast);
-            seqno++;
 
             process_post(&master_neighbor_discovery,e_execute,NULL);
         }else
