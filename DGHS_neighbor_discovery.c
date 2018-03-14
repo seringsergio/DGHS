@@ -237,11 +237,6 @@ PROCESS_THREAD(master_neighbor_discovery, ev, data) //It can not have PROCESS_WA
                 (int)(((100UL * ru_list->msg.avg_seqno_gap) / SEQNO_EWMA_UNITY) % 100)
                 );
             }
-
-
-            //process_post(&runicast_control,e_execute,data);
-            printf("Debo enviar runicast mi perro\n");
-            //METERLOS EN UNA LISTA!!!!
         }
     }
 
