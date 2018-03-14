@@ -123,6 +123,7 @@ static void broadcast_recv(struct broadcast_conn *c, const linkaddr_t *from)
        could have reused an old neighbor entry, but we do not do this
        for now. */
     if(n == NULL) {
+      DGHS_DBG_1("ERROR: we could not allocate a new neighbor entry - neighbor broadcast\n");
       return;
     }
 
@@ -150,11 +151,11 @@ static void broadcast_recv(struct broadcast_conn *c, const linkaddr_t *from)
   /* Remember last seqno we heard. */
   n->last_seqno = m->seqno;
 
-
-  if(m->flags & FLAG_BROADCAST_POST)
+  //The neighbor says he is done AND we have not send the agreement
+  if( (m->flags & FLAG_BROADCAST_POST) && (!(n->flags & COMPROMISE_TO_SEND_AGREEMENT)) )
   {
       //Since the neighbor has finished the BROADCAST, I must send the agreement
-      n->flags |= SEND_AGREEMENT;
+      n->flags |= COMPROMISE_TO_SEND_AGREEMENT;
       fill_runicast_msg(&ru_msg, n->addr, n->avg_seqno_gap);
       process_post(&master_neighbor_discovery,e_runicast_evaluation,&ru_msg);
       printf("Deseo enviar agreement a %d.%d con avg seqno gap %d.%02d\n",
@@ -411,6 +412,19 @@ PROCESS_THREAD(send_neighbor_discovery, ev, data)
             );
 
             runicast_send(&runicast, &ru_msg.addr, MAX_RETRANSMISSIONS);
+
+            /*for(n = list_head(neighbors_list); n != NULL; n = list_item_next(n))
+            {
+              if(linkaddr_cmp(&n->addr, &ru_msg.addr)) {
+                n->flags |= AGREEMENT_SENT;
+                break;
+              }
+            }
+            if(n == NULL)
+            {
+                DGHS_DBG_1("ERROR: runicast agreement sent to neighbor that was not added to the list -> neighbors_list");
+            }*/
+
         }
     }
 

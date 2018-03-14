@@ -62,8 +62,7 @@ process_event_t e_runicast_evaluation;
 //OJO: al agregar otra flag por la asignacion de la funcion fill_broadcast_msg()
 
 //struct neighbor - n - flags
-#define SEND_AGREEMENT 0x01 //The node must send the agreement
-#define AGREEMENT_SENT 0x02 //The agreement has been sent
+#define COMPROMISE_TO_SEND_AGREEMENT 0x01 // The node must send the agreement
 
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////STRUCTS///////////////////////////////////////////////
