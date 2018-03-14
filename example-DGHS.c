@@ -47,11 +47,13 @@ void fill_wait_struct(struct s_wait *sw, uint8_t num_seconds, struct process *p)
 /////////////////////////////////////////////////////////////////////////////
 
 PROCESS(master_DGHS, "master_DGHS");
-PROCESS(wait, "wait");
 
-AUTOSTART_PROCESSES(&master_DGHS, &wait,
+AUTOSTART_PROCESSES(//example-DGHS
+                    &master_DGHS,
                     //neighbor discovery
-                    &master_neighbor_discovery, &broadcast_control, &send_neighbor_discovery);
+                    &master_neighbor_discovery, &broadcast_control, &runicast_control,
+                    &send_neighbor_discovery, &wait_broadcast_control, &wait_runicast_control
+                    );
 
 
 PROCESS_THREAD(master_DGHS, ev, data)
@@ -61,30 +63,7 @@ PROCESS_THREAD(master_DGHS, ev, data)
     e_initialize = process_alloc_event();
     e_execute    = process_alloc_event();
 
-    process_post(&master_neighbor_discovery, e_initialize , NULL);
+    process_post(&master_neighbor_discovery,e_initialize,NULL);
 
-    PROCESS_END();
-}
-
-PROCESS_THREAD(wait, ev, data)
-{
-    static struct etimer et;
-    static struct s_wait sw;
-
-    PROCESS_BEGIN();
-
-    e_end_wait = process_alloc_event();
-
-    while(1)
-    {
-        PROCESS_WAIT_EVENT();
-        if(ev == e_execute)
-        {
-            sw = *( (struct s_wait *)  data );
-            etimer_set(&et, CLOCK_SECOND * sw.num_seconds + random_rand() % (CLOCK_SECOND * sw.num_seconds));
-            PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
-            process_post(sw.p, e_end_wait , NULL);
-        }
-    }
     PROCESS_END();
 }

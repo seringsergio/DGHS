@@ -98,10 +98,9 @@ static void broadcast_recv(struct broadcast_conn *c, const linkaddr_t *from)
 
   if(m->flags & FLAG_BROADCAST_POST)
   {
-      printf("El nodo %d.%d ya termino de broadcast \n ", from->u8[0], from->u8[1]);
       //Since the neighbor has finished the BROADCAST, I must send the agreement
       n->flags |= SEND_AGREEMENT;
-      process_post(&master_neighbor_discovery,e_runicast_evaluation,NULL);
+      process_post(&master_neighbor_discovery,e_runicast_evaluation,&n->addr);
   }
   /* Print out a message. */
   printf("broadcast message received from %d.%d with seqno %d, RSSI %u, LQI %u, avg seqno gap %d.%02d flags = %04X\n",
@@ -119,9 +118,14 @@ static const struct broadcast_callbacks broadcast_call = {broadcast_recv};
 PROCESS(master_neighbor_discovery, "master_neighbor_discovery");
 PROCESS(send_neighbor_discovery, "send_neighbor_discovery");
 PROCESS(broadcast_control, "broadcast_control");
+PROCESS(wait_broadcast_control, "wait_broadcast_control");
+PROCESS(wait_runicast_control, "wait_broadcast_control");
+PROCESS(runicast_control, "runicast_control");
 
 PROCESS_THREAD(master_neighbor_discovery, ev, data) //It can not have PROCESS_WAIT_EVENT_UNTIL()
 {
+    static uint8_t seqno;
+
     PROCESS_BEGIN();
 
     e_broadcast_evaluation = process_alloc_event();
@@ -129,17 +133,33 @@ PROCESS_THREAD(master_neighbor_discovery, ev, data) //It can not have PROCESS_WA
 
     while(1)
     {
-        PROCESS_WAIT_EVENT();
+        PROCESS_WAIT_EVENT(); //Always must return to this wait. It can not use PROCESS_WAIT_EVENT_UNTIL()
         if(ev == e_initialize)
         {
-            process_post(&broadcast_control, e_initialize, NULL);
+            seqno = 0;
+            //Exit and start the processes that contain PROCESS_WAIT_EVENT_UNTIL()
+            process_exit(&broadcast_control);
+            process_start(&broadcast_control,NULL);
+
+            process_exit(&runicast_control);
+            process_start(&runicast_control,NULL);
+
+            process_exit(&wait_broadcast_control);
+            process_start(&wait_broadcast_control,NULL);
+
+            process_exit(&wait_runicast_control);
+            process_start(&wait_runicast_control,NULL);
+
+            process_post(&broadcast_control, e_execute, &seqno);
         }
         if(ev == e_broadcast_evaluation)
         {
-            process_post(&broadcast_control, e_execute, NULL);
+            seqno++;
+            process_post(&broadcast_control, e_execute, &seqno);
         }else
         if(ev == e_runicast_evaluation)
         {
+            process_post(&runicast_control,e_execute,(linkaddr_t *) data);
             printf("Debo enviar runicast mi perro\n");
         }
     }
@@ -147,6 +167,46 @@ PROCESS_THREAD(master_neighbor_discovery, ev, data) //It can not have PROCESS_WA
     PROCESS_END();
 }
 
+PROCESS_THREAD(runicast_control, ev, data)
+{
+    static linkaddr_t *to;
+
+    PROCESS_BEGIN();
+
+    while(1)
+    {
+        PROCESS_WAIT_EVENT();
+        if(ev == e_execute)
+        {
+            to = (linkaddr_t *) data;
+        }
+    }
+
+    PROCESS_END();
+}
+
+PROCESS_THREAD(wait_runicast_control, ev, data)
+{
+    static struct etimer et;
+    static struct s_wait sw;
+
+    PROCESS_BEGIN();
+
+    e_end_wait = process_alloc_event();
+
+    while(1)
+    {
+        PROCESS_WAIT_EVENT();
+        if(ev == e_execute)
+        {
+            sw = *( (struct s_wait *)  data );
+            etimer_set(&et, CLOCK_SECOND * sw.num_seconds + random_rand() % (CLOCK_SECOND * sw.num_seconds));
+            PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
+            process_post(sw.p, e_end_wait , NULL);
+        }//It can not have more events because of PROCESS_WAIT_EVENT_UNTIL()
+    }
+    PROCESS_END();
+}
 
 PROCESS_THREAD(broadcast_control, ev, data)
 {
@@ -159,37 +219,55 @@ PROCESS_THREAD(broadcast_control, ev, data)
     while(1)
     {
         PROCESS_WAIT_EVENT();
-        if(ev == e_initialize)
-        {
-            seqno = 0;
-            process_post(PROCESS_CURRENT(),e_execute,NULL);
-        }
         if(ev == e_execute)
         {
+            seqno = *((uint8_t *) data);
             if(seqno < NUM_BROADCAST_NEIGHBOR_DISCOVERY)
             {
                 fill_wait_struct(&sw, BROADCAST_INTERVAL_PRE, PROCESS_CURRENT() );
-                process_post(&wait, e_execute , &sw );
+                process_post(&wait_broadcast_control, e_execute , &sw );
                 PROCESS_WAIT_EVENT_UNTIL(ev == e_end_wait);
 
                 fill_broadcast_msg(&msg, seqno, ~FLAG_BROADCAST_POST);
                 process_post(&send_neighbor_discovery, e_send_broadcast, &msg);
-                seqno++;
+
             }else
             if(seqno >= NUM_BROADCAST_NEIGHBOR_DISCOVERY)
             {
                 fill_wait_struct(&sw, BROADCAST_INTERVAL_POST, PROCESS_CURRENT() );
-                process_post(&wait, e_execute , &sw );
+                process_post(&wait_broadcast_control, e_execute , &sw );
                 PROCESS_WAIT_EVENT_UNTIL(ev == e_end_wait);
 
                 fill_broadcast_msg(&msg, seqno, FLAG_BROADCAST_POST);
                 process_post(&send_neighbor_discovery, e_send_broadcast, &msg);
-                seqno++;
 
             }
-        }
+        }//It can not have more events because of PROCESS_WAIT_EVENT_UNTIL()
     }
 
+    PROCESS_END();
+}
+
+PROCESS_THREAD(wait_broadcast_control, ev, data)
+{
+    static struct etimer et;
+    static struct s_wait sw;
+
+    PROCESS_BEGIN();
+
+    e_end_wait = process_alloc_event();
+
+    while(1)
+    {
+        PROCESS_WAIT_EVENT();
+        if(ev == e_execute)
+        {
+            sw = *( (struct s_wait *)  data );
+            etimer_set(&et, CLOCK_SECOND * sw.num_seconds + random_rand() % (CLOCK_SECOND * sw.num_seconds));
+            PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
+            process_post(sw.p, e_end_wait , NULL);
+        }//It can not have more events because of PROCESS_WAIT_EVENT_UNTIL()
+    }
     PROCESS_END();
 }
 
