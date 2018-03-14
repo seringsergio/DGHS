@@ -51,16 +51,17 @@ PROCESS(wait, "wait");
 
 AUTOSTART_PROCESSES(&master_DGHS, &wait,
                     //neighbor discovery
-                    &master_neighbor_discovery, &send_neighbor_discovery);
+                    &master_neighbor_discovery, &broadcast_control, &send_neighbor_discovery);
 
 
 PROCESS_THREAD(master_DGHS, ev, data)
 {
     PROCESS_BEGIN();
 
-    e_execute = process_alloc_event();
+    e_initialize = process_alloc_event();
+    e_execute    = process_alloc_event();
 
-    process_post(&master_neighbor_discovery, e_execute , NULL);
+    process_post(&master_neighbor_discovery, e_initialize , NULL);
 
     PROCESS_END();
 }

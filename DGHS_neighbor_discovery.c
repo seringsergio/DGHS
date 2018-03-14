@@ -96,31 +96,74 @@ static void broadcast_recv(struct broadcast_conn *c, const linkaddr_t *from)
   n->last_seqno = m->seqno;
 
 
+  if(m->flags & FLAG_BROADCAST_POST)
+  {
+      printf("El nodo %d.%d ya termino de broadcast \n ", from->u8[0], from->u8[1]);
+      //Since the neighbor has finished the BROADCAST, I must send the agreement
+      n->flags |= SEND_AGREEMENT;
+      process_post(&master_neighbor_discovery,e_runicast_evaluation,NULL);
+  }
   /* Print out a message. */
-  printf("broadcast message received from %d.%d with seqno %d, RSSI %u, LQI %u, avg seqno gap %d.%02d\n",
+  printf("broadcast message received from %d.%d with seqno %d, RSSI %u, LQI %u, avg seqno gap %d.%02d flags = %04X\n",
          from->u8[0], from->u8[1],
          m->seqno,
          packetbuf_attr(PACKETBUF_ATTR_RSSI),
          packetbuf_attr(PACKETBUF_ATTR_LINK_QUALITY),
          (int)(n->avg_seqno_gap / SEQNO_EWMA_UNITY),
-         (int)(((100UL * n->avg_seqno_gap) / SEQNO_EWMA_UNITY) % 100));
+         (int)(((100UL * n->avg_seqno_gap) / SEQNO_EWMA_UNITY) % 100),
+         m->flags);
 }
 static const struct broadcast_callbacks broadcast_call = {broadcast_recv};
 
 
 PROCESS(master_neighbor_discovery, "master_neighbor_discovery");
 PROCESS(send_neighbor_discovery, "send_neighbor_discovery");
+PROCESS(broadcast_control, "broadcast_control");
 
-PROCESS_THREAD(master_neighbor_discovery, ev, data)
+PROCESS_THREAD(master_neighbor_discovery, ev, data) //It can not have PROCESS_WAIT_EVENT_UNTIL()
+{
+    PROCESS_BEGIN();
+
+    e_broadcast_evaluation = process_alloc_event();
+    e_runicast_evaluation   = process_alloc_event();
+
+    while(1)
+    {
+        PROCESS_WAIT_EVENT();
+        if(ev == e_initialize)
+        {
+            process_post(&broadcast_control, e_initialize, NULL);
+        }
+        if(ev == e_broadcast_evaluation)
+        {
+            process_post(&broadcast_control, e_execute, NULL);
+        }else
+        if(ev == e_runicast_evaluation)
+        {
+            printf("Debo enviar runicast mi perro\n");
+        }
+    }
+
+    PROCESS_END();
+}
+
+
+PROCESS_THREAD(broadcast_control, ev, data)
 {
     static uint8_t seqno;
     static struct s_wait sw;
     static struct broadcast_message msg;
+
     PROCESS_BEGIN();
 
     while(1)
     {
         PROCESS_WAIT_EVENT();
+        if(ev == e_initialize)
+        {
+            seqno = 0;
+            process_post(PROCESS_CURRENT(),e_execute,NULL);
+        }
         if(ev == e_execute)
         {
             if(seqno < NUM_BROADCAST_NEIGHBOR_DISCOVERY)
@@ -144,13 +187,11 @@ PROCESS_THREAD(master_neighbor_discovery, ev, data)
                 seqno++;
 
             }
-
         }
     }
 
     PROCESS_END();
 }
-
 
 PROCESS_THREAD(send_neighbor_discovery, ev, data)
 {
@@ -170,11 +211,11 @@ PROCESS_THREAD(send_neighbor_discovery, ev, data)
         PROCESS_WAIT_EVENT();
         if(ev == e_send_broadcast)
         {
-            
+
             packetbuf_copyfrom((struct broadcast_message *)data, sizeof(struct broadcast_message));
             broadcast_send(&broadcast);
 
-            process_post(&master_neighbor_discovery,e_execute,NULL);
+            process_post(&master_neighbor_discovery,e_broadcast_evaluation,NULL);
         }else
         if(ev == e_send_runicast)
         {

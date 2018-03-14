@@ -50,13 +50,20 @@
 
 process_event_t e_send_broadcast;
 process_event_t e_send_runicast;
+process_event_t e_broadcast_evaluation;
+process_event_t e_runicast_evaluation;
 
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////FLAGS/////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
-//broadcast_message - flags
+
+//broadcast_message  - msg - flags
 #define FLAG_BROADCAST_POST 0x01
 //OJO: al agregar otra flag por la asignacion de la funcion fill_broadcast_msg()
+
+//struct neighbor - n - flags
+#define SEND_AGREEMENT 0x01 //The node must send the agreement
+#define AGREEMENT_SENT 0x02 //The agreement has been sent
 
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////STRUCTS///////////////////////////////////////////////
@@ -90,6 +97,8 @@ struct neighbor {
   /* The ->avg_gap contains the average seqno gap that we have seen
      from this neighbor. */
   uint32_t avg_seqno_gap;
+
+  uint8_t flags;
 
 };
 

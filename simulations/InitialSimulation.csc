@@ -251,12 +251,12 @@
   <plugin>
     org.contikios.cooja.plugins.LogListener
     <plugin_config>
-      <filter>ID:6</filter>
+      <filter />
       <formatted_time />
       <coloring />
     </plugin_config>
     <width>1099</width>
-    <z>3</z>
+    <z>1</z>
     <height>318</height>
     <location_x>2</location_x>
     <location_y>403</location_y>
@@ -280,7 +280,7 @@
       <zoomfactor>500.0</zoomfactor>
     </plugin_config>
     <width>702</width>
-    <z>1</z>
+    <z>3</z>
     <height>248</height>
     <location_x>400</location_x>
     <location_y>157</location_y>
