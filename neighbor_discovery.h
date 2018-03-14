@@ -69,11 +69,31 @@ process_event_t e_runicast_evaluation;
 ///////////////////////STRUCTS///////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 
+
+/* OPTIONAL: Sender history.
+ * Detects duplicate callbacks at receiving nodes.
+ * Duplicates appear when ack messages are lost. */
+struct history_entry {
+  struct history_entry *next;
+  linkaddr_t addr;
+  uint8_t seq;
+};
+
 struct broadcast_message {
   uint8_t seqno;
   uint8_t flags;
 };
 
+struct runicast_message {
+  linkaddr_t addr;
+  uint32_t avg_seqno_gap;
+};
+
+struct runicast_list
+{
+    struct runicast_list *next;
+    struct runicast_message msg;
+};
 
 /* This structure holds information about neighbors. */
 struct neighbor {
@@ -107,5 +127,6 @@ struct neighbor {
 /////////////////////////////////////////////////////////////////////////////
 
 void fill_broadcast_msg(struct broadcast_message *msg, uint8_t seqno, uint8_t flags);
+void fill_runicast_msg(struct runicast_message *msg, linkaddr_t addr, uint32_t avg_seqno_gap);
 
 #endif /* NEIGHBOR_DISCOVERY_H */

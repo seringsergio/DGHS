@@ -34,13 +34,68 @@
 
 MEMB(neighbors_memb, struct neighbor, MAX_NEIGHBORS); // This MEMB() definition defines a memory pool from which we allocate neighbor entries.
 LIST(neighbors_list); // The neighbors_list is a Contiki list that holds the neighbors we have seen thus far.
-static struct broadcast_conn broadcast;
+LIST(history_table);
+MEMB(history_mem, struct history_entry, NUM_HISTORY_ENTRIES);
 
+MEMB(runicast_agreement_memb, struct runicast_list, MAX_NEIGHBORS);// This MEMB() definition defines a memory pool from which we allocate runicast messages.
+LIST(runicast_agreement_list); //List of runicast messages
+
+
+static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8_t seqno)
+{
+  /* OPTIONAL: Sender history */
+  struct history_entry *e = NULL;
+  for(e = list_head(history_table); e != NULL; e = e->next) {
+    if(linkaddr_cmp(&e->addr, from)) {
+      break;
+    }
+  }
+  if(e == NULL) {
+    /* Create new history entry */
+    e = memb_alloc(&history_mem);
+    if(e == NULL) {
+      e = list_chop(history_table); /* Remove oldest at full history */
+    }
+    linkaddr_copy(&e->addr, from);
+    e->seq = seqno;
+    list_push(history_table, e);
+  } else {
+    /* Detect duplicate callback */
+    if(e->seq == seqno) {
+      printf("runicast message received from %d.%d, seqno %d (DUPLICATE)\n",
+	     from->u8[0], from->u8[1], seqno);
+      return;
+    }
+    /* Update existing history entry */
+    e->seq = seqno;
+  }
+
+  printf("runicast message received from %d.%d, seqno %d\n",
+	 from->u8[0], from->u8[1], seqno);
+}
+static void sent_runicast(struct runicast_conn *c, const linkaddr_t *to, uint8_t retransmissions)
+{
+  printf("runicast message sent to %d.%d, retransmissions %d\n",
+	 to->u8[0], to->u8[1], retransmissions);
+}
+static void timedout_runicast(struct runicast_conn *c, const linkaddr_t *to, uint8_t retransmissions)
+{
+  printf("ERROR: runicast message timed out when sending to %d.%d, retransmissions %d\n",
+	 to->u8[0], to->u8[1], retransmissions);
+}
+static const struct runicast_callbacks runicast_callbacks = {recv_runicast,
+							     sent_runicast,
+							     timedout_runicast};
+static struct runicast_conn runicast;
 /* This function is called whenever a broadcast message is received. */
+
+static struct broadcast_conn broadcast;
 static void broadcast_recv(struct broadcast_conn *c, const linkaddr_t *from)
 {
   struct neighbor *n;
   struct broadcast_message *m;
+  static struct runicast_message ru_msg;
+
   uint8_t seqno_gap;
 
   /* The packetbuf_dataptr() returns a pointer to the first data byte
@@ -100,7 +155,13 @@ static void broadcast_recv(struct broadcast_conn *c, const linkaddr_t *from)
   {
       //Since the neighbor has finished the BROADCAST, I must send the agreement
       n->flags |= SEND_AGREEMENT;
-      process_post(&master_neighbor_discovery,e_runicast_evaluation,&n->addr);
+      fill_runicast_msg(&ru_msg, n->addr, n->avg_seqno_gap);
+      process_post(&master_neighbor_discovery,e_runicast_evaluation,&ru_msg);
+      printf("Deseo enviar agreement a %d.%d con avg seqno gap %d.%02d\n",
+      ru_msg.addr.u8[0], ru_msg.addr.u8[1],
+      (int)(ru_msg.avg_seqno_gap / SEQNO_EWMA_UNITY),
+      (int)(((100UL * ru_msg.avg_seqno_gap) / SEQNO_EWMA_UNITY) % 100)
+      );
   }
   /* Print out a message. */
   printf("broadcast message received from %d.%d with seqno %d, RSSI %u, LQI %u, avg seqno gap %d.%02d flags = %04X\n",
@@ -125,7 +186,7 @@ PROCESS(runicast_control, "runicast_control");
 PROCESS_THREAD(master_neighbor_discovery, ev, data) //It can not have PROCESS_WAIT_EVENT_UNTIL()
 {
     static uint8_t seqno;
-
+    static struct runicast_list *ru_list;
     PROCESS_BEGIN();
 
     e_broadcast_evaluation = process_alloc_event();
@@ -151,6 +212,7 @@ PROCESS_THREAD(master_neighbor_discovery, ev, data) //It can not have PROCESS_WA
             process_start(&wait_runicast_control,NULL);
 
             process_post(&broadcast_control, e_execute, &seqno);
+
         }
         if(ev == e_broadcast_evaluation)
         {
@@ -159,8 +221,26 @@ PROCESS_THREAD(master_neighbor_discovery, ev, data) //It can not have PROCESS_WA
         }else
         if(ev == e_runicast_evaluation)
         {
-            process_post(&runicast_control,e_execute,(linkaddr_t *) data);
+            //ADD to the list
+            ru_list = memb_alloc(&runicast_agreement_memb);
+            if(ru_list == NULL) {            // If we could not allocate a new entry, we give up.
+              DGHS_DBG_1("ERROR: we could not allocate a new entry for runicast_list\n");
+            }else
+            {
+                ru_list->msg = *((struct runicast_message*)data);
+                list_push(runicast_agreement_list,ru_list); // Add an item to the start of the list.
+
+                printf("GUARDO %d.%d con avg seqno gap %d.%02d\n",
+                ru_list->msg.addr.u8[0], ru_list->msg.addr.u8[1],
+                (int)(ru_list->msg.avg_seqno_gap / SEQNO_EWMA_UNITY),
+                (int)(((100UL * ru_list->msg.avg_seqno_gap) / SEQNO_EWMA_UNITY) % 100)
+                );
+            }
+
+
+            //process_post(&runicast_control,e_execute,data);
             printf("Debo enviar runicast mi perro\n");
+            //METERLOS EN UNA LISTA!!!!
         }
     }
 
@@ -169,18 +249,37 @@ PROCESS_THREAD(master_neighbor_discovery, ev, data) //It can not have PROCESS_WA
 
 PROCESS_THREAD(runicast_control, ev, data)
 {
-    static linkaddr_t *to;
+    static struct etimer et1, et2;
+    static struct runicast_list *ru_list;
 
     PROCESS_BEGIN();
 
     while(1)
     {
-        PROCESS_WAIT_EVENT();
-        if(ev == e_execute)
+        //exacute periodically
+        etimer_set(&et1, CLOCK_SECOND * BROADCAST_INTERVAL_POST
+             + random_rand() % (CLOCK_SECOND * BROADCAST_INTERVAL_POST));
+        PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et1));
+
+        while(list_length(runicast_agreement_list))
         {
-            to = (linkaddr_t *) data;
-        }
-    }
+                //Give enough time to transmit the previous ru_msg
+                etimer_set(&et2, CLOCK_SECOND * 1);
+                PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et2));
+
+                if(!runicast_is_transmitting(&runicast))
+                {
+                    ru_list = list_chop(runicast_agreement_list); // Remove the last object on the list.
+                    process_post(&send_neighbor_discovery, e_send_runicast, &ru_list->msg);
+                    memb_free(&runicast_agreement_memb,ru_list);
+                }else
+                {
+                    DGHS_DBG_2("WARNING: break from runicast_control"); //"Enough" time is not enough!!
+                    break;
+                }
+        } //While(There are elements in the list)
+
+    } //END while(1)
 
     PROCESS_END();
 }
@@ -274,12 +373,17 @@ PROCESS_THREAD(wait_broadcast_control, ev, data)
 PROCESS_THREAD(send_neighbor_discovery, ev, data)
 {
 
-    PROCESS_EXITHANDLER(broadcast_close(&broadcast);)
+    static struct runicast_message ru_msg;
 
+    PROCESS_EXITHANDLER(broadcast_close(&broadcast);runicast_close(&runicast);)
     PROCESS_BEGIN();
 
     broadcast_open(&broadcast, 129, &broadcast_call);
+    runicast_open(&runicast, 144, &runicast_callbacks);
 
+    /* OPTIONAL: Sender history */
+    list_init(history_table);
+    memb_init(&history_mem);
 
     e_send_broadcast = process_alloc_event();
     e_send_runicast  = process_alloc_event();
@@ -297,7 +401,16 @@ PROCESS_THREAD(send_neighbor_discovery, ev, data)
         }else
         if(ev == e_send_runicast)
         {
+            ru_msg = *((struct runicast_message *)data);
+            packetbuf_copyfrom(&ru_msg, sizeof(struct runicast_message));
 
+            printf("ENVIO Runicast %d.%d con avg seqno gap %d.%02d\n",
+            ru_msg.addr.u8[0], ru_msg.addr.u8[1],
+            (int)(ru_msg.avg_seqno_gap / SEQNO_EWMA_UNITY),
+            (int)(((100UL * ru_msg.avg_seqno_gap) / SEQNO_EWMA_UNITY) % 100)
+            );
+
+            runicast_send(&runicast, &ru_msg.addr, MAX_RETRANSMISSIONS);
         }
     }
 

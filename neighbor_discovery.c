@@ -40,3 +40,9 @@
      msg->seqno = seqno;
      msg->flags = flags;
  }
+
+ void fill_runicast_msg(struct runicast_message *msg, linkaddr_t addr, uint32_t avg_seqno_gap)
+ {
+     msg->addr = addr;
+     msg->avg_seqno_gap = avg_seqno_gap;
+ }

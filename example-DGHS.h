@@ -53,9 +53,12 @@
 
 #define NUM_BROADCAST_NEIGHBOR_DISCOVERY 1
 #define BROADCAST_INTERVAL_PRE           5 //in seconds
-#define BROADCAST_INTERVAL_POST          20 //in seconds
+#define BROADCAST_INTERVAL_POST          30 //in seconds
+#define RUNICAST_INTERVAL_RETRY          3 //in seconds
+#define RUNICAST_INTERVAL                15 //in seconds
 #define MAX_NEIGHBORS                    16 // This #define defines the maximum amount of neighbors we can remember.
-
+#define MAX_RETRANSMISSIONS 4
+#define NUM_HISTORY_ENTRIES 4
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////FLAGS/////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
