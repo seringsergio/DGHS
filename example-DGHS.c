@@ -32,6 +32,11 @@
 
 #include "example-DGHS.h"
 
+
+/////////////////////////////////////////////////////////////////////////////
+///////////////////////FUNCTIONS/////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////INTERFACES////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
@@ -62,9 +67,9 @@ PROCESS_THREAD(master_DGHS, ev, data)
 
     e_initialize = process_alloc_event();
     e_execute    = process_alloc_event();
-    e_exit       = process_alloc_event();
 
     process_post(&master_neighbor_discovery,e_initialize,NULL);
+
 
     while(1)
     {
@@ -74,8 +79,8 @@ PROCESS_THREAD(master_DGHS, ev, data)
 
         if(node.control_flags & NEIGHBOR_DISCOVERY_HAS_ENDED)
         {
-            DGHS_DBG_2("NEIGHBOR_DISCOVERY_HAS_ENDED\n"); 
-            process_post(&master_neighbor_discovery,e_exit,NULL);
+            DGHS_DBG_2("NEIGHBOR_DISCOVERY_HAS_ENDED\n");
+            print_neighbor_list(neighbors_list_p);
         }
     }
 

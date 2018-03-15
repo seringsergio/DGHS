@@ -34,6 +34,9 @@
 
 MEMB(neighbors_memb, struct neighbor, MAX_NEIGHBORS); // This MEMB() definition defines a memory pool from which we allocate neighbor entries.
 LIST(neighbors_list); // The neighbors_list is a Contiki list that holds the neighbors we have seen thus far.
+
+//struct neighbor *neighbors_list_p;
+
 MEMB(history_mem, struct history_entry, NUM_HISTORY_ENTRIES);
 LIST(history_table);
 MEMB(runicast_agreement_memb, struct runicast_list, MAX_NEIGHBORS);// This MEMB() definition defines a memory pool from which we allocate runicast messages.
@@ -220,11 +223,16 @@ PROCESS_THREAD(master_neighbor_discovery, ev, data) //It can not have PROCESS_WA
     e_broadcast_evaluation = process_alloc_event();
     e_runicast_evaluation  = process_alloc_event();
 
+    list_init(neighbors_list);
+    memb_init(&neighbors_memb);
+
     while(1)
     {
         PROCESS_WAIT_EVENT(); //Always must return to this wait. It can not use PROCESS_WAIT_EVENT_UNTIL()
         if(ev == e_initialize)
         {
+
+
             seqno = 0;
 
             //Exit the processes
@@ -244,11 +252,13 @@ PROCESS_THREAD(master_neighbor_discovery, ev, data) //It can not have PROCESS_WA
         }
         if(ev == e_broadcast_evaluation)
         {
+
             seqno++;
             process_post(&broadcast_control, e_execute, &seqno);
         }else
         if(ev == e_runicast_evaluation)
         {
+
             //ADD to the list
             ru_list = memb_alloc(&runicast_agreement_memb);
             if(ru_list == NULL) {            // If we could not allocate a new entry, we give up.
@@ -264,13 +274,6 @@ PROCESS_THREAD(master_neighbor_discovery, ev, data) //It can not have PROCESS_WA
                 (int)(((100UL * ru_list->msg.avg_seqno_gap) / SEQNO_EWMA_UNITY) % 100)
                  );*/
             }
-        }else
-        if(ev == e_exit)
-        {
-            process_exit(&broadcast_control);
-            process_exit(&runicast_control);
-            process_exit(&send_neighbor_discovery);
-            process_exit(&analyze_agreement);
         }
     }
 
@@ -284,6 +287,9 @@ PROCESS_THREAD(broadcast_control, ev, data)
     static struct etimer et;
 
     PROCESS_BEGIN();
+
+    //neighbors_list_p = list_head(neighbors_list);
+    //if(list_head(neighbors_list)==NULL) printf("desde es NULL\n");
 
     while(1)
     {

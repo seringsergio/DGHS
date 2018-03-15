@@ -31,6 +31,16 @@
  */
 #include "neighbor_discovery.h"
 
+
+
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////INTERFACES//////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+void interface_get_neighbor_list_pointer(struct neighbor *neighbors_list_head)
+{
+    neighbors_list_p = neighbors_list_head;
+}
+
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////FUNTIONS//////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
@@ -61,10 +71,31 @@ uint8_t every_neighbor_agrees(struct neighbor *neighbors_list_head)
     if(flag_temp & WEIGHT_HAS_BEEN_ASSIGNED)
     {
         //For every neighbor the  WEIGHT_HAS_BEEN_ASSIGNED
-        DGHS_interface_control_flags(NEIGHBOR_DISCOVERY_HAS_ENDED); 
+        DGHS_interface_control_flags(NEIGHBOR_DISCOVERY_HAS_ENDED);
+        interface_get_neighbor_list_pointer(neighbors_list_head);
+        //neighbors_list_p = neighbors_list_head;
         return 1;
     }else
     {
         return 0;
+    }
+}
+
+
+void print_neighbor_list(struct neighbor *neighbors_list_head)
+{
+    struct neighbor *n;
+
+    if(neighbors_list_head == NULL)
+    {
+        DGHS_DBG_1("ERROR: neighbors_list_head is NULL \n");
+    }
+
+    for(n = neighbors_list_head; n != NULL; n = list_item_next(n))
+    {
+        DGHS_DBG_2("%d.%d weight=%d.%02d\n", n->addr.u8[0], n->addr.u8[1],
+        (int)(n->weight / SEQNO_EWMA_UNITY),
+        (int)(((100UL * n->weight) / SEQNO_EWMA_UNITY) % 100)
+        );
     }
 }
