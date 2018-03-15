@@ -33,13 +33,12 @@
 #include "example-DGHS.h"
 
 /////////////////////////////////////////////////////////////////////////////
-///////////////////////FUNCTIONS/////////////////////////////////////////////
+///////////////////////INTERFACES////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 
-void fill_wait_struct(struct s_wait *sw, uint8_t num_seconds, struct process *p)
+void DGHS_interface_control_flags(uint8_t flags)
 {
-    sw->num_seconds = num_seconds;
-    sw->p           = p;
+    node.control_flags |= flags;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -51,20 +50,34 @@ PROCESS(master_DGHS, "master_DGHS");
 AUTOSTART_PROCESSES(//example-DGHS
                     &master_DGHS,
                     //neighbor discovery
-                    &master_neighbor_discovery, &broadcast_control, &runicast_control,
-                    &send_neighbor_discovery, &wait_broadcast_control, &wait_runicast_control,
-                    &analyze_agreement
-                    );
+                    &master_neighbor_discovery);
 
 
 PROCESS_THREAD(master_DGHS, ev, data)
 {
+
+    static struct etimer et;
+
     PROCESS_BEGIN();
 
     e_initialize = process_alloc_event();
     e_execute    = process_alloc_event();
+    e_exit       = process_alloc_event();
 
     process_post(&master_neighbor_discovery,e_initialize,NULL);
+
+    while(1)
+    {
+        //Execute Periodically
+        etimer_set(&et, CLOCK_SECOND * TIME_DGHS_PROCESS);
+        PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
+
+        if(node.control_flags & NEIGHBOR_DISCOVERY_HAS_ENDED)
+        {
+            DGHS_DBG_2("NEIGHBOR_DISCOVERY_HAS_ENDED\n"); 
+            process_post(&master_neighbor_discovery,e_exit,NULL);
+        }
+    }
 
     PROCESS_END();
 }

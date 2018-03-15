@@ -47,7 +47,7 @@ void fill_runicast_msg(struct runicast_message *msg, linkaddr_t addr, uint32_t a
  msg->avg_seqno_gap = avg_seqno_gap;
 }
 
-uint8_t not_every_neighbor_agrees(struct neighbor *neighbors_list_head)
+uint8_t every_neighbor_agrees(struct neighbor *neighbors_list_head)
 {
     struct neighbor *n;
     uint8_t flag_temp = 0;
@@ -61,10 +61,10 @@ uint8_t not_every_neighbor_agrees(struct neighbor *neighbors_list_head)
     if(flag_temp & WEIGHT_HAS_BEEN_ASSIGNED)
     {
         //For every neighbor the  WEIGHT_HAS_BEEN_ASSIGNED
-        return 0;
+        DGHS_interface_control_flags(NEIGHBOR_DISCOVERY_HAS_ENDED); 
+        return 1;
     }else
     {
-        return 1;
+        return 0;
     }
-
 }
