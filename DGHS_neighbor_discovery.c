@@ -276,7 +276,6 @@ PROCESS_THREAD(master_neighbor_discovery, ev, data) //It can not have PROCESS_WA
             }
         }
     }
-
     PROCESS_END();
 }
 

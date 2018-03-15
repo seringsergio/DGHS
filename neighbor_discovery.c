@@ -57,6 +57,7 @@ void fill_runicast_msg(struct runicast_message *msg, linkaddr_t addr, uint32_t a
  msg->avg_seqno_gap = avg_seqno_gap;
 }
 
+
 uint8_t every_neighbor_agrees(struct neighbor *neighbors_list_head)
 {
     struct neighbor *n;

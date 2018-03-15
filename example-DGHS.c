@@ -70,7 +70,6 @@ PROCESS_THREAD(master_DGHS, ev, data)
 
     process_post(&master_neighbor_discovery,e_initialize,NULL);
 
-
     while(1)
     {
         //Execute Periodically
