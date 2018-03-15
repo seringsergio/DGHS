@@ -52,6 +52,7 @@ process_event_t e_send_broadcast;
 process_event_t e_send_runicast;
 process_event_t e_broadcast_evaluation;
 process_event_t e_runicast_evaluation;
+//process_event_t e_other_direction;
 
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////FLAGS/////////////////////////////////////////////////
@@ -62,7 +63,10 @@ process_event_t e_runicast_evaluation;
 //OJO: al agregar otra flag por la asignacion de la funcion fill_broadcast_msg()
 
 //struct neighbor - n - flags
-#define COMPROMISE_TO_SEND_AGREEMENT 0x01 // The node must send the agreement
+#define COMPROMISE_TO_SEND_AGREEMENT   0x01 // The node must send the agreement
+#define AVG_SEQNO_GAP_OTHER_DIRECTION  0x02
+#define NEIGHBOR_HAS_ENDED_BROADCAST   0x04
+#define WEIGHT_HAS_BEEN_ASSIGNED       0x08
 
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////STRUCTS///////////////////////////////////////////////
@@ -117,6 +121,10 @@ struct neighbor {
      from this neighbor. */
   uint32_t avg_seqno_gap;
 
+  uint32_t avg_seqno_gap_other_direction;
+
+  uint32_t weight;
+
   uint8_t flags;
 
 };
@@ -127,5 +135,5 @@ struct neighbor {
 
 void fill_broadcast_msg(struct broadcast_message *msg, uint8_t seqno, uint8_t flags);
 void fill_runicast_msg(struct runicast_message *msg, linkaddr_t addr, uint32_t avg_seqno_gap);
-
+uint8_t not_every_neighbor_agrees(struct neighbor *neighbors_list_head);
 #endif /* NEIGHBOR_DISCOVERY_H */

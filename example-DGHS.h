@@ -51,14 +51,15 @@
 ///////////////////////PARAMETERS////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 
-#define NUM_BROADCAST_NEIGHBOR_DISCOVERY 1
+#define NUM_BROADCAST_NEIGHBOR_DISCOVERY 1 //Must be greater than 1, at least 2
 #define BROADCAST_INTERVAL_PRE           5 //in seconds
 #define BROADCAST_INTERVAL_POST          30 //in seconds
 #define RUNICAST_INTERVAL_RETRY          3 //in seconds
 #define RUNICAST_INTERVAL                15 //in seconds
 #define MAX_NEIGHBORS                    16 // This #define defines the maximum amount of neighbors we can remember.
-#define MAX_RETRANSMISSIONS 4
-#define NUM_HISTORY_ENTRIES 4
+#define MAX_RETRANSMISSIONS              4
+#define NUM_HISTORY_ENTRIES              4
+#define TIME_PREVIOUS_RU_MSG             1 // time to transmit the previous ru_msg (in seconds)
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////FLAGS/////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
@@ -75,6 +76,7 @@ PROCESS_NAME(broadcast_control);
 PROCESS_NAME(runicast_control);
 PROCESS_NAME(wait_broadcast_control);
 PROCESS_NAME(wait_runicast_control);
+PROCESS_NAME(analyze_agreement);
 
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////EVENTS////////////////////////////////////////////////

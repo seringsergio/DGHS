@@ -748,7 +748,7 @@ LOAD /usr/lib/gcc/msp430/4.6.3/mmpy-16/libcrt0.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000004000     0x5d5a
+.text           0x0000000000004000     0x5f82
                 0x0000000000004000                . = ALIGN (0x2)
  *(.init .init.*)
  *(.init0)
@@ -819,957 +819,963 @@ LOAD /usr/lib/gcc/msp430/4.6.3/mmpy-16/libcrt0.a
                 0x0000000000004360       0x1a obj_sky/DGHS_neighbor_discovery.o
  .text.sent_runicast
                 0x000000000000437a       0x1a obj_sky/DGHS_neighbor_discovery.o
+ .text.process_thread_analyze_agreement
+                0x0000000000004394      0x168 obj_sky/DGHS_neighbor_discovery.o
  .text.process_thread_runicast_control
-                0x0000000000004394       0xd0 obj_sky/DGHS_neighbor_discovery.o
+                0x00000000000044fc       0xd0 obj_sky/DGHS_neighbor_discovery.o
  .text.process_thread_wait_runicast_control
-                0x0000000000004464       0xa4 obj_sky/DGHS_neighbor_discovery.o
+                0x00000000000045cc       0xa4 obj_sky/DGHS_neighbor_discovery.o
  .text.process_thread_wait_broadcast_control
-                0x0000000000004508       0xa4 obj_sky/DGHS_neighbor_discovery.o
+                0x0000000000004670       0xa4 obj_sky/DGHS_neighbor_discovery.o
  .text.process_thread_broadcast_control
-                0x00000000000045ac       0xcc obj_sky/DGHS_neighbor_discovery.o
+                0x0000000000004714       0xf0 obj_sky/DGHS_neighbor_discovery.o
  .text.process_thread_send_neighbor_discovery
-                0x0000000000004678      0x158 obj_sky/DGHS_neighbor_discovery.o
+                0x0000000000004804      0x158 obj_sky/DGHS_neighbor_discovery.o
  .text.recv_runicast
-                0x00000000000047d0       0xa0 obj_sky/DGHS_neighbor_discovery.o
+                0x000000000000495c      0x108 obj_sky/DGHS_neighbor_discovery.o
  .text.broadcast_recv
-                0x0000000000004870      0x236 obj_sky/DGHS_neighbor_discovery.o
+                0x0000000000004a64      0x24c obj_sky/DGHS_neighbor_discovery.o
  .text.process_thread_master_neighbor_discovery
-                0x0000000000004aa6      0x17c obj_sky/DGHS_neighbor_discovery.o
+                0x0000000000004cb0      0x17c obj_sky/DGHS_neighbor_discovery.o
  .text.fill_broadcast_msg
-                0x0000000000004c22        0xa obj_sky/neighbor_discovery.o
-                0x0000000000004c22                fill_broadcast_msg
+                0x0000000000004e2c        0xa obj_sky/neighbor_discovery.o
+                0x0000000000004e2c                fill_broadcast_msg
  .text.fill_runicast_msg
-                0x0000000000004c2c        0xe obj_sky/neighbor_discovery.o
-                0x0000000000004c2c                fill_runicast_msg
+                0x0000000000004e36        0xe obj_sky/neighbor_discovery.o
+                0x0000000000004e36                fill_runicast_msg
+ .text.not_every_neighbor_agrees
+                0x0000000000004e44       0x1e obj_sky/neighbor_discovery.o
+                0x0000000000004e44                not_every_neighbor_agrees
  .text.init_platform
-                0x0000000000004c3a        0xc contiki-sky.a(contiki-sky-pla)
-                0x0000000000004c3a                init_platform
- .text.status   0x0000000000004c46       0x16 contiki-sky.a(button-sensor.o)
+                0x0000000000004e62        0xc contiki-sky.a(contiki-sky-pla)
+                0x0000000000004e62                init_platform
+ .text.status   0x0000000000004e6e       0x16 contiki-sky.a(button-sensor.o)
  .text.configure
-                0x0000000000004c5c       0x52 contiki-sky.a(button-sensor.o)
- .text.value    0x0000000000004cae       0x22 contiki-sky.a(button-sensor.o)
- .text.irq_p2   0x0000000000004cd0       0x8a contiki-sky.a(button-sensor.o)
-                0x0000000000004cd0                irq_p2
-                0x0000000000004cd0                __isr_1
- .text.owreadb  0x0000000000004d5a       0x52 contiki-sky.a(ds2411.o)
+                0x0000000000004e84       0x52 contiki-sky.a(button-sensor.o)
+ .text.value    0x0000000000004ed6       0x22 contiki-sky.a(button-sensor.o)
+ .text.irq_p2   0x0000000000004ef8       0x8a contiki-sky.a(button-sensor.o)
+                0x0000000000004ef8                irq_p2
+                0x0000000000004ef8                __isr_1
+ .text.owreadb  0x0000000000004f82       0x52 contiki-sky.a(ds2411.o)
  .text.ds2411_init
-                0x0000000000004dac      0x122 contiki-sky.a(ds2411.o)
-                0x0000000000004dac                ds2411_init
+                0x0000000000004fd4      0x122 contiki-sky.a(ds2411.o)
+                0x0000000000004fd4                ds2411_init
  .text.wait_ready
-                0x0000000000004ece       0x50 contiki-sky.a(xmem.o)
+                0x00000000000050f6       0x50 contiki-sky.a(xmem.o)
  .text.xmem_init
-                0x0000000000004f1e       0x3e contiki-sky.a(xmem.o)
-                0x0000000000004f1e                xmem_init
+                0x0000000000005146       0x3e contiki-sky.a(xmem.o)
+                0x0000000000005146                xmem_init
  .text.xmem_pread
-                0x0000000000004f5c       0xea contiki-sky.a(xmem.o)
-                0x0000000000004f5c                xmem_pread
+                0x0000000000005184       0xea contiki-sky.a(xmem.o)
+                0x0000000000005184                xmem_pread
  .text.node_id_restore
-                0x0000000000005046       0x38 contiki-sky.a(node-id.o)
-                0x0000000000005046                node_id_restore
+                0x000000000000526e       0x38 contiki-sky.a(node-id.o)
+                0x000000000000526e                node_id_restore
  .text.process_thread_sensors_process
-                0x000000000000507e       0xbe contiki-sky.a(sensors.o)
+                0x00000000000052a6       0xbe contiki-sky.a(sensors.o)
  .text.sensors_changed
-                0x000000000000513c       0x2a contiki-sky.a(sensors.o)
-                0x000000000000513c                sensors_changed
+                0x0000000000005364       0x2a contiki-sky.a(sensors.o)
+                0x0000000000005364                sensors_changed
  .text.get_object
-                0x0000000000005166        0x4 contiki-sky.a(cc2420.o)
+                0x000000000000538e        0x4 contiki-sky.a(cc2420.o)
  .text.set_object
-                0x000000000000516a        0x4 contiki-sky.a(cc2420.o)
- .text.strobe   0x000000000000516e       0x20 contiki-sky.a(cc2420.o)
- .text.getreg   0x000000000000518e       0x54 contiki-sky.a(cc2420.o)
- .text.setreg   0x00000000000051e2       0x52 contiki-sky.a(cc2420.o)
+                0x0000000000005392        0x4 contiki-sky.a(cc2420.o)
+ .text.strobe   0x0000000000005396       0x20 contiki-sky.a(cc2420.o)
+ .text.getreg   0x00000000000053b6       0x54 contiki-sky.a(cc2420.o)
+ .text.setreg   0x000000000000540a       0x52 contiki-sky.a(cc2420.o)
  .text.write_ram
-                0x0000000000005234       0x80 contiki-sky.a(cc2420.o)
+                0x000000000000545c       0x80 contiki-sky.a(cc2420.o)
  .text.write_fifo_buf
-                0x00000000000052b4       0x40 contiki-sky.a(cc2420.o)
+                0x00000000000054dc       0x40 contiki-sky.a(cc2420.o)
  .text.get_status
-                0x00000000000052f4       0x24 contiki-sky.a(cc2420.o)
+                0x000000000000551c       0x24 contiki-sky.a(cc2420.o)
  .text.set_txpower
-                0x0000000000005318       0x26 contiki-sky.a(cc2420.o)
+                0x0000000000005540       0x26 contiki-sky.a(cc2420.o)
  .text.cc2420_receiving_packet
-                0x000000000000533e        0xe contiki-sky.a(cc2420.o)
+                0x0000000000005566        0xe contiki-sky.a(cc2420.o)
  .text.pending_packet
-                0x000000000000534c        0x8 contiki-sky.a(cc2420.o)
- .text.on       0x0000000000005354       0x26 contiki-sky.a(cc2420.o)
+                0x0000000000005574        0x8 contiki-sky.a(cc2420.o)
+ .text.on       0x000000000000557c       0x26 contiki-sky.a(cc2420.o)
  .text.wait_for_transmission
-                0x000000000000537a       0x22 contiki-sky.a(cc2420.o)
+                0x00000000000055a2       0x22 contiki-sky.a(cc2420.o)
  .text.wait_for_status
-                0x000000000000539c       0x2a contiki-sky.a(cc2420.o)
+                0x00000000000055c4       0x2a contiki-sky.a(cc2420.o)
  .text.getrxdata
-                0x00000000000053c6       0x56 contiki-sky.a(cc2420.o)
- .text.flushrx  0x000000000000541c       0x1a contiki-sky.a(cc2420.o)
- .text.off      0x0000000000005436       0x62 contiki-sky.a(cc2420.o)
+                0x00000000000055ee       0x56 contiki-sky.a(cc2420.o)
+ .text.flushrx  0x0000000000005644       0x1a contiki-sky.a(cc2420.o)
+ .text.off      0x000000000000565e       0x62 contiki-sky.a(cc2420.o)
  .text.RELEASE_LOCK
-                0x0000000000005498       0x28 contiki-sky.a(cc2420.o)
- .text.set_key  0x00000000000054c0       0x18 contiki-sky.a(cc2420.o)
+                0x00000000000056c0       0x28 contiki-sky.a(cc2420.o)
+ .text.set_key  0x00000000000056e8       0x18 contiki-sky.a(cc2420.o)
  .text.set_frame_filtering
-                0x00000000000054d8       0x30 contiki-sky.a(cc2420.o)
+                0x0000000000005700       0x30 contiki-sky.a(cc2420.o)
  .text.set_auto_ack
-                0x0000000000005508       0x30 contiki-sky.a(cc2420.o)
+                0x0000000000005730       0x30 contiki-sky.a(cc2420.o)
  .text.set_poll_mode
-                0x0000000000005538       0x36 contiki-sky.a(cc2420.o)
+                0x0000000000005760       0x36 contiki-sky.a(cc2420.o)
  .text.cc2420_prepare
-                0x000000000000556e       0x3c contiki-sky.a(cc2420.o)
+                0x0000000000005796       0x3c contiki-sky.a(cc2420.o)
  .text.cc2420_on
-                0x00000000000055aa       0x22 contiki-sky.a(cc2420.o)
-                0x00000000000055aa                cc2420_on
+                0x00000000000057d2       0x22 contiki-sky.a(cc2420.o)
+                0x00000000000057d2                cc2420_on
  .text.cc2420_off
-                0x00000000000055cc       0x30 contiki-sky.a(cc2420.o)
-                0x00000000000055cc                cc2420_off
+                0x00000000000057f4       0x30 contiki-sky.a(cc2420.o)
+                0x00000000000057f4                cc2420_off
  .text.cc2420_cca
-                0x00000000000055fc       0x5e contiki-sky.a(cc2420.o)
+                0x0000000000005824       0x5e contiki-sky.a(cc2420.o)
  .text.cc2420_read
-                0x000000000000565a       0xc0 contiki-sky.a(cc2420.o)
+                0x0000000000005882       0xc0 contiki-sky.a(cc2420.o)
  .text.process_thread_cc2420_process
-                0x000000000000571a       0x58 contiki-sky.a(cc2420.o)
- .text.encrypt  0x0000000000005772       0x8e contiki-sky.a(cc2420.o)
+                0x0000000000005942       0x58 contiki-sky.a(cc2420.o)
+ .text.encrypt  0x000000000000599a       0x8e contiki-sky.a(cc2420.o)
  .text.cc2420_set_channel
-                0x0000000000005800       0x3c contiki-sky.a(cc2420.o)
-                0x0000000000005800                cc2420_set_channel
+                0x0000000000005a28       0x3c contiki-sky.a(cc2420.o)
+                0x0000000000005a28                cc2420_set_channel
  .text.cc2420_set_pan_addr
-                0x000000000000583c       0x4c contiki-sky.a(cc2420.o)
-                0x000000000000583c                cc2420_set_pan_addr
+                0x0000000000005a64       0x4c contiki-sky.a(cc2420.o)
+                0x0000000000005a64                cc2420_set_pan_addr
  .text.cc2420_interrupt
-                0x0000000000005888       0x18 contiki-sky.a(cc2420.o)
-                0x0000000000005888                cc2420_interrupt
+                0x0000000000005ab0       0x18 contiki-sky.a(cc2420.o)
+                0x0000000000005ab0                cc2420_interrupt
  .text.cc2420_set_txpower
-                0x00000000000058a0        0xe contiki-sky.a(cc2420.o)
-                0x00000000000058a0                cc2420_set_txpower
+                0x0000000000005ac8        0xe contiki-sky.a(cc2420.o)
+                0x0000000000005ac8                cc2420_set_txpower
  .text.cc2420_get_txpower
-                0x00000000000058ae       0x1e contiki-sky.a(cc2420.o)
-                0x00000000000058ae                cc2420_get_txpower
+                0x0000000000005ad6       0x1e contiki-sky.a(cc2420.o)
+                0x0000000000005ad6                cc2420_get_txpower
  .text.cc2420_transmit
-                0x00000000000058cc      0x134 contiki-sky.a(cc2420.o)
+                0x0000000000005af4      0x134 contiki-sky.a(cc2420.o)
  .text.cc2420_send
-                0x0000000000005a00       0x12 contiki-sky.a(cc2420.o)
+                0x0000000000005c28       0x12 contiki-sky.a(cc2420.o)
  .text.cc2420_rssi
-                0x0000000000005a12       0x4c contiki-sky.a(cc2420.o)
-                0x0000000000005a12                cc2420_rssi
+                0x0000000000005c3a       0x4c contiki-sky.a(cc2420.o)
+                0x0000000000005c3a                cc2420_rssi
  .text.get_value
-                0x0000000000005a5e      0x108 contiki-sky.a(cc2420.o)
+                0x0000000000005c86      0x108 contiki-sky.a(cc2420.o)
  .text.cc2420_set_cca_threshold
-                0x0000000000005b66       0x16 contiki-sky.a(cc2420.o)
-                0x0000000000005b66                cc2420_set_cca_threshold
+                0x0000000000005d8e       0x16 contiki-sky.a(cc2420.o)
+                0x0000000000005d8e                cc2420_set_cca_threshold
  .text.set_value
-                0x0000000000005b7c       0xba contiki-sky.a(cc2420.o)
+                0x0000000000005da4       0xba contiki-sky.a(cc2420.o)
  .text.cc2420_init
-                0x0000000000005c36       0xf0 contiki-sky.a(cc2420.o)
-                0x0000000000005c36                cc2420_init
+                0x0000000000005e5e       0xf0 contiki-sky.a(cc2420.o)
+                0x0000000000005e5e                cc2420_init
  .text.cc2420_port1_interrupt
-                0x0000000000005d26       0x62 contiki-sky.a(cc2420-arch.o)
-                0x0000000000005d26                __isr_4
-                0x0000000000005d26                cc2420_port1_interrupt
+                0x0000000000005f4e       0x62 contiki-sky.a(cc2420-arch.o)
+                0x0000000000005f4e                __isr_4
+                0x0000000000005f4e                cc2420_port1_interrupt
  .text.cc2420_arch_init
-                0x0000000000005d88       0x1a contiki-sky.a(cc2420-arch.o)
-                0x0000000000005d88                cc2420_arch_init
+                0x0000000000005fb0       0x1a contiki-sky.a(cc2420-arch.o)
+                0x0000000000005fb0                cc2420_arch_init
  .text.handle_rxdma_timer
-                0x0000000000005da2       0x3a contiki-sky.a(uart1.o)
+                0x0000000000005fca       0x3a contiki-sky.a(uart1.o)
  .text.uart1_active
-                0x0000000000005ddc       0x1a contiki-sky.a(uart1.o)
-                0x0000000000005ddc                uart1_active
+                0x0000000000006004       0x1a contiki-sky.a(uart1.o)
+                0x0000000000006004                uart1_active
  .text.uart1_set_input
-                0x0000000000005df6       0x20 contiki-sky.a(uart1.o)
-                0x0000000000005df6                uart1_set_input
+                0x000000000000601e       0x20 contiki-sky.a(uart1.o)
+                0x000000000000601e                uart1_set_input
  .text.uart1_writeb
-                0x0000000000005e16       0x1a contiki-sky.a(uart1.o)
-                0x0000000000005e16                uart1_writeb
+                0x000000000000603e       0x1a contiki-sky.a(uart1.o)
+                0x000000000000603e                uart1_writeb
  .text.uart1_init
-                0x0000000000005e30       0xf6 contiki-sky.a(uart1.o)
-                0x0000000000005e30                uart1_init
- .text.putchar  0x0000000000005f26       0x10 contiki-sky.a(uart1-putchar.o)
-                0x0000000000005f26                putchar
+                0x0000000000006058       0xf6 contiki-sky.a(uart1.o)
+                0x0000000000006058                uart1_init
+ .text.putchar  0x000000000000614e       0x10 contiki-sky.a(uart1-putchar.o)
+                0x000000000000614e                putchar
  .text.msp430_init_dco
-                0x0000000000005f36       0x84 contiki-sky.a(msp430.o)
-                0x0000000000005f36                msp430_init_dco
+                0x000000000000615e       0x84 contiki-sky.a(msp430.o)
+                0x000000000000615e                msp430_init_dco
  .text.msp430_add_lpm_req
-                0x0000000000005fba        0xc contiki-sky.a(msp430.o)
-                0x0000000000005fba                msp430_add_lpm_req
+                0x00000000000061e2        0xc contiki-sky.a(msp430.o)
+                0x00000000000061e2                msp430_add_lpm_req
  .text.msp430_cpu_init
-                0x0000000000005fc6       0x2a contiki-sky.a(msp430.o)
-                0x0000000000005fc6                msp430_cpu_init
+                0x00000000000061ee       0x2a contiki-sky.a(msp430.o)
+                0x00000000000061ee                msp430_cpu_init
  .text.splhigh_
-                0x0000000000005ff0        0x8 contiki-sky.a(msp430.o)
-                0x0000000000005ff0                splhigh_
+                0x0000000000006218        0x8 contiki-sky.a(msp430.o)
+                0x0000000000006218                splhigh_
  .text.msp430_sync_dco
-                0x0000000000005ff8       0x68 contiki-sky.a(msp430.o)
-                0x0000000000005ff8                msp430_sync_dco
- .text.timera1  0x0000000000006060      0x11e contiki-sky.a(clock.o)
-                0x0000000000006060                __isr_5
-                0x0000000000006060                timera1
+                0x0000000000006220       0x68 contiki-sky.a(msp430.o)
+                0x0000000000006220                msp430_sync_dco
+ .text.timera1  0x0000000000006288      0x11e contiki-sky.a(clock.o)
+                0x0000000000006288                __isr_5
+                0x0000000000006288                timera1
  .text.clock_time
-                0x000000000000617e       0x1a contiki-sky.a(clock.o)
-                0x000000000000617e                clock_time
+                0x00000000000063a6       0x1a contiki-sky.a(clock.o)
+                0x00000000000063a6                clock_time
  .text.clock_init
-                0x0000000000006198       0x28 contiki-sky.a(clock.o)
-                0x0000000000006198                clock_init
+                0x00000000000063c0       0x28 contiki-sky.a(clock.o)
+                0x00000000000063c0                clock_init
  .text.clock_delay
-                0x00000000000061c0        0xc contiki-sky.a(clock.o)
-                0x00000000000061c0                clock_delay
+                0x00000000000063e8        0xc contiki-sky.a(clock.o)
+                0x00000000000063e8                clock_delay
  .text.show_leds
-                0x00000000000061cc       0xf6 contiki-sky.a(leds.o)
+                0x00000000000063f4       0xf6 contiki-sky.a(leds.o)
  .text.leds_init
-                0x00000000000062c2        0xa contiki-sky.a(leds.o)
-                0x00000000000062c2                leds_init
- .text.leds_on  0x00000000000062cc        0xa contiki-sky.a(leds.o)
-                0x00000000000062cc                leds_on
+                0x00000000000064ea        0xa contiki-sky.a(leds.o)
+                0x00000000000064ea                leds_init
+ .text.leds_on  0x00000000000064f4        0xa contiki-sky.a(leds.o)
+                0x00000000000064f4                leds_on
  .text.leds_off
-                0x00000000000062d6        0xe contiki-sky.a(leds.o)
-                0x00000000000062d6                leds_off
+                0x00000000000064fe        0xe contiki-sky.a(leds.o)
+                0x00000000000064fe                leds_off
  .text.leds_arch_init
-                0x00000000000062e4        0xe contiki-sky.a(leds-arch.o)
-                0x00000000000062e4                leds_arch_init
+                0x000000000000650c        0xe contiki-sky.a(leds-arch.o)
+                0x000000000000650c                leds_arch_init
  .text.leds_arch_set
-                0x00000000000062f2       0x3a contiki-sky.a(leds-arch.o)
-                0x00000000000062f2                leds_arch_set
+                0x000000000000651a       0x3a contiki-sky.a(leds-arch.o)
+                0x000000000000651a                leds_arch_set
  .text.watchdog_interrupt
-                0x000000000000632c        0x6 contiki-sky.a(watchdog.o)
-                0x000000000000632c                __isr_10
-                0x000000000000632c                watchdog_interrupt
+                0x0000000000006554        0x6 contiki-sky.a(watchdog.o)
+                0x0000000000006554                __isr_10
+                0x0000000000006554                watchdog_interrupt
  .text.watchdog_start
-                0x0000000000006332       0x14 contiki-sky.a(watchdog.o)
-                0x0000000000006332                watchdog_start
+                0x000000000000655a       0x14 contiki-sky.a(watchdog.o)
+                0x000000000000655a                watchdog_start
  .text.watchdog_periodic
-                0x0000000000006346       0x12 contiki-sky.a(watchdog.o)
-                0x0000000000006346                watchdog_periodic
+                0x000000000000656e       0x12 contiki-sky.a(watchdog.o)
+                0x000000000000656e                watchdog_periodic
  .text.watchdog_stop
-                0x0000000000006358       0x16 contiki-sky.a(watchdog.o)
-                0x0000000000006358                watchdog_stop
+                0x0000000000006580       0x16 contiki-sky.a(watchdog.o)
+                0x0000000000006580                watchdog_stop
  .text.watchdog_init
-                0x000000000000636e       0x14 contiki-sky.a(watchdog.o)
-                0x000000000000636e                watchdog_init
+                0x0000000000006596       0x14 contiki-sky.a(watchdog.o)
+                0x0000000000006596                watchdog_init
  .text.rtimer_arch_init
-                0x0000000000006382        0xe contiki-sky.a(rtimer-arch.o)
-                0x0000000000006382                rtimer_arch_init
+                0x00000000000065aa        0xe contiki-sky.a(rtimer-arch.o)
+                0x00000000000065aa                rtimer_arch_init
  .text.rtimer_arch_now
-                0x0000000000006390        0xe contiki-sky.a(rtimer-arch.o)
-                0x0000000000006390                rtimer_arch_now
- .text.timera0  0x000000000000639e       0x70 contiki-sky.a(rtimer-arch.o)
-                0x000000000000639e                __isr_6
-                0x000000000000639e                timera0
+                0x00000000000065b8        0xe contiki-sky.a(rtimer-arch.o)
+                0x00000000000065b8                rtimer_arch_now
+ .text.timera0  0x00000000000065c6       0x70 contiki-sky.a(rtimer-arch.o)
+                0x00000000000065c6                __isr_6
+                0x00000000000065c6                timera0
  .text.rtimer_arch_schedule
-                0x000000000000640e        0x6 contiki-sky.a(rtimer-arch.o)
-                0x000000000000640e                rtimer_arch_schedule
+                0x0000000000006636        0x6 contiki-sky.a(rtimer-arch.o)
+                0x0000000000006636                rtimer_arch_schedule
  .text.autostart_start
-                0x0000000000006414       0x16 contiki-sky.a(autostart.o)
-                0x0000000000006414                autostart_start
+                0x000000000000663c       0x16 contiki-sky.a(autostart.o)
+                0x000000000000663c                autostart_start
  .text.energest_init
-                0x000000000000642a       0x28 contiki-sky.a(energest.o)
-                0x000000000000642a                energest_init
+                0x0000000000006652       0x28 contiki-sky.a(energest.o)
+                0x0000000000006652                energest_init
  .text.energest_type_time
-                0x0000000000006452       0x46 contiki-sky.a(energest.o)
-                0x0000000000006452                energest_type_time
+                0x000000000000667a       0x46 contiki-sky.a(energest.o)
+                0x000000000000667a                energest_type_time
  .text.energest_type_set
-                0x0000000000006498        0xe contiki-sky.a(energest.o)
-                0x0000000000006498                energest_type_set
+                0x00000000000066c0        0xe contiki-sky.a(energest.o)
+                0x00000000000066c0                energest_type_set
  .text.energest_flush
-                0x00000000000064a6       0x48 contiki-sky.a(energest.o)
-                0x00000000000064a6                energest_flush
+                0x00000000000066ce       0x48 contiki-sky.a(energest.o)
+                0x00000000000066ce                energest_flush
  .text.update_time
-                0x00000000000064ee       0x78 contiki-sky.a(etimer.o)
+                0x0000000000006716       0x78 contiki-sky.a(etimer.o)
  .text.etimer_request_poll
-                0x0000000000006566        0xa contiki-sky.a(etimer.o)
-                0x0000000000006566                etimer_request_poll
+                0x000000000000678e        0xa contiki-sky.a(etimer.o)
+                0x000000000000678e                etimer_request_poll
  .text.process_thread_etimer_process
-                0x0000000000006570       0xc8 contiki-sky.a(etimer.o)
+                0x0000000000006798       0xc8 contiki-sky.a(etimer.o)
  .text.add_timer
-                0x0000000000006638       0x40 contiki-sky.a(etimer.o)
+                0x0000000000006860       0x40 contiki-sky.a(etimer.o)
  .text.etimer_set
-                0x0000000000006678       0x12 contiki-sky.a(etimer.o)
-                0x0000000000006678                etimer_set
+                0x00000000000068a0       0x12 contiki-sky.a(etimer.o)
+                0x00000000000068a0                etimer_set
  .text.etimer_reset
-                0x000000000000668a       0x12 contiki-sky.a(etimer.o)
-                0x000000000000668a                etimer_reset
+                0x00000000000068b2       0x12 contiki-sky.a(etimer.o)
+                0x00000000000068b2                etimer_reset
  .text.etimer_restart
-                0x000000000000669c       0x12 contiki-sky.a(etimer.o)
-                0x000000000000669c                etimer_restart
+                0x00000000000068c4       0x12 contiki-sky.a(etimer.o)
+                0x00000000000068c4                etimer_restart
  .text.etimer_expired
-                0x00000000000066ae        0xe contiki-sky.a(etimer.o)
-                0x00000000000066ae                etimer_expired
+                0x00000000000068d6        0xe contiki-sky.a(etimer.o)
+                0x00000000000068d6                etimer_expired
  .text.etimer_pending
-                0x00000000000066bc        0xc contiki-sky.a(etimer.o)
-                0x00000000000066bc                etimer_pending
+                0x00000000000068e4        0xc contiki-sky.a(etimer.o)
+                0x00000000000068e4                etimer_pending
  .text.etimer_next_expiration_time
-                0x00000000000066c8       0x16 contiki-sky.a(etimer.o)
-                0x00000000000066c8                etimer_next_expiration_time
+                0x00000000000068f0       0x16 contiki-sky.a(etimer.o)
+                0x00000000000068f0                etimer_next_expiration_time
  .text.etimer_stop
-                0x00000000000066de       0x3c contiki-sky.a(etimer.o)
-                0x00000000000066de                etimer_stop
+                0x0000000000006906       0x3c contiki-sky.a(etimer.o)
+                0x0000000000006906                etimer_stop
  .text.process_thread_ctimer_process
-                0x000000000000671a       0xa4 contiki-sky.a(ctimer.o)
+                0x0000000000006942       0xa4 contiki-sky.a(ctimer.o)
  .text.ctimer_init
-                0x00000000000067be       0x18 contiki-sky.a(ctimer.o)
-                0x00000000000067be                ctimer_init
+                0x00000000000069e6       0x18 contiki-sky.a(ctimer.o)
+                0x00000000000069e6                ctimer_init
  .text.ctimer_set_with_process
-                0x00000000000067d6       0x4e contiki-sky.a(ctimer.o)
-                0x00000000000067d6                ctimer_set_with_process
+                0x00000000000069fe       0x4e contiki-sky.a(ctimer.o)
+                0x00000000000069fe                ctimer_set_with_process
  .text.ctimer_set
-                0x0000000000006824       0x10 contiki-sky.a(ctimer.o)
-                0x0000000000006824                ctimer_set
+                0x0000000000006a4c       0x10 contiki-sky.a(ctimer.o)
+                0x0000000000006a4c                ctimer_set
  .text.ctimer_reset
-                0x0000000000006834       0x30 contiki-sky.a(ctimer.o)
-                0x0000000000006834                ctimer_reset
+                0x0000000000006a5c       0x30 contiki-sky.a(ctimer.o)
+                0x0000000000006a5c                ctimer_reset
  .text.ctimer_restart
-                0x0000000000006864       0x30 contiki-sky.a(ctimer.o)
-                0x0000000000006864                ctimer_restart
+                0x0000000000006a8c       0x30 contiki-sky.a(ctimer.o)
+                0x0000000000006a8c                ctimer_restart
  .text.ctimer_stop
-                0x0000000000006894       0x28 contiki-sky.a(ctimer.o)
-                0x0000000000006894                ctimer_stop
+                0x0000000000006abc       0x28 contiki-sky.a(ctimer.o)
+                0x0000000000006abc                ctimer_stop
  .text.call_process
-                0x00000000000068bc       0x4a contiki-sky.a(process.o)
+                0x0000000000006ae4       0x4a contiki-sky.a(process.o)
  .text.exit_process
-                0x0000000000006906       0x96 contiki-sky.a(process.o)
- .text.do_poll  0x000000000000699c       0x30 contiki-sky.a(process.o)
+                0x0000000000006b2e       0x96 contiki-sky.a(process.o)
+ .text.do_poll  0x0000000000006bc4       0x30 contiki-sky.a(process.o)
  .text.process_alloc_event
-                0x00000000000069cc        0xe contiki-sky.a(process.o)
-                0x00000000000069cc                process_alloc_event
+                0x0000000000006bf4        0xe contiki-sky.a(process.o)
+                0x0000000000006bf4                process_alloc_event
  .text.process_exit
-                0x00000000000069da        0xa contiki-sky.a(process.o)
-                0x00000000000069da                process_exit
+                0x0000000000006c02        0xa contiki-sky.a(process.o)
+                0x0000000000006c02                process_exit
  .text.process_init
-                0x00000000000069e4       0x1c contiki-sky.a(process.o)
-                0x00000000000069e4                process_init
+                0x0000000000006c0c       0x1c contiki-sky.a(process.o)
+                0x0000000000006c0c                process_init
  .text.process_run
-                0x0000000000006a00       0x92 contiki-sky.a(process.o)
-                0x0000000000006a00                process_run
+                0x0000000000006c28       0x92 contiki-sky.a(process.o)
+                0x0000000000006c28                process_run
  .text.process_nevents
-                0x0000000000006a92        0xe contiki-sky.a(process.o)
-                0x0000000000006a92                process_nevents
+                0x0000000000006cba        0xe contiki-sky.a(process.o)
+                0x0000000000006cba                process_nevents
  .text.process_post
-                0x0000000000006aa0       0x4e contiki-sky.a(process.o)
-                0x0000000000006aa0                process_post
+                0x0000000000006cc8       0x4e contiki-sky.a(process.o)
+                0x0000000000006cc8                process_post
  .text.process_post_synch
-                0x0000000000006aee       0x12 contiki-sky.a(process.o)
-                0x0000000000006aee                process_post_synch
+                0x0000000000006d16       0x12 contiki-sky.a(process.o)
+                0x0000000000006d16                process_post_synch
  .text.process_start
-                0x0000000000006b00       0x32 contiki-sky.a(process.o)
-                0x0000000000006b00                process_start
+                0x0000000000006d28       0x32 contiki-sky.a(process.o)
+                0x0000000000006d28                process_start
  .text.process_poll
-                0x0000000000006b32       0x18 contiki-sky.a(process.o)
-                0x0000000000006b32                process_poll
+                0x0000000000006d5a       0x18 contiki-sky.a(process.o)
+                0x0000000000006d5a                process_poll
  .text.rtimer_init
-                0x0000000000006b4a        0x6 contiki-sky.a(rtimer.o)
-                0x0000000000006b4a                rtimer_init
+                0x0000000000006d72        0x6 contiki-sky.a(rtimer.o)
+                0x0000000000006d72                rtimer_init
  .text.rtimer_set
-                0x0000000000006b50       0x24 contiki-sky.a(rtimer.o)
-                0x0000000000006b50                rtimer_set
+                0x0000000000006d78       0x24 contiki-sky.a(rtimer.o)
+                0x0000000000006d78                rtimer_set
  .text.rtimer_run_next
-                0x0000000000006b74       0x26 contiki-sky.a(rtimer.o)
-                0x0000000000006b74                rtimer_run_next
+                0x0000000000006d9c       0x26 contiki-sky.a(rtimer.o)
+                0x0000000000006d9c                rtimer_run_next
  .text.timer_set
-                0x0000000000006b9a       0x1c contiki-sky.a(timer.o)
-                0x0000000000006b9a                timer_set
+                0x0000000000006dc2       0x1c contiki-sky.a(timer.o)
+                0x0000000000006dc2                timer_set
  .text.timer_reset
-                0x0000000000006bb6        0xe contiki-sky.a(timer.o)
-                0x0000000000006bb6                timer_reset
+                0x0000000000006dde        0xe contiki-sky.a(timer.o)
+                0x0000000000006dde                timer_reset
  .text.timer_restart
-                0x0000000000006bc4       0x14 contiki-sky.a(timer.o)
-                0x0000000000006bc4                timer_restart
+                0x0000000000006dec       0x14 contiki-sky.a(timer.o)
+                0x0000000000006dec                timer_restart
  .text.timer_expired
-                0x0000000000006bd8       0x2a contiki-sky.a(timer.o)
-                0x0000000000006bd8                timer_expired
+                0x0000000000006e00       0x2a contiki-sky.a(timer.o)
+                0x0000000000006e00                timer_expired
  .text.process_thread_serial_line_process
-                0x0000000000006c02       0x9c contiki-sky.a(serial-line.o)
+                0x0000000000006e2a       0x9c contiki-sky.a(serial-line.o)
  .text.serial_line_input_byte
-                0x0000000000006c9e       0x4a contiki-sky.a(serial-line.o)
-                0x0000000000006c9e                serial_line_input_byte
+                0x0000000000006ec6       0x4a contiki-sky.a(serial-line.o)
+                0x0000000000006ec6                serial_line_input_byte
  .text.serial_line_init
-                0x0000000000006ce8       0x1c contiki-sky.a(serial-line.o)
-                0x0000000000006ce8                serial_line_init
+                0x0000000000006f10       0x1c contiki-sky.a(serial-line.o)
+                0x0000000000006f10                serial_line_init
  .text.list_init
-                0x0000000000006d04        0x6 contiki-sky.a(list.o)
-                0x0000000000006d04                list_init
+                0x0000000000006f2c        0x6 contiki-sky.a(list.o)
+                0x0000000000006f2c                list_init
  .text.list_head
-                0x0000000000006d0a        0x4 contiki-sky.a(list.o)
-                0x0000000000006d0a                list_head
+                0x0000000000006f32        0x4 contiki-sky.a(list.o)
+                0x0000000000006f32                list_head
  .text.list_tail
-                0x0000000000006d0e       0x12 contiki-sky.a(list.o)
-                0x0000000000006d0e                list_tail
+                0x0000000000006f36       0x12 contiki-sky.a(list.o)
+                0x0000000000006f36                list_tail
  .text.list_chop
-                0x0000000000006d20       0x24 contiki-sky.a(list.o)
-                0x0000000000006d20                list_chop
+                0x0000000000006f48       0x24 contiki-sky.a(list.o)
+                0x0000000000006f48                list_chop
  .text.list_remove
-                0x0000000000006d44       0x34 contiki-sky.a(list.o)
-                0x0000000000006d44                list_remove
+                0x0000000000006f6c       0x34 contiki-sky.a(list.o)
+                0x0000000000006f6c                list_remove
  .text.list_push
-                0x0000000000006d78       0x1a contiki-sky.a(list.o)
-                0x0000000000006d78                list_push
+                0x0000000000006fa0       0x1a contiki-sky.a(list.o)
+                0x0000000000006fa0                list_push
  .text.list_add
-                0x0000000000006d92       0x2a contiki-sky.a(list.o)
-                0x0000000000006d92                list_add
+                0x0000000000006fba       0x2a contiki-sky.a(list.o)
+                0x0000000000006fba                list_add
  .text.list_length
-                0x0000000000006dbc       0x10 contiki-sky.a(list.o)
-                0x0000000000006dbc                list_length
+                0x0000000000006fe4       0x10 contiki-sky.a(list.o)
+                0x0000000000006fe4                list_length
  .text.list_item_next
-                0x0000000000006dcc        0xc contiki-sky.a(list.o)
-                0x0000000000006dcc                list_item_next
+                0x0000000000006ff4        0xc contiki-sky.a(list.o)
+                0x0000000000006ff4                list_item_next
  .text.memb_init
-                0x0000000000006dd8       0x36 contiki-sky.a(memb.o)
-                0x0000000000006dd8                memb_init
+                0x0000000000007000       0x36 contiki-sky.a(memb.o)
+                0x0000000000007000                memb_init
  .text.memb_alloc
-                0x0000000000006e0e       0x3e contiki-sky.a(memb.o)
-                0x0000000000006e0e                memb_alloc
+                0x0000000000007036       0x3e contiki-sky.a(memb.o)
+                0x0000000000007036                memb_alloc
  .text.memb_free
-                0x0000000000006e4c       0x3a contiki-sky.a(memb.o)
-                0x0000000000006e4c                memb_free
+                0x0000000000007074       0x3a contiki-sky.a(memb.o)
+                0x0000000000007074                memb_free
  .text.memb_inmemb
-                0x0000000000006e86       0x2e contiki-sky.a(memb.o)
-                0x0000000000006e86                memb_inmemb
+                0x00000000000070ae       0x2e contiki-sky.a(memb.o)
+                0x00000000000070ae                memb_inmemb
  .text.random_init
-                0x0000000000006eb4        0x6 contiki-sky.a(random.o)
-                0x0000000000006eb4                random_init
+                0x00000000000070dc        0x6 contiki-sky.a(random.o)
+                0x00000000000070dc                random_init
  .text.random_rand
-                0x0000000000006eba        0x6 contiki-sky.a(random.o)
-                0x0000000000006eba                random_rand
+                0x00000000000070e2        0x6 contiki-sky.a(random.o)
+                0x00000000000070e2                random_rand
  .text.ringbuf_init
-                0x0000000000006ec0       0x14 contiki-sky.a(ringbuf.o)
-                0x0000000000006ec0                ringbuf_init
+                0x00000000000070e8       0x14 contiki-sky.a(ringbuf.o)
+                0x00000000000070e8                ringbuf_init
  .text.ringbuf_put
-                0x0000000000006ed4       0x38 contiki-sky.a(ringbuf.o)
-                0x0000000000006ed4                ringbuf_put
+                0x00000000000070fc       0x38 contiki-sky.a(ringbuf.o)
+                0x00000000000070fc                ringbuf_put
  .text.ringbuf_get
-                0x0000000000006f0c       0x34 contiki-sky.a(ringbuf.o)
-                0x0000000000006f0c                ringbuf_get
- .text.input    0x0000000000006f40       0x3a contiki-sky.a(rime.o)
- .text.init     0x0000000000006f7a       0x2e contiki-sky.a(rime.o)
+                0x0000000000007134       0x34 contiki-sky.a(ringbuf.o)
+                0x0000000000007134                ringbuf_get
+ .text.input    0x0000000000007168       0x3a contiki-sky.a(rime.o)
+ .text.init     0x00000000000071a2       0x2e contiki-sky.a(rime.o)
  .text.packet_sent
-                0x0000000000006fa8       0x44 contiki-sky.a(rime.o)
+                0x00000000000071d0       0x44 contiki-sky.a(rime.o)
  .text.rime_output
-                0x0000000000006fec       0x24 contiki-sky.a(rime.o)
-                0x0000000000006fec                rime_output
+                0x0000000000007214       0x24 contiki-sky.a(rime.o)
+                0x0000000000007214                rime_output
  .text.adv_packet_sent
-                0x0000000000007010        0x2 contiki-sky.a(broadcast-annou)
+                0x0000000000007238        0x2 contiki-sky.a(broadcast-annou)
  .text.adv_packet_received
-                0x0000000000007012       0x66 contiki-sky.a(broadcast-annou)
+                0x000000000000723a       0x66 contiki-sky.a(broadcast-annou)
  .text.set_timers
-                0x0000000000007078       0x4a contiki-sky.a(broadcast-annou)
+                0x00000000000072a0       0x4a contiki-sky.a(broadcast-annou)
  .text.send_timer
-                0x00000000000070c2       0x36 contiki-sky.a(broadcast-annou)
+                0x00000000000072ea       0x36 contiki-sky.a(broadcast-annou)
  .text.new_announcement
-                0x00000000000070f8       0x18 contiki-sky.a(broadcast-annou)
+                0x0000000000007320       0x18 contiki-sky.a(broadcast-annou)
  .text.send_adv
-                0x0000000000007110       0x66 contiki-sky.a(broadcast-annou)
+                0x0000000000007338       0x66 contiki-sky.a(broadcast-annou)
  .text.broadcast_announcement_init
-                0x0000000000007176       0x48 contiki-sky.a(broadcast-annou)
-                0x0000000000007176                broadcast_announcement_init
+                0x000000000000739e       0x48 contiki-sky.a(broadcast-annou)
+                0x000000000000739e                broadcast_announcement_init
  .text.announcement_init
-                0x00000000000071be        0xa contiki-sky.a(announcement.o)
-                0x00000000000071be                announcement_init
+                0x00000000000073e6        0xa contiki-sky.a(announcement.o)
+                0x00000000000073e6                announcement_init
  .text.announcement_register_observer_callback
-                0x00000000000071c8        0x6 contiki-sky.a(announcement.o)
-                0x00000000000071c8                announcement_register_observer_callback
+                0x00000000000073f0        0x6 contiki-sky.a(announcement.o)
+                0x00000000000073f0                announcement_register_observer_callback
  .text.announcement_list
-                0x00000000000071ce        0xa contiki-sky.a(announcement.o)
-                0x00000000000071ce                announcement_list
+                0x00000000000073f6        0xa contiki-sky.a(announcement.o)
+                0x00000000000073f6                announcement_list
  .text.announcement_heard
-                0x00000000000071d8       0x42 contiki-sky.a(announcement.o)
-                0x00000000000071d8                announcement_heard
+                0x0000000000007400       0x42 contiki-sky.a(announcement.o)
+                0x0000000000007400                announcement_heard
  .text.sent_by_stunicast
-                0x000000000000721a       0x5e contiki-sky.a(runicast.o)
+                0x0000000000007442       0x5e contiki-sky.a(runicast.o)
  .text.recv_from_stunicast
-                0x0000000000007278       0x9e contiki-sky.a(runicast.o)
+                0x00000000000074a0       0x9e contiki-sky.a(runicast.o)
  .text.runicast_open
-                0x0000000000007316       0x36 contiki-sky.a(runicast.o)
-                0x0000000000007316                runicast_open
+                0x000000000000753e       0x36 contiki-sky.a(runicast.o)
+                0x000000000000753e                runicast_open
  .text.runicast_close
-                0x000000000000734c        0x6 contiki-sky.a(runicast.o)
-                0x000000000000734c                runicast_close
+                0x0000000000007574        0x6 contiki-sky.a(runicast.o)
+                0x0000000000007574                runicast_close
  .text.runicast_is_transmitting
-                0x0000000000007352        0x6 contiki-sky.a(runicast.o)
-                0x0000000000007352                runicast_is_transmitting
+                0x000000000000757a        0x6 contiki-sky.a(runicast.o)
+                0x000000000000757a                runicast_is_transmitting
  .text.runicast_send
-                0x0000000000007358       0x48 contiki-sky.a(runicast.o)
-                0x0000000000007358                runicast_send
+                0x0000000000007580       0x48 contiki-sky.a(runicast.o)
+                0x0000000000007580                runicast_send
  .text.recv_from_uc
-                0x00000000000073a0        0xe contiki-sky.a(stunicast.o)
+                0x00000000000075c8        0xe contiki-sky.a(stunicast.o)
  .text.sent_by_uc
-                0x00000000000073ae       0x10 contiki-sky.a(stunicast.o)
- .text.send     0x00000000000073be       0x2a contiki-sky.a(stunicast.o)
+                0x00000000000075d6       0x10 contiki-sky.a(stunicast.o)
+ .text.send     0x00000000000075e6       0x2a contiki-sky.a(stunicast.o)
  .text.stunicast_open
-                0x00000000000073e8       0x1a contiki-sky.a(stunicast.o)
-                0x00000000000073e8                stunicast_open
+                0x0000000000007610       0x1a contiki-sky.a(stunicast.o)
+                0x0000000000007610                stunicast_open
  .text.stunicast_receiver
-                0x0000000000007402        0x6 contiki-sky.a(stunicast.o)
-                0x0000000000007402                stunicast_receiver
+                0x000000000000762a        0x6 contiki-sky.a(stunicast.o)
+                0x000000000000762a                stunicast_receiver
  .text.stunicast_send_stubborn
-                0x0000000000007408       0x68 contiki-sky.a(stunicast.o)
-                0x0000000000007408                stunicast_send_stubborn
+                0x0000000000007630       0x68 contiki-sky.a(stunicast.o)
+                0x0000000000007630                stunicast_send_stubborn
  .text.stunicast_send
-                0x0000000000007470        0x6 contiki-sky.a(stunicast.o)
-                0x0000000000007470                stunicast_send
+                0x0000000000007698        0x6 contiki-sky.a(stunicast.o)
+                0x0000000000007698                stunicast_send
  .text.stunicast_cancel
-                0x0000000000007476       0x20 contiki-sky.a(stunicast.o)
-                0x0000000000007476                stunicast_cancel
+                0x000000000000769e       0x20 contiki-sky.a(stunicast.o)
+                0x000000000000769e                stunicast_cancel
  .text.stunicast_close
-                0x0000000000007496       0x12 contiki-sky.a(stunicast.o)
-                0x0000000000007496                stunicast_close
+                0x00000000000076be       0x12 contiki-sky.a(stunicast.o)
+                0x00000000000076be                stunicast_close
  .text.chameleon_init
-                0x00000000000074a8        0x6 contiki-sky.a(chameleon.o)
-                0x00000000000074a8                chameleon_init
+                0x00000000000076d0        0x6 contiki-sky.a(chameleon.o)
+                0x00000000000076d0                chameleon_init
  .text.chameleon_parse
-                0x00000000000074ae       0x10 contiki-sky.a(chameleon.o)
-                0x00000000000074ae                chameleon_parse
+                0x00000000000076d6       0x10 contiki-sky.a(chameleon.o)
+                0x00000000000076d6                chameleon_parse
  .text.chameleon_create
-                0x00000000000074be       0x1c contiki-sky.a(chameleon.o)
-                0x00000000000074be                chameleon_create
+                0x00000000000076e6       0x1c contiki-sky.a(chameleon.o)
+                0x00000000000076e6                chameleon_create
  .text.chameleon_hdrsize
-                0x00000000000074da        0x6 contiki-sky.a(chameleon.o)
-                0x00000000000074da                chameleon_hdrsize
+                0x0000000000007702        0x6 contiki-sky.a(chameleon.o)
+                0x0000000000007702                chameleon_hdrsize
  .text.sent_by_abc
-                0x00000000000074e0       0x10 contiki-sky.a(broadcast.o)
+                0x0000000000007708       0x10 contiki-sky.a(broadcast.o)
  .text.recv_from_abc
-                0x00000000000074f0       0x26 contiki-sky.a(broadcast.o)
+                0x0000000000007718       0x26 contiki-sky.a(broadcast.o)
  .text.broadcast_open
-                0x0000000000007516       0x2a contiki-sky.a(broadcast.o)
-                0x0000000000007516                broadcast_open
+                0x000000000000773e       0x2a contiki-sky.a(broadcast.o)
+                0x000000000000773e                broadcast_open
  .text.broadcast_close
-                0x0000000000007540        0x6 contiki-sky.a(broadcast.o)
-                0x0000000000007540                broadcast_close
+                0x0000000000007768        0x6 contiki-sky.a(broadcast.o)
+                0x0000000000007768                broadcast_close
  .text.broadcast_send
-                0x0000000000007546       0x1a contiki-sky.a(broadcast.o)
-                0x0000000000007546                broadcast_send
+                0x000000000000776e       0x1a contiki-sky.a(broadcast.o)
+                0x000000000000776e                broadcast_send
  .text.abc_open
-                0x0000000000007560       0x26 contiki-sky.a(abc.o)
-                0x0000000000007560                abc_open
+                0x0000000000007788       0x26 contiki-sky.a(abc.o)
+                0x0000000000007788                abc_open
  .text.abc_close
-                0x0000000000007586        0x6 contiki-sky.a(abc.o)
-                0x0000000000007586                abc_close
+                0x00000000000077ae        0x6 contiki-sky.a(abc.o)
+                0x00000000000077ae                abc_close
  .text.abc_send
-                0x000000000000758c        0x6 contiki-sky.a(abc.o)
-                0x000000000000758c                abc_send
+                0x00000000000077b4        0x6 contiki-sky.a(abc.o)
+                0x00000000000077b4                abc_send
  .text.abc_input
-                0x0000000000007592        0xe contiki-sky.a(abc.o)
-                0x0000000000007592                abc_input
+                0x00000000000077ba        0xe contiki-sky.a(abc.o)
+                0x00000000000077ba                abc_input
  .text.abc_sent
-                0x00000000000075a0       0x10 contiki-sky.a(abc.o)
-                0x00000000000075a0                abc_sent
+                0x00000000000077c8       0x10 contiki-sky.a(abc.o)
+                0x00000000000077c8                abc_sent
  .text.sent_by_broadcast
-                0x00000000000075b0       0x10 contiki-sky.a(unicast.o)
+                0x00000000000077d8       0x10 contiki-sky.a(unicast.o)
  .text.recv_from_broadcast
-                0x00000000000075c0       0x2e contiki-sky.a(unicast.o)
+                0x00000000000077e8       0x2e contiki-sky.a(unicast.o)
  .text.unicast_open
-                0x00000000000075ee       0x2a contiki-sky.a(unicast.o)
-                0x00000000000075ee                unicast_open
+                0x0000000000007816       0x2a contiki-sky.a(unicast.o)
+                0x0000000000007816                unicast_open
  .text.unicast_close
-                0x0000000000007618        0x6 contiki-sky.a(unicast.o)
-                0x0000000000007618                unicast_close
+                0x0000000000007840        0x6 contiki-sky.a(unicast.o)
+                0x0000000000007840                unicast_close
  .text.unicast_send
-                0x000000000000761e       0x16 contiki-sky.a(unicast.o)
-                0x000000000000761e                unicast_send
+                0x0000000000007846       0x16 contiki-sky.a(unicast.o)
+                0x0000000000007846                unicast_send
  .text.input_packet
-                0x0000000000007634        0x6 contiki-sky.a(csma.o)
- .text.on       0x000000000000763a        0x6 contiki-sky.a(csma.o)
- .text.off      0x0000000000007640        0x6 contiki-sky.a(csma.o)
+                0x000000000000785c        0x6 contiki-sky.a(csma.o)
+ .text.on       0x0000000000007862        0x6 contiki-sky.a(csma.o)
+ .text.off      0x0000000000007868        0x6 contiki-sky.a(csma.o)
  .text.channel_check_interval
-                0x0000000000007646       0x10 contiki-sky.a(csma.o)
+                0x000000000000786e       0x10 contiki-sky.a(csma.o)
  .text.transmit_packet_list
-                0x0000000000007656       0x24 contiki-sky.a(csma.o)
+                0x000000000000787e       0x24 contiki-sky.a(csma.o)
  .text.schedule_transmission
-                0x000000000000767a       0x94 contiki-sky.a(csma.o)
+                0x00000000000078a2       0x94 contiki-sky.a(csma.o)
  .text.send_packet
-                0x000000000000770e      0x170 contiki-sky.a(csma.o)
- .text.init     0x000000000000787e       0x1a contiki-sky.a(csma.o)
- .text.tx_done  0x0000000000007898       0x98 contiki-sky.a(csma.o)
+                0x0000000000007936      0x170 contiki-sky.a(csma.o)
+ .text.init     0x0000000000007aa6       0x1a contiki-sky.a(csma.o)
+ .text.tx_done  0x0000000000007ac0       0x98 contiki-sky.a(csma.o)
  .text.packet_sent
-                0x0000000000007930       0xd2 contiki-sky.a(csma.o)
+                0x0000000000007b58       0xd2 contiki-sky.a(csma.o)
  .text.queuebuf_init
-                0x0000000000007a02       0x12 contiki-sky.a(queuebuf.o)
-                0x0000000000007a02                queuebuf_init
+                0x0000000000007c2a       0x12 contiki-sky.a(queuebuf.o)
+                0x0000000000007c2a                queuebuf_init
  .text.queuebuf_new_from_packetbuf
-                0x0000000000007a14       0x52 contiki-sky.a(queuebuf.o)
-                0x0000000000007a14                queuebuf_new_from_packetbuf
+                0x0000000000007c3c       0x52 contiki-sky.a(queuebuf.o)
+                0x0000000000007c3c                queuebuf_new_from_packetbuf
  .text.queuebuf_update_attr_from_packetbuf
-                0x0000000000007a66       0x12 contiki-sky.a(queuebuf.o)
-                0x0000000000007a66                queuebuf_update_attr_from_packetbuf
+                0x0000000000007c8e       0x12 contiki-sky.a(queuebuf.o)
+                0x0000000000007c8e                queuebuf_update_attr_from_packetbuf
  .text.queuebuf_update_from_packetbuf
-                0x0000000000007a78       0x22 contiki-sky.a(queuebuf.o)
-                0x0000000000007a78                queuebuf_update_from_packetbuf
+                0x0000000000007ca0       0x22 contiki-sky.a(queuebuf.o)
+                0x0000000000007ca0                queuebuf_update_from_packetbuf
  .text.queuebuf_free
-                0x0000000000007a9a       0x2a contiki-sky.a(queuebuf.o)
-                0x0000000000007a9a                queuebuf_free
+                0x0000000000007cc2       0x2a contiki-sky.a(queuebuf.o)
+                0x0000000000007cc2                queuebuf_free
  .text.queuebuf_to_packetbuf
-                0x0000000000007ac4       0x32 contiki-sky.a(queuebuf.o)
-                0x0000000000007ac4                queuebuf_to_packetbuf
+                0x0000000000007cec       0x32 contiki-sky.a(queuebuf.o)
+                0x0000000000007cec                queuebuf_to_packetbuf
  .text.queuebuf_attr
-                0x0000000000007af6        0xe contiki-sky.a(queuebuf.o)
-                0x0000000000007af6                queuebuf_attr
+                0x0000000000007d1e        0xe contiki-sky.a(queuebuf.o)
+                0x0000000000007d1e                queuebuf_attr
  .text.packetbuf_hdrreduce
-                0x0000000000007b04       0x1a contiki-sky.a(packetbuf.o)
-                0x0000000000007b04                packetbuf_hdrreduce
+                0x0000000000007d2c       0x1a contiki-sky.a(packetbuf.o)
+                0x0000000000007d2c                packetbuf_hdrreduce
  .text.packetbuf_set_datalen
-                0x0000000000007b1e        0x6 contiki-sky.a(packetbuf.o)
-                0x0000000000007b1e                packetbuf_set_datalen
+                0x0000000000007d46        0x6 contiki-sky.a(packetbuf.o)
+                0x0000000000007d46                packetbuf_set_datalen
  .text.packetbuf_hdrptr
-                0x0000000000007b24        0x6 contiki-sky.a(packetbuf.o)
-                0x0000000000007b24                packetbuf_hdrptr
+                0x0000000000007d4c        0x6 contiki-sky.a(packetbuf.o)
+                0x0000000000007d4c                packetbuf_hdrptr
  .text.packetbuf_datalen
-                0x0000000000007b2a        0x6 contiki-sky.a(packetbuf.o)
-                0x0000000000007b2a                packetbuf_datalen
+                0x0000000000007d52        0x6 contiki-sky.a(packetbuf.o)
+                0x0000000000007d52                packetbuf_datalen
  .text.packetbuf_hdrlen
-                0x0000000000007b30        0xa contiki-sky.a(packetbuf.o)
-                0x0000000000007b30                packetbuf_hdrlen
+                0x0000000000007d58        0xa contiki-sky.a(packetbuf.o)
+                0x0000000000007d58                packetbuf_hdrlen
  .text.packetbuf_dataptr
-                0x0000000000007b3a        0xc contiki-sky.a(packetbuf.o)
-                0x0000000000007b3a                packetbuf_dataptr
+                0x0000000000007d62        0xc contiki-sky.a(packetbuf.o)
+                0x0000000000007d62                packetbuf_dataptr
  .text.packetbuf_copyto
-                0x0000000000007b46       0x46 contiki-sky.a(packetbuf.o)
-                0x0000000000007b46                packetbuf_copyto
+                0x0000000000007d6e       0x46 contiki-sky.a(packetbuf.o)
+                0x0000000000007d6e                packetbuf_copyto
  .text.packetbuf_compact
-                0x0000000000007b8c       0x36 contiki-sky.a(packetbuf.o)
-                0x0000000000007b8c                packetbuf_compact
+                0x0000000000007db4       0x36 contiki-sky.a(packetbuf.o)
+                0x0000000000007db4                packetbuf_compact
  .text.packetbuf_totlen
-                0x0000000000007bc2        0xc contiki-sky.a(packetbuf.o)
-                0x0000000000007bc2                packetbuf_totlen
+                0x0000000000007dea        0xc contiki-sky.a(packetbuf.o)
+                0x0000000000007dea                packetbuf_totlen
  .text.packetbuf_hdralloc
-                0x0000000000007bce       0x3a contiki-sky.a(packetbuf.o)
-                0x0000000000007bce                packetbuf_hdralloc
+                0x0000000000007df6       0x3a contiki-sky.a(packetbuf.o)
+                0x0000000000007df6                packetbuf_hdralloc
  .text.packetbuf_attr_clear
-                0x0000000000007c08       0x2c contiki-sky.a(packetbuf.o)
-                0x0000000000007c08                packetbuf_attr_clear
+                0x0000000000007e30       0x2c contiki-sky.a(packetbuf.o)
+                0x0000000000007e30                packetbuf_attr_clear
  .text.packetbuf_clear
-                0x0000000000007c34       0x12 contiki-sky.a(packetbuf.o)
-                0x0000000000007c34                packetbuf_clear
+                0x0000000000007e5c       0x12 contiki-sky.a(packetbuf.o)
+                0x0000000000007e5c                packetbuf_clear
  .text.packetbuf_copyfrom
-                0x0000000000007c46       0x2e contiki-sky.a(packetbuf.o)
-                0x0000000000007c46                packetbuf_copyfrom
+                0x0000000000007e6e       0x2e contiki-sky.a(packetbuf.o)
+                0x0000000000007e6e                packetbuf_copyfrom
  .text.packetbuf_attr_copyto
-                0x0000000000007c74       0x20 contiki-sky.a(packetbuf.o)
-                0x0000000000007c74                packetbuf_attr_copyto
+                0x0000000000007e9c       0x20 contiki-sky.a(packetbuf.o)
+                0x0000000000007e9c                packetbuf_attr_copyto
  .text.packetbuf_attr_copyfrom
-                0x0000000000007c94       0x22 contiki-sky.a(packetbuf.o)
-                0x0000000000007c94                packetbuf_attr_copyfrom
+                0x0000000000007ebc       0x22 contiki-sky.a(packetbuf.o)
+                0x0000000000007ebc                packetbuf_attr_copyfrom
  .text.packetbuf_holds_broadcast
-                0x0000000000007cb6        0xe contiki-sky.a(packetbuf.o)
-                0x0000000000007cb6                packetbuf_holds_broadcast
+                0x0000000000007ede        0xe contiki-sky.a(packetbuf.o)
+                0x0000000000007ede                packetbuf_holds_broadcast
  .text.linkaddr_copy
-                0x0000000000007cc4        0xc contiki-sky.a(linkaddr.o)
-                0x0000000000007cc4                linkaddr_copy
+                0x0000000000007eec        0xc contiki-sky.a(linkaddr.o)
+                0x0000000000007eec                linkaddr_copy
  .text.linkaddr_cmp
-                0x0000000000007cd0       0x12 contiki-sky.a(linkaddr.o)
-                0x0000000000007cd0                linkaddr_cmp
+                0x0000000000007ef8       0x12 contiki-sky.a(linkaddr.o)
+                0x0000000000007ef8                linkaddr_cmp
  .text.linkaddr_set_node_addr
-                0x0000000000007ce2        0xc contiki-sky.a(linkaddr.o)
-                0x0000000000007ce2                linkaddr_set_node_addr
+                0x0000000000007f0a        0xc contiki-sky.a(linkaddr.o)
+                0x0000000000007f0a                linkaddr_set_node_addr
  .text.duty_cycle
-                0x0000000000007cee        0x6 contiki-sky.a(contikimac.o)
- .text.init     0x0000000000007cf4       0x2a contiki-sky.a(contikimac.o)
- .text.on       0x0000000000007d1e       0x1a contiki-sky.a(contikimac.o)
- .text.off      0x0000000000007d38       0x22 contiki-sky.a(contikimac.o)
+                0x0000000000007f16        0x6 contiki-sky.a(contikimac.o)
+ .text.init     0x0000000000007f1c       0x2a contiki-sky.a(contikimac.o)
+ .text.on       0x0000000000007f46       0x1a contiki-sky.a(contikimac.o)
+ .text.off      0x0000000000007f60       0x22 contiki-sky.a(contikimac.o)
  .text.recv_burst_off
-                0x0000000000007d5a        0xa contiki-sky.a(contikimac.o)
+                0x0000000000007f82        0xa contiki-sky.a(contikimac.o)
  .text.turn_off
-                0x0000000000007d64       0x20 contiki-sky.a(contikimac.o)
- .text.turn_on  0x0000000000007d84       0x30 contiki-sky.a(contikimac.o)
+                0x0000000000007f8c       0x20 contiki-sky.a(contikimac.o)
+ .text.turn_on  0x0000000000007fac       0x30 contiki-sky.a(contikimac.o)
  .text.schedule_powercycle_fixed.part.4
-                0x0000000000007db4       0x32 contiki-sky.a(contikimac.o)
+                0x0000000000007fdc       0x32 contiki-sky.a(contikimac.o)
  .text.powercycle_turn_radio_off
-                0x0000000000007de6       0x30 contiki-sky.a(contikimac.o)
+                0x000000000000800e       0x30 contiki-sky.a(contikimac.o)
  .text.powercycle_wrapper
-                0x0000000000007e16      0x1c2 contiki-sky.a(contikimac.o)
+                0x000000000000803e      0x1c2 contiki-sky.a(contikimac.o)
  .text.input_packet
-                0x0000000000007fd8       0xb2 contiki-sky.a(contikimac.o)
+                0x0000000000008200       0xb2 contiki-sky.a(contikimac.o)
  .text.send_packet.isra.8
-                0x000000000000808a      0x1ec contiki-sky.a(contikimac.o)
+                0x00000000000082b2      0x1ec contiki-sky.a(contikimac.o)
  .text.qsend_list
-                0x0000000000008276       0xd2 contiki-sky.a(contikimac.o)
+                0x000000000000849e       0xd2 contiki-sky.a(contikimac.o)
  .text.qsend_packet
-                0x0000000000008348       0x28 contiki-sky.a(contikimac.o)
+                0x0000000000008570       0x28 contiki-sky.a(contikimac.o)
  .text.hdr_length
-                0x0000000000008370        0x8 contiki-sky.a(contikimac-fram)
- .text.parse    0x0000000000008378       0x3a contiki-sky.a(contikimac-fram)
- .text.create   0x00000000000083b2       0x74 contiki-sky.a(contikimac-fram)
- .text.init     0x0000000000008426        0x2 contiki-sky.a(nullsec.o)
- .text.send     0x0000000000008428        0xa contiki-sky.a(nullsec.o)
- .text.input    0x0000000000008432        0x6 contiki-sky.a(nullsec.o)
+                0x0000000000008598        0x8 contiki-sky.a(contikimac-fram)
+ .text.parse    0x00000000000085a0       0x3a contiki-sky.a(contikimac-fram)
+ .text.create   0x00000000000085da       0x74 contiki-sky.a(contikimac-fram)
+ .text.init     0x000000000000864e        0x2 contiki-sky.a(nullsec.o)
+ .text.send     0x0000000000008650        0xa contiki-sky.a(nullsec.o)
+ .text.input    0x000000000000865a        0x6 contiki-sky.a(nullsec.o)
  .text.spi_init
-                0x0000000000008438       0x32 contiki-sky.a(spi.o)
-                0x0000000000008438                spi_init
+                0x0000000000008660       0x32 contiki-sky.a(spi.o)
+                0x0000000000008660                spi_init
  .text.compower_accumulate
-                0x000000000000846a       0x72 contiki-sky.a(compower.o)
-                0x000000000000846a                compower_accumulate
+                0x0000000000008692       0x72 contiki-sky.a(compower.o)
+                0x0000000000008692                compower_accumulate
  .text.compower_clear
-                0x00000000000084dc       0x12 contiki-sky.a(compower.o)
-                0x00000000000084dc                compower_clear
+                0x0000000000008704       0x12 contiki-sky.a(compower.o)
+                0x0000000000008704                compower_clear
  .text.compower_attrconv
-                0x00000000000084ee       0x10 contiki-sky.a(compower.o)
-                0x00000000000084ee                compower_attrconv
+                0x0000000000008716       0x10 contiki-sky.a(compower.o)
+                0x0000000000008716                compower_attrconv
  .text.get_bits_in_byte
-                0x00000000000084fe       0x3a contiki-sky.a(chameleon-bitop)
+                0x0000000000008726       0x3a contiki-sky.a(chameleon-bitop)
  .text.header_size
-                0x0000000000008538       0x16 contiki-sky.a(chameleon-bitop)
+                0x0000000000008760       0x16 contiki-sky.a(chameleon-bitop)
  .text.get_bits
-                0x000000000000854e       0xa4 contiki-sky.a(chameleon-bitop)
-                0x000000000000854e                get_bits
+                0x0000000000008776       0xa4 contiki-sky.a(chameleon-bitop)
+                0x0000000000008776                get_bits
  .text.unpack_header
-                0x00000000000085f2       0xdc contiki-sky.a(chameleon-bitop)
+                0x000000000000881a       0xdc contiki-sky.a(chameleon-bitop)
  .text.set_bits
-                0x00000000000086ce      0x116 contiki-sky.a(chameleon-bitop)
-                0x00000000000086ce                set_bits
+                0x00000000000088f6      0x116 contiki-sky.a(chameleon-bitop)
+                0x00000000000088f6                set_bits
  .text.pack_header
-                0x00000000000087e4       0xc4 contiki-sky.a(chameleon-bitop)
+                0x0000000000008a0c       0xc4 contiki-sky.a(chameleon-bitop)
  .text.channel_init
-                0x00000000000088a8        0xa contiki-sky.a(channel.o)
-                0x00000000000088a8                channel_init
+                0x0000000000008ad0        0xa contiki-sky.a(channel.o)
+                0x0000000000008ad0                channel_init
  .text.channel_open
-                0x00000000000088b2       0x10 contiki-sky.a(channel.o)
-                0x00000000000088b2                channel_open
+                0x0000000000008ada       0x10 contiki-sky.a(channel.o)
+                0x0000000000008ada                channel_open
  .text.channel_close
-                0x00000000000088c2        0xc contiki-sky.a(channel.o)
-                0x00000000000088c2                channel_close
+                0x0000000000008aea        0xc contiki-sky.a(channel.o)
+                0x0000000000008aea                channel_close
  .text.channel_lookup
-                0x00000000000088ce       0x20 contiki-sky.a(channel.o)
-                0x00000000000088ce                channel_lookup
+                0x0000000000008af6       0x20 contiki-sky.a(channel.o)
+                0x0000000000008af6                channel_lookup
  .text.channel_set_attributes
-                0x00000000000088ee       0x24 contiki-sky.a(channel.o)
-                0x00000000000088ee                channel_set_attributes
+                0x0000000000008b16       0x24 contiki-sky.a(channel.o)
+                0x0000000000008b16                channel_set_attributes
  .text.mac_sequence_is_duplicate
-                0x0000000000008912       0x66 contiki-sky.a(mac-sequence.o)
-                0x0000000000008912                mac_sequence_is_duplicate
+                0x0000000000008b3a       0x66 contiki-sky.a(mac-sequence.o)
+                0x0000000000008b3a                mac_sequence_is_duplicate
  .text.mac_sequence_register_seqno
-                0x0000000000008978       0x74 contiki-sky.a(mac-sequence.o)
-                0x0000000000008978                mac_sequence_register_seqno
+                0x0000000000008ba0       0x74 contiki-sky.a(mac-sequence.o)
+                0x0000000000008ba0                mac_sequence_register_seqno
  .text.mac_call_sent_callback
-                0x00000000000089ec       0x14 contiki-sky.a(mac.o)
-                0x00000000000089ec                mac_call_sent_callback
- .text.parse    0x0000000000008a00       0xb0 contiki-sky.a(framer-802154.o)
+                0x0000000000008c14       0x14 contiki-sky.a(mac.o)
+                0x0000000000008c14                mac_call_sent_callback
+ .text.parse    0x0000000000008c28       0xb0 contiki-sky.a(framer-802154.o)
  .text.create_frame.isra.0
-                0x0000000000008ab0      0x114 contiki-sky.a(framer-802154.o)
- .text.create   0x0000000000008bc4        0x8 contiki-sky.a(framer-802154.o)
+                0x0000000000008cd8      0x114 contiki-sky.a(framer-802154.o)
+ .text.create   0x0000000000008dec        0x8 contiki-sky.a(framer-802154.o)
  .text.hdr_length
-                0x0000000000008bcc        0x8 contiki-sky.a(framer-802154.o)
+                0x0000000000008df4        0x8 contiki-sky.a(framer-802154.o)
  .text.frame802154_get_pan_id
-                0x0000000000008bd4        0x6 contiki-sky.a(frame802154.o)
-                0x0000000000008bd4                frame802154_get_pan_id
+                0x0000000000008dfc        0x6 contiki-sky.a(frame802154.o)
+                0x0000000000008dfc                frame802154_get_pan_id
  .text.frame802154_has_panid
-                0x0000000000008bda       0xdc contiki-sky.a(frame802154.o)
-                0x0000000000008bda                frame802154_has_panid
+                0x0000000000008e02       0xdc contiki-sky.a(frame802154.o)
+                0x0000000000008e02                frame802154_has_panid
  .text.field_len
-                0x0000000000008cb6       0xb2 contiki-sky.a(frame802154.o)
+                0x0000000000008ede       0xb2 contiki-sky.a(frame802154.o)
  .text.frame802154_is_broadcast_addr
-                0x0000000000008d68       0x24 contiki-sky.a(frame802154.o)
-                0x0000000000008d68                frame802154_is_broadcast_addr
+                0x0000000000008f90       0x24 contiki-sky.a(frame802154.o)
+                0x0000000000008f90                frame802154_is_broadcast_addr
  .text.frame802154_hdrlen
-                0x0000000000008d8c       0x32 contiki-sky.a(frame802154.o)
-                0x0000000000008d8c                frame802154_hdrlen
+                0x0000000000008fb4       0x32 contiki-sky.a(frame802154.o)
+                0x0000000000008fb4                frame802154_hdrlen
  .text.frame802154_create_fcf
-                0x0000000000008dbe       0x96 contiki-sky.a(frame802154.o)
-                0x0000000000008dbe                frame802154_create_fcf
+                0x0000000000008fe6       0x96 contiki-sky.a(frame802154.o)
+                0x0000000000008fe6                frame802154_create_fcf
  .text.frame802154_create
-                0x0000000000008e54       0xe4 contiki-sky.a(frame802154.o)
-                0x0000000000008e54                frame802154_create
+                0x000000000000907c       0xe4 contiki-sky.a(frame802154.o)
+                0x000000000000907c                frame802154_create
  .text.frame802154_parse_fcf
-                0x0000000000008f38       0xbe contiki-sky.a(frame802154.o)
-                0x0000000000008f38                frame802154_parse_fcf
+                0x0000000000009160       0xbe contiki-sky.a(frame802154.o)
+                0x0000000000009160                frame802154_parse_fcf
  .text.frame802154_parse
-                0x0000000000008ff6      0x18c contiki-sky.a(frame802154.o)
-                0x0000000000008ff6                frame802154_parse
- .text.libgcc   0x0000000000009182       0x2c /usr/lib/gcc/msp430/4.6.3/mmpy-16/libgcc.a(_mulsi3.o)
-                0x0000000000009182                __mulsi3
- .text.libgcc   0x00000000000091ae       0x22 /usr/lib/gcc/msp430/4.6.3/mmpy-16/libgcc.a(_udivmod16.o)
-                0x00000000000091ae                __udivhi3
-                0x00000000000091ae                __ext_udivmod16
-                0x00000000000091c8                __umodhi3
- .text.libgcc   0x00000000000091d0       0x40 /usr/lib/gcc/msp430/4.6.3/mmpy-16/libgcc.a(_udivmod32.o)
-                0x00000000000091d0                __udivsi3
-                0x00000000000091d0                __ext_udivmod32
-                0x0000000000009206                __umodsi3
- .text          0x0000000000009210       0x20 /usr/lib/gcc/msp430/4.6.3/../../../../msp430/lib/mmpy-16/libc.a(memcmp.o)
-                0x0000000000009210                memcmp
- .text          0x0000000000009230       0xfa /usr/lib/gcc/msp430/4.6.3/../../../../msp430/lib/mmpy-16/libc.a(memcpy.o)
-                0x0000000000009230                memcpy
- .text          0x000000000000932a       0x6a /usr/lib/gcc/msp430/4.6.3/../../../../msp430/lib/mmpy-16/libc.a(memset.o)
-                0x000000000000932a                memset
- .text          0x0000000000009394       0x1e /usr/lib/gcc/msp430/4.6.3/../../../../msp430/lib/mmpy-16/libc.a(printf.o)
-                0x0000000000009394                printf
-                0x00000000000093a4                vprintf
- .text          0x00000000000093b2      0x836 /usr/lib/gcc/msp430/4.6.3/../../../../msp430/lib/mmpy-16/libc.a(vuprintf.o)
-                0x000000000000954a                vuprintf
- .text          0x0000000000009be8       0x2c /usr/lib/gcc/msp430/4.6.3/../../../../msp430/lib/mmpy-16/libc.a(puts.o)
-                0x0000000000009be8                puts
- .text          0x0000000000009c14       0x54 /usr/lib/gcc/msp430/4.6.3/../../../../msp430/lib/mmpy-16/libc.a(rand.o)
-                0x0000000000009c14                rand_r
-                0x0000000000009c38                rand
-                0x0000000000009c5e                srand
- .text.libgcc   0x0000000000009c68       0xf0 /usr/lib/gcc/msp430/4.6.3/mmpy-16/libgcc.a(_udivmod64.o)
-                0x0000000000009c68                __xabi_udivmod64
-                0x0000000000009cc6                __udivdi3
-                0x0000000000009cec                __umoddi3
-                0x0000000000009d1a                __udivmoddi4
- .text.crt0     0x0000000000009d58        0x2 /usr/lib/gcc/msp430/4.6.3/mmpy-16/libcrt0.a(_unexpected_.o)
-                0x0000000000009d58                _unexpected_
-                0x0000000000009d5a                . = ALIGN (0x2)
+                0x000000000000921e      0x18c contiki-sky.a(frame802154.o)
+                0x000000000000921e                frame802154_parse
+ .text.libgcc   0x00000000000093aa       0x2c /usr/lib/gcc/msp430/4.6.3/mmpy-16/libgcc.a(_mulsi3.o)
+                0x00000000000093aa                __mulsi3
+ .text.libgcc   0x00000000000093d6       0x22 /usr/lib/gcc/msp430/4.6.3/mmpy-16/libgcc.a(_udivmod16.o)
+                0x00000000000093d6                __udivhi3
+                0x00000000000093d6                __ext_udivmod16
+                0x00000000000093f0                __umodhi3
+ .text.libgcc   0x00000000000093f8       0x40 /usr/lib/gcc/msp430/4.6.3/mmpy-16/libgcc.a(_udivmod32.o)
+                0x00000000000093f8                __udivsi3
+                0x00000000000093f8                __ext_udivmod32
+                0x000000000000942e                __umodsi3
+ .text          0x0000000000009438       0x20 /usr/lib/gcc/msp430/4.6.3/../../../../msp430/lib/mmpy-16/libc.a(memcmp.o)
+                0x0000000000009438                memcmp
+ .text          0x0000000000009458       0xfa /usr/lib/gcc/msp430/4.6.3/../../../../msp430/lib/mmpy-16/libc.a(memcpy.o)
+                0x0000000000009458                memcpy
+ .text          0x0000000000009552       0x6a /usr/lib/gcc/msp430/4.6.3/../../../../msp430/lib/mmpy-16/libc.a(memset.o)
+                0x0000000000009552                memset
+ .text          0x00000000000095bc       0x1e /usr/lib/gcc/msp430/4.6.3/../../../../msp430/lib/mmpy-16/libc.a(printf.o)
+                0x00000000000095bc                printf
+                0x00000000000095cc                vprintf
+ .text          0x00000000000095da      0x836 /usr/lib/gcc/msp430/4.6.3/../../../../msp430/lib/mmpy-16/libc.a(vuprintf.o)
+                0x0000000000009772                vuprintf
+ .text          0x0000000000009e10       0x2c /usr/lib/gcc/msp430/4.6.3/../../../../msp430/lib/mmpy-16/libc.a(puts.o)
+                0x0000000000009e10                puts
+ .text          0x0000000000009e3c       0x54 /usr/lib/gcc/msp430/4.6.3/../../../../msp430/lib/mmpy-16/libc.a(rand.o)
+                0x0000000000009e3c                rand_r
+                0x0000000000009e60                rand
+                0x0000000000009e86                srand
+ .text.libgcc   0x0000000000009e90       0xf0 /usr/lib/gcc/msp430/4.6.3/mmpy-16/libgcc.a(_udivmod64.o)
+                0x0000000000009e90                __xabi_udivmod64
+                0x0000000000009eee                __udivdi3
+                0x0000000000009f14                __umoddi3
+                0x0000000000009f42                __udivmoddi4
+ .text.crt0     0x0000000000009f80        0x2 /usr/lib/gcc/msp430/4.6.3/mmpy-16/libcrt0.a(_unexpected_.o)
+                0x0000000000009f80                _unexpected_
+                0x0000000000009f82                . = ALIGN (0x2)
 
-.rodata         0x0000000000009d5a      0x558
-                0x0000000000009d5a                . = ALIGN (0x2)
+.rodata         0x0000000000009f82      0x668
+                0x0000000000009f82                . = ALIGN (0x2)
  *(.rodata .rodata.* .gnu.linkonce.r.*)
- .rodata        0x0000000000009d5a       0x1c example-DGHS.co
-                0x0000000000009d5a                autostart_processes
- .rodata        0x0000000000009d76      0x306 obj_sky/DGHS_neighbor_discovery.o
- .rodata        0x000000000000a07c       0xe5 obj_sky/contiki-sky-main.o
- *fill*         0x000000000000a161        0x1 00
- .rodata        0x000000000000a162       0x10 contiki-sky.a(button-sensor.o)
-                0x000000000000a16a                button_sensor
- .rodata        0x000000000000a172        0x8 contiki-sky.a(sensors.o)
- .rodata        0x000000000000a17a       0x70 contiki-sky.a(cc2420.o)
-                0x000000000000a1ac                cc2420_aes_128_driver
-                0x000000000000a1b0                cc2420_driver
- .rodata        0x000000000000a1ea        0xc contiki-sky.a(etimer.o)
- .rodata        0x000000000000a1f6        0xf contiki-sky.a(ctimer.o)
- .rodata        0x000000000000a205        0xe contiki-sky.a(serial-line.o)
- *fill*         0x000000000000a213        0x1 00
- .rodata        0x000000000000a214        0xc contiki-sky.a(rime.o)
-                0x000000000000a21a                rime_driver
- .rodata        0x000000000000a220        0x4 contiki-sky.a(broadcast-annou)
- .rodata        0x000000000000a224        0xe contiki-sky.a(runicast.o)
- .rodata        0x000000000000a232        0x4 contiki-sky.a(stunicast.o)
- .rodata        0x000000000000a236        0x8 contiki-sky.a(broadcast.o)
- .rodata        0x000000000000a23e        0x2 contiki-sky.a(abc.o)
- .rodata        0x000000000000a240        0xa contiki-sky.a(unicast.o)
- .rodata        0x000000000000a24a       0x14 contiki-sky.a(csma.o)
-                0x000000000000a250                csma_driver
- .rodata        0x000000000000a25e        0x2 contiki-sky.a(linkaddr.o)
-                0x000000000000a25e                linkaddr_null
- .rodata        0x000000000000a260       0x1c contiki-sky.a(contikimac.o)
-                0x000000000000a26c                contikimac_driver
- .rodata        0x000000000000a27c        0x6 contiki-sky.a(contikimac-fram)
-                0x000000000000a27c                contikimac_framer
- .rodata        0x000000000000a282       0x10 contiki-sky.a(nullsec.o)
-                0x000000000000a28a                nullsec_driver
- .rodata        0x000000000000a292       0x10 contiki-sky.a(chameleon-bitop)
-                0x000000000000a292                chameleon_bitopt
- .rodata        0x000000000000a2a2        0x6 contiki-sky.a(framer-802154.o)
-                0x000000000000a2a2                framer_802154
- .rodata        0x000000000000a2a8        0x2 contiki-sky.a(frame802154.o)
- .rodata        0x000000000000a2aa        0x7 /usr/lib/gcc/msp430/4.6.3/../../../../msp430/lib/mmpy-16/libc.a(vuprintf.o)
-                0x000000000000a2b2                . = ALIGN (0x2)
- *fill*         0x000000000000a2b1        0x1 00
-                0x000000000000a2b2                _etext = .
+ .rodata        0x0000000000009f82       0x1e example-DGHS.co
+                0x0000000000009f82                autostart_processes
+ .rodata        0x0000000000009fa0      0x414 obj_sky/DGHS_neighbor_discovery.o
+ .rodata        0x000000000000a3b4       0xe5 obj_sky/contiki-sky-main.o
+ *fill*         0x000000000000a499        0x1 00
+ .rodata        0x000000000000a49a       0x10 contiki-sky.a(button-sensor.o)
+                0x000000000000a4a2                button_sensor
+ .rodata        0x000000000000a4aa        0x8 contiki-sky.a(sensors.o)
+ .rodata        0x000000000000a4b2       0x70 contiki-sky.a(cc2420.o)
+                0x000000000000a4e4                cc2420_aes_128_driver
+                0x000000000000a4e8                cc2420_driver
+ .rodata        0x000000000000a522        0xc contiki-sky.a(etimer.o)
+ .rodata        0x000000000000a52e        0xf contiki-sky.a(ctimer.o)
+ .rodata        0x000000000000a53d        0xe contiki-sky.a(serial-line.o)
+ *fill*         0x000000000000a54b        0x1 00
+ .rodata        0x000000000000a54c        0xc contiki-sky.a(rime.o)
+                0x000000000000a552                rime_driver
+ .rodata        0x000000000000a558        0x4 contiki-sky.a(broadcast-annou)
+ .rodata        0x000000000000a55c        0xe contiki-sky.a(runicast.o)
+ .rodata        0x000000000000a56a        0x4 contiki-sky.a(stunicast.o)
+ .rodata        0x000000000000a56e        0x8 contiki-sky.a(broadcast.o)
+ .rodata        0x000000000000a576        0x2 contiki-sky.a(abc.o)
+ .rodata        0x000000000000a578        0xa contiki-sky.a(unicast.o)
+ .rodata        0x000000000000a582       0x14 contiki-sky.a(csma.o)
+                0x000000000000a588                csma_driver
+ .rodata        0x000000000000a596        0x2 contiki-sky.a(linkaddr.o)
+                0x000000000000a596                linkaddr_null
+ .rodata        0x000000000000a598       0x1c contiki-sky.a(contikimac.o)
+                0x000000000000a5a4                contikimac_driver
+ .rodata        0x000000000000a5b4        0x6 contiki-sky.a(contikimac-fram)
+                0x000000000000a5b4                contikimac_framer
+ .rodata        0x000000000000a5ba       0x10 contiki-sky.a(nullsec.o)
+                0x000000000000a5c2                nullsec_driver
+ .rodata        0x000000000000a5ca       0x10 contiki-sky.a(chameleon-bitop)
+                0x000000000000a5ca                chameleon_bitopt
+ .rodata        0x000000000000a5da        0x6 contiki-sky.a(framer-802154.o)
+                0x000000000000a5da                framer_802154
+ .rodata        0x000000000000a5e0        0x2 contiki-sky.a(frame802154.o)
+ .rodata        0x000000000000a5e2        0x7 /usr/lib/gcc/msp430/4.6.3/../../../../msp430/lib/mmpy-16/libc.a(vuprintf.o)
+                0x000000000000a5ea                . = ALIGN (0x2)
+ *fill*         0x000000000000a5e9        0x1 00
+                0x000000000000a5ea                _etext = .
 
-.data           0x0000000000001100       0xc6 load address 0x000000000000a2b2
+.data           0x0000000000001100       0xd0 load address 0x000000000000a5ea
                 0x0000000000001100                . = ALIGN (0x2)
                 0x0000000000001100                PROVIDE (__data_start, .)
  *(.data .data.* .gnu.linkonce.d.*)
  .data          0x0000000000001100        0xa example-DGHS.co
                 0x0000000000001100                master_DGHS
- .data          0x000000000000110a       0x54 obj_sky/DGHS_neighbor_discovery.o
-                0x000000000000110a                runicast_control
-                0x0000000000001114                wait_runicast_control
-                0x000000000000111e                wait_broadcast_control
-                0x0000000000001128                broadcast_control
-                0x0000000000001132                send_neighbor_discovery
-                0x000000000000113c                master_neighbor_discovery
- .data          0x000000000000115e        0x4 contiki-sky.a(contiki-sky-pla)
-                0x000000000000115e                sensors
- .data          0x0000000000001162        0xa contiki-sky.a(sensors.o)
-                0x0000000000001162                sensors_process
- .data          0x000000000000116c        0xc contiki-sky.a(cc2420.o)
-                0x000000000000116c                cc2420_process
- .data          0x0000000000001178        0x2 contiki-sky.a(msp430.o)
- .data          0x000000000000117a        0xa contiki-sky.a(etimer.o)
-                0x000000000000117a                etimer_process
- .data          0x0000000000001184        0xa contiki-sky.a(ctimer.o)
-                0x0000000000001184                ctimer_process
- .data          0x000000000000118e        0xa contiki-sky.a(serial-line.o)
-                0x000000000000118e                serial_line_process
- .data          0x0000000000001198       0x18 contiki-sky.a(csma.o)
- .data          0x00000000000011b0       0x10 contiki-sky.a(queuebuf.o)
- .data          0x00000000000011c0        0x2 contiki-sky.a(frame802154.o)
- .data          0x00000000000011c2        0x4 /usr/lib/gcc/msp430/4.6.3/../../../../msp430/lib/mmpy-16/libc.a(rand.o)
-                0x00000000000011c6                . = ALIGN (0x2)
-                0x00000000000011c6                _edata = .
-                0x000000000000a2b2                PROVIDE (__data_load_start, LOADADDR (.data))
-                0x00000000000000c6                PROVIDE (__data_size, SIZEOF (.data))
+ .data          0x000000000000110a       0x5e obj_sky/DGHS_neighbor_discovery.o
+                0x000000000000110a                analyze_agreement
+                0x0000000000001114                runicast_control
+                0x000000000000111e                wait_runicast_control
+                0x0000000000001128                wait_broadcast_control
+                0x0000000000001132                broadcast_control
+                0x000000000000113c                send_neighbor_discovery
+                0x0000000000001146                master_neighbor_discovery
+ .data          0x0000000000001168        0x4 contiki-sky.a(contiki-sky-pla)
+                0x0000000000001168                sensors
+ .data          0x000000000000116c        0xa contiki-sky.a(sensors.o)
+                0x000000000000116c                sensors_process
+ .data          0x0000000000001176        0xc contiki-sky.a(cc2420.o)
+                0x0000000000001176                cc2420_process
+ .data          0x0000000000001182        0x2 contiki-sky.a(msp430.o)
+ .data          0x0000000000001184        0xa contiki-sky.a(etimer.o)
+                0x0000000000001184                etimer_process
+ .data          0x000000000000118e        0xa contiki-sky.a(ctimer.o)
+                0x000000000000118e                ctimer_process
+ .data          0x0000000000001198        0xa contiki-sky.a(serial-line.o)
+                0x0000000000001198                serial_line_process
+ .data          0x00000000000011a2       0x18 contiki-sky.a(csma.o)
+ .data          0x00000000000011ba       0x10 contiki-sky.a(queuebuf.o)
+ .data          0x00000000000011ca        0x2 contiki-sky.a(frame802154.o)
+ .data          0x00000000000011cc        0x4 /usr/lib/gcc/msp430/4.6.3/../../../../msp430/lib/mmpy-16/libc.a(rand.o)
+                0x00000000000011d0                . = ALIGN (0x2)
+                0x00000000000011d0                _edata = .
+                0x000000000000a5ea                PROVIDE (__data_load_start, LOADADDR (.data))
+                0x00000000000000d0                PROVIDE (__data_size, SIZEOF (.data))
 
-.bss            0x00000000000011c6     0x1406 load address 0x000000000000a378
-                0x00000000000011c6                PROVIDE (__bss_start, .)
+.bss            0x00000000000011d0     0x1496 load address 0x000000000000a6ba
+                0x00000000000011d0                PROVIDE (__bss_start, .)
  *(.bss .bss.*)
- .bss           0x00000000000011c6      0x24e obj_sky/DGHS_neighbor_discovery.o
- .bss           0x0000000000001414        0xc obj_sky/contiki-sky-main.o
- .bss           0x0000000000001420        0x8 contiki-sky.a(button-sensor.o)
- .bss           0x0000000000001428        0x2 contiki-sky.a(node-id.o)
-                0x0000000000001428                node_id
- .bss           0x000000000000142a        0x6 contiki-sky.a(sensors.o)
- .bss           0x0000000000001430        0xa contiki-sky.a(cc2420.o)
- .bss           0x000000000000143a       0x9a contiki-sky.a(uart1.o)
- .bss           0x00000000000014d4        0xa contiki-sky.a(clock.o)
- .bss           0x00000000000014de        0x1 contiki-sky.a(leds.o)
- *fill*         0x00000000000014df        0x1 00
- .bss           0x00000000000014e0        0x2 contiki-sky.a(watchdog.o)
- .bss           0x00000000000014e2        0x6 contiki-sky.a(etimer.o)
- .bss           0x00000000000014e8        0x4 contiki-sky.a(ctimer.o)
- .bss           0x00000000000014ec       0x38 contiki-sky.a(process.o)
-                0x00000000000014ec                process_current
-                0x00000000000014ee                process_list
- .bss           0x0000000000001524        0x2 contiki-sky.a(rtimer.o)
- .bss           0x0000000000001526      0x10a contiki-sky.a(serial-line.o)
- .bss           0x0000000000001630        0x2 contiki-sky.a(rime.o)
- .bss           0x0000000000001632       0x46 contiki-sky.a(broadcast-annou)
- .bss           0x0000000000001678        0x6 contiki-sky.a(announcement.o)
- .bss           0x000000000000167e      0x124 contiki-sky.a(csma.o)
- .bss           0x00000000000017a2      0xc20 contiki-sky.a(queuebuf.o)
- .bss           0x00000000000023c2       0x86 contiki-sky.a(packetbuf.o)
- .bss           0x0000000000002448       0x32 contiki-sky.a(contikimac.o)
- .bss           0x000000000000247a        0x8 contiki-sky.a(compower.o)
- .bss           0x0000000000002482        0x2 contiki-sky.a(channel.o)
- .bss           0x0000000000002484       0x80 contiki-sky.a(mac-sequence.o)
- .bss           0x0000000000002504        0x2 contiki-sky.a(framer-802154.o)
+ .bss           0x00000000000011d0      0x2de obj_sky/DGHS_neighbor_discovery.o
+ .bss           0x00000000000014ae        0xc obj_sky/contiki-sky-main.o
+ .bss           0x00000000000014ba        0x8 contiki-sky.a(button-sensor.o)
+ .bss           0x00000000000014c2        0x2 contiki-sky.a(node-id.o)
+                0x00000000000014c2                node_id
+ .bss           0x00000000000014c4        0x6 contiki-sky.a(sensors.o)
+ .bss           0x00000000000014ca        0xa contiki-sky.a(cc2420.o)
+ .bss           0x00000000000014d4       0x9a contiki-sky.a(uart1.o)
+ .bss           0x000000000000156e        0xa contiki-sky.a(clock.o)
+ .bss           0x0000000000001578        0x1 contiki-sky.a(leds.o)
+ *fill*         0x0000000000001579        0x1 00
+ .bss           0x000000000000157a        0x2 contiki-sky.a(watchdog.o)
+ .bss           0x000000000000157c        0x6 contiki-sky.a(etimer.o)
+ .bss           0x0000000000001582        0x4 contiki-sky.a(ctimer.o)
+ .bss           0x0000000000001586       0x38 contiki-sky.a(process.o)
+                0x0000000000001586                process_current
+                0x0000000000001588                process_list
+ .bss           0x00000000000015be        0x2 contiki-sky.a(rtimer.o)
+ .bss           0x00000000000015c0      0x10a contiki-sky.a(serial-line.o)
+ .bss           0x00000000000016ca        0x2 contiki-sky.a(rime.o)
+ .bss           0x00000000000016cc       0x46 contiki-sky.a(broadcast-annou)
+ .bss           0x0000000000001712        0x6 contiki-sky.a(announcement.o)
+ .bss           0x0000000000001718      0x124 contiki-sky.a(csma.o)
+ .bss           0x000000000000183c      0xc20 contiki-sky.a(queuebuf.o)
+ .bss           0x000000000000245c       0x86 contiki-sky.a(packetbuf.o)
+ .bss           0x00000000000024e2       0x32 contiki-sky.a(contikimac.o)
+ .bss           0x0000000000002514        0x8 contiki-sky.a(compower.o)
+ .bss           0x000000000000251c        0x2 contiki-sky.a(channel.o)
+ .bss           0x000000000000251e       0x80 contiki-sky.a(mac-sequence.o)
+ .bss           0x000000000000259e        0x2 contiki-sky.a(framer-802154.o)
  *(COMMON)
- COMMON         0x0000000000002506        0x6 example-DGHS.co
-                0x0000000000002506                e_execute
-                0x0000000000002508                node
-                0x000000000000250a                e_initialize
-                0x000000000000250b                e_end_wait
- COMMON         0x000000000000250c        0x4 obj_sky/DGHS_neighbor_discovery.o
-                0x000000000000250c                e_broadcast_evaluation
-                0x000000000000250d                e_runicast_evaluation
-                0x000000000000250e                e_send_runicast
-                0x000000000000250f                e_send_broadcast
- COMMON         0x0000000000002510        0x2 contiki-sky.a(contiki-sky-pla)
-                0x0000000000002510                sensors_flags
- COMMON         0x0000000000002512        0x8 contiki-sky.a(ds2411.o)
-                0x0000000000002512                ds2411_id
- COMMON         0x000000000000251a        0x1 contiki-sky.a(sensors.o)
-                0x000000000000251a                sensors_event
- *fill*         0x000000000000251b        0x1 00
- COMMON         0x000000000000251c       0x10 contiki-sky.a(cc2420.o)
-                0x000000000000251c                cc2420_last_rssi
-                0x000000000000251e                cc2420_sfd_start_time
-                0x0000000000002520                cc2420_time_of_departure
-                0x0000000000002522                cc2420_time_of_arrival
-                0x0000000000002524                cc2420_last_correlation
-                0x0000000000002526                cc2420_authority_level_of_sender
-                0x0000000000002528                cc2420_sfd_counter
-                0x000000000000252a                cc2420_sfd_end_time
- COMMON         0x000000000000252c        0x2 contiki-sky.a(msp430.o)
-                0x000000000000252c                msp430_dco_required
- COMMON         0x000000000000252e       0x56 contiki-sky.a(energest.o)
-                0x000000000000252e                energest_total_time
-                0x000000000000255e                energest_total_count
-                0x0000000000002560                energest_current_mode
-                0x000000000000256c                energest_current_time
- COMMON         0x0000000000002584        0x1 contiki-sky.a(process.o)
-                0x0000000000002584                process_maxevents
- COMMON         0x0000000000002585        0x1 contiki-sky.a(serial-line.o)
-                0x0000000000002585                serial_line_event_message
- COMMON         0x0000000000002586       0x3c contiki-sky.a(packetbuf.o)
-                0x0000000000002586                packetbuf_addrs
-                0x000000000000258e                packetbuf_attrs
- COMMON         0x00000000000025c2        0x2 contiki-sky.a(linkaddr.o)
-                0x00000000000025c2                linkaddr_node_addr
- COMMON         0x00000000000025c4        0x8 contiki-sky.a(compower.o)
-                0x00000000000025c4                compower_idle_activity
-                0x00000000000025cc                . = ALIGN (0x2)
-                0x00000000000025cc                PROVIDE (__bss_end, .)
-                0x0000000000001406                PROVIDE (__bss_size, SIZEOF (.bss))
+ COMMON         0x00000000000025a0        0x6 example-DGHS.co
+                0x00000000000025a0                e_execute
+                0x00000000000025a2                node
+                0x00000000000025a4                e_initialize
+                0x00000000000025a5                e_end_wait
+ COMMON         0x00000000000025a6        0x4 obj_sky/DGHS_neighbor_discovery.o
+                0x00000000000025a6                e_broadcast_evaluation
+                0x00000000000025a7                e_runicast_evaluation
+                0x00000000000025a8                e_send_runicast
+                0x00000000000025a9                e_send_broadcast
+ COMMON         0x00000000000025aa        0x2 contiki-sky.a(contiki-sky-pla)
+                0x00000000000025aa                sensors_flags
+ COMMON         0x00000000000025ac        0x8 contiki-sky.a(ds2411.o)
+                0x00000000000025ac                ds2411_id
+ COMMON         0x00000000000025b4        0x1 contiki-sky.a(sensors.o)
+                0x00000000000025b4                sensors_event
+ *fill*         0x00000000000025b5        0x1 00
+ COMMON         0x00000000000025b6       0x10 contiki-sky.a(cc2420.o)
+                0x00000000000025b6                cc2420_last_rssi
+                0x00000000000025b8                cc2420_sfd_start_time
+                0x00000000000025ba                cc2420_time_of_departure
+                0x00000000000025bc                cc2420_time_of_arrival
+                0x00000000000025be                cc2420_last_correlation
+                0x00000000000025c0                cc2420_authority_level_of_sender
+                0x00000000000025c2                cc2420_sfd_counter
+                0x00000000000025c4                cc2420_sfd_end_time
+ COMMON         0x00000000000025c6        0x2 contiki-sky.a(msp430.o)
+                0x00000000000025c6                msp430_dco_required
+ COMMON         0x00000000000025c8       0x56 contiki-sky.a(energest.o)
+                0x00000000000025c8                energest_total_time
+                0x00000000000025f8                energest_total_count
+                0x00000000000025fa                energest_current_mode
+                0x0000000000002606                energest_current_time
+ COMMON         0x000000000000261e        0x1 contiki-sky.a(process.o)
+                0x000000000000261e                process_maxevents
+ COMMON         0x000000000000261f        0x1 contiki-sky.a(serial-line.o)
+                0x000000000000261f                serial_line_event_message
+ COMMON         0x0000000000002620       0x3c contiki-sky.a(packetbuf.o)
+                0x0000000000002620                packetbuf_addrs
+                0x0000000000002628                packetbuf_attrs
+ COMMON         0x000000000000265c        0x2 contiki-sky.a(linkaddr.o)
+                0x000000000000265c                linkaddr_node_addr
+ COMMON         0x000000000000265e        0x8 contiki-sky.a(compower.o)
+                0x000000000000265e                compower_idle_activity
+                0x0000000000002666                . = ALIGN (0x2)
+                0x0000000000002666                PROVIDE (__bss_end, .)
+                0x0000000000001496                PROVIDE (__bss_size, SIZEOF (.bss))
 
-.noinit         0x00000000000025cc        0x2 load address 0x000000000000a378
-                0x00000000000025cc                PROVIDE (__noinit_start, .)
+.noinit         0x0000000000002666        0x2 load address 0x000000000000a6ba
+                0x0000000000002666                PROVIDE (__noinit_start, .)
  *(.noinit .noinit.*)
- .noinit.crt0   0x00000000000025cc        0x2 /usr/lib/gcc/msp430/4.6.3/mmpy-16/libcrt0.a(__watchdog_support.o)
-                0x00000000000025cc                __wdt_clear_value
-                0x00000000000025ce                . = ALIGN (0x2)
-                0x00000000000025ce                PROVIDE (__noinit_end, .)
-                0x00000000000025ce                . = ALIGN (0x2)
-                0x00000000000025ce                _end = .
+ .noinit.crt0   0x0000000000002666        0x2 /usr/lib/gcc/msp430/4.6.3/mmpy-16/libcrt0.a(__watchdog_support.o)
+                0x0000000000002666                __wdt_clear_value
+                0x0000000000002668                . = ALIGN (0x2)
+                0x0000000000002668                PROVIDE (__noinit_end, .)
+                0x0000000000002668                . = ALIGN (0x2)
+                0x0000000000002668                _end = .
 
 .infomem        0x0000000000001000        0x0
  *(.infomem)
@@ -1810,123 +1816,123 @@ LOAD /usr/lib/gcc/msp430/4.6.3/mmpy-16/libcrt0.a
 .profiler
  *(.profiler)
 
-.stab           0x0000000000000000    0x1cc38
+.stab           0x0000000000000000    0x1cfa4
  *(.stab)
  .stab          0x0000000000000000     0x11f4 example-DGHS.co
- .stab          0x00000000000011f4     0x129c obj_sky/DGHS_neighbor_discovery.o
-                                       0x1f68 (size before relaxing)
- .stab          0x0000000000002490      0x528 obj_sky/neighbor_discovery.o
-                                       0x123c (size before relaxing)
- .stab          0x00000000000029b8     0x1110 obj_sky/contiki-sky-main.o
+ .stab          0x00000000000011f4     0x1530 obj_sky/DGHS_neighbor_discovery.o
+                                       0x21fc (size before relaxing)
+ .stab          0x0000000000002724      0x600 obj_sky/neighbor_discovery.o
+                                       0x1314 (size before relaxing)
+ .stab          0x0000000000002d24     0x1110 obj_sky/contiki-sky-main.o
                                        0x17a0 (size before relaxing)
- .stab          0x0000000000003ac8      0x2a0 contiki-sky.a(contiki-sky-pla)
+ .stab          0x0000000000003e34      0x2a0 contiki-sky.a(contiki-sky-pla)
                                         0x5b8 (size before relaxing)
- .stab          0x0000000000003d68      0x468 contiki-sky.a(button-sensor.o)
+ .stab          0x00000000000040d4      0x468 contiki-sky.a(button-sensor.o)
                                         0x7d4 (size before relaxing)
- .stab          0x00000000000041d0      0x624 contiki-sky.a(ds2411.o)
+ .stab          0x000000000000453c      0x624 contiki-sky.a(ds2411.o)
                                         0xb40 (size before relaxing)
- .stab          0x00000000000047f4      0xbac contiki-sky.a(xmem.o)
+ .stab          0x0000000000004b60      0xbac contiki-sky.a(xmem.o)
                                         0xf60 (size before relaxing)
- .stab          0x00000000000053a0      0x2b8 contiki-sky.a(node-id.o)
+ .stab          0x000000000000570c      0x2b8 contiki-sky.a(node-id.o)
                                         0x4e0 (size before relaxing)
- .stab          0x0000000000005658      0x654 contiki-sky.a(sensors.o)
+ .stab          0x00000000000059c4      0x654 contiki-sky.a(sensors.o)
                                         0xb70 (size before relaxing)
- .stab          0x0000000000005cac     0x2904 contiki-sky.a(cc2420.o)
+ .stab          0x0000000000006018     0x2904 contiki-sky.a(cc2420.o)
                                        0x3030 (size before relaxing)
- .stab          0x00000000000085b0      0xa68 contiki-sky.a(cc2420-arch.o)
+ .stab          0x000000000000891c      0xa68 contiki-sky.a(cc2420-arch.o)
                                        0x13f8 (size before relaxing)
- .stab          0x0000000000009018      0x60c contiki-sky.a(uart1.o)
+ .stab          0x0000000000009384      0x60c contiki-sky.a(uart1.o)
                                         0x960 (size before relaxing)
- .stab          0x0000000000009624      0x234 contiki-sky.a(uart1-putchar.o)
+ .stab          0x0000000000009990      0x234 contiki-sky.a(uart1-putchar.o)
                                         0x588 (size before relaxing)
- .stab          0x0000000000009858      0x744 contiki-sky.a(msp430.o)
+ .stab          0x0000000000009bc4      0x744 contiki-sky.a(msp430.o)
                                         0xa98 (size before relaxing)
- .stab          0x0000000000009f9c      0x948 contiki-sky.a(clock.o)
+ .stab          0x000000000000a308      0x948 contiki-sky.a(clock.o)
                                         0xc9c (size before relaxing)
- .stab          0x000000000000a8e4      0x5dc contiki-sky.a(leds.o)
+ .stab          0x000000000000ac50      0x5dc contiki-sky.a(leds.o)
                                         0x828 (size before relaxing)
- .stab          0x000000000000aec0      0x3a8 contiki-sky.a(leds-arch.o)
+ .stab          0x000000000000b22c      0x3a8 contiki-sky.a(leds-arch.o)
                                         0x6fc (size before relaxing)
- .stab          0x000000000000b268      0x3fc contiki-sky.a(watchdog.o)
+ .stab          0x000000000000b5d4      0x3fc contiki-sky.a(watchdog.o)
                                         0x750 (size before relaxing)
- .stab          0x000000000000b664      0x3cc contiki-sky.a(rtimer-arch.o)
+ .stab          0x000000000000b9d0      0x3cc contiki-sky.a(rtimer-arch.o)
                                         0x720 (size before relaxing)
- .stab          0x000000000000ba30      0x294 contiki-sky.a(autostart.o)
+ .stab          0x000000000000bd9c      0x294 contiki-sky.a(autostart.o)
                                         0x534 (size before relaxing)
- .stab          0x000000000000bcc4      0x474 contiki-sky.a(energest.o)
+ .stab          0x000000000000c030      0x474 contiki-sky.a(energest.o)
                                         0x6fc (size before relaxing)
- .stab          0x000000000000c138      0xabc contiki-sky.a(etimer.o)
+ .stab          0x000000000000c4a4      0xabc contiki-sky.a(etimer.o)
                                         0xd8c (size before relaxing)
- .stab          0x000000000000cbf4      0x858 contiki-sky.a(ctimer.o)
+ .stab          0x000000000000cf60      0x858 contiki-sky.a(ctimer.o)
                                         0xbc4 (size before relaxing)
- .stab          0x000000000000d44c      0xba0 contiki-sky.a(process.o)
+ .stab          0x000000000000d7b8      0xba0 contiki-sky.a(process.o)
                                        0x1038 (size before relaxing)
- .stab          0x000000000000dfec      0x3c0 contiki-sky.a(rtimer.o)
+ .stab          0x000000000000e358      0x3c0 contiki-sky.a(rtimer.o)
                                         0x6c0 (size before relaxing)
- .stab          0x000000000000e3ac      0x354 contiki-sky.a(timer.o)
+ .stab          0x000000000000e718      0x354 contiki-sky.a(timer.o)
                                         0x594 (size before relaxing)
- .stab          0x000000000000e700      0x534 contiki-sky.a(serial-line.o)
+ .stab          0x000000000000ea6c      0x534 contiki-sky.a(serial-line.o)
                                         0xa50 (size before relaxing)
- .stab          0x000000000000ec34      0x7e0 contiki-sky.a(list.o)
+ .stab          0x000000000000efa0      0x7e0 contiki-sky.a(list.o)
                                         0x804 (size before relaxing)
- .stab          0x000000000000f414      0x5c4 contiki-sky.a(memb.o)
+ .stab          0x000000000000f780      0x5c4 contiki-sky.a(memb.o)
                                         0xaf8 (size before relaxing)
- .stab          0x000000000000f9d8      0x24c contiki-sky.a(random.o)
+ .stab          0x000000000000fd44      0x24c contiki-sky.a(random.o)
                                         0x624 (size before relaxing)
- .stab          0x000000000000fc24      0x3fc contiki-sky.a(ringbuf.o)
+ .stab          0x000000000000ff90      0x3fc contiki-sky.a(ringbuf.o)
                                         0x63c (size before relaxing)
- .stab          0x0000000000010020      0xbc4 contiki-sky.a(rime.o)
+ .stab          0x000000000001038c      0xbc4 contiki-sky.a(rime.o)
                                        0x1410 (size before relaxing)
- .stab          0x0000000000010be4      0x978 contiki-sky.a(broadcast-annou)
+ .stab          0x0000000000010f50      0x978 contiki-sky.a(broadcast-annou)
                                        0x15c0 (size before relaxing)
- .stab          0x000000000001155c      0x6e4 contiki-sky.a(announcement.o)
+ .stab          0x00000000000118c8      0x6e4 contiki-sky.a(announcement.o)
                                         0x984 (size before relaxing)
- .stab          0x0000000000011c40      0x8f4 contiki-sky.a(runicast.o)
+ .stab          0x0000000000011fac      0x8f4 contiki-sky.a(runicast.o)
                                        0x1578 (size before relaxing)
- .stab          0x0000000000012534      0x888 contiki-sky.a(stunicast.o)
+ .stab          0x00000000000128a0      0x888 contiki-sky.a(stunicast.o)
                                        0x150c (size before relaxing)
- .stab          0x0000000000012dbc      0x5e8 contiki-sky.a(chameleon.o)
+ .stab          0x0000000000013128      0x5e8 contiki-sky.a(chameleon.o)
                                        0x123c (size before relaxing)
- .stab          0x00000000000133a4      0x6d8 contiki-sky.a(broadcast.o)
+ .stab          0x0000000000013710      0x6d8 contiki-sky.a(broadcast.o)
                                        0x1500 (size before relaxing)
- .stab          0x0000000000013a7c      0x66c contiki-sky.a(abc.o)
+ .stab          0x0000000000013de8      0x66c contiki-sky.a(abc.o)
                                        0x1494 (size before relaxing)
- .stab          0x00000000000140e8      0x624 contiki-sky.a(unicast.o)
+ .stab          0x0000000000014454      0x624 contiki-sky.a(unicast.o)
                                        0x129c (size before relaxing)
- .stab          0x000000000001470c      0xcf0 contiki-sky.a(csma.o)
+ .stab          0x0000000000014a78      0xcf0 contiki-sky.a(csma.o)
                                        0x1680 (size before relaxing)
- .stab          0x00000000000153fc      0xa5c contiki-sky.a(queuebuf.o)
+ .stab          0x0000000000015768      0xa5c contiki-sky.a(queuebuf.o)
                                        0x1884 (size before relaxing)
- .stab          0x0000000000015e58      0xc60 contiki-sky.a(packetbuf.o)
+ .stab          0x00000000000161c4      0xc60 contiki-sky.a(packetbuf.o)
                                        0x1aa0 (size before relaxing)
- .stab          0x0000000000016ab8      0x2c4 contiki-sky.a(linkaddr.o)
+ .stab          0x0000000000016e24      0x2c4 contiki-sky.a(linkaddr.o)
                                         0x6c0 (size before relaxing)
- .stab          0x0000000000016d7c     0x1728 contiki-sky.a(contikimac.o)
+ .stab          0x00000000000170e8     0x1728 contiki-sky.a(contikimac.o)
                                        0x22ec (size before relaxing)
- .stab          0x00000000000184a4      0x81c contiki-sky.a(contikimac-fram)
+ .stab          0x0000000000018810      0x81c contiki-sky.a(contikimac-fram)
                                         0xe58 (size before relaxing)
- .stab          0x0000000000018cc0      0x3c0 contiki-sky.a(nullsec.o)
+ .stab          0x000000000001902c      0x3c0 contiki-sky.a(nullsec.o)
                                         0xcf0 (size before relaxing)
- .stab          0x0000000000019080      0x204 contiki-sky.a(spi.o)
+ .stab          0x00000000000193ec      0x204 contiki-sky.a(spi.o)
                                         0x42c (size before relaxing)
- .stab          0x0000000000019284      0x51c contiki-sky.a(compower.o)
+ .stab          0x00000000000195f0      0x51c contiki-sky.a(compower.o)
                                         0xd20 (size before relaxing)
- .stab          0x00000000000197a0      0xd80 contiki-sky.a(chameleon-bitop)
+ .stab          0x0000000000019b0c      0xd80 contiki-sky.a(chameleon-bitop)
                                        0x19f8 (size before relaxing)
- .stab          0x000000000001a520      0x624 contiki-sky.a(channel.o)
+ .stab          0x000000000001a88c      0x624 contiki-sky.a(channel.o)
                                        0x129c (size before relaxing)
- .stab          0x000000000001ab44      0x630 contiki-sky.a(mac-sequence.o)
+ .stab          0x000000000001aeb0      0x630 contiki-sky.a(mac-sequence.o)
                                        0x1470 (size before relaxing)
- .stab          0x000000000001b174      0x1f8 contiki-sky.a(mac.o)
+ .stab          0x000000000001b4e0      0x1f8 contiki-sky.a(mac.o)
                                         0x4ec (size before relaxing)
- .stab          0x000000000001b36c      0x6f0 contiki-sky.a(framer-802154.o)
+ .stab          0x000000000001b6d8      0x6f0 contiki-sky.a(framer-802154.o)
                                         0xf30 (size before relaxing)
- .stab          0x000000000001ba5c     0x11dc contiki-sky.a(frame802154.o)
+ .stab          0x000000000001bdc8     0x11dc contiki-sky.a(frame802154.o)
                                        0x19c8 (size before relaxing)
 
-.stabstr        0x0000000000000000    0x1697f
+.stabstr        0x0000000000000000    0x16a70
  *(.stabstr)
- .stabstr       0x0000000000000000    0x1697f example-DGHS.co
+ .stabstr       0x0000000000000000    0x16a70 example-DGHS.co
 
 .stab.excl
  *(.stab.excl)
@@ -2112,6 +2118,6 @@ LOAD /usr/lib/gcc/msp430/4.6.3/mmpy-16/libcrt0.a
  *(.debug_ranges)
  .debug_ranges  0x0000000000000000       0x18 /usr/lib/gcc/msp430/4.6.3/../../../../msp430/lib/mmpy-16/libc.a(vuprintf.o)
                 0x0000000000003900                PROVIDE (__stack, (ORIGIN (ram) + 0x2800))
-                0x000000000000a2b2                PROVIDE (__data_start_rom, _etext)
-                0x000000000000a378                PROVIDE (__data_end_rom, (_etext + SIZEOF (.data)))
+                0x000000000000a5ea                PROVIDE (__data_start_rom, _etext)
+                0x000000000000a6ba                PROVIDE (__data_end_rom, (_etext + SIZEOF (.data)))
 OUTPUT(example-DGHS.sky elf32-msp430)

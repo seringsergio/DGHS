@@ -29,20 +29,42 @@
  * This file is part of the Contiki operating system.
  *
  */
- #include "neighbor_discovery.h"
+#include "neighbor_discovery.h"
 
- /////////////////////////////////////////////////////////////////////////////
- ///////////////////////FUNTIONS//////////////////////////////////////////////
- /////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+///////////////////////FUNTIONS//////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
 
- void fill_broadcast_msg(struct broadcast_message *msg, uint8_t seqno, uint8_t flags)
- {
-     msg->seqno = seqno;
-     msg->flags = flags;
- }
+void fill_broadcast_msg(struct broadcast_message *msg, uint8_t seqno, uint8_t flags)
+{
+ msg->seqno = seqno;
+ msg->flags = flags;
+}
 
- void fill_runicast_msg(struct runicast_message *msg, linkaddr_t addr, uint32_t avg_seqno_gap)
- {
-     msg->addr = addr;
-     msg->avg_seqno_gap = avg_seqno_gap;
- }
+void fill_runicast_msg(struct runicast_message *msg, linkaddr_t addr, uint32_t avg_seqno_gap)
+{
+ msg->addr = addr;
+ msg->avg_seqno_gap = avg_seqno_gap;
+}
+
+uint8_t not_every_neighbor_agrees(struct neighbor *neighbors_list_head)
+{
+    struct neighbor *n;
+    uint8_t flag_temp = 0;
+
+    flag_temp |= WEIGHT_HAS_BEEN_ASSIGNED;
+    for(n = neighbors_list_head; n != NULL; n = list_item_next(n))
+    {
+        flag_temp &= n->flags;
+    }
+
+    if(flag_temp & WEIGHT_HAS_BEEN_ASSIGNED)
+    {
+        //For every neighbor the  WEIGHT_HAS_BEEN_ASSIGNED
+        return 0;
+    }else
+    {
+        return 1;
+    }
+
+}

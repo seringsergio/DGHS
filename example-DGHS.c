@@ -52,7 +52,8 @@ AUTOSTART_PROCESSES(//example-DGHS
                     &master_DGHS,
                     //neighbor discovery
                     &master_neighbor_discovery, &broadcast_control, &runicast_control,
-                    &send_neighbor_discovery, &wait_broadcast_control, &wait_runicast_control
+                    &send_neighbor_discovery, &wait_broadcast_control, &wait_runicast_control,
+                    &analyze_agreement
                     );
 
 

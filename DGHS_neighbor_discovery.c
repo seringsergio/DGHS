@@ -43,6 +43,12 @@ LIST(runicast_agreement_list); //List of runicast messages
 
 static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8_t seqno)
 {
+  static struct runicast_message *ru_msg;
+  struct neighbor *n;
+  /* The packetbuf_dataptr() returns a pointer to the first data byte
+     in the received packet. */
+  ru_msg = packetbuf_dataptr();
+
   /* OPTIONAL: Sender history */
   struct history_entry *e = NULL;
   for(e = list_head(history_table); e != NULL; e = e->next) {
@@ -72,6 +78,31 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
 
   printf("runicast message received from %d.%d, seqno %d\n",
 	 from->u8[0], from->u8[1], seqno);
+
+  for(n = list_head(neighbors_list); n != NULL; n = list_item_next(n))
+  {
+    if(linkaddr_cmp(&n->addr, from))
+    {
+      n->avg_seqno_gap_other_direction = ru_msg->avg_seqno_gap;
+      n->flags |= AVG_SEQNO_GAP_OTHER_DIRECTION;
+      //it assumes the worst case
+      printf("Guardo el n->avg_seqno_gap_other_DIRECCCION de nodo %d.%d\n",from->u8[0],from->u8[1]);
+      //process_post(&master_neighbor_discovery,e_other_direction,NULL);
+
+      /*printf("nodo %d.%d tiene weight= %d.%02d\n", from->u8[0],from->u8[1],
+      (int)(n->weight / SEQNO_EWMA_UNITY),
+      (int)(((100UL * n->weight) / SEQNO_EWMA_UNITY) % 100)
+  );*/
+
+      break;
+    }
+  }
+
+  if(n == NULL)
+  {
+      DGHS_DBG_1("ERROR: An agreement from an unknown neighbor has arrived\n");
+  }
+
 }
 static void sent_runicast(struct runicast_conn *c, const linkaddr_t *to, uint8_t retransmissions)
 {
@@ -142,11 +173,16 @@ static void broadcast_recv(struct broadcast_conn *c, const linkaddr_t *from)
 
   /* Compute the average sequence number gap we have seen from this neighbor. */
   seqno_gap = m->seqno - n->last_seqno;
-  n->avg_seqno_gap = (((uint32_t)seqno_gap * SEQNO_EWMA_UNITY) *
-                      SEQNO_EWMA_ALPHA) / SEQNO_EWMA_UNITY +
-                      ((uint32_t)n->avg_seqno_gap * (SEQNO_EWMA_UNITY -
-                                                     SEQNO_EWMA_ALPHA)) /
-    SEQNO_EWMA_UNITY;
+
+  //update de avg_seqno_gap when we are in the PRE_broadcast phase
+  if( !(m->flags & FLAG_BROADCAST_POST) )
+  {
+    n->avg_seqno_gap = (((uint32_t)seqno_gap * SEQNO_EWMA_UNITY) *
+                        SEQNO_EWMA_ALPHA) / SEQNO_EWMA_UNITY +
+                        ((uint32_t)n->avg_seqno_gap * (SEQNO_EWMA_UNITY -
+                                                        SEQNO_EWMA_ALPHA)) /
+                                                        SEQNO_EWMA_UNITY;
+  }
 
   /* Remember last seqno we heard. */
   n->last_seqno = m->seqno;
@@ -156,6 +192,7 @@ static void broadcast_recv(struct broadcast_conn *c, const linkaddr_t *from)
   {
       //Since the neighbor has finished the BROADCAST, I must send the agreement
       n->flags |= COMPROMISE_TO_SEND_AGREEMENT;
+      n->flags |= NEIGHBOR_HAS_ENDED_BROADCAST;
       fill_runicast_msg(&ru_msg, n->addr, n->avg_seqno_gap);
       process_post(&master_neighbor_discovery,e_runicast_evaluation,&ru_msg);
       printf("Deseo enviar agreement a %d.%d con avg seqno gap %d.%02d\n",
@@ -183,6 +220,7 @@ PROCESS(broadcast_control, "broadcast_control");
 PROCESS(wait_broadcast_control, "wait_broadcast_control");
 PROCESS(wait_runicast_control, "wait_broadcast_control");
 PROCESS(runicast_control, "runicast_control");
+PROCESS(analyze_agreement, "analyze_agreement");
 
 PROCESS_THREAD(master_neighbor_discovery, ev, data) //It can not have PROCESS_WAIT_EVENT_UNTIL()
 {
@@ -191,7 +229,8 @@ PROCESS_THREAD(master_neighbor_discovery, ev, data) //It can not have PROCESS_WA
     PROCESS_BEGIN();
 
     e_broadcast_evaluation = process_alloc_event();
-    e_runicast_evaluation   = process_alloc_event();
+    e_runicast_evaluation  = process_alloc_event();
+    //e_other_direction      = process_alloc_event();
 
     while(1)
     {
@@ -237,7 +276,58 @@ PROCESS_THREAD(master_neighbor_discovery, ev, data) //It can not have PROCESS_WA
                 (int)(((100UL * ru_list->msg.avg_seqno_gap) / SEQNO_EWMA_UNITY) % 100)
                 );
             }
-        }
+        }/*else
+        if(ev == e_other_direction)
+        {
+            printf("Quiero ANALIZAR mi perro\n");
+            process_post(&analyze_agreement,e_execute,NULL);
+        }*/
+    }
+
+    PROCESS_END();
+}
+
+
+PROCESS_THREAD(analyze_agreement, ev, data)
+{
+    static struct neighbor *n;
+    static struct etimer et;
+    PROCESS_BEGIN();
+
+    while(1)
+    {
+        //execute periodically
+        etimer_set(&et, CLOCK_SECOND * BROADCAST_INTERVAL_POST
+             + random_rand() % (CLOCK_SECOND * BROADCAST_INTERVAL_POST));
+        PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
+
+            printf("2 X Quiero ANALIZAR mi perro\n");
+
+            for(n = list_head(neighbors_list); n != NULL; n = list_item_next(n))
+            {
+                printf("n->flags= %04X \n", n->flags);
+                if( (n->flags & AVG_SEQNO_GAP_OTHER_DIRECTION) && (n->flags & NEIGHBOR_HAS_ENDED_BROADCAST)
+                    && (!(n->flags & WEIGHT_HAS_BEEN_ASSIGNED))                                            )
+
+                {
+                    if( n->avg_seqno_gap > n->avg_seqno_gap_other_direction )
+                    {
+                        n->weight = n->avg_seqno_gap;
+
+                    }else
+                    {
+                        n->weight = n->avg_seqno_gap_other_direction;
+                    }
+
+                    n->flags |= WEIGHT_HAS_BEEN_ASSIGNED;
+
+                    printf("nodo %d.%d tiene weight= %d.%02d\n", n->addr.u8[0],n->addr.u8[1],
+                    (int)(n->weight / SEQNO_EWMA_UNITY),
+                    (int)(((100UL * n->weight) / SEQNO_EWMA_UNITY) % 100)
+                    );
+                }
+            }
+
     }
 
     PROCESS_END();
@@ -252,7 +342,8 @@ PROCESS_THREAD(runicast_control, ev, data)
 
     while(1)
     {
-        //exacute periodically
+        //REMOVE from the list
+        //execute periodically
         etimer_set(&et1, CLOCK_SECOND * BROADCAST_INTERVAL_POST
              + random_rand() % (CLOCK_SECOND * BROADCAST_INTERVAL_POST));
         PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et1));
@@ -260,7 +351,7 @@ PROCESS_THREAD(runicast_control, ev, data)
         while(list_length(runicast_agreement_list))
         {
                 //Give enough time to transmit the previous ru_msg
-                etimer_set(&et2, CLOCK_SECOND * 1);
+                etimer_set(&et2, CLOCK_SECOND * TIME_PREVIOUS_RU_MSG);
                 PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et2));
 
                 if(!runicast_is_transmitting(&runicast))
@@ -317,8 +408,10 @@ PROCESS_THREAD(broadcast_control, ev, data)
         if(ev == e_execute)
         {
             seqno = *((uint8_t *) data);
-            if(seqno < NUM_BROADCAST_NEIGHBOR_DISCOVERY)
+            if(seqno <= NUM_BROADCAST_NEIGHBOR_DISCOVERY)
             {
+                printf("Send BROADCAST- SIN bandera\n");
+
                 fill_wait_struct(&sw, BROADCAST_INTERVAL_PRE, PROCESS_CURRENT() );
                 process_post(&wait_broadcast_control, e_execute , &sw );
                 PROCESS_WAIT_EVENT_UNTIL(ev == e_end_wait);
@@ -327,8 +420,10 @@ PROCESS_THREAD(broadcast_control, ev, data)
                 process_post(&send_neighbor_discovery, e_send_broadcast, &msg);
 
             }else
-            if(seqno >= NUM_BROADCAST_NEIGHBOR_DISCOVERY)
+            if((seqno > NUM_BROADCAST_NEIGHBOR_DISCOVERY) && (not_every_neighbor_agrees(list_head(neighbors_list)))  )
             {
+                printf("Send BROADCAST- CON bandera\n");
+
                 fill_wait_struct(&sw, BROADCAST_INTERVAL_POST, PROCESS_CURRENT() );
                 process_post(&wait_broadcast_control, e_execute , &sw );
                 PROCESS_WAIT_EVENT_UNTIL(ev == e_end_wait);
@@ -407,19 +502,6 @@ PROCESS_THREAD(send_neighbor_discovery, ev, data)
             );
 
             runicast_send(&runicast, &ru_msg.addr, MAX_RETRANSMISSIONS);
-
-            /*for(n = list_head(neighbors_list); n != NULL; n = list_item_next(n))
-            {
-              if(linkaddr_cmp(&n->addr, &ru_msg.addr)) {
-                n->flags |= AGREEMENT_SENT;
-                break;
-              }
-            }
-            if(n == NULL)
-            {
-                DGHS_DBG_1("ERROR: runicast agreement sent to neighbor that was not added to the list -> neighbors_list");
-            }*/
-
         }
     }
 
