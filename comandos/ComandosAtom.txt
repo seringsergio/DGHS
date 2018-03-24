@@ -6,3 +6,29 @@ highlight-selected
 2. para ver el codigo a la derecha y poder bajar
 
 minimap
+
+3. Para ver el tipo de archivo en colorcitos y diferentes
+
+ file-icons
+
+ 4. The Pigments package displays colors in project files, wherever it parses a color to be.
+
+ Pigments
+
+ 5. Quick tab overview of open files.
+
+ expose
+
+ 6. The Open Recent package enables an Open Recent option in the file menu of the Atom editor.
+
+ open-recent
+
+7. Auto-Update-Packages keeps your Atom packages up-to-date. It checks for package updates every six hours.
+
+Auto-Update-Packages
+
+8. Completar paths:
+The autocomplete-paths package autocompletes require and import statements
+in your editor so you don’t need to look up any paths!
+
+autocomplete-paths
