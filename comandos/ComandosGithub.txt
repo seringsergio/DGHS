@@ -1,0 +1,47 @@
+
+
+%Agregar todos los archivos al index
+
+git add -A
+
+% Commit todos los archivos "-a"
+git commit -a -m "2018-02-02"
+
+% Ver el git log
+git log
+
+% Crear una branch
+git branch NombreDelBranch
+
+% Cambiar de rama...irse a una rama diferente
+git checkout NombreDelBranch
+git checkout master
+
+%Merge: para combinar/mezclar/unir dos branches. Tengo que estar en la rama que recibe los cambios: debo estar en la rama MASTER, que es la que recibe los cambios de la otra rama.
+
+git checkout master % Me voy a la rama Master
+git merge NombreDelBranch % Mezclo la info de NombreDelBranch en la rama MASTER. Master queda con los cambios de NombreDelBranch
+
+%Rebasing - another kind of merging - Hace "lo mismo" que un merge de diferente manera. HAce lo mismo que merge, pero incluye los commits de la rama. 
+
+git checkout master %Me paro en la rama master
+git rebase NombreDelBranch
+
+
+% PUSH/subir a GITHUB una rama.
+git checkout NombreDelBranch % voy a la rama
+git push NOMBRE_DEL_REMOTO NombreDelBranch % ex: git push sergio14 NombreDelBranch, git push origin NombreDelBranch
+
+%PUSH...subir cambios a la rama MASTER
+git push NOMBRE_DEL_REMOTO master % ex: git push sergio14 master
+
+%Como devolverse a una version anterior: Cuando hago un commit, hago una nueva version. 
+git log % Miro la historia de los commit, y copio el numero del commit a donde quiero devolverme , ex: commit 12345678. Solo es necesario copiar los primero 8 digitos. 
+git checkout 12345678 nombreArchivo.c % Devuelvo un archivo especifico a la version del commit  12345678. Devuelvo el archivo nombreArchivo.c a su estado cuando estaba en el commit con numero 12345678
+
+
+
+
+
+
+

@@ -1,0 +1,30 @@
+#Comandos linux
+
+//Buscar: Buscar archivos en linux
+find /home/sink/Desktop/contiki/ -type f -name "*.conf"
+
+//Buscar directorios en linux
+find /  -type d  -name "rssi-scanner"
+
+//Buscar: Buscar un string dentro de archivos de linux
+grep -rnw '/home/sink/Desktop/contiki/' -e "ContikiMAC"
+
+//Matar proceso: Matar proceso en linux
+kill -KILL PID_of_target_process
+
+//Mirar conexiones seriales
+dmesg | grep tty
+
+//Buscar en que archivo esta una "palabra"
+
+grep -lr "Palabra" /home/
+
+//Abrir minicom en modo configuracion
+
+minicom -s
+
+// Que no se apague la pantalla
+xfce4-power-manager
+
+// tamano del ejecutable....pg web... https://mcuoneclipse.com/2013/04/14/text-data-and-bss-code-and-data-size-explained/
+msp430-size example-ghs_neigh.sky

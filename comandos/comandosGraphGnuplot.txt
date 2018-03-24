@@ -1,0 +1,53 @@
+1. Ir a la carpeta
+
+    cd /home/sergiodiaz/Desktop/contiki/examples/GHS_Algoritm/results/topology/graphGnuplot
+
+2. abrir gnuplot
+
+    gnuplot
+
+3. Copiar y pegar en gnuplot el contenido del archivo gnuGraphScript.txt
+
+4. Se debe abrir la figura con la red
+
+--------------------------------------------------------------------------------------------------------------
+
+
+DESCRIPCION:
+
+1. parserLogListener (Es ejecutable ./parserLogListener)
+
+    input: loglistener.txt
+    output: edges.dat
+
+2. readSimulation.class
+
+    input: simulation.csc
+    output: pnts.dat
+
+3. gnuGraphScript.txt se ejecuta en GNUplot y nececita (pnts.dat,edges.dat)
+
+    input: pnts.dat AND edges.dat
+    output: FIGURA!
+
+PASOS:
+
+./parserLogListener_vectors 12 > edges_vectors.dat
+./parserLogListener_lines > edges_lines.dat
+java readSimulation > pnts.dat
+gnuplot
+
+En la siguiente linea se especifica el numero de nodos en la red
+
+./parserLogListener_vectors 9 > edges_vectors.dat && ./parserLogListener_lines > edges_lines.dat && java readSimulation > pnts.dat && gnuplot
+//Copiar y pegar el contenido de gnuGraph_vectors.txt y gnuGraph_lines.txt
+
+//para 40 nodos
+./parserLogListener_vectors 10 > edges_vectors.dat && ./parserLogListener_lines > edges_lines.dat && java readSimulation > pnts.dat && gnuplot
+./parserLogListener_vectors 40 > edges_vectors.dat && ./parserLogListener_lines > edges_lines.dat && java readSimulation > pnts.dat && gnuplot
+./parserLogListener_vectors 50 > edges_vectors.dat && ./parserLogListener_lines > edges_lines.dat && java readSimulation > pnts.dat && gnuplot
+
+
+//Ojo: si es un equipo nuevo toca instalar gawk y gnuplot. Y listo.
+sudo apt-get install gawk
+sudo apt-get install gnuplot-qt

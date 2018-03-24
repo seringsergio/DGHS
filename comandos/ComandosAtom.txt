@@ -1,0 +1,8 @@
+1. Paquete para  resaltar la palabra que uno senala.
+
+highlight-selected
+
+
+2. para ver el codigo a la derecha y poder bajar
+
+minimap

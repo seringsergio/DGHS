@@ -1,0 +1,24 @@
+0. Generar el archivo loglistener.txt en Cooja
+
+1. Compilar el parser del loglistener.txt.
+
+g++ -o parserLogListener_energy parserLogListener_energy.cpp
+
+2. Ejecutar el parser para crear el archivo
+
+./parserLogListener_energy > powertrace.dat
+
+3. Coje un archivo y lo divide en varios, segun el ID del nodo. Compilar este divisor de archivos,
+para GHS y para LIBP. La diferencia es el nombre del archivo creado, i.e. nodo_ghs_1.dat
+y nodo_libp_1.dat
+
+g++ -o divideFileByID_ghs divideFileByID_ghs.cpp
+g++ -o divideFileByID_libp divideFileByID_libp.cpp
+
+4. Ejecutar el divisor de archivos indicando el numero de nodos, por ejemplo 9. Se debe crear 9 archivos
+con nombres nodo_ghs_1.txt, nodo_ghs_2.txt, and so on, nodo_libp_1.txt, nodo_libp_2.txt, and so on.
+
+./divideFileByID_ghs 9
+./divideFileByID_libp 9
+
+5. Ejecutar el archivo de matlab "powertrace.m" para sacar las graficas de potencia.

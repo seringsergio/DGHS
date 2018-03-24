@@ -1,0 +1,7 @@
+0. Para compilar la clase readSimulation
+
+javac readSimulation.java
+
+1. Para leer el archivo de simulacion "simulacion.csc"
+
+java readSimulation > pnts.dat

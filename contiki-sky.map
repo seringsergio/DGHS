@@ -1929,9 +1929,9 @@ LOAD /usr/lib/gcc/msp430/4.6.3/mmpy-16/libcrt0.a
  .stab          0x000000000001bc00     0x11dc contiki-sky.a(frame802154.o)
                                        0x19c8 (size before relaxing)
 
-.stabstr        0x0000000000000000    0x16a3b
+.stabstr        0x0000000000000000    0x16a3d
  *(.stabstr)
- .stabstr       0x0000000000000000    0x16a3b example-DGHS.co
+ .stabstr       0x0000000000000000    0x16a3d example-DGHS.co
 
 .stab.excl
  *(.stab.excl)

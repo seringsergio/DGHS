@@ -1,0 +1,12 @@
+1. remaining energy
+
+https://github.com/KineticBattery/Powertrace
+
+2. Consumo de energia mW (Powertrace)
+
+http://thingschat.blogspot.de/2015/04/contiki-os-using-powertrace-and.html
+
+
+3. Powertrace. Que significa cada columna?
+
+http://www.qazimamoon.com/2013/06/basic-tutorial-for-using-powertrace.html
