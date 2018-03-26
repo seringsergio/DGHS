@@ -32,14 +32,14 @@
 
 #include "neighbor_discovery.h"
 
-MEMB(neighbors_memb, struct neighbor, MAX_NEIGHBORS); // This MEMB() definition defines a memory pool from which we allocate neighbor entries.
+MEMB(neighbors_memb, struct neighbor, NUM_MAX_NEIGHBORS); // This MEMB() definition defines a memory pool from which we allocate neighbor entries.
 LIST(neighbors_list); // The neighbors_list is a Contiki list that holds the neighbors we have seen thus far.
 
 //struct neighbor *neighbors_list_p;
 
 MEMB(history_mem, struct history_entry, NUM_HISTORY_ENTRIES);
 LIST(history_table);
-MEMB(runicast_agreement_memb, struct runicast_list, MAX_NEIGHBORS);// This MEMB() definition defines a memory pool from which we allocate runicast messages.
+MEMB(runicast_agreement_memb, struct runicast_list, NUM_MAX_NEIGHBORS);// This MEMB() definition defines a memory pool from which we allocate runicast messages.
 LIST(runicast_agreement_list); //List of runicast messages
 
 
@@ -290,8 +290,8 @@ PROCESS_THREAD(broadcast_control, ev, data)
             seqno = *((uint8_t *) data);
             if(seqno < NUM_BROADCAST_NEIGHBOR_DISCOVERY)
             {
-                etimer_set(&et, CLOCK_SECOND * BROADCAST_INTERVAL_DISCOVERY
-                     + random_rand() % (CLOCK_SECOND * BROADCAST_INTERVAL_DISCOVERY));
+                etimer_set(&et, CLOCK_SECOND * TIME_BROADCAST_INTERVAL_DISCOVERY
+                     + random_rand() % (CLOCK_SECOND * TIME_BROADCAST_INTERVAL_DISCOVERY));
                 PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
 
                 fill_broadcast_msg(&msg, seqno, ~FLAG_BROADCAST_END);
@@ -300,8 +300,8 @@ PROCESS_THREAD(broadcast_control, ev, data)
             }else
             if((seqno >= NUM_BROADCAST_NEIGHBOR_DISCOVERY) && (!(every_neighbor_agrees(list_head(neighbors_list))))  )
             {
-                etimer_set(&et, CLOCK_SECOND * BROADCAST_INTERVAL_END
-                     + random_rand() % (CLOCK_SECOND * BROADCAST_INTERVAL_END));
+                etimer_set(&et, CLOCK_SECOND * TIME_BROADCAST_INTERVAL_END
+                     + random_rand() % (CLOCK_SECOND * TIME_BROADCAST_INTERVAL_END));
                 PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
 
                 fill_broadcast_msg(&msg, seqno, FLAG_BROADCAST_END);
@@ -323,12 +323,12 @@ PROCESS_THREAD(analyze_agreement, ev, data)
     while(1)
     {
         //execute periodically
-        if(TIME_PREVIOUS_RU_MSG < BROADCAST_INTERVAL_END)
+        if(TIME_PREVIOUS_RU_MSG < TIME_BROADCAST_INTERVAL_END)
         {
           etimer_set(&et, CLOCK_SECOND * TIME_PREVIOUS_RU_MSG);
         }else
         {
-          etimer_set(&et, CLOCK_SECOND * BROADCAST_INTERVAL_END);
+          etimer_set(&et, CLOCK_SECOND * TIME_BROADCAST_INTERVAL_END);
         }
 
         PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
@@ -376,7 +376,7 @@ PROCESS_THREAD(runicast_control, ev, data)
     {
         //REMOVE from the list
         //execute periodically
-        etimer_set(&et1, CLOCK_SECOND * BROADCAST_INTERVAL_END);
+        etimer_set(&et1, CLOCK_SECOND * TIME_BROADCAST_INTERVAL_END);
         PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et1));
 
         while(list_length(runicast_agreement_list))
@@ -447,7 +447,7 @@ PROCESS_THREAD(send_neighbor_discovery, ev, data)
             (int)(((100UL * ru_msg.avg_seqno_gap) / SEQNO_EWMA_UNITY) % 100)
             );*/
 
-            runicast_send(&runicast, &ru_msg.addr, MAX_RETRANSMISSIONS);
+            runicast_send(&runicast, &ru_msg.addr, NUM_MAX_RETRANSMISSIONS);
         }
     }
 
