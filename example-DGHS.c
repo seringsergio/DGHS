@@ -62,6 +62,7 @@ PROCESS_THREAD(master_DGHS, ev, data)
 {
 
     static struct etimer et;
+    static uint8_t print_just_once;
 
     PROCESS_BEGIN();
 
@@ -69,6 +70,7 @@ PROCESS_THREAD(master_DGHS, ev, data)
     e_execute    = process_alloc_event();
 
     process_post(&master_neighbor_discovery,e_initialize,NULL);
+    print_just_once = 1;
 
     while(1)
     {
@@ -76,8 +78,9 @@ PROCESS_THREAD(master_DGHS, ev, data)
         etimer_set(&et, CLOCK_SECOND * TIME_DGHS_PROCESS);
         PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
 
-        if(node.control_flags & NEIGHBOR_DISCOVERY_HAS_ENDED)
+        if((node.control_flags & NEIGHBOR_DISCOVERY_HAS_ENDED) && (print_just_once))
         {
+            print_just_once = 0;
             DGHS_DBG_2("NEIGHBOR_DISCOVERY_HAS_ENDED\n");
             print_neighbor_list(neighbors_list_p);
         }

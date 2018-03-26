@@ -51,7 +51,7 @@
 process_event_t e_send_broadcast;
 process_event_t e_send_runicast;
 process_event_t e_broadcast_evaluation;
-process_event_t e_runicast_evaluation;
+process_event_t e_runicast_add_to_list;
 
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////FLAGS/////////////////////////////////////////////////

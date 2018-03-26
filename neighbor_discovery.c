@@ -64,13 +64,16 @@ uint8_t every_neighbor_agrees(struct neighbor *neighbors_list_head)
     uint8_t flag_temp = 0;
 
     flag_temp |= WEIGHT_HAS_BEEN_ASSIGNED;
+
     for(n = neighbors_list_head; n != NULL; n = list_item_next(n))
     {
         flag_temp &= n->flags;
     }
 
+    //IF the WEIGHT_HAS_BEEN_ASSIGNED for ALL the neighbors
     if(flag_temp & WEIGHT_HAS_BEEN_ASSIGNED)
     {
+        DGHS_DBG_2("every_neighbor_agrees\n");
         //For every neighbor the  WEIGHT_HAS_BEEN_ASSIGNED
         DGHS_interface_control_flags(NEIGHBOR_DISCOVERY_HAS_ENDED);
         interface_get_neighbor_list_pointer(neighbors_list_head);

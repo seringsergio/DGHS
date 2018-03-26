@@ -56,8 +56,8 @@
 /////////////////////////////////////////////////////////////////////////////
 
 #define MAX_RETRANSMISSIONS              20
-#define NUM_BROADCAST_NEIGHBOR_DISCOVERY 5 //Must be greater than 1, at least 2
-#define BROADCAST_INTERVAL_DISCOVERY     5 //in seconds
+#define NUM_BROADCAST_NEIGHBOR_DISCOVERY 5 //Must be greater than 1, at least 2. # of broadcast to send 
+#define BROADCAST_INTERVAL_DISCOVERY     5 //in seconds. Broadcast interval in neighbor discovery
 #define BROADCAST_INTERVAL_END           30 //in seconds
 #define RUNICAST_INTERVAL_RETRY          3 //in seconds
 #define RUNICAST_INTERVAL                15 //in seconds

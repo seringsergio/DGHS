@@ -119,7 +119,6 @@ static void broadcast_recv(struct broadcast_conn *c, const linkaddr_t *from)
   struct neighbor *n;
   struct broadcast_message *m;
   static struct runicast_message ru_msg;
-
   uint8_t seqno_gap;
 
   /* The packetbuf_dataptr() returns a pointer to the first data byte
@@ -167,7 +166,7 @@ static void broadcast_recv(struct broadcast_conn *c, const linkaddr_t *from)
   /* Compute the average sequence number gap we have seen from this neighbor. */
   seqno_gap = m->seqno - n->last_seqno;
 
-  //update de avg_seqno_gap when we are in the PRE_broadcast phase
+  //update de avg_seqno_gap when we are in the ~FLAG_BROADCAST_END phase
   if( !(m->flags & FLAG_BROADCAST_END) )
   {
     n->avg_seqno_gap = (((uint32_t)seqno_gap * SEQNO_EWMA_UNITY) *
@@ -181,14 +180,12 @@ static void broadcast_recv(struct broadcast_conn *c, const linkaddr_t *from)
   n->last_seqno = m->seqno;
 
   //The neighbor says he is done AND we have not send the agreement
-  //if( (m->flags & FLAG_BROADCAST_END) && (!(n->flags & COMPROMISE_TO_SEND_AGREEMENT)) )
   if( (m->flags & FLAG_BROADCAST_END) && (!(n->flags & NEIGHBOR_HAS_ENDED_BROADCAST)) )
   {
       //Since the neighbor has finished the BROADCAST, I must send the agreement
-      //n->flags |= COMPROMISE_TO_SEND_AGREEMENT;
       n->flags |= NEIGHBOR_HAS_ENDED_BROADCAST;
       fill_runicast_msg(&ru_msg, n->addr, n->avg_seqno_gap);
-      process_post(&master_neighbor_discovery,e_runicast_evaluation,&ru_msg);
+      process_post(&master_neighbor_discovery,e_runicast_add_to_list,&ru_msg);
       /*printf("Deseo enviar agreement a %d.%d con avg seqno gap %d.%02d\n",
       ru_msg.addr.u8[0], ru_msg.addr.u8[1],
       (int)(ru_msg.avg_seqno_gap / SEQNO_EWMA_UNITY),
@@ -221,7 +218,7 @@ PROCESS_THREAD(master_neighbor_discovery, ev, data) //It can not have PROCESS_WA
     PROCESS_BEGIN();
 
     e_broadcast_evaluation = process_alloc_event();
-    e_runicast_evaluation  = process_alloc_event();
+    e_runicast_add_to_list  = process_alloc_event();
 
     list_init(neighbors_list);
     memb_init(&neighbors_memb);
@@ -231,8 +228,6 @@ PROCESS_THREAD(master_neighbor_discovery, ev, data) //It can not have PROCESS_WA
         PROCESS_WAIT_EVENT(); //Always must return to this wait. It can not use PROCESS_WAIT_EVENT_UNTIL()
         if(ev == e_initialize)
         {
-
-
             seqno = 0;
 
             //Exit the processes
@@ -249,14 +244,14 @@ PROCESS_THREAD(master_neighbor_discovery, ev, data) //It can not have PROCESS_WA
 
             process_post(&broadcast_control, e_execute, &seqno);
             DGHS_DBG_2("master_neighbor_discovery initialized\n");
-        }
+        }else
         if(ev == e_broadcast_evaluation)
         {
 
             seqno++;
             process_post(&broadcast_control, e_execute, &seqno);
         }else
-        if(ev == e_runicast_evaluation)
+        if(ev == e_runicast_add_to_list)
         {
 
             //ADD to the list
@@ -274,7 +269,7 @@ PROCESS_THREAD(master_neighbor_discovery, ev, data) //It can not have PROCESS_WA
                 (int)(((100UL * ru_list->msg.avg_seqno_gap) / SEQNO_EWMA_UNITY) % 100)
                  );*/
             }
-        }
+        } //END if
     }
     PROCESS_END();
 }
@@ -286,9 +281,6 @@ PROCESS_THREAD(broadcast_control, ev, data)
     static struct etimer et;
 
     PROCESS_BEGIN();
-
-    //neighbors_list_p = list_head(neighbors_list);
-    //if(list_head(neighbors_list)==NULL) printf("desde es NULL\n");
 
     while(1)
     {
@@ -316,7 +308,7 @@ PROCESS_THREAD(broadcast_control, ev, data)
                 process_post(&send_neighbor_discovery, e_send_broadcast, &msg);
                 DGHS_DBG_2("Broadcast - End the neighbor discovery\n");
             }
-        }//It can not have more events because of PROCESS_WAIT_EVENT_UNTIL()
+        }
     }
 
     PROCESS_END();
@@ -331,14 +323,21 @@ PROCESS_THREAD(analyze_agreement, ev, data)
     while(1)
     {
         //execute periodically
-        etimer_set(&et, CLOCK_SECOND * TIME_PREVIOUS_RU_MSG);
+        if(TIME_PREVIOUS_RU_MSG < BROADCAST_INTERVAL_END)
+        {
+          etimer_set(&et, CLOCK_SECOND * TIME_PREVIOUS_RU_MSG);
+        }else
+        {
+          etimer_set(&et, CLOCK_SECOND * BROADCAST_INTERVAL_END);
+        }
+
         PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
 
             //printf("2 X Quiero ANALIZAR mi perro\n");
 
             for(n = list_head(neighbors_list); n != NULL; n = list_item_next(n))
             {
-                //printf("n->flags= %04X \n", n->flags);
+                //The node is sure that both values are definitive (avg_seqno_gap AND avg_seqno_gap_other_direction)
                 if( (n->flags & AVG_SEQNO_GAP_OTHER_DIRECTION) && (n->flags & NEIGHBOR_HAS_ENDED_BROADCAST)
                     && (!(n->flags & WEIGHT_HAS_BEEN_ASSIGNED))                                            )
 
