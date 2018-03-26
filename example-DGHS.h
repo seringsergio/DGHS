@@ -56,14 +56,12 @@
 /////////////////////////////////////////////////////////////////////////////
 
 #define MAX_RETRANSMISSIONS              20
-#define NUM_BROADCAST_NEIGHBOR_DISCOVERY 5 //Must be greater than 1, at least 2. # of broadcast to send 
+#define NUM_BROADCAST_NEIGHBOR_DISCOVERY 5 //Must be greater than 1, at least 2. # of broadcast to send
 #define BROADCAST_INTERVAL_DISCOVERY     5 //in seconds. Broadcast interval in neighbor discovery
 #define BROADCAST_INTERVAL_END           30 //in seconds
-#define RUNICAST_INTERVAL_RETRY          3 //in seconds
-#define RUNICAST_INTERVAL                15 //in seconds
 #define MAX_NEIGHBORS                    16 // This #define defines the maximum amount of neighbors we can remember.
 #define NUM_HISTORY_ENTRIES              4
-#define TIME_PREVIOUS_RU_MSG             1 // time to transmit the previous ru_msg (in seconds)
+#define TIME_PREVIOUS_RU_MSG             5 // time to transmit the previous ru_msg (in seconds)
 #define TIME_DGHS_PROCESS                1 // The process master_DGHS executes every TIME_DGHS_PROCESS
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////FLAGS/////////////////////////////////////////////////
