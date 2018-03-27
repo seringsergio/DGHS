@@ -29,14 +29,9 @@
  * This file is part of the Contiki operating system.
  *
  */
-
-
-#include "example-DGHS.h"
-//#include "Gallager_Humblet_Spira.h"
-
+#include "Gallager_Humblet_Spira.h"
 
 PROCESS(procedure_wakeup, "procedure_wakeup");
-
 
 PROCESS_THREAD(procedure_wakeup, ev, data) //It can not have PROCESS_WAIT_EVENT_UNTIL()
 {

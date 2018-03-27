@@ -29,19 +29,7 @@
  * This file is part of the Contiki operating system.
  *
  */
-
-
-
-
-#include "example-DGHS.h"
-//#include "Gallager_Humblet_Spira.h"
-
-/*#include "lib/list.h"
-#include "contiki.h"
-#include "lib/memb.h"
-#include "lib/random.h"
-#include "net/rime/rime.h"
-#include <stdio.h>*/
+#include "Gallager_Humblet_Spira.h"
 
 /* Ordena la lista de vecinos: Se para en la primera posicion,
 *  luego recorre (for 2) toda la lista para ver si existe un vecino con
@@ -81,16 +69,18 @@ struct neighbor * find_edge_of_minimum_weight(struct neighbor *neighbors_list_p)
 }
 
 
+
+
 void change_positions(struct neighbor *destination, struct neighbor *from)
 {
-  /*rimeaddr_copy (&destination->addr, &from->addr);
+  linkaddr_copy (&destination->addr, &from->addr);
   destination->last_rssi                     = from->last_rssi;
   destination->last_lqi                      = from->last_lqi;
   destination->last_seqno                    = from->last_seqno;
   destination->avg_seqno_gap                 = from->avg_seqno_gap;
   destination->avg_seqno_gap_other_direction = from->avg_seqno_gap_other_direction;
   destination->weight                        = from->weight;
-  destination->flags                         = from->flags;*/
+  destination->flags                         = from->flags;
 }
 
 

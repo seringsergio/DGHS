@@ -1,6 +1,7 @@
 obj_sky/DGHS_Gallager_Humblet_Spira.o: DGHS_Gallager_Humblet_Spira.c \
- example-DGHS.h contiki/core/./lib/list.h contiki/core/./contiki.h \
- contiki/core/./contiki-version.h contiki/platform/sky/./contiki-conf.h \
+ Gallager_Humblet_Spira.h example-DGHS.h contiki/core/./lib/list.h \
+ contiki/core/./contiki.h contiki/core/./contiki-version.h \
+ contiki/platform/sky/./contiki-conf.h \
  contiki/platform/sky/./platform-conf.h contiki/cpu/msp430/./msp430def.h \
  project-conf.h contiki/core/./contiki-default-conf.h \
  contiki/core/./sys/process.h contiki/core/./sys/pt.h \
@@ -38,11 +39,11 @@ obj_sky/DGHS_Gallager_Humblet_Spira.o: DGHS_Gallager_Humblet_Spira.c \
  contiki/core/./net/rime/rmh.h contiki/core/./net/rime/route.h \
  contiki/core/./net/rime/rucb.h contiki/core/./net/rime/timesynch.h \
  contiki/core/./net/mac/mac.h contiki/core/./dev/radio.h \
- contiki/core/./net/rime/trickle.h neighbor_discovery.h \
- Gallager_Humblet_Spira.h
+ contiki/core/./net/rime/trickle.h neighbor_discovery.h
 DGHS_Gallager_Humblet_Spira.c :
- example-DGHS.h contiki/core/./lib/list.h contiki/core/./contiki.h :
- contiki/core/./contiki-version.h contiki/platform/sky/./contiki-conf.h :
+ Gallager_Humblet_Spira.h example-DGHS.h contiki/core/./lib/list.h :
+ contiki/core/./contiki.h contiki/core/./contiki-version.h :
+ contiki/platform/sky/./contiki-conf.h :
  contiki/platform/sky/./platform-conf.h contiki/cpu/msp430/./msp430def.h :
  project-conf.h contiki/core/./contiki-default-conf.h :
  contiki/core/./sys/process.h contiki/core/./sys/pt.h :
@@ -81,4 +82,3 @@ DGHS_Gallager_Humblet_Spira.c :
  contiki/core/./net/rime/rucb.h contiki/core/./net/rime/timesynch.h :
  contiki/core/./net/mac/mac.h contiki/core/./dev/radio.h :
  contiki/core/./net/rime/trickle.h neighbor_discovery.h :
- Gallager_Humblet_Spira.h :
