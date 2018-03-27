@@ -35,6 +35,7 @@ PROCESS(procedure_wakeup, "procedure_wakeup");
 
 PROCESS_THREAD(procedure_wakeup, ev, data) //It can not have PROCESS_WAIT_EVENT_UNTIL()
 {
+    //static struct neighbor *lowest_edge;
 
     PROCESS_BEGIN();
 
@@ -45,7 +46,9 @@ PROCESS_THREAD(procedure_wakeup, ev, data) //It can not have PROCESS_WAIT_EVENT_
         {
           DGHS_DBG_2("procedure_wakeup\n");
 
-          //find_adjacent_edge_of_minimum_weight();
+          sort_neighbor_list();
+          //lowest_edge = find_edge_of_minimum_weight(neighbors_list_p);
+          print_neighbor_list(neighbors_list_p);
 
         }
     }

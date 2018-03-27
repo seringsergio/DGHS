@@ -37,10 +37,9 @@
 *  el procedimiento desde el segundo vecino de la lista (for 1).
 */
 
-
-struct neighbor * find_edge_of_minimum_weight(struct neighbor *neighbors_list_p)
+void sort_neighbor_list()
 {
-  struct neighbor *i, *j, *lowest_edge, *temp = NULL;
+  struct neighbor *i, *j, *lowest_edge, temp;
 
   /* Sort Linked List in Ascending Order:
      Encuentro el nodo con menor avg_seqno_gap de la lista,
@@ -50,7 +49,7 @@ struct neighbor * find_edge_of_minimum_weight(struct neighbor *neighbors_list_p)
   {
     lowest_edge = i;
 
-    for(j = neighbors_list_p; j != NULL; j = list_item_next(j))
+    for(j = i; j != NULL; j = list_item_next(j))
     {
       if(j->weight < lowest_edge->weight)
       {
@@ -58,18 +57,11 @@ struct neighbor * find_edge_of_minimum_weight(struct neighbor *neighbors_list_p)
       }
     }
 
-    change_positions(temp, i);
+    change_positions(&temp, i);
     change_positions(i, lowest_edge);
-    change_positions(lowest_edge, temp);
-
-  }
-
-  return neighbors_list_p;
-
+    change_positions(lowest_edge, &temp);
+  } //END for
 }
-
-
-
 
 void change_positions(struct neighbor *destination, struct neighbor *from)
 {
