@@ -30,7 +30,9 @@
  *
  */
 
-#include "neighbor_discovery.h"
+ #include "example-DGHS.h"
+ //#include "neighbor_discovery.h"
+
 
 MEMB(neighbors_memb, struct neighbor, NUM_MAX_NEIGHBORS); // This MEMB() definition defines a memory pool from which we allocate neighbor entries.
 LIST(neighbors_list); // The neighbors_list is a Contiki list that holds the neighbors we have seen thus far.

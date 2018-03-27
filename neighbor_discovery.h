@@ -34,7 +34,12 @@
 #define NEIGHBOR_DISCOVERY_H
 
 #include "example-DGHS.h"
-
+/*#include "lib/list.h"
+#include "contiki.h"
+#include "lib/memb.h"
+#include "lib/random.h"
+#include "net/rime/rime.h"
+#include <stdio.h>*/
 
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////DEFINES///////////////////////////////////////////////

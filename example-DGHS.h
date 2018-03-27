@@ -37,13 +37,17 @@
 ///////////////////////LIBRARIES/////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 
+
+
 #include "lib/list.h"
 #include "contiki.h"
 #include "lib/memb.h"
 #include "lib/random.h"
 #include "net/rime/rime.h"
 #include <stdio.h>
+
 #include "neighbor_discovery.h"
+#include "Gallager_Humblet_Spira.h"
 
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////EXTERN////////////////////////////////////////////////
@@ -55,20 +59,31 @@
 ///////////////////////PARAMETERS////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 
-//Values for 120 nodes
+
+//Values test
 #define NUM_MAX_RETRANSMISSIONS               50
+#define NUM_BROADCAST_NEIGHBOR_DISCOVERY      2 //Must be greater than 1, at least 2. # of broadcast to send
+#define TIME_BROADCAST_INTERVAL_DISCOVERY     2 //in seconds. Broadcast interval in neighbor discovery
+#define TIME_BROADCAST_INTERVAL_END           5 //in seconds
+#define NUM_MAX_NEIGHBORS                     16 // This #define defines the maximum amount of neighbors we can remember.
+#define NUM_HISTORY_ENTRIES                   4
+#define TIME_PREVIOUS_RU_MSG                  2 // time to transmit the previous ru_msg (in seconds)
+#define TIME_DGHS_PROCESS                     1 // The process master_DGHS executes every TIME_DGHS_PROCESS
+
+//Values for 120 nodes
+/*#define NUM_MAX_RETRANSMISSIONS               50
 #define NUM_BROADCAST_NEIGHBOR_DISCOVERY      10 //Must be greater than 1, at least 2. # of broadcast to send
 #define TIME_BROADCAST_INTERVAL_DISCOVERY     5 //in seconds. Broadcast interval in neighbor discovery
 #define TIME_BROADCAST_INTERVAL_END           30 //in seconds
 #define NUM_MAX_NEIGHBORS                     16 // This #define defines the maximum amount of neighbors we can remember.
 #define NUM_HISTORY_ENTRIES                   4
 #define TIME_PREVIOUS_RU_MSG                  15 // time to transmit the previous ru_msg (in seconds)
-#define TIME_DGHS_PROCESS                     1 // The process master_DGHS executes every TIME_DGHS_PROCESS
+#define TIME_DGHS_PROCESS                     1 // The process master_DGHS executes every TIME_DGHS_PROCESS*/
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////FLAGS/////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 
-//struct sensor_node - node.control_flags
+//struct sensor_node - node.control_flags_neighbor_discovery
 #define NEIGHBOR_DISCOVERY_HAS_ENDED 0x01
 
 /////////////////////////////////////////////////////////////////////////////
@@ -81,6 +96,7 @@ PROCESS_NAME(wait);
 PROCESS_NAME(broadcast_control);
 PROCESS_NAME(runicast_control);
 PROCESS_NAME(analyze_agreement);
+PROCESS_NAME(procedure_wakeup);
 
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////EVENTS////////////////////////////////////////////////
@@ -116,7 +132,8 @@ process_event_t e_execute;
 
 struct sensor_node
 {
-    uint8_t control_flags;
+    uint8_t control_flags_neighbor_discovery;
+
 }node;
 
 /////////////////////////////////////////////////////////////////////////////

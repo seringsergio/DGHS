@@ -29,8 +29,10 @@
  * This file is part of the Contiki operating system.
  *
  */
-#include "neighbor_discovery.h"
 
+
+ #include "example-DGHS.h"
+ //#include "neighbor_discovery.h"
 
 
 /////////////////////////////////////////////////////////////////////////////

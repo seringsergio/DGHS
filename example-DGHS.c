@@ -43,7 +43,7 @@
 
 void DGHS_interface_control_flags(uint8_t flags)
 {
-    node.control_flags |= flags;
+    node.control_flags_neighbor_discovery |= flags;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -55,7 +55,10 @@ PROCESS(master_DGHS, "master_DGHS");
 AUTOSTART_PROCESSES(//example-DGHS
                     &master_DGHS,
                     //neighbor discovery
-                    &master_neighbor_discovery);
+                    &master_neighbor_discovery,
+                    //Gallager Humblet Spira
+                    &procedure_wakeup
+                    );
 
 
 PROCESS_THREAD(master_DGHS, ev, data)
@@ -78,11 +81,13 @@ PROCESS_THREAD(master_DGHS, ev, data)
         etimer_set(&et, CLOCK_SECOND * TIME_DGHS_PROCESS);
         PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
 
-        if((node.control_flags & NEIGHBOR_DISCOVERY_HAS_ENDED) && (print_just_once))
+        if((node.control_flags_neighbor_discovery & NEIGHBOR_DISCOVERY_HAS_ENDED) && (print_just_once))
         {
             print_just_once = 0;
             DGHS_DBG_2("NEIGHBOR_DISCOVERY_HAS_ENDED\n");
             print_neighbor_list(neighbors_list_p);
+            process_post(&procedure_wakeup,e_execute,NULL);
+
         }
     }
 
