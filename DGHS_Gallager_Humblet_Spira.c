@@ -36,7 +36,7 @@ LIST(history_table_2);
 MEMB(history_mem_2, struct history_entry, NUM_HISTORY_ENTRIES);
 
 LIST(out_union_list);
-MEMB(out_union_mem, union out_list, QUEUE_SIZE_GHS);
+MEMB(out_union_mem, struct out_list, QUEUE_SIZE_GHS);
 
 PROCESS(procedure_wakeup, "procedure_wakeup");
 PROCESS(send_Gallager_Humblet_Spira, "send_Gallager_Humblet_Spira");
@@ -93,7 +93,7 @@ static struct runicast_conn runicast;
 PROCESS_THREAD(procedure_wakeup, ev, data) //It can not have PROCESS_WAIT_EVENT_UNTIL()
 {
     static struct connect_msg co_msg;
-    static union out_list *out_l;
+    static struct out_list *out_l;
 
     PROCESS_BEGIN();
 
@@ -121,10 +121,12 @@ PROCESS_THREAD(procedure_wakeup, ev, data) //It can not have PROCESS_WAIT_EVENT_
             DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list>>\n");
           }else
           {
-              out_l->co_msg     = co_msg;
-              out_l->uniontype  = CONNECT_MSG;
+              out_l->type_msg.co_msg     = co_msg;
+              out_l->uniontype           = CONNECT_MSG;
               list_push(out_union_list,out_l); // Add an item to the start of the list.
           }
+
+          DGHS_DBG_2("Added to out_union_list\n");
 
 
           //process_post(&send_Gallager_Humblet_Spira,e_send_connect,&co_msg);
@@ -144,7 +146,7 @@ PROCESS_THREAD(procedure_wakeup, ev, data) //It can not have PROCESS_WAIT_EVENT_
 PROCESS_THREAD(out_union_evaluation, ev, data)
 {
   static struct etimer et1, et2;
-  static union out_list *out_l;
+  static struct out_list *out_l;
 
   PROCESS_BEGIN();
 
@@ -159,6 +161,8 @@ PROCESS_THREAD(out_union_evaluation, ev, data)
 
     while(list_length(out_union_list))
     {
+        DGHS_DBG_2("List out_union_list has at least 1 element\n");
+
         //Give enough time to transmit the previous msg
         etimer_set(&et2, CLOCK_SECOND * TIME_PREVIOUS_MSG_OUT_UNION
             + random_rand() % (CLOCK_SECOND * TIME_PREVIOUS_MSG_OUT_UNION));
@@ -170,9 +174,11 @@ PROCESS_THREAD(out_union_evaluation, ev, data)
             out_l = list_chop(out_union_list); // Remove the last object on the list.
             if(out_l->uniontype == CONNECT_MSG)
             {
-                process_post(&send_Gallager_Humblet_Spira, e_send_connect, &out_l->co_msg);
+                process_post(&send_Gallager_Humblet_Spira, e_send_connect, &out_l->type_msg.co_msg);
+                DGHS_DBG_2("Post e_send_connect\n");
             }
             memb_free(&out_union_mem,out_l);
+
         }else
         {
             //DGHS_DBG_2("WARNING: break from runicast_control\n"); //"Enough" time is not enough!!
@@ -180,8 +186,6 @@ PROCESS_THREAD(out_union_evaluation, ev, data)
         }
 
     } //END while
-
-
 
   }
 

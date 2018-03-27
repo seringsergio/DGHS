@@ -75,11 +75,16 @@ struct connect_msg
   uint8_t LE; // level
 };
 
-union out_list
+union types_msg
 {
-  union out_list *next;
-  uint8_t uniontype;
   struct connect_msg co_msg;
+};
+
+struct out_list
+{
+  struct out_list *next;
+  uint8_t uniontype;
+  union types_msg type_msg;
 };
 
 /////////////////////////////////////////////////////////////////////////////
