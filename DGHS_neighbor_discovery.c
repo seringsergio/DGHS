@@ -32,15 +32,15 @@
 
 #include "neighbor_discovery.h"
 
-MEMB(neighbors_memb, struct neighbor, NUM_MAX_NEIGHBORS); // This MEMB() definition defines a memory pool from which we allocate neighbor entries.
 LIST(neighbors_list); // The neighbors_list is a Contiki list that holds the neighbors we have seen thus far.
+MEMB(neighbors_memb, struct neighbor, NUM_MAX_NEIGHBORS); // This MEMB() definition defines a memory pool from which we allocate neighbor entries.
 
 //struct neighbor *neighbors_list_p;
+LIST(history_table_1);
+MEMB(history_mem_1, struct history_entry, NUM_HISTORY_ENTRIES);
 
-MEMB(history_mem, struct history_entry, NUM_HISTORY_ENTRIES);
-LIST(history_table);
-MEMB(runicast_agreement_memb, struct runicast_list, NUM_MAX_NEIGHBORS);// This MEMB() definition defines a memory pool from which we allocate runicast messages.
 LIST(runicast_agreement_list); //List of runicast messages
+MEMB(runicast_agreement_memb, struct runicast_list, NUM_MAX_NEIGHBORS);// This MEMB() definition defines a memory pool from which we allocate runicast messages.
 
 
 static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8_t seqno)
@@ -53,20 +53,20 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
 
   /* OPTIONAL: Sender history */
   struct history_entry *e = NULL;
-  for(e = list_head(history_table); e != NULL; e = e->next) {
+  for(e = list_head(history_table_1); e != NULL; e = e->next) {
     if(linkaddr_cmp(&e->addr, from)) {
       break;
     }
   }
   if(e == NULL) {
     /* Create new history entry */
-    e = memb_alloc(&history_mem);
+    e = memb_alloc(&history_mem_1);
     if(e == NULL) {
-      e = list_chop(history_table); /* Remove oldest at full history */
+      e = list_chop(history_table_1); /* Remove oldest at full history */
     }
     linkaddr_copy(&e->addr, from);
     e->seq = seqno;
-    list_push(history_table, e);
+    list_push(history_table_1, e);
   } else {
     /* Detect duplicate callback */
     if(e->seq == seqno) {
@@ -416,11 +416,11 @@ PROCESS_THREAD(send_neighbor_discovery, ev, data)
     PROCESS_BEGIN();
 
     broadcast_open(&broadcast, 129, &broadcast_call);
-    runicast_open(&runicast, 144, &runicast_callbacks);
+    runicast_open(&runicast, RUNICAST_CHANNEL_1, &runicast_callbacks);
 
     /* OPTIONAL: Sender history */
-    list_init(history_table);
-    memb_init(&history_mem);
+    list_init(history_table_1);
+    memb_init(&history_mem_1);
 
     e_send_broadcast = process_alloc_event();
     e_send_runicast  = process_alloc_event();

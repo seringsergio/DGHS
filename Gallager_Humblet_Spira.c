@@ -37,6 +37,50 @@
 *  el procedimiento desde el segundo vecino de la lista (for 1).
 */
 
+void fill_connect_msg(struct connect_msg *co_msg, linkaddr_t *addr, uint8_t LE)
+{
+  linkaddr_copy(&co_msg->addr,addr);
+  co_msg->LE = LE;
+}
+
+void print_neighbor_list_debug(struct neighbor *neighbors_list_head)
+{
+    struct neighbor *n;
+
+    if(neighbors_list_head == NULL)
+    {
+        DGHS_DBG_1("ERROR: neighbors_list_head is NULL \n");
+    }
+
+    for(n = neighbors_list_head; n != NULL; n = list_item_next(n))
+    {
+        DGHS_DBG_2("READ_NEIGHBOR_LIST %d %d %d.%02d %d \n", linkaddr_node_addr.u8[0], n->addr.u8[0],
+        (int)(n->weight / SEQNO_EWMA_UNITY),
+        (int)(((100UL * n->weight) / SEQNO_EWMA_UNITY) % 100),
+        n->SE
+        );
+        /*DGHS_DBG_2("%d.%d weight=%d.%02d\n", n->addr.u8[0], n->addr.u8[1],
+        (int)(n->weight / SEQNO_EWMA_UNITY),
+        (int)(((100UL * n->weight) / SEQNO_EWMA_UNITY) % 100)
+        );*/
+    }
+}
+
+void become_branch(struct neighbor *n)
+{
+  n->SE = BRANCH;
+}
+
+void init_SE()
+{
+  struct neighbor *n;
+
+  for(n = neighbors_list_p; n != NULL; n = list_item_next(n))
+  {
+    n->SE = BASIC;
+  }
+
+}
 void sort_neighbor_list()
 {
   struct neighbor *i, *j, *lowest_edge, temp;
