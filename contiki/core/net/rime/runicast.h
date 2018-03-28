@@ -87,7 +87,7 @@ struct runicast_conn;
 
 #define RUNICAST_ATTRIBUTES  { PACKETBUF_ATTR_PACKET_TYPE, PACKETBUF_ATTR_BIT }, \
                              { PACKETBUF_ATTR_PACKET_ID, PACKETBUF_ATTR_BIT * RUNICAST_PACKET_ID_BITS }, \
-                             { PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG }, \
+                             { PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG, PACKETBUF_ATTR_BYTE }, \
                              STUNICAST_ATTRIBUTES
 struct runicast_callbacks {
   void (* recv)(struct runicast_conn *c, const linkaddr_t *from, uint8_t seqno);

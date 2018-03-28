@@ -45,6 +45,8 @@ PROCESS(out_union_evaluation, "out_union_evaluation");
 
 static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8_t seqno)
 {
+  packetbuf_attr_t msg_type;
+  
   /* OPTIONAL: Sender history */
   struct history_entry *e = NULL;
   for(e = list_head(history_table_2); e != NULL; e = e->next) {
@@ -74,6 +76,23 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
 
   printf("runicast message received from %d.%d, seqno %d\n",
 	 from->u8[0], from->u8[1], seqno);
+
+  msg_type = packetbuf_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG);
+
+  if(msg_type == CONNECT_MSG)
+  {
+    //ADD to in_list
+
+    DGHS_DBG_2("runicast msg_type = CONNECT_MSG \n");
+  }else
+  if(msg_type == INITIATE_MSG)
+  {
+    DGHS_DBG_2("runicast msg_type = INITIATE_MSG \n");
+  }else
+  {
+    DGHS_DBG_1("ERROR: The type of the message ( msg_type ) is unkown \n");
+  }
+
 }
 static void sent_runicast(struct runicast_conn *c, const linkaddr_t *to, uint8_t retransmissions)
 {
@@ -82,7 +101,7 @@ static void sent_runicast(struct runicast_conn *c, const linkaddr_t *to, uint8_t
 }
 static void timedout_runicast(struct runicast_conn *c, const linkaddr_t *to, uint8_t retransmissions)
 {
-  printf("runicast message timed out when sending to %d.%d, retransmissions %d\n",
+  DGHS_DBG_1("ERROR: runicast message timed out when sending to %d.%d, retransmissions %d\n",
 	 to->u8[0], to->u8[1], retransmissions);
 }
 static const struct runicast_callbacks runicast_callbacks = {recv_runicast,
