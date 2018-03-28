@@ -57,16 +57,16 @@
 
 //Values test
 #define NUM_MAX_RETRANSMISSIONS               50
-#define NUM_BROADCAST_NEIGHBOR_DISCOVERY      3 //Must be greater than 1, at least 2. # of broadcast to send
-#define TIME_BROADCAST_INTERVAL_DISCOVERY     15 //in seconds. Broadcast interval in neighbor discovery
-#define TIME_BROADCAST_INTERVAL_END           20 //in seconds
+#define NUM_BROADCAST_NEIGHBOR_DISCOVERY      10 //Must be greater than 1, at least 2. # of broadcast to send
+#define TIME_BROADCAST_INTERVAL_DISCOVERY     2 //in seconds. Broadcast interval in neighbor discovery
+#define TIME_BROADCAST_INTERVAL_END           5 //in seconds
 #define NUM_MAX_NEIGHBORS                     16 // This #define defines the maximum amount of neighbors we can remember.
 #define NUM_HISTORY_ENTRIES                   4
-#define TIME_PREVIOUS_RU_MSG                  25 // time to transmit the previous ru_msg (in seconds)
+#define TIME_PREVIOUS_RU_MSG                  10 // time to transmit the previous ru_msg (in seconds)
 #define TIME_DGHS_PROCESS                     1 // The process master_DGHS executes every TIME_DGHS_PROCESS
 #define QUEUE_SIZE_GHS                        10
-#define TIME_UNION_OUT                        15  //Get out of queue
-#define TIME_PREVIOUS_MSG_OUT_UNION           20
+#define TIME_UNION_IN_OUT                     2  //Get out of queue
+#define TIME_PREVIOUS_MSG_IN_OUT_UNION        5
 
 //Values for 120 nodes
 /*#define NUM_MAX_RETRANSMISSIONS               50
@@ -86,9 +86,7 @@
 #define RUNICAST_CHANNEL_1 144
 #define RUNICAST_CHANNEL_2 145
 
-//Types of messages
-#define CONNECT_MSG    0x01
-#define INITIATE_MSG   0x02
+
 
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////FLAGS/////////////////////////////////////////////////
@@ -110,6 +108,7 @@ PROCESS_NAME(analyze_agreement);
 PROCESS_NAME(procedure_wakeup);
 PROCESS_NAME(send_Gallager_Humblet_Spira);
 PROCESS_NAME(out_union_evaluation);
+PROCESS_NAME(in_union_evaluation);
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////EVENTS////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
@@ -144,10 +143,11 @@ process_event_t e_execute;
 
 struct sensor_node
 {
-    uint8_t control_flags_neighbor_discovery;
-    uint8_t LE; // level
-    uint8_t SN; // Node state
-    uint8_t find_count;
+    uint8_t    control_flags_neighbor_discovery;
+    uint8_t    LN; // level
+    uint32_t   FN; //Fragment name
+    uint8_t    SN; // Node state
+    uint8_t    find_count;
 }node;
 
 /////////////////////////////////////////////////////////////////////////////

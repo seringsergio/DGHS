@@ -37,10 +37,21 @@
 *  el procedimiento desde el segundo vecino de la lista (for 1).
 */
 
-void fill_connect_msg(struct connect_msg *co_msg, linkaddr_t *addr, uint8_t LE)
+void fill_connect_msg(struct connect_msg *co_msg, linkaddr_t *to, linkaddr_t *from, uint8_t L)
 {
-  linkaddr_copy(&co_msg->addr,addr);
-  co_msg->LE = LE;
+  linkaddr_copy(&co_msg->to,to);
+  linkaddr_copy(&co_msg->from,from);
+  co_msg->L = L;
+}
+
+void fill_initiate_msg(struct initiate_msg *i_msg, linkaddr_t *to, linkaddr_t *from,
+                       uint8_t LN, uint32_t FN, uint8_t SN)
+{
+  linkaddr_copy(&i_msg->to,to);
+  linkaddr_copy(&i_msg->from,from);
+  i_msg->LN = LN;
+  i_msg->FN = FN;
+  i_msg->SN = SN;
 }
 
 void print_neighbor_list_debug(struct neighbor *neighbors_list_head)
@@ -66,9 +77,75 @@ void print_neighbor_list_debug(struct neighbor *neighbors_list_head)
     }
 }
 
-void become_branch(struct neighbor *n)
+uint8_t is_basic(linkaddr_t *addr)
 {
-  n->SE = BRANCH;
+  struct neighbor *n;
+
+  for(n = neighbors_list_p; n != NULL; n = list_item_next(n))
+  {
+      if(linkaddr_cmp(&n->addr, addr)) {
+        break;
+      }
+  }
+
+  if(n == NULL)
+  {
+      DGHS_DBG_1("ERROR: The neighbor that you intend to determine is_basic() does not exists\n");
+      return 0;
+  }else
+  {
+      if(n->SE == BASIC)
+      {
+        return 1;
+      }else
+      {
+        return 0;
+      }
+
+  }
+}
+
+uint32_t weight(linkaddr_t *addr)
+{
+  struct neighbor *n;
+
+  for(n = neighbors_list_p; n != NULL; n = list_item_next(n))
+  {
+      if(linkaddr_cmp(&n->addr, addr)) {
+        break;
+      }
+  }
+
+  if(n == NULL)
+  {
+    DGHS_DBG_1("ERROR: The neighbor that you intend to determine weight() does not exists\n");
+    return 0;
+  }else
+  {
+      return n->weight;
+  }
+
+}
+
+void become_branch(linkaddr_t *addr)
+{
+  struct neighbor *n;
+
+  for(n = neighbors_list_p; n != NULL; n = list_item_next(n))
+  {
+      if(linkaddr_cmp(&n->addr, addr)) {
+        break;
+      }
+  }
+
+  if(n == NULL)
+  {
+      DGHS_DBG_1("ERROR: The neighbor that you intend to become branch does not exists\n");
+  }else
+  {
+      n->SE = BRANCH;
+      DGHS_DBG_2("Neighbor %d.%d is now branch\n", n->addr.u8[0], n->addr.u8[1]);
+  }
 }
 
 void init_SE()
@@ -118,37 +195,3 @@ void change_positions(struct neighbor *destination, struct neighbor *from)
   destination->weight                        = from->weight;
   destination->flags                         = from->flags;
 }
-
-
-
-
-/*void sort_neighbor_list(struct neighbor *n_list_head)
-{
-    struct neighbor *n_aux, *first_position, *lowest_node = NULL, temp_node;
-    uint32_t lowest_avg_seqno_gap;
-
-    for(n_aux = n_list_head;
-        n_aux != NULL; n_aux = list_item_next(n_aux)) // Recorrer toda la lista
-    {
-       flags &= !EXIST_LOWEST;
-       //Recorrer desde la segunda posicion del nodo
-       for(first_position = n_aux, lowest_avg_seqno_gap =  first_position->avg_seqno_gap,
-           lowest_node = first_position;
-           first_position != NULL; first_position = list_item_next(first_position))
-       {
-           if(first_position->avg_seqno_gap < lowest_avg_seqno_gap)
-           {
-                 lowest_avg_seqno_gap = first_position->avg_seqno_gap;
-                 lowest_node = first_position;
-                 flags |= EXIST_LOWEST;
-           }
-       }
-
-       if(flags & EXIST_LOWEST) // Si existe un nodo menor, reemplazo los datos de los nodos
-       {
-         ghs_n_copy_data(&temp_node, lowest_node);
-         ghs_n_copy_data(lowest_node, n_aux);
-         ghs_n_copy_data(n_aux, &temp_node);
-       }
-    }
-}*/

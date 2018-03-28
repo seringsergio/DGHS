@@ -55,7 +55,7 @@ AUTOSTART_PROCESSES(//example-DGHS
                     //neighbor discovery
                     &master_neighbor_discovery,
                     //Gallager Humblet Spira
-                    &procedure_wakeup, &send_Gallager_Humblet_Spira, &out_union_evaluation
+                    &procedure_wakeup, &send_Gallager_Humblet_Spira, &out_union_evaluation, &in_union_evaluation
                     );
 
 
@@ -83,7 +83,7 @@ PROCESS_THREAD(master_DGHS, ev, data)
         {
             print_just_once = 0;
             DGHS_DBG_2("NEIGHBOR_DISCOVERY_HAS_ENDED\n");
-            process_post(&procedure_wakeup,e_execute,NULL);
+            process_post(&procedure_wakeup,e_execute,NULL);//We call this process only when NEIGHBOR_DISCOVERY_HAS_ENDED
 
         }
     }

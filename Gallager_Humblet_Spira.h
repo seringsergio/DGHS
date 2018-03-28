@@ -40,14 +40,29 @@
 /////////////////////////////////////////////////////////////////////////////
 
 // n->SE: Edge state
-#define BASIC    0x01
-#define BRANCH   0x02
-#define REJECTED 0x04
+enum
+{
+  BASIC,
+  BRANCH,
+  REJECTED
+};
 
 // node.SN: Node state
-#define SLEEPING    0x01
-#define FIND        0x02
-#define FOUND       0x04
+enum
+{
+  SLEEPING,
+  FIND,
+  FOUND
+};
+
+//Types of messages
+enum
+{
+  CONNECT_MSG,
+  INITIATE_MSG
+};
+
+
 
 //uniontype
 //#define CONNECT_MSG 0x01
@@ -58,6 +73,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 process_event_t e_send_connect;
+process_event_t e_send_initiate;
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////FORWARD DECLARATIONS//////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
@@ -71,13 +87,24 @@ process_event_t e_send_connect;
 
 struct connect_msg
 {
-  linkaddr_t addr;
-  uint8_t LE; // level
+  linkaddr_t to;
+  linkaddr_t from;
+  uint8_t L; // level
+};
+
+struct initiate_msg
+{
+  linkaddr_t to;
+  linkaddr_t from;
+  uint8_t    LN; // level
+  uint32_t   FN; //Fragment name
+  uint8_t    SN; // Node state
 };
 
 union types_msg
 {
-  struct connect_msg co_msg;
+  struct connect_msg  co_msg;
+  struct initiate_msg i_msg;
 };
 
 struct in_out_list
@@ -91,9 +118,13 @@ struct in_out_list
 ///////////////////////FUNTIONS//////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 
-void fill_connect_msg(struct connect_msg *co_msg, linkaddr_t *addr, uint8_t LE);
+void fill_connect_msg(struct connect_msg *co_msg, linkaddr_t *to, linkaddr_t *from, uint8_t L);
+void fill_initiate_msg(struct initiate_msg *i_msg, linkaddr_t *to, linkaddr_t *from,
+                       uint8_t LN, uint32_t FN, uint8_t SN);
 void print_neighbor_list_debug(struct neighbor *neighbors_list_head);
-void become_branch(struct neighbor *n);
+void become_branch(linkaddr_t *addr);
+uint8_t is_basic(linkaddr_t *addr);
+uint32_t weight(linkaddr_t *addr);
 void init_SE();
 void sort_neighbor_list();
 void change_positions(struct neighbor *destination, struct neighbor *from);
