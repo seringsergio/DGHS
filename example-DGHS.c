@@ -83,7 +83,6 @@ PROCESS_THREAD(master_DGHS, ev, data)
         {
             print_just_once = 0;
             DGHS_DBG_2("NEIGHBOR_DISCOVERY_HAS_ENDED\n");
-            print_neighbor_list(neighbors_list_p);
             process_post(&procedure_wakeup,e_execute,NULL);
 
         }

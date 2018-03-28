@@ -65,7 +65,7 @@
 #define TIME_PREVIOUS_RU_MSG                  2 // time to transmit the previous ru_msg (in seconds)
 #define TIME_DGHS_PROCESS                     1 // The process master_DGHS executes every TIME_DGHS_PROCESS
 #define QUEUE_SIZE_GHS                        10
-#define TIME_OUT_UNION                        1  //Get out of queue
+#define TIME_UNION_OUT                        1  //Get out of queue
 #define TIME_PREVIOUS_MSG_OUT_UNION           1
 
 //Values for 120 nodes
@@ -85,6 +85,13 @@
 
 #define RUNICAST_CHANNEL_1 144
 #define RUNICAST_CHANNEL_2 145
+
+//Types of messages
+enum msg_types
+{
+  CONNECT_MSG,
+  INITIATE_MSG
+}; 
 
 
 /////////////////////////////////////////////////////////////////////////////

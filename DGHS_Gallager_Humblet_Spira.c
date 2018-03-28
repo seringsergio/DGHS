@@ -108,6 +108,7 @@ PROCESS_THREAD(procedure_wakeup, ev, data) //It can not have PROCESS_WAIT_EVENT_
 
           init_SE();
           sort_neighbor_list();
+          print_neighbor_list(neighbors_list_p);
           become_branch(neighbors_list_p); //Become branch the edge with minimum weight. We have just sorted the list
           node.LE = 0;
           node.SN = FOUND;
@@ -156,7 +157,7 @@ PROCESS_THREAD(out_union_evaluation, ev, data)
 
     //REMOVE from the list
     //execute periodically
-    etimer_set(&et1, CLOCK_SECOND * TIME_OUT_UNION);
+    etimer_set(&et1, CLOCK_SECOND * TIME_UNION_OUT);
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et1));
 
     while(list_length(out_union_list))
@@ -214,6 +215,7 @@ PROCESS_THREAD(send_Gallager_Humblet_Spira, ev, data) //It can not have PROCESS_
       co_msg = *( (struct connect_msg*) data );
 
       packetbuf_copyfrom(&co_msg, sizeof(struct connect_msg));
+      packetbuf_set_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG, CONNECT_MSG);
       runicast_send(&runicast, &co_msg.addr, NUM_MAX_RETRANSMISSIONS);
 
       DGHS_DBG_2("Send e_send_connect to %d.%d with level %d\n" , co_msg.addr.u8[0], co_msg.addr.u8[1], co_msg.LE );
