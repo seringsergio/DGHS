@@ -80,9 +80,9 @@ union types_msg
   struct connect_msg co_msg;
 };
 
-struct out_list
+struct in_out_list
 {
-  struct out_list *next;
+  struct in_out_list *next;
   uint8_t uniontype;
   union types_msg type_msg;
 };

@@ -36,7 +36,10 @@ LIST(history_table_2);
 MEMB(history_mem_2, struct history_entry, NUM_HISTORY_ENTRIES);
 
 LIST(out_union_list);
-MEMB(out_union_mem, struct out_list, QUEUE_SIZE_GHS);
+MEMB(out_union_mem, struct in_out_list, QUEUE_SIZE_GHS);
+
+LIST(in_union_list);
+MEMB(in_union_mem, struct in_out_list, QUEUE_SIZE_GHS);
 
 PROCESS(procedure_wakeup, "procedure_wakeup");
 PROCESS(send_Gallager_Humblet_Spira, "send_Gallager_Humblet_Spira");
@@ -46,7 +49,10 @@ PROCESS(out_union_evaluation, "out_union_evaluation");
 static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8_t seqno)
 {
   packetbuf_attr_t msg_type;
-  
+  static struct in_out_list *in_l;
+
+  void *msg = packetbuf_dataptr();
+
   /* OPTIONAL: Sender history */
   struct history_entry *e = NULL;
   for(e = list_head(history_table_2); e != NULL; e = e->next) {
@@ -81,9 +87,21 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
 
   if(msg_type == CONNECT_MSG)
   {
-    //ADD to in_list
 
-    DGHS_DBG_2("runicast msg_type = CONNECT_MSG \n");
+    //ADD to the list
+    in_l = memb_alloc(&in_union_mem);
+    if(in_l == NULL) {            // If we could not allocate a new entry, we give up.
+      DGHS_DBG_1("ERROR: we could not allocate a new entry for <<in_union_list>>\n");
+    }else
+    {
+        in_l->type_msg.co_msg     = *((struct connect_msg*) msg);
+        in_l->uniontype           = CONNECT_MSG;
+        list_push(in_union_list,in_l); // Add an item to the start of the list.
+        DGHS_DBG_2("Added to in_union_list CONNECT from %d.%d level %d\n",
+        from->u8[0], from->u8[1], in_l->type_msg.co_msg.LE );
+    }
+
+
   }else
   if(msg_type == INITIATE_MSG)
   {
@@ -112,7 +130,7 @@ static struct runicast_conn runicast;
 PROCESS_THREAD(procedure_wakeup, ev, data) //It can not have PROCESS_WAIT_EVENT_UNTIL()
 {
     static struct connect_msg co_msg;
-    static struct out_list *out_l;
+    static struct in_out_list *out_l;
 
     PROCESS_BEGIN();
 
@@ -145,7 +163,6 @@ PROCESS_THREAD(procedure_wakeup, ev, data) //It can not have PROCESS_WAIT_EVENT_
               out_l->uniontype           = CONNECT_MSG;
               list_push(out_union_list,out_l); // Add an item to the start of the list.
           }
-
           DGHS_DBG_2("Added to out_union_list\n");
 
 
@@ -166,7 +183,7 @@ PROCESS_THREAD(procedure_wakeup, ev, data) //It can not have PROCESS_WAIT_EVENT_
 PROCESS_THREAD(out_union_evaluation, ev, data)
 {
   static struct etimer et1, et2;
-  static struct out_list *out_l;
+  static struct in_out_list *out_l;
 
   PROCESS_BEGIN();
 
@@ -225,6 +242,12 @@ PROCESS_THREAD(send_Gallager_Humblet_Spira, ev, data) //It can not have PROCESS_
   /* OPTIONAL: Sender history */
   list_init(history_table_2);
   memb_init(&history_mem_2);
+
+  list_init(out_union_list);
+  memb_init(&out_union_mem);
+
+  list_init(in_union_list);
+  memb_init(&in_union_mem);
 
   while(1)
   {
