@@ -1,5 +1,5 @@
-set xr [0:700]
-set yr [-600:0]
+set xr [0:200]
+set yr [-200:0]
 
 set size square
 
