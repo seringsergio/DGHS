@@ -245,8 +245,13 @@ PROCESS_THREAD(procedure_wakeup, ev, data) //It can not have PROCESS_WAIT_EVENT_
 
     PROCESS_BEGIN();
 
-    e_send_connect  = process_alloc_event();
-    e_send_initiate = process_alloc_event();
+    e_send_connect     = process_alloc_event();
+    e_send_initiate    = process_alloc_event();
+    e_send_test        = process_alloc_event();
+    e_send_accept      = process_alloc_event();
+    e_send_reject      = process_alloc_event();
+    e_send_report      = process_alloc_event();
+    e_send_change_root = process_alloc_event();
 
     while(1)
     {
@@ -931,6 +936,26 @@ PROCESS_THREAD(out_union_evaluation, ev, data)
             if(out_l->uniontype == INITIATE_MSG)
             {
               process_post(&send_Gallager_Humblet_Spira, e_send_initiate, &out_l->type_msg.i_msg);
+            }else
+            if(out_l->uniontype == TEST_MSG)
+            {
+              process_post(&send_Gallager_Humblet_Spira, e_send_test, &out_l->type_msg.t_msg);
+            }else
+            if(out_l->uniontype == ACCEPT_MSG)
+            {
+              process_post(&send_Gallager_Humblet_Spira, e_send_accept, &out_l->type_msg.a_msg);
+            }else
+            if(out_l->uniontype == REJECT_MSG)
+            {
+              process_post(&send_Gallager_Humblet_Spira, e_send_reject, &out_l->type_msg.rej_msg);
+            }else
+            if(out_l->uniontype == REPORT_MSG)
+            {
+              process_post(&send_Gallager_Humblet_Spira, e_send_report, &out_l->type_msg.rep_msg);
+            }else
+            if(out_l->uniontype == CHANGE_ROOT_MSG)
+            {
+              process_post(&send_Gallager_Humblet_Spira, e_send_change_root, &out_l->type_msg.cha_root_msg);
             }
             memb_free(&out_union_mem,out_l);
 
@@ -950,8 +975,13 @@ PROCESS_THREAD(out_union_evaluation, ev, data)
 
 PROCESS_THREAD(send_Gallager_Humblet_Spira, ev, data) //It can not have PROCESS_WAIT_EVENT_UNTIL()
 {
-  static struct connect_msg  co_msg;
+  static struct connect_msg co_msg;
   static struct initiate_msg i_msg;
+  static struct test_msg t_msg;
+  static struct accept_msg a_msg;
+  static struct reject_msg rej_msg;
+  static struct report_msg rep_msg;
+  static struct change_root_msg cha_root_msg;
 
   PROCESS_EXITHANDLER(runicast_close(&runicast);)
 
@@ -979,7 +1009,7 @@ PROCESS_THREAD(send_Gallager_Humblet_Spira, ev, data) //It can not have PROCESS_
         packetbuf_set_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG, CONNECT_MSG);
         runicast_send(&runicast, &co_msg.to, NUM_MAX_RETRANSMISSIONS);
 
-        DGHS_DBG_2("Send e_send_connect to %d.%d with level %d\n" , co_msg.to.u8[0], co_msg.to.u8[1], co_msg.L );
+        DGHS_DBG_2("Send e_send_connect to %d.%d with L %d\n" , co_msg.to.u8[0], co_msg.to.u8[1], co_msg.L );
     }else
     if(ev == e_send_initiate)
     {
@@ -989,12 +1019,70 @@ PROCESS_THREAD(send_Gallager_Humblet_Spira, ev, data) //It can not have PROCESS_
        packetbuf_set_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG, INITIATE_MSG);
        runicast_send(&runicast, &i_msg.to, NUM_MAX_RETRANSMISSIONS);
 
-       DGHS_DBG_2("Send e_send_initiate to %d.%d with LN=%d FN=%d.%02d SN=%d\n" , i_msg.to.u8[0], i_msg.to.u8[1],
+       DGHS_DBG_2("Send e_send_initiate to %d.%d with L=%d F=%d.%02d S=%d\n" , i_msg.to.u8[0], i_msg.to.u8[1],
        i_msg.L,
        (int)(i_msg.F / SEQNO_EWMA_UNITY),
        (int)(((100UL * i_msg.F) / SEQNO_EWMA_UNITY) % 100),
        i_msg.S);
 
+    }else
+    if(ev == e_send_test)
+    {
+        t_msg = *( (struct test_msg*) data );
+
+        packetbuf_copyfrom(&t_msg, sizeof(struct test_msg));
+        packetbuf_set_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG, TEST_MSG);
+        runicast_send(&runicast, &t_msg.to, NUM_MAX_RETRANSMISSIONS);
+
+        DGHS_DBG_2("Send e_send_test to %d.%d with L=%d F=%d.%02d\n" , t_msg.to.u8[0], t_msg.to.u8[1],
+        t_msg.L,
+        (int)(t_msg.F / SEQNO_EWMA_UNITY),
+        (int)(((100UL * t_msg.F) / SEQNO_EWMA_UNITY) % 100) );
+
+    }else
+    if(ev == e_send_accept)
+    {
+        a_msg = *( (struct accept_msg*) data );
+
+        packetbuf_copyfrom(&a_msg, sizeof(struct accept_msg));
+        packetbuf_set_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG, ACCEPT_MSG);
+        runicast_send(&runicast, &a_msg.to, NUM_MAX_RETRANSMISSIONS);
+
+        DGHS_DBG_2("Send e_send_accept to %d.%d \n" , a_msg.to.u8[0], a_msg.to.u8[1] );
+
+    }else
+    if(ev == e_send_reject)
+    {
+       rej_msg = *( (struct reject_msg*) data );
+
+       packetbuf_copyfrom(&rej_msg, sizeof(struct reject_msg));
+       packetbuf_set_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG, REJECT_MSG);
+       runicast_send(&runicast, &rej_msg.to, NUM_MAX_RETRANSMISSIONS);
+
+       DGHS_DBG_2("Send e_send_reject to %d.%d \n" , rej_msg.to.u8[0], rej_msg.to.u8[1] );
+    }else
+    if(ev == e_send_report)
+    {
+       rep_msg  = *( (struct report_msg*) data );
+
+       packetbuf_copyfrom(&rep_msg, sizeof(struct report_msg));
+       packetbuf_set_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG, REPORT_MSG);
+       runicast_send(&runicast, &rep_msg.to, NUM_MAX_RETRANSMISSIONS);
+
+       DGHS_DBG_2("Send e_send_report to %d.%d with w = %d.%02d \n" , rep_msg.to.u8[0], rep_msg.to.u8[1],
+       (int)(rep_msg.w / SEQNO_EWMA_UNITY),
+       (int)(((100UL * rep_msg.w) / SEQNO_EWMA_UNITY) % 100) );
+
+    }else
+    if(ev == e_send_change_root)
+    {
+       cha_root_msg = *( (struct change_root_msg*) data );
+
+       packetbuf_copyfrom(&cha_root_msg, sizeof(struct change_root_msg));
+       packetbuf_set_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG, CHANGE_ROOT_MSG);
+       runicast_send(&runicast, &cha_root_msg.to, NUM_MAX_RETRANSMISSIONS);
+
+       DGHS_DBG_2("Send e_send_change_root to %d.%d \n" , cha_root_msg.to.u8[0], cha_root_msg.to.u8[1]);
     }
   }
 
