@@ -51,7 +51,7 @@ PROCESS(procedure_test, "procedure_test");
 PROCESS(procedure_report, "procedure_report");
 PROCESS(response_to_test, "response_to_test");
 PROCESS(response_to_accept,"response_to_accept");
-
+PROCESS(response_to_reject,"response_to_reject");
 
 static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8_t seqno)
 {
@@ -163,6 +163,23 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
             DGHS_DBG_2("runicast message received ACCEPT_MSG from %d.%d \n",
             in_l->type_msg.a_msg.from.u8[0], in_l->type_msg.a_msg.from.u8[1] );
         }
+  }else
+  if(msg_type == REJECT_MSG)
+  {
+
+    //ADD to the list
+    in_l = memb_alloc(&in_union_mem);
+    if(in_l == NULL) {            // If we could not allocate a new entry, we give up.
+      DGHS_DBG_1("ERROR: we could not allocate a new entry for <<in_union_list>>\n");
+    }else
+    {
+        in_l->type_msg.rej_msg    = *((struct reject_msg*) msg);
+        in_l->uniontype           = REJECT_MSG;
+        list_push(in_union_list,in_l); // Add an item to the start of the list.
+        DGHS_DBG_2("runicast message received REJECT_MSG from %d.%d \n",
+        in_l->type_msg.rej_msg.from.u8[0], in_l->type_msg.rej_msg.from.u8[1] );
+    }
+
   }
   else
   {
@@ -277,6 +294,10 @@ PROCESS_THREAD(in_union_evaluation, ev, data)
           if(in_l->uniontype == ACCEPT_MSG)
           {
             process_post_synch(&response_to_accept, e_execute, &in_l->type_msg.a_msg);
+          }else
+          if(in_l->uniontype == REJECT_MSG)
+          {
+            process_post_synch(&response_to_reject, e_execute, &in_l->type_msg.rej_msg);
           }
           memb_free(&in_union_mem,in_l);
           //DGHS_DBG_2("memb_free\n");
@@ -558,6 +579,34 @@ PROCESS_THREAD(response_to_accept, ev, data)
 
           process_post_synch(&procedure_report, e_execute, NULL);
 
+      }
+  }
+
+  PROCESS_END();
+
+}
+
+
+
+PROCESS_THREAD(response_to_reject, ev, data)
+{
+  static struct reject_msg rej_msg;
+
+  PROCESS_BEGIN();
+
+  while(1)
+  {
+      PROCESS_WAIT_EVENT();
+      if(ev == e_execute)
+      {
+          rej_msg = *( (struct reject_msg *) data);
+
+          if( is_basic(&rej_msg.from) )
+          {
+            become_rejected(&rej_msg.from);
+          }
+
+          process_post_synch(&procedure_test, e_execute, NULL);
       }
   }
 
