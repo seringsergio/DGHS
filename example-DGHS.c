@@ -56,7 +56,8 @@ AUTOSTART_PROCESSES(//example-DGHS
                     &master_neighbor_discovery,
                     //Gallager Humblet Spira
                     &procedure_wakeup, &send_Gallager_Humblet_Spira, &out_union_evaluation, &in_union_evaluation,
-                    &response_to_connect, &response_to_initiate, &procedure_test, &procedure_report, &response_to_test
+                    &response_to_connect, &response_to_initiate, &procedure_test, &procedure_report, &response_to_test,
+                    &response_to_accept
                     );
 
 

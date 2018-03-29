@@ -50,7 +50,7 @@ PROCESS(response_to_initiate, "response_to_initiate");
 PROCESS(procedure_test, "procedure_test");
 PROCESS(procedure_report, "procedure_report");
 PROCESS(response_to_test, "response_to_test");
-
+PROCESS(response_to_accept,"response_to_accept");
 
 
 static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8_t seqno)
@@ -146,6 +146,22 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
             in_l->type_msg.t_msg.L,
             (int)(in_l->type_msg.t_msg.F / SEQNO_EWMA_UNITY),
             (int)(((100UL * in_l->type_msg.t_msg.F) / SEQNO_EWMA_UNITY) % 100) );
+        }
+
+  }else
+  if(msg_type == ACCEPT_MSG)
+  {
+        //ADD to the list
+        in_l = memb_alloc(&in_union_mem);
+        if(in_l == NULL) {            // If we could not allocate a new entry, we give up.
+          DGHS_DBG_1("ERROR: we could not allocate a new entry for <<in_union_list>>\n");
+        }else
+        {
+            in_l->type_msg.a_msg      = *((struct accept_msg*) msg);
+            in_l->uniontype           = ACCEPT_MSG;
+            list_push(in_union_list,in_l); // Add an item to the start of the list.
+            DGHS_DBG_2("runicast message received ACCEPT_MSG from %d.%d \n",
+            in_l->type_msg.a_msg.from.u8[0], in_l->type_msg.a_msg.from.u8[1] );
         }
   }
   else
@@ -257,6 +273,10 @@ PROCESS_THREAD(in_union_evaluation, ev, data)
           if(in_l->uniontype == TEST_MSG)
           {
             process_post_synch(&response_to_test, e_execute, &in_l->type_msg.t_msg);
+          }else
+          if(in_l->uniontype == ACCEPT_MSG)
+          {
+            process_post_synch(&response_to_accept, e_execute, &in_l->type_msg.a_msg);
           }
           memb_free(&in_union_mem,in_l);
           //DGHS_DBG_2("memb_free\n");
@@ -505,6 +525,40 @@ PROCESS_THREAD(response_to_test, ev, data)
 
       }
 
+  }
+
+  PROCESS_END();
+
+}
+
+
+
+PROCESS_THREAD(response_to_accept, ev, data)
+{
+
+  static struct accept_msg a_msg;
+
+  PROCESS_BEGIN();
+
+
+  while(1)
+  {
+      PROCESS_WAIT_EVENT();
+      if(ev == e_execute)
+      {
+          a_msg = *( (struct accept_msg *) data);
+
+          linkaddr_copy(&node.test_edge, &linkaddr_null);
+
+          if(  weight(&a_msg.from) < node.best_wt)
+          {
+              linkaddr_copy(&node.best_edge, &a_msg.from);
+              node.best_wt = weight(&a_msg.from);
+          }
+
+          process_post_synch(&procedure_report, e_execute, NULL);
+
+      }
   }
 
   PROCESS_END();
