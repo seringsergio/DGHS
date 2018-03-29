@@ -63,7 +63,9 @@ enum
   CONNECT_MSG,
   INITIATE_MSG,
   TEST_MSG,
-  REPORT_MSG
+  REPORT_MSG,
+  ACCEPT_MSG,
+  REJECT_MSG
 };
 
 
@@ -88,6 +90,19 @@ process_event_t e_send_initiate;
  /////////////////////////////////////////////////////////////////////////////
  ///////////////////////STRUCTS///////////////////////////////////////////////
  /////////////////////////////////////////////////////////////////////////////
+
+
+ struct reject_msg
+ {
+   linkaddr_t to;
+   linkaddr_t from;
+ };
+
+ struct accept_msg
+ {
+   linkaddr_t to;
+   linkaddr_t from;
+ };
 
  struct report_msg
  {
@@ -126,6 +141,8 @@ union types_msg
   struct initiate_msg i_msg;
   struct test_msg     t_msg;
   struct report_msg   rep_msg;
+  struct accept_msg   a_msg;
+  struct reject_msg   rej_msg;
 };
 
 struct in_out_list
@@ -143,8 +160,11 @@ void fill_connect_msg(struct connect_msg *co_msg, linkaddr_t *to, linkaddr_t *fr
 void fill_initiate_msg(struct initiate_msg *i_msg, linkaddr_t *to, linkaddr_t *from, uint8_t L, uint32_t F, uint8_t S);
 void fill_test_msg(struct test_msg *t_msg, linkaddr_t *to, linkaddr_t *from, uint8_t L, uint32_t F);
 void fill_report_msg(struct report_msg *rep_msg, linkaddr_t *to, linkaddr_t *from, uint32_t w);
+void fill_accept_msg(struct accept_msg *a_msg, linkaddr_t *to, linkaddr_t *from);
+void fill_reject_msg(struct reject_msg *rej_msg, linkaddr_t *to, linkaddr_t *from);
 void print_neighbor_list_debug(struct neighbor *neighbors_list_head);
 void become_branch(linkaddr_t *addr);
+void become_rejected(linkaddr_t *addr);
 uint8_t is_basic(linkaddr_t *addr);
 uint8_t is_branch(linkaddr_t *addr);
 uint32_t weight(linkaddr_t *addr);

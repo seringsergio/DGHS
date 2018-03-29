@@ -49,6 +49,8 @@ PROCESS(response_to_connect,"response_to_connect");
 PROCESS(response_to_initiate, "response_to_initiate");
 PROCESS(procedure_test, "procedure_test");
 PROCESS(procedure_report, "procedure_report");
+PROCESS(response_to_test, "response_to_test");
+
 
 
 static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8_t seqno)
@@ -102,7 +104,7 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
         in_l->type_msg.co_msg     = *((struct connect_msg*) msg);
         in_l->uniontype           = CONNECT_MSG;
         list_push(in_union_list,in_l); // Add an item to the start of the list.
-        DGHS_DBG_2("runicast message received CONNECT from %d.%d level %d\n",
+        DGHS_DBG_2("runicast message received CONNECT from %d.%d L %d\n",
         in_l->type_msg.co_msg.from.u8[0], in_l->type_msg.co_msg.from.u8[1], in_l->type_msg.co_msg.L );
     }
 
@@ -119,7 +121,7 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
         in_l->type_msg.i_msg      = *((struct initiate_msg*) msg);
         in_l->uniontype           = INITIATE_MSG;
         list_push(in_union_list,in_l); // Add an item to the start of the list.
-        DGHS_DBG_2("runicast message received INITIATE from %d.%d with LN=%d FN=%d.%02d SN=%d \n",
+        DGHS_DBG_2("runicast message received INITIATE from %d.%d with L=%d F=%d.%02d S=%d \n",
         in_l->type_msg.i_msg.from.u8[0], in_l->type_msg.i_msg.from.u8[1],
         in_l->type_msg.i_msg.L,
         (int)(in_l->type_msg.i_msg.F / SEQNO_EWMA_UNITY),
@@ -128,6 +130,25 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
     }
 
   }else
+  if(msg_type == TEST_MSG)
+  {
+        //ADD to the list
+        in_l = memb_alloc(&in_union_mem);
+        if(in_l == NULL) {            // If we could not allocate a new entry, we give up.
+          DGHS_DBG_1("ERROR: we could not allocate a new entry for <<in_union_list>>\n");
+        }else
+        {
+            in_l->type_msg.t_msg      = *((struct test_msg*) msg);
+            in_l->uniontype           = TEST_MSG;
+            list_push(in_union_list,in_l); // Add an item to the start of the list.
+            DGHS_DBG_2("runicast message received TEST from %d.%d with L=%d F=%d.%02d \n",
+            in_l->type_msg.t_msg.from.u8[0], in_l->type_msg.t_msg.from.u8[1],
+            in_l->type_msg.t_msg.L,
+            (int)(in_l->type_msg.t_msg.F / SEQNO_EWMA_UNITY),
+            (int)(((100UL * in_l->type_msg.t_msg.F) / SEQNO_EWMA_UNITY) % 100) );
+        }
+  }
+  else
   {
     DGHS_DBG_1("ERROR: The type of the message ( msg_type ) is unkown \n");
   }
@@ -232,6 +253,10 @@ PROCESS_THREAD(in_union_evaluation, ev, data)
           if(in_l->uniontype == INITIATE_MSG)
           {
             process_post_synch(&response_to_initiate, e_execute, &in_l->type_msg.i_msg);
+          }else
+          if(in_l->uniontype == TEST_MSG)
+          {
+            process_post_synch(&response_to_test, e_execute, &in_l->type_msg.t_msg);
           }
           memb_free(&in_union_mem,in_l);
           //DGHS_DBG_2("memb_free\n");
@@ -252,7 +277,7 @@ PROCESS_THREAD(response_to_connect, ev, data)
 
   static struct connect_msg co_msg;
   static struct initiate_msg i_msg;
-  static struct in_out_list *out_l, *in_l_temp;
+  static struct in_out_list *out_l, *in_l;
 
   PROCESS_BEGIN();
 
@@ -295,15 +320,15 @@ PROCESS_THREAD(response_to_connect, ev, data)
 
               //place received message on end of queue
               //ADD to the list
-              in_l_temp = memb_alloc(&in_union_mem);
+              in_l = memb_alloc(&in_union_mem);
               //DGHS_DBG_2("memb_alloc\n");
-              if(in_l_temp == NULL) {            // If we could not allocate a new entry, we give up.
+              if(in_l == NULL) {            // If we could not allocate a new entry, we give up.
                 DGHS_DBG_1("ERROR: we could not allocate a new entry for <<in_union_list>> ---\n");
               }else
               {
-                  in_l_temp->type_msg.co_msg     = co_msg;
-                  in_l_temp->uniontype           = CONNECT_MSG;
-                  list_push(in_union_list,in_l_temp); // Add an item to the start of the list.
+                  in_l->type_msg.co_msg     = co_msg;
+                  in_l->uniontype           = CONNECT_MSG;
+                  list_push(in_union_list,in_l); // Add an item to the start of the list.
               }
 
               //PROCESS_PAUSE(); // to allow for other processes to get a slice of the processor's time in between.
@@ -399,6 +424,92 @@ PROCESS_THREAD(response_to_initiate, ev, data)
   PROCESS_END();
 }
 
+
+PROCESS_THREAD(response_to_test, ev, data)
+{
+  static struct test_msg t_msg;
+  static struct in_out_list *in_l;
+  static struct accept_msg a_msg;
+  static struct reject_msg rej_msg;
+  static struct in_out_list *out_l;
+
+  PROCESS_BEGIN();
+
+  while(1)
+  {
+      PROCESS_WAIT_EVENT();
+      if(ev == e_execute)
+      {
+          t_msg = *( (struct test_msg *) data);
+
+          if(t_msg.L > node.LN)
+          {
+              //place received message on end of queue
+              //ADD to the list
+              in_l = memb_alloc(&in_union_mem);
+              //DGHS_DBG_2("memb_alloc\n");
+              if(in_l == NULL) {            // If we could not allocate a new entry, we give up.
+                DGHS_DBG_1("ERROR: we could not allocate a new entry for <<in_union_list>> ---\n");
+              }else
+              {
+                  in_l->type_msg.t_msg      = t_msg;
+                  in_l->uniontype           = TEST_MSG;
+                  list_push(in_union_list,in_l); // Add an item to the start of the list.
+              }
+
+          }else
+          if(t_msg.F != node.FN) //OJO: no estoy garantizando que los fragmentos sean diferentes
+          {
+             //Send Accept on edge j
+             fill_accept_msg(&a_msg, &t_msg.from, &linkaddr_node_addr);
+             //ADD to the list
+             out_l = memb_alloc(&out_union_mem);
+             if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
+               DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list>>\n");
+             }else
+             {
+
+                 out_l->type_msg.a_msg      = a_msg;
+                 out_l->uniontype           = ACCEPT_MSG;
+                 list_push(out_union_list,out_l); // Add an item to the start of the list.
+             }
+
+          }else
+          {
+              if(is_basic(&t_msg.from))
+              {
+                  become_rejected(&t_msg.from);
+              }
+
+              if( ! (linkaddr_cmp(&node.test_edge,&t_msg.from)) )
+              {
+                //Send Rejected on edge j
+                fill_reject_msg(&rej_msg, &t_msg.from, &linkaddr_node_addr);
+                //ADD to the list
+                out_l = memb_alloc(&out_union_mem);
+                if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
+                  DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list>>\n");
+                }else
+                {
+
+                    out_l->type_msg.rej_msg      = rej_msg;
+                    out_l->uniontype             = REJECT_MSG;
+                    list_push(out_union_list,out_l); // Add an item to the start of the list.
+                }
+
+              }else
+              {
+                  process_post_synch(&procedure_test, e_execute, NULL);
+              }
+          }
+
+      }
+
+  }
+
+  PROCESS_END();
+
+}
 
 PROCESS_THREAD(procedure_report, ev, data)
 {

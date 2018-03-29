@@ -69,6 +69,17 @@ void fill_report_msg(struct report_msg *rep_msg, linkaddr_t *to, linkaddr_t *fro
   rep_msg->w = w;
 }
 
+void fill_accept_msg(struct accept_msg *a_msg, linkaddr_t *to, linkaddr_t *from)
+{
+  linkaddr_copy(&a_msg->to,to);
+  linkaddr_copy(&a_msg->from,from);
+}
+
+void fill_reject_msg(struct reject_msg *rej_msg, linkaddr_t *to, linkaddr_t *from)
+{
+  linkaddr_copy(&rej_msg->to,to);
+  linkaddr_copy(&rej_msg->from,from);
+}
 
 void print_neighbor_list_debug(struct neighbor *neighbors_list_head)
 {
@@ -184,11 +195,32 @@ void become_branch(linkaddr_t *addr)
 
   if(n == NULL)
   {
-      DGHS_DBG_1("ERROR: The neighbor that you intend to become branch does not exists\n");
+      DGHS_DBG_1("ERROR: The neighbor that you intend to become_branch() does not exists\n");
   }else
   {
       n->SE = BRANCH;
       DGHS_DBG_2("Neighbor %d.%d is now branch\n", n->addr.u8[0], n->addr.u8[1]);
+  }
+}
+
+void become_rejected(linkaddr_t *addr)
+{
+  struct neighbor *n;
+
+  for(n = neighbors_list_p; n != NULL; n = list_item_next(n))
+  {
+      if(linkaddr_cmp(&n->addr, addr)) {
+        break;
+      }
+  }
+
+  if(n == NULL)
+  {
+      DGHS_DBG_1("ERROR: The neighbor that you intend to become_rejected() does not exists\n");
+  }else
+  {
+      n->SE = REJECTED;
+      DGHS_DBG_2("Neighbor %d.%d is now rejected\n", n->addr.u8[0], n->addr.u8[1]);
   }
 }
 
