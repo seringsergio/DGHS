@@ -110,7 +110,8 @@ PROCESS_NAME(send_Gallager_Humblet_Spira);
 PROCESS_NAME(out_union_evaluation);
 PROCESS_NAME(in_union_evaluation);
 PROCESS_NAME(response_to_connect);
-
+PROCESS_NAME(response_to_initiate);
+PROCESS_NAME(procedure_test);
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////EVENTS////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
@@ -150,6 +151,11 @@ struct sensor_node
     uint32_t   FN; //Fragment name
     uint8_t    SN; // Node state
     uint8_t    find_count;
+    linkaddr_t in_branch;
+    linkaddr_t best_edge;
+    uint32_t   best_wt; //Fragment name
+    linkaddr_t test_edge;
+
 }node;
 
 /////////////////////////////////////////////////////////////////////////////

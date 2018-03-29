@@ -46,6 +46,8 @@ PROCESS(send_Gallager_Humblet_Spira, "send_Gallager_Humblet_Spira");
 PROCESS(out_union_evaluation, "out_union_evaluation");
 PROCESS(in_union_evaluation, "in_union_evaluation");
 PROCESS(response_to_connect,"response_to_connect");
+PROCESS(response_to_initiate, "response_to_initiate");
+PROCESS(procedure_test, "procedure_test");
 
 static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8_t seqno)
 {
@@ -106,8 +108,23 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
   if(msg_type == INITIATE_MSG)
   {
 
+    //ADD to the list
+    in_l = memb_alloc(&in_union_mem);
+    if(in_l == NULL) {            // If we could not allocate a new entry, we give up.
+      DGHS_DBG_1("ERROR: we could not allocate a new entry for <<in_union_list>>\n");
+    }else
+    {
+        in_l->type_msg.i_msg      = *((struct initiate_msg*) msg);
+        in_l->uniontype           = INITIATE_MSG;
+        list_push(in_union_list,in_l); // Add an item to the start of the list.
+        DGHS_DBG_2("runicast message received INITIATE from %d.%d with LN=%d FN=%d.%02d SN=%d \n",
+        in_l->type_msg.i_msg.from.u8[0], in_l->type_msg.i_msg.from.u8[1],
+        in_l->type_msg.i_msg.L,
+        (int)(in_l->type_msg.i_msg.F / SEQNO_EWMA_UNITY),
+        (int)(((100UL * in_l->type_msg.i_msg.F) / SEQNO_EWMA_UNITY) % 100),
+        in_l->type_msg.i_msg.S);
+    }
 
-    DGHS_DBG_2("runicast msg_type = INITIATE_MSG \n");
   }else
   {
     DGHS_DBG_1("ERROR: The type of the message ( msg_type ) is unkown \n");
@@ -209,6 +226,10 @@ PROCESS_THREAD(in_union_evaluation, ev, data)
           if(in_l->uniontype == CONNECT_MSG)
           {
               process_post_synch(&response_to_connect, e_execute, &in_l->type_msg.co_msg);
+          }else
+          if(in_l->uniontype == INITIATE_MSG)
+          {
+            process_post_synch(&response_to_initiate, e_execute, &in_l->type_msg.i_msg);
           }
           memb_free(&in_union_mem,in_l);
           //DGHS_DBG_2("memb_free\n");
@@ -315,6 +336,124 @@ PROCESS_THREAD(response_to_connect, ev, data)
 }
 
 
+
+PROCESS_THREAD(response_to_initiate, ev, data)
+{
+
+  static struct initiate_msg i_msg, i_msg_temp;
+  static struct neighbor *n;
+  static struct in_out_list *out_l;
+
+  PROCESS_BEGIN();
+
+  while(1)
+  {
+      PROCESS_WAIT_EVENT();
+      if(ev == e_execute)
+      {
+          i_msg = *( (struct initiate_msg *) data);
+
+          node.LN = i_msg.L;
+          node.FN = i_msg.F;
+          node.SN = i_msg.S;
+          linkaddr_copy(&node.in_branch, &i_msg.from);
+          linkaddr_copy(&node.best_edge, &linkaddr_null); //linkaddr_null: The null Rime address.
+          node.best_wt = INFINITE;
+
+
+          for(n = neighbors_list_p; n != NULL; n = list_item_next(n))
+          {
+            if(  ( !(linkaddr_cmp(&n->addr,&i_msg.from))  ) && (is_branch(&n->addr))    )
+            {
+
+              fill_initiate_msg(&i_msg_temp, &n->addr, &linkaddr_node_addr, i_msg.L, i_msg.F, i_msg.S);
+              //ADD to the list
+              out_l = memb_alloc(&out_union_mem);
+              if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
+                DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list>>\n");
+              }else
+              {
+
+                  out_l->type_msg.i_msg      = i_msg_temp;
+                  out_l->uniontype           = INITIATE_MSG;
+                  list_push(out_union_list,out_l); // Add an item to the start of the list.
+              }
+
+              if(i_msg.S == FIND)
+              {
+                  node.find_count++;
+              }
+
+            }
+          } //END for
+
+          if(i_msg.S == FIND)
+          {
+              process_post_synch(&procedure_test, e_execute, NULL);
+          }
+      }
+  }
+
+  PROCESS_END();
+}
+
+
+
+PROCESS_THREAD(procedure_test, ev, data)
+{
+  static struct in_out_list *out_l;
+  static struct test_msg t_msg;
+  static struct neighbor *n;
+
+  PROCESS_BEGIN();
+
+  while(1)
+  {
+      PROCESS_WAIT_EVENT();
+      if(ev == e_execute)
+      {
+          //If there are adjacent edges in the state BASIC
+          //Take into account that the list is sorted
+          for(n = neighbors_list_p; n != NULL; n = list_item_next(n))
+          {
+              if(is_basic(&n->addr))
+              {
+                  linkaddr_copy(&node.test_edge, &n->addr);
+
+                  fill_test_msg(&t_msg, &node.test_edge, &linkaddr_node_addr, node.LN, node.FN);
+
+                  //ADD to the list
+                  out_l = memb_alloc(&out_union_mem);
+                  if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
+                    DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list>>\n");
+                  }else
+                  {
+
+                      out_l->type_msg.t_msg      = t_msg;
+                      out_l->uniontype           = TEST_MSG;
+                      list_push(out_union_list,out_l); // Add an item to the start of the list.
+                  }
+
+                  break;
+              }
+          }
+
+          //There are not adjacent edges in the state BASIC
+          if(n == NULL)
+          {
+              linkaddr_copy(&node.test_edge, &linkaddr_null);
+              process_post_synch(&procedure_report, e_execute, NULL);
+          }
+
+      }
+
+  }
+
+
+  PROCESS_END();
+
+}
+
 PROCESS_THREAD(out_union_evaluation, ev, data)
 {
   static struct etimer et1, et2;
@@ -411,10 +550,10 @@ PROCESS_THREAD(send_Gallager_Humblet_Spira, ev, data) //It can not have PROCESS_
        runicast_send(&runicast, &i_msg.to, NUM_MAX_RETRANSMISSIONS);
 
        DGHS_DBG_2("Send e_send_initiate to %d.%d with LN=%d FN=%d.%02d SN=%d\n" , i_msg.to.u8[0], i_msg.to.u8[1],
-       i_msg.LN,
-       (int)(i_msg.FN / SEQNO_EWMA_UNITY),
-       (int)(((100UL * i_msg.FN) / SEQNO_EWMA_UNITY) % 100),
-       i_msg.SN);
+       i_msg.L,
+       (int)(i_msg.F / SEQNO_EWMA_UNITY),
+       (int)(((100UL * i_msg.F) / SEQNO_EWMA_UNITY) % 100),
+       i_msg.S);
 
     }
   }

@@ -39,6 +39,8 @@
 ///////////////////////DEFINES///////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 
+#define INFINITE UINT32_MAX
+
 // n->SE: Edge state
 enum
 {
@@ -59,7 +61,8 @@ enum
 enum
 {
   CONNECT_MSG,
-  INITIATE_MSG
+  INITIATE_MSG,
+  TEST_MSG
 };
 
 
@@ -85,6 +88,14 @@ process_event_t e_send_initiate;
  ///////////////////////STRUCTS///////////////////////////////////////////////
  /////////////////////////////////////////////////////////////////////////////
 
+struct test_msg
+{
+  linkaddr_t to;
+  linkaddr_t from;
+  uint8_t    L; // level
+  uint32_t   F; //Fragment name
+};
+
 struct connect_msg
 {
   linkaddr_t to;
@@ -96,15 +107,16 @@ struct initiate_msg
 {
   linkaddr_t to;
   linkaddr_t from;
-  uint8_t    LN; // level
-  uint32_t   FN; //Fragment name
-  uint8_t    SN; // Node state
+  uint8_t    L; // level
+  uint32_t   F; //Fragment name
+  uint8_t    S; // Node state
 };
 
 union types_msg
 {
   struct connect_msg  co_msg;
   struct initiate_msg i_msg;
+  struct test_msg     t_msg;
 };
 
 struct in_out_list
@@ -119,11 +131,12 @@ struct in_out_list
 /////////////////////////////////////////////////////////////////////////////
 
 void fill_connect_msg(struct connect_msg *co_msg, linkaddr_t *to, linkaddr_t *from, uint8_t L);
-void fill_initiate_msg(struct initiate_msg *i_msg, linkaddr_t *to, linkaddr_t *from,
-                       uint8_t LN, uint32_t FN, uint8_t SN);
+void fill_initiate_msg(struct initiate_msg *i_msg, linkaddr_t *to, linkaddr_t *from, uint8_t L, uint32_t F, uint8_t S);
+void fill_test_msg(struct test_msg *t_msg, linkaddr_t *to, linkaddr_t *from, uint8_t L, uint32_t F);
 void print_neighbor_list_debug(struct neighbor *neighbors_list_head);
 void become_branch(linkaddr_t *addr);
 uint8_t is_basic(linkaddr_t *addr);
+uint8_t is_branch(linkaddr_t *addr);
 uint32_t weight(linkaddr_t *addr);
 void init_SE();
 void sort_neighbor_list();

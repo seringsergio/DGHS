@@ -45,13 +45,21 @@ void fill_connect_msg(struct connect_msg *co_msg, linkaddr_t *to, linkaddr_t *fr
 }
 
 void fill_initiate_msg(struct initiate_msg *i_msg, linkaddr_t *to, linkaddr_t *from,
-                       uint8_t LN, uint32_t FN, uint8_t SN)
+                       uint8_t L, uint32_t F, uint8_t S)
 {
   linkaddr_copy(&i_msg->to,to);
   linkaddr_copy(&i_msg->from,from);
-  i_msg->LN = LN;
-  i_msg->FN = FN;
-  i_msg->SN = SN;
+  i_msg->L = L;
+  i_msg->F = F;
+  i_msg->S = S;
+}
+
+void fill_test_msg(struct test_msg *t_msg, linkaddr_t *to, linkaddr_t *from, uint8_t L, uint32_t F)
+{
+  linkaddr_copy(&t_msg->to,to);
+  linkaddr_copy(&t_msg->from,from);
+  t_msg->L = L;
+  t_msg->F = F;
 }
 
 void print_neighbor_list_debug(struct neighbor *neighbors_list_head)
@@ -95,6 +103,34 @@ uint8_t is_basic(linkaddr_t *addr)
   }else
   {
       if(n->SE == BASIC)
+      {
+        return 1;
+      }else
+      {
+        return 0;
+      }
+
+  }
+}
+
+uint8_t is_branch(linkaddr_t *addr)
+{
+  struct neighbor *n;
+
+  for(n = neighbors_list_p; n != NULL; n = list_item_next(n))
+  {
+      if(linkaddr_cmp(&n->addr, addr)) {
+        break;
+      }
+  }
+
+  if(n == NULL)
+  {
+      DGHS_DBG_1("ERROR: The neighbor that you intend to determine is_branch() does not exists\n");
+      return 0;
+  }else
+  {
+      if(n->SE == BRANCH)
       {
         return 1;
       }else
