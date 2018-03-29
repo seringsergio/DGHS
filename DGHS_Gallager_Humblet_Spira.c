@@ -45,7 +45,7 @@ PROCESS(procedure_wakeup, "procedure_wakeup");
 PROCESS(send_Gallager_Humblet_Spira, "send_Gallager_Humblet_Spira");
 PROCESS(out_union_evaluation, "out_union_evaluation");
 PROCESS(in_union_evaluation, "in_union_evaluation");
-
+PROCESS(response_to_connect,"response_to_connect");
 
 static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8_t seqno)
 {
@@ -98,13 +98,15 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
         in_l->type_msg.co_msg     = *((struct connect_msg*) msg);
         in_l->uniontype           = CONNECT_MSG;
         list_push(in_union_list,in_l); // Add an item to the start of the list.
-        DGHS_DBG_2("Added to in_union_list CONNECT from %d.%d level %d\n",
+        DGHS_DBG_2("runicast message received CONNECT from %d.%d level %d\n",
         in_l->type_msg.co_msg.from.u8[0], in_l->type_msg.co_msg.from.u8[1], in_l->type_msg.co_msg.L );
     }
 
   }else
   if(msg_type == INITIATE_MSG)
   {
+
+
     DGHS_DBG_2("runicast msg_type = INITIATE_MSG \n");
   }else
   {
@@ -178,8 +180,7 @@ PROCESS_THREAD(procedure_wakeup, ev, data) //It can not have PROCESS_WAIT_EVENT_
 PROCESS_THREAD(in_union_evaluation, ev, data)
 {
   static struct etimer et1, et2;
-  static struct in_out_list *in_l, *out_l, *in_l_temp;
-  static struct initiate_msg i_msg;
+  static struct in_out_list *in_l;
 
   PROCESS_BEGIN();
 
@@ -196,7 +197,7 @@ PROCESS_THREAD(in_union_evaluation, ev, data)
         while(list_length(in_union_list))
         {
           //DGHS_DBG_2("List in_union_list has at least 1 element\n");
-          DGHS_DBG_2("list_length(in_union_list) = %d\n", list_length(in_union_list));
+          //DGHS_DBG_2("list_length(in_union_list) = %d\n", list_length(in_union_list));
 
           //Give enough time to transmit the previous msg
           etimer_set(&et2, CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION
@@ -205,88 +206,12 @@ PROCESS_THREAD(in_union_evaluation, ev, data)
 
           //remove from list
           in_l = list_chop(in_union_list); // Remove the last object on the list.
-
           if(in_l->uniontype == CONNECT_MSG)
           {
-              DGHS_DBG_2("Remove from in_union_list CONNECT from %d.%d level %d\n",
-              in_l->type_msg.co_msg.from.u8[0], in_l->type_msg.co_msg.from.u8[1], in_l->type_msg.co_msg.L );
-              //Response to receipt of CONNECT on edge j
-              /*if(node.SN == SLEEPING)
-              {
-                  process_post(&procedure_wakeup, e_execute, NULL);
-                  DGHS_DBG_2("Desde aca no garantizo fin NEIGHBOR_DISCOVERY\n");
-              }*/
-              if(in_l->type_msg.co_msg.L < node.LN) //OJO: va sin el igual
-              {
-                  become_branch(&in_l->type_msg.co_msg.from); //Become branch the edge with minimum weight. We have just sorted the list
-
-                  fill_initiate_msg(&i_msg, &in_l->type_msg.co_msg.from, &linkaddr_node_addr,
-                                    node.LN, node.FN, node.SN);
-                  //ADD to the list
-                  out_l = memb_alloc(&out_union_mem);
-                  if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
-                    DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list>>\n");
-                  }else
-                  {
-
-                      out_l->type_msg.i_msg      = i_msg;
-                      out_l->uniontype           = INITIATE_MSG;
-                      list_push(out_union_list,out_l); // Add an item to the start of the list.
-                      DGHS_DBG_2("Add an INITIATE_MSG to out_union_list\n");
-                  }
-
-                  if(node.SN == FIND)
-                  {
-                    node.find_count++;
-                  }
-
-
-              }else
-              if( is_basic(&in_l->type_msg.co_msg.from) )
-              {
-                   DGHS_DBG_2("is_basic\n");
-
-                    //place received message on end of queue
-                    //ADD to the list
-                    in_l_temp = memb_alloc(&in_union_mem);
-                    DGHS_DBG_2("memb_alloc\n");
-                    if(in_l_temp == NULL) {            // If we could not allocate a new entry, we give up.
-                      DGHS_DBG_1("ERROR: we could not allocate a new entry for <<in_union_list>> ---\n");
-                    }else
-                    {
-                        in_l_temp->type_msg.co_msg     = in_l->type_msg.co_msg;
-                        in_l_temp->uniontype           = CONNECT_MSG;
-                        list_push(in_union_list,in_l_temp); // Add an item to the start of the list.
-                    }
-
-                    PROCESS_PAUSE(); // to allow for other processes to get a slice of the processor's time in between.
-
-              }else
-              {
-
-                DGHS_DBG_2("is_NOT_basic\n");
-
-                fill_initiate_msg(&i_msg, &in_l->type_msg.co_msg.from, &linkaddr_node_addr,
-                                  node.LN + 1, weight(&in_l->type_msg.co_msg.from), FIND);
-                //ADD to the list
-                out_l = memb_alloc(&out_union_mem);
-                if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
-                  DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list>>\n");
-                }else
-                {
-
-                    out_l->type_msg.i_msg      = i_msg;
-                    out_l->uniontype           = INITIATE_MSG;
-                    list_push(out_union_list,out_l); // Add an item to the start of the list.
-                    DGHS_DBG_2("Add an INITIATE_MSG to out_union_list\n");
-                }
-
-
-              }
+              process_post_synch(&response_to_connect, e_execute, &in_l->type_msg.co_msg);
           }
           memb_free(&in_union_mem,in_l);
-          DGHS_DBG_2("memb_free\n");
-
+          //DGHS_DBG_2("memb_free\n");
 
         } //while(list_length(in_union_list))
 
@@ -296,6 +221,99 @@ PROCESS_THREAD(in_union_evaluation, ev, data)
 
   PROCESS_END();
 }
+
+
+
+PROCESS_THREAD(response_to_connect, ev, data)
+{
+
+  static struct connect_msg co_msg;
+  static struct initiate_msg i_msg;
+  static struct in_out_list *out_l, *in_l_temp;
+
+  PROCESS_BEGIN();
+
+  while(1)
+  {
+    PROCESS_WAIT_EVENT();
+    if(ev == e_execute)
+    {
+        co_msg = *( (struct connect_msg *) data);
+
+        DGHS_DBG_2("response_to_connect from %d.%d level %d\n", co_msg.from.u8[0], co_msg.from.u8[1], co_msg.L );
+
+        if(co_msg.L < node.LN) //OJO: va sin el igual
+        {
+            become_branch(&co_msg.from); //Become branch the edge with minimum weight. We have just sorted the list
+
+            fill_initiate_msg(&i_msg, &co_msg.from, &linkaddr_node_addr, node.LN, node.FN, node.SN);
+            //ADD to the list
+            out_l = memb_alloc(&out_union_mem);
+            if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
+              DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list>>\n");
+            }else
+            {
+
+                out_l->type_msg.i_msg      = i_msg;
+                out_l->uniontype           = INITIATE_MSG;
+                list_push(out_union_list,out_l); // Add an item to the start of the list.
+                //DGHS_DBG_2("Add an INITIATE_MSG to out_union_list\n");
+            }
+
+            if(node.SN == FIND)
+            {
+              node.find_count++;
+            }
+
+        }else
+        if( is_basic(&co_msg.from) )
+        {
+              DGHS_DBG_2("is_basic\n");
+
+              //place received message on end of queue
+              //ADD to the list
+              in_l_temp = memb_alloc(&in_union_mem);
+              //DGHS_DBG_2("memb_alloc\n");
+              if(in_l_temp == NULL) {            // If we could not allocate a new entry, we give up.
+                DGHS_DBG_1("ERROR: we could not allocate a new entry for <<in_union_list>> ---\n");
+              }else
+              {
+                  in_l_temp->type_msg.co_msg     = co_msg;
+                  in_l_temp->uniontype           = CONNECT_MSG;
+                  list_push(in_union_list,in_l_temp); // Add an item to the start of the list.
+              }
+
+              //PROCESS_PAUSE(); // to allow for other processes to get a slice of the processor's time in between.
+
+        }else
+        {
+
+          DGHS_DBG_2("is_NOT_basic\n");
+
+          fill_initiate_msg(&i_msg, &co_msg.from, &linkaddr_node_addr, node.LN + 1, weight(&co_msg.from), FIND);
+          //ADD to the list
+          out_l = memb_alloc(&out_union_mem);
+          if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
+            DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list>>\n");
+          }else
+          {
+
+              out_l->type_msg.i_msg      = i_msg;
+              out_l->uniontype           = INITIATE_MSG;
+              list_push(out_union_list,out_l); // Add an item to the start of the list.
+              //DGHS_DBG_2("Add an INITIATE_MSG to out_union_list\n");
+          }
+
+
+        }
+
+    } //IF e_execute
+
+  }
+
+  PROCESS_END();
+}
+
 
 PROCESS_THREAD(out_union_evaluation, ev, data)
 {
