@@ -707,7 +707,57 @@ PROCESS_THREAD(response_to_report, ev, data)
 
 PROCESS_THREAD(procedure_change_root, ev, data)
 {
+  static struct change_root_msg cha_root_msg;
+  static struct connect_msg co_msg;
+  static struct in_out_list *out_l;
+
   PROCESS_BEGIN();
+
+  while(1)
+  {
+    PROCESS_WAIT_EVENT();
+    if(ev == e_execute)
+    {
+        if(is_branch(&node.best_edge))
+        {
+            //Send Change-root on best_edge
+            fill_change_root_msg(&cha_root_msg, &node.best_edge, &linkaddr_node_addr);
+            //ADD to the list
+            out_l = memb_alloc(&out_union_mem);
+            if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
+              DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list>>\n");
+            }else
+            {
+
+                out_l->type_msg.cha_root_msg      = cha_root_msg;
+                out_l->uniontype                  = CHANGE_ROOT_MSG;
+                list_push(out_union_list,out_l); // Add an item to the start of the list.
+            }
+
+        }else
+        {
+          //Send Connect(LN)  on best_edge
+          fill_connect_msg(&co_msg, &node.best_edge, &linkaddr_node_addr, node.LN);
+          //ADD to the list
+          out_l = memb_alloc(&out_union_mem);
+          if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
+            DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list>>\n");
+          }else
+          {
+
+              out_l->type_msg.co_msg      = co_msg;
+              out_l->uniontype            = CONNECT_MSG;
+              list_push(out_union_list,out_l); // Add an item to the start of the list.
+          }
+
+          become_branch(&node.best_edge);
+
+        }
+
+
+    }
+
+  }
 
   PROCESS_END();
 

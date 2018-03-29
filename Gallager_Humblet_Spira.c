@@ -81,6 +81,13 @@ void fill_reject_msg(struct reject_msg *rej_msg, linkaddr_t *to, linkaddr_t *fro
   linkaddr_copy(&rej_msg->from,from);
 }
 
+void fill_change_root_msg(struct change_root_msg *cha_root_msg, linkaddr_t *to, linkaddr_t *from)
+{
+  linkaddr_copy(&cha_root_msg->to,to);
+  linkaddr_copy(&cha_root_msg->from,from);
+}
+
+
 void print_neighbor_list_debug(struct neighbor *neighbors_list_head)
 {
     struct neighbor *n;
