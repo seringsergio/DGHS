@@ -361,7 +361,7 @@ PROCESS_THREAD(response_to_connect, ev, data)
 
           DGHS_DBG_2("is_NOT_basic\n");
 
-          fill_initiate_msg(&i_msg, &co_msg.from, &linkaddr_node_addr, node.LN + 1, weight(&co_msg.from), FIND);
+          fill_initiate_msg(&i_msg, &co_msg.from, &linkaddr_node_addr, (node.LN + 1), weight(&co_msg.from), FIND);
           //ADD to the list
           out_l = memb_alloc(&out_union_mem);
           if(out_l == NULL) {            // If we could not allocate a new entry, we give up.

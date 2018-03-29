@@ -243,1262 +243,461 @@
 01:02.392	ID:5	Broadcast - Discover the neighbors
 01:02.865	ID:1	Broadcast - Discover the neighbors
 01:02.999	ID:10	Broadcast - Discover the neighbors
-01:03.062	ID:2	Broadcast - Discover the neighbors
 01:03.128	ID:4	Broadcast - Discover the neighbors
-01:03.516	ID:8	Broadcast - Discover the neighbors
 01:03.733	ID:6	Broadcast - Discover the neighbors
 01:04.600	ID:3	Broadcast - Discover the neighbors
-01:04.729	ID:9	Broadcast - Discover the neighbors
-01:05.299	ID:5	Broadcast - Discover the neighbors
 01:05.704	ID:7	Broadcast - Discover the neighbors
-01:05.794	ID:1	Broadcast - Discover the neighbors
 01:05.875	ID:10	Broadcast - Discover the neighbors
-01:06.227	ID:8	Broadcast - Discover the neighbors
-01:06.875	ID:2	Broadcast - Discover the neighbors
-01:07.050	ID:9	Broadcast - Discover the neighbors
-01:07.065	ID:4	Broadcast - Discover the neighbors
-01:07.077	ID:6	Broadcast - Discover the neighbors
-01:07.647	ID:3	Broadcast - Discover the neighbors
-01:08.388	ID:1	Broadcast - Discover the neighbors
-01:08.508	ID:10	Broadcast - Discover the neighbors
-01:08.977	ID:8	Broadcast - Discover the neighbors
-01:09.222	ID:9	Broadcast - Discover the neighbors
-01:09.338	ID:5	Broadcast - Discover the neighbors
-01:09.454	ID:7	Broadcast - Discover the neighbors
-01:09.695	ID:2	Broadcast - Discover the neighbors
-01:10.397	ID:6	Broadcast - Discover the neighbors
-01:10.742	ID:10	Broadcast - Discover the neighbors
-01:10.807	ID:4	Broadcast - Discover the neighbors
-01:11.014	ID:3	Broadcast - Discover the neighbors
-01:11.984	ID:8	Broadcast - Discover the neighbors
-01:12.365	ID:1	Broadcast - Discover the neighbors
-01:12.367	ID:2	Broadcast - Discover the neighbors
-01:12.854	ID:5	Broadcast - Discover the neighbors
-01:13.214	ID:9	Broadcast - Discover the neighbors
-01:13.295	ID:3	Broadcast - Discover the neighbors
-01:13.334	ID:6	Broadcast - Discover the neighbors
-01:13.431	ID:7	Broadcast - Discover the neighbors
-01:13.546	ID:10	Broadcast - Discover the neighbors
-01:13.963	ID:4	Broadcast - Discover the neighbors
-01:14.859	ID:2	Broadcast - Discover the neighbors
-01:15.068	ID:1	Broadcast - Discover the neighbors
-01:15.094	ID:8	Broadcast - Discover the neighbors
-01:15.314	ID:5	Broadcast - Discover the neighbors
-01:15.620	ID:9	Broadcast - Discover the neighbors
-01:15.999	ID:6	Broadcast - Discover the neighbors
-01:16.265	ID:10	Broadcast - Discover the neighbors
-01:16.610	ID:7	Broadcast - Discover the neighbors
-01:17.210	ID:3	Broadcast - Discover the neighbors
-01:17.274	ID:8	Broadcast - Discover the neighbors
-01:17.675	ID:4	Broadcast - Discover the neighbors
-01:17.766	ID:2	Broadcast - Discover the neighbors
-01:18.814	ID:5	Broadcast - Discover the neighbors
-01:18.966	ID:1	Broadcast - Discover the neighbors
-01:19.160	ID:9	Broadcast - Discover the neighbors
-01:20.030	ID:6	Broadcast - Discover the neighbors
-01:20.343	ID:10	Broadcast - Discover the neighbors
-01:20.368	ID:8	Broadcast - Discover the neighbors
-01:20.454	ID:7	Broadcast - Discover the neighbors
-01:21.100	ID:3	Broadcast - Discover the neighbors
-01:21.148	ID:2	Broadcast - Discover the neighbors
-01:21.153	ID:1	Broadcast - Discover the neighbors
-01:21.425	ID:4	Broadcast - Discover the neighbors
-01:21.573	ID:5	Broadcast - Discover the neighbors
-01:22.175	ID:9	Broadcast - Discover the neighbors
-01:22.694	ID:6	Broadcast - Discover the neighbors
-01:23.321	ID:8	Broadcast - Discover the neighbors
-01:24.117	ID:10	Broadcast - Discover the neighbors
-01:24.275	ID:7	Broadcast - Discover the neighbors
-01:24.436	ID:3	Broadcast - Discover the neighbors
-01:24.648	ID:2	Broadcast - Discover the neighbors
-01:24.849	ID:1	Broadcast - Discover the neighbors
-01:25.432	ID:4	Broadcast - Discover the neighbors
-01:25.432	ID:5	Broadcast - Discover the neighbors
-01:26.136	ID:9	Broadcast - Discover the neighbors
-01:26.334	ID:6	Broadcast - Discover the neighbors
-01:26.423	ID:7	Broadcast - Discover the neighbors
-01:26.469	ID:8	Broadcast - Discover the neighbors
-01:26.680	ID:10	Broadcast - Discover the neighbors
-01:27.311	ID:3	Broadcast - Discover the neighbors
-01:27.406	ID:2	Broadcast - Discover the neighbors
-01:28.896	ID:1	Broadcast - Discover the neighbors
-01:28.906	ID:8	Broadcast - Discover the neighbors
-01:29.136	ID:9	Broadcast - Discover the neighbors
-01:29.249	ID:10	Broadcast - Discover the neighbors
-01:29.361	ID:5	Broadcast - Discover the neighbors
-01:29.541	ID:4	Broadcast - Discover the neighbors
-01:29.860	ID:7	Broadcast - Discover the neighbors
-01:29.944	ID:3	Broadcast - Discover the neighbors
-01:30.421	ID:6	Broadcast - Discover the neighbors
-01:31.263	ID:1	Broadcast - Discover the neighbors
-01:31.266	ID:2	Broadcast - Discover the neighbors
-01:31.394	ID:9	Broadcast - Discover the neighbors
-01:31.852	ID:8	Broadcast - Discover the neighbors
-01:32.179	ID:3	Broadcast - Discover the neighbors
-01:32.671	ID:10	Broadcast - Discover the neighbors
-01:32.721	ID:4	Broadcast - Discover the neighbors
-01:32.955	ID:5	Broadcast - Discover the neighbors
-01:33.046	ID:6	Broadcast - Discover the neighbors
-01:33.806	ID:7	Broadcast - Discover the neighbors
-01:34.149	ID:8	Broadcast - Discover the neighbors
-01:34.544	ID:1	Broadcast - Discover the neighbors
-01:34.753	ID:9	Broadcast - Discover the neighbors
-01:34.815	ID:4	Broadcast - Discover the neighbors
-01:34.915	ID:10	Broadcast - Discover the neighbors
-01:34.983	ID:3	Broadcast - Discover the neighbors
-01:35.195	ID:2	Broadcast - Discover the neighbors
-01:35.932	ID:5	Broadcast - Discover the neighbors
-01:36.428	ID:6	Broadcast - Discover the neighbors
-01:36.963	ID:4	Broadcast - Discover the neighbors
-01:37.103	ID:7	Broadcast - Discover the neighbors
-01:37.458	ID:1	Broadcast - Discover the neighbors
-01:37.766	ID:8	Broadcast - Discover the neighbors
-01:37.952	ID:3	Broadcast - Discover the neighbors
-01:38.183	ID:9	Broadcast - Discover the neighbors
-01:38.570	ID:10	Broadcast - Discover the neighbors
-01:38.789	ID:2	Broadcast - Discover the neighbors
-01:39.635	ID:5	Broadcast - Discover the neighbors
-01:39.720	ID:7	Broadcast - Discover the neighbors
-01:40.349	ID:1	Broadcast - Discover the neighbors
-01:40.401	ID:4	Broadcast - Discover the neighbors
-01:40.412	ID:6	Broadcast - Discover the neighbors
-01:40.804	ID:3	Broadcast - Discover the neighbors
-01:40.820	ID:10	Broadcast - Discover the neighbors
-01:41.276	ID:9	Broadcast - Discover the neighbors
-01:41.297	ID:8	Broadcast - Discover the neighbors
-01:41.766	ID:2	Broadcast - Discover the neighbors
-01:42.533	ID:5	Broadcast - Discover the neighbors
-01:42.684	ID:1	Broadcast - Discover the neighbors
-01:42.752	ID:7	Broadcast - Discover the neighbors
-01:42.999	ID:6	Broadcast - Discover the neighbors
-01:43.327	ID:10	Broadcast - Discover the neighbors
-01:43.461	ID:8	Broadcast - Discover the neighbors
-01:43.565	ID:4	Broadcast - Discover the neighbors
-01:43.753	ID:9	Broadcast - Discover the neighbors
-01:44.444	ID:3	Broadcast - Discover the neighbors
-01:45.337	ID:7	Broadcast - Discover the neighbors
-01:45.469	ID:2	Broadcast - Discover the neighbors
-01:45.522	ID:6	Broadcast - Discover the neighbors
-01:45.720	ID:5	Broadcast - Discover the neighbors
-01:45.937	ID:10	Broadcast - Discover the neighbors
-01:46.096	ID:4	Broadcast - Discover the neighbors
-01:46.559	ID:1	Broadcast - Discover the neighbors
-01:46.602	ID:8	Broadcast - Discover the neighbors
-01:46.957	ID:9	Broadcast - Discover the neighbors
-01:47.014	ID:3	Broadcast - Discover the neighbors
-01:47.834	ID:6	Broadcast - Discover the neighbors
-01:48.140	ID:10	Broadcast - Discover the neighbors
-01:48.367	ID:2	Broadcast - Discover the neighbors
-01:48.416	ID:5	Broadcast - Discover the neighbors
-01:48.462	ID:7	Broadcast - Discover the neighbors
-01:49.260	ID:4	Broadcast - Discover the neighbors
-01:49.354	ID:9	Broadcast - Discover the neighbors
-01:50.187	ID:8	Broadcast - Discover the neighbors
-01:50.193	ID:1	Broadcast - Discover the neighbors
-01:50.436	ID:3	Broadcast - Discover the neighbors
-01:50.789	ID:10	Broadcast - Discover the neighbors
-01:50.813	ID:7	Broadcast - Discover the neighbors
-01:51.155	ID:6	Broadcast - Discover the neighbors
-01:51.401	ID:4	Broadcast - Discover the neighbors
-01:51.463	ID:5	Broadcast - Discover the neighbors
-01:51.554	ID:2	Broadcast - Discover the neighbors
-01:52.042	ID:9	Broadcast - Discover the neighbors
-01:52.679	ID:3	Broadcast - Discover the neighbors
-01:53.427	ID:1	Broadcast - Discover the neighbors
-01:53.900	ID:7	Broadcast - Discover the neighbors
-01:53.987	ID:4	Broadcast - Discover the neighbors
-01:54.238	ID:9	Broadcast - Discover the neighbors
-01:54.250	ID:2	Broadcast - Discover the neighbors
-01:54.313	ID:8	Broadcast - Discover the neighbors
-01:54.327	ID:6	Broadcast - Discover the neighbors
-01:54.726	ID:10	Broadcast - Discover the neighbors
-01:54.830	ID:5	Broadcast - Discover the neighbors
-01:56.228	ID:7	Broadcast - Discover the neighbors
-01:56.335	ID:3	Broadcast - Discover the neighbors
-01:56.785	ID:9	Broadcast - Discover the neighbors
-01:57.111	ID:5	Broadcast - Discover the neighbors
-01:57.112	ID:4	Broadcast - Discover the neighbors
-01:57.171	ID:10	Broadcast - Discover the neighbors
-01:57.196	ID:8	Broadcast - Discover the neighbors
-01:57.231	ID:1	Broadcast - Discover the neighbors
-01:57.297	ID:2	Broadcast - Discover the neighbors
-01:57.600	ID:6	Broadcast - Discover the neighbors
-01:59.251	ID:7	Broadcast - Discover the neighbors
-01:59.651	ID:9	Broadcast - Discover the neighbors
-02:00.118	ID:8	Broadcast - Discover the neighbors
-02:00.123	ID:3	Broadcast - Discover the neighbors
-02:00.139	ID:6	Broadcast - Discover the neighbors
-02:00.156	ID:10	Broadcast - Discover the neighbors
-02:00.663	ID:2	Broadcast - Discover the neighbors
-02:00.950	ID:1	Broadcast - Discover the neighbors
-02:00.994	ID:4	Broadcast - Discover the neighbors
-02:01.026	ID:5	Broadcast - Discover the neighbors
-02:02.063	ID:7	Broadcast - Discover the neighbors
-02:02.202	ID:3	Broadcast - Discover the neighbors
-02:02.336	ID:8	Broadcast - Discover the neighbors
-02:02.796	ID:10	Broadcast - Discover the neighbors
-02:02.945	ID:2	Broadcast - Discover the neighbors
-02:03.433	ID:9	Broadcast - Discover the neighbors
-02:04.028	ID:1	Broadcast - Discover the neighbors
-02:04.156	ID:6	Broadcast - Discover the neighbors
-02:04.710	ID:3	Broadcast - Discover the neighbors
-02:04.916	ID:4	Broadcast - Discover the neighbors
-02:04.916	ID:5	Broadcast - Discover the neighbors
-02:05.437	ID:8	Broadcast - Discover the neighbors
-02:05.883	ID:10	Broadcast - Discover the neighbors
-02:05.884	ID:7	Broadcast - Discover the neighbors
-02:06.802	ID:1	Broadcast - Discover the neighbors
-02:06.847	ID:9	Broadcast - Discover the neighbors
-02:06.859	ID:2	Broadcast - Discover the neighbors
-02:07.319	ID:3	Broadcast - Discover the neighbors
-02:08.022	ID:6	Broadcast - Discover the neighbors
-02:08.135	ID:4	Broadcast - Discover the neighbors
-02:08.252	ID:5	Broadcast - Discover the neighbors
-02:08.766	ID:8	Broadcast - Discover the neighbors
-02:09.244	ID:7	Broadcast - Discover the neighbors
-02:09.508	ID:10	Broadcast - Discover the neighbors
-02:10.238	ID:9	Broadcast - Discover the neighbors
-02:10.331	ID:4	Broadcast - Discover the neighbors
-02:10.365	ID:1	Broadcast - Discover the neighbors
-02:10.750	ID:2	Broadcast - Discover the neighbors
-02:10.998	ID:3	Broadcast - Discover the neighbors
-02:11.127	ID:5	Broadcast - Discover the neighbors
-02:11.280	ID:6	Broadcast - Discover the neighbors
-02:11.759	ID:7	Broadcast - Discover the neighbors
-02:11.890	ID:10	Broadcast - Discover the neighbors
-02:12.653	ID:1	Broadcast - Discover the neighbors
-02:12.790	ID:8	Broadcast - Discover the neighbors
-02:13.073	ID:9	Broadcast - Discover the neighbors
-02:13.342	ID:3	Broadcast - Discover the neighbors
-02:13.354	ID:4	Broadcast - Discover the neighbors
-02:13.639	ID:6	Broadcast - Discover the neighbors
-02:13.760	ID:5	Broadcast - Discover the neighbors
-02:14.085	ID:2	Broadcast - Discover the neighbors
-02:14.312	ID:10	Broadcast - Discover the neighbors
-02:15.220	ID:7	Broadcast - Discover the neighbors
-02:15.309	ID:1	Broadcast - Discover the neighbors
-02:15.448	ID:9	Broadcast - Discover the neighbors
-02:15.995	ID:5	Broadcast - Discover the neighbors
-02:16.069	ID:6	Broadcast - Discover the neighbors
-02:16.069	ID:3	Broadcast - Discover the neighbors
-02:16.166	ID:4	Broadcast - Discover the neighbors
-02:16.602	ID:8	Broadcast - Discover the neighbors
-02:16.960	ID:2	Broadcast - Discover the neighbors
-02:17.720	ID:7	Broadcast - Discover the neighbors
-02:18.031	ID:10	Broadcast - Discover the neighbors
-02:18.099	ID:1	Broadcast - Discover the neighbors
-02:18.522	ID:3	Broadcast - Discover the neighbors
-02:18.799	ID:5	Broadcast - Discover the neighbors
-02:19.422	ID:8	Broadcast - Discover the neighbors
-02:19.582	ID:9	Broadcast - Discover the neighbors
-02:19.594	ID:2	Broadcast - Discover the neighbors
-02:19.706	ID:4	Broadcast - Discover the neighbors
-02:20.162	ID:6	Broadcast - Discover the neighbors
-02:20.633	ID:10	Broadcast - Discover the neighbors
-02:21.170	ID:3	Broadcast - Discover the neighbors
-02:21.365	ID:1	Broadcast - Discover the neighbors
-02:21.478	ID:7	Broadcast - Discover the neighbors
-02:21.767	ID:5	Broadcast - Discover the neighbors
-02:21.828	ID:2	Broadcast - Discover the neighbors
-02:22.094	ID:8	Broadcast - Discover the neighbors
-02:23.316	ID:9	Broadcast - Discover the neighbors
-02:23.461	ID:10	Broadcast - Discover the neighbors
-02:23.479	ID:4	Broadcast - Discover the neighbors
-02:23.639	ID:6	Broadcast - Discover the neighbors
-02:24.337	ID:7	Broadcast - Discover the neighbors
-02:24.575	ID:1	Broadcast - Discover the neighbors
-02:24.586	ID:8	Broadcast - Discover the neighbors
-02:24.620	ID:5	Broadcast - Discover the neighbors
-02:24.632	ID:2	Broadcast - Discover the neighbors
-02:25.108	ID:3	Broadcast - Discover the neighbors
-02:25.620	ID:9	Broadcast - Discover the neighbors
-02:25.842	ID:6	Broadcast - Discover the neighbors
-02:25.862	ID:4	Broadcast - Discover the neighbors
-02:26.984	ID:10	Broadcast - Discover the neighbors
-02:27.267	ID:7	Broadcast - Discover the neighbors
-02:27.493	ID:8	Broadcast - Discover the neighbors
-02:27.554	ID:3	Broadcast - Discover the neighbors
-02:27.601	ID:2	Broadcast - Discover the neighbors
-02:27.825	ID:1	Broadcast - Discover the neighbors
-02:28.089	ID:9	Broadcast - Discover the neighbors
-02:28.260	ID:5	Broadcast - Discover the neighbors
-02:28.588	ID:4	Broadcast - Discover the neighbors
-02:29.240	ID:6	Broadcast - Discover the neighbors
-02:29.860	ID:7	Broadcast - Discover the neighbors
-02:30.296	ID:10	Broadcast - Discover the neighbors
-02:30.441	ID:9	Broadcast - Discover the neighbors
-02:30.453	ID:2	Broadcast - Discover the neighbors
-02:30.538	ID:3	Broadcast - Discover the neighbors
-02:30.830	ID:5	Broadcast - Discover the neighbors
-02:31.333	ID:1	Broadcast - Discover the neighbors
-02:31.518	ID:4	Broadcast - Discover the neighbors
-02:31.531	ID:8	Broadcast - Discover the neighbors
-02:32.617	ID:10	Broadcast - Discover the neighbors
-02:32.928	ID:6	Broadcast - Discover the neighbors
-02:33.179	ID:3	Broadcast - Discover the neighbors
-02:33.837	ID:7	Broadcast - Discover the neighbors
-02:34.019	ID:9	Broadcast - Discover the neighbors
-02:34.112	ID:4	Broadcast - Discover the neighbors
-02:34.252	ID:5	Broadcast - Discover the neighbors
-02:34.531	ID:2	Broadcast - Discover the neighbors
-02:34.789	ID:10	Broadcast - Discover the neighbors
-02:34.944	ID:1	Broadcast - Discover the neighbors
-02:35.047	ID:8	Broadcast - Discover the neighbors
-02:36.124	ID:6	Broadcast - Discover the neighbors
-02:36.264	ID:3	Broadcast - Discover the neighbors
-02:36.495	ID:5	Broadcast - Discover the neighbors
-02:36.540	ID:7	Broadcast - Discover the neighbors
-02:37.292	ID:9	Broadcast - Discover the neighbors
-02:37.508	ID:8	Broadcast - Discover the neighbors
-02:37.622	ID:1	Broadcast - Discover the neighbors
-02:38.088	ID:4	Broadcast - Discover the neighbors
-02:38.304	ID:2	Broadcast - Discover the neighbors
-02:38.595	ID:7	Broadcast - Discover the neighbors
-02:38.781	ID:10	Broadcast - Discover the neighbors
-02:39.671	ID:6	Broadcast - Discover the neighbors
-02:39.889	ID:3	Broadcast - Discover the neighbors
-02:40.151	ID:5	Broadcast - Discover the neighbors
-02:40.791	ID:4	Broadcast - Discover the neighbors
-02:40.867	ID:2	Broadcast - Discover the neighbors
-02:40.966	ID:1	Broadcast - Discover the neighbors
-02:41.008	ID:8	Broadcast - Discover the neighbors
-02:41.187	ID:10	Broadcast - Discover the neighbors
-02:41.354	ID:9	Broadcast - Discover the neighbors
-02:42.272	ID:3	Broadcast - Discover the neighbors
-02:42.642	ID:7	Broadcast - Discover the neighbors
-02:43.537	ID:6	Broadcast - Discover the neighbors
-02:43.766	ID:8	Broadcast - Discover the neighbors
-02:43.939	ID:5	Broadcast - Discover the neighbors
-02:44.156	ID:2	Broadcast - Discover the neighbors
-02:44.690	ID:4	Broadcast - Discover the neighbors
-02:44.693	ID:1	Broadcast - Discover the neighbors
-02:44.726	ID:10	Broadcast - Discover the neighbors
-02:45.009	ID:7	Broadcast - Discover the neighbors
-02:45.257	ID:3	Broadcast - Discover the neighbors
-02:45.425	ID:9	Broadcast - Discover the neighbors
-02:46.205	ID:5	Broadcast - Discover the neighbors
-02:46.319	ID:6	Broadcast - Discover the neighbors
-02:46.878	ID:4	Broadcast - Discover the neighbors
-02:47.625	ID:8	Broadcast - Discover the neighbors
-02:47.811	ID:3	Broadcast - Discover the neighbors
-02:47.812	ID:2	Broadcast - Discover the neighbors
-02:48.208	ID:1	Broadcast - Discover the neighbors
-02:48.290	ID:7	Broadcast - Discover the neighbors
-02:48.347	ID:9	Broadcast - Discover the neighbors
-02:48.416	ID:5	Broadcast - Discover the neighbors
-02:48.555	ID:10	Broadcast - Discover the neighbors
-02:48.733	ID:6	Broadcast - Discover the neighbors
-02:50.572	ID:4	Broadcast - Discover the neighbors
-02:50.791	ID:5	Broadcast - Discover the neighbors
-02:50.812	ID:10	Broadcast - Discover the neighbors
-02:51.124	ID:6	Broadcast - Discover the neighbors
-02:51.205	ID:7	Broadcast - Discover the neighbors
-02:51.530	ID:3	Broadcast - Discover the neighbors
-02:51.555	ID:8	Broadcast - Discover the neighbors
-02:51.601	ID:2	Broadcast - Discover the neighbors
-02:51.653	ID:1	Broadcast - Discover the neighbors
-02:52.089	ID:9	Broadcast - Discover the neighbors
-02:53.401	ID:5	Broadcast - Discover the neighbors
-02:53.866	ID:2	Broadcast - Discover the neighbors
-02:54.095	ID:7	Broadcast - Discover the neighbors
-02:54.132	ID:3	Broadcast - Discover the neighbors
-02:54.171	ID:10	Broadcast - Discover the neighbors
-02:54.399	ID:8	Broadcast - Discover the neighbors
-02:54.450	ID:1	Broadcast - Discover the neighbors
-02:54.619	ID:4	Broadcast - Discover the neighbors
-02:54.959	ID:6	Broadcast - Discover the neighbors
-02:55.245	ID:9	Broadcast - Discover the neighbors
-02:56.078	ID:2	Broadcast - Discover the neighbors
-02:56.431	ID:7	Broadcast - Discover the neighbors
-02:56.960	ID:3	Broadcast - Discover the neighbors
-02:56.987	ID:4	Broadcast - Discover the neighbors
-02:57.080	ID:5	Broadcast - Discover the neighbors
-02:57.133	ID:10	Broadcast - Discover the neighbors
-02:57.297	ID:8	Broadcast - Discover the neighbors
-02:58.328	ID:2	Broadcast - Discover the neighbors
-02:58.334	ID:6	Broadcast - Discover the neighbors
-02:58.535	ID:9	Broadcast - Discover the neighbors
-02:58.568	ID:1	Broadcast - Discover the neighbors
-02:59.424	ID:5	Broadcast - Discover the neighbors
-03:00.268	ID:4	Broadcast - Discover the neighbors
-03:00.306	ID:7	Broadcast - Discover the neighbors
-03:00.336	ID:10	Broadcast - Discover the neighbors
-03:00.483	ID:3	Broadcast - Discover the neighbors
-03:00.484	ID:8	Broadcast - Discover the neighbors
-03:00.835	ID:2	Broadcast - Discover the neighbors
-03:01.467	ID:6	Broadcast - Discover the neighbors
-03:02.151	ID:5	Broadcast - Discover the neighbors
-03:02.300	ID:9	Broadcast - Discover the neighbors
-03:02.599	ID:1	Broadcast - Discover the neighbors
-03:02.890	ID:10	Broadcast - Discover the neighbors
-03:03.182	ID:4	Broadcast - Discover the neighbors
-03:03.399	ID:8	Broadcast - Discover the neighbors
-03:03.445	ID:2	Broadcast - Discover the neighbors
-03:03.795	ID:3	Broadcast - Discover the neighbors
-03:03.938	ID:7	Broadcast - Discover the neighbors
-03:04.202	ID:6	Broadcast - Discover the neighbors
-03:04.604	ID:5	Broadcast - Discover the neighbors
-03:05.263	ID:1	Broadcast - Discover the neighbors
-03:05.680	ID:8	Broadcast - Discover the neighbors
-03:05.758	ID:10	Broadcast - Discover the neighbors
-03:06.011	ID:9	Broadcast - Discover the neighbors
-03:06.072	ID:4	Broadcast - Discover the neighbors
-03:06.116	ID:3	Broadcast - Discover the neighbors
-03:07.125	ID:2	Broadcast - Discover the neighbors
-03:07.173	ID:7	Broadcast - Discover the neighbors
-03:07.252	ID:5	Broadcast - Discover the neighbors
-03:07.506	ID:6	Broadcast - Discover the neighbors
-03:08.288	ID:3	Broadcast - Discover the neighbors
-03:08.409	ID:4	Broadcast - Discover the neighbors
-03:08.903	ID:1	Broadcast - Discover the neighbors
-03:09.469	ID:2	Broadcast - Discover the neighbors
-03:09.539	ID:10	Broadcast - Discover the neighbors
-03:09.564	ID:5	Broadcast - Discover the neighbors
-03:09.594	ID:8	Broadcast - Discover the neighbors
-03:09.761	ID:9	Broadcast - Discover the neighbors
-03:10.975	ID:6	Broadcast - Discover the neighbors
-03:10.978	ID:7	Broadcast - Discover the neighbors
-03:12.195	ID:2	Broadcast - Discover the neighbors
-03:12.280	ID:3	Broadcast - Discover the neighbors
-03:12.284	ID:4	Broadcast - Discover the neighbors
-03:12.682	ID:5	Broadcast - Discover the neighbors
-03:12.797	ID:8	Broadcast - Discover the neighbors
-03:12.952	ID:10	Broadcast - Discover the neighbors
-03:12.990	ID:1	Broadcast - Discover the neighbors
-03:13.769	ID:9	Broadcast - Discover the neighbors
-03:14.327	ID:6	Broadcast - Discover the neighbors
-03:14.648	ID:2	Broadcast - Discover the neighbors
-03:14.686	ID:3	Broadcast - Discover the neighbors
-03:14.899	ID:8	Broadcast - Discover the neighbors
-03:14.947	ID:7	Broadcast - Discover the neighbors
-03:15.385	ID:4	Broadcast - Discover the neighbors
-03:15.615	ID:1	Broadcast - Discover the neighbors
-03:15.713	ID:5	Broadcast - Discover the neighbors
-03:16.343	ID:10	Broadcast - Discover the neighbors
-03:16.905	ID:6	Broadcast - Discover the neighbors
-03:17.297	ID:2	Broadcast - Discover the neighbors
-03:17.703	ID:8	Broadcast - Discover the neighbors
-03:17.878	ID:9	Broadcast - Discover the neighbors
-03:18.226	ID:3	Broadcast - Discover the neighbors
-03:18.798	ID:7	Broadcast - Discover the neighbors
-03:18.997	ID:1	Broadcast - Discover the neighbors
-03:19.178	ID:6	Broadcast - Discover the neighbors
-03:19.179	ID:10	Broadcast - Discover the neighbors
-03:19.190	ID:4	Broadcast - Discover the neighbors
-03:19.377	ID:5	Broadcast - Discover the neighbors
-03:20.672	ID:8	Broadcast - Discover the neighbors
-03:21.058	ID:9	Broadcast - Discover the neighbors
-03:21.234	ID:2	Broadcast - Discover the neighbors
-03:21.241	ID:3	Broadcast - Discover the neighbors
-03:21.555	ID:10	Broadcast - Discover the neighbors
-03:21.876	ID:7	Broadcast - Discover the neighbors
-03:22.017	ID:5	Broadcast - Discover the neighbors
-03:22.240	ID:6	Broadcast - Discover the neighbors
-03:22.909	ID:4	Broadcast - Discover the neighbors
-03:22.981	ID:1	Broadcast - Discover the neighbors
-03:23.524	ID:8	Broadcast - Discover the neighbors
-03:23.679	ID:2	Broadcast - Discover the neighbors
-03:24.650	ID:7	Broadcast - Discover the neighbors
-03:24.901	ID:9	Broadcast - Discover the neighbors
-03:25.104	ID:5	Broadcast - Discover the neighbors
-03:25.202	ID:3	Broadcast - Discover the neighbors
-03:25.311	ID:6	Broadcast - Discover the neighbors
-03:25.568	ID:1	Broadcast - Discover the neighbors
-03:25.682	ID:4	Broadcast - Discover the neighbors
-03:25.687	ID:10	Broadcast - Discover the neighbors
-03:27.128	ID:9	Broadcast - Discover the neighbors
-03:27.476	ID:2	Broadcast - Discover the neighbors
-03:27.602	ID:8	Broadcast - Discover the neighbors
-03:27.921	ID:6	Broadcast - Discover the neighbors
-03:28.202	ID:3	Broadcast - Discover the neighbors
-03:28.212	ID:7	Broadcast - Discover the neighbors
-03:28.729	ID:5	Broadcast - Discover the neighbors
-03:29.119	ID:4	Broadcast - Discover the neighbors
-03:29.396	ID:1	Broadcast - Discover the neighbors
-03:29.421	ID:10	Broadcast - Discover the neighbors
-03:30.077	ID:6	Broadcast - Discover the neighbors
-03:30.460	ID:3	Broadcast - Discover the neighbors
-03:30.594	ID:2	Broadcast - Discover the neighbors
-03:31.081	ID:9	Broadcast - Discover the neighbors
-03:31.111	ID:5	Broadcast - Discover the neighbors
-03:31.375	ID:8	Broadcast - Discover the neighbors
-03:31.726	ID:10	Broadcast - Discover the neighbors
-03:31.782	ID:7	Broadcast - Discover the neighbors
-03:31.919	ID:1	Broadcast - Discover the neighbors
-03:32.362	ID:4	Broadcast - Discover the neighbors
-03:32.365	ID:6	Broadcast - Discover the neighbors
-03:33.229	ID:9	Broadcast - Discover the neighbors
-03:33.625	ID:2	Broadcast - Discover the neighbors
-03:33.819	ID:3	Broadcast - Discover the neighbors
-03:33.937	ID:8	Broadcast - Discover the neighbors
-03:34.095	ID:5	Broadcast - Discover the neighbors
-03:34.195	ID:10	Broadcast - Discover the neighbors
-03:34.231	ID:1	Broadcast - Discover the neighbors
-03:34.891	ID:7	Broadcast - Discover the neighbors
-03:34.944	ID:6	Broadcast - Discover the neighbors
-03:35.018	ID:4	Broadcast - Discover the neighbors
-03:36.546	ID:10	Broadcast - Discover the neighbors
-03:36.667	ID:9	Broadcast - Discover the neighbors
-03:37.227	ID:8	Broadcast - Discover the neighbors
-03:37.248	ID:3	Broadcast - Discover the neighbors
-03:37.288	ID:2	Broadcast - Discover the neighbors
-03:37.552	ID:1	Broadcast - Discover the neighbors
-03:37.681	ID:7	Broadcast - Discover the neighbors
-03:37.682	ID:5	Broadcast - Discover the neighbors
-03:37.807	ID:4	Broadcast - Discover the neighbors
-03:37.952	ID:6	Broadcast - Discover the neighbors
-03:39.469	ID:8	Broadcast - Discover the neighbors
-03:39.592	ID:3	Broadcast - Discover the neighbors
-03:39.929	ID:2	Broadcast - Discover the neighbors
-03:40.124	ID:10	Broadcast - Discover the neighbors
-03:40.283	ID:5	Broadcast - Discover the neighbors
-03:40.613	ID:9	Broadcast - Discover the neighbors
-03:40.724	ID:1	Broadcast - Discover the neighbors
-03:40.947	ID:7	Broadcast - Discover the neighbors
-03:41.061	ID:6	Broadcast - Discover the neighbors
-03:41.072	ID:4	Broadcast - Discover the neighbors
-03:42.147	ID:3	Broadcast - Discover the neighbors
-03:43.016	ID:2	Broadcast - Discover the neighbors
-03:43.111	ID:5	Broadcast - Discover the neighbors
-03:43.125	ID:8	Broadcast - Discover the neighbors
-03:43.240	ID:6	Broadcast - Discover the neighbors
-03:43.398	ID:10	Broadcast - Discover the neighbors
-03:43.716	ID:1	Broadcast - Discover the neighbors
-03:43.910	ID:9	Broadcast - Discover the neighbors
-03:44.157	ID:7	Broadcast - Discover the neighbors
-03:44.190	ID:4	Broadcast - Discover the neighbors
-03:44.694	ID:3	Broadcast - Discover the neighbors
-03:45.258	ID:8	Broadcast - Discover the neighbors
-03:46.084	ID:6	Broadcast - Discover the neighbors
-03:46.526	ID:9	Broadcast - Discover the neighbors
-03:46.635	ID:5	Broadcast - Discover the neighbors
-03:46.641	ID:2	Broadcast - Discover the neighbors
-03:47.122	ID:1	Broadcast - Discover the neighbors
-03:47.407	ID:7	Broadcast - Discover the neighbors
-03:47.461	ID:10	Broadcast - Discover the neighbors
-03:47.561	ID:3	Broadcast - Discover the neighbors
-03:47.766	ID:8	Broadcast - Discover the neighbors
-03:47.800	ID:4	Broadcast - Discover the neighbors
-03:49.023	ID:2	Broadcast - Discover the neighbors
-03:49.058	ID:9	Broadcast - Discover the neighbors
-03:49.311	ID:6	Broadcast - Discover the neighbors
-03:49.662	ID:1	Broadcast - Discover the neighbors
-03:49.947	ID:5	Broadcast - Discover the neighbors
-03:50.249	ID:10	Broadcast - Discover the neighbors
-03:50.375	ID:8	Broadcast - Discover the neighbors
-03:50.479	ID:4	Broadcast - Discover the neighbors
-03:50.915	ID:7	Broadcast - Discover the neighbors
-03:51.342	ID:3	Broadcast - Discover the neighbors
-03:52.007	ID:2	Broadcast - Discover the neighbors
-03:52.222	ID:9	Broadcast - Discover the neighbors
-03:52.264	ID:6	Broadcast - Discover the neighbors
-03:52.267	ID:5	Broadcast - Discover the neighbors
-03:53.539	ID:10	Broadcast - Discover the neighbors
-03:53.677	ID:1	Broadcast - Discover the neighbors
-03:53.822	ID:4	Broadcast - Discover the neighbors
-03:54.055	ID:8	Broadcast - Discover the neighbors
-03:54.363	ID:9	Broadcast - Discover the neighbors
-03:54.439	ID:5	Broadcast - Discover the neighbors
-03:54.525	ID:7	Broadcast - Discover the neighbors
-03:54.562	ID:2	Broadcast - Discover the neighbors
-03:54.569	ID:6	Broadcast - Discover the neighbors
-03:54.757	ID:3	Broadcast - Discover the neighbors
-03:56.399	ID:8	Broadcast - Discover the neighbors
-03:56.638	ID:1	Broadcast - Discover the neighbors
-03:56.865	ID:6	Broadcast - Discover the neighbors
-03:56.948	ID:9	Broadcast - Discover the neighbors
-03:57.305	ID:10	Broadcast - Discover the neighbors
-03:57.550	ID:4	Broadcast - Discover the neighbors
-03:57.735	ID:7	Broadcast - Discover the neighbors
-03:58.147	ID:3	Broadcast - Discover the neighbors
-03:58.281	ID:2	Broadcast - Discover the neighbors
-03:58.432	ID:5	Broadcast - Discover the neighbors
-03:59.125	ID:8	Broadcast - Discover the neighbors
-04:00.483	ID:6	Broadcast - Discover the neighbors
-04:00.638	ID:1	Broadcast - Discover the neighbors
-04:00.698	ID:9	Broadcast - Discover the neighbors
-04:00.838	ID:5	Broadcast - Discover the neighbors
-04:00.882	ID:2	Broadcast - Discover the neighbors
-04:00.983	ID:3	Broadcast - Discover the neighbors
-04:01.003	ID:4	Broadcast - Discover the neighbors
-04:01.015	ID:10	Broadcast - Discover the neighbors
-04:01.188	ID:7	Broadcast - Discover the neighbors
-04:01.578	ID:8	Broadcast - Discover the neighbors
-04:03.183	ID:9	Broadcast - Discover the neighbors
-04:03.358	ID:3	Broadcast - Discover the neighbors
-04:03.710	ID:2	Broadcast - Discover the neighbors
-04:03.807	ID:4	Broadcast - Discover the neighbors
-04:03.896	ID:1	Broadcast - Discover the neighbors
-04:03.994	ID:7	Broadcast - Discover the neighbors
-04:04.014	ID:6	Broadcast - Discover the neighbors
-04:04.227	ID:8	Broadcast - Discover the neighbors
-04:04.377	ID:5	Broadcast - Discover the neighbors
-04:04.890	ID:10	Broadcast - Discover the neighbors
-04:06.193	ID:1	Broadcast - Discover the neighbors
-04:06.790	ID:7	Broadcast - Discover the neighbors
-04:07.022	ID:6	Broadcast - Discover the neighbors
-04:07.234	ID:2	Broadcast - Discover the neighbors
-04:07.238	ID:9	Broadcast - Discover the neighbors
-04:07.392	ID:5	Broadcast - Discover the neighbors
-04:07.491	ID:3	Broadcast - Discover the neighbors
-04:07.791	ID:4	Broadcast - Discover the neighbors
-04:08.165	ID:8	Broadcast - Discover the neighbors
-04:08.999	ID:10	Broadcast - Discover the neighbors
-04:10.287	ID:1	Broadcast - Discover the neighbors
-04:10.456	ID:4	Broadcast - Discover the neighbors
-04:10.456	ID:9	Broadcast - Discover the neighbors
-04:10.547	ID:2	Broadcast - Discover the neighbors
-04:10.609	ID:8	Broadcast - Discover the neighbors
-04:10.907	ID:7	Broadcast - Discover the neighbors
-04:11.147	ID:6	Broadcast - Discover the neighbors
-04:11.225	ID:3	Broadcast - Discover the neighbors
-04:11.354	ID:5	Broadcast - Discover the neighbors
-04:12.180	ID:10	Broadcast - Discover the neighbors
-04:12.585	ID:2	Broadcast - Discover the neighbors
-04:13.561	ID:3	Broadcast - Discover the neighbors
-04:13.763	ID:1	Broadcast - Discover the neighbors
-04:14.030	ID:6	Broadcast - Discover the neighbors
-04:14.096	ID:4	Broadcast - Discover the neighbors
-04:14.354	ID:5	Broadcast - Discover the neighbors
-04:14.406	ID:8	Broadcast - Discover the neighbors
-04:14.558	ID:9	Broadcast - Discover the neighbors
-04:14.938	ID:7	Broadcast - Discover the neighbors
-04:15.966	ID:1	Broadcast - Discover the neighbors
-04:16.023	ID:10	Broadcast - Discover the neighbors
-04:16.578	ID:2	Broadcast - Discover the neighbors
-04:16.588	ID:4	Broadcast - Discover the neighbors
-04:16.611	ID:5	Broadcast - Discover the neighbors
-04:16.886	ID:9	Broadcast - Discover the neighbors
-04:17.139	ID:3	Broadcast - Discover the neighbors
-04:17.305	ID:8	Broadcast - Discover the neighbors
-04:17.514	ID:6	Broadcast - Discover the neighbors
-04:17.603	ID:7	Broadcast - Discover the neighbors
-04:18.249	ID:10	Broadcast - Discover the neighbors
-04:18.984	ID:2	Broadcast - Discover the neighbors
-04:19.365	ID:1	Broadcast - Discover the neighbors
-04:19.910	ID:9	Broadcast - Discover the neighbors
-04:19.971	ID:5	Broadcast - Discover the neighbors
-04:20.413	ID:3	Broadcast - Discover the neighbors
-04:20.440	ID:4	Broadcast - Discover the neighbors
-04:20.569	ID:6	Broadcast - Discover the neighbors
-04:20.969	ID:8	Broadcast - Discover the neighbors
-04:21.244	ID:7	Broadcast - Discover the neighbors
-04:22.202	ID:10	Broadcast - Discover the neighbors
-04:22.523	ID:2	Broadcast - Discover the neighbors
-04:22.722	ID:9	Broadcast - Discover the neighbors
-04:23.052	ID:1	Broadcast - Discover the neighbors
-04:23.159	ID:4	Broadcast - Discover the neighbors
-04:23.401	ID:5	Broadcast - Discover the neighbors
-04:23.537	ID:6	Broadcast - Discover the neighbors
-04:23.609	ID:8	Broadcast - Discover the neighbors
-04:24.351	ID:10	Broadcast - Discover the neighbors
-04:24.476	ID:3	Broadcast - Discover the neighbors
-04:25.329	ID:7	Broadcast - Discover the neighbors
-04:25.538	ID:2	Broadcast - Discover the neighbors
-04:26.247	ID:1	Broadcast - Discover the neighbors
-04:26.495	ID:5	Broadcast - Discover the neighbors
-04:26.542	ID:9	Broadcast - Discover the neighbors
-04:26.696	ID:8	Broadcast - Discover the neighbors
-04:26.854	ID:4	Broadcast - Discover the neighbors
-04:26.865	ID:6	Broadcast - Discover the neighbors
-04:27.264	ID:3	Broadcast - Discover the neighbors
-04:27.789	ID:10	Broadcast - Discover the neighbors
-04:27.954	ID:7	Broadcast - Discover the neighbors
-04:28.971	ID:5	Broadcast - Discover the neighbors
-04:29.378	ID:4	Broadcast - Discover the neighbors
-04:29.500	ID:2	Broadcast - Discover the neighbors
-04:29.794	ID:1	Broadcast - Discover the neighbors
-04:30.214	ID:9	Broadcast - Discover the neighbors
-04:30.321	ID:8	Broadcast - Discover the neighbors
-04:30.546	ID:6	Broadcast - Discover the neighbors
-04:31.007	ID:3	Broadcast - Discover the neighbors
-04:31.337	ID:7	Broadcast - Discover the neighbors
-04:31.625	ID:2	Broadcast - Discover the neighbors
-04:31.691	ID:4	Broadcast - Discover the neighbors
-04:31.734	ID:10	Broadcast - Discover the neighbors
-04:32.174	ID:5	Broadcast - Discover the neighbors
-04:32.703	ID:8	Broadcast - Discover the neighbors
-04:33.217	ID:6	Broadcast - Discover the neighbors
-04:33.662	ID:1	Broadcast - Discover the neighbors
-04:33.707	ID:9	Broadcast - Discover the neighbors
-04:34.163	ID:3	Broadcast - Discover the neighbors
-04:34.572	ID:5	Broadcast - Discover the neighbors
-04:34.729	ID:4	Broadcast - Discover the neighbors
-04:34.984	ID:2	Broadcast - Discover the neighbors
-04:35.031	ID:10	Broadcast - Discover the neighbors
-04:35.322	ID:7	Broadcast - Discover the neighbors
-04:35.688	ID:8	Broadcast - Discover the neighbors
-04:35.709	ID:6	Broadcast - Discover the neighbors
-04:36.443	ID:1	Broadcast - Discover the neighbors
-04:37.260	ID:5	Broadcast - Discover the neighbors
-04:37.268	ID:4	Broadcast - Discover the neighbors
-04:37.452	ID:3	Broadcast - Discover the neighbors
-04:37.613	ID:9	Broadcast - Discover the neighbors
-04:37.648	ID:10	Broadcast - Discover the neighbors
-04:38.243	ID:8	Broadcast - Discover the neighbors
-04:38.413	ID:2	Broadcast - Discover the neighbors
-04:38.615	ID:6	Broadcast - Discover the neighbors
-04:38.856	ID:1	Broadcast - Discover the neighbors
-04:38.876	ID:7	Broadcast - Discover the neighbors
-04:39.455	ID:5	Broadcast - Discover the neighbors
-04:40.179	ID:10	Broadcast - Discover the neighbors
-04:40.651	ID:9	Broadcast - Discover the neighbors
-04:41.217	ID:3	Broadcast - Discover the neighbors
-04:41.247	ID:1	Broadcast - Discover the neighbors
-04:41.284	ID:4	Broadcast - Discover the neighbors
-04:41.507	ID:2	Broadcast - Discover the neighbors
-04:41.595	ID:7	Broadcast - Discover the neighbors
-04:41.961	ID:8	Broadcast - Discover the neighbors
-04:42.002	ID:5	Broadcast - Discover the neighbors
-04:42.655	ID:6	Broadcast - Discover the neighbors
-04:43.167	ID:9	Broadcast - Discover the neighbors
-04:43.343	ID:10	Broadcast - Discover the neighbors
-04:44.562	ID:8	Broadcast - Discover the neighbors
-04:44.578	ID:2	Broadcast - Discover the neighbors
-04:44.929	ID:3	Broadcast - Discover the neighbors
-04:45.083	ID:1	Broadcast - Discover the neighbors
-04:45.151	ID:4	Broadcast - Discover the neighbors
-04:45.197	ID:7	Broadcast - Discover the neighbors
-04:45.485	ID:10	Broadcast - Discover the neighbors
-04:45.651	ID:5	Broadcast - Discover the neighbors
-04:46.171	ID:6	Broadcast - Discover the neighbors
-04:46.628	ID:9	Broadcast - Discover the neighbors
-04:46.773	ID:2	Broadcast - Discover the neighbors
-04:47.391	ID:8	Broadcast - Discover the neighbors
-04:47.447	ID:4	Broadcast - Discover the neighbors
-04:48.070	ID:10	Broadcast - Discover the neighbors
-04:48.458	ID:1	Broadcast - Discover the neighbors
-04:48.631	ID:6	Broadcast - Discover the neighbors
-04:48.680	ID:3	Broadcast - Discover the neighbors
-04:49.025	ID:7	Broadcast - Discover the neighbors
-04:49.064	ID:5	Broadcast - Discover the neighbors
-04:49.128	ID:9	Broadcast - Discover the neighbors
-04:49.320	ID:2	Broadcast - Discover the neighbors
-04:50.915	ID:8	Broadcast - Discover the neighbors
-04:51.195	ID:10	Broadcast - Discover the neighbors
-04:51.541	ID:4	Broadcast - Discover the neighbors
-04:51.548	ID:7	Broadcast - Discover the neighbors
-04:51.591	ID:1	Broadcast - Discover the neighbors
-04:51.767	ID:5	Broadcast - Discover the neighbors
-04:52.131	ID:6	Broadcast - Discover the neighbors
-04:52.187	ID:2	Broadcast - Discover the neighbors
-04:52.655	ID:3	Broadcast - Discover the neighbors
-04:52.886	ID:9	Broadcast - Discover the neighbors
-04:53.860	ID:7	Broadcast - Discover the neighbors
-04:54.227	ID:8	Broadcast - Discover the neighbors
-04:54.763	ID:1	Broadcast - Discover the neighbors
-04:54.889	ID:6	Broadcast - Discover the neighbors
-04:55.018	ID:4	Broadcast - Discover the neighbors
-04:55.077	ID:10	Broadcast - Discover the neighbors
-04:55.745	ID:9	Broadcast - Discover the neighbors
-04:55.835	ID:3	Broadcast - Discover the neighbors
-04:55.901	ID:5	Broadcast - Discover the neighbors
-04:55.969	ID:2	Broadcast - Discover the neighbors
-04:56.547	ID:8	Broadcast - Discover the neighbors
-04:57.181	ID:7	Broadcast - Discover the neighbors
-04:57.562	ID:10	Broadcast - Discover the neighbors
-04:58.231	ID:1	Broadcast - Discover the neighbors
-04:58.284	ID:4	Broadcast - Discover the neighbors
-04:58.675	ID:9	Broadcast - Discover the neighbors
-04:58.686	ID:6	Broadcast - Discover the neighbors
-04:58.719	ID:8	Broadcast - Discover the neighbors
-04:59.382	ID:2	Broadcast - Discover the neighbors
-04:59.635	ID:5	Broadcast - Discover the neighbors
-04:59.679	ID:3	Broadcast - Discover the neighbors
-05:00.353	ID:7	Broadcast - Discover the neighbors
-05:01.269	ID:9	Broadcast - Discover the neighbors
-05:01.530	ID:6	Broadcast - Discover the neighbors
-05:01.583	ID:1	Broadcast - Discover the neighbors
-05:01.617	ID:10	Broadcast - Discover the neighbors
-05:01.905	ID:3	Broadcast - Discover the neighbors
-05:01.939	ID:5	Broadcast - Discover the neighbors
-05:02.018	ID:4	Broadcast - Discover the neighbors
-05:02.711	ID:8	Broadcast - Discover the neighbors
-05:02.773	ID:2	Broadcast - Discover the neighbors
-05:03.345	ID:7	Broadcast - Discover the neighbors
-05:03.724	ID:1	Broadcast - Discover the neighbors
-05:04.408	ID:5	Broadcast - Discover the neighbors
-05:04.428	ID:6	Broadcast - Discover the neighbors
-05:04.432	ID:4	Broadcast - Discover the neighbors
-05:04.836	ID:10	Broadcast - Discover the neighbors
-05:05.245	ID:9	Broadcast - Discover the neighbors
-05:05.609	ID:2	Broadcast - Discover the neighbors
-05:05.858	ID:3	Broadcast - Discover the neighbors
-05:06.751	ID:7	Broadcast - Discover the neighbors
-05:06.794	ID:1	Broadcast - Discover the neighbors
-05:07.031	ID:10	Broadcast - Discover the neighbors
-05:07.615	ID:6	Broadcast - Discover the neighbors
-05:07.948	ID:9	Broadcast - Discover the neighbors
-05:08.007	ID:3	Broadcast - Discover the neighbors
-05:08.135	ID:4	Broadcast - Discover the neighbors
-05:09.290	ID:7	Broadcast - Discover the neighbors
-05:09.760	ID:5	Broadcast - End the neighbor discovery
-05:09.843	ID:10	Broadcast - Discover the neighbors
-05:10.311	ID:6	Broadcast - Discover the neighbors
-05:10.716	ID:1	Broadcast - Discover the neighbors
-05:10.984	ID:2	Broadcast - End the neighbor discovery
-05:11.268	ID:4	Broadcast - Discover the neighbors
-05:11.444	ID:3	Broadcast - Discover the neighbors
-05:11.847	ID:9	Broadcast - Discover the neighbors
-05:12.118	ID:8	Broadcast - End the neighbor discovery
-05:13.306	ID:7	Broadcast - Discover the neighbors
-05:13.458	ID:1	Broadcast - Discover the neighbors
-05:14.003	ID:4	Broadcast - Discover the neighbors
-05:14.035	ID:9	Broadcast - Discover the neighbors
-05:15.615	ID:1	Broadcast - Discover the neighbors
-05:17.306	ID:7	Broadcast - Discover the neighbors
-05:17.307	ID:4	Broadcast - Discover the neighbors
-05:17.389	ID:3	Broadcast - End the neighbor discovery
-05:17.903	ID:1	Broadcast - Discover the neighbors
-05:18.358	ID:6	Broadcast - End the neighbor discovery
-05:19.117	ID:2	Broadcast - End the neighbor discovery
-05:19.134	ID:8	Broadcast - End the neighbor discovery
-05:19.338	ID:5	Broadcast - End the neighbor discovery
-05:19.664	ID:10	Broadcast - End the neighbor discovery
-05:20.563	ID:7	Broadcast - Discover the neighbors
-05:21.730	ID:9	Broadcast - End the neighbor discovery
-05:22.923	ID:7	Broadcast - Discover the neighbors
-05:23.669	ID:1	Broadcast - End the neighbor discovery
-05:24.001	ID:5	runicast (neighbor discovery) message received from 8.0, seqno 0
-05:24.108	ID:8	runicast (neighbor discovery) message sent to 5.0, retransmissions 1
-05:25.007	ID:3	Broadcast - End the neighbor discovery
-05:25.659	ID:4	Broadcast - End the neighbor discovery
-05:26.401	ID:5	Broadcast - End the neighbor discovery
-05:27.725	ID:6	Broadcast - End the neighbor discovery
-05:27.851	ID:2	Broadcast - End the neighbor discovery
-05:27.984	ID:8	runicast (neighbor discovery) message received from 3.0, seqno 0
-05:28.059	ID:3	runicast (neighbor discovery) message sent to 8.0, retransmissions 1
-05:29.094	ID:8	Broadcast - End the neighbor discovery
-05:29.097	ID:9	Broadcast - End the neighbor discovery
-05:29.337	ID:10	Broadcast - End the neighbor discovery
-05:29.752	ID:5	runicast (neighbor discovery) message received from 7.0, seqno 0
-05:29.813	ID:7	runicast (neighbor discovery) message sent to 5.0, retransmissions 1
-05:30.353	ID:7	Broadcast - End the neighbor discovery
-05:31.608	ID:8	runicast (neighbor discovery) message received from 5.0, seqno 0
-05:31.749	ID:5	runicast (neighbor discovery) message sent to 8.0, retransmissions 1
-05:33.148	ID:2	runicast (neighbor discovery) message received from 4.0, seqno 0
-05:33.237	ID:4	Broadcast - End the neighbor discovery
-05:33.260	ID:4	runicast (neighbor discovery) message sent to 2.0, retransmissions 1
-05:33.419	ID:1	Broadcast - End the neighbor discovery
-05:33.538	ID:3	Broadcast - End the neighbor discovery
-05:34.379	ID:9	Broadcast - End the neighbor discovery
-05:35.156	ID:2	Broadcast - End the neighbor discovery
-05:35.353	ID:8	Broadcast - End the neighbor discovery
-05:35.537	ID:6	runicast (neighbor discovery) message received from 1.0, seqno 0
-05:35.667	ID:1	runicast (neighbor discovery) message sent to 6.0, retransmissions 1
-05:36.471	ID:5	Broadcast - End the neighbor discovery
-05:36.611	ID:5	every_neighbor_agrees
-05:36.640	ID:6	Broadcast - End the neighbor discovery
-05:37.103	ID:5	NEIGHBOR_DISCOVERY_HAS_ENDED
-05:37.105	ID:5	procedure_wakeup
-05:37.107	ID:5	READ_NEIGHBOR_LIST 5 8 1.02 
-05:37.110	ID:5	READ_NEIGHBOR_LIST 5 7 1.65 
-05:37.112	ID:5	Neighbor 8.0 is now branch
-05:37.162	ID:6	runicast (neighbor discovery) message received from 9.0, seqno 0
-05:37.242	ID:10	Broadcast - End the neighbor discovery
-05:37.245	ID:9	runicast (neighbor discovery) message sent to 6.0, retransmissions 1
-05:37.829	ID:7	Broadcast - End the neighbor discovery
-05:38.937	ID:3	runicast (neighbor discovery) message received from 8.0, seqno 1
-05:38.984	ID:8	runicast (neighbor discovery) message sent to 3.0, retransmissions 1
-05:39.396	ID:1	Broadcast - End the neighbor discovery
-05:40.292	ID:9	Broadcast - End the neighbor discovery
-05:40.562	ID:3	runicast (neighbor discovery) message received from 10.0, seqno 0
-05:40.593	ID:10	runicast (neighbor discovery) message sent to 3.0, retransmissions 1
-05:40.712	ID:8	Broadcast - End the neighbor discovery
-05:40.852	ID:8	every_neighbor_agrees
-05:41.234	ID:8	NEIGHBOR_DISCOVERY_HAS_ENDED
-05:41.235	ID:8	procedure_wakeup
-05:41.238	ID:8	READ_NEIGHBOR_LIST 8 5 1.02 
-05:41.241	ID:8	READ_NEIGHBOR_LIST 8 3 1.42 
-05:41.243	ID:8	Neighbor 5.0 is now branch
-05:41.507	ID:2	Broadcast - End the neighbor discovery
-05:41.649	ID:2	every_neighbor_agrees
-05:41.651	ID:2	NEIGHBOR_DISCOVERY_HAS_ENDED
-05:41.653	ID:2	procedure_wakeup
-05:41.656	ID:2	READ_NEIGHBOR_LIST 2 4 1.21 
-05:41.658	ID:2	Neighbor 4.0 is now branch
-05:41.663	ID:3	Broadcast - End the neighbor discovery
-05:43.175	ID:4	Broadcast - End the neighbor discovery
-05:43.531	ID:6	Broadcast - End the neighbor discovery
-05:44.082	ID:5	Send e_send_connect to 8.0 with L 0
-05:44.119	ID:9	runicast (neighbor discovery) message received from 6.0, seqno 0
-05:44.161	ID:6	runicast (neighbor discovery) message sent to 9.0, retransmissions 1
-05:44.357	ID:8	runicast message received from 5.0, seqno 0
-05:44.361	ID:8	runicast message received CONNECT from 5.0 L = 0
-05:44.499	ID:5	runicast message sent to 8.0, retransmissions 1
-05:44.788	ID:6	runicast (neighbor discovery) message received from 3.0, seqno 1
-05:44.809	ID:3	runicast (neighbor discovery) message sent to 6.0, retransmissions 1
-05:45.032	ID:7	Broadcast - End the neighbor discovery
-05:45.240	ID:1	Broadcast - End the neighbor discovery
-05:45.510	ID:4	runicast (neighbor discovery) message received from 1.0, seqno 1
-05:45.542	ID:1	runicast (neighbor discovery) message sent to 4.0, retransmissions 1
-05:45.718	ID:10	runicast (neighbor discovery) message received from 7.0, seqno 1
-05:45.813	ID:7	runicast (neighbor discovery) message sent to 10.0, retransmissions 1
-05:46.183	ID:9	Broadcast - End the neighbor discovery
-05:46.281	ID:10	Broadcast - End the neighbor discovery
-05:47.135	ID:4	runicast (neighbor discovery) message received from 2.0, seqno 0
-05:47.272	ID:2	runicast (neighbor discovery) message sent to 4.0, retransmissions 1
-05:47.413	ID:6	runicast (neighbor discovery) message received from 4.0, seqno 1
-05:47.510	ID:4	runicast (neighbor discovery) message sent to 6.0, retransmissions 1
-05:48.546	ID:3	Broadcast - End the neighbor discovery
-05:48.736	ID:2	Send e_send_connect to 4.0 with L 0
-05:48.759	ID:4	runicast message received from 2.0, seqno 0
-05:48.762	ID:4	runicast message received CONNECT from 2.0 L = 0
-05:48.896	ID:2	runicast message sent to 4.0, retransmissions 1
-05:49.866	ID:6	Broadcast - End the neighbor discovery
-05:50.221	ID:8	Send e_send_connect to 5.0 with L 0
-05:50.250	ID:5	runicast message received from 8.0, seqno 0
-05:50.254	ID:5	runicast message received CONNECT from 8.0 L = 0
-05:50.356	ID:8	runicast message sent to 5.0, retransmissions 1
-05:50.438	ID:7	runicast (neighbor discovery) message received from 5.0, seqno 1
-05:50.502	ID:5	runicast (neighbor discovery) message sent to 7.0, retransmissions 1
-05:51.742	ID:10	Broadcast - End the neighbor discovery
-05:52.097	ID:4	Broadcast - End the neighbor discovery
-05:52.466	ID:1	Broadcast - End the neighbor discovery
-05:52.519	ID:9	Broadcast - End the neighbor discovery
-05:52.660	ID:9	every_neighbor_agrees
-05:52.988	ID:9	NEIGHBOR_DISCOVERY_HAS_ENDED
-05:52.989	ID:9	procedure_wakeup
-05:52.992	ID:9	READ_NEIGHBOR_LIST 9 6 1.62 
-05:52.994	ID:9	Neighbor 6.0 is now branch
-05:53.432	ID:7	Broadcast - End the neighbor discovery
-05:54.884	ID:8	response_to_connect from 5.0 level 0
-05:54.885	ID:8	is_NOT_basic
-05:54.885	ID:4	runicast (neighbor discovery) message received from 10.0, seqno 1
-05:54.968	ID:10	runicast (neighbor discovery) message sent to 4.0, retransmissions 1
-05:55.601	ID:3	Broadcast - End the neighbor discovery
-05:57.218	ID:10	runicast (neighbor discovery) message received from 3.0, seqno 2
-05:57.310	ID:3	runicast (neighbor discovery) message sent to 10.0, retransmissions 1
-05:59.495	ID:5	response_to_connect from 8.0 level 0
-05:59.496	ID:5	is_NOT_basic
-05:59.499	ID:6	Broadcast - End the neighbor discovery
-05:59.639	ID:6	every_neighbor_agrees
-05:59.642	ID:6	NEIGHBOR_DISCOVERY_HAS_ENDED
-05:59.644	ID:6	procedure_wakeup
-05:59.647	ID:6	READ_NEIGHBOR_LIST 6 1 1.14 
-05:59.649	ID:6	READ_NEIGHBOR_LIST 6 4 1.24 
-05:59.653	ID:6	READ_NEIGHBOR_LIST 6 9 1.62 
-05:59.656	ID:6	READ_NEIGHBOR_LIST 6 3 1.64 
-05:59.658	ID:6	Neighbor 1.0 is now branch
-05:59.967	ID:10	runicast (neighbor discovery) message received from 4.0, seqno 2
-06:00.010	ID:4	runicast (neighbor discovery) message sent to 10.0, retransmissions 1
-06:00.119	ID:7	Broadcast - End the neighbor discovery
-06:00.146	ID:9	Send e_send_connect to 6.0 with L 0
-06:00.242	ID:10	Broadcast - End the neighbor discovery
-06:00.285	ID:6	runicast message received from 9.0, seqno 0
-06:00.289	ID:6	runicast message received CONNECT from 9.0 L = 0
-06:00.419	ID:1	Broadcast - End the neighbor discovery
-06:00.617	ID:9	runicast message sent to 6.0, retransmissions 1
-06:00.794	ID:1	runicast (neighbor discovery) message received from 6.0, seqno 1
-06:00.912	ID:6	runicast (neighbor discovery) message sent to 1.0, retransmissions 1
-06:01.253	ID:4	Broadcast - End the neighbor discovery
-06:04.820	ID:3	Broadcast - End the neighbor discovery
-06:05.558	ID:8	Send e_send_initiate to 5.0 with L=1 F=1.02 S=1
-06:05.624	ID:5	runicast message received from 8.0, seqno 1
-06:05.629	ID:5	runicast message received INITIATE from 8.0 with L=1 F=1.02 S=1 
-06:05.732	ID:8	runicast message sent to 5.0, retransmissions 1
-06:06.232	ID:5	Send e_send_initiate to 8.0 with L=1 F=1.02 S=1
-06:06.314	ID:7	Broadcast - End the neighbor discovery
-06:06.358	ID:8	runicast message received from 5.0, seqno 1
-06:06.363	ID:8	runicast message received INITIATE from 5.0 with L=1 F=1.02 S=1 
-06:06.499	ID:5	runicast message sent to 8.0, retransmissions 1
-06:07.039	ID:10	Broadcast - End the neighbor discovery
-06:07.180	ID:10	every_neighbor_agrees
-06:07.724	ID:1	Broadcast - End the neighbor discovery
-06:08.007	ID:10	NEIGHBOR_DISCOVERY_HAS_ENDED
-06:08.009	ID:10	procedure_wakeup
-06:08.012	ID:10	READ_NEIGHBOR_LIST 10 7 1.37 
-06:08.014	ID:10	READ_NEIGHBOR_LIST 10 4 1.52 
-06:08.017	ID:10	READ_NEIGHBOR_LIST 10 3 1.90 
-06:08.019	ID:10	Neighbor 7.0 is now branch
-06:09.741	ID:6	response_to_connect from 9.0 level 0
-06:09.741	ID:6	is_basic
-06:10.516	ID:6	Send e_send_connect to 1.0 with L 0
-06:10.541	ID:1	runicast message received from 6.0, seqno 0
-06:10.545	ID:1	runicast message received CONNECT from 6.0 L = 0
-06:10.659	ID:6	runicast message sent to 1.0, retransmissions 1
-06:10.921	ID:3	Broadcast - End the neighbor discovery
-06:11.019	ID:4	Broadcast - End the neighbor discovery
-06:14.048	ID:7	Broadcast - End the neighbor discovery
-06:14.439	ID:7	runicast (neighbor discovery) message received from 10.0, seqno 2
-06:14.466	ID:10	runicast (neighbor discovery) message sent to 7.0, retransmissions 1
-06:14.939	ID:10	Send e_send_connect to 7.0 with L 0
-06:15.062	ID:7	runicast message received from 10.0, seqno 0
-06:15.066	ID:7	runicast message received CONNECT from 10.0 L = 0
-06:15.092	ID:10	runicast message sent to 7.0, retransmissions 1
-06:16.045	ID:1	runicast (neighbor discovery) message received from 4.0, seqno 3
-06:16.132	ID:4	runicast (neighbor discovery) message sent to 1.0, retransmissions 1
-06:16.374	ID:6	response_to_connect from 9.0 level 0
-06:16.375	ID:6	is_basic
-06:16.729	ID:4	Broadcast - End the neighbor discovery
-06:17.669	ID:1	Broadcast - End the neighbor discovery
-06:17.687	ID:3	runicast (neighbor discovery) message received from 6.0, seqno 2
-06:17.912	ID:6	runicast (neighbor discovery) message sent to 3.0, retransmissions 1
-06:19.249	ID:3	Broadcast - End the neighbor discovery
-06:21.796	ID:6	response_to_connect from 9.0 level 0
-06:21.797	ID:6	is_basic
-06:22.801	ID:5	Send e_send_test to 7.0 with L=1 F=1.02
-06:22.829	ID:7	Broadcast - End the neighbor discovery
-06:22.836	ID:7	every_neighbor_agrees
-06:22.937	ID:7	runicast message received from 5.0, seqno 2
-06:22.941	ID:7	runicast message received TEST from 5.0 with L=1 F=1.02 
-06:22.999	ID:5	runicast message sent to 7.0, retransmissions 1
-06:23.479	ID:4	Broadcast - End the neighbor discovery
-06:23.571	ID:7	NEIGHBOR_DISCOVERY_HAS_ENDED
-06:23.573	ID:7	procedure_wakeup
-06:23.575	ID:7	READ_NEIGHBOR_LIST 7 10 1.37 
-06:23.578	ID:7	READ_NEIGHBOR_LIST 7 5 1.65 
-06:23.580	ID:7	Neighbor 10.0 is now branch
-06:24.153	ID:1	Broadcast - End the neighbor discovery
-06:24.295	ID:1	every_neighbor_agrees
-06:24.677	ID:1	NEIGHBOR_DISCOVERY_HAS_ENDED
-06:24.678	ID:1	procedure_wakeup
-06:24.681	ID:1	READ_NEIGHBOR_LIST 1 6 1.14 
-06:24.683	ID:1	READ_NEIGHBOR_LIST 1 4 1.18 
-06:24.685	ID:1	Neighbor 6.0 is now branch
-06:26.815	ID:8	Send e_send_test to 3.0 with L=1 F=1.02
-06:26.934	ID:3	runicast message received from 8.0, seqno 2
-06:26.938	ID:3	runicast message received TEST from 8.0 with L=1 F=1.02 
-06:26.981	ID:8	runicast message sent to 3.0, retransmissions 1
-06:28.273	ID:3	Broadcast - End the neighbor discovery
-06:28.413	ID:3	every_neighbor_agrees
-06:28.904	ID:3	NEIGHBOR_DISCOVERY_HAS_ENDED
-06:28.906	ID:3	procedure_wakeup
-06:28.909	ID:3	READ_NEIGHBOR_LIST 3 8 1.42 
-06:28.911	ID:3	READ_NEIGHBOR_LIST 3 6 1.64 
-06:28.914	ID:3	READ_NEIGHBOR_LIST 3 10 1.90 
-06:28.916	ID:3	Neighbor 8.0 is now branch
-06:29.077	ID:6	response_to_connect from 9.0 level 0
-06:29.078	ID:6	is_basic
-06:30.487	ID:4	Broadcast - End the neighbor discovery
-06:30.780	ID:1	Send e_send_connect to 6.0 with L 0
-06:30.912	ID:6	runicast message received from 1.0, seqno 0
-06:30.915	ID:6	runicast message received CONNECT from 1.0 L = 0
-06:31.042	ID:1	runicast message sent to 6.0, retransmissions 1
-06:32.472	ID:7	Send e_send_connect to 10.0 with L 0
-06:32.590	ID:10	runicast message received from 7.0, seqno 0
-06:32.594	ID:10	runicast message received CONNECT from 7.0 L = 0
-06:32.687	ID:7	runicast message sent to 10.0, retransmissions 1
-06:32.932	ID:7	response_to_connect from 10.0 level 0
-06:32.933	ID:7	is_NOT_basic
-06:33.412	ID:1	response_to_connect from 6.0 level 0
-06:33.413	ID:1	is_NOT_basic
-06:34.009	ID:4	runicast (neighbor discovery) message received from 6.0, seqno 3
-06:34.037	ID:6	runicast (neighbor discovery) message sent to 4.0, retransmissions 1
-06:34.178	ID:6	response_to_connect from 9.0 level 0
-06:34.179	ID:6	is_basic
-06:37.597	ID:4	Broadcast - End the neighbor discovery
-06:37.737	ID:4	every_neighbor_agrees
-06:37.963	ID:4	NEIGHBOR_DISCOVERY_HAS_ENDED
-06:37.964	ID:4	procedure_wakeup
-06:37.967	ID:4	READ_NEIGHBOR_LIST 4 1 1.18 
-06:37.970	ID:4	READ_NEIGHBOR_LIST 4 2 1.21 
-06:37.972	ID:4	READ_NEIGHBOR_LIST 4 6 1.24 
-06:37.975	ID:4	READ_NEIGHBOR_LIST 4 10 1.52 
-06:37.977	ID:4	Neighbor 1.0 is now branch
-06:39.578	ID:3	Send e_send_connect to 8.0 with L 0
-06:39.609	ID:8	runicast message received from 3.0, seqno 0
-06:39.612	ID:8	runicast message received CONNECT from 3.0 L = 0
-06:39.684	ID:3	runicast message sent to 8.0, retransmissions 1
-06:39.781	ID:1	Send e_send_initiate to 6.0 with L=1 F=1.14 S=1
-06:39.911	ID:6	runicast message received from 1.0, seqno 1
-06:39.916	ID:6	runicast message received INITIATE from 1.0 with L=1 F=1.14 S=1 
-06:40.040	ID:1	runicast message sent to 6.0, retransmissions 1
-06:41.694	ID:6	response_to_connect from 1.0 level 0
-06:41.695	ID:6	is_NOT_basic
-06:42.067	ID:7	Send e_send_initiate to 10.0 with L=1 F=1.37 S=1
-06:42.092	ID:10	runicast message received from 7.0, seqno 1
-06:42.097	ID:10	runicast message received INITIATE from 7.0 with L=1 F=1.37 S=1 
-06:42.186	ID:7	runicast message sent to 10.0, retransmissions 1
-06:43.321	ID:10	response_to_connect from 7.0 level 0
-06:43.321	ID:10	is_NOT_basic
-06:47.493	ID:8	response_to_connect from 3.0 level 0
-06:47.495	ID:8	Neighbor 3.0 is now branch
-06:48.034	ID:4	response_to_connect from 2.0 level 0
-06:48.035	ID:4	is_basic
-06:48.699	ID:4	Send e_send_connect to 1.0 with L 0
-06:48.791	ID:1	runicast message received from 4.0, seqno 0
-06:48.795	ID:1	runicast message received CONNECT from 4.0 L = 0
-06:48.883	ID:4	runicast message sent to 1.0, retransmissions 1
-06:49.343	ID:6	response_to_connect from 9.0 level 0
-06:49.343	ID:6	is_basic
-06:51.642	ID:6	Send e_send_initiate to 1.0 with L=1 F=1.14 S=1
-06:51.668	ID:1	runicast message received from 6.0, seqno 1
-06:51.673	ID:1	runicast message received INITIATE from 6.0 with L=1 F=1.14 S=1 
-06:51.698	ID:10	Send e_send_initiate to 7.0 with L=1 F=1.37 S=1
-06:51.812	ID:7	runicast message received from 10.0, seqno 1
-06:51.817	ID:7	runicast message received INITIATE from 10.0 with L=1 F=1.37 S=1 
-06:52.841	ID:10	runicast message sent to 7.0, retransmissions 0
-06:53.167	ID:1	runicast message received from 6.0, seqno 1 (DUPLICATE)
-06:53.409	ID:6	runicast message sent to 1.0, retransmissions 2
-06:54.857	ID:1	response_to_connect from 4.0 level 0
-06:54.857	ID:1	is_basic
-06:54.937	ID:7	runicast message received from 10.0, seqno 1 (DUPLICATE)
-06:55.120	ID:4	response_to_connect from 2.0 level 0
-06:55.120	ID:4	is_basic
-06:56.871	ID:8	Send e_send_initiate to 3.0 with L=1 F=1.02 S=1
-06:56.934	ID:3	runicast message received from 8.0, seqno 3
-06:56.939	ID:3	runicast message received INITIATE from 8.0 with L=1 F=1.02 S=1 
-06:56.982	ID:8	runicast message sent to 3.0, retransmissions 1
-07:00.744	ID:10	Send e_send_test to 4.0 with L=1 F=1.37
-07:00.884	ID:4	runicast message received from 10.0, seqno 2
-07:00.889	ID:4	runicast message received TEST from 10.0 with L=1 F=1.37 
-07:00.966	ID:10	runicast message sent to 4.0, retransmissions 1
-07:01.881	ID:6	response_to_connect from 9.0 level 0
-07:01.883	ID:6	Neighbor 9.0 is now branch
-07:03.932	ID:4	response_to_connect from 2.0 level 0
-07:03.933	ID:4	is_basic
-07:05.180	ID:6	Send e_send_test to 4.0 with L=1 F=1.14
-07:05.258	ID:4	runicast message received from 6.0, seqno 2
-07:05.263	ID:4	runicast message received TEST from 6.0 with L=1 F=1.14 
-07:05.285	ID:6	runicast message sent to 4.0, retransmissions 1
-07:10.152	ID:7	Send e_send_test to 5.0 with L=1 F=1.37
-07:10.249	ID:5	runicast message received from 7.0, seqno 2
-07:10.254	ID:5	runicast message received TEST from 7.0 with L=1 F=1.37 
-07:10.312	ID:7	runicast message sent to 5.0, retransmissions 1
-07:12.384	ID:6	Send e_send_initiate to 9.0 with L=1 F=1.14 S=1
-07:12.493	ID:9	runicast message received from 6.0, seqno 3
-07:12.498	ID:9	runicast message received INITIATE from 6.0 with L=1 F=1.14 S=1 
-07:12.534	ID:6	runicast message sent to 9.0, retransmissions 1
-07:12.584	ID:1	response_to_connect from 4.0 level 0
-07:12.586	ID:1	Neighbor 4.0 is now branch
-07:15.296	ID:1	Send e_send_test to 4.0 with L=1 F=1.14
-07:15.382	ID:4	runicast message received from 1.0, seqno 2
-07:15.386	ID:4	runicast message received TEST from 1.0 with L=1 F=1.14 
-07:15.417	ID:1	runicast message sent to 4.0, retransmissions 1
-07:15.900	ID:3	Send e_send_test to 6.0 with L=1 F=1.02
-07:16.035	ID:6	runicast message received from 3.0, seqno 1
-07:16.040	ID:6	runicast message received TEST from 3.0 with L=1 F=1.02 
-07:16.059	ID:3	runicast message sent to 6.0, retransmissions 1
-07:18.080	ID:7	Send e_send_accept to 5.0 
-07:18.124	ID:5	runicast message received from 7.0, seqno 3
-07:18.128	ID:5	runicast message received ACCEPT_MSG from 7.0 
-07:18.185	ID:7	runicast message sent to 5.0, retransmissions 1
-07:19.237	ID:4	response_to_connect from 2.0 level 0
-07:19.238	ID:4	is_basic
-07:22.211	ID:1	Send e_send_initiate to 4.0 with L=1 F=1.14 S=1
-07:22.258	ID:4	runicast message received from 1.0, seqno 3
-07:22.264	ID:4	runicast message received INITIATE from 1.0 with L=1 F=1.14 S=1 
-07:22.292	ID:1	runicast message sent to 4.0, retransmissions 1
-07:24.258	ID:3	Send e_send_reject to 8.0 
-07:24.357	ID:8	runicast message received from 3.0, seqno 2
-07:24.360	ID:8	runicast message received REJECT_MSG from 3.0 
-07:24.434	ID:3	runicast message sent to 8.0, retransmissions 1
-07:27.768	ID:5	Send e_send_accept to 7.0 
-07:27.813	ID:7	runicast message received from 5.0, seqno 3
-07:27.816	ID:7	runicast message received ACCEPT_MSG from 5.0 
-07:27.874	ID:5	runicast message sent to 7.0, retransmissions 1
-07:29.241	ID:9	Send e_send_report to 6.0 with w = -1.15 
-07:29.285	ID:6	runicast message received from 9.0, seqno 1
-07:29.290	ID:6	runicast message received REPORT_MSG from 9.0 with w = -1.15
-07:29.368	ID:9	runicast message sent to 6.0, retransmissions 1
-07:35.809	ID:5	Send e_send_report to 8.0 with w = 1.65 
-07:35.859	ID:8	runicast message received from 5.0, seqno 0
-07:35.863	ID:8	runicast message received REPORT_MSG from 5.0 with w = 1.65
-07:35.999	ID:5	runicast message sent to 8.0, retransmissions 1
-07:37.695	ID:6	Send e_send_accept to 3.0 
-07:37.810	ID:3	runicast message received from 6.0, seqno 0
-07:37.814	ID:3	runicast message received ACCEPT_MSG from 6.0 
-07:37.909	ID:6	runicast message sent to 3.0, retransmissions 1
-07:42.684	ID:7	Send e_send_report to 10.0 with w = 1.65 
-07:42.716	ID:10	runicast message received from 7.0, seqno 0
-07:42.721	ID:10	runicast message received REPORT_MSG from 7.0 with w = 1.65
-07:42.812	ID:7	runicast message sent to 10.0, retransmissions 1
-07:49.066	ID:4	response_to_connect from 2.0 level 0
-07:49.066	ID:4	is_basic
-07:52.978	ID:3	Send e_send_report to 8.0 with w = 1.64 
-07:53.108	ID:8	runicast message received from 3.0, seqno 3
-07:53.113	ID:8	runicast message received REPORT_MSG from 3.0 with w = 1.64
-07:53.185	ID:3	runicast message sent to 8.0, retransmissions 1
-08:02.088	ID:4	Neighbor 6.0 is now rejected
-08:02.146	ID:4	Send e_send_test to 2.0 with L=1 F=1.14
-08:02.271	ID:2	runicast message received from 4.0, seqno 1
-08:02.276	ID:2	runicast message received TEST from 4.0 with L=1 F=1.14 
-08:02.383	ID:4	runicast message sent to 2.0, retransmissions 1
-08:07.886	ID:4	Send e_send_reject to 6.0 
-08:07.912	ID:6	runicast message received from 4.0, seqno 2
-08:07.915	ID:6	runicast message received REJECT_MSG from 4.0 
-08:08.008	ID:4	runicast message sent to 6.0, retransmissions 1
-08:14.803	ID:6	Neighbor 4.0 is now rejected
-08:16.862	ID:8	Send e_send_report to 5.0 with w = 1.64 
-08:16.999	ID:5	runicast message received from 8.0, seqno 0
-08:17.004	ID:5	runicast message received REPORT_MSG from 8.0 with w = 1.64
-08:17.106	ID:8	runicast message sent to 5.0, retransmissions 1
-08:18.801	ID:4	Send e_send_accept to 10.0 
-08:18.843	ID:10	runicast message received from 4.0, seqno 3
-08:18.846	ID:10	runicast message received ACCEPT_MSG from 4.0 
-08:18.882	ID:4	runicast message sent to 10.0, retransmissions 1
-08:21.001	ID:6	Send e_send_test to 3.0 with L=1 F=1.14
-08:21.060	ID:3	runicast message received from 6.0, seqno 1
-08:21.065	ID:3	runicast message received TEST from 6.0 with L=1 F=1.14 
-08:21.160	ID:6	runicast message sent to 3.0, retransmissions 1
-08:24.455	ID:8	Send e_send_change_root to 3.0 
-08:24.561	ID:3	runicast message received from 8.0, seqno 1
-08:24.564	ID:3	runicast message received CHANGE_ROOT_MSG from 8.0 
-08:24.608	ID:8	runicast message sent to 3.0, retransmissions 1
-08:26.495	ID:4	response_to_connect from 2.0 level 0
-08:26.497	ID:4	Neighbor 2.0 is now branch
-08:30.761	ID:4	Send e_send_reject to 1.0 
-08:30.792	ID:1	runicast message received from 4.0, seqno 0 (DUPLICATE)
-08:30.883	ID:4	runicast message sent to 1.0, retransmissions 1
-08:36.812	ID:3	Send e_send_accept to 6.0 
-08:36.911	ID:6	runicast message received from 3.0, seqno 0
-08:36.914	ID:6	runicast message received ACCEPT_MSG from 3.0 
-08:36.934	ID:3	runicast message sent to 6.0, retransmissions 1
-08:36.951	ID:4	Send e_send_initiate to 2.0 with L=1 F=1.14 S=1
-08:37.022	ID:2	runicast message received from 4.0, seqno 1 (DUPLICATE)
-08:37.132	ID:4	runicast message sent to 2.0, retransmissions 1
-08:37.397	ID:3	Neighbor 6.0 is now branch
-08:38.517	ID:10	Send e_send_report to 7.0 with w = 1.52 
-08:38.562	ID:7	runicast message received from 10.0, seqno 3
-08:38.567	ID:7	runicast message received REPORT_MSG from 10.0 with w = 1.52
-08:38.591	ID:10	runicast message sent to 7.0, retransmissions 1
-08:38.687	ID:10	Neighbor 4.0 is now branch
-08:48.375	ID:3	Send e_send_connect to 6.0 with L 1
-08:48.410	ID:6	runicast message received from 3.0, seqno 1
-08:48.414	ID:6	runicast message received CONNECT from 3.0 L = 1
-08:48.433	ID:3	runicast message sent to 6.0, retransmissions 1
-08:50.454	ID:10	Send e_send_connect to 4.0 with L 1
-08:50.508	ID:4	runicast message received from 10.0, seqno 0
-08:50.511	ID:4	runicast message received CONNECT from 10.0 L = 1
-08:50.590	ID:10	runicast message sent to 4.0, retransmissions 1
-08:53.977	ID:6	Send e_send_report to 1.0 with w = 1.64 
-08:54.043	ID:1	runicast message received from 6.0, seqno 2
-08:54.048	ID:1	runicast message received REPORT_MSG from 6.0 with w = 1.64
-08:54.160	ID:6	runicast message sent to 1.0, retransmissions 1
-08:59.350	ID:6	response_to_connect from 3.0 level 1
-08:59.351	ID:6	is_basic
-09:02.378	ID:4	response_to_connect from 10.0 level 1
-09:02.379	ID:4	is_basic
-09:05.874	ID:6	response_to_connect from 3.0 level 1
-09:05.875	ID:6	is_basic
-09:09.050	ID:4	response_to_connect from 10.0 level 1
-09:09.051	ID:4	is_basic
-09:14.374	ID:6	response_to_connect from 3.0 level 1
-09:14.375	ID:6	is_basic
-09:16.729	ID:4	response_to_connect from 10.0 level 1
-09:16.730	ID:4	is_basic
-09:20.319	ID:6	response_to_connect from 3.0 level 1
-09:20.320	ID:6	is_basic
-09:22.261	ID:4	response_to_connect from 10.0 level 1
-09:22.261	ID:4	is_basic
-09:28.803	ID:6	response_to_connect from 3.0 level 1
-09:28.804	ID:6	is_basic
-09:30.613	ID:4	response_to_connect from 10.0 level 1
-09:30.613	ID:4	is_basic
-09:38.046	ID:6	response_to_connect from 3.0 level 1
-09:38.047	ID:6	is_basic
-09:38.378	ID:4	response_to_connect from 10.0 level 1
-09:38.379	ID:4	is_basic
-09:43.890	ID:6	response_to_connect from 3.0 level 1
-09:43.890	ID:6	is_basic
-09:47.276	ID:4	response_to_connect from 10.0 level 1
-09:47.277	ID:4	is_basic
-09:53.303	ID:6	response_to_connect from 3.0 level 1
-09:53.304	ID:6	is_basic
-09:55.651	ID:4	response_to_connect from 10.0 level 1
-09:55.652	ID:4	is_basic
-09:59.881	ID:6	response_to_connect from 3.0 level 1
-09:59.882	ID:6	is_basic
-10:04.972	ID:4	response_to_connect from 10.0 level 1
-10:04.973	ID:4	is_basic
+01:06.063	ID:2	Broadcast - End the neighbor discovery
+01:08.516	ID:8	Broadcast - End the neighbor discovery
+01:08.730	ID:9	Broadcast - End the neighbor discovery
+01:08.794	ID:1	Broadcast - End the neighbor discovery
+01:09.077	ID:6	Broadcast - End the neighbor discovery
+01:10.648	ID:3	Broadcast - End the neighbor discovery
+01:12.299	ID:5	Broadcast - End the neighbor discovery
+01:12.875	ID:2	Broadcast - End the neighbor discovery
+01:12.977	ID:10	Broadcast - End the neighbor discovery
+01:13.065	ID:4	Broadcast - End the neighbor discovery
+01:14.228	ID:8	Broadcast - End the neighbor discovery
+01:15.454	ID:7	Broadcast - End the neighbor discovery
+01:16.388	ID:1	Broadcast - End the neighbor discovery
+01:17.051	ID:9	Broadcast - End the neighbor discovery
+01:18.803	ID:6	Broadcast - End the neighbor discovery
+01:19.014	ID:3	Broadcast - End the neighbor discovery
+01:20.088	ID:4	Broadcast - End the neighbor discovery
+01:20.695	ID:2	Broadcast - End the neighbor discovery
+01:20.814	ID:5	Broadcast - End the neighbor discovery
+01:20.978	ID:8	Broadcast - End the neighbor discovery
+01:21.484	ID:8	runicast (neighbor discovery) message received from 3.0, seqno 0
+01:21.560	ID:3	runicast (neighbor discovery) message sent to 8.0, retransmissions 1
+01:21.633	ID:10	Broadcast - End the neighbor discovery
+01:22.463	ID:7	Broadcast - End the neighbor discovery
+01:24.091	ID:1	Broadcast - End the neighbor discovery
+01:24.929	ID:3	Broadcast - End the neighbor discovery
+01:25.042	ID:9	Broadcast - End the neighbor discovery
+01:25.289	ID:6	runicast (neighbor discovery) message received from 9.0, seqno 0
+01:25.369	ID:9	runicast (neighbor discovery) message sent to 6.0, retransmissions 1
+01:26.452	ID:6	Broadcast - End the neighbor discovery
+01:27.378	ID:4	Broadcast - End the neighbor discovery
+01:27.648	ID:2	runicast (neighbor discovery) message received from 4.0, seqno 0
+01:27.760	ID:4	runicast (neighbor discovery) message sent to 2.0, retransmissions 1
+01:28.087	ID:8	Broadcast - End the neighbor discovery
+01:28.188	ID:2	Broadcast - End the neighbor discovery
+01:28.899	ID:10	Broadcast - End the neighbor discovery
+01:29.110	ID:8	runicast (neighbor discovery) message received from 5.0, seqno 0
+01:29.250	ID:5	runicast (neighbor discovery) message sent to 8.0, retransmissions 1
+01:29.993	ID:9	runicast (neighbor discovery) message received from 6.0, seqno 0
+01:30.035	ID:6	runicast (neighbor discovery) message sent to 9.0, retransmissions 1
+01:30.276	ID:5	Broadcast - End the neighbor discovery
+01:30.642	ID:7	Broadcast - End the neighbor discovery
+01:30.912	ID:6	runicast (neighbor discovery) message received from 1.0, seqno 0
+01:31.042	ID:1	runicast (neighbor discovery) message sent to 6.0, retransmissions 1
+01:31.264	ID:3	Broadcast - End the neighbor discovery
+01:31.878	ID:5	runicast (neighbor discovery) message received from 7.0, seqno 0
+01:31.937	ID:7	runicast (neighbor discovery) message sent to 5.0, retransmissions 1
+01:32.259	ID:4	runicast (neighbor discovery) message received from 2.0, seqno 0
+01:32.396	ID:2	runicast (neighbor discovery) message sent to 4.0, retransmissions 1
+01:32.435	ID:3	runicast (neighbor discovery) message received from 8.0, seqno 0
+01:32.482	ID:8	runicast (neighbor discovery) message sent to 3.0, retransmissions 1
+01:32.990	ID:1	Broadcast - End the neighbor discovery
+01:33.144	ID:4	Broadcast - End the neighbor discovery
+01:33.266	ID:8	Broadcast - End the neighbor discovery
+01:33.406	ID:8	every_neighbor_agrees
+01:33.445	ID:8	NEIGHBOR_DISCOVERY_HAS_ENDED
+01:33.447	ID:8	procedure_wakeup
+01:33.449	ID:9	Broadcast - End the neighbor discovery
+01:33.449	ID:8	READ_NEIGHBOR_LIST 8 5 1.07 
+01:33.452	ID:8	READ_NEIGHBOR_LIST 8 3 1.36 
+01:33.454	ID:8	Neighbor 5.0 is now branch
+01:33.564	ID:7	runicast (neighbor discovery) message received from 10.0, seqno 0
+01:33.589	ID:9	every_neighbor_agrees
+01:33.842	ID:10	runicast (neighbor discovery) message sent to 7.0, retransmissions 0
+01:34.034	ID:9	NEIGHBOR_DISCOVERY_HAS_ENDED
+01:34.036	ID:9	procedure_wakeup
+01:34.038	ID:9	READ_NEIGHBOR_LIST 9 6 1.33 
+01:34.040	ID:9	Neighbor 6.0 is now branch
+01:35.390	ID:6	Broadcast - End the neighbor discovery
+01:36.109	ID:10	Broadcast - End the neighbor discovery
+01:38.094	ID:2	Broadcast - End the neighbor discovery
+01:38.234	ID:2	every_neighbor_agrees
+01:38.835	ID:2	NEIGHBOR_DISCOVERY_HAS_ENDED
+01:38.837	ID:2	procedure_wakeup
+01:38.840	ID:2	READ_NEIGHBOR_LIST 2 4 1.04 
+01:38.842	ID:2	Neighbor 4.0 is now branch
+01:39.533	ID:8	Send e_send_connect to 5.0 with L 0
+01:39.625	ID:5	runicast message received from 8.0, seqno 0
+01:39.629	ID:5	runicast message received CONNECT from 8.0 L = 0
+01:39.731	ID:8	runicast message sent to 5.0, retransmissions 1
+01:40.033	ID:5	Broadcast - End the neighbor discovery
+01:40.139	ID:3	Broadcast - End the neighbor discovery
+01:40.314	ID:7	runicast (neighbor discovery) message received from 5.0, seqno 1
+01:40.375	ID:5	runicast (neighbor discovery) message sent to 7.0, retransmissions 1
+01:40.486	ID:7	Broadcast - End the neighbor discovery
+01:41.160	ID:6	runicast (neighbor discovery) message received from 3.0, seqno 1
+01:41.186	ID:3	runicast (neighbor discovery) message sent to 6.0, retransmissions 1
+01:41.789	ID:10	Broadcast - End the neighbor discovery
+01:41.894	ID:4	Broadcast - End the neighbor discovery
+01:42.419	ID:9	Send e_send_connect to 6.0 with L 0
+01:42.535	ID:6	runicast message received from 9.0, seqno 0
+01:42.538	ID:6	runicast message received CONNECT from 9.0 L = 0
+01:42.617	ID:9	runicast message sent to 6.0, retransmissions 1
+01:42.685	ID:1	Broadcast - End the neighbor discovery
+01:43.001	ID:5	runicast (neighbor discovery) message received from 8.0, seqno 1
+01:43.107	ID:8	runicast (neighbor discovery) message sent to 5.0, retransmissions 1
+01:43.295	ID:1	runicast (neighbor discovery) message received from 6.0, seqno 1
+01:43.411	ID:6	runicast (neighbor discovery) message sent to 1.0, retransmissions 1
+01:43.686	ID:3	runicast (neighbor discovery) message received from 10.0, seqno 1
+01:43.718	ID:10	runicast (neighbor discovery) message sent to 3.0, retransmissions 1
+01:44.186	ID:6	Broadcast - End the neighbor discovery
+01:44.635	ID:4	runicast (neighbor discovery) message received from 1.0, seqno 1
+01:44.667	ID:1	runicast (neighbor discovery) message sent to 4.0, retransmissions 1
+01:47.167	ID:1	runicast (neighbor discovery) message received from 4.0, seqno 1
+01:47.259	ID:4	runicast (neighbor discovery) message sent to 1.0, retransmissions 1
+01:47.736	ID:2	Send e_send_connect to 4.0 with L 0
+01:47.759	ID:4	runicast message received from 2.0, seqno 0
+01:47.763	ID:4	runicast message received CONNECT from 2.0 L = 0
+01:47.773	ID:3	Broadcast - End the neighbor discovery
+01:47.893	ID:5	Broadcast - End the neighbor discovery
+01:48.019	ID:2	runicast message sent to 4.0, retransmissions 1
+01:48.033	ID:5	every_neighbor_agrees
+01:48.173	ID:5	NEIGHBOR_DISCOVERY_HAS_ENDED
+01:48.175	ID:5	procedure_wakeup
+01:48.177	ID:5	READ_NEIGHBOR_LIST 5 8 1.07 
+01:48.180	ID:5	READ_NEIGHBOR_LIST 5 7 1.26 
+01:48.182	ID:5	Neighbor 8.0 is now branch
+01:48.719	ID:10	runicast (neighbor discovery) message received from 7.0, seqno 1
+01:48.811	ID:7	runicast (neighbor discovery) message sent to 10.0, retransmissions 1
+01:49.732	ID:1	Broadcast - End the neighbor discovery
+01:50.133	ID:10	Broadcast - End the neighbor discovery
+01:50.439	ID:7	Broadcast - End the neighbor discovery
+01:50.579	ID:7	every_neighbor_agrees
+01:50.868	ID:7	NEIGHBOR_DISCOVERY_HAS_ENDED
+01:50.869	ID:7	procedure_wakeup
+01:50.872	ID:7	READ_NEIGHBOR_LIST 7 10 1.11 
+01:50.875	ID:7	READ_NEIGHBOR_LIST 7 5 1.26 
+01:50.877	ID:7	Neighbor 10.0 is now branch
+01:51.870	ID:4	Broadcast - End the neighbor discovery
+01:54.218	ID:6	Broadcast - End the neighbor discovery
+01:54.557	ID:5	response_to_connect from 8.0 level 0
+01:54.558	ID:5	is_NOT_basic
+01:55.187	ID:3	runicast (neighbor discovery) message received from 6.0, seqno 2
+01:55.286	ID:6	runicast (neighbor discovery) message sent to 3.0, retransmissions 1
+01:55.344	ID:10	runicast (neighbor discovery) message received from 3.0, seqno 2
+01:55.434	ID:3	runicast (neighbor discovery) message sent to 10.0, retransmissions 1
+01:55.577	ID:3	Broadcast - End the neighbor discovery
+01:56.894	ID:5	Send e_send_connect to 8.0 with L 0
+01:56.984	ID:8	runicast message received from 5.0, seqno 0
+01:56.987	ID:8	runicast message received CONNECT from 5.0 L = 0
+01:57.124	ID:5	runicast message sent to 8.0, retransmissions 1
+01:57.587	ID:10	Broadcast - End the neighbor discovery
+01:58.099	ID:1	Broadcast - End the neighbor discovery
+01:58.240	ID:1	every_neighbor_agrees
+01:58.713	ID:4	Broadcast - End the neighbor discovery
+01:58.903	ID:1	NEIGHBOR_DISCOVERY_HAS_ENDED
+01:58.905	ID:1	procedure_wakeup
+01:58.909	ID:1	READ_NEIGHBOR_LIST 1 6 1.10 
+01:58.912	ID:1	READ_NEIGHBOR_LIST 1 4 1.18 
+01:58.914	ID:1	Neighbor 6.0 is now branch
+01:58.940	ID:7	Send e_send_connect to 10.0 with L 0
+01:58.968	ID:10	runicast message received from 7.0, seqno 0
+01:58.972	ID:10	runicast message received CONNECT from 7.0 L = 0
+01:59.060	ID:7	runicast message sent to 10.0, retransmissions 1
+01:59.788	ID:6	runicast (neighbor discovery) message received from 4.0, seqno 2
+01:59.881	ID:6	Broadcast - End the neighbor discovery
+01:59.911	ID:6	runicast message received from 4.0, seqno 2 (DUPLICATE)
+02:00.163	ID:6	runicast message received from 4.0, seqno 2 (DUPLICATE)
+02:00.385	ID:4	runicast (neighbor discovery) message received from 10.0, seqno 2
+02:00.510	ID:4	runicast (neighbor discovery) message sent to 6.0, retransmissions 3
+02:00.841	ID:10	runicast (neighbor discovery) message sent to 4.0, retransmissions 1
+02:04.732	ID:5	Send e_send_initiate to 8.0 with L=1 F=1.07 S=1
+02:04.858	ID:8	runicast message received from 5.0, seqno 1
+02:04.863	ID:8	runicast message received INITIATE from 5.0 with L=1 F=1.07 S=1 
+02:04.999	ID:5	runicast message sent to 8.0, retransmissions 1
+02:05.234	ID:10	Broadcast - End the neighbor discovery
+02:05.546	ID:3	Broadcast - End the neighbor discovery
+02:05.687	ID:3	every_neighbor_agrees
+02:06.046	ID:1	Send e_send_connect to 6.0 with L 0
+02:06.162	ID:6	runicast message received from 1.0, seqno 0
+02:06.165	ID:6	runicast message received CONNECT from 1.0 L = 0
+02:06.292	ID:1	runicast message sent to 6.0, retransmissions 1
+02:06.475	ID:3	NEIGHBOR_DISCOVERY_HAS_ENDED
+02:06.476	ID:3	procedure_wakeup
+02:06.479	ID:3	READ_NEIGHBOR_LIST 3 6 1.28 
+02:06.482	ID:3	READ_NEIGHBOR_LIST 3 10 1.30 
+02:06.485	ID:3	READ_NEIGHBOR_LIST 3 8 1.36 
+02:06.487	ID:3	Neighbor 6.0 is now branch
+02:06.760	ID:4	runicast (neighbor discovery) message received from 6.0, seqno 3
+02:06.786	ID:6	runicast (neighbor discovery) message sent to 4.0, retransmissions 1
+02:07.259	ID:8	response_to_connect from 5.0 level 0
+02:07.260	ID:8	is_NOT_basic
+02:07.733	ID:6	Broadcast - End the neighbor discovery
+02:07.874	ID:6	every_neighbor_agrees
+02:07.876	ID:6	NEIGHBOR_DISCOVERY_HAS_ENDED
+02:07.878	ID:6	procedure_wakeup
+02:07.881	ID:6	READ_NEIGHBOR_LIST 6 1 1.10 
+02:07.884	ID:6	READ_NEIGHBOR_LIST 6 4 1.12 
+02:07.886	ID:6	READ_NEIGHBOR_LIST 6 3 1.28 
+02:07.889	ID:6	READ_NEIGHBOR_LIST 6 9 1.33 
+02:07.891	ID:6	Neighbor 1.0 is now branch
+02:08.660	ID:4	Broadcast - End the neighbor discovery
+02:12.172	ID:10	Broadcast - End the neighbor discovery
+02:12.593	ID:10	runicast (neighbor discovery) message received from 4.0, seqno 3
+02:12.635	ID:4	runicast (neighbor discovery) message sent to 10.0, retransmissions 1
+02:12.831	ID:8	Send e_send_initiate to 5.0 with L=1 F=1.07 S=1
+02:12.876	ID:5	runicast message received from 8.0, seqno 1
+02:12.881	ID:5	runicast message received INITIATE from 8.0 with L=1 F=1.07 S=1 
+02:12.981	ID:8	runicast message sent to 5.0, retransmissions 1
+02:13.823	ID:4	Broadcast - End the neighbor discovery
+02:13.964	ID:4	every_neighbor_agrees
+02:14.018	ID:4	NEIGHBOR_DISCOVERY_HAS_ENDED
+02:14.019	ID:4	procedure_wakeup
+02:14.022	ID:4	READ_NEIGHBOR_LIST 4 2 1.04 
+02:14.025	ID:4	READ_NEIGHBOR_LIST 4 6 1.12 
+02:14.027	ID:4	READ_NEIGHBOR_LIST 4 1 1.18 
+02:14.030	ID:4	READ_NEIGHBOR_LIST 4 10 1.98 
+02:14.032	ID:4	Neighbor 2.0 is now branch
+02:15.188	ID:3	Send e_send_connect to 6.0 with L 0
+02:15.287	ID:6	runicast message received from 3.0, seqno 0
+02:15.291	ID:6	runicast message received CONNECT from 3.0 L = 0
+02:15.434	ID:3	runicast message sent to 6.0, retransmissions 1
+02:16.312	ID:6	response_to_connect from 9.0 level 0
+02:16.312	ID:6	is_basic
+02:18.086	ID:6	Send e_send_connect to 1.0 with L 0
+02:18.169	ID:1	runicast message received from 6.0, seqno 0
+02:18.172	ID:1	runicast message received CONNECT from 6.0 L = 0
+02:18.284	ID:6	runicast message sent to 1.0, retransmissions 1
+02:20.542	ID:4	response_to_connect from 2.0 level 0
+02:20.543	ID:4	is_NOT_basic
+02:21.617	ID:10	Broadcast - End the neighbor discovery
+02:21.758	ID:10	every_neighbor_agrees
+02:22.374	ID:10	NEIGHBOR_DISCOVERY_HAS_ENDED
+02:22.375	ID:10	procedure_wakeup
+02:22.378	ID:10	READ_NEIGHBOR_LIST 10 7 1.11 
+02:22.381	ID:10	READ_NEIGHBOR_LIST 10 3 1.30 
+02:22.384	ID:10	READ_NEIGHBOR_LIST 10 4 1.98 
+02:22.386	ID:10	Neighbor 7.0 is now branch
+02:22.645	ID:4	Send e_send_connect to 2.0 with L 0
+02:22.771	ID:2	runicast message received from 4.0, seqno 0
+02:22.774	ID:2	runicast message received CONNECT from 4.0 L = 0
+02:22.882	ID:4	runicast message sent to 2.0, retransmissions 1
+02:25.636	ID:8	Send e_send_test to 3.0 with L=1 F=1.07
+02:25.685	ID:3	runicast message received from 8.0, seqno 2
+02:25.689	ID:3	runicast message received TEST from 8.0 with L=1 F=1.07 
+02:25.694	ID:6	response_to_connect from 1.0 level 0
+02:25.695	ID:6	is_NOT_basic
+02:25.733	ID:8	runicast message sent to 3.0, retransmissions 1
+02:27.990	ID:4	Send e_send_initiate to 2.0 with L=1 F=1.04 S=1
+02:28.020	ID:2	runicast message received from 4.0, seqno 1
+02:28.025	ID:2	runicast message received INITIATE from 4.0 with L=1 F=1.04 S=1 
+02:28.133	ID:4	runicast message sent to 2.0, retransmissions 1
+02:28.250	ID:2	response_to_connect from 4.0 level 0
+02:28.251	ID:2	is_NOT_basic
+02:28.677	ID:1	response_to_connect from 6.0 level 0
+02:28.678	ID:1	is_NOT_basic
+02:31.712	ID:10	response_to_connect from 7.0 level 0
+02:31.713	ID:10	is_NOT_basic
+02:32.866	ID:6	response_to_connect from 3.0 level 0
+02:32.866	ID:6	is_basic
+02:33.032	ID:10	Send e_send_connect to 7.0 with L 0
+02:33.063	ID:7	runicast message received from 10.0, seqno 0
+02:33.066	ID:7	runicast message received CONNECT from 10.0 L = 0
+02:33.091	ID:10	runicast message sent to 7.0, retransmissions 1
+02:33.267	ID:6	Send e_send_initiate to 1.0 with L=1 F=1.10 S=1
+02:33.293	ID:1	runicast message received from 6.0, seqno 1
+02:33.298	ID:1	runicast message received INITIATE from 6.0 with L=1 F=1.10 S=1 
+02:33.410	ID:6	runicast message sent to 1.0, retransmissions 1
+02:33.489	ID:5	Send e_send_test to 7.0 with L=1 F=1.07
+02:33.561	ID:7	runicast message received from 5.0, seqno 2
+02:33.565	ID:7	runicast message received TEST from 5.0 with L=1 F=1.07 
+02:33.626	ID:5	runicast message sent to 7.0, retransmissions 1
+02:36.097	ID:2	Send e_send_initiate to 4.0 with L=1 F=1.04 S=1
+02:36.134	ID:4	runicast message received from 2.0, seqno 1
+02:36.139	ID:4	runicast message received INITIATE from 2.0 with L=1 F=1.04 S=1 
+02:36.270	ID:2	runicast message sent to 4.0, retransmissions 1
+02:38.897	ID:6	response_to_connect from 9.0 level 0
+02:38.898	ID:6	is_basic
+02:39.797	ID:1	Send e_send_initiate to 6.0 with L=1 F=1.10 S=1
+02:39.911	ID:6	runicast message received from 1.0, seqno 1
+02:39.916	ID:6	runicast message received INITIATE from 1.0 with L=1 F=1.10 S=1 
+02:40.042	ID:1	runicast message sent to 6.0, retransmissions 1
+02:41.924	ID:10	Send e_send_initiate to 7.0 with L=1 F=1.11 S=1
+02:42.062	ID:7	runicast message received from 10.0, seqno 1
+02:42.068	ID:7	runicast message received INITIATE from 10.0 with L=1 F=1.11 S=1 
+02:42.091	ID:10	runicast message sent to 7.0, retransmissions 1
+02:44.260	ID:7	response_to_connect from 10.0 level 0
+02:44.261	ID:7	is_NOT_basic
+02:44.713	ID:2	Send e_send_report to 4.0 with w = -1.15 
+02:44.749	ID:6	response_to_connect from 3.0 level 0
+02:44.750	ID:6	is_basic
+02:44.759	ID:4	runicast message received from 2.0, seqno 2
+02:44.764	ID:4	runicast message received REPORT_MSG from 2.0 with w = -1.15
+02:44.895	ID:2	runicast message sent to 4.0, retransmissions 1
+02:51.015	ID:6	response_to_connect from 9.0 level 0
+02:51.015	ID:6	is_basic
+02:52.531	ID:1	Send e_send_test to 4.0 with L=1 F=1.10
+02:52.634	ID:4	runicast message received from 1.0, seqno 2
+02:52.639	ID:4	runicast message received TEST from 1.0 with L=1 F=1.10 
+02:52.665	ID:1	runicast message sent to 4.0, retransmissions 1
+02:52.966	ID:7	Send e_send_initiate to 10.0 with L=1 F=1.11 S=1
+02:53.068	ID:4	Send e_send_test to 6.0 with L=1 F=1.04
+02:53.217	ID:10	runicast message received from 7.0, seqno 1
+02:53.222	ID:10	runicast message received INITIATE from 7.0 with L=1 F=1.11 S=1 
+02:53.286	ID:6	runicast message received from 4.0, seqno 2
+02:53.291	ID:6	runicast message received TEST from 4.0 with L=1 F=1.04 
+02:53.384	ID:4	runicast message sent to 6.0, retransmissions 1
+02:53.435	ID:7	runicast message sent to 10.0, retransmissions 1
+03:04.949	ID:7	Send e_send_test to 5.0 with L=1 F=1.11
+03:05.001	ID:5	runicast message received from 7.0, seqno 2
+03:05.006	ID:5	runicast message received TEST from 7.0 with L=1 F=1.11 
+03:05.060	ID:7	runicast message sent to 5.0, retransmissions 1
+03:07.087	ID:6	Send e_send_test to 4.0 with L=1 F=1.10
+03:07.134	ID:4	runicast message received from 6.0, seqno 2
+03:07.138	ID:4	runicast message received TEST from 6.0 with L=1 F=1.10 
+03:07.160	ID:6	runicast message sent to 4.0, retransmissions 1
+03:08.288	ID:6	response_to_connect from 3.0 level 0
+03:08.290	ID:6	Neighbor 3.0 is now branch
+03:10.408	ID:10	Send e_send_test to 3.0 with L=1 F=1.11
+03:10.434	ID:3	runicast message received from 10.0, seqno 2
+03:10.438	ID:3	runicast message received TEST from 10.0 with L=1 F=1.11 
+03:10.465	ID:10	runicast message sent to 3.0, retransmissions 1
+03:11.597	ID:4	Send e_send_accept to 1.0 
+03:11.668	ID:1	runicast message received from 4.0, seqno 3
+03:11.671	ID:1	runicast message received ACCEPT_MSG from 4.0 
+03:11.689	ID:7	Send e_send_accept to 5.0 
+03:11.750	ID:5	runicast message received from 7.0, seqno 3
+03:11.754	ID:5	runicast message received ACCEPT_MSG from 7.0 
+03:11.757	ID:4	runicast message sent to 1.0, retransmissions 1
+03:11.811	ID:7	runicast message sent to 5.0, retransmissions 1
+03:17.147	ID:6	response_to_connect from 9.0 level 0
+03:17.149	ID:6	Neighbor 9.0 is now branch
+03:18.205	ID:6	Send e_send_initiate to 3.0 with L=1 F=1.10 S=1
+03:18.309	ID:3	runicast message received from 6.0, seqno 3
+03:18.315	ID:3	runicast message received INITIATE from 6.0 with L=1 F=1.10 S=1 
+03:18.408	ID:6	runicast message sent to 3.0, retransmissions 1
+03:19.042	ID:5	Send e_send_accept to 7.0 
+03:19.063	ID:7	runicast message received from 5.0, seqno 3
+03:19.066	ID:7	runicast message received ACCEPT_MSG from 5.0 
+03:19.124	ID:5	runicast message sent to 7.0, retransmissions 1
+03:23.494	ID:6	Send e_send_initiate to 9.0 with L=1 F=1.10 S=1
+03:23.619	ID:9	runicast message received from 6.0, seqno 0
+03:23.624	ID:9	runicast message received INITIATE from 6.0 with L=1 F=1.10 S=1 
+03:23.660	ID:6	runicast message sent to 9.0, retransmissions 1
+03:25.495	ID:4	Send e_send_accept to 6.0 
+03:25.536	ID:6	runicast message received from 4.0, seqno 0
+03:25.539	ID:6	runicast message received ACCEPT_MSG from 4.0 
+03:25.633	ID:4	runicast message sent to 6.0, retransmissions 1
+03:28.270	ID:5	Send e_send_report to 8.0 with w = 1.26 
+03:28.358	ID:8	runicast message received from 5.0, seqno 0
+03:28.362	ID:8	runicast message received REPORT_MSG from 5.0 with w = 1.26
+03:28.498	ID:5	runicast message sent to 8.0, retransmissions 1
+03:29.624	ID:1	Send e_send_report to 6.0 with w = 1.18 
+03:29.662	ID:6	runicast message received from 1.0, seqno 3
+03:29.667	ID:6	runicast message received REPORT_MSG from 1.0 with w = 1.18
+03:29.791	ID:1	runicast message sent to 6.0, retransmissions 1
+03:30.445	ID:6	Send e_send_accept to 4.0 
+03:30.508	ID:4	runicast message received from 6.0, seqno 1
+03:30.511	ID:4	runicast message received ACCEPT_MSG from 6.0 
+03:30.535	ID:6	runicast message sent to 4.0, retransmissions 1
+03:32.606	ID:7	Send e_send_report to 10.0 with w = 1.26 
+03:32.717	ID:10	runicast message received from 7.0, seqno 0
+03:32.721	ID:10	runicast message received REPORT_MSG from 7.0 with w = 1.26
+03:32.812	ID:7	runicast message sent to 10.0, retransmissions 1
+03:44.241	ID:9	Send e_send_report to 6.0 with w = -1.15 
+03:44.285	ID:6	runicast message received from 9.0, seqno 1
+03:44.290	ID:6	runicast message received REPORT_MSG from 9.0 with w = -1.15
+03:44.369	ID:9	runicast message sent to 6.0, retransmissions 1
+03:46.114	ID:4	Send e_send_report to 2.0 with w = 1.12 
+03:46.145	ID:4	Neighbor 6.0 is now branch
+03:46.148	ID:2	runicast message received from 4.0, seqno 1 (DUPLICATE)
+03:46.257	ID:4	runicast message sent to 2.0, retransmissions 1
+03:46.557	ID:3	Send e_send_test to 10.0 with L=1 F=1.10
+03:46.592	ID:10	runicast message received from 3.0, seqno 1
+03:46.596	ID:10	runicast message received TEST from 3.0 with L=1 F=1.10 
+03:46.685	ID:3	runicast message sent to 10.0, retransmissions 1
+03:54.093	ID:3	Send e_send_accept to 10.0 
+03:54.216	ID:10	runicast message received from 3.0, seqno 2
+03:54.220	ID:10	runicast message received ACCEPT_MSG from 3.0 
+03:54.308	ID:3	runicast message sent to 10.0, retransmissions 1
+03:56.832	ID:4	Send e_send_connect to 6.0 with L 1
+03:56.910	ID:6	runicast message received from 4.0, seqno 2
+03:56.914	ID:6	runicast message received CONNECT from 4.0 L = 1
+03:57.007	ID:4	runicast message sent to 6.0, retransmissions 1
+04:01.296	ID:3	Send e_send_accept to 8.0 
+04:01.358	ID:8	runicast message received from 3.0, seqno 3
+04:01.362	ID:8	runicast message received ACCEPT_MSG from 3.0 
+04:01.433	ID:3	runicast message sent to 8.0, retransmissions 1
+04:05.868	ID:10	Send e_send_accept to 3.0 
+04:05.934	ID:3	runicast message received from 10.0, seqno 3
+04:05.938	ID:3	runicast message received ACCEPT_MSG from 10.0 
+04:05.966	ID:10	runicast message sent to 3.0, retransmissions 1
+04:07.031	ID:6	response_to_connect from 4.0 level 1
+04:07.031	ID:6	is_basic
+04:18.397	ID:6	response_to_connect from 4.0 level 1
+04:18.398	ID:6	is_basic
+04:19.041	ID:10	Send e_send_report to 7.0 with w = 1.30 
+04:19.062	ID:7	runicast message received from 10.0, seqno 0
+04:19.067	ID:7	runicast message received REPORT_MSG from 10.0 with w = 1.30
+04:19.091	ID:10	runicast message sent to 7.0, retransmissions 1
+04:22.377	ID:8	Send e_send_report to 5.0 with w = 1.36 
+04:22.500	ID:5	runicast message received from 8.0, seqno 3
+04:22.505	ID:5	runicast message received REPORT_MSG from 8.0 with w = 1.36
+04:22.608	ID:8	runicast message sent to 5.0, retransmissions 1
+04:23.610	ID:3	Send e_send_report to 6.0 with w = 1.30 
+04:23.663	ID:6	runicast message received from 3.0, seqno 0 (DUPLICATE)
+04:23.685	ID:3	runicast message sent to 6.0, retransmissions 1
+04:27.540	ID:7	Neighbor 5.0 is now branch
+04:32.213	ID:5	Neighbor 7.0 is now branch
+04:35.921	ID:6	response_to_connect from 4.0 level 1
+04:35.922	ID:6	is_basic
+04:38.565	ID:7	Send e_send_connect to 5.0 with L 1
+04:38.627	ID:5	runicast message received from 7.0, seqno 1
+04:38.630	ID:5	runicast message received CONNECT from 7.0 L = 1
+04:38.685	ID:7	runicast message sent to 5.0, retransmissions 1
+04:41.043	ID:5	Send e_send_connect to 7.0 with L 1
+04:41.188	ID:7	runicast message received from 5.0, seqno 1
+04:41.191	ID:7	runicast message received CONNECT from 5.0 L = 1
+04:41.249	ID:5	runicast message sent to 7.0, retransmissions 1
+04:46.964	ID:5	response_to_connect from 7.0 level 1
+04:46.964	ID:5	is_NOT_basic
+04:50.728	ID:7	response_to_connect from 5.0 level 1
+04:50.729	ID:7	is_NOT_basic
+04:52.239	ID:5	Send e_send_initiate to 7.0 with L=2 F=1.26 S=1
+04:52.312	ID:7	runicast message received from 5.0, seqno 2
+04:52.317	ID:7	runicast message received INITIATE from 5.0 with L=2 F=1.26 S=1 
+04:52.374	ID:5	runicast message sent to 7.0, retransmissions 1
+04:52.850	ID:6	response_to_connect from 4.0 level 1
+04:52.851	ID:6	is_basic
+04:58.450	ID:7	Send e_send_initiate to 5.0 with L=2 F=1.26 S=1
+04:58.502	ID:5	runicast message received from 7.0, seqno 2
+04:58.507	ID:5	runicast message received INITIATE from 7.0 with L=2 F=1.26 S=1 
+04:58.562	ID:7	runicast message sent to 5.0, retransmissions 1
+05:06.129	ID:7	Send e_send_initiate to 10.0 with L=2 F=1.26 S=1
+05:06.216	ID:10	runicast message received from 7.0, seqno 3
+05:06.222	ID:10	runicast message received INITIATE from 7.0 with L=2 F=1.26 S=1 
+05:06.310	ID:7	runicast message sent to 10.0, retransmissions 1
+05:09.437	ID:6	response_to_connect from 4.0 level 1
+05:09.437	ID:6	is_basic
+05:17.732	ID:5	Send e_send_initiate to 8.0 with L=2 F=1.26 S=1
+05:17.858	ID:8	runicast message received from 5.0, seqno 3
+05:17.863	ID:8	runicast message received INITIATE from 5.0 with L=2 F=1.26 S=1 
+05:17.999	ID:5	runicast message sent to 8.0, retransmissions 1
+05:23.928	ID:6	response_to_connect from 4.0 level 1
+05:23.929	ID:6	is_basic
+05:25.073	ID:10	Send e_send_test to 3.0 with L=2 F=1.26
+05:25.184	ID:3	runicast message received from 10.0, seqno 1
+05:25.189	ID:3	runicast message received TEST from 10.0 with L=2 F=1.26 
+05:25.215	ID:10	runicast message sent to 3.0, retransmissions 1
+05:37.292	ID:8	Send e_send_test to 3.0 with L=2 F=1.26
+05:37.434	ID:3	runicast message received from 8.0, seqno 0
+05:37.439	ID:3	runicast message received TEST from 8.0 with L=2 F=1.26 
+05:37.482	ID:8	runicast message sent to 3.0, retransmissions 1
+05:42.577	ID:6	response_to_connect from 4.0 level 1
+05:42.578	ID:6	is_basic
+05:57.631	ID:6	response_to_connect from 4.0 level 1
+05:57.632	ID:6	is_basic
+06:13.343	ID:6	response_to_connect from 4.0 level 1
+06:13.343	ID:6	is_basic
+06:30.960	ID:6	response_to_connect from 4.0 level 1
+06:30.960	ID:6	is_basic
+06:45.733	ID:6	response_to_connect from 4.0 level 1
+06:45.734	ID:6	is_basic

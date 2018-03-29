@@ -57,7 +57,7 @@
 
 //Values test
 #define NUM_MAX_RETRANSMISSIONS               50
-#define NUM_BROADCAST_NEIGHBOR_DISCOVERY      10 //Must be greater than 1, at least 2. # of broadcast to send
+#define NUM_BROADCAST_NEIGHBOR_DISCOVERY      20 //Must be greater than 1, at least 2. # of broadcast to send
 #define TIME_BROADCAST_INTERVAL_DISCOVERY     2 //in seconds. Broadcast interval in neighbor discovery
 #define TIME_BROADCAST_INTERVAL_END           5 //in seconds
 #define NUM_MAX_NEIGHBORS                     16 // This #define defines the maximum amount of neighbors we can remember.
