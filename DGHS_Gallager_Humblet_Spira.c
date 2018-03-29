@@ -54,6 +54,7 @@ PROCESS(response_to_accept,"response_to_accept");
 PROCESS(response_to_reject,"response_to_reject");
 PROCESS(response_to_report,"response_to_report");
 PROCESS(procedure_change_root,"procedure_change_root");
+PROCESS(response_to_change_root,"response_to_change_root");
 
 static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8_t seqno)
 {
@@ -200,6 +201,21 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
             (int)(((100UL * in_l->type_msg.rep_msg.w) / SEQNO_EWMA_UNITY) % 100)
             );
         }
+  }else
+  if(msg_type == CHANGE_ROOT_MSG)
+  {
+        //ADD to the list
+        in_l = memb_alloc(&in_union_mem);
+        if(in_l == NULL) {            // If we could not allocate a new entry, we give up.
+          DGHS_DBG_1("ERROR: we could not allocate a new entry for <<in_union_list>>\n");
+        }else
+        {
+            in_l->type_msg.cha_root_msg    = *((struct change_root_msg*) msg);
+            in_l->uniontype                = CHANGE_ROOT_MSG;
+            list_push(in_union_list,in_l); // Add an item to the start of the list.
+            DGHS_DBG_2("runicast message received CHANGE_ROOT_MSG from %d.%d \n",
+            in_l->type_msg.cha_root_msg.from.u8[0], in_l->type_msg.cha_root_msg.from.u8[1]);
+        }
   }
   else
   {
@@ -322,6 +338,10 @@ PROCESS_THREAD(in_union_evaluation, ev, data)
           if(in_l->uniontype == REPORT_MSG)
           {
             process_post_synch(&response_to_report, e_execute, &in_l->type_msg.rep_msg);
+          }else
+          if(in_l->uniontype == CHANGE_ROOT_MSG)
+          {
+            process_post_synch(&response_to_change_root, e_execute, &in_l->type_msg.cha_root_msg);
           }
           memb_free(&in_union_mem,in_l);
           //DGHS_DBG_2("memb_free\n");
@@ -702,7 +722,26 @@ PROCESS_THREAD(response_to_report, ev, data)
 
 }
 
+PROCESS_THREAD(response_to_change_root, ev, data)
+{
 
+  //static struct change_root_msg cha_root_msg;
+  PROCESS_BEGIN();
+
+  while(1)
+  {
+      PROCESS_WAIT_EVENT();
+      if(ev == e_execute)
+      {
+          //cha_root_msg = *( (struct change_root_msg *) data);
+
+          process_post_synch(&procedure_change_root, e_execute, NULL);
+      }
+
+  }
+
+  PROCESS_END();
+}
 
 
 PROCESS_THREAD(procedure_change_root, ev, data)
