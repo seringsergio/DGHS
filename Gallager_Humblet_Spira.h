@@ -62,7 +62,8 @@ enum
 {
   CONNECT_MSG,
   INITIATE_MSG,
-  TEST_MSG
+  TEST_MSG,
+  REPORT_MSG
 };
 
 
@@ -87,6 +88,13 @@ process_event_t e_send_initiate;
  /////////////////////////////////////////////////////////////////////////////
  ///////////////////////STRUCTS///////////////////////////////////////////////
  /////////////////////////////////////////////////////////////////////////////
+
+ struct report_msg
+ {
+   linkaddr_t to;
+   linkaddr_t from;
+   uint32_t   w; //Fragment name
+ };
 
 struct test_msg
 {
@@ -117,6 +125,7 @@ union types_msg
   struct connect_msg  co_msg;
   struct initiate_msg i_msg;
   struct test_msg     t_msg;
+  struct report_msg   rep_msg;
 };
 
 struct in_out_list
@@ -133,6 +142,7 @@ struct in_out_list
 void fill_connect_msg(struct connect_msg *co_msg, linkaddr_t *to, linkaddr_t *from, uint8_t L);
 void fill_initiate_msg(struct initiate_msg *i_msg, linkaddr_t *to, linkaddr_t *from, uint8_t L, uint32_t F, uint8_t S);
 void fill_test_msg(struct test_msg *t_msg, linkaddr_t *to, linkaddr_t *from, uint8_t L, uint32_t F);
+void fill_report_msg(struct report_msg *rep_msg, linkaddr_t *to, linkaddr_t *from, uint32_t w);
 void print_neighbor_list_debug(struct neighbor *neighbors_list_head);
 void become_branch(linkaddr_t *addr);
 uint8_t is_basic(linkaddr_t *addr);

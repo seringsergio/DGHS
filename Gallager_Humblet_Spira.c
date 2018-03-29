@@ -62,6 +62,14 @@ void fill_test_msg(struct test_msg *t_msg, linkaddr_t *to, linkaddr_t *from, uin
   t_msg->F = F;
 }
 
+void fill_report_msg(struct report_msg *rep_msg, linkaddr_t *to, linkaddr_t *from, uint32_t w)
+{
+  linkaddr_copy(&rep_msg->to,to);
+  linkaddr_copy(&rep_msg->from,from);
+  rep_msg->w = w;
+}
+
+
 void print_neighbor_list_debug(struct neighbor *neighbors_list_head)
 {
     struct neighbor *n;

@@ -48,6 +48,8 @@ PROCESS(in_union_evaluation, "in_union_evaluation");
 PROCESS(response_to_connect,"response_to_connect");
 PROCESS(response_to_initiate, "response_to_initiate");
 PROCESS(procedure_test, "procedure_test");
+PROCESS(procedure_report, "procedure_report");
+
 
 static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8_t seqno)
 {
@@ -398,6 +400,43 @@ PROCESS_THREAD(response_to_initiate, ev, data)
 }
 
 
+PROCESS_THREAD(procedure_report, ev, data)
+{
+  static struct report_msg rep_msg;
+  static struct in_out_list *out_l;
+
+  PROCESS_BEGIN();
+
+
+  while(1)
+  {
+      PROCESS_WAIT_EVENT();
+      if(ev == e_execute)
+      {
+          if( (node.find_count == 0)  &&  (linkaddr_cmp(&node.test_edge,&linkaddr_null ) )  )
+          {
+              node.SN = FOUND;
+
+              //Send report
+              fill_report_msg(&rep_msg, &node.in_branch, &linkaddr_node_addr, node.best_wt);
+              //ADD to the list
+              out_l = memb_alloc(&out_union_mem);
+              if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
+                DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list>>\n");
+              }else
+              {
+
+                  out_l->type_msg.rep_msg      = rep_msg;
+                  out_l->uniontype             = REPORT_MSG;
+                  list_push(out_union_list,out_l); // Add an item to the start of the list.
+              }
+
+          }
+      }
+  }
+
+  PROCESS_END();
+}
 
 PROCESS_THREAD(procedure_test, ev, data)
 {
