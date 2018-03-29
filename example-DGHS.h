@@ -94,6 +94,7 @@
 
 //struct sensor_node - node.control_flags_neighbor_discovery
 #define NEIGHBOR_DISCOVERY_HAS_ENDED 0x01
+#define GHS_HAS_ENDED                0x02
 
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////EXTERNAL PROCESSES////////////////////////////////////
@@ -115,7 +116,9 @@ PROCESS_NAME(procedure_test);
 PROCESS_NAME(procedure_report);
 PROCESS_NAME(response_to_test);
 PROCESS_NAME(response_to_accept);
-PROCESS_NAME(response_to_reject); 
+PROCESS_NAME(response_to_reject);
+PROCESS_NAME(response_to_report);
+PROCESS_NAME(procedure_change_root);
 
 
 /////////////////////////////////////////////////////////////////////////////

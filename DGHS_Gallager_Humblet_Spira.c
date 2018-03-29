@@ -52,6 +52,8 @@ PROCESS(procedure_report, "procedure_report");
 PROCESS(response_to_test, "response_to_test");
 PROCESS(response_to_accept,"response_to_accept");
 PROCESS(response_to_reject,"response_to_reject");
+PROCESS(response_to_report,"response_to_report");
+PROCESS(procedure_change_root,"procedure_change_root");
 
 static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8_t seqno)
 {
@@ -180,6 +182,24 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
         in_l->type_msg.rej_msg.from.u8[0], in_l->type_msg.rej_msg.from.u8[1] );
     }
 
+  }else
+  if(msg_type == REPORT_MSG)
+  {
+        //ADD to the list
+        in_l = memb_alloc(&in_union_mem);
+        if(in_l == NULL) {            // If we could not allocate a new entry, we give up.
+          DGHS_DBG_1("ERROR: we could not allocate a new entry for <<in_union_list>>\n");
+        }else
+        {
+            in_l->type_msg.rep_msg    = *((struct report_msg*) msg);
+            in_l->uniontype           = REPORT_MSG;
+            list_push(in_union_list,in_l); // Add an item to the start of the list.
+            DGHS_DBG_2("runicast message received REPORT_MSG from %d.%d with w = %d.%02d\n",
+            in_l->type_msg.rep_msg.from.u8[0], in_l->type_msg.rep_msg.from.u8[1],
+            (int)(in_l->type_msg.rep_msg.w / SEQNO_EWMA_UNITY),
+            (int)(((100UL * in_l->type_msg.rep_msg.w) / SEQNO_EWMA_UNITY) % 100)
+            );
+        }
   }
   else
   {
@@ -298,6 +318,10 @@ PROCESS_THREAD(in_union_evaluation, ev, data)
           if(in_l->uniontype == REJECT_MSG)
           {
             process_post_synch(&response_to_reject, e_execute, &in_l->type_msg.rej_msg);
+          }else
+          if(in_l->uniontype == REPORT_MSG)
+          {
+            process_post_synch(&response_to_report, e_execute, &in_l->type_msg.rep_msg);
           }
           memb_free(&in_union_mem,in_l);
           //DGHS_DBG_2("memb_free\n");
@@ -614,6 +638,80 @@ PROCESS_THREAD(response_to_reject, ev, data)
 
 }
 
+
+
+PROCESS_THREAD(response_to_report, ev, data)
+{
+  static struct report_msg rep_msg;
+  static struct in_out_list *in_l;
+
+  PROCESS_BEGIN();
+
+  while(1)
+  {
+      PROCESS_WAIT_EVENT();
+      if(ev == e_execute)
+      {
+          rep_msg = *( (struct report_msg *) data);
+
+          if(!(linkaddr_cmp(&rep_msg.from,&node.in_branch)))
+          {
+              node.find_count--;
+              if(rep_msg.w < node.best_wt)
+              {
+                node.best_wt = rep_msg.w;
+                linkaddr_copy(&node.best_edge, &rep_msg.from);
+              }
+              process_post_synch(&procedure_report, e_execute,NULL);
+          }else
+          if(node.SN == FIND)
+          {
+
+            //place received message on end of queue
+            //ADD to the list
+            in_l = memb_alloc(&in_union_mem);
+            //DGHS_DBG_2("memb_alloc\n");
+            if(in_l == NULL) {            // If we could not allocate a new entry, we give up.
+              DGHS_DBG_1("ERROR: we could not allocate a new entry for <<in_union_list>> ---\n");
+            }else
+            {
+                in_l->type_msg.rep_msg    = rep_msg;
+                in_l->uniontype           = REPORT_MSG;
+                list_push(in_union_list,in_l); // Add an item to the start of the list.
+            }
+
+          }else
+          if( rep_msg.w > node.best_wt )
+          {
+            process_post_synch(&procedure_change_root, e_execute, NULL);
+          }else
+          if(rep_msg.w == node.best_wt)
+          {
+            if(rep_msg.w == INFINITE || node.best_wt == INFINITE )
+            {
+              DGHS_interface_control_flags(GHS_HAS_ENDED);
+              DGHS_DBG_1("GHS has finished\n");
+            }
+
+          }
+
+      }
+  }
+
+  PROCESS_END();
+
+}
+
+
+
+
+PROCESS_THREAD(procedure_change_root, ev, data)
+{
+  PROCESS_BEGIN();
+
+  PROCESS_END();
+
+}
 PROCESS_THREAD(procedure_report, ev, data)
 {
   static struct report_msg rep_msg;
