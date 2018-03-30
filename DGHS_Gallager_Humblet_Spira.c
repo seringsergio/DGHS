@@ -309,7 +309,6 @@ PROCESS_THREAD(response_to_connect, ev, data)
   static struct connect_msg co_msg;
   static struct initiate_msg i_msg;
   static struct in_out_list *out_l, *in_l;
-  static uint8_t temp;
   static struct fragment_name F;
   PROCESS_BEGIN();
 
@@ -373,10 +372,9 @@ PROCESS_THREAD(response_to_connect, ev, data)
           DGHS_DBG_2("is_NOT_basic\n");
 
           //Send Initiate (LN+1, w(j), FIND) on edge j
-          temp = node.LN + 1;
 
           fill_fragment_name(&F, &co_msg.from, &linkaddr_node_addr,weight(&co_msg.from));
-          fill_initiate_msg(&i_msg, &co_msg.from, &linkaddr_node_addr, temp , F , FIND);
+          fill_initiate_msg(&i_msg, &co_msg.from, &linkaddr_node_addr, (node.LN + 1) , F , FIND);
           //ADD to the list
           out_l = memb_alloc(&out_union_mem);
           if(out_l == NULL) {            // If we could not allocate a new entry, we give up.

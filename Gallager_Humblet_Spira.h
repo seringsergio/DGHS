@@ -42,7 +42,24 @@
 #define INFINITE UINT32_MAX
 
 // n->SE: Edge state
-enum
+
+#define BASIC                0x01
+#define BRANCH               0x02
+#define REJECTED             0x04
+
+#define SLEEPING             0x01
+#define FIND                 0x02
+#define FOUND                0x04
+
+#define CONNECT_MSG          0x01
+#define INITIATE_MSG         0x02
+#define TEST_MSG             0x04
+#define REPORT_MSG           0x08
+#define ACCEPT_MSG           0x10
+#define REJECT_MSG           0x20
+#define CHANGE_ROOT_MSG      0x40
+
+/*enum
 {
   BASIC,
   BRANCH,
@@ -67,7 +84,7 @@ enum
   ACCEPT_MSG,
   REJECT_MSG,
   CHANGE_ROOT_MSG
-};
+};*/
 
 
 
