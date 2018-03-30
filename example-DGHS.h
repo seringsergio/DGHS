@@ -57,11 +57,11 @@
 
 //Values test
 #define NUM_MAX_RETRANSMISSIONS               50
-#define NUM_BROADCAST_NEIGHBOR_DISCOVERY      20 //Must be greater than 1, at least 2. # of broadcast to send
+#define NUM_BROADCAST_NEIGHBOR_DISCOVERY      30 //Must be greater than 1, at least 2. # of broadcast to send
 #define TIME_BROADCAST_INTERVAL_DISCOVERY     2 //in seconds. Broadcast interval in neighbor discovery
 #define TIME_BROADCAST_INTERVAL_END           5 //in seconds
 #define NUM_MAX_NEIGHBORS                     16 // This #define defines the maximum amount of neighbors we can remember.
-#define NUM_HISTORY_ENTRIES                   4
+#define NUM_HISTORY_ENTRIES                   (NUM_MAX_NEIGHBORS * 2)
 #define TIME_PREVIOUS_RU_MSG                  10 // time to transmit the previous ru_msg (in seconds)
 #define TIME_DGHS_PROCESS                     1 // The process master_DGHS executes every TIME_DGHS_PROCESS
 #define QUEUE_SIZE_GHS                        10
@@ -95,6 +95,7 @@
 //struct sensor_node - node.control_flags_neighbor_discovery
 #define NEIGHBOR_DISCOVERY_HAS_ENDED 0x01
 #define GHS_HAS_ENDED                0x02
+#define NODE_IS_AWAKE                0x04
 
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////EXTERNAL PROCESSES////////////////////////////////////

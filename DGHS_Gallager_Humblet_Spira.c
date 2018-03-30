@@ -222,6 +222,9 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
     DGHS_DBG_1("ERROR: The type of the message ( msg_type ) is unkown \n");
   }
 
+  //process_post(&in_union_evaluation, e_execute, NULL);
+
+
 }
 static void sent_runicast(struct runicast_conn *c, const linkaddr_t *to, uint8_t retransmissions)
 {
@@ -255,7 +258,7 @@ PROCESS_THREAD(procedure_wakeup, ev, data) //It can not have PROCESS_WAIT_EVENT_
 
     while(1)
     {
-        PROCESS_WAIT_EVENT();
+        PROCESS_YIELD();
         if(ev == e_execute)
         {
           DGHS_DBG_2("procedure_wakeup\n");
@@ -282,8 +285,11 @@ PROCESS_THREAD(procedure_wakeup, ev, data) //It can not have PROCESS_WAIT_EVENT_
               out_l->type_msg.co_msg     = co_msg;
               out_l->uniontype           = CONNECT_MSG;
               list_push(out_union_list,out_l); // Add an item to the start of the list.
+
           }
           //DGHS_DBG_2("Added to out_union_list\n");
+
+          DGHS_interface_control_flags(NODE_IS_AWAKE);
 
         }
     }
@@ -302,13 +308,13 @@ PROCESS_THREAD(response_to_connect, ev, data)
   static struct connect_msg co_msg;
   static struct initiate_msg i_msg;
   static struct in_out_list *out_l, *in_l;
-  uint8_t temp;
+  static uint8_t temp;
 
   PROCESS_BEGIN();
 
   while(1)
   {
-    PROCESS_WAIT_EVENT();
+    PROCESS_YIELD();
     if(ev == e_execute)
     {
         co_msg = *( (struct connect_msg *) data);
@@ -331,6 +337,7 @@ PROCESS_THREAD(response_to_connect, ev, data)
                 out_l->type_msg.i_msg      = i_msg;
                 out_l->uniontype           = INITIATE_MSG;
                 list_push(out_union_list,out_l); // Add an item to the start of the list.
+
                 //DGHS_DBG_2("Add an INITIATE_MSG to out_union_list\n");
             }
 
@@ -355,6 +362,7 @@ PROCESS_THREAD(response_to_connect, ev, data)
                   in_l->type_msg.co_msg     = co_msg;
                   in_l->uniontype           = CONNECT_MSG;
                   list_push(in_union_list,in_l); // Add an item to the start of the list.
+
               }
 
               //PROCESS_PAUSE(); // to allow for other processes to get a slice of the processor's time in between.
@@ -377,6 +385,7 @@ PROCESS_THREAD(response_to_connect, ev, data)
               out_l->type_msg.i_msg      = i_msg;
               out_l->uniontype           = INITIATE_MSG;
               list_push(out_union_list,out_l); // Add an item to the start of the list.
+
               //DGHS_DBG_2("Add an INITIATE_MSG to out_union_list\n");
           }
 
@@ -403,7 +412,7 @@ PROCESS_THREAD(response_to_initiate, ev, data)
 
   while(1)
   {
-      PROCESS_WAIT_EVENT();
+      PROCESS_YIELD();
       if(ev == e_execute)
       {
           i_msg = *( (struct initiate_msg *) data);
@@ -433,6 +442,7 @@ PROCESS_THREAD(response_to_initiate, ev, data)
                   out_l->type_msg.i_msg      = i_msg_temp;
                   out_l->uniontype           = INITIATE_MSG;
                   list_push(out_union_list,out_l); // Add an item to the start of the list.
+
               }
 
               if(i_msg.S == FIND)
@@ -466,7 +476,7 @@ PROCESS_THREAD(response_to_test, ev, data)
 
   while(1)
   {
-      PROCESS_WAIT_EVENT();
+      PROCESS_YIELD();
       if(ev == e_execute)
       {
           t_msg = *( (struct test_msg *) data);
@@ -484,6 +494,7 @@ PROCESS_THREAD(response_to_test, ev, data)
                   in_l->type_msg.t_msg      = t_msg;
                   in_l->uniontype           = TEST_MSG;
                   list_push(in_union_list,in_l); // Add an item to the start of the list.
+
               }
 
           }else
@@ -501,6 +512,7 @@ PROCESS_THREAD(response_to_test, ev, data)
                  out_l->type_msg.a_msg      = a_msg;
                  out_l->uniontype           = ACCEPT_MSG;
                  list_push(out_union_list,out_l); // Add an item to the start of the list.
+
              }
 
           }else
@@ -524,6 +536,7 @@ PROCESS_THREAD(response_to_test, ev, data)
                     out_l->type_msg.rej_msg      = rej_msg;
                     out_l->uniontype             = REJECT_MSG;
                     list_push(out_union_list,out_l); // Add an item to the start of the list.
+
                 }
 
               }else
@@ -552,7 +565,7 @@ PROCESS_THREAD(response_to_accept, ev, data)
 
   while(1)
   {
-      PROCESS_WAIT_EVENT();
+      PROCESS_YIELD();
       if(ev == e_execute)
       {
           a_msg = *( (struct accept_msg *) data);
@@ -584,7 +597,7 @@ PROCESS_THREAD(response_to_reject, ev, data)
 
   while(1)
   {
-      PROCESS_WAIT_EVENT();
+      PROCESS_YIELD();
       if(ev == e_execute)
       {
           rej_msg = *( (struct reject_msg *) data);
@@ -613,7 +626,7 @@ PROCESS_THREAD(response_to_report, ev, data)
 
   while(1)
   {
-      PROCESS_WAIT_EVENT();
+      PROCESS_YIELD();
       if(ev == e_execute)
       {
           rep_msg = *( (struct report_msg *) data);
@@ -642,6 +655,7 @@ PROCESS_THREAD(response_to_report, ev, data)
                 in_l->type_msg.rep_msg    = rep_msg;
                 in_l->uniontype           = REPORT_MSG;
                 list_push(in_union_list,in_l); // Add an item to the start of the list.
+
             }
 
           }else
@@ -674,7 +688,7 @@ PROCESS_THREAD(response_to_change_root, ev, data)
 
   while(1)
   {
-      PROCESS_WAIT_EVENT();
+      PROCESS_YIELD();
       if(ev == e_execute)
       {
           //cha_root_msg = *( (struct change_root_msg *) data);
@@ -698,7 +712,7 @@ PROCESS_THREAD(procedure_change_root, ev, data)
 
   while(1)
   {
-    PROCESS_WAIT_EVENT();
+    PROCESS_YIELD();
     if(ev == e_execute)
     {
         if(is_branch(&node.best_edge))
@@ -715,6 +729,7 @@ PROCESS_THREAD(procedure_change_root, ev, data)
                 out_l->type_msg.cha_root_msg      = cha_root_msg;
                 out_l->uniontype                  = CHANGE_ROOT_MSG;
                 list_push(out_union_list,out_l); // Add an item to the start of the list.
+
             }
 
         }else
@@ -731,6 +746,7 @@ PROCESS_THREAD(procedure_change_root, ev, data)
               out_l->type_msg.co_msg      = co_msg;
               out_l->uniontype            = CONNECT_MSG;
               list_push(out_union_list,out_l); // Add an item to the start of the list.
+
           }
 
           become_branch(&node.best_edge);
@@ -755,7 +771,7 @@ PROCESS_THREAD(procedure_report, ev, data)
 
   while(1)
   {
-      PROCESS_WAIT_EVENT();
+      PROCESS_YIELD();
       if(ev == e_execute)
       {
           if( (node.find_count == 0)  &&  (linkaddr_cmp(&node.test_edge,&linkaddr_null ) )  )
@@ -774,6 +790,7 @@ PROCESS_THREAD(procedure_report, ev, data)
                   out_l->type_msg.rep_msg      = rep_msg;
                   out_l->uniontype             = REPORT_MSG;
                   list_push(out_union_list,out_l); // Add an item to the start of the list.
+
               }
 
           }
@@ -793,7 +810,7 @@ PROCESS_THREAD(procedure_test, ev, data)
 
   while(1)
   {
-      PROCESS_WAIT_EVENT();
+      PROCESS_YIELD();
       if(ev == e_execute)
       {
           //If there are adjacent edges in the state BASIC
@@ -817,6 +834,7 @@ PROCESS_THREAD(procedure_test, ev, data)
                       out_l->type_msg.t_msg      = t_msg;
                       out_l->uniontype           = TEST_MSG;
                       list_push(out_union_list,out_l); // Add an item to the start of the list.
+
                   }
 
                   break;
@@ -841,7 +859,7 @@ PROCESS_THREAD(procedure_test, ev, data)
 
 PROCESS_THREAD(in_union_evaluation, ev, data)
 {
-  static struct etimer et1, et2;
+  static struct etimer et;//1, et2;
   static struct in_out_list *in_l;
 
   PROCESS_BEGIN();
@@ -850,58 +868,65 @@ PROCESS_THREAD(in_union_evaluation, ev, data)
   {
     //REMOVE from the list
     //execute periodically
-    etimer_set(&et1, CLOCK_SECOND * TIME_UNION_IN_OUT);
-    PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et1));
+    etimer_set(&et, CLOCK_SECOND * TIME_UNION_IN_OUT);
+    PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
 
-    //We start to analize incoming messages when the NEIGHBOR_DISCOVERY_HAS_ENDED
-    if(node.control_flags_neighbor_discovery & NEIGHBOR_DISCOVERY_HAS_ENDED)
-    {
-        while(list_length(in_union_list))
+    /*PROCESS_YIELD();
+    if(ev == e_execute)
+    {*/
+        //We start to analize incoming messages when the NODE_IS_AWAKE
+        if(node.control_flags_neighbor_discovery & NODE_IS_AWAKE)
         {
-          //DGHS_DBG_2("List in_union_list has at least 1 element\n");
-          //DGHS_DBG_2("list_length(in_union_list) = %d\n", list_length(in_union_list));
+            while(list_length(in_union_list))
+            {
+              //DGHS_DBG_2("List in_union_list has at least 1 element\n");
+              //DGHS_DBG_2("list_length(in_union_list) = %d\n", list_length(in_union_list));
 
-          //Give enough time to transmit the previous msg
-          etimer_set(&et2, CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION
-              + random_rand() % (CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION));
-          PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et2));
+              //Give enough time to transmit the previous msg
+              /*etimer_set(&et2, CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION
+                  + random_rand() % (CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION));
+              PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et2));*/
 
-          //remove from list
-          in_l = list_chop(in_union_list); // Remove the last object on the list.
-          if(in_l->uniontype == CONNECT_MSG)
-          {
-              process_post_synch(&response_to_connect, e_execute, &in_l->type_msg.co_msg);
-          }else
-          if(in_l->uniontype == INITIATE_MSG)
-          {
-            process_post_synch(&response_to_initiate, e_execute, &in_l->type_msg.i_msg);
-          }else
-          if(in_l->uniontype == TEST_MSG)
-          {
-            process_post_synch(&response_to_test, e_execute, &in_l->type_msg.t_msg);
-          }else
-          if(in_l->uniontype == ACCEPT_MSG)
-          {
-            process_post_synch(&response_to_accept, e_execute, &in_l->type_msg.a_msg);
-          }else
-          if(in_l->uniontype == REJECT_MSG)
-          {
-            process_post_synch(&response_to_reject, e_execute, &in_l->type_msg.rej_msg);
-          }else
-          if(in_l->uniontype == REPORT_MSG)
-          {
-            process_post_synch(&response_to_report, e_execute, &in_l->type_msg.rep_msg);
-          }else
-          if(in_l->uniontype == CHANGE_ROOT_MSG)
-          {
-            process_post_synch(&response_to_change_root, e_execute, &in_l->type_msg.cha_root_msg);
-          }
-          memb_free(&in_union_mem,in_l);
-          //DGHS_DBG_2("memb_free\n");
+              //remove from list
+              in_l = list_chop(in_union_list); // Remove the last object on the list.
+              if(in_l->uniontype == CONNECT_MSG)
+              {
+                  process_post_synch(&response_to_connect, e_execute, &in_l->type_msg.co_msg);
+              }else
+              if(in_l->uniontype == INITIATE_MSG)
+              {
+                process_post_synch(&response_to_initiate, e_execute, &in_l->type_msg.i_msg);
+              }else
+              if(in_l->uniontype == TEST_MSG)
+              {
+                process_post_synch(&response_to_test, e_execute, &in_l->type_msg.t_msg);
+              }else
+              if(in_l->uniontype == ACCEPT_MSG)
+              {
+                process_post_synch(&response_to_accept, e_execute, &in_l->type_msg.a_msg);
+              }else
+              if(in_l->uniontype == REJECT_MSG)
+              {
+                process_post_synch(&response_to_reject, e_execute, &in_l->type_msg.rej_msg);
+              }else
+              if(in_l->uniontype == REPORT_MSG)
+              {
+                process_post_synch(&response_to_report, e_execute, &in_l->type_msg.rep_msg);
+              }else
+              if(in_l->uniontype == CHANGE_ROOT_MSG)
+              {
+                process_post_synch(&response_to_change_root, e_execute, &in_l->type_msg.cha_root_msg);
+              }
+              memb_free(&in_union_mem,in_l);
+              //DGHS_DBG_2("memb_free\n");
 
-        } //while(list_length(in_union_list))
+            } //while(list_length(in_union_list))
 
-    } //IF NEIGHBOR_DISCOVERY_HAS_ENDED
+        }/*else //IF NODE_IS_AWAKE
+        {
+          process_post(PROCESS_CURRENT(), e_execute, NULL);
+        }*/
+     //} //IF e_execute
 
   }
 
@@ -910,7 +935,7 @@ PROCESS_THREAD(in_union_evaluation, ev, data)
 
 PROCESS_THREAD(out_union_evaluation, ev, data)
 {
-  static struct etimer et1, et2;
+  static struct etimer et;//, et2;
   static struct in_out_list *out_l;
 
   PROCESS_BEGIN();
@@ -921,61 +946,71 @@ PROCESS_THREAD(out_union_evaluation, ev, data)
 
     //REMOVE from the list
     //execute periodically
-    etimer_set(&et1, CLOCK_SECOND * TIME_UNION_IN_OUT);
-    PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et1));
+    etimer_set(&et, CLOCK_SECOND * TIME_UNION_IN_OUT);
+    PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
 
-    while(list_length(out_union_list))
-    {
-        //DGHS_DBG_2("List out_union_list has at least 1 element\n");
-
-        //Give enough time to transmit the previous msg
-        etimer_set(&et2, CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION
-            + random_rand() % (CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION));
-        PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et2));
-
-        if(!runicast_is_transmitting(&runicast))
+   /*PROCESS_YIELD();
+   if(ev == e_execute)
+   {*/
+        //We start to analize incoming messages when the NODE_IS_AWAKE
+        if(node.control_flags_neighbor_discovery & NODE_IS_AWAKE)
         {
-            //remove from list
-            out_l = list_chop(out_union_list); // Remove the last object on the list.
-            if(out_l->uniontype == CONNECT_MSG)
-            {
-                process_post_synch(&send_Gallager_Humblet_Spira, e_send_connect, &out_l->type_msg.co_msg);
-                //DGHS_DBG_2("Post e_send_connect\n");
-            }else
-            if(out_l->uniontype == INITIATE_MSG)
-            {
-              process_post_synch(&send_Gallager_Humblet_Spira, e_send_initiate, &out_l->type_msg.i_msg);
-            }else
-            if(out_l->uniontype == TEST_MSG)
-            {
-              process_post_synch(&send_Gallager_Humblet_Spira, e_send_test, &out_l->type_msg.t_msg);
-            }else
-            if(out_l->uniontype == ACCEPT_MSG)
-            {
-              process_post_synch(&send_Gallager_Humblet_Spira, e_send_accept, &out_l->type_msg.a_msg);
-            }else
-            if(out_l->uniontype == REJECT_MSG)
-            {
-              process_post_synch(&send_Gallager_Humblet_Spira, e_send_reject, &out_l->type_msg.rej_msg);
-            }else
-            if(out_l->uniontype == REPORT_MSG)
-            {
-              process_post_synch(&send_Gallager_Humblet_Spira, e_send_report, &out_l->type_msg.rep_msg);
-            }else
-            if(out_l->uniontype == CHANGE_ROOT_MSG)
-            {
-              process_post_synch(&send_Gallager_Humblet_Spira, e_send_change_root, &out_l->type_msg.cha_root_msg);
-            }
-            memb_free(&out_union_mem,out_l);
 
-        }else
+          while(list_length(out_union_list))
+          {
+              //DGHS_DBG_2("List out_union_list has at least 1 element\n");
+
+              //Give enough time to transmit the previous msg
+              /*etimer_set(&et2, CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION
+                  + random_rand() % (CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION));
+              PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et2));*/
+
+              if(!runicast_is_transmitting(&runicast))
+              {
+                  //remove from list
+                  out_l = list_chop(out_union_list); // Remove the last object on the list.
+                  if(out_l->uniontype == CONNECT_MSG)
+                  {
+                      process_post_synch(&send_Gallager_Humblet_Spira, e_send_connect, &out_l->type_msg.co_msg);
+                      //DGHS_DBG_2("Post e_send_connect\n");
+                  }else
+                  if(out_l->uniontype == INITIATE_MSG)
+                  {
+                    process_post_synch(&send_Gallager_Humblet_Spira, e_send_initiate, &out_l->type_msg.i_msg);
+                  }else
+                  if(out_l->uniontype == TEST_MSG)
+                  {
+                    process_post_synch(&send_Gallager_Humblet_Spira, e_send_test, &out_l->type_msg.t_msg);
+                  }else
+                  if(out_l->uniontype == ACCEPT_MSG)
+                  {
+                    process_post_synch(&send_Gallager_Humblet_Spira, e_send_accept, &out_l->type_msg.a_msg);
+                  }else
+                  if(out_l->uniontype == REJECT_MSG)
+                  {
+                    process_post_synch(&send_Gallager_Humblet_Spira, e_send_reject, &out_l->type_msg.rej_msg);
+                  }else
+                  if(out_l->uniontype == REPORT_MSG)
+                  {
+                    process_post_synch(&send_Gallager_Humblet_Spira, e_send_report, &out_l->type_msg.rep_msg);
+                  }else
+                  if(out_l->uniontype == CHANGE_ROOT_MSG)
+                  {
+                    process_post_synch(&send_Gallager_Humblet_Spira, e_send_change_root, &out_l->type_msg.cha_root_msg);
+                  }
+                  memb_free(&out_union_mem,out_l);
+
+              }else
+              {
+                  //DGHS_DBG_2("WARNING: break from runicast_control\n"); //"Enough" time is not enough!!
+                  break;
+              }
+          } //END while list_length()
+        }/*else //IF NODE_IS_AWAKE
         {
-            //DGHS_DBG_2("WARNING: break from runicast_control\n"); //"Enough" time is not enough!!
-            break;
-        }
-
-    } //END while
-
+          process_post(PROCESS_CURRENT(), e_execute, NULL);
+        }*/
+     //} //IF e_execute
   }
 
   PROCESS_END();
@@ -1009,7 +1044,7 @@ PROCESS_THREAD(send_Gallager_Humblet_Spira, ev, data) //It can not have PROCESS_
 
   while(1)
   {
-    PROCESS_WAIT_EVENT();
+    PROCESS_YIELD();
     if(ev == e_send_connect)
     {
         co_msg = *( (struct connect_msg*) data );
