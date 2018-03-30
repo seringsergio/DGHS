@@ -270,6 +270,7 @@ PROCESS_THREAD(procedure_wakeup, ev, data) //It can not have PROCESS_WAIT_EVENT_
           node.SN = FOUND;
           node.find_count = 0;
 
+          //Send Connect(0) on edge m
           fill_connect_msg(&co_msg, &neighbors_list_p->addr, &linkaddr_node_addr, node.LN);
 
           //ADD to the list
@@ -301,6 +302,7 @@ PROCESS_THREAD(response_to_connect, ev, data)
   static struct connect_msg co_msg;
   static struct initiate_msg i_msg;
   static struct in_out_list *out_l, *in_l;
+  uint8_t temp;
 
   PROCESS_BEGIN();
 
@@ -317,6 +319,7 @@ PROCESS_THREAD(response_to_connect, ev, data)
         {
             become_branch(&co_msg.from); //Become branch the edge with minimum weight. We have just sorted the list
 
+            //Send Initiate(LN,FN,SN) on edge j
             fill_initiate_msg(&i_msg, &co_msg.from, &linkaddr_node_addr, node.LN, node.FN, node.SN);
             //ADD to the list
             out_l = memb_alloc(&out_union_mem);
@@ -333,7 +336,7 @@ PROCESS_THREAD(response_to_connect, ev, data)
 
             if(node.SN == FIND)
             {
-              node.find_count++;
+              node.find_count = node.find_count + 1;
             }
 
         }else
@@ -341,7 +344,7 @@ PROCESS_THREAD(response_to_connect, ev, data)
         {
               DGHS_DBG_2("is_basic\n");
 
-              //place received message on end of queue
+              //Place received message on end of queue
               //ADD to the list
               in_l = memb_alloc(&in_union_mem);
               //DGHS_DBG_2("memb_alloc\n");
@@ -361,7 +364,9 @@ PROCESS_THREAD(response_to_connect, ev, data)
 
           DGHS_DBG_2("is_NOT_basic\n");
 
-          fill_initiate_msg(&i_msg, &co_msg.from, &linkaddr_node_addr, (node.LN + 1), weight(&co_msg.from), FIND);
+          //Send Initiate (LN+1, w(j), FIND) on edge j
+          temp = node.LN + 1;
+          fill_initiate_msg(&i_msg, &co_msg.from, &linkaddr_node_addr, temp , weight(&co_msg.from), FIND);
           //ADD to the list
           out_l = memb_alloc(&out_union_mem);
           if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
@@ -416,6 +421,7 @@ PROCESS_THREAD(response_to_initiate, ev, data)
             if(  ( !(linkaddr_cmp(&n->addr,&i_msg.from))  ) && (is_branch(&n->addr))    )
             {
 
+              //Send initiate(L,F,S) on edge i
               fill_initiate_msg(&i_msg_temp, &n->addr, &linkaddr_node_addr, i_msg.L, i_msg.F, i_msg.S);
               //ADD to the list
               out_l = memb_alloc(&out_union_mem);
@@ -431,7 +437,7 @@ PROCESS_THREAD(response_to_initiate, ev, data)
 
               if(i_msg.S == FIND)
               {
-                  node.find_count++;
+                  node.find_count = node.find_count + 1;
               }
 
             }
@@ -467,7 +473,7 @@ PROCESS_THREAD(response_to_test, ev, data)
 
           if(t_msg.L > node.LN)
           {
-              //place received message on end of queue
+              //Place received message on end of queue
               //ADD to the list
               in_l = memb_alloc(&in_union_mem);
               //DGHS_DBG_2("memb_alloc\n");
@@ -614,7 +620,7 @@ PROCESS_THREAD(response_to_report, ev, data)
 
           if(!(linkaddr_cmp(&rep_msg.from,&node.in_branch)))
           {
-              node.find_count--;
+              node.find_count = node.find_count - 1;
               if(rep_msg.w < node.best_wt)
               {
                 node.best_wt = rep_msg.w;
@@ -625,7 +631,7 @@ PROCESS_THREAD(response_to_report, ev, data)
           if(node.SN == FIND)
           {
 
-            //place received message on end of queue
+            //Place received message on end of queue
             //ADD to the list
             in_l = memb_alloc(&in_union_mem);
             //DGHS_DBG_2("memb_alloc\n");
@@ -756,7 +762,7 @@ PROCESS_THREAD(procedure_report, ev, data)
           {
               node.SN = FOUND;
 
-              //Send report
+              //Send Report(best_wt) on in_branch
               fill_report_msg(&rep_msg, &node.in_branch, &linkaddr_node_addr, node.best_wt);
               //ADD to the list
               out_l = memb_alloc(&out_union_mem);
@@ -798,6 +804,7 @@ PROCESS_THREAD(procedure_test, ev, data)
               {
                   linkaddr_copy(&node.test_edge, &n->addr);
 
+                  //Send TEST(LN, FN) on test_edge
                   fill_test_msg(&t_msg, &node.test_edge, &linkaddr_node_addr, node.LN, node.FN);
 
                   //ADD to the list
