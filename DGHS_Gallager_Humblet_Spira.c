@@ -127,8 +127,8 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
         DGHS_DBG_2("runicast_2 message received INITIATE from %d.%d with L=%d F=%d.%02d S=%d \n",
         in_l->type_msg.i_msg.from.u8[0], in_l->type_msg.i_msg.from.u8[1],
         in_l->type_msg.i_msg.L,
-        (int)(in_l->type_msg.i_msg.F / SEQNO_EWMA_UNITY),
-        (int)(((100UL * in_l->type_msg.i_msg.F) / SEQNO_EWMA_UNITY) % 100),
+        (int)(in_l->type_msg.i_msg.F.name / SEQNO_EWMA_UNITY),
+        (int)(((100UL * in_l->type_msg.i_msg.F.name) / SEQNO_EWMA_UNITY) % 100),
         in_l->type_msg.i_msg.S);
     }
 
@@ -147,8 +147,8 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
             DGHS_DBG_2("runicast_2 message received TEST from %d.%d with L=%d F=%d.%02d \n",
             in_l->type_msg.t_msg.from.u8[0], in_l->type_msg.t_msg.from.u8[1],
             in_l->type_msg.t_msg.L,
-            (int)(in_l->type_msg.t_msg.F / SEQNO_EWMA_UNITY),
-            (int)(((100UL * in_l->type_msg.t_msg.F) / SEQNO_EWMA_UNITY) % 100) );
+            (int)(in_l->type_msg.t_msg.F.name / SEQNO_EWMA_UNITY),
+            (int)(((100UL * in_l->type_msg.t_msg.F.name) / SEQNO_EWMA_UNITY) % 100) );
         }
 
   }else
@@ -258,6 +258,7 @@ PROCESS_THREAD(procedure_wakeup, ev, data) //It can not have PROCESS_WAIT_EVENT_
 
     while(1)
     {
+
         PROCESS_YIELD();
         if(ev == e_execute)
         {
@@ -269,7 +270,7 @@ PROCESS_THREAD(procedure_wakeup, ev, data) //It can not have PROCESS_WAIT_EVENT_
 
           become_branch(&neighbors_list_p->addr); //Become branch the edge with minimum weight. We have just sorted the list
           node.LN = 0; //book: each process starts as a fragment with name and level 0.
-            node.FN = 0; //book: each process starts as a fragment with name and level 0.
+            fill_fragment_name(&node.FN,&linkaddr_null, &linkaddr_null,0); //book: each process starts as a fragment with name and level 0.
           node.SN = FOUND;
           node.find_count = 0;
 
@@ -309,7 +310,7 @@ PROCESS_THREAD(response_to_connect, ev, data)
   static struct initiate_msg i_msg;
   static struct in_out_list *out_l, *in_l;
   static uint8_t temp;
-
+  static struct fragment_name F;
   PROCESS_BEGIN();
 
   while(1)
@@ -374,7 +375,9 @@ PROCESS_THREAD(response_to_connect, ev, data)
 
           //Send Initiate (LN+1, w(j), FIND) on edge j
           temp = node.LN + 1;
-          fill_initiate_msg(&i_msg, &co_msg.from, &linkaddr_node_addr, temp , weight(&co_msg.from), FIND);
+
+          fill_fragment_name(&F, &co_msg.from, &linkaddr_node_addr,weight(&co_msg.from));
+          fill_initiate_msg(&i_msg, &co_msg.from, &linkaddr_node_addr, temp , F , FIND);
           //ADD to the list
           out_l = memb_alloc(&out_union_mem);
           if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
@@ -429,27 +432,29 @@ PROCESS_THREAD(response_to_initiate, ev, data)
 
           for(n = neighbors_list_p; n != NULL; n = list_item_next(n))
           {
-            if(  ( !(linkaddr_cmp(&n->addr,&i_msg.from))  ) && (is_branch(&n->addr))    )
+            if(   !(linkaddr_cmp(&n->addr,&i_msg.from))       )
             {
-
-              //Send initiate(L,F,S) on edge i
-              fill_initiate_msg(&i_msg_temp, &n->addr, &linkaddr_node_addr, i_msg.L, i_msg.F, i_msg.S);
-              //ADD to the list
-              out_l = memb_alloc(&out_union_mem);
-              if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
-                DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list>>\n");
-              }else
+              if( is_branch(&n->addr) )
               {
+                  //Send initiate(L,F,S) on edge i
+                  fill_initiate_msg(&i_msg_temp, &n->addr, &linkaddr_node_addr, i_msg.L, i_msg.F, i_msg.S);
+                  //ADD to the list
+                  out_l = memb_alloc(&out_union_mem);
+                  if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
+                    DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list>>\n");
+                  }else
+                  {
 
-                  out_l->type_msg.i_msg      = i_msg_temp;
-                  out_l->uniontype           = INITIATE_MSG;
-                  list_push(out_union_list,out_l); // Add an item to the start of the list.
+                      out_l->type_msg.i_msg      = i_msg_temp;
+                      out_l->uniontype           = INITIATE_MSG;
+                      list_push(out_union_list,out_l); // Add an item to the start of the list.
 
-              }
+                  }
 
-              if(i_msg.S == FIND)
-              {
-                  node.find_count = node.find_count + 1;
+                  if(i_msg.S == FIND)
+                  {
+                      node.find_count = node.find_count + 1;
+                  }
               }
 
             }
@@ -486,6 +491,7 @@ PROCESS_THREAD(response_to_test, ev, data)
           if(t_msg.L > node.LN)
           {
               //Place received message on end of queue
+              DGHS_DBG_2("(t_msg.L=%d > node.LN=%d)response_to_test: Place received message on end of queue\n", t_msg.L,node.LN );
               //ADD to the list
               in_l = memb_alloc(&in_union_mem);
               //DGHS_DBG_2("memb_alloc\n");
@@ -500,8 +506,11 @@ PROCESS_THREAD(response_to_test, ev, data)
               }
 
           }else
-          if(t_msg.F != node.FN) //OJO: no estoy garantizando que los fragmentos sean diferentes
+          if(different_fragments(t_msg.F,node.FN))
+          //if(t_msg.F != node.FN) //OJO: no estoy garantizando que los fragmentos sean diferentes
           {
+
+             DGHS_DBG_2("response_to_test: Send Accept on edge %d\n", t_msg.from.u8[0]);
              //Send Accept on edge j
              fill_accept_msg(&a_msg, &t_msg.from, &linkaddr_node_addr);
              //ADD to the list
@@ -527,6 +536,8 @@ PROCESS_THREAD(response_to_test, ev, data)
               if( ! (linkaddr_cmp(&node.test_edge,&t_msg.from)) )
               {
                 //Send Rejected on edge j
+                DGHS_DBG_2("response_to_test: Send Rejected on edge %d\n", t_msg.from.u8[0]);
+
                 fill_reject_msg(&rej_msg, &t_msg.from, &linkaddr_node_addr);
                 //ADD to the list
                 out_l = memb_alloc(&out_union_mem);
@@ -543,6 +554,7 @@ PROCESS_THREAD(response_to_test, ev, data)
 
               }else
               {
+                  DGHS_DBG_2("response_to_test: call procedure_test %d\n", t_msg.from.u8[0]);
                   process_post_synch(&procedure_test, e_execute, NULL);
               }
           }
@@ -1067,8 +1079,8 @@ PROCESS_THREAD(send_Gallager_Humblet_Spira, ev, data) //It can not have PROCESS_
 
        DGHS_DBG_2("Send e_send_initiate to %d.%d with L=%d F=%d.%02d S=%d\n" , i_msg.to.u8[0], i_msg.to.u8[1],
        i_msg.L,
-       (int)(i_msg.F / SEQNO_EWMA_UNITY),
-       (int)(((100UL * i_msg.F) / SEQNO_EWMA_UNITY) % 100),
+       (int)(i_msg.F.name / SEQNO_EWMA_UNITY),
+       (int)(((100UL * i_msg.F.name) / SEQNO_EWMA_UNITY) % 100),
        i_msg.S);
 
     }else
@@ -1082,8 +1094,8 @@ PROCESS_THREAD(send_Gallager_Humblet_Spira, ev, data) //It can not have PROCESS_
 
         DGHS_DBG_2("Send e_send_test to %d.%d with L=%d F=%d.%02d\n" , t_msg.to.u8[0], t_msg.to.u8[1],
         t_msg.L,
-        (int)(t_msg.F / SEQNO_EWMA_UNITY),
-        (int)(((100UL * t_msg.F) / SEQNO_EWMA_UNITY) % 100) );
+        (int)(t_msg.F.name / SEQNO_EWMA_UNITY),
+        (int)(((100UL * t_msg.F.name) / SEQNO_EWMA_UNITY) % 100) );
 
     }else
     if(ev == e_send_accept)

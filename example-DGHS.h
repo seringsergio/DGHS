@@ -57,7 +57,7 @@
 
 //Values test
 #define NUM_MAX_RETRANSMISSIONS               50
-#define NUM_BROADCAST_NEIGHBOR_DISCOVERY      100 //Must be greater than 1, at least 2. # of broadcast to send
+#define NUM_BROADCAST_NEIGHBOR_DISCOVERY      10 //Must be greater than 1, at least 2. # of broadcast to send
 #define TIME_BROADCAST_INTERVAL_DISCOVERY     10 //in seconds. Broadcast interval in neighbor discovery
 #define TIME_BROADCAST_INTERVAL_END           20 //in seconds
 #define NUM_MAX_NEIGHBORS                     16 // This #define defines the maximum amount of neighbors we can remember.
@@ -154,19 +154,8 @@ process_event_t e_execute;
 ///////////////////////STRUCTS///////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 
-struct sensor_node
-{
-    uint8_t    control_flags_neighbor_discovery;
-    uint8_t    LN; // level
-    uint32_t   FN; //Fragment name
-    uint8_t    SN; // Node state
-    uint8_t    find_count;
-    linkaddr_t in_branch;
-    linkaddr_t best_edge;
-    uint32_t   best_wt; //Fragment name
-    linkaddr_t test_edge;
 
-}node;
+
 
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////FUNCTIONS/////////////////////////////////////////////

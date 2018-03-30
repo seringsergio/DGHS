@@ -91,13 +91,18 @@ process_event_t e_send_change_root;
 ///////////////////////FORWARD DECLARATIONS//////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 
- struct neighbor; // forward declaration of the struct
-
+struct neighbor; // forward declaration of the struct
 
  /////////////////////////////////////////////////////////////////////////////
  ///////////////////////STRUCTS///////////////////////////////////////////////
  /////////////////////////////////////////////////////////////////////////////
 
+ struct fragment_name
+ {
+   linkaddr_t node1; //Lower address
+   linkaddr_t node2; //Greater address
+   uint32_t   name;
+ };
 
  struct change_root_msg
  {
@@ -126,10 +131,10 @@ process_event_t e_send_change_root;
 
 struct test_msg
 {
-  linkaddr_t to;
-  linkaddr_t from;
-  uint8_t    L; // level
-  uint32_t   F; //Fragment name
+  linkaddr_t             to;
+  linkaddr_t             from;
+  uint8_t                L; // level
+  struct fragment_name   F; //Fragment name
 };
 
 struct connect_msg
@@ -141,11 +146,11 @@ struct connect_msg
 
 struct initiate_msg
 {
-  linkaddr_t to;
-  linkaddr_t from;
-  uint8_t    L; // level
-  uint32_t   F; //Fragment name
-  uint8_t    S; // Node state
+  linkaddr_t             to;
+  linkaddr_t             from;
+  uint8_t                L; // level
+  struct fragment_name   F; //Fragment name
+  uint8_t                S; // Node state
 };
 
 union types_msg
@@ -166,22 +171,39 @@ struct in_out_list
   union types_msg type_msg;
 };
 
+struct sensor_node
+{
+    uint8_t                control_flags_neighbor_discovery;
+    uint8_t                LN; // level
+    struct fragment_name   FN; //Fragment name
+    uint8_t                SN; // Node state
+    uint8_t                find_count;
+    linkaddr_t             in_branch;
+    linkaddr_t             best_edge;
+    uint32_t               best_wt; //Fragment name
+    linkaddr_t             test_edge;
+
+}node;
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////FUNTIONS//////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 
+
 void fill_connect_msg(struct connect_msg *co_msg, linkaddr_t *to, linkaddr_t *from, uint8_t L);
-void fill_initiate_msg(struct initiate_msg *i_msg, linkaddr_t *to, linkaddr_t *from, uint8_t L, uint32_t F, uint8_t S);
-void fill_test_msg(struct test_msg *t_msg, linkaddr_t *to, linkaddr_t *from, uint8_t L, uint32_t F);
+void fill_initiate_msg(struct initiate_msg *i_msg, linkaddr_t *to, linkaddr_t *from,
+                     uint8_t L, struct fragment_name F, uint8_t S);
+void fill_test_msg(struct test_msg *t_msg, linkaddr_t *to, linkaddr_t *from, uint8_t L, struct fragment_name F);
 void fill_report_msg(struct report_msg *rep_msg, linkaddr_t *to, linkaddr_t *from, uint32_t w);
 void fill_accept_msg(struct accept_msg *a_msg, linkaddr_t *to, linkaddr_t *from);
 void fill_reject_msg(struct reject_msg *rej_msg, linkaddr_t *to, linkaddr_t *from);
 void fill_change_root_msg(struct change_root_msg *cha_root_msg, linkaddr_t *to, linkaddr_t *from);
+void fill_fragment_name(struct fragment_name *F, const linkaddr_t *from, const linkaddr_t *i_am ,uint32_t name);
 void print_neighbor_list_debug(struct neighbor *neighbors_list_head);
 void become_branch(linkaddr_t *addr);
 void become_rejected(linkaddr_t *addr);
 uint8_t is_basic(linkaddr_t *addr);
 uint8_t is_branch(linkaddr_t *addr);
+uint8_t different_fragments(struct fragment_name F1,struct fragment_name F2);
 uint32_t weight(linkaddr_t *addr);
 void init_SE();
 void sort_neighbor_list();

@@ -45,21 +45,21 @@ void fill_connect_msg(struct connect_msg *co_msg, linkaddr_t *to, linkaddr_t *fr
 }
 
 void fill_initiate_msg(struct initiate_msg *i_msg, linkaddr_t *to, linkaddr_t *from,
-                       uint8_t L, uint32_t F, uint8_t S)
+                       uint8_t L, struct fragment_name F, uint8_t S)
 {
   linkaddr_copy(&i_msg->to,to);
   linkaddr_copy(&i_msg->from,from);
-  i_msg->L = L;
-  i_msg->F = F;
-  i_msg->S = S;
+  i_msg->L =      L;
+  i_msg->F =      F;
+  i_msg->S =      S;
 }
 
-void fill_test_msg(struct test_msg *t_msg, linkaddr_t *to, linkaddr_t *from, uint8_t L, uint32_t F)
+void fill_test_msg(struct test_msg *t_msg, linkaddr_t *to, linkaddr_t *from, uint8_t L, struct fragment_name F)
 {
   linkaddr_copy(&t_msg->to,to);
   linkaddr_copy(&t_msg->from,from);
-  t_msg->L = L;
-  t_msg->F = F;
+  t_msg->L =      L;
+  t_msg->F =      F;
 }
 
 void fill_report_msg(struct report_msg *rep_msg, linkaddr_t *to, linkaddr_t *from, uint32_t w)
@@ -87,7 +87,43 @@ void fill_change_root_msg(struct change_root_msg *cha_root_msg, linkaddr_t *to, 
   linkaddr_copy(&cha_root_msg->from,from);
 }
 
+void fill_fragment_name(struct fragment_name *F, const linkaddr_t *from, const  linkaddr_t *i_am, uint32_t name)
+{
+   F->name = name;
 
+   if( i_am->u8[0] < from->u8[0])
+   {
+     linkaddr_copy(&F->node1,i_am);
+     linkaddr_copy(&F->node2,from);
+   }else
+   {
+     linkaddr_copy(&F->node1,from);
+     linkaddr_copy(&F->node2,i_am);
+   }
+
+
+}
+
+uint8_t different_fragments(struct fragment_name F1,struct fragment_name F2)
+{
+  if(F1.name != F2.name )
+  {
+    DGHS_DBG_2("different_fragments\n");
+    return 1;
+  }else
+  {
+      if( linkaddr_cmp(&F1.node1,&F2.node1) && linkaddr_cmp(&F1.node2,&F2.node2) )
+      {
+        DGHS_DBG_2("Same_fragment\n");
+        return 0;
+      }
+      else
+      {
+        DGHS_DBG_2("different_fragments\n");
+        return 1;
+      }
+  }
+}
 void print_neighbor_list_debug(struct neighbor *neighbors_list_head)
 {
     struct neighbor *n;
