@@ -420,7 +420,9 @@ PROCESS_THREAD(response_to_initiate, ev, data)
           node.LN = i_msg.L;
           node.FN = i_msg.F;
           node.SN = i_msg.S;
+          DGHS_DBG_1("#L %d 0\n", node.in_branch.u8[0]); // 0: oldparent
           linkaddr_copy(&node.in_branch, &i_msg.from);
+          DGHS_DBG_1("#L %d 1\n", node.in_branch.u8[0]); //: 1: parent
           linkaddr_copy(&node.best_edge, &linkaddr_null); //linkaddr_null: The null Rime address.
           node.best_wt = INFINITE;
 
