@@ -82,7 +82,7 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
   } else {
     /* Detect duplicate callback */
     if(e->seq == seqno) {
-      printf("runicast message received from %d.%d, seqno %d (DUPLICATE)\n",
+      printf("runicast_2 message received from %d.%d, seqno %d (DUPLICATE)\n",
 	     from->u8[0], from->u8[1], seqno);
       return;
     }
@@ -90,7 +90,7 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
     e->seq = seqno;
   }
 
-  printf("runicast message received from %d.%d, seqno %d\n",
+  printf("runicast_2 message received from %d.%d, seqno %d\n",
 	 from->u8[0], from->u8[1], seqno);
 
   msg_type = packetbuf_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG);
@@ -107,7 +107,7 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
         in_l->type_msg.co_msg     = *((struct connect_msg*) msg);
         in_l->uniontype           = CONNECT_MSG;
         list_push(in_union_list,in_l); // Add an item to the start of the list.
-        DGHS_DBG_2("runicast message received CONNECT from %d.%d L = %d\n",
+        DGHS_DBG_2("runicast_2 message received CONNECT from %d.%d L = %d\n",
         in_l->type_msg.co_msg.from.u8[0], in_l->type_msg.co_msg.from.u8[1], in_l->type_msg.co_msg.L );
     }
 
@@ -124,7 +124,7 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
         in_l->type_msg.i_msg      = *((struct initiate_msg*) msg);
         in_l->uniontype           = INITIATE_MSG;
         list_push(in_union_list,in_l); // Add an item to the start of the list.
-        DGHS_DBG_2("runicast message received INITIATE from %d.%d with L=%d F=%d.%02d S=%d \n",
+        DGHS_DBG_2("runicast_2 message received INITIATE from %d.%d with L=%d F=%d.%02d S=%d \n",
         in_l->type_msg.i_msg.from.u8[0], in_l->type_msg.i_msg.from.u8[1],
         in_l->type_msg.i_msg.L,
         (int)(in_l->type_msg.i_msg.F / SEQNO_EWMA_UNITY),
@@ -144,7 +144,7 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
             in_l->type_msg.t_msg      = *((struct test_msg*) msg);
             in_l->uniontype           = TEST_MSG;
             list_push(in_union_list,in_l); // Add an item to the start of the list.
-            DGHS_DBG_2("runicast message received TEST from %d.%d with L=%d F=%d.%02d \n",
+            DGHS_DBG_2("runicast_2 message received TEST from %d.%d with L=%d F=%d.%02d \n",
             in_l->type_msg.t_msg.from.u8[0], in_l->type_msg.t_msg.from.u8[1],
             in_l->type_msg.t_msg.L,
             (int)(in_l->type_msg.t_msg.F / SEQNO_EWMA_UNITY),
@@ -163,7 +163,7 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
             in_l->type_msg.a_msg      = *((struct accept_msg*) msg);
             in_l->uniontype           = ACCEPT_MSG;
             list_push(in_union_list,in_l); // Add an item to the start of the list.
-            DGHS_DBG_2("runicast message received ACCEPT_MSG from %d.%d \n",
+            DGHS_DBG_2("runicast_2 message received ACCEPT_MSG from %d.%d \n",
             in_l->type_msg.a_msg.from.u8[0], in_l->type_msg.a_msg.from.u8[1] );
         }
   }else
@@ -179,7 +179,7 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
         in_l->type_msg.rej_msg    = *((struct reject_msg*) msg);
         in_l->uniontype           = REJECT_MSG;
         list_push(in_union_list,in_l); // Add an item to the start of the list.
-        DGHS_DBG_2("runicast message received REJECT_MSG from %d.%d \n",
+        DGHS_DBG_2("runicast_2 message received REJECT_MSG from %d.%d \n",
         in_l->type_msg.rej_msg.from.u8[0], in_l->type_msg.rej_msg.from.u8[1] );
     }
 
@@ -195,7 +195,7 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
             in_l->type_msg.rep_msg    = *((struct report_msg*) msg);
             in_l->uniontype           = REPORT_MSG;
             list_push(in_union_list,in_l); // Add an item to the start of the list.
-            DGHS_DBG_2("runicast message received REPORT_MSG from %d.%d with w = %d.%02d\n",
+            DGHS_DBG_2("runicast_2 message received REPORT_MSG from %d.%d with w = %d.%02d\n",
             in_l->type_msg.rep_msg.from.u8[0], in_l->type_msg.rep_msg.from.u8[1],
             (int)(in_l->type_msg.rep_msg.w / SEQNO_EWMA_UNITY),
             (int)(((100UL * in_l->type_msg.rep_msg.w) / SEQNO_EWMA_UNITY) % 100)
@@ -213,7 +213,7 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
             in_l->type_msg.cha_root_msg    = *((struct change_root_msg*) msg);
             in_l->uniontype                = CHANGE_ROOT_MSG;
             list_push(in_union_list,in_l); // Add an item to the start of the list.
-            DGHS_DBG_2("runicast message received CHANGE_ROOT_MSG from %d.%d \n",
+            DGHS_DBG_2("runicast_2 message received CHANGE_ROOT_MSG from %d.%d \n",
             in_l->type_msg.cha_root_msg.from.u8[0], in_l->type_msg.cha_root_msg.from.u8[1]);
         }
   }
@@ -228,18 +228,18 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
 }
 static void sent_runicast(struct runicast_conn *c, const linkaddr_t *to, uint8_t retransmissions)
 {
-  DGHS_DBG_2("runicast message sent to %d.%d, retransmissions %d\n",
+  DGHS_DBG_2("runicast_2 message sent to %d.%d, retransmissions %d\n",
 	 to->u8[0], to->u8[1], retransmissions);
 }
 static void timedout_runicast(struct runicast_conn *c, const linkaddr_t *to, uint8_t retransmissions)
 {
-  DGHS_DBG_1("ERROR: runicast message timed out when sending to %d.%d, retransmissions %d\n",
+  DGHS_DBG_1("ERROR: runicast_2 message timed out when sending to %d.%d, retransmissions %d\n",
 	 to->u8[0], to->u8[1], retransmissions);
 }
 static const struct runicast_callbacks runicast_callbacks = {recv_runicast,
 							     sent_runicast,
 							     timedout_runicast};
-static struct runicast_conn runicast;
+static struct runicast_conn runicast_2;
 
 PROCESS_THREAD(procedure_wakeup, ev, data) //It can not have PROCESS_WAIT_EVENT_UNTIL()
 {
@@ -859,7 +859,7 @@ PROCESS_THREAD(procedure_test, ev, data)
 
 PROCESS_THREAD(in_union_evaluation, ev, data)
 {
-  static struct etimer et;//1, et2;
+  static struct etimer et1, et2;
   static struct in_out_list *in_l;
 
   PROCESS_BEGIN();
@@ -868,8 +868,8 @@ PROCESS_THREAD(in_union_evaluation, ev, data)
   {
     //REMOVE from the list
     //execute periodically
-    etimer_set(&et, CLOCK_SECOND * TIME_UNION_IN_OUT);
-    PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
+    etimer_set(&et1, CLOCK_SECOND * TIME_UNION_IN_OUT);
+    PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et1));
 
     /*PROCESS_YIELD();
     if(ev == e_execute)
@@ -883,9 +883,9 @@ PROCESS_THREAD(in_union_evaluation, ev, data)
               //DGHS_DBG_2("list_length(in_union_list) = %d\n", list_length(in_union_list));
 
               //Give enough time to transmit the previous msg
-              /*etimer_set(&et2, CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION
+              etimer_set(&et2, CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION
                   + random_rand() % (CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION));
-              PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et2));*/
+              PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et2));
 
               //remove from list
               in_l = list_chop(in_union_list); // Remove the last object on the list.
@@ -935,7 +935,7 @@ PROCESS_THREAD(in_union_evaluation, ev, data)
 
 PROCESS_THREAD(out_union_evaluation, ev, data)
 {
-  static struct etimer et;//, et2;
+  static struct etimer et1, et2;
   static struct in_out_list *out_l;
 
   PROCESS_BEGIN();
@@ -946,8 +946,8 @@ PROCESS_THREAD(out_union_evaluation, ev, data)
 
     //REMOVE from the list
     //execute periodically
-    etimer_set(&et, CLOCK_SECOND * TIME_UNION_IN_OUT);
-    PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
+    etimer_set(&et1, CLOCK_SECOND * TIME_UNION_IN_OUT);
+    PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et1));
 
    /*PROCESS_YIELD();
    if(ev == e_execute)
@@ -961,11 +961,11 @@ PROCESS_THREAD(out_union_evaluation, ev, data)
               //DGHS_DBG_2("List out_union_list has at least 1 element\n");
 
               //Give enough time to transmit the previous msg
-              /*etimer_set(&et2, CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION
+              etimer_set(&et2, CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION
                   + random_rand() % (CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION));
-              PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et2));*/
+              PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et2));
 
-              if(!runicast_is_transmitting(&runicast))
+              if(!runicast_is_transmitting(&runicast_2))
               {
                   //remove from list
                   out_l = list_chop(out_union_list); // Remove the last object on the list.
@@ -1027,11 +1027,11 @@ PROCESS_THREAD(send_Gallager_Humblet_Spira, ev, data) //It can not have PROCESS_
   static struct report_msg rep_msg;
   static struct change_root_msg cha_root_msg;
 
-  PROCESS_EXITHANDLER(runicast_close(&runicast);)
+  PROCESS_EXITHANDLER(runicast_close(&runicast_2);)
 
   PROCESS_BEGIN();
 
-  runicast_open(&runicast, RUNICAST_CHANNEL_2, &runicast_callbacks);
+  runicast_open(&runicast_2, RUNICAST_CHANNEL_2, &runicast_callbacks);
   /* OPTIONAL: Sender history */
   list_init(history_table_2);
   memb_init(&history_mem_2);
@@ -1051,7 +1051,7 @@ PROCESS_THREAD(send_Gallager_Humblet_Spira, ev, data) //It can not have PROCESS_
 
         packetbuf_copyfrom(&co_msg, sizeof(struct connect_msg));
         packetbuf_set_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG, CONNECT_MSG);
-        runicast_send(&runicast, &co_msg.to, NUM_MAX_RETRANSMISSIONS);
+        runicast_send(&runicast_2, &co_msg.to, NUM_MAX_RETRANSMISSIONS);
 
         DGHS_DBG_2("Send e_send_connect to %d.%d with L %d\n" , co_msg.to.u8[0], co_msg.to.u8[1], co_msg.L );
     }else
@@ -1061,7 +1061,7 @@ PROCESS_THREAD(send_Gallager_Humblet_Spira, ev, data) //It can not have PROCESS_
 
        packetbuf_copyfrom(&i_msg, sizeof(struct initiate_msg));
        packetbuf_set_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG, INITIATE_MSG);
-       runicast_send(&runicast, &i_msg.to, NUM_MAX_RETRANSMISSIONS);
+       runicast_send(&runicast_2, &i_msg.to, NUM_MAX_RETRANSMISSIONS);
 
        DGHS_DBG_2("Send e_send_initiate to %d.%d with L=%d F=%d.%02d S=%d\n" , i_msg.to.u8[0], i_msg.to.u8[1],
        i_msg.L,
@@ -1076,7 +1076,7 @@ PROCESS_THREAD(send_Gallager_Humblet_Spira, ev, data) //It can not have PROCESS_
 
         packetbuf_copyfrom(&t_msg, sizeof(struct test_msg));
         packetbuf_set_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG, TEST_MSG);
-        runicast_send(&runicast, &t_msg.to, NUM_MAX_RETRANSMISSIONS);
+        runicast_send(&runicast_2, &t_msg.to, NUM_MAX_RETRANSMISSIONS);
 
         DGHS_DBG_2("Send e_send_test to %d.%d with L=%d F=%d.%02d\n" , t_msg.to.u8[0], t_msg.to.u8[1],
         t_msg.L,
@@ -1090,7 +1090,7 @@ PROCESS_THREAD(send_Gallager_Humblet_Spira, ev, data) //It can not have PROCESS_
 
         packetbuf_copyfrom(&a_msg, sizeof(struct accept_msg));
         packetbuf_set_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG, ACCEPT_MSG);
-        runicast_send(&runicast, &a_msg.to, NUM_MAX_RETRANSMISSIONS);
+        runicast_send(&runicast_2, &a_msg.to, NUM_MAX_RETRANSMISSIONS);
 
         DGHS_DBG_2("Send e_send_accept to %d.%d \n" , a_msg.to.u8[0], a_msg.to.u8[1] );
 
@@ -1101,7 +1101,7 @@ PROCESS_THREAD(send_Gallager_Humblet_Spira, ev, data) //It can not have PROCESS_
 
        packetbuf_copyfrom(&rej_msg, sizeof(struct reject_msg));
        packetbuf_set_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG, REJECT_MSG);
-       runicast_send(&runicast, &rej_msg.to, NUM_MAX_RETRANSMISSIONS);
+       runicast_send(&runicast_2, &rej_msg.to, NUM_MAX_RETRANSMISSIONS);
 
        DGHS_DBG_2("Send e_send_reject to %d.%d \n" , rej_msg.to.u8[0], rej_msg.to.u8[1] );
     }else
@@ -1111,7 +1111,7 @@ PROCESS_THREAD(send_Gallager_Humblet_Spira, ev, data) //It can not have PROCESS_
 
        packetbuf_copyfrom(&rep_msg, sizeof(struct report_msg));
        packetbuf_set_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG, REPORT_MSG);
-       runicast_send(&runicast, &rep_msg.to, NUM_MAX_RETRANSMISSIONS);
+       runicast_send(&runicast_2, &rep_msg.to, NUM_MAX_RETRANSMISSIONS);
 
        DGHS_DBG_2("Send e_send_report to %d.%d with w = %d.%02d \n" , rep_msg.to.u8[0], rep_msg.to.u8[1],
        (int)(rep_msg.w / SEQNO_EWMA_UNITY),
@@ -1124,7 +1124,7 @@ PROCESS_THREAD(send_Gallager_Humblet_Spira, ev, data) //It can not have PROCESS_
 
        packetbuf_copyfrom(&cha_root_msg, sizeof(struct change_root_msg));
        packetbuf_set_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG, CHANGE_ROOT_MSG);
-       runicast_send(&runicast, &cha_root_msg.to, NUM_MAX_RETRANSMISSIONS);
+       runicast_send(&runicast_2, &cha_root_msg.to, NUM_MAX_RETRANSMISSIONS);
 
        DGHS_DBG_2("Send e_send_change_root to %d.%d \n" , cha_root_msg.to.u8[0], cha_root_msg.to.u8[1]);
     }
