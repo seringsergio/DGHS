@@ -65,8 +65,8 @@
 #define TIME_PREVIOUS_RU_MSG                  25 // time to transmit the previous ru_msg (in seconds)
 #define TIME_DGHS_PROCESS                     1 // The process master_DGHS executes every TIME_DGHS_PROCESS
 #define QUEUE_SIZE_GHS                        30
-#define TIME_UNION_IN_OUT                     10  //Get out of queue
-#define TIME_PREVIOUS_MSG_IN_OUT_UNION        20
+#define TIME_UNION_IN_OUT                     5  //Get out of queue
+#define TIME_PREVIOUS_MSG_IN_OUT_UNION        10
 
 //Values for 120 nodes
 /*#define NUM_MAX_RETRANSMISSIONS               50

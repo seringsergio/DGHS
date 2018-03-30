@@ -220,7 +220,7 @@ uint32_t weight(linkaddr_t *addr)
     return 0;
   }else
   {
-      return n->weight;
+      return (n->weight);
   }
 
 }

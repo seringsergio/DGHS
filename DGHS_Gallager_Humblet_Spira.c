@@ -363,7 +363,6 @@ PROCESS_THREAD(response_to_connect, ev, data)
                   in_l->type_msg.co_msg     = co_msg;
                   in_l->uniontype           = CONNECT_MSG;
                   list_push(in_union_list,in_l); // Add an item to the start of the list.
-
               }
 
               //PROCESS_PAUSE(); // to allow for other processes to get a slice of the processor's time in between.
@@ -438,6 +437,7 @@ PROCESS_THREAD(response_to_initiate, ev, data)
               {
                   //Send initiate(L,F,S) on edge i
                   fill_initiate_msg(&i_msg_temp, &n->addr, &linkaddr_node_addr, i_msg.L, i_msg.F, i_msg.S);
+                  DGHS_DBG_2("Resend initiate to %d \n", n->addr.u8[0]); 
                   //ADD to the list
                   out_l = memb_alloc(&out_union_mem);
                   if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
@@ -462,7 +462,7 @@ PROCESS_THREAD(response_to_initiate, ev, data)
 
           if(i_msg.S == FIND)
           {
-              process_post_synch(&procedure_test, e_execute, NULL);
+              process_post(&procedure_test, e_execute, NULL);
           }
       }
   }
@@ -502,7 +502,6 @@ PROCESS_THREAD(response_to_test, ev, data)
                   in_l->type_msg.t_msg      = t_msg;
                   in_l->uniontype           = TEST_MSG;
                   list_push(in_union_list,in_l); // Add an item to the start of the list.
-
               }
 
           }else
@@ -555,7 +554,7 @@ PROCESS_THREAD(response_to_test, ev, data)
               }else
               {
                   DGHS_DBG_2("response_to_test: call procedure_test %d\n", t_msg.from.u8[0]);
-                  process_post_synch(&procedure_test, e_execute, NULL);
+                  process_post(&procedure_test, e_execute, NULL);
               }
           }
 
@@ -592,7 +591,7 @@ PROCESS_THREAD(response_to_accept, ev, data)
               node.best_wt = weight(&a_msg.from);
           }
 
-          process_post_synch(&procedure_report, e_execute, NULL);
+          process_post(&procedure_report, e_execute, NULL);
 
       }
   }
@@ -621,7 +620,7 @@ PROCESS_THREAD(response_to_reject, ev, data)
             become_rejected(&rej_msg.from);
           }
 
-          process_post_synch(&procedure_test, e_execute, NULL);
+          process_post(&procedure_test, e_execute, NULL);
       }
   }
 
@@ -653,7 +652,7 @@ PROCESS_THREAD(response_to_report, ev, data)
                 node.best_wt = rep_msg.w;
                 linkaddr_copy(&node.best_edge, &rep_msg.from);
               }
-              process_post_synch(&procedure_report, e_execute,NULL);
+              process_post(&procedure_report, e_execute,NULL);
           }else
           if(node.SN == FIND)
           {
@@ -675,7 +674,7 @@ PROCESS_THREAD(response_to_report, ev, data)
           }else
           if( rep_msg.w > node.best_wt )
           {
-            process_post_synch(&procedure_change_root, e_execute, NULL);
+            process_post(&procedure_change_root, e_execute, NULL);
           }else
           if(rep_msg.w == node.best_wt)
           {
@@ -707,7 +706,7 @@ PROCESS_THREAD(response_to_change_root, ev, data)
       {
           //cha_root_msg = *( (struct change_root_msg *) data);
 
-          process_post_synch(&procedure_change_root, e_execute, NULL);
+          process_post(&procedure_change_root, e_execute, NULL);
       }
 
   }
@@ -859,7 +858,7 @@ PROCESS_THREAD(procedure_test, ev, data)
           if(n == NULL)
           {
               linkaddr_copy(&node.test_edge, &linkaddr_null);
-              process_post_synch(&procedure_report, e_execute, NULL);
+              process_post(&procedure_report, e_execute, NULL);
           }
 
       }
@@ -905,31 +904,31 @@ PROCESS_THREAD(in_union_evaluation, ev, data)
               in_l = list_chop(in_union_list); // Remove the last object on the list.
               if(in_l->uniontype == CONNECT_MSG)
               {
-                  process_post_synch(&response_to_connect, e_execute, &in_l->type_msg.co_msg);
+                  process_post(&response_to_connect, e_execute, &in_l->type_msg.co_msg);
               }else
               if(in_l->uniontype == INITIATE_MSG)
               {
-                process_post_synch(&response_to_initiate, e_execute, &in_l->type_msg.i_msg);
+                process_post(&response_to_initiate, e_execute, &in_l->type_msg.i_msg);
               }else
               if(in_l->uniontype == TEST_MSG)
               {
-                process_post_synch(&response_to_test, e_execute, &in_l->type_msg.t_msg);
+                process_post(&response_to_test, e_execute, &in_l->type_msg.t_msg);
               }else
               if(in_l->uniontype == ACCEPT_MSG)
               {
-                process_post_synch(&response_to_accept, e_execute, &in_l->type_msg.a_msg);
+                process_post(&response_to_accept, e_execute, &in_l->type_msg.a_msg);
               }else
               if(in_l->uniontype == REJECT_MSG)
               {
-                process_post_synch(&response_to_reject, e_execute, &in_l->type_msg.rej_msg);
+                process_post(&response_to_reject, e_execute, &in_l->type_msg.rej_msg);
               }else
               if(in_l->uniontype == REPORT_MSG)
               {
-                process_post_synch(&response_to_report, e_execute, &in_l->type_msg.rep_msg);
+                process_post(&response_to_report, e_execute, &in_l->type_msg.rep_msg);
               }else
               if(in_l->uniontype == CHANGE_ROOT_MSG)
               {
-                process_post_synch(&response_to_change_root, e_execute, &in_l->type_msg.cha_root_msg);
+                process_post(&response_to_change_root, e_execute, &in_l->type_msg.cha_root_msg);
               }
               memb_free(&in_union_mem,in_l);
               //DGHS_DBG_2("memb_free\n");
@@ -985,32 +984,32 @@ PROCESS_THREAD(out_union_evaluation, ev, data)
                   out_l = list_chop(out_union_list); // Remove the last object on the list.
                   if(out_l->uniontype == CONNECT_MSG)
                   {
-                      process_post_synch(&send_Gallager_Humblet_Spira, e_send_connect, &out_l->type_msg.co_msg);
+                      process_post(&send_Gallager_Humblet_Spira, e_send_connect, &out_l->type_msg.co_msg);
                       //DGHS_DBG_2("Post e_send_connect\n");
                   }else
                   if(out_l->uniontype == INITIATE_MSG)
                   {
-                    process_post_synch(&send_Gallager_Humblet_Spira, e_send_initiate, &out_l->type_msg.i_msg);
+                    process_post(&send_Gallager_Humblet_Spira, e_send_initiate, &out_l->type_msg.i_msg);
                   }else
                   if(out_l->uniontype == TEST_MSG)
                   {
-                    process_post_synch(&send_Gallager_Humblet_Spira, e_send_test, &out_l->type_msg.t_msg);
+                    process_post(&send_Gallager_Humblet_Spira, e_send_test, &out_l->type_msg.t_msg);
                   }else
                   if(out_l->uniontype == ACCEPT_MSG)
                   {
-                    process_post_synch(&send_Gallager_Humblet_Spira, e_send_accept, &out_l->type_msg.a_msg);
+                    process_post(&send_Gallager_Humblet_Spira, e_send_accept, &out_l->type_msg.a_msg);
                   }else
                   if(out_l->uniontype == REJECT_MSG)
                   {
-                    process_post_synch(&send_Gallager_Humblet_Spira, e_send_reject, &out_l->type_msg.rej_msg);
+                    process_post(&send_Gallager_Humblet_Spira, e_send_reject, &out_l->type_msg.rej_msg);
                   }else
                   if(out_l->uniontype == REPORT_MSG)
                   {
-                    process_post_synch(&send_Gallager_Humblet_Spira, e_send_report, &out_l->type_msg.rep_msg);
+                    process_post(&send_Gallager_Humblet_Spira, e_send_report, &out_l->type_msg.rep_msg);
                   }else
                   if(out_l->uniontype == CHANGE_ROOT_MSG)
                   {
-                    process_post_synch(&send_Gallager_Humblet_Spira, e_send_change_root, &out_l->type_msg.cha_root_msg);
+                    process_post(&send_Gallager_Humblet_Spira, e_send_change_root, &out_l->type_msg.cha_root_msg);
                   }
                   memb_free(&out_union_mem,out_l);
 
