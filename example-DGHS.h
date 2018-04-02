@@ -61,7 +61,7 @@
 #define TIME_BROADCAST_INTERVAL_DISCOVERY     10 //in seconds. Broadcast interval in neighbor discovery
 #define TIME_BROADCAST_INTERVAL_END           20 //in seconds
 #define NUM_MAX_NEIGHBORS                     16 // This #define defines the maximum amount of neighbors we can remember.
-#define NUM_HISTORY_ENTRIES                   (NUM_MAX_NEIGHBORS * 2)
+#define NUM_HISTORY_ENTRIES                   NUM_MAX_NEIGHBORS
 #define TIME_PREVIOUS_RU_MSG                  25 // time to transmit the previous ru_msg (in seconds)
 #define TIME_DGHS_PROCESS                     1 // The process master_DGHS executes every TIME_DGHS_PROCESS
 #define QUEUE_SIZE_GHS                        30
@@ -83,8 +83,8 @@
 ///////////////////////DEFINES///////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 
-#define RUNICAST_CHANNEL_1 144
-#define RUNICAST_CHANNEL_2 145
+#define RUNICAST_CHANNEL_2 144
+#define RUNICAST_CHANNEL_1 145
 
 
 

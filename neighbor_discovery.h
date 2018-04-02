@@ -93,6 +93,7 @@ struct broadcast_message {
 struct runicast_message {
   linkaddr_t addr;
   uint32_t avg_seqno_gap;
+  uint8_t seqno; 
 };
 
 struct runicast_list

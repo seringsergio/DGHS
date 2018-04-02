@@ -39,19 +39,23 @@ MEMB(neighbors_memb, struct neighbor, NUM_MAX_NEIGHBORS); // This MEMB() definit
 LIST(history_table_1);
 MEMB(history_mem_1, struct history_entry, NUM_HISTORY_ENTRIES);
 
-LIST(runicast_agreement_list); //List of runicast_1 messages
-MEMB(runicast_agreement_memb, struct runicast_list, NUM_MAX_NEIGHBORS);// This MEMB() definition defines a memory pool from which we allocate runicast_1 messages.
+LIST(runicast_agreement_list); //List of runicast messages
+MEMB(runicast_agreement_memb, struct runicast_list, NUM_MAX_NEIGHBORS);// This MEMB() definition defines a memory pool from which we allocate runicast messages.
 
 
-static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8_t seqno)
+static void recv_runicast_neighbor(struct runicast_conn *c, const linkaddr_t *from, uint8_t seqno)
 {
   static struct runicast_message *ru_msg;
   struct neighbor *n;
-  /* The packetbuf_dataptr() returns a pointer to the first data byte
-     in the received packet. */
+
+
+
+
   ru_msg = packetbuf_dataptr();
 
-  /* OPTIONAL: Sender history */
+  DGHS_DBG_2("runicast message received -neighbor discovery- from %d.%d, seqno %d\n",
+   from->u8[0], from->u8[1], ru_msg->seqno);
+
   struct history_entry *e = NULL;
   for(e = list_head(history_table_1); e != NULL; e = e->next) {
     if(linkaddr_cmp(&e->addr, from)) {
@@ -59,27 +63,21 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
     }
   }
   if(e == NULL) {
-    /* Create new history entry */
     e = memb_alloc(&history_mem_1);
     if(e == NULL) {
-      e = list_chop(history_table_1); /* Remove oldest at full history */
+      e = list_chop(history_table_1);
     }
     linkaddr_copy(&e->addr, from);
-    e->seq = seqno;
+    e->seq = ru_msg->seqno;
     list_push(history_table_1, e);
   } else {
-    /* Detect duplicate callback */
-    if(e->seq == seqno) {
-      DGHS_DBG_2("runicast_1 message received from %d.%d, seqno %d (DUPLICATE)\n",
-	     from->u8[0], from->u8[1], seqno);
+    if(e->seq == ru_msg->seqno) {
+      DGHS_DBG_2("runicast message received from %d.%d, seqno %d (DUPLICATE)\n",
+	     from->u8[0], from->u8[1], ru_msg->seqno);
       return;
     }
-    /* Update existing history entry */
-    e->seq = seqno;
+    e->seq = ru_msg->seqno;
   }
-
-  DGHS_DBG_2("runicast_1 (neighbor discovery) message received from %d.%d, seqno %d\n",
-	 from->u8[0], from->u8[1], seqno);
 
   for(n = list_head(neighbors_list); n != NULL; n = list_item_next(n))
   {
@@ -98,20 +96,20 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
   }
 
 }
-static void sent_runicast(struct runicast_conn *c, const linkaddr_t *to, uint8_t retransmissions)
+static void sent_runicast_neighbor(struct runicast_conn *c, const linkaddr_t *to, uint8_t retransmissions)
 {
   DGHS_DBG_2("runicast (neighbor discovery) message sent to %d.%d, retransmissions %d\n",
 	 to->u8[0], to->u8[1], retransmissions);
 }
-static void timedout_runicast(struct runicast_conn *c, const linkaddr_t *to, uint8_t retransmissions)
+static void timedout_runicast_neighbor(struct runicast_conn *c, const linkaddr_t *to, uint8_t retransmissions)
 {
-  DGHS_DBG_1("ERROR: runicast_1 message timed out when sending to %d.%d, retransmissions %d\n",
+  DGHS_DBG_1("ERROR: runicast message timed out when sending to %d.%d, retransmissions %d\n",
 	 to->u8[0], to->u8[1], retransmissions);
 }
 
-static const struct runicast_callbacks runicast_callbacks = {recv_runicast,
-							     sent_runicast,
-							     timedout_runicast};
+static const struct runicast_callbacks runicast_callbacks_neighbor = {recv_runicast_neighbor,
+							                                                        sent_runicast_neighbor,
+							                                                        timedout_runicast_neighbor};
 static struct runicast_conn runicast_1;
 
 static void broadcast_recv(struct broadcast_conn *c, const linkaddr_t *from)
@@ -158,6 +156,8 @@ static void broadcast_recv(struct broadcast_conn *c, const linkaddr_t *from)
     /* Place the neighbor on the neighbor list. */
     list_add(neighbors_list, n);
   }
+
+  //interface_get_neighbor_list_pointer(list_head(neighbors_list));
 
   /* We can now fill in the fields in our neighbor entry. */
   n->last_rssi = packetbuf_attr(PACKETBUF_ATTR_RSSI);
@@ -213,7 +213,7 @@ PROCESS(analyze_agreement, "analyze_agreement");
 
 PROCESS_THREAD(master_neighbor_discovery, ev, data) //It can not have PROCESS_WAIT_EVENT_UNTIL()
 {
-    static uint8_t seqno;
+    static uint8_t seqno, seqno_runicast;
     static struct runicast_list *ru_list;
     PROCESS_BEGIN();
 
@@ -223,13 +223,17 @@ PROCESS_THREAD(master_neighbor_discovery, ev, data) //It can not have PROCESS_WA
     list_init(neighbors_list);
     memb_init(&neighbors_memb);
 
+    /* OPTIONAL: Sender history */
+    list_init(history_table_1);
+    memb_init(&history_mem_1);
+
     while(1)
     {
         PROCESS_WAIT_EVENT(); //Always must return to this wait. It can not use PROCESS_WAIT_EVENT_UNTIL()
         if(ev == e_initialize)
         {
             seqno = 0;
-
+            seqno_runicast = 0;
             //Exit the processes
             process_exit(&broadcast_control);
             process_exit(&runicast_control);
@@ -253,7 +257,7 @@ PROCESS_THREAD(master_neighbor_discovery, ev, data) //It can not have PROCESS_WA
         }else
         if(ev == e_runicast_add_to_list)
         {
-
+            seqno_runicast++;
             //ADD to the list
             ru_list = memb_alloc(&runicast_agreement_memb);
             if(ru_list == NULL) {            // If we could not allocate a new entry, we give up.
@@ -261,6 +265,7 @@ PROCESS_THREAD(master_neighbor_discovery, ev, data) //It can not have PROCESS_WA
             }else
             {
                 ru_list->msg = *((struct runicast_message*)data);
+                ru_list->msg.seqno = seqno_runicast;
                 list_push(runicast_agreement_list,ru_list); // Add an item to the start of the list.
 
                 /*printf("GUARDO %d.%d con avg seqno gap %d.%02d\n",
@@ -416,11 +421,7 @@ PROCESS_THREAD(send_neighbor_discovery, ev, data)
     PROCESS_BEGIN();
 
     broadcast_open(&broadcast, 129, &broadcast_call);
-    runicast_open(&runicast_1, RUNICAST_CHANNEL_1, &runicast_callbacks);
-
-    /* OPTIONAL: Sender history */
-    list_init(history_table_1);
-    memb_init(&history_mem_1);
+    runicast_open(&runicast_1, RUNICAST_CHANNEL_1, &runicast_callbacks_neighbor);
 
     e_send_broadcast = process_alloc_event();
     e_send_runicast  = process_alloc_event();
@@ -440,13 +441,7 @@ PROCESS_THREAD(send_neighbor_discovery, ev, data)
         {
             ru_msg = *((struct runicast_message *)data);
             packetbuf_copyfrom(&ru_msg, sizeof(struct runicast_message));
-
-            /*printf("ENVIO Runicast %d.%d con avg seqno gap %d.%02d\n",
-            ru_msg.addr.u8[0], ru_msg.addr.u8[1],
-            (int)(ru_msg.avg_seqno_gap / SEQNO_EWMA_UNITY),
-            (int)(((100UL * ru_msg.avg_seqno_gap) / SEQNO_EWMA_UNITY) % 100)
-            );*/
-
+            packetbuf_set_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG, NEIGHBOR_DISCOVERY);
             runicast_send(&runicast_1, &ru_msg.addr, NUM_MAX_RETRANSMISSIONS);
         }
     }

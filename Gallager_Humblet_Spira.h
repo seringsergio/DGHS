@@ -58,6 +58,7 @@
 #define ACCEPT_MSG           0x10
 #define REJECT_MSG           0x20
 #define CHANGE_ROOT_MSG      0x40
+#define NEIGHBOR_DISCOVERY   0x80
 
 /*enum
 {
@@ -125,18 +126,21 @@ struct neighbor; // forward declaration of the struct
  {
    linkaddr_t to;
    linkaddr_t from;
+   uint8_t seqno;
  };
 
  struct reject_msg
  {
    linkaddr_t to;
    linkaddr_t from;
+   uint8_t seqno;
  };
 
  struct accept_msg
  {
    linkaddr_t to;
    linkaddr_t from;
+   uint8_t seqno;
  };
 
  struct report_msg
@@ -144,6 +148,7 @@ struct neighbor; // forward declaration of the struct
    linkaddr_t to;
    linkaddr_t from;
    uint32_t   w; //Fragment name
+   uint8_t seqno;
  };
 
 struct test_msg
@@ -152,6 +157,7 @@ struct test_msg
   linkaddr_t             from;
   uint8_t                L; // level
   struct fragment_name   F; //Fragment name
+  uint8_t seqno;
 };
 
 struct connect_msg
@@ -159,6 +165,7 @@ struct connect_msg
   linkaddr_t to;
   linkaddr_t from;
   uint8_t L; // level
+  uint8_t seqno;
 };
 
 struct initiate_msg
@@ -168,6 +175,7 @@ struct initiate_msg
   uint8_t                L; // level
   struct fragment_name   F; //Fragment name
   uint8_t                S; // Node state
+  uint8_t seqno;
 };
 
 union types_msg
