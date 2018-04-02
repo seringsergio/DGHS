@@ -369,7 +369,7 @@ PROCESS_THREAD(response_to_connect, ev, data)
                     }
 
                     DGHS_DBG_2("Place received message CONNECT_MSG from %d.%d on end of queue\n",
-                    in_l->type_msg.co_msg.from.u8[0], in_l->type_msg.co_msg.from.u8[1], );
+                    in_l->type_msg.co_msg.from.u8[0], in_l->type_msg.co_msg.from.u8[1] );
                     //PROCESS_PAUSE(); // to allow for other processes to get a slice of the processor's time in between.
 
               }else
@@ -603,7 +603,7 @@ PROCESS_THREAD(response_to_test, ev, data)
 }
 
 
-// (7) Response to Accept on edge j 
+// (7) Response to Accept on edge j
 PROCESS_THREAD(response_to_accept, ev, data)
 {
 
@@ -619,10 +619,18 @@ PROCESS_THREAD(response_to_accept, ev, data)
       {
           a_msg = *( (struct accept_msg *) data);
 
+          DGHS_DBG_2("response_to_accept from %d.%d\n", a_msg.from.u8[0], a_msg.from.u8[1]);
+
           linkaddr_copy(&node.test_edge, &linkaddr_null);
 
           if(  weight(&a_msg.from) < node.best_wt)
           {
+              DGHS_DBG_2(" weight(%d.%02d) < node.best_wt(%d.%02d)  \n",
+              (int)(weight(&a_msg.from) / SEQNO_EWMA_UNITY),
+              (int)(((100UL * weight(&a_msg.from)) / SEQNO_EWMA_UNITY) % 100),
+              (int)(node.best_wt / SEQNO_EWMA_UNITY),
+              (int)(((100UL * node.best_wt) / SEQNO_EWMA_UNITY) % 100));
+
               linkaddr_copy(&node.best_edge, &a_msg.from);
               node.best_wt = weight(&a_msg.from);
           }
@@ -637,7 +645,7 @@ PROCESS_THREAD(response_to_accept, ev, data)
 }
 
 
-
+// (8) Response to receipt of Reject on edge j
 PROCESS_THREAD(response_to_reject, ev, data)
 {
   static struct reject_msg rej_msg;
@@ -651,8 +659,11 @@ PROCESS_THREAD(response_to_reject, ev, data)
       {
           rej_msg = *( (struct reject_msg *) data);
 
+          DGHS_DBG_2("response_to_reject from %d.%d\n", rej_msg.from.u8[0], rej_msg.from.u8[1]);
+
           if( is_basic(&rej_msg.from) )
           {
+            DGHS_DBG_2("%d.%d is_basic() \n", rej_msg.from.u8[0], rej_msg.from.u8[1] );
             become_rejected(&rej_msg.from);
           }
 
@@ -665,7 +676,7 @@ PROCESS_THREAD(response_to_reject, ev, data)
 }
 
 
-
+// Response to receipt of Report(w) on edge j
 PROCESS_THREAD(response_to_report, ev, data)
 {
   static struct report_msg rep_msg;
@@ -680,47 +691,83 @@ PROCESS_THREAD(response_to_report, ev, data)
       {
           rep_msg = *( (struct report_msg *) data);
 
+          DGHS_DBG_2("response_to_report from %d.%d with w = %d.%02d \n", rep_msg.from.u8[0], rep_msg.from.u8[1],
+          (int)(rep_msg.w / SEQNO_EWMA_UNITY),
+          (int)(((100UL * rep_msg.w) / SEQNO_EWMA_UNITY) % 100));
+
+
           if(!(linkaddr_cmp(&rep_msg.from,&node.in_branch)))
           {
+              DGHS_DBG_2("%d.%d is different from %d.%d\n", rep_msg.from.u8[0], rep_msg.from.u8[1],
+              node.in_branch.u8[0], node.in_branch.u8[1]);
+
               node.find_count = node.find_count - 1;
               if(rep_msg.w < node.best_wt)
               {
+                DGHS_DBG_2("rep_msg.w(%d.%02d) < node.best_wt(%d.%02d)\n",
+                (int)(rep_msg.w / SEQNO_EWMA_UNITY),
+                (int)(((100UL * rep_msg.w) / SEQNO_EWMA_UNITY) % 100),
+                (int)(node.best_wt / SEQNO_EWMA_UNITY),
+                (int)(((100UL * node.best_wt) / SEQNO_EWMA_UNITY) % 100));
+
                 node.best_wt = rep_msg.w;
                 linkaddr_copy(&node.best_edge, &rep_msg.from);
               }
               process_post_synch(&procedure_report, e_execute,NULL);
-          }else
-          if(node.SN == FIND)
-          {
+          }else if(node.SN == FIND)
+                {
 
-            //Place received message on end of queue
-            //ADD to the list
-            in_l = memb_alloc(&in_union_mem);
-            //DGHS_DBG_2("memb_alloc\n");
-            if(in_l == NULL) {            // If we could not allocate a new entry, we give up.
-              DGHS_DBG_1("ERROR: we could not allocate a new entry for <<in_union_list>> ---\n");
-            }else
-            {
-                in_l->type_msg.rep_msg    = rep_msg;
-                in_l->uniontype           = REPORT_MSG;
-                list_push(in_union_list,in_l); // Add an item to the start of the list.
+                  DGHS_DBG_2("The node is in the FIND state\n");
 
-            }
+                  //Place received message on end of queue
+                  //ADD to the list
+                  in_l = memb_alloc(&in_union_mem);
+                  //DGHS_DBG_2("memb_alloc\n");
+                  if(in_l == NULL) // If we could not allocate a new entry, we give up.
+                  {
+                    DGHS_DBG_1("ERROR: we could not allocate a new entry for <<in_union_list>> ---\n");
+                  }else
+                  {
+                      in_l->type_msg.rep_msg    = rep_msg;
+                      in_l->uniontype           = REPORT_MSG;
+                      list_push(in_union_list,in_l); // Add an item to the start of the list.
 
-          }else
-          if( rep_msg.w > node.best_wt )
-          {
-            process_post_synch(&procedure_change_root, e_execute, NULL);
-          }else
-          if(rep_msg.w == node.best_wt)
-          {
-            if(rep_msg.w == INFINITE || node.best_wt == INFINITE )
-            {
-              DGHS_interface_control_flags(GHS_HAS_ENDED);
-              DGHS_DBG_2("GHS has finished\n");
-            }
+                  }
 
-          }
+                  DGHS_DBG_2("Place received message REPORT_MSG from %d.%d on end of queue\n",
+                  in_l->type_msg.rep_msg.from.u8[0], in_l->type_msg.rep_msg.from.u8[1] );
+
+                }else if( rep_msg.w > node.best_wt )
+                      {
+                        DGHS_DBG_2("rep_msg.w(%d.%02d) > node.best_wt(%d.%02d)\n",
+                        (int)(rep_msg.w / SEQNO_EWMA_UNITY),
+                        (int)(((100UL * rep_msg.w) / SEQNO_EWMA_UNITY) % 100),
+                        (int)(node.best_wt / SEQNO_EWMA_UNITY),
+                        (int)(((100UL * node.best_wt) / SEQNO_EWMA_UNITY) % 100));
+
+                        process_post_synch(&procedure_change_root, e_execute, NULL);
+
+                      }else if(rep_msg.w == node.best_wt)
+                            {
+                              DGHS_DBG_2("rep_msg.w(%d.%02d) = node.best_wt(%d.%02d)\n",
+                              (int)(rep_msg.w / SEQNO_EWMA_UNITY),
+                              (int)(((100UL * rep_msg.w) / SEQNO_EWMA_UNITY) % 100),
+                              (int)(node.best_wt / SEQNO_EWMA_UNITY),
+                              (int)(((100UL * node.best_wt) / SEQNO_EWMA_UNITY) % 100));
+
+                              if(rep_msg.w == INFINITE || node.best_wt == INFINITE )
+                              {
+                                DGHS_DBG_2("rep_msg.w(%d.%02d) = node.best_wt(%d.%02d) = INFINITE\n",
+                                (int)(rep_msg.w / SEQNO_EWMA_UNITY),
+                                (int)(((100UL * rep_msg.w) / SEQNO_EWMA_UNITY) % 100), 
+                                (int)(node.best_wt / SEQNO_EWMA_UNITY),
+                                (int)(((100UL * node.best_wt) / SEQNO_EWMA_UNITY) % 100));
+
+                                DGHS_interface_control_flags(GHS_HAS_ENDED);
+                                DGHS_DBG_2("GHS has finished\n");
+                              }
+
+                            }
 
       }
   }
@@ -729,10 +776,11 @@ PROCESS_THREAD(response_to_report, ev, data)
 
 }
 
+// (12) Response to receipt of change_root
 PROCESS_THREAD(response_to_change_root, ev, data)
 {
 
-  //static struct change_root_msg cha_root_msg;
+  static struct change_root_msg cha_root_msg;
   PROCESS_BEGIN();
 
   while(1)
@@ -740,7 +788,9 @@ PROCESS_THREAD(response_to_change_root, ev, data)
       PROCESS_YIELD();
       if(ev == e_execute)
       {
-          //cha_root_msg = *( (struct change_root_msg *) data);
+          cha_root_msg = *( (struct change_root_msg *) data);
+
+          DGHS_DBG_2("response_to_change_root from %d.%d \n", cha_root_msg.from.u8[0], cha_root_msg.from.u8[1]);
 
           process_post_synch(&procedure_change_root, e_execute, NULL);
       }
@@ -750,7 +800,7 @@ PROCESS_THREAD(response_to_change_root, ev, data)
   PROCESS_END();
 }
 
-
+// (11) procedure change_root
 PROCESS_THREAD(procedure_change_root, ev, data)
 {
   static struct change_root_msg cha_root_msg;
@@ -766,6 +816,9 @@ PROCESS_THREAD(procedure_change_root, ev, data)
     {
         if(is_branch(&node.best_edge))
         {
+
+            DGHS_DBG_2("%d.%d is branch \n", node.best_edge.u8[0], node.best_edge.u8[1]);
+
             //Send Change-root on best_edge
             fill_change_root_msg(&cha_root_msg, &node.best_edge, &linkaddr_node_addr);
             //ADD to the list
@@ -783,22 +836,25 @@ PROCESS_THREAD(procedure_change_root, ev, data)
 
         }else
         {
-          //Send Connect(LN)  on best_edge
-          fill_connect_msg(&co_msg, &node.best_edge, &linkaddr_node_addr, node.LN);
-          //ADD to the list
-          out_l = memb_alloc(&out_union_mem);
-          if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
-            DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list>>\n");
-          }else
-          {
 
-              out_l->type_msg.co_msg      = co_msg;
-              out_l->uniontype            = CONNECT_MSG;
-              list_push(out_union_list,out_l); // Add an item to the start of the list.
+            DGHS_DBG_2("%d.%d is not branch \n", node.best_edge.u8[0], node.best_edge.u8[1]);
 
-          }
+            //Send Connect(LN)  on best_edge
+            fill_connect_msg(&co_msg, &node.best_edge, &linkaddr_node_addr, node.LN);
+            //ADD to the list
+            out_l = memb_alloc(&out_union_mem);
+            if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
+              DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list>>\n");
+            }else
+            {
 
-          become_branch(&node.best_edge);
+                out_l->type_msg.co_msg      = co_msg;
+                out_l->uniontype            = CONNECT_MSG;
+                list_push(out_union_list,out_l); // Add an item to the start of the list.
+
+            }
+
+            become_branch(&node.best_edge);
 
         }
 
@@ -810,6 +866,8 @@ PROCESS_THREAD(procedure_change_root, ev, data)
   PROCESS_END();
 
 }
+
+// (9) procedure report
 PROCESS_THREAD(procedure_report, ev, data)
 {
   static struct report_msg rep_msg;
@@ -825,6 +883,10 @@ PROCESS_THREAD(procedure_report, ev, data)
       {
           if( (node.find_count == 0)  &&  (linkaddr_cmp(&node.test_edge,&linkaddr_null ) )  )
           {
+              DGHS_DBG_2("node.find_count = 0  AND %d.%d is equal to %d.%d \n",
+              node.test_edge.u8[0], node.test_edge.u8[1],
+              linkaddr_null.u8[0], linkaddr_null.u8[1]);
+
               node.SN = FOUND;
 
               //Send Report(best_wt) on in_branch
@@ -849,6 +911,8 @@ PROCESS_THREAD(procedure_report, ev, data)
   PROCESS_END();
 }
 
+
+// (5) procedure test
 PROCESS_THREAD(procedure_test, ev, data)
 {
   static struct in_out_list *out_l;
@@ -868,6 +932,9 @@ PROCESS_THREAD(procedure_test, ev, data)
           {
               if(is_basic(&n->addr))
               {
+                  DGHS_DBG_2("There are adjacent BASIC edges. The minimum-weight adjacent edge is %d.%d  \n",
+                  n->addr.u8[0], n->addr.u8[1]);
+
                   linkaddr_copy(&node.test_edge, &n->addr);
 
                   //Send TEST(LN, FN) on test_edge
@@ -893,6 +960,8 @@ PROCESS_THREAD(procedure_test, ev, data)
           //There are not adjacent edges in the state BASIC
           if(n == NULL)
           {
+              DGHS_DBG_2("There are not adjacent BASIC edges.\n");
+
               linkaddr_copy(&node.test_edge, &linkaddr_null);
               process_post_synch(&procedure_report, e_execute, NULL);
           }
@@ -906,6 +975,7 @@ PROCESS_THREAD(procedure_test, ev, data)
 
 }
 
+// take out an element from the list in_union_list
 PROCESS_THREAD(in_union_evaluation, ev, data)
 {
   static struct etimer et1, et2;
@@ -928,9 +998,6 @@ PROCESS_THREAD(in_union_evaluation, ev, data)
         {
             while(list_length(in_union_list))
             {
-              //DGHS_DBG_2("List in_union_list has at least 1 element\n");
-              //DGHS_DBG_2("list_length(in_union_list) = %d\n", list_length(in_union_list));
-
               //Give enough time to transmit the previous msg
               etimer_set(&et2, CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION);
                   //+ random_rand() % (CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION));
@@ -941,33 +1008,29 @@ PROCESS_THREAD(in_union_evaluation, ev, data)
               if(in_l->uniontype == CONNECT_MSG)
               {
                   process_post_synch(&response_to_connect, e_execute, &in_l->type_msg.co_msg);
-              }else
-              if(in_l->uniontype == INITIATE_MSG)
-              {
-                process_post_synch(&response_to_initiate, e_execute, &in_l->type_msg.i_msg);
-              }else
-              if(in_l->uniontype == TEST_MSG)
-              {
-                process_post_synch(&response_to_test, e_execute, &in_l->type_msg.t_msg);
-              }else
-              if(in_l->uniontype == ACCEPT_MSG)
-              {
-                process_post_synch(&response_to_accept, e_execute, &in_l->type_msg.a_msg);
-              }else
-              if(in_l->uniontype == REJECT_MSG)
-              {
-                process_post_synch(&response_to_reject, e_execute, &in_l->type_msg.rej_msg);
-              }else
-              if(in_l->uniontype == REPORT_MSG)
-              {
-                process_post_synch(&response_to_report, e_execute, &in_l->type_msg.rep_msg);
-              }else
-              if(in_l->uniontype == CHANGE_ROOT_MSG)
-              {
-                process_post_synch(&response_to_change_root, e_execute, &in_l->type_msg.cha_root_msg);
-              }
+              }else if(in_l->uniontype == INITIATE_MSG)
+                {
+                  process_post_synch(&response_to_initiate, e_execute, &in_l->type_msg.i_msg);
+                }else if(in_l->uniontype == TEST_MSG)
+                  {
+                    process_post_synch(&response_to_test, e_execute, &in_l->type_msg.t_msg);
+                  }else if(in_l->uniontype == ACCEPT_MSG)
+                    {
+                      process_post_synch(&response_to_accept, e_execute, &in_l->type_msg.a_msg);
+                    }else if(in_l->uniontype == REJECT_MSG)
+                      {
+                        process_post_synch(&response_to_reject, e_execute, &in_l->type_msg.rej_msg);
+                      }else if(in_l->uniontype == REPORT_MSG)
+                        {
+                          process_post_synch(&response_to_report, e_execute, &in_l->type_msg.rep_msg);
+                        }else if(in_l->uniontype == CHANGE_ROOT_MSG)
+                          {
+                            process_post_synch(&response_to_change_root, e_execute, &in_l->type_msg.cha_root_msg);
+                          }else
+                          {
+                            DGHS_DBG_1("ERROR: The type of msg in in_union_list is unkown \n");
+                          }
               memb_free(&in_union_mem,in_l);
-              //DGHS_DBG_2("memb_free\n");
 
             } //while(list_length(in_union_list))
 
@@ -982,6 +1045,8 @@ PROCESS_THREAD(in_union_evaluation, ev, data)
   PROCESS_END();
 }
 
+
+// take out an element from the list out_union_list
 PROCESS_THREAD(out_union_evaluation, ev, data)
 {
   static struct etimer et1, et2;
@@ -1007,8 +1072,6 @@ PROCESS_THREAD(out_union_evaluation, ev, data)
 
           while(list_length(out_union_list))
           {
-              //DGHS_DBG_2("List out_union_list has at least 1 element\n");
-
               //Give enough time to transmit the previous msg
               etimer_set(&et2, CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION);
                 //  + random_rand() % (CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION));
@@ -1022,31 +1085,28 @@ PROCESS_THREAD(out_union_evaluation, ev, data)
                   {
                       process_post_synch(&send_Gallager_Humblet_Spira, e_send_connect, &out_l->type_msg.co_msg);
                       //DGHS_DBG_2("Post e_send_connect\n");
-                  }else
-                  if(out_l->uniontype == INITIATE_MSG)
-                  {
-                    process_post_synch(&send_Gallager_Humblet_Spira, e_send_initiate, &out_l->type_msg.i_msg);
-                  }else
-                  if(out_l->uniontype == TEST_MSG)
-                  {
-                    process_post_synch(&send_Gallager_Humblet_Spira, e_send_test, &out_l->type_msg.t_msg);
-                  }else
-                  if(out_l->uniontype == ACCEPT_MSG)
-                  {
-                    process_post_synch(&send_Gallager_Humblet_Spira, e_send_accept, &out_l->type_msg.a_msg);
-                  }else
-                  if(out_l->uniontype == REJECT_MSG)
-                  {
-                    process_post_synch(&send_Gallager_Humblet_Spira, e_send_reject, &out_l->type_msg.rej_msg);
-                  }else
-                  if(out_l->uniontype == REPORT_MSG)
-                  {
-                    process_post_synch(&send_Gallager_Humblet_Spira, e_send_report, &out_l->type_msg.rep_msg);
-                  }else
-                  if(out_l->uniontype == CHANGE_ROOT_MSG)
-                  {
-                    process_post_synch(&send_Gallager_Humblet_Spira, e_send_change_root, &out_l->type_msg.cha_root_msg);
-                  }
+                  }else if(out_l->uniontype == INITIATE_MSG)
+                    {
+                      process_post_synch(&send_Gallager_Humblet_Spira, e_send_initiate, &out_l->type_msg.i_msg);
+                    }else if(out_l->uniontype == TEST_MSG)
+                      {
+                        process_post_synch(&send_Gallager_Humblet_Spira, e_send_test, &out_l->type_msg.t_msg);
+                      }else if(out_l->uniontype == ACCEPT_MSG)
+                        {
+                          process_post_synch(&send_Gallager_Humblet_Spira, e_send_accept, &out_l->type_msg.a_msg);
+                        }else if(out_l->uniontype == REJECT_MSG)
+                          {
+                            process_post_synch(&send_Gallager_Humblet_Spira, e_send_reject, &out_l->type_msg.rej_msg);
+                          }else if(out_l->uniontype == REPORT_MSG)
+                            {
+                              process_post_synch(&send_Gallager_Humblet_Spira, e_send_report, &out_l->type_msg.rep_msg);
+                            }else if(out_l->uniontype == CHANGE_ROOT_MSG)
+                              {
+                                process_post_synch(&send_Gallager_Humblet_Spira, e_send_change_root, &out_l->type_msg.cha_root_msg);
+                              }else
+                              {
+                                DGHS_DBG_1("ERROR: The type of msg in out_union_list is unkown \n");
+                              }
                   memb_free(&out_union_mem,out_l);
 
               }else
@@ -1060,12 +1120,13 @@ PROCESS_THREAD(out_union_evaluation, ev, data)
           process_post_synch(PROCESS_CURRENT(), e_execute, NULL);
         }*/
      //} //IF e_execute
-  }
+  } //while (1)
 
   PROCESS_END();
 
 }
 
+// Send the msg of GHS: Connect, initiate, test, accept, reject, report, change_root
 PROCESS_THREAD(send_Gallager_Humblet_Spira, ev, data) //It can not have PROCESS_WAIT_EVENT_UNTIL()
 {
   static struct connect_msg co_msg;
@@ -1176,6 +1237,9 @@ PROCESS_THREAD(send_Gallager_Humblet_Spira, ev, data) //It can not have PROCESS_
        runicast_send(&runicast_2, &cha_root_msg.to, NUM_MAX_RETRANSMISSIONS);
 
        DGHS_DBG_2("Send e_send_change_root to %d.%d \n" , cha_root_msg.to.u8[0], cha_root_msg.to.u8[1]);
+    }else
+    {
+      DGHS_DBG_1("ERROR: The type of msg in send_Gallager_Humblet_Spira is unkown \n");
     }
   }
 
