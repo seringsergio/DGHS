@@ -60,7 +60,7 @@ PROCESS(response_to_change_root,"response_to_change_root");
 // Reliable unicast that receives the GHS messages: Connect, initiate, test, accept, reject, report, change_root
 static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8_t seqno)
 {
-  packetbuf_attr_t msg_type;
+  static packetbuf_attr_t msg_type;
   static struct in_out_list *in_l;
 
   void *msg = packetbuf_dataptr();
@@ -291,7 +291,6 @@ PROCESS_THREAD(procedure_wakeup, ev, data) //It can not have PROCESS_WAIT_EVENT_
               list_push(out_union_list,out_l); // Add an item to the start of the list.
 
           }
-          //DGHS_DBG_2("Added to out_union_list\n");
 
           DGHS_interface_control_flags(NODE_IS_AWAKE);
 
@@ -429,9 +428,9 @@ PROCESS_THREAD(response_to_initiate, ev, data)
           node.LN = i_msg.L;
           node.FN = i_msg.F;
           node.SN = i_msg.S;
-          DGHS_DBG_1("#L %d 0\n", node.in_branch.u8[0]); // 0: old parent
+            DGHS_DBG_1("#L %d 0\n", node.in_branch.u8[0]); // 0: old parent
           linkaddr_copy(&node.in_branch, &i_msg.from);
-          DGHS_DBG_1("#L %d 1\n", node.in_branch.u8[0]); //: 1: new parent
+            DGHS_DBG_1("#L %d 1\n", node.in_branch.u8[0]); //: 1: new parent
           linkaddr_copy(&node.best_edge, &linkaddr_null); //linkaddr_null: The null Rime address.
           node.best_wt = INFINITE;
 
@@ -820,6 +819,7 @@ PROCESS_THREAD(response_to_report, ev, data)
                 linkaddr_copy(&node.best_edge, &rep_msg.from);
               }
               process_post_synch(&procedure_report, e_execute,NULL);
+
           }else if(node.SN == FIND)
                 {
 
@@ -875,7 +875,7 @@ PROCESS_THREAD(response_to_report, ev, data)
 
                             }
 
-      }
+      } //IF e_execute
   }
 
   PROCESS_END();
