@@ -100,7 +100,7 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
 }
 static void sent_runicast(struct runicast_conn *c, const linkaddr_t *to, uint8_t retransmissions)
 {
-  DGHS_DBG_2("runicast_1 (neighbor discovery) message sent to %d.%d, retransmissions %d\n",
+  DGHS_DBG_2("runicast (neighbor discovery) message sent to %d.%d, retransmissions %d\n",
 	 to->u8[0], to->u8[1], retransmissions);
 }
 static void timedout_runicast(struct runicast_conn *c, const linkaddr_t *to, uint8_t retransmissions)

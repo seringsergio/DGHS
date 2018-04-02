@@ -116,8 +116,8 @@ struct neighbor; // forward declaration of the struct
 
  struct fragment_name
  {
-   linkaddr_t node1; //Lower address
-   linkaddr_t node2; //Greater address
+   linkaddr_t node1; //Lowest address
+   linkaddr_t node2; //Highest address
    uint32_t   name;
  };
 

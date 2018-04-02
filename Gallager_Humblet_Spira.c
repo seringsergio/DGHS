@@ -91,6 +91,7 @@ void fill_fragment_name(struct fragment_name *F, const linkaddr_t *from, const  
 {
    F->name = name;
 
+   //The lowest address is the node1, highest address is node2
    if( i_am->u8[0] < from->u8[0])
    {
      linkaddr_copy(&F->node1,i_am);
@@ -100,8 +101,6 @@ void fill_fragment_name(struct fragment_name *F, const linkaddr_t *from, const  
      linkaddr_copy(&F->node1,from);
      linkaddr_copy(&F->node2,i_am);
    }
-
-
 }
 
 uint8_t different_fragments(struct fragment_name F1,struct fragment_name F2)
@@ -267,6 +266,7 @@ void become_rejected(linkaddr_t *addr)
   }
 }
 
+// Puts all the neighbors/edges in the BASIC state
 void init_SE()
 {
   struct neighbor *n;
@@ -276,7 +276,11 @@ void init_SE()
     n->SE = BASIC;
   }
 
+  DGHS_DBG_2("All the neighbors/edges are in the BASIC state\n");
+
 }
+
+// It sorts the list of neighbors/edges from the lowest weight to the highest weight.
 void sort_neighbor_list()
 {
   struct neighbor *i, *j, *lowest_edge, temp;
@@ -301,6 +305,9 @@ void sort_neighbor_list()
     change_positions(i, lowest_edge);
     change_positions(lowest_edge, &temp);
   } //END for
+
+  DGHS_DBG_2("The list of neighbors/edges has been sorted\n");
+
 }
 
 void change_positions(struct neighbor *destination, struct neighbor *from)
