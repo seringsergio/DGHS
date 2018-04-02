@@ -477,6 +477,69 @@ PROCESS_THREAD(response_to_initiate, ev, data)
   PROCESS_END();
 }
 
+// (5) procedure test
+PROCESS_THREAD(procedure_test, ev, data)
+{
+  static struct in_out_list *out_l;
+  static struct test_msg t_msg;
+  static struct neighbor *n;
+
+  PROCESS_BEGIN();
+
+  while(1)
+  {
+      PROCESS_YIELD();
+      if(ev == e_execute)
+      {
+          //If there are adjacent edges in the state BASIC
+          //Take into account that the list is sorted
+          for(n = neighbors_list_p; n != NULL; n = list_item_next(n))
+          {
+              if(is_basic(&n->addr))
+              {
+                  DGHS_DBG_2("There are adjacent BASIC edges. The minimum-weight adjacent edge is %d.%d  \n",
+                  n->addr.u8[0], n->addr.u8[1]);
+
+                  linkaddr_copy(&node.test_edge, &n->addr);
+
+                  //Send TEST(LN, FN) on test_edge
+                  fill_test_msg(&t_msg, &node.test_edge, &linkaddr_node_addr, node.LN, node.FN);
+
+                  //ADD to the list
+                  out_l = memb_alloc(&out_union_mem);
+                  if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
+                    DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list>>\n");
+                  }else
+                  {
+
+                      out_l->type_msg.t_msg      = t_msg;
+                      out_l->uniontype           = TEST_MSG;
+                      list_push(out_union_list,out_l); // Add an item to the start of the list.
+
+                  }
+
+                  break;
+              }
+          }
+
+          //There are not adjacent edges in the state BASIC
+          if(n == NULL)
+          {
+              DGHS_DBG_2("There are not adjacent BASIC edges.\n");
+
+              linkaddr_copy(&node.test_edge, &linkaddr_null);
+              process_post_synch(&procedure_report, e_execute, NULL);
+          }
+
+      }
+
+  }
+
+
+  PROCESS_END();
+
+}
+
 // (6) Response to receipt of Test(L,F) on edge j
 PROCESS_THREAD(response_to_test, ev, data)
 {
@@ -675,8 +738,51 @@ PROCESS_THREAD(response_to_reject, ev, data)
 
 }
 
+// (9) procedure report
+PROCESS_THREAD(procedure_report, ev, data)
+{
+  static struct report_msg rep_msg;
+  static struct in_out_list *out_l;
 
-// Response to receipt of Report(w) on edge j
+  PROCESS_BEGIN();
+
+
+  while(1)
+  {
+      PROCESS_YIELD();
+      if(ev == e_execute)
+      {
+          if( (node.find_count == 0)  &&  (linkaddr_cmp(&node.test_edge,&linkaddr_null ) )  )
+          {
+              DGHS_DBG_2("node.find_count = 0  AND %d.%d is equal to %d.%d \n",
+              node.test_edge.u8[0], node.test_edge.u8[1],
+              linkaddr_null.u8[0], linkaddr_null.u8[1]);
+
+              node.SN = FOUND;
+
+              //Send Report(best_wt) on in_branch
+              fill_report_msg(&rep_msg, &node.in_branch, &linkaddr_node_addr, node.best_wt);
+              //ADD to the list
+              out_l = memb_alloc(&out_union_mem);
+              if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
+                DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list>>\n");
+              }else
+              {
+
+                  out_l->type_msg.rep_msg      = rep_msg;
+                  out_l->uniontype             = REPORT_MSG;
+                  list_push(out_union_list,out_l); // Add an item to the start of the list.
+
+              }
+
+          }
+      }
+  }
+
+  PROCESS_END();
+}
+
+// (10) Response to receipt of Report(w) on edge j
 PROCESS_THREAD(response_to_report, ev, data)
 {
   static struct report_msg rep_msg;
@@ -759,7 +865,7 @@ PROCESS_THREAD(response_to_report, ev, data)
                               {
                                 DGHS_DBG_2("rep_msg.w(%d.%02d) = node.best_wt(%d.%02d) = INFINITE\n",
                                 (int)(rep_msg.w / SEQNO_EWMA_UNITY),
-                                (int)(((100UL * rep_msg.w) / SEQNO_EWMA_UNITY) % 100), 
+                                (int)(((100UL * rep_msg.w) / SEQNO_EWMA_UNITY) % 100),
                                 (int)(node.best_wt / SEQNO_EWMA_UNITY),
                                 (int)(((100UL * node.best_wt) / SEQNO_EWMA_UNITY) % 100));
 
@@ -867,113 +973,10 @@ PROCESS_THREAD(procedure_change_root, ev, data)
 
 }
 
-// (9) procedure report
-PROCESS_THREAD(procedure_report, ev, data)
-{
-  static struct report_msg rep_msg;
-  static struct in_out_list *out_l;
-
-  PROCESS_BEGIN();
 
 
-  while(1)
-  {
-      PROCESS_YIELD();
-      if(ev == e_execute)
-      {
-          if( (node.find_count == 0)  &&  (linkaddr_cmp(&node.test_edge,&linkaddr_null ) )  )
-          {
-              DGHS_DBG_2("node.find_count = 0  AND %d.%d is equal to %d.%d \n",
-              node.test_edge.u8[0], node.test_edge.u8[1],
-              linkaddr_null.u8[0], linkaddr_null.u8[1]);
-
-              node.SN = FOUND;
-
-              //Send Report(best_wt) on in_branch
-              fill_report_msg(&rep_msg, &node.in_branch, &linkaddr_node_addr, node.best_wt);
-              //ADD to the list
-              out_l = memb_alloc(&out_union_mem);
-              if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
-                DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list>>\n");
-              }else
-              {
-
-                  out_l->type_msg.rep_msg      = rep_msg;
-                  out_l->uniontype             = REPORT_MSG;
-                  list_push(out_union_list,out_l); // Add an item to the start of the list.
-
-              }
-
-          }
-      }
-  }
-
-  PROCESS_END();
-}
 
 
-// (5) procedure test
-PROCESS_THREAD(procedure_test, ev, data)
-{
-  static struct in_out_list *out_l;
-  static struct test_msg t_msg;
-  static struct neighbor *n;
-
-  PROCESS_BEGIN();
-
-  while(1)
-  {
-      PROCESS_YIELD();
-      if(ev == e_execute)
-      {
-          //If there are adjacent edges in the state BASIC
-          //Take into account that the list is sorted
-          for(n = neighbors_list_p; n != NULL; n = list_item_next(n))
-          {
-              if(is_basic(&n->addr))
-              {
-                  DGHS_DBG_2("There are adjacent BASIC edges. The minimum-weight adjacent edge is %d.%d  \n",
-                  n->addr.u8[0], n->addr.u8[1]);
-
-                  linkaddr_copy(&node.test_edge, &n->addr);
-
-                  //Send TEST(LN, FN) on test_edge
-                  fill_test_msg(&t_msg, &node.test_edge, &linkaddr_node_addr, node.LN, node.FN);
-
-                  //ADD to the list
-                  out_l = memb_alloc(&out_union_mem);
-                  if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
-                    DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list>>\n");
-                  }else
-                  {
-
-                      out_l->type_msg.t_msg      = t_msg;
-                      out_l->uniontype           = TEST_MSG;
-                      list_push(out_union_list,out_l); // Add an item to the start of the list.
-
-                  }
-
-                  break;
-              }
-          }
-
-          //There are not adjacent edges in the state BASIC
-          if(n == NULL)
-          {
-              DGHS_DBG_2("There are not adjacent BASIC edges.\n");
-
-              linkaddr_copy(&node.test_edge, &linkaddr_null);
-              process_post_synch(&procedure_report, e_execute, NULL);
-          }
-
-      }
-
-  }
-
-
-  PROCESS_END();
-
-}
 
 // take out an element from the list in_union_list
 PROCESS_THREAD(in_union_evaluation, ev, data)
