@@ -882,30 +882,6 @@ PROCESS_THREAD(response_to_report, ev, data)
 
 }
 
-// (12) Response to receipt of change_root
-PROCESS_THREAD(response_to_change_root, ev, data)
-{
-
-  static struct change_root_msg cha_root_msg;
-  PROCESS_BEGIN();
-
-  while(1)
-  {
-      PROCESS_YIELD();
-      if(ev == e_execute)
-      {
-          cha_root_msg = *( (struct change_root_msg *) data);
-
-          DGHS_DBG_2("response_to_change_root from %d.%d \n", cha_root_msg.from.u8[0], cha_root_msg.from.u8[1]);
-
-          process_post_synch(&procedure_change_root, e_execute, NULL);
-      }
-
-  }
-
-  PROCESS_END();
-}
-
 // (11) procedure change_root
 PROCESS_THREAD(procedure_change_root, ev, data)
 {
@@ -973,10 +949,29 @@ PROCESS_THREAD(procedure_change_root, ev, data)
 
 }
 
+// (12) Response to receipt of change_root
+PROCESS_THREAD(response_to_change_root, ev, data)
+{
 
+  static struct change_root_msg cha_root_msg;
+  PROCESS_BEGIN();
 
+  while(1)
+  {
+      PROCESS_YIELD();
+      if(ev == e_execute)
+      {
+          cha_root_msg = *( (struct change_root_msg *) data);
 
+          DGHS_DBG_2("response_to_change_root from %d.%d \n", cha_root_msg.from.u8[0], cha_root_msg.from.u8[1]);
 
+          process_post_synch(&procedure_change_root, e_execute, NULL);
+      }
+
+  }
+
+  PROCESS_END();
+}
 
 // take out an element from the list in_union_list
 PROCESS_THREAD(in_union_evaluation, ev, data)
