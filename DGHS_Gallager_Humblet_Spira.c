@@ -56,269 +56,42 @@ PROCESS(response_to_report,"response_to_report");
 PROCESS(procedure_change_root,"procedure_change_root");
 PROCESS(response_to_change_root,"response_to_change_root");
 
-
 // Reliable unicast that receives the GHS messages: Connect, initiate, test, accept, reject, report, change_root
 static void recv_runicast_DGHS(struct runicast_conn *c, const linkaddr_t *from, uint8_t seqno)
 {
   static packetbuf_attr_t msg_type;
   static struct in_out_list *in_l;
-  struct history_entry *e = NULL;
-
-  struct connect_msg *co_msg;
-  struct initiate_msg *i_msg;
-  struct test_msg *t_msg;
-  struct report_msg *rep_msg;
-  struct accept_msg *a_msg;
-  struct reject_msg *rej_msg;
-  struct change_root_msg *cha_root_msg;
-
-  msg_type = packetbuf_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG);
 
   void *msg = packetbuf_dataptr();
 
-  printf("runicast message received -DGHS- from %d.%d,\n",
-   from->u8[0], from->u8[1]);
-   
-  if(msg_type == CONNECT_MSG)
-  {
-    co_msg  = (struct connect_msg *) msg;
-    printf("runicast message received -DGHS- from %d.%d, seqno %d\n",
-     from->u8[0], from->u8[1], co_msg->seqno);
-
-    /* OPTIONAL: Sender history */
-    for(e = list_head(history_table_2); e != NULL; e = e->next) {
-      if(linkaddr_cmp(&e->addr, from)) {
-        break;
-      }
+  /* OPTIONAL: Sender history */
+  struct history_entry *e = NULL;
+  for(e = list_head(history_table_2); e != NULL; e = e->next) {
+    if(linkaddr_cmp(&e->addr, from)) {
+      break;
     }
+  }
+  if(e == NULL) {
+    /* Create new history entry */
+    e = memb_alloc(&history_mem_2);
     if(e == NULL) {
-      /* Create new history entry */
-      e = memb_alloc(&history_mem_2);
-      if(e == NULL) {
-        e = list_chop(history_table_2); /* Remove oldest at full history */
-      }
-      linkaddr_copy(&e->addr, from);
-      e->seq = co_msg->seqno;
-      list_push(history_table_2, e);
-    } else {
-      /* Detect duplicate callback */
-      if(e->seq == co_msg->seqno) {
-        DGHS_DBG_2("runicast message received from %d.%d, seqno %d (DUPLICATE)\n",
-         from->u8[0], from->u8[1], co_msg->seqno);
-        return;
-      }
-      /* Update existing history entry */
-      e->seq = co_msg->seqno;
+      e = list_chop(history_table_2); /* Remove oldest at full history */
     }
-
-  }else
-  if(msg_type == INITIATE_MSG)
-  {
-
-    //struct initiate_msg *msg = packetbuf_dataptr();
-    i_msg  = (struct initiate_msg *) msg;
-    printf("runicast message received -DGHS- from %d.%d, seqno %d\n",
-     from->u8[0], from->u8[1], i_msg->seqno);
-
-    /* OPTIONAL: Sender history */
-    for(e = list_head(history_table_2); e != NULL; e = e->next) {
-      if(linkaddr_cmp(&e->addr, from)) {
-        break;
-      }
+    linkaddr_copy(&e->addr, from);
+    e->seq = seqno;
+    list_push(history_table_2, e);
+  } else {
+    /* Detect duplicate callback */
+    if(e->seq == seqno) {
+      DGHS_DBG_2("runicast message received from %d.%d, seqno %d (DUPLICATE)\n",
+	     from->u8[0], from->u8[1], seqno);
+      return;
     }
-    if(e == NULL) {
-      /* Create new history entry */
-      e = memb_alloc(&history_mem_2);
-      if(e == NULL) {
-        e = list_chop(history_table_2); /* Remove oldest at full history */
-      }
-      linkaddr_copy(&e->addr, from);
-      e->seq = i_msg->seqno;
-      list_push(history_table_2, e);
-    } else {
-      /* Detect duplicate callback */
-      if(e->seq == i_msg->seqno) {
-        DGHS_DBG_2("runicast message received from %d.%d, seqno %d (DUPLICATE)\n",
-         from->u8[0], from->u8[1], i_msg->seqno);
-        return;
-      }
-      /* Update existing history entry */
-      e->seq = i_msg->seqno;
-    }
-
-  }else
-  if(msg_type == TEST_MSG)
-  {
-    //struct test_msg *msg = packetbuf_dataptr();
-    t_msg  = (struct test_msg *) msg;
-    printf("runicast message received -DGHS- from %d.%d, seqno %d\n",
-     from->u8[0], from->u8[1], t_msg->seqno);
-
-    /* OPTIONAL: Sender history */
-    for(e = list_head(history_table_2); e != NULL; e = e->next) {
-      if(linkaddr_cmp(&e->addr, from)) {
-        break;
-      }
-    }
-    if(e == NULL) {
-      /* Create new history entry */
-      e = memb_alloc(&history_mem_2);
-      if(e == NULL) {
-        e = list_chop(history_table_2); /* Remove oldest at full history */
-      }
-      linkaddr_copy(&e->addr, from);
-      e->seq = t_msg->seqno;
-      list_push(history_table_2, e);
-    } else {
-      /* Detect duplicate callback */
-      if(e->seq == t_msg->seqno) {
-        DGHS_DBG_2("runicast message received from %d.%d, seqno %d (DUPLICATE)\n",
-         from->u8[0], from->u8[1], t_msg->seqno);
-        return;
-      }
-      /* Update existing history entry */
-      e->seq = t_msg->seqno;
-    }
-  }else
-  if(msg_type == REPORT_MSG)
-  {
-    //struct report_msg *msg = packetbuf_dataptr();
-    rep_msg  = (struct report_msg *) msg;
-    printf("runicast message received -DGHS- from %d.%d, seqno %d\n",
-     from->u8[0], from->u8[1], rep_msg->seqno);
-
-    /* OPTIONAL: Sender history */
-    for(e = list_head(history_table_2); e != NULL; e = e->next) {
-      if(linkaddr_cmp(&e->addr, from)) {
-        break;
-      }
-    }
-    if(e == NULL) {
-      /* Create new history entry */
-      e = memb_alloc(&history_mem_2);
-      if(e == NULL) {
-        e = list_chop(history_table_2); /* Remove oldest at full history */
-      }
-      linkaddr_copy(&e->addr, from);
-      e->seq = rep_msg->seqno;
-      list_push(history_table_2, e);
-    } else {
-      /* Detect duplicate callback */
-      if(e->seq == rep_msg->seqno) {
-        DGHS_DBG_2("runicast message received from %d.%d, seqno %d (DUPLICATE)\n",
-         from->u8[0], from->u8[1], rep_msg->seqno);
-        return;
-      }
-      /* Update existing history entry */
-      e->seq = rep_msg->seqno;
-    }
-  }else
-  if(msg_type == ACCEPT_MSG)
-  {
-    //struct accept_msg *msg = packetbuf_dataptr();
-    a_msg  = (struct accept_msg *) msg;
-    printf("runicast message received -DGHS- from %d.%d, seqno %d\n",
-     from->u8[0], from->u8[1], a_msg->seqno);
-
-    /* OPTIONAL: Sender history */
-    for(e = list_head(history_table_2); e != NULL; e = e->next) {
-      if(linkaddr_cmp(&e->addr, from)) {
-        break;
-      }
-    }
-    if(e == NULL) {
-      /* Create new history entry */
-      e = memb_alloc(&history_mem_2);
-      if(e == NULL) {
-        e = list_chop(history_table_2); /* Remove oldest at full history */
-      }
-      linkaddr_copy(&e->addr, from);
-      e->seq = a_msg->seqno;
-      list_push(history_table_2, e);
-    } else {
-      /* Detect duplicate callback */
-      if(e->seq == a_msg->seqno) {
-        DGHS_DBG_2("runicast message received from %d.%d, seqno %d (DUPLICATE)\n",
-         from->u8[0], from->u8[1], a_msg->seqno);
-        return;
-      }
-      /* Update existing history entry */
-      e->seq = a_msg->seqno;
-    }
-  }else
-  if(msg_type == REJECT_MSG)
-  {
-    //struct reject_msg *msg = packetbuf_dataptr();
-    rej_msg  = (struct reject_msg *) msg;
-    printf("runicast message received -DGHS- from %d.%d, seqno %d\n",
-     from->u8[0], from->u8[1], rej_msg->seqno);
-
-    /* OPTIONAL: Sender history */
-    for(e = list_head(history_table_2); e != NULL; e = e->next) {
-      if(linkaddr_cmp(&e->addr, from)) {
-        break;
-      }
-    }
-    if(e == NULL) {
-      /* Create new history entry */
-      e = memb_alloc(&history_mem_2);
-      if(e == NULL) {
-        e = list_chop(history_table_2); /* Remove oldest at full history */
-      }
-      linkaddr_copy(&e->addr, from);
-      e->seq = rej_msg->seqno;
-      list_push(history_table_2, e);
-    } else {
-      /* Detect duplicate callback */
-      if(e->seq == rej_msg->seqno) {
-        DGHS_DBG_2("runicast message received from %d.%d, seqno %d (DUPLICATE)\n",
-         from->u8[0], from->u8[1], rej_msg->seqno);
-        return;
-      }
-      /* Update existing history entry */
-      e->seq = rej_msg->seqno;
-    }
-  }else
-  if(msg_type == CHANGE_ROOT_MSG)
-  {
-    //struct change_root_msg *msg = packetbuf_dataptr();
-    cha_root_msg  = (struct change_root_msg *) msg;
-    printf("runicast message received -DGHS- from %d.%d, seqno %d\n",
-     from->u8[0], from->u8[1], cha_root_msg->seqno);
-
-    /* OPTIONAL: Sender history */
-    for(e = list_head(history_table_2); e != NULL; e = e->next) {
-      if(linkaddr_cmp(&e->addr, from)) {
-        break;
-      }
-    }
-    if(e == NULL) {
-      /* Create new history entry */
-      e = memb_alloc(&history_mem_2);
-      if(e == NULL) {
-        e = list_chop(history_table_2); /* Remove oldest at full history */
-      }
-      linkaddr_copy(&e->addr, from);
-      e->seq = cha_root_msg->seqno;
-      list_push(history_table_2, e);
-    } else {
-      /* Detect duplicate callback */
-      if(e->seq == cha_root_msg->seqno) {
-        DGHS_DBG_2("runicast message received from %d.%d, seqno %d (DUPLICATE)\n",
-         from->u8[0], from->u8[1], cha_root_msg->seqno);
-        return;
-      }
-      /* Update existing history entry */
-      e->seq = cha_root_msg->seqno;
-    }
-  }else
-  {
-    DGHS_DBG_1("ERROR: The type of the message ( msg_type ) is unkown \n");
+    /* Update existing history entry */
+    e->seq = seqno;
   }
 
-
-
-  //msg_type = packetbuf_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG);
+  msg_type = packetbuf_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG);
 
   //Adds the message to the list in_union_list according the type of message
   if(msg_type == CONNECT_MSG)
@@ -443,36 +216,16 @@ static void recv_runicast_DGHS(struct runicast_conn *c, const linkaddr_t *from, 
             in_l->type_msg.cha_root_msg.from.u8[0], in_l->type_msg.cha_root_msg.from.u8[1]);
         }
   }
-  /*else
-  if (msg_type == NEIGHBOR_DISCOVERY)
-  {
-
-        ru_msg = packetbuf_dataptr();
-
-        for(n = neighbors_list_p; n != NULL; n = list_item_next(n))
-        {
-          if(linkaddr_cmp(&n->addr, from))
-          {
-            n->avg_seqno_gap_other_direction = ru_msg->avg_seqno_gap;
-            n->flags |= AVG_SEQNO_GAP_OTHER_DIRECTION;
-            //printf("Guardo el n->avg_seqno_gap_other_DIRECCCION de nodo %d.%d\n",from->u8[0],from->u8[1]);
-            break;
-          }
-        }
-
-        if(n == NULL)
-        {
-            DGHS_DBG_1("ERROR: An agreement from an unknown neighbor has arrived\n");
-        }
-
-  }*/else
+  else
   {
     DGHS_DBG_1("ERROR: The type of the message ( msg_type ) is unkown \n");
   }
 
+  //process_post_synch(&in_union_evaluation, e_execute, NULL);
 
 
 }
+
 
 static void sent_runicast_DGHS(struct runicast_conn *c, const linkaddr_t *to, uint8_t retransmissions)
 {
@@ -1412,6 +1165,7 @@ PROCESS_THREAD(send_Gallager_Humblet_Spira, ev, data) //It can not have PROCESS_
         runicast_send(&runicast_2, &co_msg.to, NUM_MAX_RETRANSMISSIONS);
 
         DGHS_DBG_2("Send e_send_connect to %d.%d with L %d\n" , co_msg.to.u8[0], co_msg.to.u8[1], co_msg.L );
+        DGHS_DBG_2("seqno %d PACKETBUF_ATTR_PACKET_ID\n",packetbuf_attr(PACKETBUF_ATTR_PACKET_ID));
     }else
     if(ev == e_send_initiate)
     {
@@ -1427,6 +1181,8 @@ PROCESS_THREAD(send_Gallager_Humblet_Spira, ev, data) //It can not have PROCESS_
        (int)(i_msg.F.name / SEQNO_EWMA_UNITY),
        (int)(((100UL * i_msg.F.name) / SEQNO_EWMA_UNITY) % 100),
        i_msg.S);
+       DGHS_DBG_2("seqno %d PACKETBUF_ATTR_PACKET_ID\n",packetbuf_attr(PACKETBUF_ATTR_PACKET_ID));
+
 
     }else
     if(ev == e_send_test)
@@ -1442,6 +1198,8 @@ PROCESS_THREAD(send_Gallager_Humblet_Spira, ev, data) //It can not have PROCESS_
         t_msg.L,
         (int)(t_msg.F.name / SEQNO_EWMA_UNITY),
         (int)(((100UL * t_msg.F.name) / SEQNO_EWMA_UNITY) % 100) );
+        DGHS_DBG_2("seqno %d PACKETBUF_ATTR_PACKET_ID\n",packetbuf_attr(PACKETBUF_ATTR_PACKET_ID));
+
 
     }else
     if(ev == e_send_accept)
@@ -1454,6 +1212,8 @@ PROCESS_THREAD(send_Gallager_Humblet_Spira, ev, data) //It can not have PROCESS_
         runicast_send(&runicast_2, &a_msg.to, NUM_MAX_RETRANSMISSIONS);
 
         DGHS_DBG_2("Send e_send_accept to %d.%d \n" , a_msg.to.u8[0], a_msg.to.u8[1] );
+        DGHS_DBG_2("seqno %d PACKETBUF_ATTR_PACKET_ID\n",packetbuf_attr(PACKETBUF_ATTR_PACKET_ID));
+
 
     }else
     if(ev == e_send_reject)
@@ -1466,6 +1226,8 @@ PROCESS_THREAD(send_Gallager_Humblet_Spira, ev, data) //It can not have PROCESS_
        runicast_send(&runicast_2, &rej_msg.to, NUM_MAX_RETRANSMISSIONS);
 
        DGHS_DBG_2("Send e_send_reject to %d.%d \n" , rej_msg.to.u8[0], rej_msg.to.u8[1] );
+       DGHS_DBG_2("seqno %d PACKETBUF_ATTR_PACKET_ID\n",packetbuf_attr(PACKETBUF_ATTR_PACKET_ID));
+
     }else
     if(ev == e_send_report)
     {
@@ -1479,6 +1241,8 @@ PROCESS_THREAD(send_Gallager_Humblet_Spira, ev, data) //It can not have PROCESS_
        DGHS_DBG_2("Send e_send_report to %d.%d with w = %d.%02d \n" , rep_msg.to.u8[0], rep_msg.to.u8[1],
        (int)(rep_msg.w / SEQNO_EWMA_UNITY),
        (int)(((100UL * rep_msg.w) / SEQNO_EWMA_UNITY) % 100) );
+       DGHS_DBG_2("seqno %d PACKETBUF_ATTR_PACKET_ID\n",packetbuf_attr(PACKETBUF_ATTR_PACKET_ID));
+
 
     }else
     if(ev == e_send_change_root)
@@ -1491,6 +1255,8 @@ PROCESS_THREAD(send_Gallager_Humblet_Spira, ev, data) //It can not have PROCESS_
        runicast_send(&runicast_2, &cha_root_msg.to, NUM_MAX_RETRANSMISSIONS);
 
        DGHS_DBG_2("Send e_send_change_root to %d.%d \n" , cha_root_msg.to.u8[0], cha_root_msg.to.u8[1]);
+       DGHS_DBG_2("seqno %d PACKETBUF_ATTR_PACKET_ID\n",packetbuf_attr(PACKETBUF_ATTR_PACKET_ID));
+
     }else
     {
       DGHS_DBG_1("ERROR: The type of msg in send_Gallager_Humblet_Spira is unkown \n");
