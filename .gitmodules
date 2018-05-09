@@ -1,9 +1,9 @@
 
 [submodule "tools/mspsim"]
-	path = tools/mspsim
+	path = contiki/tools/mspsim
 	url = https://github.com/contiki-os/mspsim.git
 [submodule "tools/cc2538-bsl"]
-	path = tools/cc2538-bsl
+	path = contiki/tools/cc2538-bsl
 	url = https://github.com/JelmerT/cc2538-bsl.git
 [submodule "cpu/cc26xx-cc13xx/lib/cc26xxware"]
 	path = contiki/cpu/cc26xx-cc13xx/lib/cc26xxware
@@ -12,7 +12,7 @@
 	path = contiki/cpu/cc26xx-cc13xx/lib/cc13xxware
 	url = https://github.com/contiki-os/cc13xxware.git
 [submodule "platform/stm32nucleo-spirit1/stm32cube-lib"]
-	path = platform/stm32nucleo-spirit1/stm32cube-lib
+	path = contiki/platform/stm32nucleo-spirit1/stm32cube-lib
 	url = https://github.com/STclab/stm32nucleo-spirit1-lib
 
 [submodule "tools/sensniff"]
