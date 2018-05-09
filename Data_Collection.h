@@ -98,3 +98,5 @@ void fill_data_collection(struct data_collection_msg *data_coll_msg ,int light2,
 
 
 #endif /* GALLAGER_HUMBLET_SPIRA_H */
+
+//Git: wismote ok. Data collection for 1 data packet per node
