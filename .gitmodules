@@ -16,5 +16,5 @@
 	url = https://github.com/STclab/stm32nucleo-spirit1-lib
 
 [submodule "tools/sensniff"]
-	path = tools/sensniff
+	path = contiki/tools/sensniff
 	url = https://github.com/g-oikonomou/sensniff.git
