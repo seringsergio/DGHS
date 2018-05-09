@@ -45,6 +45,8 @@
 
 #include "neighbor_discovery.h"
 #include "Gallager_Humblet_Spira.h"
+#include "Dynamic_Gallager_Humblet_Spira.h"
+
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////EXTERN////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
@@ -85,6 +87,8 @@
 
 #define RUNICAST_CHANNEL_1 144
 #define RUNICAST_CHANNEL_2 145
+#define RUNICAST_CHANNEL_3 146
+#define RUNICAST_CHANNEL_4 147
 
 
 
@@ -93,9 +97,11 @@
 /////////////////////////////////////////////////////////////////////////////
 
 //struct sensor_node - node.control_flags_neighbor_discovery
-#define NEIGHBOR_DISCOVERY_HAS_ENDED 0x01
-#define GHS_HAS_ENDED                0x02
-#define NODE_IS_AWAKE                0x04
+#define NEIGHBOR_DISCOVERY_HAS_ENDED     0x01
+#define GHS_HAS_ENDED                    0x02
+#define NODE_IS_AWAKE                    0x04
+#define DATA_COLLECTION                  0x08
+
 
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////EXTERNAL PROCESSES////////////////////////////////////
@@ -121,6 +127,24 @@ PROCESS_NAME(response_to_reject);
 PROCESS_NAME(response_to_report);
 PROCESS_NAME(procedure_change_root);
 PROCESS_NAME(response_to_change_root);
+
+PROCESS_NAME(start_dynamic_ghs);
+PROCESS_NAME(send_Dynamic_Gallager_Humblet_Spira);
+PROCESS_NAME(procedure_retransmit);
+PROCESS_NAME(out_evaluation_dghs);
+PROCESS_NAME(in_evaluation_dghs);
+PROCESS_NAME(response_to_end_ghs);
+PROCESS_NAME(response_to_point_to_sink);
+
+
+PROCESS_NAME(start_data_collection);
+PROCESS_NAME(out_evaluation_data_collection);
+PROCESS_NAME(in_evaluation_data_collection);
+PROCESS_NAME(send_Data_Collection);
+PROCESS_NAME(response_to_data_collection);
+
+
+
 
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////EVENTS////////////////////////////////////////////////

@@ -1,6 +1,9 @@
 CONTIKI = contiki
 
-PROJECT_SOURCEFILES +=  neighbor_discovery.c DGHS_neighbor_discovery.c Gallager_Humblet_Spira.c DGHS_Gallager_Humblet_Spira.c 
+PROJECT_SOURCEFILES +=  neighbor_discovery.c DGHS_neighbor_discovery.c \
+                        Gallager_Humblet_Spira.c DGHS_Gallager_Humblet_Spira.c  \
+												Dynamic_Gallager_Humblet_Spira.c DGHS_Dynamic_Gallager_Humblet_Spira.c \
+												Data_Collection.c DGHS_Data_Collection.c
 
 CONTIKI_PROJECT = example-DGHS
 all: $(CONTIKI_PROJECT)

@@ -222,14 +222,14 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
     DGHS_DBG_1("ERROR: The type of the message ( msg_type ) is unkown \n");
   }
 
-  //process_post_synch(&in_union_evaluation, e_execute, NULL);
+  //process_post(&in_union_evaluation, e_execute, NULL);
 
 
 }
 
 static void sent_runicast(struct runicast_conn *c, const linkaddr_t *to, uint8_t retransmissions)
 {
-  DGHS_DBG_2("runicast (DGHS) message sent to %d.%d, retransmissions %d\n",
+  DGHS_DBG_2("runicast (GHS) message sent to %d.%d, retransmissions %d\n",
 	 to->u8[0], to->u8[1], retransmissions);
 }
 static void timedout_runicast(struct runicast_conn *c, const linkaddr_t *to, uint8_t retransmissions)
@@ -855,11 +855,14 @@ PROCESS_THREAD(response_to_report, ev, data)
 
                       }else if(rep_msg.w == node.best_wt)
                             {
-                              DGHS_DBG_2("rep_msg.w(%d.%02d) = node.best_wt(%d.%02d)\n",
+                              DGHS_DBG_2("rep_msg.w(%d.%02d) = node.best_wt(%d.%02d) AND %d.%d is equal from %d.%d SN = %d \n",
                               (int)(rep_msg.w / SEQNO_EWMA_UNITY),
                               (int)(((100UL * rep_msg.w) / SEQNO_EWMA_UNITY) % 100),
                               (int)(node.best_wt / SEQNO_EWMA_UNITY),
-                              (int)(((100UL * node.best_wt) / SEQNO_EWMA_UNITY) % 100));
+                              (int)(((100UL * node.best_wt) / SEQNO_EWMA_UNITY) % 100),
+                              rep_msg.from.u8[0], rep_msg.from.u8[1],
+                              node.in_branch.u8[0], node.in_branch.u8[1], node.SN
+                              );
 
                               if(rep_msg.w == INFINITE || node.best_wt == INFINITE )
                               {
@@ -997,33 +1000,33 @@ PROCESS_THREAD(in_union_evaluation, ev, data)
             while(list_length(in_union_list))
             {
               //Give enough time to transmit the previous msg
-              etimer_set(&et2, CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION);
-                  //+ random_rand() % (CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION));
+              etimer_set(&et2, CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION
+                  + random_rand() % (CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION));
               PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et2));
 
               //remove from list
               in_l = list_chop(in_union_list); // Remove the last object on the list.
               if(in_l->uniontype == CONNECT_MSG)
               {
-                  process_post_synch(&response_to_connect, e_execute, &in_l->type_msg.co_msg);
+                  process_post(&response_to_connect, e_execute, &in_l->type_msg.co_msg);
               }else if(in_l->uniontype == INITIATE_MSG)
                 {
-                  process_post_synch(&response_to_initiate, e_execute, &in_l->type_msg.i_msg);
+                  process_post(&response_to_initiate, e_execute, &in_l->type_msg.i_msg);
                 }else if(in_l->uniontype == TEST_MSG)
                   {
-                    process_post_synch(&response_to_test, e_execute, &in_l->type_msg.t_msg);
+                    process_post(&response_to_test, e_execute, &in_l->type_msg.t_msg);
                   }else if(in_l->uniontype == ACCEPT_MSG)
                     {
-                      process_post_synch(&response_to_accept, e_execute, &in_l->type_msg.a_msg);
+                      process_post(&response_to_accept, e_execute, &in_l->type_msg.a_msg);
                     }else if(in_l->uniontype == REJECT_MSG)
                       {
-                        process_post_synch(&response_to_reject, e_execute, &in_l->type_msg.rej_msg);
+                        process_post(&response_to_reject, e_execute, &in_l->type_msg.rej_msg);
                       }else if(in_l->uniontype == REPORT_MSG)
                         {
-                          process_post_synch(&response_to_report, e_execute, &in_l->type_msg.rep_msg);
+                          process_post(&response_to_report, e_execute, &in_l->type_msg.rep_msg);
                         }else if(in_l->uniontype == CHANGE_ROOT_MSG)
                           {
-                            process_post_synch(&response_to_change_root, e_execute, &in_l->type_msg.cha_root_msg);
+                            process_post(&response_to_change_root, e_execute, &in_l->type_msg.cha_root_msg);
                           }else
                           {
                             DGHS_DBG_1("ERROR: The type of msg in in_union_list is unkown \n");
@@ -1034,7 +1037,7 @@ PROCESS_THREAD(in_union_evaluation, ev, data)
 
         }/*else //IF NODE_IS_AWAKE
         {
-          process_post_synch(PROCESS_CURRENT(), e_execute, NULL);
+          process_post(PROCESS_CURRENT(), e_execute, NULL);
         }*/
      //} //IF e_execute
 
@@ -1071,8 +1074,8 @@ PROCESS_THREAD(out_union_evaluation, ev, data)
           while(list_length(out_union_list))
           {
               //Give enough time to transmit the previous msg
-              etimer_set(&et2, CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION);
-                //  + random_rand() % (CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION));
+              etimer_set(&et2, CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION
+                  + random_rand() % (CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION));
               PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et2));
 
               if(!runicast_is_transmitting(&runicast_2))
@@ -1115,7 +1118,7 @@ PROCESS_THREAD(out_union_evaluation, ev, data)
           } //END while list_length()
         }/*else //IF NODE_IS_AWAKE
         {
-          process_post_synch(PROCESS_CURRENT(), e_execute, NULL);
+          process_post(PROCESS_CURRENT(), e_execute, NULL);
         }*/
      //} //IF e_execute
   } //while (1)

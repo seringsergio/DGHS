@@ -51,6 +51,7 @@
 #define FIND                 0x02
 #define FOUND                0x04
 
+//types of messages
 #define CONNECT_MSG          0x01
 #define INITIATE_MSG         0x02
 #define TEST_MSG             0x04
@@ -195,7 +196,7 @@ struct sensor_node
     struct fragment_name   FN; //Fragment name
     uint8_t                SN; // Node state
     uint8_t                find_count;
-    linkaddr_t             in_branch;
+    linkaddr_t             in_branch; //in_branch is parent in ghs
     linkaddr_t             best_edge;
     uint32_t               best_wt; //Fragment name
     linkaddr_t             test_edge;

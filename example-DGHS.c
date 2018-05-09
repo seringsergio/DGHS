@@ -58,7 +58,13 @@ AUTOSTART_PROCESSES(//example-DGHS
                     &procedure_wakeup, &send_Gallager_Humblet_Spira, &out_union_evaluation, &in_union_evaluation,
                     &response_to_connect, &response_to_initiate, &procedure_test, &procedure_report, &response_to_test,
                     &response_to_accept, &response_to_reject, &response_to_report, &procedure_change_root,
-                    &response_to_change_root
+                    &response_to_change_root,
+                    //Dynamic Gallager Humblet Spira
+                    &start_dynamic_ghs, &send_Dynamic_Gallager_Humblet_Spira, &procedure_retransmit,
+                    &out_evaluation_dghs, &in_evaluation_dghs, &response_to_end_ghs, &response_to_point_to_sink,
+                    //Data_Collection
+                    &start_data_collection, &out_evaluation_data_collection, &in_evaluation_data_collection,
+                    &send_Data_Collection, &response_to_data_collection
                     );
 
 
@@ -66,7 +72,7 @@ PROCESS_THREAD(master_DGHS, ev, data)
 {
 
     static struct etimer et;
-    static uint8_t print_just_once;
+    static uint8_t print_just_once, start_dghs_just_once, start_data_collection_just_once;
 
     PROCESS_BEGIN();
 
@@ -74,7 +80,10 @@ PROCESS_THREAD(master_DGHS, ev, data)
     e_execute    = process_alloc_event();
 
     process_post(&master_neighbor_discovery,e_initialize,NULL);
+
     print_just_once = 1;
+    start_dghs_just_once = 1;
+    start_data_collection_just_once = 1;
 
     while(1)
     {
@@ -87,6 +96,18 @@ PROCESS_THREAD(master_DGHS, ev, data)
             print_just_once = 0;
             DGHS_DBG_2("NEIGHBOR_DISCOVERY_HAS_ENDED\n");
             process_post(&procedure_wakeup,e_execute,NULL);//We call this process only when NEIGHBOR_DISCOVERY_HAS_ENDED
+
+        }else
+        if((node.control_flags_neighbor_discovery & GHS_HAS_ENDED ) && (start_dghs_just_once))
+        {
+            start_dghs_just_once = 0;
+            process_post(&start_dynamic_ghs,e_execute,NULL);//We call this process only when NEIGHBOR_DISCOVERY_HAS_ENDED
+
+        }else
+        if((node.control_flags_neighbor_discovery & DATA_COLLECTION ) && (start_data_collection_just_once))
+        {
+            start_data_collection_just_once = 0;
+            process_post(&start_data_collection,e_execute,NULL);
 
         }
     }
