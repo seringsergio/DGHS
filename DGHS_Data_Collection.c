@@ -129,8 +129,10 @@ PROCESS(response_to_data_collection,"response_to_data_collection");
 PROCESS_THREAD(start_data_collection, ev, data) //It can not have PROCESS_WAIT_EVENT_UNTIL()
 {
 
-  static struct data_collection_msg data_coll_msg;
-  static struct in_out_list_data_coll *out_l;
+  #if WISMOTE
+    static struct data_collection_msg data_coll_msg;
+    static struct in_out_list_data_coll *out_l;
+  #endif
 
   PROCESS_BEGIN();
 
@@ -160,31 +162,35 @@ PROCESS_THREAD(start_data_collection, ev, data) //It can not have PROCESS_WAIT_E
       }else
       {
 
+        #if WISMOTE
 
-        //SENSORS_ACTIVATE(light_sensor);
-        SENSORS_ACTIVATE(sht11_sensor);
+          //SENSORS_ACTIVATE(light_sensor);
+          SENSORS_ACTIVATE(sht11_sensor);
 
-        //ADD to the list a runicast message POINT_TO_SINK_MSG
-        fill_data_collection(&data_coll_msg, 0,
-                             sht11_sensor.value(SHT11_SENSOR_TEMP), sht11_sensor.value(SHT11_SENSOR_HUMIDITY),
-                             &node.in_branch, &linkaddr_node_addr, &linkaddr_node_addr);
+          //ADD to the list a runicast message POINT_TO_SINK_MSG
+          fill_data_collection(&data_coll_msg, 0,
+                               sht11_sensor.value(SHT11_SENSOR_TEMP), sht11_sensor.value(SHT11_SENSOR_HUMIDITY),
+                               &node.in_branch, &linkaddr_node_addr, &linkaddr_node_addr);
 
-           //print_light(data_coll_msg.light2);
-           print_temperature_wismote(data_coll_msg.temperature);
-           print_humidity_wismote(data_coll_msg.humidity);
-        //ADD to the list a runicast message END_GHS
-        out_l = memb_alloc(&out_union_mem);
-        if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
-          DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list>> in DGHS\n");
-        }else
-        {
-            out_l->type_msg.data_coll_msg  = data_coll_msg;
-            out_l->uniontype               = DATA_COLLECTION_MSG;
-            list_push(out_union_list,out_l); // Add an item to the start of the list.
-        }
+             //print_light(data_coll_msg.light2);
+             print_temperature_wismote(data_coll_msg.temperature);
+             print_humidity_wismote(data_coll_msg.humidity);
+          //ADD to the list a runicast message END_GHS
+          out_l = memb_alloc(&out_union_mem);
+          if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
+            DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list>> in DGHS\n");
+          }else
+          {
+              out_l->type_msg.data_coll_msg  = data_coll_msg;
+              out_l->uniontype               = DATA_COLLECTION_MSG;
+              list_push(out_union_list,out_l); // Add an item to the start of the list.
+          }
 
-        //SENSORS_DEACTIVATE(light_sensor);
-        SENSORS_DEACTIVATE(sht11_sensor);
+          //SENSORS_DEACTIVATE(light_sensor);
+          SENSORS_DEACTIVATE(sht11_sensor);
+
+        #endif
+
 
       }
 

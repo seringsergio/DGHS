@@ -37,9 +37,12 @@
 #include "example-DGHS.h"
 
 // Sensors
-#include "dev/light-sensor.h"
-#include "lib/sensors.h"
-#include "dev/sht11/sht11-sensor.h"
+#if WISMOTE
+  #include "dev/light-sensor.h"
+  #include "lib/sensors.h"
+  #include "dev/sht11/sht11-sensor.h"
+#endif
+
 #include <math.h>
 
 
