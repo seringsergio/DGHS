@@ -85,7 +85,7 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
     //ADD to the list
     in_l = memb_alloc(&in_union_mem);
     if(in_l == NULL) {            // If we could not allocate a new entry, we give up.
-      DGHS_DBG_1("ERROR: we could not allocate a new entry for <<in_union_list>> (data_collection)\n");
+      DGHS_DBG_1("ERROR: we could not allocate a new entry for <<in_union_list * >> (data_collection) list_length = %d\n", list_length(in_union_list));
     }else
     {
         in_l->type_msg.data_coll_msg = *((struct data_collection_msg*) msg);
@@ -180,7 +180,7 @@ PROCESS_THREAD(start_data_collection, ev, data) //It can not have PROCESS_WAIT_E
               //ADD to the list a runicast message END_GHS
               out_l = memb_alloc(&out_union_mem);
               if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
-                DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list>> in DGHS\n");
+                DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list ** >> in DGHS , list_length=%d\n", list_length(out_union_list));
               }else
               {
                   out_l->type_msg.data_coll_msg  = data_coll_msg;
@@ -283,7 +283,7 @@ PROCESS_THREAD(response_to_data_collection, ev, data) //It can not have PROCESS_
         //ADD to the list a runicast message END_GHS
         out_l = memb_alloc(&out_union_mem);
         if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
-          DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list>> in DGHS\n");
+          DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list * >> in DGHS , list_length=%d\n", list_length(out_union_list));
         }else
         {
             out_l->type_msg.data_coll_msg  = data_coll_msg_temp;

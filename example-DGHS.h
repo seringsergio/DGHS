@@ -70,13 +70,13 @@
 #define TIME_BROADCAST_INTERVAL_DISCOVERY     10 //in seconds. Broadcast interval in neighbor discovery
 #define TIME_BROADCAST_INTERVAL_END           20 //in seconds
 #define NUM_MAX_NEIGHBORS                     16 // This #define defines the maximum amount of neighbors we can remember.
-#define NUM_HISTORY_ENTRIES                   (NUM_MAX_NEIGHBORS * 2)
+#define NUM_HISTORY_ENTRIES                   (NUM_MAX_NEIGHBORS * 4) //Before (NUM_MAX_NEIGHBORS * 2)
 #define TIME_PREVIOUS_RU_MSG                  25 // time to transmit the previous ru_msg (in seconds)
 #define TIME_DGHS_PROCESS                     1 // The process master_DGHS executes every TIME_DGHS_PROCESS
-#define QUEUE_SIZE_GHS                        30
+#define QUEUE_SIZE_GHS                        50 //Before 30
 #define TIME_UNION_IN_OUT                     5  //Get out of queue
 #define TIME_PREVIOUS_MSG_IN_OUT_UNION        10
-#define DATA_COLLECTION_TIME                  45 //We send a data packet every 30 seconds 
+#define DATA_COLLECTION_TIME                  60 //We send a data packet every 60 seconds
 
 //Values for 120 nodes
 /*#define NUM_MAX_RETRANSMISSIONS               50
