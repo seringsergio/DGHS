@@ -69,7 +69,7 @@ static struct unicast_conn uc;
 PROCESS_THREAD(example_unicast_process, ev, data)
 {
   PROCESS_EXITHANDLER(unicast_close(&uc);)
-    
+
   PROCESS_BEGIN();
 
   unicast_open(&uc, 146, &unicast_callbacks);
@@ -77,9 +77,9 @@ PROCESS_THREAD(example_unicast_process, ev, data)
   while(1) {
     static struct etimer et;
     linkaddr_t addr;
-    
+
     etimer_set(&et, CLOCK_SECOND);
-    
+
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
 
     packetbuf_copyfrom("Hello", 5);
