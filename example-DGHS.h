@@ -76,6 +76,7 @@
 #define QUEUE_SIZE_GHS                        30
 #define TIME_UNION_IN_OUT                     5  //Get out of queue
 #define TIME_PREVIOUS_MSG_IN_OUT_UNION        10
+#define DATA_COLLECTION_TIME                  30 //We send a data packet every 30 seconds 
 
 //Values for 120 nodes
 /*#define NUM_MAX_RETRANSMISSIONS               50
@@ -97,13 +98,18 @@
 #define RUNICAST_CHANNEL_3 146
 #define RUNICAST_CHANNEL_4 147
 
-
+// We assume temperature and humidity for the Wismote.
+// We assume these values because "The SHT11 is not a proper I2C sensor." Antonio Lignan
+// REF: https://github.com/contiki-os/contiki/issues/1273
+// Values taken from http://anrg.usc.edu/contiki/index.php/Sensor_acquisition
+#define TEMPERATURE_WISMOTE 6764
+#define HUMIDITY_WISMOTE 2259
 
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////FLAGS/////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 
-//struct sensor_node - node.control_flags_neighbor_discovery
+//struct sensor_node - node.control_flags
 #define NEIGHBOR_DISCOVERY_HAS_ENDED     0x01
 #define GHS_HAS_ENDED                    0x02
 #define NODE_IS_AWAKE                    0x04

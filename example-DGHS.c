@@ -41,7 +41,7 @@
 
 void DGHS_interface_control_flags(uint8_t flags)
 {
-    node.control_flags_neighbor_discovery |= flags;
+    node.control_flags |= flags;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -72,7 +72,7 @@ PROCESS_THREAD(master_DGHS, ev, data)
 {
 
     static struct etimer et;
-    static uint8_t print_just_once, start_dghs_just_once, start_data_collection_just_once;
+    static uint8_t print_just_once, start_dghs_just_once;
 
     PROCESS_BEGIN();
 
@@ -83,7 +83,6 @@ PROCESS_THREAD(master_DGHS, ev, data)
 
     print_just_once = 1;
     start_dghs_just_once = 1;
-    start_data_collection_just_once = 1;
 
     while(1)
     {
@@ -91,23 +90,17 @@ PROCESS_THREAD(master_DGHS, ev, data)
         etimer_set(&et, CLOCK_SECOND * TIME_DGHS_PROCESS);
         PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
 
-        if((node.control_flags_neighbor_discovery & NEIGHBOR_DISCOVERY_HAS_ENDED) && (print_just_once))
+        if((node.control_flags & NEIGHBOR_DISCOVERY_HAS_ENDED) && (print_just_once))
         {
             print_just_once = 0;
             DGHS_DBG_2("NEIGHBOR_DISCOVERY_HAS_ENDED\n");
             process_post(&procedure_wakeup,e_execute,NULL);//We call this process only when NEIGHBOR_DISCOVERY_HAS_ENDED
 
         }else
-        if((node.control_flags_neighbor_discovery & GHS_HAS_ENDED ) && (start_dghs_just_once))
+        if((node.control_flags & GHS_HAS_ENDED ) && (start_dghs_just_once))
         {
             start_dghs_just_once = 0;
             process_post(&start_dynamic_ghs,e_execute,NULL);//We call this process only when NEIGHBOR_DISCOVERY_HAS_ENDED
-
-        }else
-        if((node.control_flags_neighbor_discovery & DATA_COLLECTION ) && (start_data_collection_just_once))
-        {
-            start_data_collection_just_once = 0;
-            process_post(&start_data_collection,e_execute,NULL);
 
         }
     }

@@ -191,7 +191,7 @@ struct in_out_list
 
 struct sensor_node
 {
-    uint8_t                control_flags_neighbor_discovery;
+    uint8_t                control_flags;
     uint8_t                LN; // level
     struct fragment_name   FN; //Fragment name
     uint8_t                SN; // Node state

@@ -38,6 +38,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 //based on https://github.com/anthonygelibert/WiSMote-Contiki/blob/develop/apps/OsamiUDP/OsamiUDP.c
+// http://anrg.usc.edu/contiki/index.php/Sensor_acquisition
 void print_humidity_wismote(int val)
 {
   float s = 0;
@@ -49,15 +50,24 @@ void print_humidity_wismote(int val)
        s    = ( - 2.0468 + (0.0367 * val) - (0.0000015955 * val * val)  );
        dec  = s;
        frac = s - dec;
-       printf("Humidity=%d.%02u %% (%d)\n", dec, (unsigned int)(frac * 100),val);
+       DGHS_DBG_2("Humidity=%d.%02u %% (%d)\n", dec, (unsigned int)(frac * 100),val);
   }else
   {
-    DGHS_DBG_1("ERROR: The humidity value is incorrect \n");
+    #if WISMOTE
+      DGHS_DBG_1("Warning: We assume humidity for the Wismote \n");
+      s    = ( - 2.0468 + (0.0367 * HUMIDITY_WISMOTE) - (0.0000015955 * HUMIDITY_WISMOTE * HUMIDITY_WISMOTE)  );
+      dec  = s;
+      frac = s - dec;
+      DGHS_DBG_2("Humidity=%d.%02u %% (%d)\n", dec, (unsigned int)(frac * 100),HUMIDITY_WISMOTE);
+    #else
+       DGHS_DBG_1("ERROR: The humidity value is incorrect \n");
+    #endif
   }
 
 }
 
 //based on https://github.com/anthonygelibert/WiSMote-Contiki/blob/develop/apps/OsamiUDP/OsamiUDP.c
+// http://anrg.usc.edu/contiki/index.php/Sensor_acquisition
 void print_temperature_wismote(int val)
 {
    float s = 0;
@@ -69,78 +79,25 @@ void print_temperature_wismote(int val)
 	    s    = ((0.01*val) - 39.7);
       dec  = s;
       frac = s - dec;
-
-      //DGHS_DBG_2("Temperature=%d C \n", dec);
       DGHS_DBG_2("Temperature=%d.%02u C (%d)\n", dec, (unsigned int)(frac * 100),val);
   }else
   {
-    DGHS_DBG_1("ERROR: The temperature value is incorrect \n");
-  }
-}
-
-//based on http://anrg.usc.edu/contiki/index.php/Sensor_acquisition
-/*void print_temperature(int val)
-{
-  float s = 0;
-  int   dec;
-  float frac;
-
-  if(val != -1)
-  {
-	    s    = ((0.01*val) - 39.60);
+    #if WISMOTE
+      DGHS_DBG_1("Warning: We assume temperature for the Wismote \n");
+      s    = ((0.01*TEMPERATURE_WISMOTE) - 39.7);
       dec  = s;
       frac = s - dec;
-      printf("Temperature=%d.%02u C (%d)\n", dec, (unsigned int)(frac * 100),val);
-  }else
-  {
-    DGHS_DBG_1("ERROR: The temperature value is incorrect \n");
+      DGHS_DBG_2("Temperature=%d.%02u C (%d)\n", dec, (unsigned int)(frac * 100),TEMPERATURE_WISMOTE);
+    #else
+       DGHS_DBG_1("ERROR: The temperature value is incorrect \n");
+    #endif
+
   }
-}*/
-
-//based on http://anrg.usc.edu/contiki/index.php/Sensor_acquisition
-/*void print_humidity(int val)
-{
-  float s = 0;
-  int   dec;
-  float frac;
-
-  if(val != -1)
-  {
-       s    = (((0.0405*val) - 4) + ((-2.8 * 0.000001)*(pow(val,2))));
-       dec  = s;
-       frac = s - dec;
-       printf("Humidity=%d.%02u %% (%d)\n", dec, (unsigned int)(frac * 100),val);
-  }else
-  {
-    DGHS_DBG_1("ERROR: The humidity value is incorrect \n");
-  }
-
-}*/
-
-//based on http://anrg.usc.edu/contiki/index.php/Sensor_acquisition
-void print_light(int val)
-{
-  float s = 0;
-  int   dec;
-  float frac;
-
-  if(val != -1)
-  {
-     s    = (float)(val * 0.4071);
-     dec  = s;
-     frac = s - dec;
-     printf("Light=%d.%02u lux (%d)\n", dec, (unsigned int)(frac * 100),val);
-  }else
-  {
-    DGHS_DBG_1("ERROR: The light value is incorrect \n");
-  }
-
 }
 
-void fill_data_collection(struct data_collection_msg *data_coll_msg ,int light2, int temperature, int humidity,
+void fill_data_collection(struct data_collection_msg *data_coll_msg , int temperature, int humidity,
                           linkaddr_t *to, linkaddr_t *from, linkaddr_t *source)
 {
-    data_coll_msg->light2      = light2;
     data_coll_msg->temperature = temperature;
     data_coll_msg->humidity    = humidity;
     linkaddr_copy(&data_coll_msg->to,to);

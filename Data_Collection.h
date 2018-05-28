@@ -38,9 +38,15 @@
 
 // Sensors
 #if WISMOTE
+
   #include "dev/light-sensor.h"
   #include "lib/sensors.h"
   #include "dev/sht11/sht11-sensor.h"
+
+#else
+
+    //If we are using the Remote then we have to use other sensors. We include other libraries.
+
 #endif
 
 #include <math.h>
@@ -65,8 +71,6 @@ process_event_t e_send_data_collection;
 /////////////////////////////////////////////////////////////////////////////
 
 struct data_collection_msg {
-  //int light1;
-  int light2;
   int temperature;
   int humidity;
   linkaddr_t  to;
@@ -91,12 +95,9 @@ struct in_out_list_data_coll
 ///////////////////////FUNCTIONS/////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 
-//void print_temperature(int val);
 void print_temperature_wismote(int val);
-//void print_humidity(int val);
 void print_humidity_wismote(int val);
-void print_light(int val);
-void fill_data_collection(struct data_collection_msg *data_coll_msg ,int light2, int temperature, int humidity,
+void fill_data_collection(struct data_collection_msg *data_coll_msg , int temperature, int humidity,
                           linkaddr_t *to, linkaddr_t *from, linkaddr_t *source);
 
 

@@ -995,7 +995,7 @@ PROCESS_THREAD(in_union_evaluation, ev, data)
     if(ev == e_execute)
     {*/
         //We start to analize incoming messages when the NODE_IS_AWAKE
-        if(node.control_flags_neighbor_discovery & NODE_IS_AWAKE)
+        if(node.control_flags & NODE_IS_AWAKE)
         {
             while(list_length(in_union_list))
             {
@@ -1068,7 +1068,7 @@ PROCESS_THREAD(out_union_evaluation, ev, data)
    if(ev == e_execute)
    {*/
         //We start to analize incoming messages when the NODE_IS_AWAKE
-        if(node.control_flags_neighbor_discovery & NODE_IS_AWAKE)
+        if(node.control_flags & NODE_IS_AWAKE)
         {
 
           while(list_length(out_union_list))

@@ -1,32 +1,38 @@
-#include "lib/list.h"
-#include "example-DGHS.h"
+#include "contiki.h"
+#include "dev/sht11/sht11-sensor.h"
+#include "dev/light-sensor.h"
+#include "dev/leds.h"
+#include <stdio.h>
 
+//Declare the process
+PROCESS(send_sensor_info_process, "Print the Sensors Information");
 
-struct example_list_struct {
-  struct *next;
-  int number;
-};
+//Make the process start when the module is loaded
+AUTOSTART_PROCESSES(&send_sensor_info_process);
 
-LIST(example_list);
-
-struct example_list_struct element1, element2;
-
-void
-example_function(void)
+/*---------------------------------------------------------------------------*/
+static int
+get_light(void)
 {
-  struct example_list_struct *s;
+  return 10 * light_sensor.value(LIGHT_SENSOR_PHOTOSYNTHETIC) / 7;
+}
+/*---------------------------------------------------------------------------*/
+static int
+get_temp(void)
+{
+  return ((sht11_sensor.value(SHT11_SENSOR_TEMP) / 10) - 396) / 10;
+}
+/*---------------------------------------------------------------------------*/
 
-  list_init(example_list);
+//Define the process code
+PROCESS_THREAD(send_sensor_info_process, ev, data)
+{
+  PROCESS_BEGIN();
+  SENSORS_ACTIVATE(light_sensor);
+  SENSORS_ACTIVATE(sht11_sensor);
+  printf("Light: %d \n", get_light());
+  printf("Temperature: %d \n", get_temp());
+  printf("Temperature rough: %d \n", sht11_sensor.value(SHT11_SENSOR_TEMP)  );
 
-  element1.number = 1;
-  list_add(example_list, &element1);
-
-  element2.number = 2;
-  list_add(example_list, &element2);
-
-  for(s = list_head(example_list);
-      s != NULL;
-      s = list_item_next(s)) {
-    printf("List element number %d\n", s->number);
-  }
+  PROCESS_END();
 }

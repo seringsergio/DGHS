@@ -376,7 +376,7 @@ PROCESS_THREAD(out_evaluation_dghs, ev, data)
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et1));
 
         //We start to analize outgoing messages when the GHS_HAS_ENDED
-        //if(node.control_flags_neighbor_discovery & GHS_HAS_ENDED)
+        //if(node.control_flags & GHS_HAS_ENDED)
         //{
           while(list_length(out_union_list))
           {
@@ -426,7 +426,7 @@ PROCESS_THREAD(in_evaluation_dghs, ev, data)
     etimer_set(&et1, CLOCK_SECOND * TIME_UNION_IN_OUT);
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et1));
         //We start to analize incoming messages when GHS_HAS_ENDED
-        //if(node.control_flags_neighbor_discovery & GHS_HAS_ENDED)
+        //if(node.control_flags & GHS_HAS_ENDED)
         //{
             while(list_length(in_union_list))
             {

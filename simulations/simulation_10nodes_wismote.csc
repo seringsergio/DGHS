@@ -237,10 +237,11 @@
       <skin>org.contikios.cooja.plugins.skins.GridVisualizerSkin</skin>
       <skin>org.contikios.cooja.plugins.skins.TrafficVisualizerSkin</skin>
       <skin>org.contikios.cooja.plugins.skins.UDGMVisualizerSkin</skin>
+      <skin>org.contikios.cooja.plugins.skins.AttributeVisualizerSkin</skin>
       <viewport>1.6991464475644735 0.0 0.0 1.6991464475644735 -24.415866018233682 -75.43743211677094</viewport>
     </plugin_config>
     <width>400</width>
-    <z>2</z>
+    <z>0</z>
     <height>400</height>
     <location_x>1</location_x>
     <location_y>1</location_y>
@@ -248,12 +249,12 @@
   <plugin>
     org.contikios.cooja.plugins.LogListener
     <plugin_config>
-      <filter />
+      <filter>ID:1 DAT</filter>
       <formatted_time />
       <coloring />
     </plugin_config>
     <width>935</width>
-    <z>0</z>
+    <z>2</z>
     <height>528</height>
     <location_x>400</location_x>
     <location_y>160</location_y>

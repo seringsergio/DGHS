@@ -129,10 +129,11 @@ PROCESS(response_to_data_collection,"response_to_data_collection");
 PROCESS_THREAD(start_data_collection, ev, data) //It can not have PROCESS_WAIT_EVENT_UNTIL()
 {
 
-  #if WISMOTE
-    static struct data_collection_msg data_coll_msg;
-    static struct in_out_list_data_coll *out_l;
-  #endif
+  static struct data_collection_msg data_coll_msg;
+  static struct in_out_list_data_coll *out_l;
+
+
+  static struct etimer et;
 
   PROCESS_BEGIN();
 
@@ -150,60 +151,57 @@ PROCESS_THREAD(start_data_collection, ev, data) //It can not have PROCESS_WAIT_E
 
   while(1)
   {
-    PROCESS_YIELD();
-    if(ev == e_execute)
+
+    //execute periodically
+    etimer_set(&et, CLOCK_SECOND * DATA_COLLECTION_TIME);
+    PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
+
+    if( node.control_flags & DATA_COLLECTION )
     {
-      DGHS_DBG_2("#A color=#008000\n");
+        DGHS_DBG_2("#A color=#008000\n"); //Green means that the node is reporting data
 
+        if(I_am_the_sink())
+        {
+            //The sink does not collect data
+        }else
+        {
 
-      if(I_am_the_sink())
-      {
+          #if WISMOTE
 
-      }else
-      {
+              SENSORS_ACTIVATE(sht11_sensor);
 
-        #if WISMOTE
+              //ADD to the list a runicast message POINT_TO_SINK_MSG
+              fill_data_collection(&data_coll_msg,
+                                   sht11_sensor.value(SHT11_SENSOR_TEMP), sht11_sensor.value(SHT11_SENSOR_HUMIDITY),
+                                   &node.in_branch, &linkaddr_node_addr, &linkaddr_node_addr);
 
-          //SENSORS_ACTIVATE(light_sensor);
-          SENSORS_ACTIVATE(sht11_sensor);
+                 print_temperature_wismote(data_coll_msg.temperature);
+                 print_humidity_wismote(data_coll_msg.humidity);
+              //ADD to the list a runicast message END_GHS
+              out_l = memb_alloc(&out_union_mem);
+              if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
+                DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list>> in DGHS\n");
+              }else
+              {
+                  out_l->type_msg.data_coll_msg  = data_coll_msg;
+                  out_l->uniontype               = DATA_COLLECTION_MSG;
+                  list_push(out_union_list,out_l); // Add an item to the start of the list.
+              }
 
-          //ADD to the list a runicast message POINT_TO_SINK_MSG
-          fill_data_collection(&data_coll_msg, 0,
-                               sht11_sensor.value(SHT11_SENSOR_TEMP), sht11_sensor.value(SHT11_SENSOR_HUMIDITY),
-                               &node.in_branch, &linkaddr_node_addr, &linkaddr_node_addr);
+              SENSORS_DEACTIVATE(sht11_sensor);
 
-             //print_light(data_coll_msg.light2);
-             print_temperature_wismote(data_coll_msg.temperature);
-             print_humidity_wismote(data_coll_msg.humidity);
-          //ADD to the list a runicast message END_GHS
-          out_l = memb_alloc(&out_union_mem);
-          if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
-            DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list>> in DGHS\n");
-          }else
-          {
-              out_l->type_msg.data_coll_msg  = data_coll_msg;
-              out_l->uniontype               = DATA_COLLECTION_MSG;
-              list_push(out_union_list,out_l); // Add an item to the start of the list.
-          }
+          #else
+            //If we are using the Remote then we have to use other sensors
+          #endif
 
-          //SENSORS_DEACTIVATE(light_sensor);
-          SENSORS_DEACTIVATE(sht11_sensor);
-
-        #endif
-
-
-      }
-
-    }
-  }
-
+        }
+    } //END if( node.control_flags & DATA_COLLECTION )
+  } //END While(1)
   PROCESS_END();
-
 }
 
 PROCESS_THREAD(response_to_data_collection, ev, data) //It can not have PROCESS_WAIT_EVENT_UNTIL()
 {
-
 
   static struct in_out_list_data_coll *out_l;
 
@@ -212,16 +210,11 @@ PROCESS_THREAD(response_to_data_collection, ev, data) //It can not have PROCESS_
   static int dec_temperature;
   static float frac_temperature;
 
-  static float s_light = 0;
-  static int dec_light;
-  static float frac_light;
-
   static float s_humidity = 0;
   static int dec_humidity;
   static float frac_humidity;
 
   PROCESS_BEGIN();
-
 
   while(1)
   {
@@ -232,61 +225,61 @@ PROCESS_THREAD(response_to_data_collection, ev, data) //It can not have PROCESS_
 
       if(I_am_the_sink())
       {
-        //sink prints DATA_COLLECTION results
+        //sink prints DATA_COLLECTION_MSG
 
         //temperature
         if(data_coll_msg.temperature != -1)
         {
-      	    s_temperature    = ((0.01*data_coll_msg.temperature) - 39.60);
+      	    s_temperature    = ((0.01*data_coll_msg.temperature) - 39.7);
             dec_temperature  = s_temperature;
             frac_temperature = s_temperature - dec_temperature;
-            //printf("Temperature=%d.%02u C (%d)\n", dec_temperature, (unsigned int)(frac_temperature * 100),data_coll_msg.temperature);
+            //DGHS_DBG_2("Temperature=%d.%02u C (%d)\n", dec_temperature, (unsigned int)(frac_temperature * 100),data_coll_msg.temperature);
         }else
         {
-          DGHS_DBG_1("ERROR: The temperature value is incorrect \n");
-        }
-
-        //Light
-        if(data_coll_msg.light2 != -1)
-        {
-           s_light    = (float)(data_coll_msg.light2 * 0.4071);
-           dec_light  = s_light;
-           frac_light = s_light - dec_light;
-           //printf("Light=%d.%02u lux (%d)\n", dec_light, (unsigned int)(frac_light * 100),data_coll_msg.light2);
-        }else
-        {
-          DGHS_DBG_1("ERROR: The light value is incorrect \n");
+          #if WISMOTE
+            DGHS_DBG_1("Warning: We assume temperature for the Wismote \n");
+            s_temperature    = ((0.01*TEMPERATURE_WISMOTE) - 39.7);
+            dec_temperature  = s_temperature;
+            frac_temperature = s_temperature - dec_temperature;
+            //DGHS_DBG_2("Temperature=%d.%02u C (%d)\n", dec_temperature, (unsigned int)(frac_temperature * 100),TEMPERATURE_WISMOTE);
+          #else
+             DGHS_DBG_1("ERROR: The temperature value is incorrect \n");
+          #endif
         }
 
         //humidity
         if(data_coll_msg.humidity != -1)
         {
-             s_humidity    = (((0.0405*data_coll_msg.humidity) - 4) + ((-2.8 * 0.000001)*(pow(data_coll_msg.humidity,2))));
+             s_humidity    = ( - 2.0468 + (0.0367 * data_coll_msg.humidity) - (0.0000015955 * data_coll_msg.humidity * data_coll_msg.humidity)  );
              dec_humidity  = s_humidity;
              frac_humidity = s_humidity - dec_humidity;
-             //printf("Humidity=%d.%02u %% (%d)\n", dec_humidity, (unsigned int)(frac_humidity * 100),data_coll_msg.humidity);
+             //DGHS_DBG_2("Humidity=%d.%02u %% (%d)\n", dec_humidity, (unsigned int)(frac_humidity * 100),data_coll_msg.humidity);
         }else
         {
-          DGHS_DBG_1("ERROR: The humidity value is incorrect \n");
+          #if WISMOTE
+            DGHS_DBG_1("Warning: We assume humidity for the Wismote \n");
+            s_humidity    = ( - 2.0468 + (0.0367 * HUMIDITY_WISMOTE) - (0.0000015955 * HUMIDITY_WISMOTE * HUMIDITY_WISMOTE)  );
+            dec_humidity  = s_humidity;
+            frac_humidity = s_humidity - dec_humidity;
+            //DGHS_DBG_2("Humidity=%d.%02u %% (%d)\n", dec_humidity, (unsigned int)(frac_humidity * 100),HUMIDITY_WISMOTE);
+          #else
+             DGHS_DBG_1("ERROR: The humidity value is incorrect \n");
+          #endif
         }
         //format:
-        //DATA_COLLECTION source temperature light humidity
-        DGHS_DBG_1("DATA_COLLECTION %d %d.%02u %d.%02u %d.%02u\n", data_coll_msg.source.u8[0],
-                                                            dec_temperature, (unsigned int)(frac_temperature * 100),
-                                                            dec_light, (unsigned int)(frac_light * 100),
-                                                            dec_humidity, (unsigned int)(frac_humidity * 100)  );
-      }else
+        //DATA_COLLECTION source temperature humidity
+        DGHS_DBG_2("DATA_COLLECTION %d %d.%02u %d.%02u\n", data_coll_msg.source.u8[0],
+                                                           dec_temperature, (unsigned int)(frac_temperature * 100),
+                                                           dec_humidity, (unsigned int)(frac_humidity * 100)  );
+      }else //I am not the sink
       {
         //Node re-tx the data_collection_msg
 
-        //ADD to the list a runicast message POINT_TO_SINK_MSG
-        fill_data_collection(&data_coll_msg_temp, data_coll_msg.light2,
+        //ADD to the list a runicast message DATA_COLLECTION_MSG
+        fill_data_collection(&data_coll_msg_temp,
                              data_coll_msg.temperature, data_coll_msg.humidity,
                              &node.in_branch, &linkaddr_node_addr, &data_coll_msg.source);
 
-           //print_light(data_coll_msg.light2);
-           //print_temperature(data_coll_msg.temperature);
-           //print_humidity(data_coll_msg.humidity);
         //ADD to the list a runicast message END_GHS
         out_l = memb_alloc(&out_union_mem);
         if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
@@ -322,35 +315,31 @@ PROCESS_THREAD(out_evaluation_data_collection, ev, data) //It can not have PROCE
     etimer_set(&et1, CLOCK_SECOND * TIME_UNION_IN_OUT);
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et1));
 
-        //We start to analize outgoing messages when the GHS_HAS_ENDED
-        //if(node.control_flags_neighbor_discovery & GHS_HAS_ENDED)
-        //{
-          while(list_length(out_union_list))
-          {
-              //DGHS_DBG_2("while(list_length(out_union_list))\n");
-              //Give enough time to transmit the previous msg
-              etimer_set(&et2, CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION);
-              PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et2));
+    //We start to analize outgoing messages
+    while(list_length(out_union_list))
+    {
+        //Give enough time to transmit the previous msg
+        etimer_set(&et2, CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION);
+        PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et2));
 
-              if(!runicast_is_transmitting(&runicast_4))
-              {
-                  //remove from list
-                  out_l = list_chop(out_union_list); // Remove the last object on the list.
-                  if(out_l->uniontype == DATA_COLLECTION_MSG)
-                  {
-                    process_post(&send_Data_Collection, e_send_data_collection, &out_l->type_msg.data_coll_msg);
-                  }else
-                  {
-                      DGHS_DBG_1("ERROR: The type of msg in out_union_list is unkown (data_collection) \n");
-                  }
-                  memb_free(&out_union_mem,out_l);
-              }else
-              {
-                  //DGHS_DBG_2("WARNING: break from runicast_control\n"); //"Enough" time is not enough!!
-                  break;
-              }
-          } //END while list_length()
-        //}
+        if(!runicast_is_transmitting(&runicast_4))
+        {
+            //remove from list
+            out_l = list_chop(out_union_list); // Remove the last object on the list.
+            if(out_l->uniontype == DATA_COLLECTION_MSG)
+            {
+              process_post(&send_Data_Collection, e_send_data_collection, &out_l->type_msg.data_coll_msg);
+            }else
+            {
+                DGHS_DBG_1("ERROR: The type of msg in out_union_list is unkown (data_collection) \n");
+            }
+            memb_free(&out_union_mem,out_l);
+        }else
+        {
+            break;
+        }
+    } //END while list_length()
+
   } //while (1)
 
   PROCESS_END();
@@ -368,27 +357,23 @@ PROCESS_THREAD(in_evaluation_data_collection, ev, data) //It can not have PROCES
     //execute periodically
     etimer_set(&et1, CLOCK_SECOND * TIME_UNION_IN_OUT);
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et1));
-        //We start to analize incoming messages when GHS_HAS_ENDED
-        //if(node.control_flags_neighbor_discovery & GHS_HAS_ENDED)
-        //{
-            while(list_length(in_union_list))
-            {
-              //DGHS_DBG_2("while(list_length(in_union_list))\n");
-              //Give enough time to transmit the previous msg
-              etimer_set(&et2, CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION);
-              PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et2));
-              //remove from list
-              in_l = list_chop(in_union_list); // Remove the last object on the list.
-              if(in_l->uniontype == DATA_COLLECTION_MSG)
-              {
-                  process_post(&response_to_data_collection, e_execute, &in_l->type_msg.data_coll_msg);
-              }else
-                {
-                  DGHS_DBG_1("ERROR: The type of msg in in_union_list is unkown (data_collection) \n");
-                }
-              memb_free(&in_union_mem,in_l);
-            } //while(list_length(in_union_list))
-        //}
+    //We start to analize incoming messages
+    while(list_length(in_union_list))
+    {
+      //Give enough time to transmit the previous msg
+      etimer_set(&et2, CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION);
+      PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et2));
+      //remove from list
+      in_l = list_chop(in_union_list); // Remove the last object on the list.
+      if(in_l->uniontype == DATA_COLLECTION_MSG)
+      {
+          process_post(&response_to_data_collection, e_execute, &in_l->type_msg.data_coll_msg);
+      }else
+        {
+          DGHS_DBG_1("ERROR: The type of msg in in_union_list is unkown (data_collection) \n");
+        }
+      memb_free(&in_union_mem,in_l);
+    } // END while(list_length(in_union_list))
   }
   PROCESS_END();
 }
