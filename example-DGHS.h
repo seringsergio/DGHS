@@ -96,7 +96,7 @@
 #define RUNICAST_CHANNEL_1 144
 #define RUNICAST_CHANNEL_2 145
 #define RUNICAST_CHANNEL_3 146
-#define RUNICAST_CHANNEL_4 147
+#define UNICAST_CHANNEL_4  147
 
 // We assume temperature and humidity for the Wismote.
 // We assume these values because "The SHT11 is not a proper I2C sensor." Antonio Lignan

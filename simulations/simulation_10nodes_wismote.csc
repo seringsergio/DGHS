@@ -8,7 +8,7 @@
   <project EXPORT="discard">[APPS_DIR]/powertracker</project>
   <simulation>
     <title>My simulation</title>
-    <randomseed>123456</randomseed>
+    <randomseed>123457</randomseed>
     <motedelay_us>1000000</motedelay_us>
     <radiomedium>
       org.contikios.cooja.radiomediums.UDGM
@@ -224,7 +224,7 @@
   <plugin>
     org.contikios.cooja.plugins.SimControl
     <width>280</width>
-    <z>1</z>
+    <z>0</z>
     <height>160</height>
     <location_x>400</location_x>
     <location_y>0</location_y>
@@ -241,7 +241,7 @@
       <viewport>1.6991464475644735 0.0 0.0 1.6991464475644735 -24.415866018233682 -75.43743211677094</viewport>
     </plugin_config>
     <width>400</width>
-    <z>0</z>
+    <z>2</z>
     <height>400</height>
     <location_x>1</location_x>
     <location_y>1</location_y>
@@ -249,12 +249,12 @@
   <plugin>
     org.contikios.cooja.plugins.LogListener
     <plugin_config>
-      <filter>ID:1 DAT</filter>
+      <filter>ERROR</filter>
       <formatted_time />
       <coloring />
     </plugin_config>
     <width>935</width>
-    <z>2</z>
+    <z>1</z>
     <height>528</height>
     <location_x>400</location_x>
     <location_y>160</location_y>

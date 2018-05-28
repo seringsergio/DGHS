@@ -67,7 +67,8 @@
 struct unicast_conn;
 
 #define UNICAST_ATTRIBUTES   { PACKETBUF_ADDR_RECEIVER, PACKETBUF_ADDRSIZE }, \
-                        BROADCAST_ATTRIBUTES
+                             { PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG, PACKETBUF_ATTR_BYTE }, \
+                             BROADCAST_ATTRIBUTES
 
 struct unicast_callbacks {
   void (* recv)(struct unicast_conn *c, const linkaddr_t *from);

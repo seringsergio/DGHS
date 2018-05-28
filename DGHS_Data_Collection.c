@@ -42,14 +42,52 @@ LIST(in_union_list);
 MEMB(in_union_mem, struct in_out_list_data_coll, QUEUE_SIZE_GHS);
 
 // Reliable unicast that receives the GHS messages: Connect, initiate, test, accept, reject, report, change_root
-static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8_t seqno)
+
+static void
+recv_uc(struct unicast_conn *c, const linkaddr_t *from)
+{
+/*  DGHS_DBG_2("unicast message (Data Collection) received from %d.%d\n",
+	 from->u8[0], from->u8[1]);*/
+
+   static packetbuf_attr_t msg_type;
+   static struct in_out_list_data_coll *in_l;
+
+   void *msg = packetbuf_dataptr();
+
+   msg_type = packetbuf_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG);
+
+   //Adds the message to the list in_union_list according the type of message
+   if(msg_type == DATA_COLLECTION_MSG)
+   {
+
+     //ADD to the list
+     in_l = memb_alloc(&in_union_mem);
+     if(in_l == NULL) {            // If we could not allocate a new entry, we give up.
+       DGHS_DBG_1("ERROR: we could not allocate a new entry for <<in_union_list * >> (data_collection) list_length = %d\n", list_length(in_union_list));
+     }else
+     {
+         in_l->type_msg.data_coll_msg = *((struct data_collection_msg*) msg);
+         in_l->uniontype              = DATA_COLLECTION_MSG;
+         list_push(in_union_list,in_l); // Add an item to the start of the list.
+         DGHS_DBG_2("unicast message received DATA_COLLECTION_MSG from %d.%d \n",
+         in_l->type_msg.data_coll_msg.from.u8[0], in_l->type_msg.data_coll_msg.from.u8[1] );
+     }
+
+   }else
+   {
+     DGHS_DBG_1("ERROR: The type of the message ( msg_type ) is unkown in dghs \n");
+   }
+
+
+}
+/*static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8_t seqno)
 {
   static packetbuf_attr_t msg_type;
   static struct in_out_list_data_coll *in_l;
 
   void *msg = packetbuf_dataptr();
 
-  /* OPTIONAL: Sender history */
+  // OPTIONAL: Sender history
   struct history_entry *e = NULL;
   for(e = list_head(history_table_4); e != NULL; e = e->next) {
     if(linkaddr_cmp(&e->addr, from)) {
@@ -57,22 +95,22 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
     }
   }
   if(e == NULL) {
-    /* Create new history entry */
+    // Create new history entry
     e = memb_alloc(&history_mem_4);
     if(e == NULL) {
-      e = list_chop(history_table_4); /* Remove oldest at full history */
+      e = list_chop(history_table_4); // Remove oldest at full history
     }
     linkaddr_copy(&e->addr, from);
     e->seq = seqno;
     list_push(history_table_4, e);
   } else {
-    /* Detect duplicate callback */
+    // Detect duplicate callback
     if(e->seq == seqno) {
       DGHS_DBG_2("runicast message received from %d.%d, seqno %d (DUPLICATE)\n",
 	     from->u8[0], from->u8[1], seqno);
       return;
     }
-    /* Update existing history entry */
+    // Update existing history entry
     e->seq = seqno;
   }
 
@@ -103,9 +141,9 @@ static void recv_runicast(struct runicast_conn *c, const linkaddr_t *from, uint8
   //process_post_synch(&in_union_evaluation, e_execute, NULL);
 
 
-}
+}*/
 
-static void sent_runicast(struct runicast_conn *c, const linkaddr_t *to, uint8_t retransmissions)
+/*static void sent_runicast(struct runicast_conn *c, const linkaddr_t *to, uint8_t retransmissions)
 {
   DGHS_DBG_2("runicast (data_collection) message sent to %d.%d, retransmissions %d\n",
 	 to->u8[0], to->u8[1], retransmissions);
@@ -118,7 +156,23 @@ static void timedout_runicast(struct runicast_conn *c, const linkaddr_t *to, uin
 static const struct runicast_callbacks runicast_callbacks = {recv_runicast,
 							                                               sent_runicast,
 							                                               timedout_runicast};
-static struct runicast_conn runicast_4;
+static struct runicast_conn runicast_4;*/
+
+
+/*---------------------------------------------------------------------------*/
+static void
+sent_uc(struct unicast_conn *c, int status, int num_tx)
+{
+  const linkaddr_t *dest = packetbuf_addr(PACKETBUF_ADDR_RECEIVER);
+  if(linkaddr_cmp(dest, &linkaddr_null)) {
+    return;
+  }
+  printf("unicast message sent to %d.%d: status %d num_tx %d\n",
+    dest->u8[0], dest->u8[1], status, num_tx);
+}
+/*---------------------------------------------------------------------------*/
+static const struct unicast_callbacks unicast_callbacks = {recv_uc, sent_uc};
+static struct unicast_conn unicast_1;
 
 PROCESS(start_data_collection,"start_data_collection");
 PROCESS(out_evaluation_data_collection, "out_evaluation_data_collection");
@@ -153,7 +207,8 @@ PROCESS_THREAD(start_data_collection, ev, data) //It can not have PROCESS_WAIT_E
   {
 
     //execute periodically
-    etimer_set(&et, CLOCK_SECOND * DATA_COLLECTION_TIME);
+    // Delay DATA_COLLECTION_TIME - (DATA_COLLECTION_TIME*2) seconds
+    etimer_set(&et, CLOCK_SECOND * DATA_COLLECTION_TIME + random_rand() % (CLOCK_SECOND * DATA_COLLECTION_TIME));
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
 
     if( node.control_flags & DATA_COLLECTION )
@@ -283,7 +338,7 @@ PROCESS_THREAD(response_to_data_collection, ev, data) //It can not have PROCESS_
         //ADD to the list a runicast message END_GHS
         out_l = memb_alloc(&out_union_mem);
         if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
-          DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list * >> in DGHS , list_length=%d\n", list_length(out_union_list));
+          DGHS_DBG_1("ERROR: we could not allocate a new entry for <<out_union_list *** >> in DGHS , list_length=%d\n", list_length(out_union_list));
         }else
         {
             out_l->type_msg.data_coll_msg  = data_coll_msg_temp;
@@ -322,8 +377,8 @@ PROCESS_THREAD(out_evaluation_data_collection, ev, data) //It can not have PROCE
         etimer_set(&et2, CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION);
         PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et2));
 
-        if(!runicast_is_transmitting(&runicast_4))
-        {
+        //if(!runicast_is_transmitting(&runicast_4))
+        //{
             //remove from list
             out_l = list_chop(out_union_list); // Remove the last object on the list.
             if(out_l->uniontype == DATA_COLLECTION_MSG)
@@ -334,10 +389,10 @@ PROCESS_THREAD(out_evaluation_data_collection, ev, data) //It can not have PROCE
                 DGHS_DBG_1("ERROR: The type of msg in out_union_list is unkown (data_collection) \n");
             }
             memb_free(&out_union_mem,out_l);
-        }else
-        {
-            break;
-        }
+        //}else
+        //{
+        //    break;
+        //}
     } //END while list_length()
 
   } //while (1)
@@ -382,11 +437,13 @@ PROCESS_THREAD(send_Data_Collection, ev, data) //It can not have PROCESS_WAIT_EV
 {
   static struct data_collection_msg data_coll_msg;
 
-  PROCESS_EXITHANDLER(runicast_close(&runicast_4);)
+  //PROCESS_EXITHANDLER(runicast_close(&runicast_4);)
+  PROCESS_EXITHANDLER(unicast_close(&unicast_1);)
 
   PROCESS_BEGIN();
 
-  runicast_open(&runicast_4, RUNICAST_CHANNEL_4, &runicast_callbacks);
+  //runicast_open(&runicast_4, RUNICAST_CHANNEL_4, &runicast_callbacks);
+  unicast_open(&unicast_1, UNICAST_CHANNEL_4, &unicast_callbacks);
 
   while(1)
   {
@@ -397,7 +454,8 @@ PROCESS_THREAD(send_Data_Collection, ev, data) //It can not have PROCESS_WAIT_EV
 
         packetbuf_copyfrom(&data_coll_msg, sizeof(struct data_collection_msg));
         packetbuf_set_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG, DATA_COLLECTION_MSG);
-        runicast_send(&runicast_4, &data_coll_msg.to, NUM_MAX_RETRANSMISSIONS);
+        //runicast_send(&runicast_4, &data_coll_msg.to, NUM_MAX_RETRANSMISSIONS);
+        unicast_send(&unicast_1, &data_coll_msg.to);
 
         DGHS_DBG_2("Send e_send_data_collection to %d.%d \n" , data_coll_msg.to.u8[0], data_coll_msg.to.u8[1] );
     }else
