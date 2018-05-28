@@ -76,7 +76,7 @@
 #define QUEUE_SIZE_GHS                        30
 #define TIME_UNION_IN_OUT                     5  //Get out of queue
 #define TIME_PREVIOUS_MSG_IN_OUT_UNION        10
-#define DATA_COLLECTION_TIME                  30 //We send a data packet every 30 seconds 
+#define DATA_COLLECTION_TIME                  45 //We send a data packet every 30 seconds 
 
 //Values for 120 nodes
 /*#define NUM_MAX_RETRANSMISSIONS               50
