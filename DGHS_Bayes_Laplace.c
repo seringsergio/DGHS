@@ -50,20 +50,10 @@ AUTOSTART_PROCESSES(&test_Bayes_laplace);
 PROCESS_THREAD(test_Bayes_laplace, ev, data)
 {
 
-  //static struct etimer et;
 
   PROCESS_BEGIN();
 
-  /*while(1)
-  {
-
-    //execute periodically
-    etimer_set(&et, CLOCK_SECOND * 1);
-    PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));*/
-
-    calculate_likelihood(frequency_table, likelihood);
-
-  //}
+  calculate_likelihood(frequency_table, likelihood); 
 
   PROCESS_END();
 

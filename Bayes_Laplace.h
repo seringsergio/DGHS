@@ -35,6 +35,9 @@
 
 #include "example-DGHS.h"
 
+// for printing float numbers
+#include <math.h>
+#include <stdlib.h>
 
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////DEFINE////////////////////////////////////////////////
@@ -46,6 +49,20 @@
 //Defines for the Naive Bayesian Classifier with Laplace Smoothing
 
 #define K_laplace 1
+
+
+typedef enum
+{
+    DEC1 = 10,
+    DEC2 = 100,
+    DEC3 = 1000,
+    DEC4 = 10000,
+    DEC5 = 100000,
+    DEC6 = 1000000,
+
+} tPrecision ;
+
+
 
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////// ARRAY ///////////////////////////////////////////////
@@ -65,5 +82,35 @@ extern const uint8_t frequency_table[ROWS_T][COLUMNS_T];
 /////////////////////////////////////////////////////////////////////////////
 
 void calculate_likelihood(const uint8_t frequency_table[ROWS_T][COLUMNS_T], float likelihood[ROWS_T][COLUMNS_T]);
+void calculate_N(const uint8_t frequency_table[ROWS_T][COLUMNS_T], uint8_t N_array[COLUMNS_T]);
+
+
+//-----------------------------------------------------------------------------
+//------------------FUNCTIONS TO PRINT FLOAT-----------------------------------
+//-----------------------------------------------------------------------------
+// reverse(), intToStr(), ftoa(), ipow()
+//REF https://www.geeksforgeeks.org/convert-floating-point-number-string/
+//REF https://stackoverflow.com/questions/101439/the-most-efficient-way-to-implement-an-integer-based-power-function-powint-int
+/*
+ftoa(n, res, afterpoint)
+n          --> Input Number
+res[]      --> Array where output string to be stored
+afterpoint --> Number of digits to be considered after point.
+
+For example ftoa(1.555, str, 2) should store "1.55" in res and
+ftoa(1.555, str, 0) should store "1" in res.*/
+
+void reverse(char *str, int len);
+int intToStr(int x, char str[], int d);
+void ftoa(float n, char *res, int afterpoint);
+int ipow(int base, int exp); //Instead of pow that is not included in math.h
+
+
+
+
+
+
+
+
 
 #endif /* BAYES_LAPLACE_H */
