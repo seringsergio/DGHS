@@ -109,7 +109,79 @@ void calculate_N(const uint8_t frequency_table[ROWS_T][COLUMNS_T], uint8_t N_arr
   DGHS_DBG_2("\n");*/
 }
 
+float calculate_probability_of_event(const uint8_t frequency_table[ROWS_T][COLUMNS_T], struct event event )
+{
+  float class_prob[COLUMNS_T] = {0};
+  float likelihood[ROWS_T][COLUMNS_T]=
+  {
+    {0, 0},
+    {0, 0},
+    {0, 0}
+  };
 
+  float probability_of_event = 0;
+
+  char res1[20]; //to print the float variable
+  char res2[20]; //to print the float variable
+  char res3[20]; //to print the float variable
+
+  //calculate the prob of the class
+  calculate_class_prob(frequency_table, class_prob);
+
+  //Calculate the likelihood
+  calculate_likelihood(frequency_table, likelihood);
+
+  probability_of_event = class_prob[event.column] * likelihood[event.row][event.column];
+
+  ftoa(probability_of_event, res1, 4);
+  ftoa(class_prob[event.column], res2, 4);
+  ftoa(likelihood[event.row][event.column], res3, 4);
+
+  DGHS_DBG_2("%s = %s * %s \n", res1, res2, res3);
+
+  return probability_of_event;
+
+}
+
+void calculate_class_prob(const uint8_t frequency_table[ROWS_T][COLUMNS_T], float class_prob[COLUMNS_T])
+{
+  uint8_t j;
+  uint8_t N_array[COLUMNS_T] = {0,0}  ;
+  char res[20]; //to print the float variable
+
+  calculate_N(frequency_table,N_array);
+
+  for(j = 0; j < COLUMNS_T; j = j + 1 )
+  {
+    class_prob[j] = ( (float) N_array[j] + (float) K_laplace ) /
+                    ( (float) calculate_N_class(frequency_table) + ( (float) K_laplace * (float) COLUMNS_T  ) );
+
+    /*DGHS_DBG_2("%d + %d / %d + %d*%d     ", N_array[j], K_laplace, calculate_N_class(frequency_table)
+                                        ,K_laplace, COLUMNS_T );*/
+
+    ftoa(class_prob[j], res, 4);
+    DGHS_DBG_2("%s ", res);
+  }
+  DGHS_DBG_2("\n");
+
+}
+
+uint8_t calculate_N_class(const uint8_t frequency_table[ROWS_T][COLUMNS_T] )
+{
+  uint8_t N_class = 0;
+  uint8_t i,j;
+
+  for(i = 0; i < ROWS_T; i = i + 1 )
+  {
+    for(j = 0; j < COLUMNS_T ; j = j + 1 )
+    {
+      N_class = N_class + frequency_table[i][j];
+    }
+  }
+
+  return N_class;
+
+}
 
 
 //-----------------------------------------------------------------------------

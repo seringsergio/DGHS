@@ -50,10 +50,32 @@ AUTOSTART_PROCESSES(&test_Bayes_laplace);
 PROCESS_THREAD(test_Bayes_laplace, ev, data)
 {
 
+  struct event event;
+  float prob_yes , prob_no;
+  char res1[20]; //to print the float variable
+  char res2[20]; //to print the float variable
 
   PROCESS_BEGIN();
 
-  calculate_likelihood(frequency_table, likelihood); 
+  //calculate_likelihood(frequency_table, likelihood);
+  //DGHS_DBG_2("%d \n", calculate_N_class(frequency_table) );
+  //calculate_class_prob(  frequency_table, class_prob);
+  event.column = 0;
+  event.row = 2;
+
+  prob_yes = calculate_probability_of_event( frequency_table,   event );
+
+  event.column = 1;
+  event.row = 2;
+
+  prob_no = calculate_probability_of_event( frequency_table,   event );
+
+  ftoa(prob_yes / (prob_yes + prob_no ), res1, 4);
+  ftoa(prob_no  / (prob_yes + prob_no ), res2, 4);
+
+  DGHS_DBG_2("yes normalizado %s \n", res1);
+  DGHS_DBG_2("no normalizado %s \n", res2);
+
 
   PROCESS_END();
 
