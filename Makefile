@@ -1,9 +1,6 @@
 CONTIKI = contiki
 
-PROJECT_SOURCEFILES +=  Bayes_Laplace.c
-
-CONTIKI_PROJECT = DGHS_Bayes_Laplace.c
-all: $(CONTIKI_PROJECT)
+all: temp
 
 CONTIKI_WITH_RIME = 1
 

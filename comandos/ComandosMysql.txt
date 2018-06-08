@@ -8,7 +8,7 @@ service mysql status
 mysqladmin -p -u root version
 
 //Entrar a mysql: La clave es 1234
- mysql -u root -p
+mysql -u root -p
 
 //Crear una base de datos
 CREATE DATABASE dbname;
@@ -18,6 +18,8 @@ show databases;
 
 //Seleccionar: Seleccionar database
 USE mote1;
+USE sink;
+
 
 //Tabla: Crear tabla dentro de la base de datos
 CREATE TABLE Variables (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, temperature INT(4), light INT(4));
@@ -73,6 +75,19 @@ latency   INT(4) NOT NULL,
 date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+
+create table msg (
+id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+nodeID DECIMAL(5,2) NOT NULL,
+seqno INT(11) NOT NULL,
+x INT(5) NOT NULL,
+y INT(5) NOT NULL,
+parent DECIMAL(5,2) NOT NULL,
+tempC INT(5) NOT NULL,
+VDD INT(5) NOT NULL,
+date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
 //Mostrar Tablas:
 show tables;
 
@@ -80,26 +95,33 @@ show tables;
 INSERT INTO weatherData (id, tempC, light) VALUES (NULL, 30, 200);
 INSERT INTO LinkStatistics (id, nodeID, secuencia, tempC, light, RSSI, LQI) VALUES (NULL, 2.0 ,1, 30, 200, -74, 107 );
 INSERT INTO LinkStatisticsPaper (id, nodeID, secuencia, tempC, light, RSSI, LQI, latency) VALUES (NULL, 2.0 ,18, 22, 191, 64, 107, 85 );
+INSERT INTO msg (id, nodeID, seqno, parent , tempC, VDD) VALUES (NULL, 2.0 , 1, 1.0, 27380, 3293);
+INSERT INTO msg (id, nodeID, seqno, x, y, parent, tempC, VDD) VALUES (NULL, 6.0 , 1, 11, 12, 2.0, 27380, 3293);
 
-//Ver: Ver valores insertados en la base de datos
+
+//Ver: Ver valores insertados en la tabla
 select * from weatherData;
 select * from LinkStatistics;
 select * from LinkStatisticsPaper;
 select * from LinkStatisticsPaper where id=1;
+select * from msg;
 
 //Eliminar: Elimina tabla
 DROP TABLE weatherData;
 DROP TABLE LinkStatistics;
+DROP TABLE msg;
+
 
 //Borrar datos de una tabla
 DELETE FROM weatherData;
 DELETE FROM LinkStatistics;
 DELETE FROM LinkStatisticsPaper;
-
+DELETE FROM msg;
 
 //Reset AUTO_INCREMENT a 1
 ALTER TABLE weatherData AUTO_INCREMENT = 1;
 ALTER TABLE LinkStatisticsPaper AUTO_INCREMENT = 1;
+ALTER TABLE msg AUTO_INCREMENT = 1;
 
 //Propiedades: Ver las propiedades de una tabla
 SHOW COLUMNS FROM weatherData;
@@ -131,8 +153,8 @@ LINES TERMINATED BY '\n';
 cp /var/lib/mysql-files/LinkStatisticsPaperV3_21_2.csv /home/sink/Desktop/contiki/examples/paperInterferingNode/Results_Paper_Interfering_Node/
 
 
-//abrir el archivo de python para guardar
-los datos en mysql
+//abrir el archivo de python para guardar los datos en mysql
+  //antes toca seguir tutorial en http://contiki-iot.blogspot.com/2016/06/sending-data-from-sky-motes-to-mysql.html
 python serial-mysql.py
 
 

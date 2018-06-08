@@ -41,7 +41,7 @@ obj_wismote/neighbor_discovery.o: neighbor_discovery.c \
  contiki/core/./net/rime/rucb.h contiki/core/./net/rime/timesynch.h \
  contiki/core/./net/mac/mac.h contiki/core/./dev/radio.h \
  contiki/core/./net/rime/trickle.h Gallager_Humblet_Spira.h \
- Dynamic_Gallager_Humblet_Spira.h
+ Dynamic_Gallager_Humblet_Spira.h Bayes_Laplace.h
 neighbor_discovery.c :
  neighbor_discovery.h example-DGHS.h contiki/core/./lib/list.h :
  contiki/core/./contiki.h contiki/core/./contiki-version.h :
@@ -85,4 +85,4 @@ neighbor_discovery.c :
  contiki/core/./net/rime/rucb.h contiki/core/./net/rime/timesynch.h :
  contiki/core/./net/mac/mac.h contiki/core/./dev/radio.h :
  contiki/core/./net/rime/trickle.h Gallager_Humblet_Spira.h :
- Dynamic_Gallager_Humblet_Spira.h :
+ Dynamic_Gallager_Humblet_Spira.h Bayes_Laplace.h :

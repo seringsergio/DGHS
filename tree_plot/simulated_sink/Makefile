@@ -1,6 +1,7 @@
-CONTIKI = contiki
+CONTIKI = ../../contiki
 
-all: temp
+
+all: simulated_sink
 
 CONTIKI_WITH_RIME = 1
 

@@ -42,7 +42,7 @@ obj_wismote/DGHS_Data_Collection.o: DGHS_Data_Collection.c \
  contiki/core/./net/mac/mac.h contiki/core/./dev/radio.h \
  contiki/core/./net/rime/trickle.h neighbor_discovery.h \
  Gallager_Humblet_Spira.h Dynamic_Gallager_Humblet_Spira.h \
- contiki/platform/wismote/./dev/light-sensor.h \
+ Bayes_Laplace.h contiki/platform/wismote/./dev/light-sensor.h \
  contiki/core/./lib/sensors.h contiki/dev/sht11/sht11-sensor.h
 DGHS_Data_Collection.c :
  Data_Collection.h example-DGHS.h contiki/core/./lib/list.h :
@@ -88,5 +88,5 @@ DGHS_Data_Collection.c :
  contiki/core/./net/mac/mac.h contiki/core/./dev/radio.h :
  contiki/core/./net/rime/trickle.h neighbor_discovery.h :
  Gallager_Humblet_Spira.h Dynamic_Gallager_Humblet_Spira.h :
- contiki/platform/wismote/./dev/light-sensor.h :
+ Bayes_Laplace.h contiki/platform/wismote/./dev/light-sensor.h :
  contiki/core/./lib/sensors.h contiki/dev/sht11/sht11-sensor.h :
