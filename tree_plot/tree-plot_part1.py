@@ -1,9 +1,12 @@
+# python tree-plot_part1.py 7 & python tree-plot_part2.py
+
 from igraph import *
 import matplotlib.pyplot as plt
 import sys
 import serial
 import MySQLdb
 from time import sleep
+import os
 
 print "usage: python tree-plot.py <Number of nodes> "
 print "Number of nodes = ", sys.argv[1]
@@ -29,7 +32,7 @@ print "layout = ", layout
 dbConn = MySQLdb.connect("localhost","root","1234","sink") or die ("Could not connect to database")
 
 #this will have to be changed to the serial port you are using
-device = '/dev/ttyUSB0'
+device = '/dev/ttyUSB2'
 
 try:
   print "Trying...",device
@@ -40,10 +43,13 @@ while True:
  #open a cursor to the database
  cursor = dbConn.cursor()
  try:
+   #plot(g, layout=layout)
    data = skyMote.readline()  #read the data from the nde
    pieces = data.split("/")  #split the data by the tab
 
    if pieces[0] in ['MSG']:
+
+
        print "pieces[0]=",pieces[0]
        print "pieces[1]=",pieces[1]
        print "pieces[2]=",pieces[2]
@@ -65,8 +71,7 @@ while True:
        g.es["color"] = "black"
        g.vs['color'] = "white"
 
-       plot(g, layout=layout)
-
+       #plot(g, layout=layout)
 
        #Here we are going to insert the data into the Database
        try:
@@ -89,3 +94,5 @@ while True:
 #g.vs['color'] = "white"
 
 #plot(g, layout=layout)
+
+# cd /home/seringsergio/Desktop/DGHS/tree_plot
