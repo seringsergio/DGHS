@@ -104,7 +104,7 @@ while True:
            parent_conn,child_conn = Pipe()
            p = Process(target=f, args=(child_conn,))
            p.start()
-           parent_conn.send(g)
+           parent_conn.send([g,layout])
            parent_conn.close()
 
            # Plot graph
