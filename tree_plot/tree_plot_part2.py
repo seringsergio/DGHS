@@ -24,6 +24,8 @@ print "Number of nodes = ", sys.argv[1]
 id_new = 0
 id_old = 0
 
+
+
 #connet to the database
 dbConn = MySQLdb.connect("localhost","root","1234","sink") or die ("Could not connect to database")
 
@@ -34,7 +36,7 @@ cursor = dbConn.cursor()
 vertices = [ (i+1) for i in range( int(sys.argv[1]) )] # (nodeID)
 
 #Edges of the graph
-edges = [ (0,0) for i in range( int(sys.argv[1]) )] #(node,parent) ...we have to subtract 1...in other words, node - 1 and parent - 1
+edges = [ (i,i) for i in range( int(sys.argv[1]) )] #(node,parent) ...we have to subtract 1...in other words, node - 1 and parent - 1
 
 # X and Y position of the graph = layout
 layout = [ (0,0) for i in range( int(sys.argv[1]) )] # (x,y)
@@ -64,8 +66,8 @@ while True:
            cursor.execute("SELECT parent FROM msg ORDER BY id DESC LIMIT 1;")
            dbConn.commit() #commit the insert
            out = cursor.fetchall()
-           parent = int(out[0][0])
-           print "parent = ", parent
+           parent_new = int(out[0][0])
+           print "parent_new = ", parent_new
 
            #Fetch data: x
            cursor.execute("SELECT x FROM msg ORDER BY id DESC LIMIT 1;")
@@ -81,22 +83,30 @@ while True:
            y = int(out[0][0])
            print "y = ", y
 
-           #Build the edges and layout (X and Y position)
-           edges [nodeID - 1] =  (nodeID - 1 , parent - 1)
-           layout[nodeID - 1] =  (x,y)
+           (nodeID_old, parent_old) = edges [nodeID - 1]
 
-           print(edges)
-           print(layout)
+           print "parent_new = ", (parent_new - 1)
+           print "parent_old = ", parent_old
 
-           # Build Graph
-           g = Graph(vertex_attrs={"label": vertices}, edges=edges, directed=True)
+           # IF the node changes its parent
+           if ( (parent_new - 1) != parent_old ) or (nodeID == 1):
 
-           #send the graph via a PIPE. We also send the layout (X and Y positions)
-           parent_conn,child_conn = Pipe()
-           p = Process(target=f, args=(child_conn,))
-           p.start()
-           parent_conn.send([g,layout])
-           parent_conn.close()
+               #Build the edges and layout (X and Y position)
+               edges [nodeID - 1] =  (nodeID - 1 , parent_new - 1)
+               layout[nodeID - 1] =  (x,y)
+
+               print(edges)
+               print(layout)
+
+               # Build Graph
+               g = Graph(vertex_attrs={"label": vertices}, edges=edges, directed=True)
+
+               #send the graph via a PIPE. We also send the layout (X and Y positions)
+               parent_conn,child_conn = Pipe()
+               p = Process(target=f, args=(child_conn,))
+               p.start()
+               parent_conn.send([g,layout])
+               parent_conn.close()
 
            #Close cursor from mysql
            cursor.close()  #close the cursor
