@@ -1,4 +1,4 @@
-# python tree-plot_part1.py 7 & python tree-plot_part2.py
+# python tree-plot_part1.py & python tree-plot_part2.py 7
 
 from igraph import *
 import matplotlib.pyplot as plt
@@ -8,31 +8,31 @@ import MySQLdb
 from time import sleep
 import os
 
-print "usage: python tree-plot.py <Number of nodes> "
-print "Number of nodes = ", sys.argv[1]
+#print "usage: python tree-plot.py <Number of nodes> "
+#print "Number of nodes = ", sys.argv[1]
 
 
 #vertices = ["1", "2", "3"]
-vertices = [ (i+1) for i in range( int(sys.argv[1]) )] # (nodeID)
-print "vertices = ", vertices
+#vertices = [ (i+1) for i in range( int(sys.argv[1]) )] # (nodeID)
+#print "vertices = ", vertices
 
 #edges = [(0,0),(0,0),(0,0)]
 #edges[0] = (0,1)
 #edges[1] = (1,2)
 #edges[2] = (2,0)
-edges = [ (0,0) for i in range( int(sys.argv[1]) )] #(node,parent) ...we have to subtract 1...in other words, node - 1 and parent - 1
-print "edges = ", edges
+#edges = [ (0,0) for i in range( int(sys.argv[1]) )] #(node,parent) ...we have to subtract 1...in other words, node - 1 and parent - 1
+#print "edges = ", edges
 
 
 #layout = [(10,10), (20,20), (10,30)]
-layout = [ (0,0) for i in range( int(sys.argv[1]) )] # (x,y)
-print "layout = ", layout
+#layout = [ (0,0) for i in range( int(sys.argv[1]) )] # (x,y)
+#print "layout = ", layout
 
 #connet to the database
 dbConn = MySQLdb.connect("localhost","root","1234","sink") or die ("Could not connect to database")
 
 #this will have to be changed to the serial port you are using
-device = '/dev/ttyUSB2'
+device = '/dev/ttyUSB0'
 
 try:
   print "Trying...",device
@@ -61,15 +61,15 @@ while True:
        #Plot tree
        #print "nodeID = ", int(pieces[1]) - 1
        #print "parent = ", int(pieces[5]) - 1
-       edges [int(pieces[1]) - 1] =  (int(pieces[1]) - 1 , int(pieces[5]) - 1)
-       layout[int(pieces[1]) - 1] =  (int(pieces[3])     , int(pieces[4])    )
-       print(edges)
-       print(layout)
+       #edges [int(pieces[1]) - 1] =  (int(pieces[1]) - 1 , int(pieces[5]) - 1)
+       #layout[int(pieces[1]) - 1] =  (int(pieces[3])     , int(pieces[4])    )
+       #print(edges)
+       #print(layout)
 
-       g = Graph(vertex_attrs={"label": vertices}, edges=edges, directed=True)
+       #g = Graph(vertex_attrs={"label": vertices}, edges=edges, directed=True)
 
-       g.es["color"] = "black"
-       g.vs['color'] = "white"
+       #g.es["color"] = "black"
+       #g.vs['color'] = "white"
 
        #plot(g, layout=layout)
 
