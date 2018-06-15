@@ -1,8 +1,15 @@
-# this program will try to close a image viewer window every ten secounds
-# python tree-plot_part1.py  & python tree-plot_part2.py 7
+# README
+# The tree plot is composed of 3 files:
+# tree_plot_part1.py: Take data from serial and put it into mysql
+# tree_plot_part2.py: Reads from mysql, builds the graph g, sends the graph via a pipe. Takes as input the number of nodes.
+# tree_plot_part3.py: It is a function that receives the graph via a pipe. Then, plot the graph.
+#
+# Execute/run:
+# 1. In a terminal run < python tree_plot_part1.py >
+# 2. Next, run < python tree_plot_part2.py 7 > Where 7 is the number_of_nodes
+# You are done, you do not have to run tree_plot_part3 because it is a function that is called from tree_plot_part2
 
 
-import serial
 import MySQLdb
 import sys
 from igraph import *
@@ -10,11 +17,10 @@ import time
 from multiprocessing import Process,Pipe
 from tree_plot_part3 import f
 
-
-
 print "usage: python tree-plot_part2.py <Number of nodes> "
 print "Number of nodes = ", sys.argv[1]
 
+# The id column in the database
 id_new = 0
 id_old = 0
 
@@ -26,67 +32,54 @@ cursor = dbConn.cursor()
 
 # Vertices of the graph
 vertices = [ (i+1) for i in range( int(sys.argv[1]) )] # (nodeID)
-#print "vertices = ", vertices
 
 #Edges of the graph
 edges = [ (0,0) for i in range( int(sys.argv[1]) )] #(node,parent) ...we have to subtract 1...in other words, node - 1 and parent - 1
-#print "edges = ", edges
 
 # X and Y position of the graph = layout
 layout = [ (0,0) for i in range( int(sys.argv[1]) )] # (x,y)
-#print "layout = ", layout
-
-g = Graph(vertex_attrs={"label": vertices}, edges=edges, directed=True)
 
 while True:
-     #open a cursor to the database
+    #open a cursor to the database
     cursor = dbConn.cursor()
     try:
-       #Fetch nodeID
+       #Fetch data: id
        cursor.execute("SELECT id FROM msg ORDER BY id DESC LIMIT 1;")
        dbConn.commit() #commit the insert
-       ## Print the fetched line
        out = cursor.fetchall()
        id_new = int(out[0][0])
-       #print "id_new = ", id_new
 
        if id_new != id_old:
 
            id_old = id_new;
 
-           #Fetch nodeID
+           #Fetch data: nodeID
            cursor.execute("SELECT nodeID FROM msg ORDER BY id DESC LIMIT 1;")
            dbConn.commit() #commit the insert
-           # Print the fetched line
            out = cursor.fetchall()
            nodeID = int(out[0][0])
            print "nodeID = ", nodeID
 
-           #Fetch data
+           #Fetch data: parent
            cursor.execute("SELECT parent FROM msg ORDER BY id DESC LIMIT 1;")
            dbConn.commit() #commit the insert
-           # Print the fetched line
            out = cursor.fetchall()
            parent = int(out[0][0])
            print "parent = ", parent
 
-           #Fetch data
+           #Fetch data: x
            cursor.execute("SELECT x FROM msg ORDER BY id DESC LIMIT 1;")
            dbConn.commit() #commit the insert
-           # Print the fetched line
            out = cursor.fetchall()
            x = int(out[0][0])
            print "x = ", x
 
-           #Fetch data
+           #Fetch data: y
            cursor.execute("SELECT y FROM msg ORDER BY id DESC LIMIT 1;")
            dbConn.commit() #commit the insert
-           # Print the fetched line
            out = cursor.fetchall()
            y = int(out[0][0])
            print "y = ", y
-
-
 
            #Build the edges and layout (X and Y position)
            edges [nodeID - 1] =  (nodeID - 1 , parent - 1)
@@ -97,57 +90,21 @@ while True:
 
            # Build Graph
            g = Graph(vertex_attrs={"label": vertices}, edges=edges, directed=True)
-           #print g
-           #import tree_plot_part3
 
-           #send the graph via a PIPE
+           #send the graph via a PIPE. We also send the layout (X and Y positions)
            parent_conn,child_conn = Pipe()
            p = Process(target=f, args=(child_conn,))
            p.start()
            parent_conn.send([g,layout])
            parent_conn.close()
 
-           # Plot graph
-           #g.es["color"] = "black"
-           #g.vs['color'] = "white"
-           #plot(g, layout=layout)
-
-           #Close figure
-           #os.system("kill -9 $(pidof eog)")
-
            #Close cursor from mysql
            cursor.close()  #close the cursor
-           time.sleep(0.05) #50miliseconds
 
+           #Wait 50miliseconds for the next evaluation
+           time.sleep(0.05) #50miliseconds
 
     except MySQLdb.IntegrityError:
        print "failed to fetch data"
     finally:
        cursor.close()  #close just incase it failed
-
-
-    # Vertices of the graph  - Suppose that there are 100 nodes
-    #vertices = [ (i+1) for i in range( 100 )] # (nodeID)
-    #print "vertices = ", vertices
-
-    #Edges of the graph - Suppose that there are 100 nodes
-    #edges = [ (0,0) for i in range( 100 )] #(node,parent) ...we have to subtract 1...in other words, node - 1 and parent - 1
-    #print "edges = ", edges
-
-    #g = Graph(vertex_attrs={"label": vertices}, edges=edges, directed=True)
-
-    #Funtion to send the graph object: g
-
-    #def f(child_conn):
-      ##msg = "Hello Este es"
-      #child_conn.send(g)
-      #child_conn.close()
-
-
-#import os
-#import time
-
-## creating a forever loop
-#while 1 :
-#    os.system("kill -9 $(pidof eog)")
-#    time.sleep(1)
