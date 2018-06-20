@@ -22,7 +22,7 @@ obj_sky/csma.o: contiki/core/net/mac/csma.c contiki/core/./net/mac/csma.h \
  contiki/core/./lib/random.h contiki/core/./net/netstack.h \
  contiki/core/./net/llsec/llsec.h contiki/core/./net/mac/rdc.h \
  contiki/core/./net/mac/framer.h contiki/core/./lib/list.h \
- contiki/core/./lib/memb.h
+ contiki/core/./lib/memb.h temp.h
 contiki/core/net/mac/csma.c contiki/core/./net/mac/csma.h :
  contiki/core/./net/mac/mac.h contiki/platform/sky/./contiki-conf.h :
  contiki/platform/sky/./platform-conf.h contiki/cpu/msp430/./msp430def.h :
@@ -47,4 +47,4 @@ contiki/core/net/mac/csma.c contiki/core/./net/mac/csma.h :
  contiki/core/./lib/random.h contiki/core/./net/netstack.h :
  contiki/core/./net/llsec/llsec.h contiki/core/./net/mac/rdc.h :
  contiki/core/./net/mac/framer.h contiki/core/./lib/list.h :
- contiki/core/./lib/memb.h :
+ contiki/core/./lib/memb.h temp.h :

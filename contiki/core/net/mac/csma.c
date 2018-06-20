@@ -55,6 +55,9 @@
 
 #include <stdio.h>
 
+#include "/home/seringsergio/Desktop/DGHS/BayesTraining/tx_rx.h"
+extern struct csma_stats csma_stats;
+
 #define DEBUG 0
 #if DEBUG
 #include <stdio.h>
@@ -193,6 +196,7 @@ schedule_transmission(struct neighbor_queue *n)
     delay = random_rand() % delay;
   }
 
+  csma_stats.delay += delay;
   PRINTF("csma: scheduling transmission in %u ticks, NB=%u, BE=%u\n",
       (unsigned)delay, n->collisions, backoff_exponent);
   ctimer_set(&n->transmit_timer, delay, transmit_packet_list, n);
@@ -208,7 +212,7 @@ free_packet(struct neighbor_queue *n, struct rdc_buf_list *p, int status)
     queuebuf_free(p->buf);
     memb_free(&metadata_memb, p->ptr);
     memb_free(&packet_memb, p);
-    PRINTF("csma: free_queued_packet, queue length %d, free packets %d\n",
+    PRINTF("csma:  , queue length %d, free packets %d\n",
            list_length(n->queued_packet_list), memb_numfree(&packet_memb));
     if(list_head(n->queued_packet_list) != NULL) {
       /* There is a next packet. We reset current tx information */
@@ -241,17 +245,21 @@ tx_done(int status, struct rdc_buf_list *q, struct neighbor_queue *n)
   switch(status) {
   case MAC_TX_OK:
     PRINTF("csma: rexmit ok %d\n", n->transmissions);
+    //csma_stats.packets_transmitted++;
     break;
   case MAC_TX_COLLISION:
   case MAC_TX_NOACK:
     PRINTF("csma: drop with status %d after %d transmissions, %d collisions\n",
                  status, n->transmissions, n->collisions);
+    csma_stats.packets_dropped++;
     break;
   default:
     PRINTF("csma: rexmit failed %d: %d\n", n->transmissions, status);
     break;
   }
-
+  //csma_stats.num_retx += n->transmissions;
+  //csma_stats.num_collision += n->collisions;
+  //csma_stats.total_packets++;
   free_packet(n, q, status);
   mac_call_sent_callback(sent, cptr, status, ntx);
 }
@@ -454,6 +462,7 @@ send_packet(mac_callback_t sent, void *ptr)
       PRINTF("csma: Neighbor queue full\n");
     }
     PRINTF("csma: could not allocate packet, dropping packet\n");
+    csma_stats.packets_dropped++;
   } else {
     PRINTF("csma: could not allocate neighbor, dropping packet\n");
   }

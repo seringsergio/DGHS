@@ -89,7 +89,7 @@ contiki-wismote.a(frame802154.o)
 /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(memset.o)
                               obj_wismote/contiki-wismote-main.o (memset)
 /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(strlen.o)
-                              contiki-wismote.a(sensors.o) (strlen)
+                              /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(vuprintf.o) (strlen)
 /lib/gcc/msp430/4.7.0/mcpu-430x/mmpy-16/msr20/mc20/md20/libgcc.a(_mulsi3.o)
                               /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(rand.o) (__mulsi3)
 /lib/gcc/msp430/4.7.0/mcpu-430x/mmpy-16/msr20/mc20/md20/libgcc.a(_udivmod16.o)
@@ -143,6 +143,7 @@ cc2520_packets_read
 cc2520_last_rssi    0x1               contiki-wismote.a(cc2520.o)
 cc2520_time_of_arrival
                     0x2               contiki-wismote.a(cc2520.o)
+my_csma_stats       0x2               temp.co
 packetbuf_attrs     0x36              contiki-wismote.a(packetbuf.o)
 msp430_dco_required
                     0x2               contiki-wismote.a(msp430.o)
@@ -168,88 +169,100 @@ Discarded input sections
  .far.text.uip_log
                 0x0000000000000000        0x6 obj_wismote/contiki-wismote-main.o
  .text          0x0000000000000000        0x0 contiki-wismote.a(contiki-wismote)
+ .data          0x0000000000000000        0x0 contiki-wismote.a(contiki-wismote)
  .bss           0x0000000000000000        0x0 contiki-wismote.a(contiki-wismote)
  .text          0x0000000000000000        0x0 contiki-wismote.a(button-sensor.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(button-sensor.o)
+ .bss           0x0000000000000000        0x0 contiki-wismote.a(button-sensor.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(xmem.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(xmem.o)
  .bss           0x0000000000000000        0x0 contiki-wismote.a(xmem.o)
- .far.text.write_enable
+ .any.text.write_enable
                 0x0000000000000000       0x56 contiki-wismote.a(xmem.o)
- .far.text.xmem_pwrite
-                0x0000000000000000      0x16a contiki-wismote.a(xmem.o)
- .far.text.xmem_erase
+ .any.text.xmem_pwrite
+                0x0000000000000000      0x144 contiki-wismote.a(xmem.o)
+ .any.text.xmem_erase
                 0x0000000000000000       0xca contiki-wismote.a(xmem.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(node-id.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(node-id.o)
- .far.text.node_id_burn
-                0x0000000000000000       0x3a contiki-wismote.a(node-id.o)
+ .bss           0x0000000000000000        0x0 contiki-wismote.a(node-id.o)
+ .any.text.node_id_burn
+                0x0000000000000000       0x36 contiki-wismote.a(node-id.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(sensors.o)
- .far.text.sensors_first
+ .data          0x0000000000000000        0x0 contiki-wismote.a(sensors.o)
+ .bss           0x0000000000000000        0x0 contiki-wismote.a(sensors.o)
+ .any.text.sensors_first
                 0x0000000000000000        0x6 contiki-wismote.a(sensors.o)
- .far.text.sensors_next
-                0x0000000000000000       0x4a contiki-wismote.a(sensors.o)
- .far.text.sensors_find
-                0x0000000000000000       0x48 contiki-wismote.a(sensors.o)
+ .any.text.sensors_next
+                0x0000000000000000       0x24 contiki-wismote.a(sensors.o)
+ .any.text.sensors_find
+                0x0000000000000000       0x40 contiki-wismote.a(sensors.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(cc2520.o)
- .far.text.cc2520_get_channel
-                0x0000000000000000        0x8 contiki-wismote.a(cc2520.o)
- .far.text.cc2520_set_txpower
-                0x0000000000000000       0x16 contiki-wismote.a(cc2520.o)
- .far.text.cc2520_rssi
-                0x0000000000000000       0x6a contiki-wismote.a(cc2520.o)
- .far.text.cc2520_cca_valid
-                0x0000000000000000       0x2a contiki-wismote.a(cc2520.o)
- .far.text.cc2520_set_cca_threshold
-                0x0000000000000000       0x16 contiki-wismote.a(cc2520.o)
+ .data          0x0000000000000000        0x0 contiki-wismote.a(cc2520.o)
+ .bss           0x0000000000000000        0x0 contiki-wismote.a(cc2520.o)
+ .any.text.cc2520_get_channel
+                0x0000000000000000        0x6 contiki-wismote.a(cc2520.o)
+ .any.text.cc2520_set_txpower
+                0x0000000000000000       0x14 contiki-wismote.a(cc2520.o)
+ .any.text.cc2520_rssi
+                0x0000000000000000       0x64 contiki-wismote.a(cc2520.o)
+ .any.text.cc2520_cca_valid
+                0x0000000000000000       0x26 contiki-wismote.a(cc2520.o)
+ .any.text.cc2520_set_cca_threshold
+                0x0000000000000000       0x14 contiki-wismote.a(cc2520.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(cc2520-arch.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(cc2520-arch.o)
  .bss           0x0000000000000000        0x0 contiki-wismote.a(cc2520-arch.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(uart1.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(uart1.o)
+ .bss           0x0000000000000000        0x0 contiki-wismote.a(uart1.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(uart1-putchar.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(uart1-putchar.o)
  .bss           0x0000000000000000        0x0 contiki-wismote.a(uart1-putchar.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(msp430.o)
+ .data          0x0000000000000000        0x0 contiki-wismote.a(msp430.o)
  .bss           0x0000000000000000        0x0 contiki-wismote.a(msp430.o)
- .far.text.msp430_add_lpm_req
-                0x0000000000000000        0xe contiki-wismote.a(msp430.o)
- .far.text.msp430_remove_lpm_req
-                0x0000000000000000        0xe contiki-wismote.a(msp430.o)
- .far.text.sbrk
-                0x0000000000000000       0x2c contiki-wismote.a(msp430.o)
+ .any.text.msp430_add_lpm_req
+                0x0000000000000000        0xc contiki-wismote.a(msp430.o)
+ .any.text.msp430_remove_lpm_req
+                0x0000000000000000        0xc contiki-wismote.a(msp430.o)
+ .any.text.sbrk
+                0x0000000000000000       0x1e contiki-wismote.a(msp430.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(clock.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(clock.o)
- .far.text.clock_set
-                0x0000000000000000       0x1a contiki-wismote.a(clock.o)
- .far.text.clock_fine_max
+ .bss           0x0000000000000000        0x0 contiki-wismote.a(clock.o)
+ .any.text.clock_set
+                0x0000000000000000       0x16 contiki-wismote.a(clock.o)
+ .any.text.clock_fine_max
                 0x0000000000000000        0x6 contiki-wismote.a(clock.o)
- .far.text.clock_fine
-                0x0000000000000000        0xe contiki-wismote.a(clock.o)
- .far.text.clock_set_seconds
-                0x0000000000000000       0x1c contiki-wismote.a(clock.o)
- .far.text.clock_seconds
-                0x0000000000000000       0x22 contiki-wismote.a(clock.o)
- .far.text.clock_counter
+ .any.text.clock_fine
+                0x0000000000000000        0xc contiki-wismote.a(clock.o)
+ .any.text.clock_set_seconds
+                0x0000000000000000       0x18 contiki-wismote.a(clock.o)
+ .any.text.clock_seconds
+                0x0000000000000000       0x1a contiki-wismote.a(clock.o)
+ .any.text.clock_counter
                 0x0000000000000000        0xe contiki-wismote.a(clock.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(leds.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(leds.o)
- .far.text.leds_get
+ .bss           0x0000000000000000        0x0 contiki-wismote.a(leds.o)
+ .any.text.leds_get
                 0x0000000000000000        0x6 contiki-wismote.a(leds.o)
- .far.text.leds_set
+ .any.text.leds_set
                 0x0000000000000000        0x6 contiki-wismote.a(leds.o)
- .far.text.leds_toggle
-                0x0000000000000000        0xc contiki-wismote.a(leds.o)
- .far.text.leds_blink
-                0x0000000000000000       0x22 contiki-wismote.a(leds.o)
+ .any.text.leds_toggle
+                0x0000000000000000        0xa contiki-wismote.a(leds.o)
+ .any.text.leds_blink
+                0x0000000000000000       0x20 contiki-wismote.a(leds.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(leds-arch.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(leds-arch.o)
  .bss           0x0000000000000000        0x0 contiki-wismote.a(leds-arch.o)
- .far.text.leds_arch_get
+ .any.text.leds_arch_get
                 0x0000000000000000       0x2c contiki-wismote.a(leds-arch.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(watchdog.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(watchdog.o)
- .far.text.watchdog_reboot
+ .bss           0x0000000000000000        0x0 contiki-wismote.a(watchdog.o)
+ .any.text.watchdog_reboot
                 0x0000000000000000        0x6 contiki-wismote.a(watchdog.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(rtimer-arch.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(rtimer-arch.o)
@@ -257,51 +270,59 @@ Discarded input sections
  .text          0x0000000000000000        0x0 contiki-wismote.a(autostart.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(autostart.o)
  .bss           0x0000000000000000        0x0 contiki-wismote.a(autostart.o)
- .far.text.autostart_exit
-                0x0000000000000000       0x2c contiki-wismote.a(autostart.o)
+ .any.text.autostart_exit
+                0x0000000000000000       0x14 contiki-wismote.a(autostart.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(energest.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(energest.o)
  .bss           0x0000000000000000        0x0 contiki-wismote.a(energest.o)
- .far.text.energest_leveldevice_leveltime
+ .any.text.energest_leveldevice_leveltime
                 0x0000000000000000        0x6 contiki-wismote.a(energest.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(ctimer.o)
- .far.text.ctimer_reset
-                0x0000000000000000       0x34 contiki-wismote.a(ctimer.o)
- .far.text.ctimer_restart
-                0x0000000000000000       0x34 contiki-wismote.a(ctimer.o)
- .far.text.ctimer_expired
-                0x0000000000000000       0x34 contiki-wismote.a(ctimer.o)
+ .data          0x0000000000000000        0x0 contiki-wismote.a(ctimer.o)
+ .bss           0x0000000000000000        0x0 contiki-wismote.a(ctimer.o)
+ .any.text.ctimer_reset
+                0x0000000000000000       0x2c contiki-wismote.a(ctimer.o)
+ .any.text.ctimer_restart
+                0x0000000000000000       0x2c contiki-wismote.a(ctimer.o)
+ .any.text.ctimer_expired
+                0x0000000000000000       0x30 contiki-wismote.a(ctimer.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(etimer.o)
- .far.text.etimer_reset_with_new_interval
+ .data          0x0000000000000000        0x0 contiki-wismote.a(etimer.o)
+ .bss           0x0000000000000000        0x0 contiki-wismote.a(etimer.o)
+ .any.text.etimer_reset_with_new_interval
                 0x0000000000000000       0x1e contiki-wismote.a(etimer.o)
- .far.text.etimer_reset
+ .any.text.etimer_reset
                 0x0000000000000000       0x12 contiki-wismote.a(etimer.o)
- .far.text.etimer_restart
+ .any.text.etimer_restart
                 0x0000000000000000       0x12 contiki-wismote.a(etimer.o)
- .far.text.etimer_adjust
+ .any.text.etimer_adjust
                 0x0000000000000000       0x1a contiki-wismote.a(etimer.o)
- .far.text.etimer_expiration_time
+ .any.text.etimer_expiration_time
                 0x0000000000000000       0x14 contiki-wismote.a(etimer.o)
- .far.text.etimer_start_time
+ .any.text.etimer_start_time
                 0x0000000000000000        0x8 contiki-wismote.a(etimer.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(process.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(process.o)
- .far.text.process_exit
+ .bss           0x0000000000000000        0x0 contiki-wismote.a(process.o)
+ .any.text.process_exit
                 0x0000000000000000        0xa contiki-wismote.a(process.o)
- .far.text.process_is_running
+ .any.text.process_is_running
                 0x0000000000000000        0xe contiki-wismote.a(process.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(rtimer.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(rtimer.o)
+ .bss           0x0000000000000000        0x0 contiki-wismote.a(rtimer.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(timer.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(timer.o)
  .bss           0x0000000000000000        0x0 contiki-wismote.a(timer.o)
- .far.text.timer_reset
+ .any.text.timer_reset
                 0x0000000000000000        0xe contiki-wismote.a(timer.o)
- .far.text.timer_restart
+ .any.text.timer_restart
                 0x0000000000000000       0x14 contiki-wismote.a(timer.o)
- .far.text.timer_remaining
+ .any.text.timer_remaining
                 0x0000000000000000       0x24 contiki-wismote.a(timer.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(serial-line.o)
+ .data          0x0000000000000000        0x0 contiki-wismote.a(serial-line.o)
+ .bss           0x0000000000000000        0x0 contiki-wismote.a(serial-line.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(list.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(list.o)
  .bss           0x0000000000000000        0x0 contiki-wismote.a(list.o)
@@ -319,15 +340,16 @@ Discarded input sections
  .text          0x0000000000000000        0x0 contiki-wismote.a(ringbuf.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(ringbuf.o)
  .bss           0x0000000000000000        0x0 contiki-wismote.a(ringbuf.o)
- .far.text.ringbuf_size
+ .any.text.ringbuf_size
                 0x0000000000000000        0x8 contiki-wismote.a(ringbuf.o)
- .far.text.ringbuf_elements
+ .any.text.ringbuf_elements
                 0x0000000000000000       0x12 contiki-wismote.a(ringbuf.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(broadcast.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(broadcast.o)
  .bss           0x0000000000000000        0x0 contiki-wismote.a(broadcast.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(channel.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(channel.o)
+ .bss           0x0000000000000000        0x0 contiki-wismote.a(channel.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(chameleon.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(chameleon.o)
  .bss           0x0000000000000000        0x0 contiki-wismote.a(chameleon.o)
@@ -336,90 +358,106 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 contiki-wismote.a(abc.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(rime.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(rime.o)
- .far.text.rime_sniffer_add
+ .bss           0x0000000000000000        0x0 contiki-wismote.a(rime.o)
+ .any.text.rime_sniffer_add
                 0x0000000000000000        0xc contiki-wismote.a(rime.o)
- .far.text.rime_sniffer_remove
+ .any.text.rime_sniffer_remove
                 0x0000000000000000        0xc contiki-wismote.a(rime.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(announcement.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(announcement.o)
- .far.text.announcement_register
+ .bss           0x0000000000000000        0x0 contiki-wismote.a(announcement.o)
+ .any.text.announcement_register
                 0x0000000000000000       0x3a contiki-wismote.a(announcement.o)
- .far.text.announcement_remove
+ .any.text.announcement_remove
                 0x0000000000000000        0xc contiki-wismote.a(announcement.o)
- .far.text.announcement_remove_value
+ .any.text.announcement_remove_value
                 0x0000000000000000       0x22 contiki-wismote.a(announcement.o)
- .far.text.announcement_set_value
+ .any.text.announcement_set_value
                 0x0000000000000000       0x28 contiki-wismote.a(announcement.o)
- .far.text.announcement_bump
+ .any.text.announcement_bump
                 0x0000000000000000       0x22 contiki-wismote.a(announcement.o)
- .far.text.announcement_listen
+ .any.text.announcement_listen
                 0x0000000000000000        0xc contiki-wismote.a(announcement.o)
- .far.text.announcement_register_listen_callback
+ .any.text.announcement_register_listen_callback
                 0x0000000000000000        0x6 contiki-wismote.a(announcement.o)
+ .bss.listen_callback
+                0x0000000000000000        0x4 contiki-wismote.a(announcement.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(queuebuf.o)
- .far.text.queuebuf_numfree
+ .data          0x0000000000000000        0x0 contiki-wismote.a(queuebuf.o)
+ .bss           0x0000000000000000        0x0 contiki-wismote.a(queuebuf.o)
+ .any.text.queuebuf_numfree
                 0x0000000000000000        0xa contiki-wismote.a(queuebuf.o)
- .far.text.queuebuf_dataptr
+ .any.text.queuebuf_dataptr
                 0x0000000000000000       0x1c contiki-wismote.a(queuebuf.o)
- .far.text.queuebuf_datalen
+ .any.text.queuebuf_datalen
                 0x0000000000000000        0x8 contiki-wismote.a(queuebuf.o)
- .far.text.queuebuf_addr
+ .any.text.queuebuf_addr
                 0x0000000000000000        0xe contiki-wismote.a(queuebuf.o)
- .far.text.queuebuf_debug_print
+ .any.text.queuebuf_debug_print
                 0x0000000000000000        0x2 contiki-wismote.a(queuebuf.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(packetbuf.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(packetbuf.o)
- .far.text.packetbuf_remaininglen
+ .bss           0x0000000000000000        0x0 contiki-wismote.a(packetbuf.o)
+ .any.text.packetbuf_remaininglen
                 0x0000000000000000        0xe contiki-wismote.a(packetbuf.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(linkaddr.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(linkaddr.o)
  .bss           0x0000000000000000        0x0 contiki-wismote.a(linkaddr.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(csma.o)
+ .data          0x0000000000000000        0x0 contiki-wismote.a(csma.o)
+ .bss           0x0000000000000000        0x0 contiki-wismote.a(csma.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(mac.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(mac.o)
  .bss           0x0000000000000000        0x0 contiki-wismote.a(mac.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(contikimac.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(contikimac.o)
- .far.text.contikimac_debug_print
+ .bss           0x0000000000000000        0x0 contiki-wismote.a(contikimac.o)
+ .any.text.contikimac_debug_print
                 0x0000000000000000        0x4 contiki-wismote.a(contikimac.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(nullsec.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(nullsec.o)
  .bss           0x0000000000000000        0x0 contiki-wismote.a(nullsec.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(spi.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(spi.o)
- .bss           0x0000000000000000        0x1 contiki-wismote.a(spi.o)
+ .bss           0x0000000000000000        0x0 contiki-wismote.a(spi.o)
+ .bss.spi_busy  0x0000000000000000        0x1 contiki-wismote.a(spi.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(compower.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(compower.o)
- .far.text.compower_init
-                0x0000000000000000       0x1a contiki-wismote.a(compower.o)
- .far.text.compower_accumulate_attrs
+ .bss           0x0000000000000000        0x0 contiki-wismote.a(compower.o)
+ .any.text.compower_init
+                0x0000000000000000       0x12 contiki-wismote.a(compower.o)
+ .any.text.compower_accumulate_attrs
                 0x0000000000000000       0x20 contiki-wismote.a(compower.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(memb.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(memb.o)
  .bss           0x0000000000000000        0x0 contiki-wismote.a(memb.o)
- .far.text.memb_numfree
-                0x0000000000000000       0x32 contiki-wismote.a(memb.o)
+ .any.text.memb_numfree
+                0x0000000000000000       0x26 contiki-wismote.a(memb.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(chameleon-bitop)
  .data          0x0000000000000000        0x0 contiki-wismote.a(chameleon-bitop)
  .bss           0x0000000000000000        0x0 contiki-wismote.a(chameleon-bitop)
  .text          0x0000000000000000        0x0 contiki-wismote.a(broadcast-annou)
  .data          0x0000000000000000        0x0 contiki-wismote.a(broadcast-annou)
- .far.text.broadcast_announcement_stop
+ .bss           0x0000000000000000        0x0 contiki-wismote.a(broadcast-annou)
+ .any.text.broadcast_announcement_stop
                 0x0000000000000000       0x22 contiki-wismote.a(broadcast-annou)
- .far.text.broadcast_announcement_beacon_interval
-                0x0000000000000000        0xe contiki-wismote.a(broadcast-annou)
+ .any.text.broadcast_announcement_beacon_interval
+                0x0000000000000000        0xa contiki-wismote.a(broadcast-annou)
  .text          0x0000000000000000        0x0 contiki-wismote.a(mac-sequence.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(mac-sequence.o)
+ .bss           0x0000000000000000        0x0 contiki-wismote.a(mac-sequence.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(framer-802154.o)
  .data          0x0000000000000000        0x0 contiki-wismote.a(framer-802154.o)
+ .bss           0x0000000000000000        0x0 contiki-wismote.a(framer-802154.o)
  .text          0x0000000000000000        0x0 contiki-wismote.a(frame802154.o)
+ .data          0x0000000000000000        0x0 contiki-wismote.a(frame802154.o)
  .bss           0x0000000000000000        0x0 contiki-wismote.a(frame802154.o)
- .far.text.frame802154_set_pan_id
-                0x0000000000000000        0x8 contiki-wismote.a(frame802154.o)
- .far.text.frame802154_check_dest_panid
-                0x0000000000000000       0x3c contiki-wismote.a(frame802154.o)
- .far.text.frame802154_extract_linkaddr
-                0x0000000000000000       0x8e contiki-wismote.a(frame802154.o)
+ .any.text.frame802154_set_pan_id
+                0x0000000000000000        0x6 contiki-wismote.a(frame802154.o)
+ .any.text.frame802154_check_dest_panid
+                0x0000000000000000       0x3a contiki-wismote.a(frame802154.o)
+ .any.text.frame802154_extract_linkaddr
+                0x0000000000000000       0x8c contiki-wismote.a(frame802154.o)
  .text          0x0000000000000000        0x0 /lib/gcc/msp430/4.7.0/mcpu-430x/mmpy-16/msr20/mc20/md20/libgcc.a(_udivmod32.o)
  .data          0x0000000000000000        0x0 /lib/gcc/msp430/4.7.0/mcpu-430x/mmpy-16/msr20/mc20/md20/libgcc.a(_udivmod32.o)
  .bss           0x0000000000000000        0x0 /lib/gcc/msp430/4.7.0/mcpu-430x/mmpy-16/msr20/mc20/md20/libgcc.a(_udivmod32.o)
@@ -1199,7 +1237,7 @@ LOAD /lib/gcc/msp430/4.7.0/mcpu-430x/mmpy-16/msr20/mc20/md20/libcrt0.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000005c00     0x132a
+.text           0x0000000000005c00     0x4d2e
                 0x0000000000005c00                . = ALIGN (0x2)
  *(.init .init.*)
  *(.init0)
@@ -1295,182 +1333,950 @@ LOAD /lib/gcc/msp430/4.7.0/mcpu-430x/mmpy-16/msr20/mc20/md20/libcrt0.a
                 0x000000000000608c                _unexpected_
  *(.near.text .near.text.*)
  .near.text.irq_p2
-                0x000000000000608e       0x86 contiki-wismote.a(button-sensor.o)
+                0x000000000000608e       0x74 contiki-wismote.a(button-sensor.o)
                 0x000000000000608e                irq_p2
                 0x000000000000608e                __isr_42
  .near.text.cc2520_port1_interrupt
-                0x0000000000006114       0x60 contiki-wismote.a(cc2520-arch.o)
-                0x0000000000006114                __isr_47
-                0x0000000000006114                cc2520_port1_interrupt
+                0x0000000000006102       0x4e contiki-wismote.a(cc2520-arch.o)
+                0x0000000000006102                __isr_47
+                0x0000000000006102                cc2520_port1_interrupt
  .near.text.uart1_rx_interrupt
-                0x0000000000006174       0x7e contiki-wismote.a(uart1.o)
-                0x0000000000006174                __isr_46
-                0x0000000000006174                uart1_rx_interrupt
+                0x0000000000006150       0x6c contiki-wismote.a(uart1.o)
+                0x0000000000006150                __isr_46
+                0x0000000000006150                uart1_rx_interrupt
  .near.text.timera1
-                0x00000000000061f2      0x128 contiki-wismote.a(clock.o)
-                0x00000000000061f2                __isr_48
-                0x00000000000061f2                timera1
+                0x00000000000061bc       0xfa contiki-wismote.a(clock.o)
+                0x00000000000061bc                __isr_48
+                0x00000000000061bc                timera1
  .near.text.watchdog_interrupt
-                0x000000000000631a        0x6 contiki-wismote.a(watchdog.o)
-                0x000000000000631a                watchdog_interrupt
-                0x000000000000631a                __isr_58
+                0x00000000000062b6        0x6 contiki-wismote.a(watchdog.o)
+                0x00000000000062b6                watchdog_interrupt
+                0x00000000000062b6                __isr_58
  .near.text.timera0
-                0x0000000000006320       0x6e contiki-wismote.a(rtimer-arch.o)
-                0x0000000000006320                __isr_49
-                0x0000000000006320                timera0
+                0x00000000000062bc       0x5c contiki-wismote.a(rtimer-arch.o)
+                0x00000000000062bc                __isr_49
+                0x00000000000062bc                timera0
+ .any.text.init_platform
+                0x0000000000006318        0xc contiki-wismote.a(contiki-wismote)
+                0x0000000000006318                init_platform
+ .any.text.status
+                0x0000000000006324       0x18 contiki-wismote.a(button-sensor.o)
+ .any.text.value
+                0x000000000000633c       0x20 contiki-wismote.a(button-sensor.o)
+ .any.text.configure
+                0x000000000000635c       0x4c contiki-wismote.a(button-sensor.o)
+ .any.text.wait_ready
+                0x00000000000063a8       0x72 contiki-wismote.a(xmem.o)
+ .any.text.xmem_init
+                0x000000000000641a       0x5e contiki-wismote.a(xmem.o)
+                0x000000000000641a                xmem_init
+ .any.text.xmem_pread
+                0x0000000000006478       0xec contiki-wismote.a(xmem.o)
+                0x0000000000006478                xmem_pread
+ .any.text.node_id_restore
+                0x0000000000006564       0x38 contiki-wismote.a(node-id.o)
+                0x0000000000006564                node_id_restore
+ .any.text.process_thread_sensors_process
+                0x000000000000659c       0xc2 contiki-wismote.a(sensors.o)
+ .any.text.sensors_changed
+                0x000000000000665e       0x2a contiki-wismote.a(sensors.o)
+                0x000000000000665e                sensors_changed
+ .any.text.get_value
+                0x0000000000006688       0x4a contiki-wismote.a(cc2520.o)
+ .any.text.get_object
+                0x00000000000066d2        0x4 contiki-wismote.a(cc2520.o)
+ .any.text.set_object
+                0x00000000000066d6        0x4 contiki-wismote.a(cc2520.o)
+ .any.text.cc2520_receiving_packet
+                0x00000000000066da        0x8 contiki-wismote.a(cc2520.o)
+ .any.text.pending_packet
+                0x00000000000066e2        0xe contiki-wismote.a(cc2520.o)
+ .any.text.status
+                0x00000000000066f0       0x52 contiki-wismote.a(cc2520.o)
+ .any.text.strobe
+                0x0000000000006742       0x4e contiki-wismote.a(cc2520.o)
+ .any.text.on   0x0000000000006790       0x46 contiki-wismote.a(cc2520.o)
+ .any.text.flushrx
+                0x00000000000067d6       0xf2 contiki-wismote.a(cc2520.o)
+ .any.text.off  0x00000000000068c8       0x72 contiki-wismote.a(cc2520.o)
+ .any.text.RELEASE_LOCK
+                0x000000000000693a       0x28 contiki-wismote.a(cc2520.o)
+ .any.text.getrxdata
+                0x0000000000006962       0x7e contiki-wismote.a(cc2520.o)
+ .any.text.setreg
+                0x00000000000069e0       0x6e contiki-wismote.a(cc2520.o)
+ .any.text.cc2520_prepare
+                0x0000000000006a4e       0xde contiki-wismote.a(cc2520.o)
+ .any.text.getreg
+                0x0000000000006b2c       0x7c contiki-wismote.a(cc2520.o)
+ .any.text.cc2520_on
+                0x0000000000006ba8       0x22 contiki-wismote.a(cc2520.o)
+                0x0000000000006ba8                cc2520_on
+ .any.text.cc2520_off
+                0x0000000000006bca       0x30 contiki-wismote.a(cc2520.o)
+                0x0000000000006bca                cc2520_off
+ .any.text.cc2520_cca
+                0x0000000000006bfa       0x76 contiki-wismote.a(cc2520.o)
+ .any.text.cc2520_read
+                0x0000000000006c70      0x102 contiki-wismote.a(cc2520.o)
+ .any.text.process_thread_cc2520_process
+                0x0000000000006d72       0x54 contiki-wismote.a(cc2520.o)
+ .any.text.cc2520_set_channel
+                0x0000000000006dc6       0x78 contiki-wismote.a(cc2520.o)
+                0x0000000000006dc6                cc2520_set_channel
+ .any.text.set_value
+                0x0000000000006e3e       0x3c contiki-wismote.a(cc2520.o)
+ .any.text.cc2520_set_pan_addr
+                0x0000000000006e7a      0x1aa contiki-wismote.a(cc2520.o)
+                0x0000000000006e7a                cc2520_set_pan_addr
+ .any.text.cc2520_init
+                0x0000000000007024      0x17a contiki-wismote.a(cc2520.o)
+                0x0000000000007024                cc2520_init
+ .any.text.cc2520_interrupt
+                0x000000000000719e       0x1c contiki-wismote.a(cc2520.o)
+                0x000000000000719e                cc2520_interrupt
+ .any.text.cc2520_get_txpower
+                0x00000000000071ba       0x1a contiki-wismote.a(cc2520.o)
+                0x00000000000071ba                cc2520_get_txpower
+ .any.text.cc2520_transmit
+                0x00000000000071d4      0x1d0 contiki-wismote.a(cc2520.o)
+ .any.text.cc2520_send
+                0x00000000000073a4       0x12 contiki-wismote.a(cc2520.o)
+ .any.text.cc2520_arch_init
+                0x00000000000073b6       0x48 contiki-wismote.a(cc2520-arch.o)
+                0x00000000000073b6                cc2520_arch_init
+ .any.text.uart1_active
+                0x00000000000073fe        0xe contiki-wismote.a(uart1.o)
+                0x00000000000073fe                uart1_active
+ .any.text.uart1_set_input
+                0x000000000000740c        0x6 contiki-wismote.a(uart1.o)
+                0x000000000000740c                uart1_set_input
+ .any.text.uart1_writeb
+                0x0000000000007412       0x16 contiki-wismote.a(uart1.o)
+                0x0000000000007412                uart1_writeb
+ .any.text.uart1_init
+                0x0000000000007428       0x64 contiki-wismote.a(uart1.o)
+                0x0000000000007428                uart1_init
+ .any.text.putchar
+                0x000000000000748c       0x10 contiki-wismote.a(uart1-putchar.o)
+                0x000000000000748c                putchar
+ .any.text.msp430_init_dco
+                0x000000000000749c       0x20 contiki-wismote.a(msp430.o)
+                0x000000000000749c                msp430_init_dco
+ .any.text.msp430_cpu_init
+                0x00000000000074bc       0x82 contiki-wismote.a(msp430.o)
+                0x00000000000074bc                msp430_cpu_init
+ .any.text.splhigh_
+                0x000000000000753e        0x8 contiki-wismote.a(msp430.o)
+                0x000000000000753e                splhigh_
+ .any.text.clock_time
+                0x0000000000007546       0x1a contiki-wismote.a(clock.o)
+                0x0000000000007546                clock_time
+ .any.text.clock_init
+                0x0000000000007560       0x28 contiki-wismote.a(clock.o)
+                0x0000000000007560                clock_init
+ .any.text.clock_delay
+                0x0000000000007588        0xc contiki-wismote.a(clock.o)
+                0x0000000000007588                clock_delay
+ .any.text.clock_wait
+                0x0000000000007594       0x24 contiki-wismote.a(clock.o)
+                0x0000000000007594                clock_wait
+ .any.text.show_leds
+                0x00000000000075b8       0xe8 contiki-wismote.a(leds.o)
+ .any.text.leds_init
+                0x00000000000076a0        0xa contiki-wismote.a(leds.o)
+                0x00000000000076a0                leds_init
+ .any.text.leds_on
+                0x00000000000076aa        0xa contiki-wismote.a(leds.o)
+                0x00000000000076aa                leds_on
+ .any.text.leds_off
+                0x00000000000076b4        0xe contiki-wismote.a(leds.o)
+                0x00000000000076b4                leds_off
+ .any.text.leds_arch_init
+                0x00000000000076c2       0x22 contiki-wismote.a(leds-arch.o)
+                0x00000000000076c2                leds_arch_init
+ .any.text.leds_arch_set
+                0x00000000000076e4       0x4c contiki-wismote.a(leds-arch.o)
+                0x00000000000076e4                leds_arch_set
+ .any.text.watchdog_start
+                0x0000000000007730       0x14 contiki-wismote.a(watchdog.o)
+                0x0000000000007730                watchdog_start
+ .any.text.watchdog_periodic
+                0x0000000000007744       0x12 contiki-wismote.a(watchdog.o)
+                0x0000000000007744                watchdog_periodic
+ .any.text.watchdog_stop
+                0x0000000000007756       0x16 contiki-wismote.a(watchdog.o)
+                0x0000000000007756                watchdog_stop
+ .any.text.watchdog_init
+                0x000000000000776c       0x12 contiki-wismote.a(watchdog.o)
+                0x000000000000776c                watchdog_init
+ .any.text.rtimer_arch_init
+                0x000000000000777e        0xe contiki-wismote.a(rtimer-arch.o)
+                0x000000000000777e                rtimer_arch_init
+ .any.text.rtimer_arch_now
+                0x000000000000778c        0xe contiki-wismote.a(rtimer-arch.o)
+                0x000000000000778c                rtimer_arch_now
+ .any.text.rtimer_arch_schedule
+                0x000000000000779a        0x6 contiki-wismote.a(rtimer-arch.o)
+                0x000000000000779a                rtimer_arch_schedule
+ .any.text.autostart_start
+                0x00000000000077a0       0x16 contiki-wismote.a(autostart.o)
+                0x00000000000077a0                autostart_start
+ .any.text.energest_init
+                0x00000000000077b6       0x24 contiki-wismote.a(energest.o)
+                0x00000000000077b6                energest_init
+ .any.text.energest_type_time
+                0x00000000000077da       0x3c contiki-wismote.a(energest.o)
+                0x00000000000077da                energest_type_time
+ .any.text.energest_type_set
+                0x0000000000007816        0xc contiki-wismote.a(energest.o)
+                0x0000000000007816                energest_type_set
+ .any.text.energest_flush
+                0x0000000000007822       0x38 contiki-wismote.a(energest.o)
+                0x0000000000007822                energest_flush
+ .any.text.process_thread_ctimer_process
+                0x000000000000785a       0xa0 contiki-wismote.a(ctimer.o)
+ .any.text.ctimer_init
+                0x00000000000078fa       0x18 contiki-wismote.a(ctimer.o)
+                0x00000000000078fa                ctimer_init
+ .any.text.ctimer_set_with_process
+                0x0000000000007912       0x4a contiki-wismote.a(ctimer.o)
+                0x0000000000007912                ctimer_set_with_process
+ .any.text.ctimer_set
+                0x000000000000795c       0x10 contiki-wismote.a(ctimer.o)
+                0x000000000000795c                ctimer_set
+ .any.text.ctimer_stop
+                0x000000000000796c       0x28 contiki-wismote.a(ctimer.o)
+                0x000000000000796c                ctimer_stop
+ .any.text.update_time
+                0x0000000000007994       0x70 contiki-wismote.a(etimer.o)
+ .any.text.etimer_request_poll
+                0x0000000000007a04        0xa contiki-wismote.a(etimer.o)
+                0x0000000000007a04                etimer_request_poll
+ .any.text.process_thread_etimer_process
+                0x0000000000007a0e       0xc4 contiki-wismote.a(etimer.o)
+ .any.text.add_timer
+                0x0000000000007ad2       0x40 contiki-wismote.a(etimer.o)
+ .any.text.etimer_set
+                0x0000000000007b12       0x12 contiki-wismote.a(etimer.o)
+                0x0000000000007b12                etimer_set
+ .any.text.etimer_expired
+                0x0000000000007b24        0xe contiki-wismote.a(etimer.o)
+                0x0000000000007b24                etimer_expired
+ .any.text.etimer_pending
+                0x0000000000007b32        0xc contiki-wismote.a(etimer.o)
+                0x0000000000007b32                etimer_pending
+ .any.text.etimer_next_expiration_time
+                0x0000000000007b3e       0x16 contiki-wismote.a(etimer.o)
+                0x0000000000007b3e                etimer_next_expiration_time
+ .any.text.etimer_stop
+                0x0000000000007b54       0x3e contiki-wismote.a(etimer.o)
+                0x0000000000007b54                etimer_stop
+ .any.text.call_process
+                0x0000000000007b92       0x40 contiki-wismote.a(process.o)
+ .any.text.exit_process
+                0x0000000000007bd2       0x88 contiki-wismote.a(process.o)
+ .any.text.do_poll
+                0x0000000000007c5a       0x30 contiki-wismote.a(process.o)
+ .any.text.process_alloc_event
+                0x0000000000007c8a        0xe contiki-wismote.a(process.o)
+                0x0000000000007c8a                process_alloc_event
+ .any.text.process_init
+                0x0000000000007c98       0x1c contiki-wismote.a(process.o)
+                0x0000000000007c98                process_init
+ .any.text.process_run
+                0x0000000000007cb4       0x8c contiki-wismote.a(process.o)
+                0x0000000000007cb4                process_run
+ .any.text.process_nevents
+                0x0000000000007d40        0xe contiki-wismote.a(process.o)
+                0x0000000000007d40                process_nevents
+ .any.text.process_post
+                0x0000000000007d4e       0x4a contiki-wismote.a(process.o)
+                0x0000000000007d4e                process_post
+ .any.text.process_post_synch
+                0x0000000000007d98       0x12 contiki-wismote.a(process.o)
+                0x0000000000007d98                process_post_synch
+ .any.text.process_start
+                0x0000000000007daa       0x36 contiki-wismote.a(process.o)
+                0x0000000000007daa                process_start
+ .any.text.process_poll
+                0x0000000000007de0       0x18 contiki-wismote.a(process.o)
+                0x0000000000007de0                process_poll
+ .any.text.rtimer_init
+                0x0000000000007df8        0x6 contiki-wismote.a(rtimer.o)
+                0x0000000000007df8                rtimer_init
+ .any.text.rtimer_set
+                0x0000000000007dfe       0x24 contiki-wismote.a(rtimer.o)
+                0x0000000000007dfe                rtimer_set
+ .any.text.rtimer_run_next
+                0x0000000000007e22       0x26 contiki-wismote.a(rtimer.o)
+                0x0000000000007e22                rtimer_run_next
+ .any.text.timer_set
+                0x0000000000007e48       0x1c contiki-wismote.a(timer.o)
+                0x0000000000007e48                timer_set
+ .any.text.timer_expired
+                0x0000000000007e64       0x2a contiki-wismote.a(timer.o)
+                0x0000000000007e64                timer_expired
+ .any.text.process_thread_serial_line_process
+                0x0000000000007e8e       0x9e contiki-wismote.a(serial-line.o)
+ .any.text.serial_line_input_byte
+                0x0000000000007f2c       0x4a contiki-wismote.a(serial-line.o)
+                0x0000000000007f2c                serial_line_input_byte
+ .any.text.serial_line_init
+                0x0000000000007f76       0x1c contiki-wismote.a(serial-line.o)
+                0x0000000000007f76                serial_line_init
+ .any.text.random_init
+                0x0000000000007f92        0x6 contiki-wismote.a(random.o)
+                0x0000000000007f92                random_init
+ .any.text.random_rand
+                0x0000000000007f98        0x6 contiki-wismote.a(random.o)
+                0x0000000000007f98                random_rand
+ .any.text.ringbuf_init
+                0x0000000000007f9e       0x14 contiki-wismote.a(ringbuf.o)
+                0x0000000000007f9e                ringbuf_init
+ .any.text.ringbuf_put
+                0x0000000000007fb2       0x38 contiki-wismote.a(ringbuf.o)
+                0x0000000000007fb2                ringbuf_put
+ .any.text.ringbuf_get
+                0x0000000000007fea       0x2e contiki-wismote.a(ringbuf.o)
+                0x0000000000007fea                ringbuf_get
+ .any.text.sent_by_abc
+                0x0000000000008018       0x10 contiki-wismote.a(broadcast.o)
+ .any.text.recv_from_abc
+                0x0000000000008028       0x26 contiki-wismote.a(broadcast.o)
+ .any.text.broadcast_open
+                0x000000000000804e       0x22 contiki-wismote.a(broadcast.o)
+                0x000000000000804e                broadcast_open
+ .any.text.broadcast_close
+                0x0000000000008070        0x6 contiki-wismote.a(broadcast.o)
+                0x0000000000008070                broadcast_close
+ .any.text.broadcast_send
+                0x0000000000008076       0x1a contiki-wismote.a(broadcast.o)
+                0x0000000000008076                broadcast_send
+ .any.text.channel_init
+                0x0000000000008090        0xa contiki-wismote.a(channel.o)
+                0x0000000000008090                channel_init
+ .any.text.channel_open
+                0x000000000000809a       0x10 contiki-wismote.a(channel.o)
+                0x000000000000809a                channel_open
+ .any.text.channel_close
+                0x00000000000080aa        0xc contiki-wismote.a(channel.o)
+                0x00000000000080aa                channel_close
+ .any.text.channel_lookup
+                0x00000000000080b6       0x20 contiki-wismote.a(channel.o)
+                0x00000000000080b6                channel_lookup
+ .any.text.channel_set_attributes
+                0x00000000000080d6       0x20 contiki-wismote.a(channel.o)
+                0x00000000000080d6                channel_set_attributes
+ .any.text.chameleon_init
+                0x00000000000080f6        0x6 contiki-wismote.a(chameleon.o)
+                0x00000000000080f6                chameleon_init
+ .any.text.chameleon_parse
+                0x00000000000080fc       0x10 contiki-wismote.a(chameleon.o)
+                0x00000000000080fc                chameleon_parse
+ .any.text.chameleon_create
+                0x000000000000810c       0x1c contiki-wismote.a(chameleon.o)
+                0x000000000000810c                chameleon_create
+ .any.text.chameleon_hdrsize
+                0x0000000000008128        0x6 contiki-wismote.a(chameleon.o)
+                0x0000000000008128                chameleon_hdrsize
+ .any.text.abc_open
+                0x000000000000812e       0x1e contiki-wismote.a(abc.o)
+                0x000000000000812e                abc_open
+ .any.text.abc_close
+                0x000000000000814c        0x6 contiki-wismote.a(abc.o)
+                0x000000000000814c                abc_close
+ .any.text.abc_send
+                0x0000000000008152        0x6 contiki-wismote.a(abc.o)
+                0x0000000000008152                abc_send
+ .any.text.abc_input
+                0x0000000000008158        0xe contiki-wismote.a(abc.o)
+                0x0000000000008158                abc_input
+ .any.text.abc_sent
+                0x0000000000008166       0x10 contiki-wismote.a(abc.o)
+                0x0000000000008166                abc_sent
+ .any.text.input
+                0x0000000000008176       0x36 contiki-wismote.a(rime.o)
+ .any.text.init
+                0x00000000000081ac       0x2e contiki-wismote.a(rime.o)
+ .any.text.packet_sent
+                0x00000000000081da       0x38 contiki-wismote.a(rime.o)
+ .any.text.rime_output
+                0x0000000000008212       0x24 contiki-wismote.a(rime.o)
+                0x0000000000008212                rime_output
+ .any.text.announcement_init
+                0x0000000000008236        0xa contiki-wismote.a(announcement.o)
+                0x0000000000008236                announcement_init
+ .any.text.announcement_register_observer_callback
+                0x0000000000008240        0x6 contiki-wismote.a(announcement.o)
+                0x0000000000008240                announcement_register_observer_callback
+ .any.text.announcement_list
+                0x0000000000008246        0xa contiki-wismote.a(announcement.o)
+                0x0000000000008246                announcement_list
+ .any.text.announcement_heard
+                0x0000000000008250       0x36 contiki-wismote.a(announcement.o)
+                0x0000000000008250                announcement_heard
+ .any.text.queuebuf_init
+                0x0000000000008286       0x12 contiki-wismote.a(queuebuf.o)
+                0x0000000000008286                queuebuf_init
+ .any.text.queuebuf_new_from_packetbuf
+                0x0000000000008298       0x4e contiki-wismote.a(queuebuf.o)
+                0x0000000000008298                queuebuf_new_from_packetbuf
+ .any.text.queuebuf_update_attr_from_packetbuf
+                0x00000000000082e6       0x12 contiki-wismote.a(queuebuf.o)
+                0x00000000000082e6                queuebuf_update_attr_from_packetbuf
+ .any.text.queuebuf_update_from_packetbuf
+                0x00000000000082f8       0x22 contiki-wismote.a(queuebuf.o)
+                0x00000000000082f8                queuebuf_update_from_packetbuf
+ .any.text.queuebuf_free
+                0x000000000000831a       0x2a contiki-wismote.a(queuebuf.o)
+                0x000000000000831a                queuebuf_free
+ .any.text.queuebuf_to_packetbuf
+                0x0000000000008344       0x32 contiki-wismote.a(queuebuf.o)
+                0x0000000000008344                queuebuf_to_packetbuf
+ .any.text.queuebuf_attr
+                0x0000000000008376        0xe contiki-wismote.a(queuebuf.o)
+                0x0000000000008376                queuebuf_attr
+ .any.text.packetbuf_hdrreduce
+                0x0000000000008384       0x1a contiki-wismote.a(packetbuf.o)
+                0x0000000000008384                packetbuf_hdrreduce
+ .any.text.packetbuf_set_datalen
+                0x000000000000839e        0x6 contiki-wismote.a(packetbuf.o)
+                0x000000000000839e                packetbuf_set_datalen
+ .any.text.packetbuf_hdrptr
+                0x00000000000083a4        0x6 contiki-wismote.a(packetbuf.o)
+                0x00000000000083a4                packetbuf_hdrptr
+ .any.text.packetbuf_datalen
+                0x00000000000083aa        0x6 contiki-wismote.a(packetbuf.o)
+                0x00000000000083aa                packetbuf_datalen
+ .any.text.packetbuf_hdrlen
+                0x00000000000083b0        0xa contiki-wismote.a(packetbuf.o)
+                0x00000000000083b0                packetbuf_hdrlen
+ .any.text.packetbuf_dataptr
+                0x00000000000083ba        0xc contiki-wismote.a(packetbuf.o)
+                0x00000000000083ba                packetbuf_dataptr
+ .any.text.packetbuf_copyto
+                0x00000000000083c6       0x3a contiki-wismote.a(packetbuf.o)
+                0x00000000000083c6                packetbuf_copyto
+ .any.text.packetbuf_compact
+                0x0000000000008400       0x3c contiki-wismote.a(packetbuf.o)
+                0x0000000000008400                packetbuf_compact
+ .any.text.packetbuf_totlen
+                0x000000000000843c        0xc contiki-wismote.a(packetbuf.o)
+                0x000000000000843c                packetbuf_totlen
+ .any.text.packetbuf_hdralloc
+                0x0000000000008448       0x3c contiki-wismote.a(packetbuf.o)
+                0x0000000000008448                packetbuf_hdralloc
+ .any.text.packetbuf_attr_clear
+                0x0000000000008484       0x2c contiki-wismote.a(packetbuf.o)
+                0x0000000000008484                packetbuf_attr_clear
+ .any.text.packetbuf_clear
+                0x00000000000084b0       0x12 contiki-wismote.a(packetbuf.o)
+                0x00000000000084b0                packetbuf_clear
+ .any.text.packetbuf_copyfrom
+                0x00000000000084c2       0x2a contiki-wismote.a(packetbuf.o)
+                0x00000000000084c2                packetbuf_copyfrom
+ .any.text.packetbuf_attr_copyto
+                0x00000000000084ec       0x20 contiki-wismote.a(packetbuf.o)
+                0x00000000000084ec                packetbuf_attr_copyto
+ .any.text.packetbuf_attr_copyfrom
+                0x000000000000850c       0x22 contiki-wismote.a(packetbuf.o)
+                0x000000000000850c                packetbuf_attr_copyfrom
+ .any.text.packetbuf_holds_broadcast
+                0x000000000000852e        0xe contiki-wismote.a(packetbuf.o)
+                0x000000000000852e                packetbuf_holds_broadcast
+ .any.text.linkaddr_copy
+                0x000000000000853c        0xc contiki-wismote.a(linkaddr.o)
+                0x000000000000853c                linkaddr_copy
+ .any.text.linkaddr_cmp
+                0x0000000000008548       0x12 contiki-wismote.a(linkaddr.o)
+                0x0000000000008548                linkaddr_cmp
+ .any.text.linkaddr_set_node_addr
+                0x000000000000855a        0xc contiki-wismote.a(linkaddr.o)
+                0x000000000000855a                linkaddr_set_node_addr
+ .any.text.input_packet
+                0x0000000000008566        0x6 contiki-wismote.a(csma.o)
+ .any.text.on   0x000000000000856c        0x6 contiki-wismote.a(csma.o)
+ .any.text.off  0x0000000000008572        0x6 contiki-wismote.a(csma.o)
+ .any.text.channel_check_interval
+                0x0000000000008578       0x10 contiki-wismote.a(csma.o)
+ .any.text.transmit_packet_list
+                0x0000000000008588       0x24 contiki-wismote.a(csma.o)
+ .any.text.schedule_transmission
+                0x00000000000085ac       0x92 contiki-wismote.a(csma.o)
+ .any.text.init
+                0x000000000000863e       0x1a contiki-wismote.a(csma.o)
+ .any.text.tx_done
+                0x0000000000008658       0x90 contiki-wismote.a(csma.o)
+ .any.text.send_packet
+                0x00000000000086e8      0x164 contiki-wismote.a(csma.o)
+ .any.text.packet_sent
+                0x000000000000884c       0xca contiki-wismote.a(csma.o)
+ .any.text.mac_call_sent_callback
+                0x0000000000008916       0x14 contiki-wismote.a(mac.o)
+                0x0000000000008916                mac_call_sent_callback
+ .any.text.duty_cycle
+                0x000000000000892a        0x6 contiki-wismote.a(contikimac.o)
+ .any.text.init
+                0x0000000000008930       0x2a contiki-wismote.a(contikimac.o)
+ .any.text.on   0x000000000000895a       0x1a contiki-wismote.a(contikimac.o)
+ .any.text.off  0x0000000000008974       0x22 contiki-wismote.a(contikimac.o)
+ .any.text.recv_burst_off
+                0x0000000000008996        0xa contiki-wismote.a(contikimac.o)
+ .any.text.turn_off
+                0x00000000000089a0       0x20 contiki-wismote.a(contikimac.o)
+ .any.text.turn_on
+                0x00000000000089c0       0x30 contiki-wismote.a(contikimac.o)
+ .any.text.schedule_powercycle_fixed.part.4
+                0x00000000000089f0       0x32 contiki-wismote.a(contikimac.o)
+ .any.text.powercycle_turn_radio_off
+                0x0000000000008a22       0x30 contiki-wismote.a(contikimac.o)
+ .any.text.input_packet
+                0x0000000000008a52       0xb6 contiki-wismote.a(contikimac.o)
+ .any.text.send_packet.isra.8
+                0x0000000000008b08      0x1f0 contiki-wismote.a(contikimac.o)
+ .any.text.qsend_list
+                0x0000000000008cf8       0xbe contiki-wismote.a(contikimac.o)
+ .any.text.qsend_packet
+                0x0000000000008db6       0x28 contiki-wismote.a(contikimac.o)
+ .any.text.powercycle_wrapper
+                0x0000000000008dde      0x1c2 contiki-wismote.a(contikimac.o)
+ .any.text.init
+                0x0000000000008fa0        0x2 contiki-wismote.a(nullsec.o)
+ .any.text.send
+                0x0000000000008fa2        0xa contiki-wismote.a(nullsec.o)
+ .any.text.input
+                0x0000000000008fac        0x6 contiki-wismote.a(nullsec.o)
+ .any.text.spi_init
+                0x0000000000008fb2       0x32 contiki-wismote.a(spi.o)
+                0x0000000000008fb2                spi_init
+ .any.text.compower_accumulate
+                0x0000000000008fe4       0x6a contiki-wismote.a(compower.o)
+                0x0000000000008fe4                compower_accumulate
+ .any.text.compower_clear
+                0x000000000000904e       0x12 contiki-wismote.a(compower.o)
+                0x000000000000904e                compower_clear
+ .any.text.compower_attrconv
+                0x0000000000009060       0x10 contiki-wismote.a(compower.o)
+                0x0000000000009060                compower_attrconv
+ .any.text.memb_init
+                0x0000000000009070       0x36 contiki-wismote.a(memb.o)
+                0x0000000000009070                memb_init
+ .any.text.memb_alloc
+                0x00000000000090a6       0x3e contiki-wismote.a(memb.o)
+                0x00000000000090a6                memb_alloc
+ .any.text.memb_free
+                0x00000000000090e4       0x3a contiki-wismote.a(memb.o)
+                0x00000000000090e4                memb_free
+ .any.text.memb_inmemb
+                0x000000000000911e       0x2a contiki-wismote.a(memb.o)
+                0x000000000000911e                memb_inmemb
+ .any.text.get_bits_in_byte
+                0x0000000000009148       0x36 contiki-wismote.a(chameleon-bitop)
+ .any.text.header_size
+                0x000000000000917e       0x16 contiki-wismote.a(chameleon-bitop)
+ .any.text.get_bits
+                0x0000000000009194       0x8a contiki-wismote.a(chameleon-bitop)
+                0x0000000000009194                get_bits
+ .any.text.unpack_header
+                0x000000000000921e       0xba contiki-wismote.a(chameleon-bitop)
+ .any.text.set_bits
+                0x00000000000092d8       0xe2 contiki-wismote.a(chameleon-bitop)
+                0x00000000000092d8                set_bits
+ .any.text.pack_header
+                0x00000000000093ba       0xa8 contiki-wismote.a(chameleon-bitop)
+ .any.text.adv_packet_sent
+                0x0000000000009462        0x2 contiki-wismote.a(broadcast-annou)
+ .any.text.adv_packet_received
+                0x0000000000009464       0x56 contiki-wismote.a(broadcast-annou)
+ .any.text.set_timers
+                0x00000000000094ba       0x4a contiki-wismote.a(broadcast-annou)
+ .any.text.send_timer
+                0x0000000000009504       0x32 contiki-wismote.a(broadcast-annou)
+ .any.text.send_adv
+                0x0000000000009536       0x60 contiki-wismote.a(broadcast-annou)
+ .any.text.new_announcement
+                0x0000000000009596       0x18 contiki-wismote.a(broadcast-annou)
+ .any.text.broadcast_announcement_init
+                0x00000000000095ae       0x44 contiki-wismote.a(broadcast-annou)
+                0x00000000000095ae                broadcast_announcement_init
+ .any.text.mac_sequence_is_duplicate
+                0x00000000000095f2       0x5a contiki-wismote.a(mac-sequence.o)
+                0x00000000000095f2                mac_sequence_is_duplicate
+ .any.text.mac_sequence_register_seqno
+                0x000000000000964c       0x70 contiki-wismote.a(mac-sequence.o)
+                0x000000000000964c                mac_sequence_register_seqno
+ .any.text.create_frame.isra.0
+                0x00000000000096bc      0x110 contiki-wismote.a(framer-802154.o)
+ .any.text.create
+                0x00000000000097cc        0x8 contiki-wismote.a(framer-802154.o)
+ .any.text.hdr_length
+                0x00000000000097d4        0x8 contiki-wismote.a(framer-802154.o)
+ .any.text.parse
+                0x00000000000097dc       0xa4 contiki-wismote.a(framer-802154.o)
+ .any.text.frame802154_get_pan_id
+                0x0000000000009880        0x6 contiki-wismote.a(frame802154.o)
+                0x0000000000009880                frame802154_get_pan_id
+ .any.text.frame802154_has_panid
+                0x0000000000009886       0xe0 contiki-wismote.a(frame802154.o)
+                0x0000000000009886                frame802154_has_panid
+ .any.text.field_len
+                0x0000000000009966       0xa8 contiki-wismote.a(frame802154.o)
+ .any.text.frame802154_is_broadcast_addr
+                0x0000000000009a0e       0x28 contiki-wismote.a(frame802154.o)
+                0x0000000000009a0e                frame802154_is_broadcast_addr
+ .any.text.frame802154_hdrlen
+                0x0000000000009a36       0x32 contiki-wismote.a(frame802154.o)
+                0x0000000000009a36                frame802154_hdrlen
+ .any.text.frame802154_create_fcf
+                0x0000000000009a68       0x6e contiki-wismote.a(frame802154.o)
+                0x0000000000009a68                frame802154_create_fcf
+ .any.text.frame802154_create
+                0x0000000000009ad6       0xd4 contiki-wismote.a(frame802154.o)
+                0x0000000000009ad6                frame802154_create
+ .any.text.frame802154_parse_fcf
+                0x0000000000009baa       0x8c contiki-wismote.a(frame802154.o)
+                0x0000000000009baa                frame802154_parse_fcf
+ .any.text.frame802154_parse
+                0x0000000000009c36      0x15c contiki-wismote.a(frame802154.o)
+                0x0000000000009c36                frame802154_parse
  .any.text.printf
-                0x000000000000638e       0x12 /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(printf.o)
-                0x000000000000638e                printf
+                0x0000000000009d92       0x12 /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(printf.o)
+                0x0000000000009d92                printf
  .any.text.print_field
-                0x00000000000063a0      0x170 /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(vuprintf.o)
+                0x0000000000009da4      0x170 /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(vuprintf.o)
  .any.text.vuprintf
-                0x0000000000006510      0x76c /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(vuprintf.o)
-                0x0000000000006510                vuprintf
+                0x0000000000009f14      0x76c /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(vuprintf.o)
+                0x0000000000009f14                vuprintf
  .any.text.puts
-                0x0000000000006c7c       0x2e /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(puts.o)
-                0x0000000000006c7c                puts
+                0x000000000000a680       0x2e /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(puts.o)
+                0x000000000000a680                puts
  .any.text.rand
-                0x0000000000006caa       0x2e /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(rand.o)
-                0x0000000000006caa                rand
+                0x000000000000a6ae       0x2e /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(rand.o)
+                0x000000000000a6ae                rand
  .any.text.srand
-                0x0000000000006cd8        0xe /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(rand.o)
-                0x0000000000006cd8                srand
+                0x000000000000a6dc        0xe /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(rand.o)
+                0x000000000000a6dc                srand
  .any.text.memcmp
-                0x0000000000006ce6       0x20 /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(memcmp.o)
-                0x0000000000006ce6                memcmp
+                0x000000000000a6ea       0x20 /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(memcmp.o)
+                0x000000000000a6ea                memcmp
  .any.text.memcpy
-                0x0000000000006d06      0x194 /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(memcpy.o)
-                0x0000000000006d06                memcpy
+                0x000000000000a70a      0x194 /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(memcpy.o)
+                0x000000000000a70a                memcpy
  .any.text.memset
-                0x0000000000006e9a       0x7c /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(memset.o)
-                0x0000000000006e9a                memset
+                0x000000000000a89e       0x7c /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(memset.o)
+                0x000000000000a89e                memset
  .any.text.strlen
-                0x0000000000006f16       0x14 /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(strlen.o)
-                0x0000000000006f16                strlen
+                0x000000000000a91a       0x14 /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(strlen.o)
+                0x000000000000a91a                strlen
 
-.rodata         0x0000000000006f2a        0x7
-                0x0000000000006f2a                . = ALIGN (0x2)
+.rodata         0x000000000000a92e      0x141
+                0x000000000000a92e                . = ALIGN (0x2)
  *(.rodata .rodata.* .gnu.linkonce.r.*)
+ .rodata        0x000000000000a92e        0x7 contiki-wismote.a(button-sensor.o)
+ *fill*         0x000000000000a935        0x1 00
+ .rodata.button_sensor
+                0x000000000000a936        0xe contiki-wismote.a(button-sensor.o)
+                0x000000000000a936                button_sensor
+ .rodata        0x000000000000a944        0x8 contiki-wismote.a(sensors.o)
+ .rodata.cc2520_driver
+                0x000000000000a94c       0x38 contiki-wismote.a(cc2520.o)
+                0x000000000000a94c                cc2520_driver
+ .rodata        0x000000000000a984        0xe contiki-wismote.a(cc2520.o)
+ .rodata        0x000000000000a992        0xf contiki-wismote.a(ctimer.o)
+ .rodata        0x000000000000a9a1        0xc contiki-wismote.a(etimer.o)
+ .rodata        0x000000000000a9ad        0xe contiki-wismote.a(serial-line.o)
+ *fill*         0x000000000000a9bb        0x1 00
+ .rodata.broadcast
+                0x000000000000a9bc        0x8 contiki-wismote.a(broadcast.o)
+ .rodata.attributes
+                0x000000000000a9c4        0x4 contiki-wismote.a(broadcast.o)
+ .rodata.attributes
+                0x000000000000a9c8        0x2 contiki-wismote.a(abc.o)
+ .rodata        0x000000000000a9ca        0x5 contiki-wismote.a(rime.o)
+ *fill*         0x000000000000a9cf        0x1 00
+ .rodata.rime_driver
+                0x000000000000a9d0        0xa contiki-wismote.a(rime.o)
+                0x000000000000a9d0                rime_driver
+ .rodata.linkaddr_null
+                0x000000000000a9da        0x2 contiki-wismote.a(linkaddr.o)
+                0x000000000000a9da                linkaddr_null
+ .rodata        0x000000000000a9dc        0x5 contiki-wismote.a(csma.o)
+ *fill*         0x000000000000a9e1        0x1 00
+ .rodata.csma_driver
+                0x000000000000a9e2       0x1a contiki-wismote.a(csma.o)
+                0x000000000000a9e2                csma_driver
+ .rodata        0x000000000000a9fc        0xb contiki-wismote.a(contikimac.o)
+ *fill*         0x000000000000aa07        0x1 00
+ .rodata.contikimac_driver
+                0x000000000000aa08       0x1e contiki-wismote.a(contikimac.o)
+                0x000000000000aa08                contikimac_driver
+ .rodata        0x000000000000aa26        0x8 contiki-wismote.a(nullsec.o)
+ .rodata.nullsec_driver
+                0x000000000000aa2e        0xe contiki-wismote.a(nullsec.o)
+                0x000000000000aa2e                nullsec_driver
+ .rodata.chameleon_bitopt
+                0x000000000000aa3c        0xc contiki-wismote.a(chameleon-bitop)
+                0x000000000000aa3c                chameleon_bitopt
+ .rodata.bitmask
+                0x000000000000aa48        0x9 contiki-wismote.a(chameleon-bitop)
+ *fill*         0x000000000000aa51        0x1 00
+ .rodata.broadcast_callbacks
+                0x000000000000aa52        0x8 contiki-wismote.a(broadcast-annou)
+ .rodata.framer_802154
+                0x000000000000aa5a        0xc contiki-wismote.a(framer-802154.o)
+                0x000000000000aa5a                framer_802154
+ .rodata.CSWTCH.16
+                0x000000000000aa66        0x2 contiki-wismote.a(frame802154.o)
  *(.near.rodata .near.rodata.*)
  .any.rodata.vuprintf
-                0x0000000000006f2a        0x7 /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(vuprintf.o)
-                0x0000000000006f32                . = ALIGN (0x2)
-                0x0000000000006f32                _etext = .
+                0x000000000000aa68        0x7 /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(vuprintf.o)
+                0x000000000000aa70                . = ALIGN (0x2)
+                0x000000000000aa70                _etext = .
 
-.data           0x0000000000001c00       0xae load address 0x0000000000006f32
+.data           0x0000000000001c00       0x80 load address 0x000000000000aa70
                 0x0000000000001c00                . = ALIGN (0x2)
                 0x0000000000001c00                __data_start = .
  *(.data .data.* .gnu.linkonce.d.*)
  .data          0x0000000000001c00       0x10 temp.co
                 0x0000000000001c00                example_broadcast_process
- .data          0x0000000000001c10        0x8 contiki-wismote.a(contiki-wismote)
+ .data.sensors  0x0000000000001c10        0x4 contiki-wismote.a(contiki-wismote)
                 0x0000000000001c10                sensors
- .data          0x0000000000001c18       0x10 contiki-wismote.a(sensors.o)
-                0x0000000000001c18                sensors_process
- .data          0x0000000000001c28       0x10 contiki-wismote.a(cc2520.o)
-                0x0000000000001c28                cc2520_process
- .data          0x0000000000001c38        0x4 contiki-wismote.a(msp430.o)
- .data          0x0000000000001c3c       0x10 contiki-wismote.a(ctimer.o)
-                0x0000000000001c3c                ctimer_process
- .data          0x0000000000001c4c       0x10 contiki-wismote.a(etimer.o)
-                0x0000000000001c4c                etimer_process
- .data          0x0000000000001c5c       0x10 contiki-wismote.a(serial-line.o)
-                0x0000000000001c5c                serial_line_process
- .data          0x0000000000001c6c       0x18 contiki-wismote.a(queuebuf.o)
- .data          0x0000000000001c84       0x24 contiki-wismote.a(csma.o)
- .data          0x0000000000001ca8        0x2 contiki-wismote.a(frame802154.o)
+ .data.sensors_process
+                0x0000000000001c14        0xc contiki-wismote.a(sensors.o)
+                0x0000000000001c14                sensors_process
+ .data.cc2520_process
+                0x0000000000001c20        0xc contiki-wismote.a(cc2520.o)
+                0x0000000000001c20                cc2520_process
+ .data.cur_break
+                0x0000000000001c2c        0x2 contiki-wismote.a(msp430.o)
+ .data.ctimer_process
+                0x0000000000001c2e        0xc contiki-wismote.a(ctimer.o)
+                0x0000000000001c2e                ctimer_process
+ .data.etimer_process
+                0x0000000000001c3a        0xc contiki-wismote.a(etimer.o)
+                0x0000000000001c3a                etimer_process
+ .data.serial_line_process
+                0x0000000000001c46        0xc contiki-wismote.a(serial-line.o)
+                0x0000000000001c46                serial_line_process
+ .data.buframmem
+                0x0000000000001c52        0x8 contiki-wismote.a(queuebuf.o)
+ .data.bufmem   0x0000000000001c5a        0x8 contiki-wismote.a(queuebuf.o)
+ .data.neighbor_memb
+                0x0000000000001c62        0x8 contiki-wismote.a(csma.o)
+ .data.packet_memb
+                0x0000000000001c6a        0x8 contiki-wismote.a(csma.o)
+ .data.metadata_memb
+                0x0000000000001c72        0x8 contiki-wismote.a(csma.o)
+ .data.mac_pan_id
+                0x0000000000001c7a        0x2 contiki-wismote.a(frame802154.o)
  *(.near.data .near.data.*)
-                0x0000000000001caa                . = ALIGN (0x2)
-                0x0000000000001caa                _edata = .
+                0x0000000000001c7c                . = ALIGN (0x2)
+                0x0000000000001c7c                _edata = .
  .any.data.next
-                0x0000000000001caa        0x4 /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(rand.o)
-                0x0000000000006f32                __data_load_start = LOADADDR (.data)
-                0x00000000000000ae                __data_size = SIZEOF (.data)
+                0x0000000000001c7c        0x4 /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(rand.o)
+                0x000000000000aa70                __data_load_start = LOADADDR (.data)
+                0x0000000000000080                __data_size = SIZEOF (.data)
 
-.bss            0x0000000000001cae     0x12a0 load address 0x0000000000006fe0
-                0x0000000000001cae                __bss_start = .
+.bss            0x0000000000001c80     0x1182 load address 0x000000000000aaf0
+                0x0000000000001c80                __bss_start = .
  *(.bss .bss.*)
- .bss           0x0000000000001cae       0x26 temp.co
- .bss           0x0000000000001cd4        0x4 obj_wismote/contiki-wismote-main.o
- .bss           0x0000000000001cd8        0x8 contiki-wismote.a(button-sensor.o)
- .bss           0x0000000000001ce0        0x2 contiki-wismote.a(node-id.o)
-                0x0000000000001ce0                node_id
- .bss           0x0000000000001ce2        0x6 contiki-wismote.a(sensors.o)
- .bss           0x0000000000001ce8        0x8 contiki-wismote.a(cc2520.o)
- .bss           0x0000000000001cf0        0x6 contiki-wismote.a(uart1.o)
- .bss           0x0000000000001cf6        0xa contiki-wismote.a(clock.o)
- .bss           0x0000000000001d00        0x1 contiki-wismote.a(leds.o)
- *fill*         0x0000000000001d01        0x1 00
- .bss           0x0000000000001d02        0x2 contiki-wismote.a(watchdog.o)
- .bss           0x0000000000001d04        0x6 contiki-wismote.a(ctimer.o)
- .bss           0x0000000000001d0a        0x8 contiki-wismote.a(etimer.o)
- .bss           0x0000000000001d12       0x5c contiki-wismote.a(process.o)
-                0x0000000000001d12                process_current
-                0x0000000000001d16                process_list
- .bss           0x0000000000001d6e        0x4 contiki-wismote.a(rtimer.o)
- .bss           0x0000000000001d72      0x10c contiki-wismote.a(serial-line.o)
- .bss           0x0000000000001e7e        0x4 contiki-wismote.a(channel.o)
- .bss           0x0000000000001e82        0x4 contiki-wismote.a(rime.o)
- .bss           0x0000000000001e86        0xc contiki-wismote.a(announcement.o)
- .bss           0x0000000000001e92      0xc60 contiki-wismote.a(queuebuf.o)
- .bss           0x0000000000002af2       0x86 contiki-wismote.a(packetbuf.o)
- .bss           0x0000000000002b78      0x1ea contiki-wismote.a(csma.o)
- .bss           0x0000000000002d62       0x42 contiki-wismote.a(contikimac.o)
- .bss           0x0000000000002da4        0x8 contiki-wismote.a(compower.o)
- .bss           0x0000000000002dac       0x66 contiki-wismote.a(broadcast-annou)
- .bss           0x0000000000002e12       0x80 contiki-wismote.a(mac-sequence.o)
- .bss           0x0000000000002e92        0x2 contiki-wismote.a(framer-802154.o)
+ .bss           0x0000000000001c80       0x24 temp.co
+ .bss           0x0000000000001ca4        0x4 obj_wismote/contiki-wismote-main.o
+ .bss.debouncetimer
+                0x0000000000001ca8        0x8 contiki-wismote.a(button-sensor.o)
+ .bss.node_id   0x0000000000001cb0        0x2 contiki-wismote.a(node-id.o)
+                0x0000000000001cb0                node_id
+ .bss.num_sensors
+                0x0000000000001cb2        0x1 contiki-wismote.a(sensors.o)
+ *fill*         0x0000000000001cb3        0x1 00
+ .bss.i.2475    0x0000000000001cb4        0x2 contiki-wismote.a(sensors.o)
+ .bss.events.2476
+                0x0000000000001cb6        0x2 contiki-wismote.a(sensors.o)
+ .bss.last_packet_timestamp
+                0x0000000000001cb8        0x2 contiki-wismote.a(cc2520.o)
+ .bss.receive_on
+                0x0000000000001cba        0x1 contiki-wismote.a(cc2520.o)
+ .bss.locked    0x0000000000001cbb        0x1 contiki-wismote.a(cc2520.o)
+ .bss.lock_off  0x0000000000001cbc        0x1 contiki-wismote.a(cc2520.o)
+ .bss.lock_on   0x0000000000001cbd        0x1 contiki-wismote.a(cc2520.o)
+ .bss.channel   0x0000000000001cbe        0x2 contiki-wismote.a(cc2520.o)
+ .bss.transmitting
+                0x0000000000001cc0        0x1 contiki-wismote.a(uart1.o)
+ *fill*         0x0000000000001cc1        0x1 00
+ .bss.uart1_input_handler
+                0x0000000000001cc2        0x4 contiki-wismote.a(uart1.o)
+ .bss.last_tar  0x0000000000001cc6        0x2 contiki-wismote.a(clock.o)
+ .bss.count     0x0000000000001cc8        0x4 contiki-wismote.a(clock.o)
+ .bss.seconds   0x0000000000001ccc        0x4 contiki-wismote.a(clock.o)
+ .bss.leds      0x0000000000001cd0        0x1 contiki-wismote.a(leds.o)
+ *fill*         0x0000000000001cd1        0x1 00
+ .bss.counter   0x0000000000001cd2        0x2 contiki-wismote.a(watchdog.o)
+ .bss.initialized
+                0x0000000000001cd4        0x1 contiki-wismote.a(ctimer.o)
+ *fill*         0x0000000000001cd5        0x1 00
+ .bss.ctimer_list_list
+                0x0000000000001cd6        0x2 contiki-wismote.a(ctimer.o)
+ .bss.timerlist
+                0x0000000000001cd8        0x2 contiki-wismote.a(etimer.o)
+ .bss.next_expiration
+                0x0000000000001cda        0x4 contiki-wismote.a(etimer.o)
+ .bss.poll_requested
+                0x0000000000001cde        0x1 contiki-wismote.a(process.o)
+ *fill*         0x0000000000001cdf        0x1 00
+ .bss.process_current
+                0x0000000000001ce0        0x2 contiki-wismote.a(process.o)
+                0x0000000000001ce0                process_current
+ .bss.process_list
+                0x0000000000001ce2        0x2 contiki-wismote.a(process.o)
+                0x0000000000001ce2                process_list
+ .bss.lastevent
+                0x0000000000001ce4        0x1 contiki-wismote.a(process.o)
+ .bss.fevent    0x0000000000001ce5        0x1 contiki-wismote.a(process.o)
+ .bss.nevents   0x0000000000001ce6        0x1 contiki-wismote.a(process.o)
+ *fill*         0x0000000000001ce7        0x1 00
+ .bss.events    0x0000000000001ce8       0x30 contiki-wismote.a(process.o)
+ .bss.next_rtimer
+                0x0000000000001d18        0x2 contiki-wismote.a(rtimer.o)
+ .bss.overflow.2453
+                0x0000000000001d1a        0x1 contiki-wismote.a(serial-line.o)
+ *fill*         0x0000000000001d1b        0x1 00
+ .bss.rxbuf     0x0000000000001d1c        0x6 contiki-wismote.a(serial-line.o)
+ .bss.ptr.2460  0x0000000000001d22        0x2 contiki-wismote.a(serial-line.o)
+ .bss.buf.2459  0x0000000000001d24       0x80 contiki-wismote.a(serial-line.o)
+ .bss.rxbuf_data
+                0x0000000000001da4       0x80 contiki-wismote.a(serial-line.o)
+ .bss.channel_list_list
+                0x0000000000001e24        0x2 contiki-wismote.a(channel.o)
+ .bss.sniffers_list
+                0x0000000000001e26        0x2 contiki-wismote.a(rime.o)
+ .bss.announcements_list
+                0x0000000000001e28        0x2 contiki-wismote.a(announcement.o)
+ .bss.observer_callback
+                0x0000000000001e2a        0x4 contiki-wismote.a(announcement.o)
+ .bss.buframmem_memb_count
+                0x0000000000001e2e       0x10 contiki-wismote.a(queuebuf.o)
+ .bss.buframmem_memb_mem
+                0x0000000000001e3e      0xc00 contiki-wismote.a(queuebuf.o)
+ .bss.bufmem_memb_count
+                0x0000000000002a3e       0x10 contiki-wismote.a(queuebuf.o)
+ .bss.bufmem_memb_mem
+                0x0000000000002a4e       0x20 contiki-wismote.a(queuebuf.o)
+ .bss.bufptr    0x0000000000002a6e        0x2 contiki-wismote.a(packetbuf.o)
+ .bss.buflen    0x0000000000002a70        0x2 contiki-wismote.a(packetbuf.o)
+ .bss.hdrlen    0x0000000000002a72        0x1 contiki-wismote.a(packetbuf.o)
+ *fill*         0x0000000000002a73        0x1 00
+ .bss.packetbuf_aligned
+                0x0000000000002a74       0x80 contiki-wismote.a(packetbuf.o)
+ .bss.initialized.3314
+                0x0000000000002af4        0x1 contiki-wismote.a(csma.o)
+ *fill*         0x0000000000002af5        0x1 00
+ .bss.seqno.3315
+                0x0000000000002af6        0x2 contiki-wismote.a(csma.o)
+ .bss.neighbor_list_list
+                0x0000000000002af8        0x2 contiki-wismote.a(csma.o)
+ .bss.neighbor_memb_memb_count
+                0x0000000000002afa        0x2 contiki-wismote.a(csma.o)
+ .bss.neighbor_memb_memb_mem
+                0x0000000000002afc       0x40 contiki-wismote.a(csma.o)
+ .bss.packet_memb_memb_count
+                0x0000000000002b3c       0x10 contiki-wismote.a(csma.o)
+ .bss.packet_memb_memb_mem
+                0x0000000000002b4c       0x60 contiki-wismote.a(csma.o)
+ .bss.metadata_memb_memb_count
+                0x0000000000002bac       0x10 contiki-wismote.a(csma.o)
+ .bss.metadata_memb_memb_mem
+                0x0000000000002bbc       0x80 contiki-wismote.a(csma.o)
+ .bss.cycle_start
+                0x0000000000002c3c        0x2 contiki-wismote.a(contikimac.o)
+ .bss.radio_is_on
+                0x0000000000002c3e        0x1 contiki-wismote.a(contikimac.o)
+ .bss.we_are_sending
+                0x0000000000002c3f        0x1 contiki-wismote.a(contikimac.o)
+ .bss.contikimac_keep_radio_on
+                0x0000000000002c40        0x1 contiki-wismote.a(contikimac.o)
+ .bss.contikimac_is_on
+                0x0000000000002c41        0x1 contiki-wismote.a(contikimac.o)
+ .bss.rt        0x0000000000002c42        0x8 contiki-wismote.a(contikimac.o)
+ .bss.pt        0x0000000000002c4a        0x2 contiki-wismote.a(contikimac.o)
+ .bss.packet_seen.4033
+                0x0000000000002c4c        0x1 contiki-wismote.a(contikimac.o)
+ .bss.count.4034
+                0x0000000000002c4d        0x1 contiki-wismote.a(contikimac.o)
+ .bss.we_are_receiving_burst
+                0x0000000000002c4e        0x2 contiki-wismote.a(contikimac.o)
+ .bss.start.4039
+                0x0000000000002c50        0x2 contiki-wismote.a(contikimac.o)
+ .bss.silence_periods.4040
+                0x0000000000002c52        0x1 contiki-wismote.a(contikimac.o)
+ .bss.periods.4041
+                0x0000000000002c53        0x1 contiki-wismote.a(contikimac.o)
+ .bss.ct.4114   0x0000000000002c54       0x16 contiki-wismote.a(contikimac.o)
+ .bss.current_packet
+                0x0000000000002c6a        0x8 contiki-wismote.a(contikimac.o)
+ .bss.last_listen.2946
+                0x0000000000002c72        0x4 contiki-wismote.a(compower.o)
+ .bss.last_transmit.2947
+                0x0000000000002c76        0x4 contiki-wismote.a(compower.o)
+ .bss.c         0x0000000000002c7a       0x4a contiki-wismote.a(broadcast-annou)
+ .bss.received_seqnos
+                0x0000000000002cc4       0x80 contiki-wismote.a(mac-sequence.o)
+ .bss.initialized
+                0x0000000000002d44        0x1 contiki-wismote.a(framer-802154.o)
+ .bss.mac_dsn   0x0000000000002d45        0x1 contiki-wismote.a(framer-802154.o)
  *(.near.bss .near.bss.*)
  *(COMMON)
- COMMON         0x0000000000002e94        0x2 contiki-wismote.a(contiki-wismote)
-                0x0000000000002e94                sensors_flags
- COMMON         0x0000000000002e96        0x1 contiki-wismote.a(sensors.o)
-                0x0000000000002e96                sensors_event
- *fill*         0x0000000000002e97        0x1 00
- COMMON         0x0000000000002e98       0x13 contiki-wismote.a(cc2520.o)
-                0x0000000000002e98                cc2520_sfd_counter
-                0x0000000000002e9a                cc2520_sfd_start_time
-                0x0000000000002e9c                cc2520_sfd_end_time
-                0x0000000000002e9e                cc2520_time_of_departure
-                0x0000000000002ea0                cc2520_packets_seen
-                0x0000000000002ea2                cc2520_packets_read
-                0x0000000000002ea4                cc2520_last_rssi
-                0x0000000000002ea6                cc2520_time_of_arrival
-                0x0000000000002ea8                cc2520_authority_level_of_sender
-                0x0000000000002eaa                cc2520_last_correlation
- *fill*         0x0000000000002eab        0x1 00
- COMMON         0x0000000000002eac        0x2 contiki-wismote.a(msp430.o)
-                0x0000000000002eac                msp430_dco_required
- COMMON         0x0000000000002eae       0x56 contiki-wismote.a(energest.o)
-                0x0000000000002eae                energest_total_time
-                0x0000000000002ede                energest_total_count
-                0x0000000000002ee0                energest_current_mode
-                0x0000000000002eec                energest_current_time
- COMMON         0x0000000000002f04        0x1 contiki-wismote.a(process.o)
-                0x0000000000002f04                process_maxevents
- COMMON         0x0000000000002f05        0x1 contiki-wismote.a(serial-line.o)
-                0x0000000000002f05                serial_line_event_message
- COMMON         0x0000000000002f06       0x3e contiki-wismote.a(packetbuf.o)
-                0x0000000000002f06                packetbuf_addrs
-                0x0000000000002f0e                packetbuf_attrs
- COMMON         0x0000000000002f44        0x2 contiki-wismote.a(linkaddr.o)
-                0x0000000000002f44                linkaddr_node_addr
- COMMON         0x0000000000002f46        0x8 contiki-wismote.a(compower.o)
-                0x0000000000002f46                compower_idle_activity
-                0x0000000000002f4e                . = ALIGN (0x2)
-                0x0000000000002f4e                __bss_end = .
-                0x00000000000012a0                __bss_size = SIZEOF (.bss)
+ COMMON         0x0000000000002d46        0x2 temp.co
+                0x0000000000002d46                my_csma_stats
+ COMMON         0x0000000000002d48        0x2 contiki-wismote.a(contiki-wismote)
+                0x0000000000002d48                sensors_flags
+ COMMON         0x0000000000002d4a        0x1 contiki-wismote.a(sensors.o)
+                0x0000000000002d4a                sensors_event
+ *fill*         0x0000000000002d4b        0x1 00
+ COMMON         0x0000000000002d4c       0x13 contiki-wismote.a(cc2520.o)
+                0x0000000000002d4c                cc2520_sfd_counter
+                0x0000000000002d4e                cc2520_sfd_start_time
+                0x0000000000002d50                cc2520_sfd_end_time
+                0x0000000000002d52                cc2520_time_of_departure
+                0x0000000000002d54                cc2520_packets_seen
+                0x0000000000002d56                cc2520_packets_read
+                0x0000000000002d58                cc2520_last_rssi
+                0x0000000000002d5a                cc2520_time_of_arrival
+                0x0000000000002d5c                cc2520_authority_level_of_sender
+                0x0000000000002d5e                cc2520_last_correlation
+ *fill*         0x0000000000002d5f        0x1 00
+ COMMON         0x0000000000002d60        0x2 contiki-wismote.a(msp430.o)
+                0x0000000000002d60                msp430_dco_required
+ COMMON         0x0000000000002d62       0x56 contiki-wismote.a(energest.o)
+                0x0000000000002d62                energest_total_time
+                0x0000000000002d92                energest_total_count
+                0x0000000000002d94                energest_current_mode
+                0x0000000000002da0                energest_current_time
+ COMMON         0x0000000000002db8        0x1 contiki-wismote.a(process.o)
+                0x0000000000002db8                process_maxevents
+ COMMON         0x0000000000002db9        0x1 contiki-wismote.a(serial-line.o)
+                0x0000000000002db9                serial_line_event_message
+ COMMON         0x0000000000002dba       0x3e contiki-wismote.a(packetbuf.o)
+                0x0000000000002dba                packetbuf_addrs
+                0x0000000000002dc2                packetbuf_attrs
+ COMMON         0x0000000000002df8        0x2 contiki-wismote.a(linkaddr.o)
+                0x0000000000002df8                linkaddr_node_addr
+ COMMON         0x0000000000002dfa        0x8 contiki-wismote.a(compower.o)
+                0x0000000000002dfa                compower_idle_activity
+                0x0000000000002e02                . = ALIGN (0x2)
+                0x0000000000002e02                __bss_end = .
+                0x0000000000001182                __bss_size = SIZEOF (.bss)
 
-.noinit         0x0000000000002f4e        0x2 load address 0x0000000000006fe0
-                0x0000000000002f4e                . = ALIGN (0x2)
-                0x0000000000002f4e                __noinit_start = .
+.noinit         0x0000000000002e02        0x2 load address 0x000000000000aaf0
+                0x0000000000002e02                . = ALIGN (0x2)
+                0x0000000000002e02                __noinit_start = .
  *(.noinit .noinit.*)
- .noinit.crt0   0x0000000000002f4e        0x2 /lib/gcc/msp430/4.7.0/mcpu-430x/mmpy-16/msr20/mc20/md20/libcrt0.a(__watchdog_support.o)
-                0x0000000000002f4e                __wdt_clear_value
-                0x0000000000002f50                . = ALIGN (0x2)
-                0x0000000000002f50                __noinit_end = .
-                0x0000000000002f50                . = ALIGN (0x2)
-                0x0000000000002f50                _end = .
+ .noinit.crt0   0x0000000000002e02        0x2 /lib/gcc/msp430/4.7.0/mcpu-430x/mmpy-16/msr20/mc20/md20/libcrt0.a(__watchdog_support.o)
+                0x0000000000002e02                __wdt_clear_value
+                0x0000000000002e04                . = ALIGN (0x2)
+                0x0000000000002e04                __noinit_end = .
+                0x0000000000002e04                . = ALIGN (0x2)
+                0x0000000000002e04                _end = .
 
 .infomem        0x0000000000001800        0x0
                 0x0000000000001800                . = ALIGN (0x2)
@@ -1539,666 +2345,57 @@ LOAD /lib/gcc/msp430/4.7.0/mcpu-430x/mmpy-16/msr20/mc20/md20/libcrt0.a
                 0x0000000000010000                . = ALIGN (0x2)
  *(.fartext .fartext.*)
 
-.far.text       0x0000000000010000     0x452e
+.far.text       0x0000000000010000      0x17e
                 0x0000000000010000                . = ALIGN (0x2)
  *(.far.text .far.text.*)
  .far.text.process_thread_example_broadcast_process
-                0x0000000000010000       0xb4 temp.co
+                0x0000000000010000       0xa8 temp.co
  .far.text.broadcast_recv
-                0x00000000000100b4       0x28 temp.co
- .far.text.init_platform
-                0x00000000000100dc        0xc contiki-wismote.a(contiki-wismote)
-                0x00000000000100dc                init_platform
- .far.text.status
-                0x00000000000100e8       0x18 contiki-wismote.a(button-sensor.o)
- .far.text.value
-                0x0000000000010100       0x20 contiki-wismote.a(button-sensor.o)
- .far.text.configure
-                0x0000000000010120       0x4c contiki-wismote.a(button-sensor.o)
- .far.text.wait_ready
-                0x000000000001016c       0x72 contiki-wismote.a(xmem.o)
- .far.text.xmem_init
-                0x00000000000101de       0x5e contiki-wismote.a(xmem.o)
-                0x00000000000101de                xmem_init
- .far.text.xmem_pread
-                0x000000000001023c      0x10a contiki-wismote.a(xmem.o)
-                0x000000000001023c                xmem_pread
- .far.text.node_id_restore
-                0x0000000000010346       0x40 contiki-wismote.a(node-id.o)
-                0x0000000000010346                node_id_restore
- .far.text.process_thread_sensors_process
-                0x0000000000010386      0x136 contiki-wismote.a(sensors.o)
- .far.text.sensors_changed
-                0x00000000000104bc       0x66 contiki-wismote.a(sensors.o)
-                0x00000000000104bc                sensors_changed
- .far.text.get_value
-                0x0000000000010522       0x4e contiki-wismote.a(cc2520.o)
- .far.text.get_object
-                0x0000000000010570        0x4 contiki-wismote.a(cc2520.o)
- .far.text.set_object
-                0x0000000000010574        0x4 contiki-wismote.a(cc2520.o)
- .far.text.cc2520_receiving_packet
-                0x0000000000010578        0x8 contiki-wismote.a(cc2520.o)
- .far.text.pending_packet
-                0x0000000000010580        0xe contiki-wismote.a(cc2520.o)
- .far.text.status
-                0x000000000001058e       0x52 contiki-wismote.a(cc2520.o)
- .far.text.strobe
-                0x00000000000105e0       0x4e contiki-wismote.a(cc2520.o)
- .far.text.on   0x000000000001062e       0x4c contiki-wismote.a(cc2520.o)
- .far.text.flushrx
-                0x000000000001067a       0xf2 contiki-wismote.a(cc2520.o)
- .far.text.off  0x000000000001076c       0x82 contiki-wismote.a(cc2520.o)
- .far.text.RELEASE_LOCK
-                0x00000000000107ee       0x34 contiki-wismote.a(cc2520.o)
- .far.text.getrxdata
-                0x0000000000010822       0x88 contiki-wismote.a(cc2520.o)
- .far.text.setreg
-                0x00000000000108aa       0x6e contiki-wismote.a(cc2520.o)
- .far.text.cc2520_prepare
-                0x0000000000010918       0xec contiki-wismote.a(cc2520.o)
- .far.text.getreg
-                0x0000000000010a04       0x7c contiki-wismote.a(cc2520.o)
- .far.text.cc2520_on
-                0x0000000000010a80       0x2a contiki-wismote.a(cc2520.o)
-                0x0000000000010a80                cc2520_on
- .far.text.cc2520_off
-                0x0000000000010aaa       0x3a contiki-wismote.a(cc2520.o)
-                0x0000000000010aaa                cc2520_off
- .far.text.cc2520_cca
-                0x0000000000010ae4       0x7e contiki-wismote.a(cc2520.o)
- .far.text.cc2520_read
-                0x0000000000010b62      0x110 contiki-wismote.a(cc2520.o)
- .far.text.process_thread_cc2520_process
-                0x0000000000010c72       0x56 contiki-wismote.a(cc2520.o)
- .far.text.cc2520_set_channel
-                0x0000000000010cc8       0x7e contiki-wismote.a(cc2520.o)
-                0x0000000000010cc8                cc2520_set_channel
- .far.text.set_value
-                0x0000000000010d46       0x3c contiki-wismote.a(cc2520.o)
- .far.text.cc2520_set_pan_addr
-                0x0000000000010d82      0x1f6 contiki-wismote.a(cc2520.o)
-                0x0000000000010d82                cc2520_set_pan_addr
- .far.text.cc2520_init
-                0x0000000000010f78      0x17a contiki-wismote.a(cc2520.o)
-                0x0000000000010f78                cc2520_init
- .far.text.cc2520_interrupt
-                0x00000000000110f2       0x20 contiki-wismote.a(cc2520.o)
-                0x00000000000110f2                cc2520_interrupt
- .far.text.cc2520_get_txpower
-                0x0000000000011112       0x1c contiki-wismote.a(cc2520.o)
-                0x0000000000011112                cc2520_get_txpower
- .far.text.cc2520_transmit
-                0x000000000001112e      0x212 contiki-wismote.a(cc2520.o)
- .far.text.cc2520_send
-                0x0000000000011340       0x12 contiki-wismote.a(cc2520.o)
- .far.text.cc2520_arch_init
-                0x0000000000011352       0x48 contiki-wismote.a(cc2520-arch.o)
-                0x0000000000011352                cc2520_arch_init
- .far.text.uart1_active
-                0x000000000001139a       0x10 contiki-wismote.a(uart1.o)
-                0x000000000001139a                uart1_active
- .far.text.uart1_set_input
-                0x00000000000113aa        0x6 contiki-wismote.a(uart1.o)
-                0x00000000000113aa                uart1_set_input
- .far.text.uart1_writeb
-                0x00000000000113b0       0x16 contiki-wismote.a(uart1.o)
-                0x00000000000113b0                uart1_writeb
- .far.text.uart1_init
-                0x00000000000113c6       0x66 contiki-wismote.a(uart1.o)
-                0x00000000000113c6                uart1_init
- .far.text.putchar
-                0x000000000001142c       0x10 contiki-wismote.a(uart1-putchar.o)
-                0x000000000001142c                putchar
- .far.text.msp430_init_dco
-                0x000000000001143c       0x20 contiki-wismote.a(msp430.o)
-                0x000000000001143c                msp430_init_dco
- .far.text.msp430_cpu_init
-                0x000000000001145c       0x8a contiki-wismote.a(msp430.o)
-                0x000000000001145c                msp430_cpu_init
- .far.text.splhigh_
-                0x00000000000114e6        0x8 contiki-wismote.a(msp430.o)
-                0x00000000000114e6                splhigh_
- .far.text.clock_time
-                0x00000000000114ee       0x22 contiki-wismote.a(clock.o)
-                0x00000000000114ee                clock_time
- .far.text.clock_init
-                0x0000000000011510       0x2c contiki-wismote.a(clock.o)
-                0x0000000000011510                clock_init
- .far.text.clock_delay
-                0x000000000001153c       0x10 contiki-wismote.a(clock.o)
-                0x000000000001153c                clock_delay
- .far.text.clock_wait
-                0x000000000001154c       0x24 contiki-wismote.a(clock.o)
-                0x000000000001154c                clock_wait
- .far.text.show_leds
-                0x0000000000011570      0x128 contiki-wismote.a(leds.o)
- .far.text.leds_init
-                0x0000000000011698        0xc contiki-wismote.a(leds.o)
-                0x0000000000011698                leds_init
- .far.text.leds_on
-                0x00000000000116a4        0xc contiki-wismote.a(leds.o)
-                0x00000000000116a4                leds_on
- .far.text.leds_off
-                0x00000000000116b0       0x10 contiki-wismote.a(leds.o)
-                0x00000000000116b0                leds_off
- .far.text.leds_arch_init
-                0x00000000000116c0       0x22 contiki-wismote.a(leds-arch.o)
-                0x00000000000116c0                leds_arch_init
- .far.text.leds_arch_set
-                0x00000000000116e2       0x4c contiki-wismote.a(leds-arch.o)
-                0x00000000000116e2                leds_arch_set
- .far.text.watchdog_start
-                0x000000000001172e       0x18 contiki-wismote.a(watchdog.o)
-                0x000000000001172e                watchdog_start
- .far.text.watchdog_periodic
-                0x0000000000011746       0x12 contiki-wismote.a(watchdog.o)
-                0x0000000000011746                watchdog_periodic
- .far.text.watchdog_stop
-                0x0000000000011758       0x1a contiki-wismote.a(watchdog.o)
-                0x0000000000011758                watchdog_stop
- .far.text.watchdog_init
-                0x0000000000011772       0x14 contiki-wismote.a(watchdog.o)
-                0x0000000000011772                watchdog_init
- .far.text.rtimer_arch_init
-                0x0000000000011786        0xe contiki-wismote.a(rtimer-arch.o)
-                0x0000000000011786                rtimer_arch_init
- .far.text.rtimer_arch_now
-                0x0000000000011794        0xe contiki-wismote.a(rtimer-arch.o)
-                0x0000000000011794                rtimer_arch_now
- .far.text.rtimer_arch_schedule
-                0x00000000000117a2        0x6 contiki-wismote.a(rtimer-arch.o)
-                0x00000000000117a2                rtimer_arch_schedule
- .far.text.autostart_start
-                0x00000000000117a8       0x2e contiki-wismote.a(autostart.o)
-                0x00000000000117a8                autostart_start
- .far.text.energest_init
-                0x00000000000117d6       0x56 contiki-wismote.a(energest.o)
-                0x00000000000117d6                energest_init
- .far.text.energest_type_time
-                0x000000000001182c       0xae contiki-wismote.a(energest.o)
-                0x000000000001182c                energest_type_time
- .far.text.energest_type_set
-                0x00000000000118da       0x1a contiki-wismote.a(energest.o)
-                0x00000000000118da                energest_type_set
- .far.text.energest_flush
-                0x00000000000118f4       0xa0 contiki-wismote.a(energest.o)
-                0x00000000000118f4                energest_flush
- .far.text.process_thread_ctimer_process
-                0x0000000000011994       0xa8 contiki-wismote.a(ctimer.o)
- .far.text.ctimer_init
-                0x0000000000011a3c       0x1a contiki-wismote.a(ctimer.o)
-                0x0000000000011a3c                ctimer_init
- .far.text.ctimer_set_with_process
-                0x0000000000011a56       0x56 contiki-wismote.a(ctimer.o)
-                0x0000000000011a56                ctimer_set_with_process
- .far.text.ctimer_set
-                0x0000000000011aac       0x16 contiki-wismote.a(ctimer.o)
-                0x0000000000011aac                ctimer_set
- .far.text.ctimer_stop
-                0x0000000000011ac2       0x2e contiki-wismote.a(ctimer.o)
-                0x0000000000011ac2                ctimer_stop
- .far.text.update_time
-                0x0000000000011af0       0x7a contiki-wismote.a(etimer.o)
- .far.text.etimer_request_poll
-                0x0000000000011b6a        0xa contiki-wismote.a(etimer.o)
-                0x0000000000011b6a                etimer_request_poll
- .far.text.process_thread_etimer_process
-                0x0000000000011b74       0xd0 contiki-wismote.a(etimer.o)
- .far.text.add_timer
-                0x0000000000011c44       0x48 contiki-wismote.a(etimer.o)
- .far.text.etimer_set
-                0x0000000000011c8c       0x12 contiki-wismote.a(etimer.o)
-                0x0000000000011c8c                etimer_set
- .far.text.etimer_expired
-                0x0000000000011c9e       0x10 contiki-wismote.a(etimer.o)
-                0x0000000000011c9e                etimer_expired
- .far.text.etimer_pending
-                0x0000000000011cae        0xe contiki-wismote.a(etimer.o)
-                0x0000000000011cae                etimer_pending
- .far.text.etimer_next_expiration_time
-                0x0000000000011cbc       0x1c contiki-wismote.a(etimer.o)
-                0x0000000000011cbc                etimer_next_expiration_time
- .far.text.etimer_stop
-                0x0000000000011cd8       0x44 contiki-wismote.a(etimer.o)
-                0x0000000000011cd8                etimer_stop
- .far.text.call_process
-                0x0000000000011d1c       0x42 contiki-wismote.a(process.o)
- .far.text.exit_process
-                0x0000000000011d5e       0x8e contiki-wismote.a(process.o)
- .far.text.do_poll
-                0x0000000000011dec       0x32 contiki-wismote.a(process.o)
- .far.text.process_alloc_event
-                0x0000000000011e1e       0x12 contiki-wismote.a(process.o)
-                0x0000000000011e1e                process_alloc_event
- .far.text.process_init
-                0x0000000000011e30       0x26 contiki-wismote.a(process.o)
-                0x0000000000011e30                process_init
- .far.text.process_run
-                0x0000000000011e56       0xd6 contiki-wismote.a(process.o)
-                0x0000000000011e56                process_run
- .far.text.process_nevents
-                0x0000000000011f2c       0x12 contiki-wismote.a(process.o)
-                0x0000000000011f2c                process_nevents
- .far.text.process_post
-                0x0000000000011f3e       0x8e contiki-wismote.a(process.o)
-                0x0000000000011f3e                process_post
- .far.text.process_post_synch
-                0x0000000000011fcc       0x12 contiki-wismote.a(process.o)
-                0x0000000000011fcc                process_post_synch
- .far.text.process_start
-                0x0000000000011fde       0x36 contiki-wismote.a(process.o)
-                0x0000000000011fde                process_start
- .far.text.process_poll
-                0x0000000000012014       0x1a contiki-wismote.a(process.o)
-                0x0000000000012014                process_poll
- .far.text.rtimer_init
-                0x000000000001202e        0x6 contiki-wismote.a(rtimer.o)
-                0x000000000001202e                rtimer_init
- .far.text.rtimer_set
-                0x0000000000012034       0x26 contiki-wismote.a(rtimer.o)
-                0x0000000000012034                rtimer_set
- .far.text.rtimer_run_next
-                0x000000000001205a       0x28 contiki-wismote.a(rtimer.o)
-                0x000000000001205a                rtimer_run_next
- .far.text.timer_set
-                0x0000000000012082       0x1c contiki-wismote.a(timer.o)
-                0x0000000000012082                timer_set
- .far.text.timer_expired
-                0x000000000001209e       0x2a contiki-wismote.a(timer.o)
-                0x000000000001209e                timer_expired
- .far.text.process_thread_serial_line_process
-                0x00000000000120c8       0xc6 contiki-wismote.a(serial-line.o)
- .far.text.serial_line_input_byte
-                0x000000000001218e       0x50 contiki-wismote.a(serial-line.o)
-                0x000000000001218e                serial_line_input_byte
- .far.text.serial_line_init
-                0x00000000000121de       0x1c contiki-wismote.a(serial-line.o)
-                0x00000000000121de                serial_line_init
+                0x00000000000100a8       0x26 temp.co
  .far.text.list_init
-                0x00000000000121fa        0x8 contiki-wismote.a(list.o)
-                0x00000000000121fa                list_init
+                0x00000000000100ce        0x8 contiki-wismote.a(list.o)
+                0x00000000000100ce                list_init
  .far.text.list_head
-                0x0000000000012202        0x4 contiki-wismote.a(list.o)
-                0x0000000000012202                list_head
+                0x00000000000100d6        0x4 contiki-wismote.a(list.o)
+                0x00000000000100d6                list_head
  .far.text.list_tail
-                0x0000000000012206       0x12 contiki-wismote.a(list.o)
-                0x0000000000012206                list_tail
+                0x00000000000100da       0x12 contiki-wismote.a(list.o)
+                0x00000000000100da                list_tail
  .far.text.list_remove
-                0x0000000000012218       0x36 contiki-wismote.a(list.o)
-                0x0000000000012218                list_remove
+                0x00000000000100ec       0x36 contiki-wismote.a(list.o)
+                0x00000000000100ec                list_remove
  .far.text.list_push
-                0x000000000001224e       0x18 contiki-wismote.a(list.o)
-                0x000000000001224e                list_push
+                0x0000000000010122       0x18 contiki-wismote.a(list.o)
+                0x0000000000010122                list_push
  .far.text.list_add
-                0x0000000000012266       0x28 contiki-wismote.a(list.o)
-                0x0000000000012266                list_add
+                0x000000000001013a       0x28 contiki-wismote.a(list.o)
+                0x000000000001013a                list_add
  .far.text.list_length
-                0x000000000001228e       0x10 contiki-wismote.a(list.o)
-                0x000000000001228e                list_length
+                0x0000000000010162       0x10 contiki-wismote.a(list.o)
+                0x0000000000010162                list_length
  .far.text.list_item_next
-                0x000000000001229e        0xc contiki-wismote.a(list.o)
-                0x000000000001229e                list_item_next
- .far.text.random_init
-                0x00000000000122aa        0x6 contiki-wismote.a(random.o)
-                0x00000000000122aa                random_init
- .far.text.random_rand
-                0x00000000000122b0        0x6 contiki-wismote.a(random.o)
-                0x00000000000122b0                random_rand
- .far.text.ringbuf_init
-                0x00000000000122b6       0x14 contiki-wismote.a(ringbuf.o)
-                0x00000000000122b6                ringbuf_init
- .far.text.ringbuf_put
-                0x00000000000122ca       0x44 contiki-wismote.a(ringbuf.o)
-                0x00000000000122ca                ringbuf_put
- .far.text.ringbuf_get
-                0x000000000001230e       0x3c contiki-wismote.a(ringbuf.o)
-                0x000000000001230e                ringbuf_get
- .far.text.sent_by_abc
-                0x000000000001234a       0x10 contiki-wismote.a(broadcast.o)
- .far.text.recv_from_abc
-                0x000000000001235a       0x26 contiki-wismote.a(broadcast.o)
- .far.text.broadcast_open
-                0x0000000000012380       0x22 contiki-wismote.a(broadcast.o)
-                0x0000000000012380                broadcast_open
- .far.text.broadcast_close
-                0x00000000000123a2        0x6 contiki-wismote.a(broadcast.o)
-                0x00000000000123a2                broadcast_close
- .far.text.broadcast_send
-                0x00000000000123a8       0x1a contiki-wismote.a(broadcast.o)
-                0x00000000000123a8                broadcast_send
- .far.text.channel_init
-                0x00000000000123c2        0xa contiki-wismote.a(channel.o)
-                0x00000000000123c2                channel_init
- .far.text.channel_open
-                0x00000000000123cc       0x10 contiki-wismote.a(channel.o)
-                0x00000000000123cc                channel_open
- .far.text.channel_close
-                0x00000000000123dc        0xc contiki-wismote.a(channel.o)
-                0x00000000000123dc                channel_close
- .far.text.channel_lookup
-                0x00000000000123e8       0x20 contiki-wismote.a(channel.o)
-                0x00000000000123e8                channel_lookup
- .far.text.channel_set_attributes
-                0x0000000000012408       0x20 contiki-wismote.a(channel.o)
-                0x0000000000012408                channel_set_attributes
- .far.text.chameleon_init
-                0x0000000000012428        0x6 contiki-wismote.a(chameleon.o)
-                0x0000000000012428                chameleon_init
- .far.text.chameleon_parse
-                0x000000000001242e       0x12 contiki-wismote.a(chameleon.o)
-                0x000000000001242e                chameleon_parse
- .far.text.chameleon_create
-                0x0000000000012440       0x1e contiki-wismote.a(chameleon.o)
-                0x0000000000012440                chameleon_create
- .far.text.chameleon_hdrsize
-                0x000000000001245e        0x6 contiki-wismote.a(chameleon.o)
-                0x000000000001245e                chameleon_hdrsize
- .far.text.abc_open
-                0x0000000000012464       0x1e contiki-wismote.a(abc.o)
-                0x0000000000012464                abc_open
- .far.text.abc_close
-                0x0000000000012482        0x6 contiki-wismote.a(abc.o)
-                0x0000000000012482                abc_close
- .far.text.abc_send
-                0x0000000000012488        0x6 contiki-wismote.a(abc.o)
-                0x0000000000012488                abc_send
- .far.text.abc_input
-                0x000000000001248e        0xe contiki-wismote.a(abc.o)
-                0x000000000001248e                abc_input
- .far.text.abc_sent
-                0x000000000001249c       0x10 contiki-wismote.a(abc.o)
-                0x000000000001249c                abc_sent
- .far.text.input
-                0x00000000000124ac       0x36 contiki-wismote.a(rime.o)
- .far.text.init
-                0x00000000000124e2       0x30 contiki-wismote.a(rime.o)
- .far.text.packet_sent
-                0x0000000000012512       0x38 contiki-wismote.a(rime.o)
- .far.text.rime_output
-                0x000000000001254a       0x24 contiki-wismote.a(rime.o)
-                0x000000000001254a                rime_output
- .far.text.announcement_init
-                0x000000000001256e        0xa contiki-wismote.a(announcement.o)
-                0x000000000001256e                announcement_init
- .far.text.announcement_register_observer_callback
-                0x0000000000012578        0x6 contiki-wismote.a(announcement.o)
-                0x0000000000012578                announcement_register_observer_callback
- .far.text.announcement_list
-                0x000000000001257e        0xa contiki-wismote.a(announcement.o)
-                0x000000000001257e                announcement_list
- .far.text.announcement_heard
-                0x0000000000012588       0x36 contiki-wismote.a(announcement.o)
-                0x0000000000012588                announcement_heard
- .far.text.queuebuf_init
-                0x00000000000125be       0x12 contiki-wismote.a(queuebuf.o)
-                0x00000000000125be                queuebuf_init
- .far.text.queuebuf_new_from_packetbuf
-                0x00000000000125d0       0x4e contiki-wismote.a(queuebuf.o)
-                0x00000000000125d0                queuebuf_new_from_packetbuf
- .far.text.queuebuf_update_attr_from_packetbuf
-                0x000000000001261e       0x12 contiki-wismote.a(queuebuf.o)
-                0x000000000001261e                queuebuf_update_attr_from_packetbuf
- .far.text.queuebuf_update_from_packetbuf
-                0x0000000000012630       0x22 contiki-wismote.a(queuebuf.o)
-                0x0000000000012630                queuebuf_update_from_packetbuf
- .far.text.queuebuf_free
-                0x0000000000012652       0x2a contiki-wismote.a(queuebuf.o)
-                0x0000000000012652                queuebuf_free
- .far.text.queuebuf_to_packetbuf
-                0x000000000001267c       0x32 contiki-wismote.a(queuebuf.o)
-                0x000000000001267c                queuebuf_to_packetbuf
- .far.text.queuebuf_attr
-                0x00000000000126ae       0x1a contiki-wismote.a(queuebuf.o)
-                0x00000000000126ae                queuebuf_attr
- .far.text.packetbuf_hdrreduce
-                0x00000000000126c8       0x20 contiki-wismote.a(packetbuf.o)
-                0x00000000000126c8                packetbuf_hdrreduce
- .far.text.packetbuf_set_datalen
-                0x00000000000126e8        0x8 contiki-wismote.a(packetbuf.o)
-                0x00000000000126e8                packetbuf_set_datalen
- .far.text.packetbuf_hdrptr
-                0x00000000000126f0        0x6 contiki-wismote.a(packetbuf.o)
-                0x00000000000126f0                packetbuf_hdrptr
- .far.text.packetbuf_datalen
-                0x00000000000126f6        0x8 contiki-wismote.a(packetbuf.o)
-                0x00000000000126f6                packetbuf_datalen
- .far.text.packetbuf_hdrlen
-                0x00000000000126fe        0xe contiki-wismote.a(packetbuf.o)
-                0x00000000000126fe                packetbuf_hdrlen
- .far.text.packetbuf_dataptr
-                0x000000000001270c       0x16 contiki-wismote.a(packetbuf.o)
-                0x000000000001270c                packetbuf_dataptr
- .far.text.packetbuf_copyto
-                0x0000000000012722       0x4a contiki-wismote.a(packetbuf.o)
-                0x0000000000012722                packetbuf_copyto
- .far.text.packetbuf_compact
-                0x000000000001276c       0x5a contiki-wismote.a(packetbuf.o)
-                0x000000000001276c                packetbuf_compact
- .far.text.packetbuf_totlen
-                0x00000000000127c6        0xe contiki-wismote.a(packetbuf.o)
-                0x00000000000127c6                packetbuf_totlen
- .far.text.packetbuf_hdralloc
-                0x00000000000127d4       0x56 contiki-wismote.a(packetbuf.o)
-                0x00000000000127d4                packetbuf_hdralloc
- .far.text.packetbuf_attr_clear
-                0x000000000001282a       0x32 contiki-wismote.a(packetbuf.o)
-                0x000000000001282a                packetbuf_attr_clear
- .far.text.packetbuf_clear
-                0x000000000001285c       0x18 contiki-wismote.a(packetbuf.o)
-                0x000000000001285c                packetbuf_clear
- .far.text.packetbuf_copyfrom
-                0x0000000000012874       0x2c contiki-wismote.a(packetbuf.o)
-                0x0000000000012874                packetbuf_copyfrom
- .far.text.packetbuf_attr_copyto
-                0x00000000000128a0       0x20 contiki-wismote.a(packetbuf.o)
-                0x00000000000128a0                packetbuf_attr_copyto
- .far.text.packetbuf_attr_copyfrom
-                0x00000000000128c0       0x22 contiki-wismote.a(packetbuf.o)
-                0x00000000000128c0                packetbuf_attr_copyfrom
- .far.text.packetbuf_holds_broadcast
-                0x00000000000128e2        0xe contiki-wismote.a(packetbuf.o)
-                0x00000000000128e2                packetbuf_holds_broadcast
- .far.text.linkaddr_copy
-                0x00000000000128f0        0xc contiki-wismote.a(linkaddr.o)
-                0x00000000000128f0                linkaddr_copy
- .far.text.linkaddr_cmp
-                0x00000000000128fc       0x12 contiki-wismote.a(linkaddr.o)
-                0x00000000000128fc                linkaddr_cmp
- .far.text.linkaddr_set_node_addr
-                0x000000000001290e        0xc contiki-wismote.a(linkaddr.o)
-                0x000000000001290e                linkaddr_set_node_addr
- .far.text.input_packet
-                0x000000000001291a        0x6 contiki-wismote.a(csma.o)
- .far.text.on   0x0000000000012920        0x6 contiki-wismote.a(csma.o)
- .far.text.off  0x0000000000012926        0x6 contiki-wismote.a(csma.o)
- .far.text.channel_check_interval
-                0x000000000001292c       0x10 contiki-wismote.a(csma.o)
- .far.text.transmit_packet_list
-                0x000000000001293c       0x24 contiki-wismote.a(csma.o)
- .far.text.schedule_transmission
-                0x0000000000012960       0x9a contiki-wismote.a(csma.o)
- .far.text.init
-                0x00000000000129fa       0x1a contiki-wismote.a(csma.o)
- .far.text.tx_done
-                0x0000000000012a14       0x86 contiki-wismote.a(csma.o)
- .far.text.send_packet
-                0x0000000000012a9a      0x17e contiki-wismote.a(csma.o)
- .far.text.packet_sent
-                0x0000000000012c18       0xcc contiki-wismote.a(csma.o)
- .far.text.mac_call_sent_callback
-                0x0000000000012ce4       0x14 contiki-wismote.a(mac.o)
-                0x0000000000012ce4                mac_call_sent_callback
- .far.text.duty_cycle
-                0x0000000000012cf8        0x6 contiki-wismote.a(contikimac.o)
- .far.text.init
-                0x0000000000012cfe       0x34 contiki-wismote.a(contikimac.o)
- .far.text.on   0x0000000000012d32       0x20 contiki-wismote.a(contikimac.o)
- .far.text.off  0x0000000000012d52       0x2a contiki-wismote.a(contikimac.o)
- .far.text.recv_burst_off
-                0x0000000000012d7c        0xc contiki-wismote.a(contikimac.o)
- .far.text.turn_off
-                0x0000000000012d88       0x28 contiki-wismote.a(contikimac.o)
- .far.text.turn_on
-                0x0000000000012db0       0x3a contiki-wismote.a(contikimac.o)
- .far.text.schedule_powercycle_fixed.part.4
-                0x0000000000012dea       0x36 contiki-wismote.a(contikimac.o)
- .far.text.powercycle_turn_radio_off
-                0x0000000000012e20       0x38 contiki-wismote.a(contikimac.o)
- .far.text.input_packet
-                0x0000000000012e58       0xc0 contiki-wismote.a(contikimac.o)
- .far.text.send_packet.isra.8
-                0x0000000000012f18      0x20e contiki-wismote.a(contikimac.o)
- .far.text.qsend_packet
-                0x0000000000013126       0x22 contiki-wismote.a(contikimac.o)
- .far.text.qsend_list
-                0x0000000000013148       0xca contiki-wismote.a(contikimac.o)
- .far.text.powercycle_wrapper
-                0x0000000000013212      0x20c contiki-wismote.a(contikimac.o)
- .far.text.init
-                0x000000000001341e        0x2 contiki-wismote.a(nullsec.o)
- .far.text.send
-                0x0000000000013420        0xc contiki-wismote.a(nullsec.o)
- .far.text.input
-                0x000000000001342c        0x6 contiki-wismote.a(nullsec.o)
- .far.text.spi_init
-                0x0000000000013432       0x32 contiki-wismote.a(spi.o)
-                0x0000000000013432                spi_init
- .far.text.compower_accumulate
-                0x0000000000013464       0x7a contiki-wismote.a(compower.o)
-                0x0000000000013464                compower_accumulate
- .far.text.compower_clear
-                0x00000000000134de       0x12 contiki-wismote.a(compower.o)
-                0x00000000000134de                compower_clear
- .far.text.compower_attrconv
-                0x00000000000134f0       0x10 contiki-wismote.a(compower.o)
-                0x00000000000134f0                compower_attrconv
- .far.text.memb_init
-                0x0000000000013500       0x3a contiki-wismote.a(memb.o)
-                0x0000000000013500                memb_init
- .far.text.memb_alloc
-                0x000000000001353a       0x5c contiki-wismote.a(memb.o)
-                0x000000000001353a                memb_alloc
- .far.text.memb_free
-                0x0000000000013596       0x5e contiki-wismote.a(memb.o)
-                0x0000000000013596                memb_free
- .far.text.memb_inmemb
-                0x00000000000135f4       0x3e contiki-wismote.a(memb.o)
-                0x00000000000135f4                memb_inmemb
- .far.text.header_size
-                0x0000000000013632       0x16 contiki-wismote.a(chameleon-bitop)
- .far.text.get_bits
-                0x0000000000013648      0x156 contiki-wismote.a(chameleon-bitop)
-                0x0000000000013648                get_bits
- .far.text.unpack_header
-                0x000000000001379e       0xdc contiki-wismote.a(chameleon-bitop)
- .far.text.set_bits
-                0x000000000001387a      0x136 contiki-wismote.a(chameleon-bitop)
-                0x000000000001387a                set_bits
- .far.text.pack_header
-                0x00000000000139b0       0xd2 contiki-wismote.a(chameleon-bitop)
- .far.text.adv_packet_sent
-                0x0000000000013a82        0x2 contiki-wismote.a(broadcast-annou)
- .far.text.adv_packet_received
-                0x0000000000013a84       0x58 contiki-wismote.a(broadcast-annou)
- .far.text.set_timers
-                0x0000000000013adc       0x52 contiki-wismote.a(broadcast-annou)
- .far.text.send_timer
-                0x0000000000013b2e       0x3e contiki-wismote.a(broadcast-annou)
- .far.text.new_announcement
-                0x0000000000013b6c       0x1c contiki-wismote.a(broadcast-annou)
- .far.text.send_adv
-                0x0000000000013b88       0x7c contiki-wismote.a(broadcast-annou)
- .far.text.broadcast_announcement_init
-                0x0000000000013c04       0x42 contiki-wismote.a(broadcast-annou)
-                0x0000000000013c04                broadcast_announcement_init
- .far.text.mac_sequence_is_duplicate
-                0x0000000000013c46       0x84 contiki-wismote.a(mac-sequence.o)
-                0x0000000000013c46                mac_sequence_is_duplicate
- .far.text.mac_sequence_register_seqno
-                0x0000000000013cca       0xa8 contiki-wismote.a(mac-sequence.o)
-                0x0000000000013cca                mac_sequence_register_seqno
- .far.text.create_frame.isra.0
-                0x0000000000013d72      0x12c contiki-wismote.a(framer-802154.o)
- .far.text.create
-                0x0000000000013e9e        0x8 contiki-wismote.a(framer-802154.o)
- .far.text.hdr_length
-                0x0000000000013ea6        0x8 contiki-wismote.a(framer-802154.o)
- .far.text.parse
-                0x0000000000013eae       0xb8 contiki-wismote.a(framer-802154.o)
- .far.text.frame802154_get_pan_id
-                0x0000000000013f66        0x8 contiki-wismote.a(frame802154.o)
-                0x0000000000013f66                frame802154_get_pan_id
- .far.text.frame802154_has_panid
-                0x0000000000013f6e       0xe0 contiki-wismote.a(frame802154.o)
-                0x0000000000013f6e                frame802154_has_panid
- .far.text.field_len
-                0x000000000001404e       0xc4 contiki-wismote.a(frame802154.o)
- .far.text.frame802154_is_broadcast_addr
-                0x0000000000014112       0x30 contiki-wismote.a(frame802154.o)
-                0x0000000000014112                frame802154_is_broadcast_addr
- .far.text.frame802154_hdrlen
-                0x0000000000014142       0x32 contiki-wismote.a(frame802154.o)
-                0x0000000000014142                frame802154_hdrlen
- .far.text.frame802154_create_fcf
-                0x0000000000014174       0x6e contiki-wismote.a(frame802154.o)
-                0x0000000000014174                frame802154_create_fcf
- .far.text.frame802154_create
-                0x00000000000141e2      0x124 contiki-wismote.a(frame802154.o)
-                0x00000000000141e2                frame802154_create
- .far.text.frame802154_parse_fcf
-                0x0000000000014306       0x8c contiki-wismote.a(frame802154.o)
-                0x0000000000014306                frame802154_parse_fcf
- .far.text.frame802154_parse
-                0x0000000000014392      0x19c contiki-wismote.a(frame802154.o)
-                0x0000000000014392                frame802154_parse
+                0x0000000000010172        0xc contiki-wismote.a(list.o)
+                0x0000000000010172                list_item_next
 
-.far.rodata     0x000000000001452e      0x29a
-                0x000000000001452e                . = ALIGN (0x2)
+.far.rodata     0x000000000001017e      0x158
+                0x000000000001017e                . = ALIGN (0x2)
  *(.far.rodata .far.rodata.*)
- .far.rodata    0x000000000001452e       0x82 temp.co
-                0x000000000001458e                autostart_processes
- .far.rodata    0x00000000000145b0       0xd4 obj_wismote/contiki-wismote-main.o
- .far.rodata    0x0000000000014684       0x18 contiki-wismote.a(button-sensor.o)
-                0x000000000001468c                button_sensor
- .far.rodata    0x000000000001469c        0x8 contiki-wismote.a(sensors.o)
- .far.rodata    0x00000000000146a4       0x46 contiki-wismote.a(cc2520.o)
-                0x00000000000146a4                cc2520_driver
- .far.rodata    0x00000000000146ea        0xf contiki-wismote.a(ctimer.o)
- .far.rodata    0x00000000000146f9        0xc contiki-wismote.a(etimer.o)
- .far.rodata    0x0000000000014705        0xe contiki-wismote.a(serial-line.o)
- *fill*         0x0000000000014713        0x1 00
- .far.rodata    0x0000000000014714        0xc contiki-wismote.a(broadcast.o)
- .far.rodata    0x0000000000014720        0x2 contiki-wismote.a(abc.o)
- .far.rodata    0x0000000000014722       0x12 contiki-wismote.a(rime.o)
-                0x0000000000014728                rime_driver
- .far.rodata    0x0000000000014734        0x2 contiki-wismote.a(linkaddr.o)
-                0x0000000000014734                linkaddr_null
- .far.rodata    0x0000000000014736       0x22 contiki-wismote.a(csma.o)
-                0x000000000001473c                csma_driver
- .far.rodata    0x0000000000014758       0x2c contiki-wismote.a(contikimac.o)
-                0x0000000000014764                contikimac_driver
- .far.rodata    0x0000000000014784       0x18 contiki-wismote.a(nullsec.o)
-                0x000000000001478c                nullsec_driver
- .far.rodata    0x000000000001479c       0x16 contiki-wismote.a(chameleon-bitop)
-                0x000000000001479c                chameleon_bitopt
- .far.rodata    0x00000000000147b2        0x8 contiki-wismote.a(broadcast-annou)
- .far.rodata    0x00000000000147ba        0xc contiki-wismote.a(framer-802154.o)
-                0x00000000000147ba                framer_802154
- .far.rodata    0x00000000000147c6        0x2 contiki-wismote.a(frame802154.o)
-                0x00000000000147c8                . = ALIGN (0x2)
-                0x00000000000147c8                _efartext = .
+ .far.rodata    0x000000000001017e       0x84 temp.co
+                0x00000000000101e0                autostart_processes
+ .far.rodata    0x0000000000010202       0xd4 obj_wismote/contiki-wismote-main.o
+                0x00000000000102d6                . = ALIGN (0x2)
+                0x00000000000102d6                _efartext = .
 
-.far.data       0x0000000000000000        0x0 load address 0x00000000000147c8
+.far.data       0x0000000000000000        0x0 load address 0x00000000000102d6
                 0x0000000000000000                . = ALIGN (0x2)
                 0x0000000000000000                __far_data_start = .
  *(.far.data .far.data.*)
                 0x0000000000000000                . = ALIGN (0x2)
                 0x0000000000000000                _efardata = .
-                0x00000000000147c8                __far_data_load_start = LOADADDR (.far.data)
+                0x00000000000102d6                __far_data_load_start = LOADADDR (.far.data)
                 0x0000000000000000                __far_data_size = SIZEOF (.far.data)
 
-.far.bss        0x0000000000000000        0x0 load address 0x00000000000147c8
+.far.bss        0x0000000000000000        0x0 load address 0x00000000000102d6
                 0x0000000000000000                . = ALIGN (0x2)
                 0x0000000000000000                __far_bss_start = .
  *(.far.bss .far.bss.*)
@@ -2211,109 +2408,109 @@ LOAD /lib/gcc/msp430/4.7.0/mcpu-430x/mmpy-16/msr20/mc20/md20/libcrt0.a
 .profiler
  *(.profiler)
 
-.stab           0x0000000000000000    0x18318
+.stab           0x0000000000000000    0x18d8c
  *(.stab)
- .stab          0x0000000000000000     0x129c temp.co
- .stab          0x000000000000129c      0xd98 obj_wismote/contiki-wismote-main.o
+ .stab          0x0000000000000000     0x12a8 temp.co
+ .stab          0x00000000000012a8      0xd98 obj_wismote/contiki-wismote-main.o
                                        0x168c (size before relaxing)
- .stab          0x0000000000002034      0x24c contiki-wismote.a(contiki-wismote)
+ .stab          0x0000000000002040      0x468 contiki-wismote.a(contiki-wismote)
                                         0x5c4 (size before relaxing)
- .stab          0x0000000000002280      0x474 contiki-wismote.a(button-sensor.o)
+ .stab          0x00000000000024a8      0x474 contiki-wismote.a(button-sensor.o)
                                         0x7f8 (size before relaxing)
- .stab          0x00000000000026f4      0x9d8 contiki-wismote.a(xmem.o)
+ .stab          0x000000000000291c      0x9d8 contiki-wismote.a(xmem.o)
                                         0xf18 (size before relaxing)
- .stab          0x00000000000030cc      0x2b8 contiki-wismote.a(node-id.o)
+ .stab          0x00000000000032f4      0x2b8 contiki-wismote.a(node-id.o)
                                         0x4f8 (size before relaxing)
- .stab          0x0000000000003384      0x858 contiki-wismote.a(sensors.o)
-                                        0xbc4 (size before relaxing)
- .stab          0x0000000000003bdc     0x2508 contiki-wismote.a(cc2520.o)
-                                       0x2c34 (size before relaxing)
- .stab          0x00000000000060e4      0xa80 contiki-wismote.a(cc2520-arch.o)
+ .stab          0x00000000000035ac      0x864 contiki-wismote.a(sensors.o)
+                                        0xbd0 (size before relaxing)
+ .stab          0x0000000000003e10     0x2514 contiki-wismote.a(cc2520.o)
+                                       0x2bb0 (size before relaxing)
+ .stab          0x0000000000006324      0xda4 contiki-wismote.a(cc2520-arch.o)
                                        0x13f8 (size before relaxing)
- .stab          0x0000000000006b64      0x504 contiki-wismote.a(uart1.o)
+ .stab          0x00000000000070c8      0x504 contiki-wismote.a(uart1.o)
                                         0xa14 (size before relaxing)
- .stab          0x0000000000007068      0x234 contiki-wismote.a(uart1-putchar.o)
+ .stab          0x00000000000075cc      0x234 contiki-wismote.a(uart1-putchar.o)
                                         0x5a0 (size before relaxing)
- .stab          0x000000000000729c      0x5f4 contiki-wismote.a(msp430.o)
+ .stab          0x0000000000007800      0x5f4 contiki-wismote.a(msp430.o)
                                         0x960 (size before relaxing)
- .stab          0x0000000000007890      0x8c4 contiki-wismote.a(clock.o)
-                                        0xc30 (size before relaxing)
- .stab          0x0000000000008154      0x5a0 contiki-wismote.a(leds.o)
+ .stab          0x0000000000007df4      0x8b8 contiki-wismote.a(clock.o)
+                                        0xc24 (size before relaxing)
+ .stab          0x00000000000086ac      0x5a0 contiki-wismote.a(leds.o)
                                         0x804 (size before relaxing)
- .stab          0x00000000000086f4      0x360 contiki-wismote.a(leds-arch.o)
+ .stab          0x0000000000008c4c      0x360 contiki-wismote.a(leds-arch.o)
                                         0x6cc (size before relaxing)
- .stab          0x0000000000008a54      0x3cc contiki-wismote.a(watchdog.o)
+ .stab          0x0000000000008fac      0x3cc contiki-wismote.a(watchdog.o)
                                         0x738 (size before relaxing)
- .stab          0x0000000000008e20      0x3b4 contiki-wismote.a(rtimer-arch.o)
+ .stab          0x0000000000009378      0x3b4 contiki-wismote.a(rtimer-arch.o)
                                         0x720 (size before relaxing)
- .stab          0x00000000000091d4      0x2f4 contiki-wismote.a(autostart.o)
-                                        0x5ac (size before relaxing)
- .stab          0x00000000000094c8      0x498 contiki-wismote.a(energest.o)
-                                        0x738 (size before relaxing)
- .stab          0x0000000000009960      0x834 contiki-wismote.a(ctimer.o)
+ .stab          0x000000000000972c      0x294 contiki-wismote.a(autostart.o)
+                                        0x54c (size before relaxing)
+ .stab          0x00000000000099c0      0x48c contiki-wismote.a(energest.o)
+                                        0x72c (size before relaxing)
+ .stab          0x0000000000009e4c      0x834 contiki-wismote.a(ctimer.o)
                                         0xbb8 (size before relaxing)
- .stab          0x000000000000a194      0xa8c contiki-wismote.a(etimer.o)
-                                        0xd74 (size before relaxing)
- .stab          0x000000000000ac20      0xb94 contiki-wismote.a(process.o)
+ .stab          0x000000000000a680      0xa80 contiki-wismote.a(etimer.o)
+                                        0xd68 (size before relaxing)
+ .stab          0x000000000000b100      0xb94 contiki-wismote.a(process.o)
                                        0x1044 (size before relaxing)
- .stab          0x000000000000b7b4      0x3cc contiki-wismote.a(rtimer.o)
+ .stab          0x000000000000bc94      0x3cc contiki-wismote.a(rtimer.o)
                                         0x6cc (size before relaxing)
- .stab          0x000000000000bb80      0x348 contiki-wismote.a(timer.o)
+ .stab          0x000000000000c060      0x348 contiki-wismote.a(timer.o)
                                         0x5a0 (size before relaxing)
- .stab          0x000000000000bec8      0x534 contiki-wismote.a(serial-line.o)
+ .stab          0x000000000000c3a8      0x534 contiki-wismote.a(serial-line.o)
                                         0xa50 (size before relaxing)
- .stab          0x000000000000c3fc      0x7bc contiki-wismote.a(list.o)
+ .stab          0x000000000000c8dc      0x7bc contiki-wismote.a(list.o)
                                         0x7c8 (size before relaxing)
- .stab          0x000000000000cbb8      0x21c contiki-wismote.a(random.o)
+ .stab          0x000000000000d098      0x21c contiki-wismote.a(random.o)
                                         0x630 (size before relaxing)
- .stab          0x000000000000cdd4      0x3f0 contiki-wismote.a(ringbuf.o)
+ .stab          0x000000000000d2b4      0x3f0 contiki-wismote.a(ringbuf.o)
                                         0x648 (size before relaxing)
- .stab          0x000000000000d1c4      0x6cc contiki-wismote.a(broadcast.o)
+ .stab          0x000000000000d6a4      0x6cc contiki-wismote.a(broadcast.o)
                                        0x150c (size before relaxing)
- .stab          0x000000000000d890      0x654 contiki-wismote.a(channel.o)
+ .stab          0x000000000000dd70      0x8c4 contiki-wismote.a(channel.o)
                                        0x1290 (size before relaxing)
- .stab          0x000000000000dee4      0x588 contiki-wismote.a(chameleon.o)
+ .stab          0x000000000000e634      0x588 contiki-wismote.a(chameleon.o)
                                        0x1248 (size before relaxing)
- .stab          0x000000000000e46c      0x660 contiki-wismote.a(abc.o)
+ .stab          0x000000000000ebbc      0x660 contiki-wismote.a(abc.o)
                                        0x14a0 (size before relaxing)
- .stab          0x000000000000eacc      0xba0 contiki-wismote.a(rime.o)
+ .stab          0x000000000000f21c      0xc78 contiki-wismote.a(rime.o)
                                        0x1404 (size before relaxing)
- .stab          0x000000000000f66c      0x6b4 contiki-wismote.a(announcement.o)
+ .stab          0x000000000000fe94      0x6b4 contiki-wismote.a(announcement.o)
                                         0x96c (size before relaxing)
- .stab          0x000000000000fd20      0xa38 contiki-wismote.a(queuebuf.o)
+ .stab          0x0000000000010548      0xa38 contiki-wismote.a(queuebuf.o)
                                        0x1878 (size before relaxing)
- .stab          0x0000000000010758      0xc60 contiki-wismote.a(packetbuf.o)
-                                       0x1ab8 (size before relaxing)
- .stab          0x00000000000113b8      0x2ac contiki-wismote.a(linkaddr.o)
+ .stab          0x0000000000010f80      0xc9c contiki-wismote.a(packetbuf.o)
+                                       0x1af4 (size before relaxing)
+ .stab          0x0000000000011c1c      0x2ac contiki-wismote.a(linkaddr.o)
                                         0x6c0 (size before relaxing)
- .stab          0x0000000000011664      0xcf0 contiki-wismote.a(csma.o)
-                                       0x1698 (size before relaxing)
- .stab          0x0000000000012354      0x1f8 contiki-wismote.a(mac.o)
+ .stab          0x0000000000011ec8      0xd2c contiki-wismote.a(csma.o)
+                                       0x16d4 (size before relaxing)
+ .stab          0x0000000000012bf4      0x1f8 contiki-wismote.a(mac.o)
                                         0x504 (size before relaxing)
- .stab          0x000000000001254c     0x1794 contiki-wismote.a(contikimac.o)
-                                       0x2370 (size before relaxing)
- .stab          0x0000000000013ce0      0x39c contiki-wismote.a(nullsec.o)
+ .stab          0x0000000000012dec     0x1788 contiki-wismote.a(contikimac.o)
+                                       0x2364 (size before relaxing)
+ .stab          0x0000000000014574      0x39c contiki-wismote.a(nullsec.o)
                                         0xce4 (size before relaxing)
- .stab          0x000000000001407c      0x27c contiki-wismote.a(spi.o)
+ .stab          0x0000000000014910      0x27c contiki-wismote.a(spi.o)
                                         0x5e8 (size before relaxing)
- .stab          0x00000000000142f8      0x4ec contiki-wismote.a(compower.o)
+ .stab          0x0000000000014b8c      0x4ec contiki-wismote.a(compower.o)
                                         0xd08 (size before relaxing)
- .stab          0x00000000000147e4      0x5ac contiki-wismote.a(memb.o)
-                                        0xaf8 (size before relaxing)
- .stab          0x0000000000014d90      0xc00 contiki-wismote.a(chameleon-bitop)
-                                       0x1890 (size before relaxing)
- .stab          0x0000000000015990      0x948 contiki-wismote.a(broadcast-annou)
+ .stab          0x0000000000015078      0x5c4 contiki-wismote.a(memb.o)
+                                        0xb10 (size before relaxing)
+ .stab          0x000000000001563c      0xd38 contiki-wismote.a(chameleon-bitop)
+                                       0x19c8 (size before relaxing)
+ .stab          0x0000000000016374      0x948 contiki-wismote.a(broadcast-annou)
                                        0x15d8 (size before relaxing)
- .stab          0x00000000000162d8      0x63c contiki-wismote.a(mac-sequence.o)
-                                       0x1494 (size before relaxing)
- .stab          0x0000000000016914      0x90c contiki-wismote.a(framer-802154.o)
+ .stab          0x0000000000016cbc      0x648 contiki-wismote.a(mac-sequence.o)
+                                       0x14a0 (size before relaxing)
+ .stab          0x0000000000017304      0x90c contiki-wismote.a(framer-802154.o)
                                         0xf30 (size before relaxing)
- .stab          0x0000000000017220     0x10f8 contiki-wismote.a(frame802154.o)
-                                       0x18fc (size before relaxing)
+ .stab          0x0000000000017c10     0x117c contiki-wismote.a(frame802154.o)
+                                       0x1980 (size before relaxing)
 
-.stabstr        0x0000000000000000    0x142ac
+.stabstr        0x0000000000000000    0x17f07
  *(.stabstr)
- .stabstr       0x0000000000000000    0x142ac temp.co
+ .stabstr       0x0000000000000000    0x17f07 temp.co
 
 .stab.excl
  *(.stab.excl)
@@ -2569,8 +2766,8 @@ LOAD /lib/gcc/msp430/4.7.0/mcpu-430x/mmpy-16/msr20/mc20/md20/libcrt0.a
  .debug_ranges  0x00000000000000b0       0x10 /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(memset.o)
  .debug_ranges  0x00000000000000c0       0x10 /lib/gcc/msp430/4.7.0/../../../../msp430/lib/mcpu-430x/mmpy-16/msr20/mc20/md20/libc.a(strlen.o)
                 0x0000000000005c00                PROVIDE (__stack, (ORIGIN (ram) + 0x4000))
-                0x0000000000006f32                __data_start_rom = _etext
-                0x0000000000006fe0                __data_end_rom = (_etext + SIZEOF (.data))
+                0x000000000000aa70                __data_start_rom = _etext
+                0x000000000000aaf0                __data_end_rom = (_etext + SIZEOF (.data))
 OUTPUT(temp.wismote elf32-msp430)
 
 .gnu.attributes

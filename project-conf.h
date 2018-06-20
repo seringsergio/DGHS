@@ -1,1 +1,0 @@
-#define I2C_CONF_RX_WITH_INTERRUPT 0

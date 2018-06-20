@@ -47,11 +47,12 @@
 
 #include <stdio.h>
 
+#include "temp.h"
 
-struct msg
-{
-  uint8_t seqno;
-};
+
+#define WINDOW_NUM_PACKETS 10
+
+struct csma_stats csma_stats;
 
 /*---------------------------------------------------------------------------*/
 PROCESS(example_broadcast_process, "Broadcast example");
@@ -60,27 +61,33 @@ AUTOSTART_PROCESSES(&example_broadcast_process);
 static void
 broadcast_recv(struct broadcast_conn *c, const linkaddr_t *from)
 {
-  void *pkt = packetbuf_dataptr();
-  struct msg msg;
-
-  msg = *((struct msg*) pkt);
-
-  printf("broadcast message received from %d.%d with seqno = %d\n",
-         from->u8[0], from->u8[1], msg.seqno );
+  printf("broadcast message received from %d.%d: '%s'\n",
+         from->u8[0], from->u8[1], (char *)packetbuf_dataptr());
 }
 static const struct broadcast_callbacks broadcast_call = {broadcast_recv};
 static struct broadcast_conn broadcast;
+
+void reset_csma_stats()
+{
+  csma_stats.packets_dropped = 0;
+  csma_stats.packets_transmitted = 0;
+  csma_stats.total_packets = 0;
+  csma_stats.delay = 0;
+}
 /*---------------------------------------------------------------------------*/
 PROCESS_THREAD(example_broadcast_process, ev, data)
 {
   static struct etimer et;
-  static struct msg msg;
+  static uint8_t cont;
 
   PROCESS_EXITHANDLER(broadcast_close(&broadcast);)
 
   PROCESS_BEGIN();
 
-  msg.seqno = 0;
+  cont = 0;
+
+
+  reset_csma_stats();
 
   broadcast_open(&broadcast, 129, &broadcast_call);
 
@@ -91,15 +98,18 @@ PROCESS_THREAD(example_broadcast_process, ev, data)
 
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
 
-    if( (linkaddr_node_addr.u8[0] == 2) && (linkaddr_node_addr.u8[1] == 0) )
-    {
-      //packetbuf_copyfrom("Hello", 6);
-      packetbuf_copyfrom(&msg, sizeof(struct msg) );
-      msg.seqno = msg.seqno + 1 ;
-      broadcast_send(&broadcast);
-      printf("broadcast message sent with  seqno = %d\n", msg.seqno);
-    }
+    packetbuf_copyfrom("Hello", 6);
+    broadcast_send(&broadcast);
+    cont++;
 
+    // If we reach the window size, then we give a result and reset the values
+    if(csma_stats.total_packets >= WINDOW_NUM_PACKETS)
+    {
+      printf("cont = %d, packets_dropped = %d, packets_transmitted = %d, total_packets = %d, delay = %lu (ms) \n", //delay in miliseconds
+             cont, csma_stats.packets_dropped, csma_stats.packets_transmitted,
+             csma_stats.total_packets, (1000L *  csma_stats.delay ) / CLOCK_SECOND  ); //delay in miliseconds
+      reset_csma_stats();
+    }
   }
 
   PROCESS_END();
