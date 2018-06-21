@@ -88,4 +88,4 @@ make MOTES=/dev/ttyUSB3 TARGET=sky login
 1. subir el codigo rssi-scanner-cc2420.c al sky node
 2. Compilar la clase ViewRSSI.class
 3. ejecutar en el terminal
-make MOTES=/dev/ttyUSB2 TARGET=sky login | java ViewRSSI
+make MOTES=/dev/ttyUSB3 TARGET=sky login | java ViewRSSI

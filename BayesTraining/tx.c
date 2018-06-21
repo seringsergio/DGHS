@@ -92,11 +92,11 @@ static struct unicast_conn uc;
 void reset_csma_stats()
 {
   csma_stats.packets_dropped = 0;
-  csma_stats.packets_transmitted = 0;
-  csma_stats.total_packets = 0;
+  //csma_stats.packets_transmitted = 0;
+  //csma_stats.total_packets = 0;
   csma_stats.delay = 0;
-  csma_stats.num_retx = 0;
-  csma_stats.num_collision = 0;
+  //csma_stats.num_retx = 0;
+  //csma_stats.num_collision = 0;
 
 }
 /*---------------------------------------------------------------------------*/
@@ -105,7 +105,11 @@ PROCESS_THREAD(example_unicast_process, ev, data)
   PROCESS_EXITHANDLER(unicast_close(&uc);)
 
   static uint16_t cont;
-  static char res1[20], res2[20]; //to print the float variable
+  static char res1[20], res2[20], res3[20]; //to print the float variable
+  //static float ppl;
+  static float btp; //ppl is Percentage of Packet Loss, btp (Backoff Time per packet)
+  //static float EWMA_ppl;
+  static float EWMA_btp;
 
   PROCESS_BEGIN();
 
@@ -123,7 +127,7 @@ PROCESS_THREAD(example_unicast_process, ev, data)
     static struct etimer et;
     linkaddr_t addr;
 
-
+    //etimer_set(&et,  CLOCK_SECOND ); // Configure timer et to a random time between 0 and 2
     etimer_set(&et,  random_rand() % (CLOCK_SECOND * 2) ); // Configure timer et to a random time between 0 and 2
 
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
@@ -131,21 +135,85 @@ PROCESS_THREAD(example_unicast_process, ev, data)
     packetbuf_copyfrom("Hello", 5);
     addr.u8[0] = 1;
     addr.u8[1] = 0;
-    if(!linkaddr_cmp(&addr, &linkaddr_node_addr)) {
+    if(!linkaddr_cmp(&addr, &linkaddr_node_addr))
+    {
       unicast_send(&uc, &addr);
       cont++;
 
-      // PPP: porcentaje de paquetes perdidos
-      ftoa( (float) csma_stats.packets_dropped  / (float) cont, res1, 2); //Uses the library print_float.h
 
-      //tiempo_de_backoff_por_paquete
-      ftoa( (float) 1000L * (float) csma_stats.delay  / (float) CLOCK_SECOND / (float) cont, res2, 2); //Uses the library print_float.h
+      if(cont % WINDOW_NUM_PACKETS == 0)
+      {
+        // btp (Backoff Time per packet): tiempo_de_backoff_por_paquete (miliseconds)
+        btp = (float) 1000L * (float) csma_stats.delay  / (float) CLOCK_SECOND / (float) WINDOW_NUM_PACKETS;
 
-      // PPP: porcentaje de paquetes perdidos
-      //format CSMA total_packets packets_dropped PPP tiempo_de_backoff_por_paquete
+        //Exponential weighted moving average (EWMA)
+        //REF: https://en.wikipedia.org/wiki/Moving_average
+        //REF: Also, see the example of contiki called example-neighbors.c It implements a EWMA
+        if(cont == WINDOW_NUM_PACKETS) //It is the first calculation of EWMA_btp
+        {
+          EWMA_btp = btp;
+        }else
+        {
+          EWMA_btp = ( (float) EWMA_ALPHA * (float) btp) + (( (float) 1 - (float) EWMA_ALPHA) * (float) EWMA_btp);
+        }
+
+        //print a float in Contiki
+        ftoa( btp, res2, 2); //Uses the library print_float.h
+        ftoa( EWMA_btp, res3, 2); //Uses the library print_float.h
+
+        //format CSMA total_packets packets_dropped EWMA_ppl btp(ventana) EWMA_btp
+        printf("CSMA/%d/%d/%s/%s/%s\n",
+        cont, csma_stats.packets_dropped, res1 , res2, res3  );
+        reset_csma_stats();
+      }
+
+      //Exponential weighted moving average (EWMA)
+      //REF: https://en.wikipedia.org/wiki/Moving_average
+      //REF: Also, see the example of contiki called example-neighbors.c It implements a EWMA
+      /*if(cont == 1)
+      {
+        // btp (Backoff Time per packet): tiempo_de_backoff_por_paquete (miliseconds)
+        btp = (float) 1000L * (float) csma_stats.delay  / (float) CLOCK_SECOND / (float) 1;
+        EWMA_btp = btp;
+      }else
+      {
+        EWMA_btp = ( (float) EWMA_ALPHA * (float) btp) + (( (float) 1 - (float) EWMA_ALPHA) * (float) EWMA_btp);
+      }*/
+
+      //print a float in Contiki
+      //ftoa( btp, res2, 2); //Uses the library print_float.h
+      //ftoa( EWMA_btp, res3, 2); //Uses the library print_float.h
+
+      //format CSMA total_packets packets_dropped EWMA_ppl btp(ventana) EWMA_btp
+      //printf("CSMA/%d/%d/%s/%s/%s\n",
+      //cont, csma_stats.packets_dropped, res1 , res2, res3 );
+
+      /*// ppl is Percentage of Packet Loss
+      ppl = (float) csma_stats.packets_dropped  / (float) cont;
+
+      // btp (Backoff Time per packet): tiempo_de_backoff_por_paquete (miliseconds)
+      btp = (float) 1000L * (float) csma_stats.delay  / (float) CLOCK_SECOND / (float) cont;
+
+      //Exponential weighted moving average (EWMA)
+      //REF: https://en.wikipedia.org/wiki/Moving_average
+      //REF: Also, see the example of contiki called example-neighbors.c It implements a EWMA
+      if(cont == 1)
+      {
+        EWMA_ppl = ppl;
+        EWMA_btp = btp;
+      }else
+      {
+        EWMA_ppl = ( (float) EWMA_ALPHA * (float) ppl) + (( (float) 1 - (float) EWMA_ALPHA) * (float) EWMA_ppl);
+        EWMA_btp = ( (float) EWMA_ALPHA * (float) btp) + (( (float) 1 - (float) EWMA_ALPHA) * (float) EWMA_btp);
+
+      }
+      //////////////////////////////////////////////////////////////////////////////////
+      ftoa( EWMA_ppl, res1, 2); //Uses the library print_float.h
+      ftoa( EWMA_btp, res2, 2); //Uses the library print_float.h
+
+      //format CSMA total_packets packets_dropped EWMA_ppl EWMA_btp
       printf("CSMA/%d/%d/%s/%s\n",
-      cont, csma_stats.packets_dropped, res1 , res2 );
-
+      cont, csma_stats.packets_dropped, res1 , res2 );*/
 
       /*if(csma_stats.total_packets >= WINDOW_NUM_PACKETS)
       {

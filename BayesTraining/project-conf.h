@@ -27,10 +27,10 @@
 
 //Define the channel to be used for the SKY
 //#undef RF_CHANNEL
-//#define RF_CHANNEL 20
+//#define RF_CHANNEL 20 //We set the contiki-config.h of the zoul platform to use channel 15
 
 //Define the channel to be used for the remote
 //#undef CC2538_RF_CONF_CHANNEL
-//#define CC2538_RF_CONF_CHANNEL 20
+//#define CC2538_RF_CONF_CHANNEL 20 //We set the contiki-config.h of the zoul platform to use channel 15
 
 #endif /* __PROJECT_CONF_H__ */
