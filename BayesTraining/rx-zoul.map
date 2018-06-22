@@ -80,7 +80,7 @@ avail_memory        0x4               obj_zoul/mmem.o
 sensors_flags       0x4               obj_zoul/zoul-sensors.o
 serial_line_event_message
                     0x1               obj_zoul/serial-line.o
-csma_stats          0x10              rx.co
+csma_stats          0x8               rx.co
 sensors_event       0x1               obj_zoul/sensors.o
 button_press_duration_exceeded
                     0x1               obj_zoul/button-sensor.o
@@ -4660,7 +4660,7 @@ END GROUP
  .ARM.exidx     0x00000000002075f4        0x0 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_udivdi3.o)
                                           0x8 (size before relaxing)
 
-.bss            0x00000000200040f8      0xd93
+.bss            0x00000000200040f8      0xd8b
                 0x00000000200040f8                _bss = .
  *(SORT(.bss*))
  .bss.rt_ticks_startup
@@ -4743,7 +4743,7 @@ END GROUP
                 0x00000000200046ec      0x600 obj_zoul/queuebuf.o
  .bss.buflen    0x0000000020004cec        0x2 obj_zoul/packetbuf.o
  .bss.bufptr    0x0000000020004cee        0x2 obj_zoul/packetbuf.o
- .bss.seqno.6772
+ .bss.seqno.6768
                 0x0000000020004cf0        0x2 obj_zoul/csma.o
  .bss.pt        0x0000000020004cf2        0x2 obj_zoul/contikimac.o
  .bss.leds      0x0000000020004cf4        0x1 obj_zoul/leds.o
@@ -4780,11 +4780,11 @@ END GROUP
  .bss.mac_dsn   0x0000000020004e14        0x1 obj_zoul/framer-802154.o
  .bss.initialized
                 0x0000000020004e15        0x1 obj_zoul/framer-802154.o
- .bss.metadata_memb_memb_count
-                0x0000000020004e16        0x8 obj_zoul/csma.o
  .bss.packet_memb_memb_count
+                0x0000000020004e16        0x8 obj_zoul/csma.o
+ .bss.metadata_memb_memb_count
                 0x0000000020004e1e        0x8 obj_zoul/csma.o
- .bss.initialized.6771
+ .bss.initialized.6767
                 0x0000000020004e26        0x1 obj_zoul/csma.o
  .bss.neighbor_memb_memb_count
                 0x0000000020004e27        0x2 obj_zoul/csma.o
@@ -4806,27 +4806,27 @@ END GROUP
                 0x0000000020004e30        0x1 obj_zoul/contikimac.o
  *(SORT(COMMON))
  *fill*         0x0000000020004e31        0x3 
- COMMON         0x0000000020004e34       0x10 rx.co
+ COMMON         0x0000000020004e34        0x8 rx.co
                 0x0000000020004e34                csma_stats
- COMMON         0x0000000020004e44       0x3e obj_zoul/packetbuf.o
-                0x0000000020004e44                packetbuf_addrs
-                0x0000000020004e4c                packetbuf_attrs
- COMMON         0x0000000020004e82        0x2 obj_zoul/linkaddr.o
-                0x0000000020004e82                linkaddr_node_addr
- COMMON         0x0000000020004e84        0x1 obj_zoul/button-sensor.o
-                0x0000000020004e84                button_press_duration_exceeded
- COMMON         0x0000000020004e85        0x4 obj_zoul/zoul-sensors.o
-                0x0000000020004e85                sensors_flags
- COMMON         0x0000000020004e89        0x1 obj_zoul/serial-line.o
-                0x0000000020004e89                serial_line_event_message
- COMMON         0x0000000020004e8a        0x1 obj_zoul/sensors.o
-                0x0000000020004e8a                sensors_event
-                0x0000000020004e8b                _ebss = .
+ COMMON         0x0000000020004e3c       0x3e obj_zoul/packetbuf.o
+                0x0000000020004e3c                packetbuf_addrs
+                0x0000000020004e44                packetbuf_attrs
+ COMMON         0x0000000020004e7a        0x2 obj_zoul/linkaddr.o
+                0x0000000020004e7a                linkaddr_node_addr
+ COMMON         0x0000000020004e7c        0x1 obj_zoul/button-sensor.o
+                0x0000000020004e7c                button_press_duration_exceeded
+ COMMON         0x0000000020004e7d        0x4 obj_zoul/zoul-sensors.o
+                0x0000000020004e7d                sensors_flags
+ COMMON         0x0000000020004e81        0x1 obj_zoul/serial-line.o
+                0x0000000020004e81                serial_line_event_message
+ COMMON         0x0000000020004e82        0x1 obj_zoul/sensors.o
+                0x0000000020004e82                sensors_event
+                0x0000000020004e83                _ebss = .
 
-.stack          0x0000000020004e90      0x800
+.stack          0x0000000020004e88      0x800
  *(SORT(.stack))
- .stack         0x0000000020004e90      0x800 obj_zoul/startup-gcc.o
-                0x0000000020005690                _heap = .
+ .stack         0x0000000020004e88      0x800 obj_zoul/startup-gcc.o
+                0x0000000020005688                _heap = .
                 0x0000000020008000                _eheap = (ORIGIN (FRSRAM) + LENGTH (FRSRAM))
 
 .nrdata         0x0000000020000000        0x0

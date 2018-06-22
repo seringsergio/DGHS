@@ -20,6 +20,10 @@ show databases;
 USE mote1;
 USE sink;
 
+//Mostrar las columnas de una Tabla
+DESCRIBE int_50_tx;
+
+
 
 //Tabla: Crear tabla dentro de la base de datos
 CREATE TABLE Variables (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, temperature INT(4), light INT(4));
@@ -75,7 +79,7 @@ latency   INT(4) NOT NULL,
 date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-
+//For plotting the tree in python in real-time
 create table msg (
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 nodeID DECIMAL(5,2) NOT NULL,
@@ -88,15 +92,49 @@ VDD INT(5) NOT NULL,
 date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+//For recording statistics when the interference is 50%
+create table int_50_tx (
+id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+num_packets INT(11) NOT NULL,
+btp FLOAT(8,2),
+EWMA_btp_09 FLOAT(8,2),
+EWMA_btp_08 FLOAT(8,2),
+EWMA_btp_07 FLOAT(8,2),
+EWMA_btp_06 FLOAT(8,2),
+EWMA_btp_05 FLOAT(8,2),
+EWMA_btp_04 FLOAT(8,2),
+EWMA_btp_03 FLOAT(8,2),
+EWMA_btp_02 FLOAT(8,2),
+EWMA_btp_01 FLOAT(8,2),
+ppl FLOAT(8,2),
+EWMA_ppl_09 FLOAT(8,2),
+EWMA_ppl_08 FLOAT(8,2),
+EWMA_ppl_07 FLOAT(8,2),
+EWMA_ppl_06 FLOAT(8,2),
+EWMA_ppl_05 FLOAT(8,2),
+EWMA_ppl_04 FLOAT(8,2),
+EWMA_ppl_03 FLOAT(8,2),
+EWMA_ppl_02 FLOAT(8,2),
+EWMA_ppl_01 FLOAT(8,2),
+date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
 //Mostrar Tablas:
 show tables;
 
 //Insertar: Insertar algo dentro de la tabla.
+INSERT INTO int_50_tx (id,num_packets,btp,EWMA_btp_09,EWMA_btp_08,EWMA_btp_07,EWMA_btp_06,EWMA_btp_05,EWMA_btp_04,
+                       EWMA_btp_03,EWMA_btp_02,EWMA_btp_01,ppl,EWMA_ppl_09,EWMA_ppl_08,EWMA_ppl_07,EWMA_ppl_06,EWMA_ppl_05,
+                       EWMA_ppl_04,EWMA_ppl_03,EWMA_ppl_02,EWMA_ppl_01)
+                       VALUES (NULL,8980,1178.90,1182.54,1181.91,1177.37,1168.28,1153.14,1129.90,1096.56,1052.80,1002.59,
+                                    1.00,1.00,1.00,1.00,1.00,1.00,1.00,.99,.99,.99 );
+
 INSERT INTO weatherData (id, tempC, light) VALUES (NULL, 30, 200);
 INSERT INTO LinkStatistics (id, nodeID, secuencia, tempC, light, RSSI, LQI) VALUES (NULL, 2.0 ,1, 30, 200, -74, 107 );
 INSERT INTO LinkStatisticsPaper (id, nodeID, secuencia, tempC, light, RSSI, LQI, latency) VALUES (NULL, 2.0 ,18, 22, 191, 64, 107, 85 );
 INSERT INTO msg (id, nodeID, seqno, parent , tempC, VDD) VALUES (NULL, 2.0 , 1, 1.0, 27380, 3293);
 INSERT INTO msg (id, nodeID, seqno, x, y, parent, tempC, VDD) VALUES (NULL, 6.0 , 1, 11, 12, 2.0, 27380, 3293);
+
 
 
 //Ver: Ver valores insertados en la tabla
@@ -105,12 +143,13 @@ select * from LinkStatistics;
 select * from LinkStatisticsPaper;
 select * from LinkStatisticsPaper where id=1;
 select * from msg;
+select * from int_50_tx;
 
 //Eliminar: Elimina tabla
 DROP TABLE weatherData;
 DROP TABLE LinkStatistics;
 DROP TABLE msg;
-
+DROP TABLE int_50_tx;
 
 //Borrar datos de una tabla
 DELETE FROM weatherData;
