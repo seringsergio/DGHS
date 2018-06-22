@@ -105,11 +105,29 @@ PROCESS_THREAD(example_unicast_process, ev, data)
   PROCESS_EXITHANDLER(unicast_close(&uc);)
 
   static uint16_t cont;
-  static char res1[20], res2[20], res3[20]; //to print the float variable
+  static char res1[20],//to print the float variable
+              res2[20],
+              res3[20],
+              res4[20],
+              res5[20],
+              res6[20],
+              res7[20],
+              res8[20],
+              res9[20],
+              res10[20],
+              res11[20];
   //static float ppl;
   static float btp; //ppl is Percentage of Packet Loss, btp (Backoff Time per packet)
   //static float EWMA_ppl;
-  static float EWMA_btp;
+  static float EWMA_btp_01,
+               EWMA_btp_02,
+               EWMA_btp_03,
+               EWMA_btp_04,
+               EWMA_btp_05,
+               EWMA_btp_06,
+               EWMA_btp_07,
+               EWMA_btp_08,
+               EWMA_btp_09;
 
   PROCESS_BEGIN();
 
@@ -140,6 +158,8 @@ PROCESS_THREAD(example_unicast_process, ev, data)
       unicast_send(&uc, &addr);
       cont++;
 
+      // 1. Para saber el porcentaje de interferencia utilizo EWMA_btp a largo plazo (EWMA_btp_01 ó EWMA_btp_02)...con muchas muestras
+      // 2. Para saber si cambio de padre o no rapidamente utilizo btp. Me demoro WINDOW_NUM_PACKETS paquetes.
 
       if(cont % WINDOW_NUM_PACKETS == 0)
       {
@@ -151,19 +171,46 @@ PROCESS_THREAD(example_unicast_process, ev, data)
         //REF: Also, see the example of contiki called example-neighbors.c It implements a EWMA
         if(cont == WINDOW_NUM_PACKETS) //It is the first calculation of EWMA_btp
         {
-          EWMA_btp = btp;
+          EWMA_btp_01 = btp;
+          EWMA_btp_02 = btp;
+          EWMA_btp_03 = btp;
+          EWMA_btp_04 = btp;
+          EWMA_btp_05 = btp;
+          EWMA_btp_06 = btp;
+          EWMA_btp_07 = btp;
+          EWMA_btp_08 = btp;
+          EWMA_btp_09 = btp;
+
         }else
         {
-          EWMA_btp = ( (float) EWMA_ALPHA * (float) btp) + (( (float) 1 - (float) EWMA_ALPHA) * (float) EWMA_btp);
+          EWMA_btp_01 = ( (float) EWMA_ALPHA_01 * (float) btp) + (( (float) 1 - (float) EWMA_ALPHA_01) * (float) EWMA_btp_01);
+          EWMA_btp_02 = ( (float) EWMA_ALPHA_02 * (float) btp) + (( (float) 1 - (float) EWMA_ALPHA_02) * (float) EWMA_btp_02);
+          EWMA_btp_03 = ( (float) EWMA_ALPHA_03 * (float) btp) + (( (float) 1 - (float) EWMA_ALPHA_03) * (float) EWMA_btp_03);
+          EWMA_btp_04 = ( (float) EWMA_ALPHA_04 * (float) btp) + (( (float) 1 - (float) EWMA_ALPHA_04) * (float) EWMA_btp_04);
+          EWMA_btp_05 = ( (float) EWMA_ALPHA_05 * (float) btp) + (( (float) 1 - (float) EWMA_ALPHA_05) * (float) EWMA_btp_05);
+          EWMA_btp_06 = ( (float) EWMA_ALPHA_06 * (float) btp) + (( (float) 1 - (float) EWMA_ALPHA_06) * (float) EWMA_btp_06);
+          EWMA_btp_07 = ( (float) EWMA_ALPHA_07 * (float) btp) + (( (float) 1 - (float) EWMA_ALPHA_07) * (float) EWMA_btp_07);
+          EWMA_btp_08 = ( (float) EWMA_ALPHA_08 * (float) btp) + (( (float) 1 - (float) EWMA_ALPHA_08) * (float) EWMA_btp_08);
+          EWMA_btp_09 = ( (float) EWMA_ALPHA_09 * (float) btp) + (( (float) 1 - (float) EWMA_ALPHA_09) * (float) EWMA_btp_09);
+
         }
 
         //print a float in Contiki
         ftoa( btp, res2, 2); //Uses the library print_float.h
-        ftoa( EWMA_btp, res3, 2); //Uses the library print_float.h
+        ftoa( EWMA_btp_09, res3, 2); //Uses the library print_float.h
+        ftoa( EWMA_btp_08, res4, 2); //Uses the library print_float.h
+        ftoa( EWMA_btp_07, res5, 2); //Uses the library print_float.h
+        ftoa( EWMA_btp_06, res6, 2); //Uses the library print_float.h
+        ftoa( EWMA_btp_05, res7, 2); //Uses the library print_float.h
+        ftoa( EWMA_btp_04, res8, 2); //Uses the library print_float.h
+        ftoa( EWMA_btp_03, res9, 2); //Uses the library print_float.h
+        ftoa( EWMA_btp_02, res10, 2); //Uses the library print_float.h
+        ftoa( EWMA_btp_01, res11, 2); //Uses the library print_float.h
 
         //format CSMA total_packets packets_dropped EWMA_ppl btp(ventana) EWMA_btp
-        printf("CSMA/%d/%d/%s/%s/%s\n",
-        cont, csma_stats.packets_dropped, res1 , res2, res3  );
+        printf("CSMA/%d/%d/%s/%s/%s/%s/%s/%s/%s/%s/%s/%s/%s\n",
+        cont, csma_stats.packets_dropped, res1 , res2, res3, res4, res5, res6, res7, res8, res9, res10, res11  );
+
         reset_csma_stats();
       }
 

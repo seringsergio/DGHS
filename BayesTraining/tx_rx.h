@@ -42,7 +42,15 @@
 /////////////////////////////////////////////////////////////////////////////
 
 #define WINDOW_NUM_PACKETS 10
-#define EWMA_ALPHA 0.10f //The f indicates it is a float value
+#define EWMA_ALPHA_01 0.10f //The f indicates it is a float value
+#define EWMA_ALPHA_02 0.20f //The f indicates it is a float value
+#define EWMA_ALPHA_03 0.30f //The f indicates it is a float value
+#define EWMA_ALPHA_04 0.40f //The f indicates it is a float value
+#define EWMA_ALPHA_05 0.50f //The f indicates it is a float value
+#define EWMA_ALPHA_06 0.60f //The f indicates it is a float value
+#define EWMA_ALPHA_07 0.70f //The f indicates it is a float value
+#define EWMA_ALPHA_08 0.80f //The f indicates it is a float value
+#define EWMA_ALPHA_09 0.90f //The f indicates it is a float value
 
 
 /////////////////////////////////////////////////////////////////////////////
