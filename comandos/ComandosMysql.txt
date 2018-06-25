@@ -93,7 +93,7 @@ date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 //For recording statistics when the interference is 50%
-create table int_50_tx (
+create table int_60_tx (
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 num_packets INT(11) NOT NULL,
 btp FLOAT(8,2),
@@ -156,6 +156,7 @@ DELETE FROM weatherData;
 DELETE FROM LinkStatistics;
 DELETE FROM LinkStatisticsPaper;
 DELETE FROM msg;
+DELETE FROM int_50_tx;
 
 //Reset AUTO_INCREMENT a 1
 ALTER TABLE weatherData AUTO_INCREMENT = 1;
@@ -185,6 +186,15 @@ UNION ALL
 SELECT *
 FROM LinkStatisticsPaper
 INTO OUTFILE "/var/lib/mysql-files/LinkStatisticsPaperV3_21_2.csv"
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n';
+
+SELECT "id","num_packets","btp","EWMA_btp_09","EWMA_btp_08","EWMA_btp_07","EWMA_btp_06","EWMA_btp_05","EWMA_btp_04","EWMA_btp_03","EWMA_btp_02","EWMA_btp_01","ppl","EWMA_ppl_09","EWMA_ppl_08","EWMA_ppl_07","EWMA_ppl_06","EWMA_ppl_05","EWMA_ppl_04","EWMA_ppl_03","EWMA_ppl_02","EWMA_ppl_01","date"
+UNION ALL
+SELECT *
+FROM int_60_tx
+INTO OUTFILE "/var/lib/mysql-files/int_60_tx.csv"
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n';
