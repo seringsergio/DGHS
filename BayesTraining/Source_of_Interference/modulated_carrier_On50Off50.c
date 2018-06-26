@@ -178,7 +178,7 @@ static void carrier_On1sOff1s(struct rtimer* timer, void* ptr)
 
 /*---------------------------------------------------------------------------*/
 
-PROCESS(turn_carrier_OnOff, "Turn Carrier On Off"); // Declares the process to turn the carrier on and off
+PROCESS(turn_carrier_OnOff, "Turn Carrier On Off 50"); // Declares the process to turn the carrier on and off
 AUTOSTART_PROCESSES( &turn_carrier_OnOff); // Load the process on boot
 
 PROCESS_THREAD(turn_carrier_OnOff, ev, data) // Process to turn carrier on and off

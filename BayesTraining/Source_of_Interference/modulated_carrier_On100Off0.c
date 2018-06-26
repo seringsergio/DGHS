@@ -39,16 +39,19 @@
 
 #include "contiki.h"
 
-#include "/home/sink/Desktop/contiki/dev/cc2420/cc2420.h" // Include the CC2420 library
-#include "/home/sink/Desktop/contiki/dev/cc2420/cc2420_const.h"  // Include the CC2420 constants 
-#include "/home/sink/Desktop/contiki/core/dev/spi.h" // Include basic SPI macros
-
+#include "contiki.h"
+#include "/home/seringsergio/Desktop/DGHS/contiki/dev/cc2420/cc2420.h" // Include the CC2420 library
+#include "/home/seringsergio/Desktop/DGHS/contiki/dev/cc2420/cc2420_const.h" // Include the CC2420 constants
+#include "/home/seringsergio/Desktop/DGHS/contiki/core/dev/spi.h" // Include basic SPI macros
+#include "dev/leds.h" // Include Leds to debbug
+#include "sys/rtimer.h" //Include the real time library
+#include "sys/node-id.h" //Library to include a node id
 /*---------------------------------------------------------------------------*/
-PROCESS(modulated_carrier, "CC2420 Modulated Carrier"); // Declares the process modulated_carrier
+PROCESS(modulated_carrier, "CC2420 Modulated Carrier 100"); // Declares the process modulated_carrier
 AUTOSTART_PROCESSES(&modulated_carrier); // Load the process on boot
 
 /*---------------------------------------------------------------------------*/
-/** 
+/**
  * Writes to a register.
  * Note: the SPI_WRITE(0) seems to be needed for getting the
  * write reg working on the Z1 / MSP430X platform
@@ -80,9 +83,9 @@ PROCESS_THREAD(modulated_carrier, ev, data) // Defines the process modulated_car
   PROCESS_BEGIN();  // Says where the process starts
 
   //cc2420_set_txpower(31); //Set the output tx power Maxima Potencia
-  cc2420_set_txpower(3); //Set the output tx power Minima Potencia
+  //cc2420_set_txpower(3); //Set the output tx power Minima Potencia
 
-  //Reset the changes and set back the CC2420 radio chip in normal mode 
+  //Reset the changes and set back the CC2420 radio chip in normal mode
   setreg(CC2420_MANOR, 0x0000);
   setreg(CC2420_TOPTST, 0x0010);
   setreg(CC2420_MDMCTRL1, 0x0500);
@@ -96,4 +99,3 @@ PROCESS_THREAD(modulated_carrier, ev, data) // Defines the process modulated_car
   PROCESS_END();  //Says where the process ends
 }
 /*---------------------------------------------------------------------------*/
-
