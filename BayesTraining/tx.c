@@ -184,7 +184,7 @@ PROCESS_THREAD(example_unicast_process, ev, data)
       if(num_packets % WINDOW_NUM_PACKETS == 0)
       {
         // btp (Backoff Time per packet): tiempo_de_backoff_por_paquete (miliseconds)
-        btp = (float) 1000L * (float) csma_stats.delay  / (float) CLOCK_SECOND / (float) WINDOW_NUM_PACKETS;
+        btp = (float) 1000 * (float) csma_stats.delay  / (float) CLOCK_SECOND / (float) WINDOW_NUM_PACKETS;
         //
         ppl = (float) csma_stats.packets_dropped / (float) WINDOW_NUM_PACKETS;
         //Exponential weighted moving average (EWMA)
@@ -280,64 +280,6 @@ PROCESS_THREAD(example_unicast_process, ev, data)
 
         reset_csma_stats();
       }
-
-      //Exponential weighted moving average (EWMA)
-      //REF: https://en.wikipedia.org/wiki/Moving_average
-      //REF: Also, see the example of contiki called example-neighbors.c It implements a EWMA
-      /*if(num_packets == 1)
-      {
-        // btp (Backoff Time per packet): tiempo_de_backoff_por_paquete (miliseconds)
-        btp = (float) 1000L * (float) csma_stats.delay  / (float) CLOCK_SECOND / (float) 1;
-        EWMA_btp = btp;
-      }else
-      {
-        EWMA_btp = ( (float) EWMA_ALPHA * (float) btp) + (( (float) 1 - (float) EWMA_ALPHA) * (float) EWMA_btp);
-      }*/
-
-      //print a float in Contiki
-      //ftoa( btp, res2, 2); //Uses the library print_float.h
-      //ftoa( EWMA_btp, res3, 2); //Uses the library print_float.h
-
-      //format CSMA total_packets packets_dropped EWMA_ppl btp(ventana) EWMA_btp
-      //printf("CSMA/%d/%d/%s/%s/%s\n",
-      //num_packets, csma_stats.packets_dropped, res1 , res2, res3 );
-
-      /*// ppl is Percentage of Packet Loss
-      ppl = (float) csma_stats.packets_dropped  / (float) num_packets;
-
-      // btp (Backoff Time per packet): tiempo_de_backoff_por_paquete (miliseconds)
-      btp = (float) 1000L * (float) csma_stats.delay  / (float) CLOCK_SECOND / (float) num_packets;
-
-      //Exponential weighted moving average (EWMA)
-      //REF: https://en.wikipedia.org/wiki/Moving_average
-      //REF: Also, see the example of contiki called example-neighbors.c It implements a EWMA
-      if(num_packets == 1)
-      {
-        EWMA_ppl = ppl;
-        EWMA_btp = btp;
-      }else
-      {
-        EWMA_ppl = ( (float) EWMA_ALPHA * (float) ppl) + (( (float) 1 - (float) EWMA_ALPHA) * (float) EWMA_ppl);
-        EWMA_btp = ( (float) EWMA_ALPHA * (float) btp) + (( (float) 1 - (float) EWMA_ALPHA) * (float) EWMA_btp);
-
-      }
-      //////////////////////////////////////////////////////////////////////////////////
-      ftoa( EWMA_ppl, res1, 2); //Uses the library print_float.h
-      ftoa( EWMA_btp, res2, 2); //Uses the library print_float.h
-
-      //format CSMA total_packets packets_dropped EWMA_ppl EWMA_btp
-      printf("CSMA/%d/%d/%s/%s\n",
-      num_packets, csma_stats.packets_dropped, res1 , res2 );*/
-
-      /*if(csma_stats.total_packets >= WINDOW_NUM_PACKETS)
-      {
-        //format CSMA packets_dropped packets_transmitted total_packets delay(ms) num_retx num_collision global_total
-        printf("CSMA/%d/%d/%d/%lu/%d/%d/%d\n",
-        csma_stats.packets_dropped, csma_stats.packets_transmitted,
-        csma_stats.total_packets, (1000L *  csma_stats.delay ) / CLOCK_SECOND,
-        csma_stats.num_retx, csma_stats.num_collision, num_packets );  //delay in miliseconds
-        reset_csma_stats();
-      }*/
     }
 
   }

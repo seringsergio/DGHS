@@ -53,7 +53,7 @@ make login MOTES=/dev/ttyUSB0 | java ViewRSSI
 
 //Recordar como no sale el error de wrong password
 make MOTES=/dev/ttyUSB2 TARGET=sky node-environment.upload
-make MOTES=/dev/ttyUSB8 TARGET=sky modulated_carrier_On100Off0.upload
+make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On100Off0.upload
 make MOTES=/dev/ttyUSB0 TARGET=sky modulated_carrier_On95Off5.upload
 make MOTES=/dev/ttyUSB0 TARGET=sky modulated_carrier_On90Off10.upload
 make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On80Off20.upload
@@ -63,7 +63,7 @@ make MOTES=/dev/ttyUSB0 TARGET=sky modulated_carrier_On50Off50.upload
 make MOTES=/dev/ttyUSB2 TARGET=sky modulated_carrier_On40Off60.upload
 make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On30Off70.upload
 make MOTES=/dev/ttyUSB3 TARGET=sky modulated_carrier_On20Off80.upload
-make MOTES=/dev/ttyUSB7 TARGET=sky modulated_carrier_On10Off90.upload
+make MOTES=/dev/ttyUSB0 TARGET=sky modulated_carrier_On10Off90.upload
 
 
 //Para quemar el node id nodeid de los nodos. El make clean es para borrar el nodeid que se habia guardado anteriormente!!! Es decir, es obligatorio colocar el make clean.
@@ -80,8 +80,8 @@ msp430-size example-ghs_neigh.sky
 
 // Subir codigo al remote
 make NODEID=0x0001 MOTES=/dev/ttyUSB0 TARGET=zoul BOARD=remote-reva zoul-demo.upload
-make NODEID=0x0100 MOTES=/dev/ttyUSB5 TARGET=zoul BOARD=remote-reva rx.upload
-make NODEID=0x0200 MOTES=/dev/ttyUSB6 TARGET=zoul BOARD=remote-reva tx.upload
+make NODEID=0x0100 MOTES=/dev/ttyUSB4 TARGET=zoul BOARD=remote-reva rx.upload
+make NODEID=0x0200 MOTES=/dev/ttyUSB5 TARGET=zoul BOARD=remote-reva tx.upload
 
 //Seleccionar puerto
 make MOTES=/dev/ttyUSB0
@@ -93,7 +93,7 @@ make NODEID=0x0100
 make RF_CHANNEL=20
 
 //Entrar al serial de un sky
-make MOTES=/dev/ttyUSB8 TARGET=sky login
+make MOTES=/dev/ttyUSB1 TARGET=sky login
 
 //rssi-scanner
 0. cd /home/seringsergio/Desktop/DGHS/contiki/examples/rssi-scanner

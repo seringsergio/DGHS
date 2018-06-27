@@ -1,0 +1,48 @@
+%% Before
+close all
+clear all 
+clc
+
+%% Read file
+
+% readFiles
+
+%% Save workspace
+% save('/home/seringsergio/Desktop/DGHS/BayesTraining/results/vary_int_csv_v1/consolidado_int.mat') 
+
+%% Upload workspace
+load('/home/seringsergio/Desktop/DGHS/BayesTraining/results/vary_int_csv_v1/consolidado_int.mat') 
+
+
+%% Count values in a range [0-100]
+
+def_range
+
+%% Count btp
+
+% count_btp
+count_EWMA_btp_01
+% count_EWMA_btp_02
+% count_EWMA_btp_07                
+
+%% Count ppl                        
+
+% count_ppl
+count_EWMA_ppl_01
+% count_EWMA_ppl_02
+% count_EWMA_ppl_07
+
+%% Plot results                        
+
+plot_results
+
+%% frecuency_table
+
+a = [ 1 2 3 4 ];
+b = [ 5 6 7 8 ];
+
+frecuency_table = [ count_EWMA_btp_01_0_tx' count_EWMA_btp_01_10_tx' ]
+
+
+                
+

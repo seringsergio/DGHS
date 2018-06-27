@@ -63,7 +63,8 @@ struct csma_stats
  uint16_t packets_dropped; //We can count up to 65535 message lost
  //uint16_t packets_transmitted; //We can count up to 65535 message lost
  //uint16_t total_packets; //the total of transmitted packets + dropped packets in this round
- clock_time_t delay;
+ uint16_t delay;
+ //clock_time_t delay;
  //uint16_t num_retx;
  //uint16_t num_collision;
 };

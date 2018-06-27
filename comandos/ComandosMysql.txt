@@ -93,7 +93,7 @@ date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 //For recording statistics when the interference is 50%
-create table int_100_tx (
+create table int_10_tx_v2 (
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 num_packets INT(11) NOT NULL,
 btp FLOAT(8,2),

@@ -196,7 +196,7 @@ schedule_transmission(struct neighbor_queue *n)
     delay = random_rand() % delay;
   }
 
-  csma_stats.delay += delay;
+  csma_stats.delay += (uint16_t) delay;
   PRINTF("csma: scheduling transmission in %u ticks, NB=%u, BE=%u\n",
       (unsigned)delay, n->collisions, backoff_exponent);
   ctimer_set(&n->transmit_timer, delay, transmit_packet_list, n);

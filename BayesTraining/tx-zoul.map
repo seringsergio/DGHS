@@ -80,7 +80,7 @@ avail_memory        0x4               obj_zoul/mmem.o
 sensors_flags       0x4               obj_zoul/zoul-sensors.o
 serial_line_event_message
                     0x1               obj_zoul/serial-line.o
-csma_stats          0x8               tx.co
+csma_stats          0x4               tx.co
 sensors_event       0x1               obj_zoul/sensors.o
 button_press_duration_exceeded
                     0x1               obj_zoul/button-sensor.o
@@ -4665,7 +4665,7 @@ END GROUP
  .ARM.exidx     0x00000000002082f4        0x0 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_udivdi3.o)
                                           0x8 (size before relaxing)
 
-.bss            0x00000000200040f8      0xf7b
+.bss            0x00000000200040f8      0xf77
                 0x00000000200040f8                _bss = .
  *(SORT(.bss*))
  .bss.rt_ticks_startup
@@ -4892,27 +4892,27 @@ END GROUP
                 0x000000002000500f       0x14 tx.co
  *(SORT(COMMON))
  *fill*         0x0000000020005023        0x1 
- COMMON         0x0000000020005024        0x8 tx.co
-                0x0000000020005024                csma_stats
- COMMON         0x000000002000502c       0x3e obj_zoul/packetbuf.o
-                0x000000002000502c                packetbuf_addrs
-                0x0000000020005034                packetbuf_attrs
- COMMON         0x000000002000506a        0x2 obj_zoul/linkaddr.o
-                0x000000002000506a                linkaddr_node_addr
- COMMON         0x000000002000506c        0x1 obj_zoul/button-sensor.o
-                0x000000002000506c                button_press_duration_exceeded
- COMMON         0x000000002000506d        0x4 obj_zoul/zoul-sensors.o
-                0x000000002000506d                sensors_flags
- COMMON         0x0000000020005071        0x1 obj_zoul/serial-line.o
-                0x0000000020005071                serial_line_event_message
- COMMON         0x0000000020005072        0x1 obj_zoul/sensors.o
-                0x0000000020005072                sensors_event
-                0x0000000020005073                _ebss = .
+ COMMON         0x0000000020005024       0x3e obj_zoul/packetbuf.o
+                0x0000000020005024                packetbuf_addrs
+                0x000000002000502c                packetbuf_attrs
+ COMMON         0x0000000020005062        0x2 obj_zoul/linkaddr.o
+                0x0000000020005062                linkaddr_node_addr
+ COMMON         0x0000000020005064        0x4 tx.co
+                0x0000000020005064                csma_stats
+ COMMON         0x0000000020005068        0x1 obj_zoul/button-sensor.o
+                0x0000000020005068                button_press_duration_exceeded
+ COMMON         0x0000000020005069        0x4 obj_zoul/zoul-sensors.o
+                0x0000000020005069                sensors_flags
+ COMMON         0x000000002000506d        0x1 obj_zoul/serial-line.o
+                0x000000002000506d                serial_line_event_message
+ COMMON         0x000000002000506e        0x1 obj_zoul/sensors.o
+                0x000000002000506e                sensors_event
+                0x000000002000506f                _ebss = .
 
-.stack          0x0000000020005078      0x800
+.stack          0x0000000020005070      0x800
  *(SORT(.stack))
- .stack         0x0000000020005078      0x800 obj_zoul/startup-gcc.o
-                0x0000000020005878                _heap = .
+ .stack         0x0000000020005070      0x800 obj_zoul/startup-gcc.o
+                0x0000000020005870                _heap = .
                 0x0000000020008000                _eheap = (ORIGIN (FRSRAM) + LENGTH (FRSRAM))
 
 .nrdata         0x0000000020000000        0x0
