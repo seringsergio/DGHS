@@ -164,6 +164,7 @@ PROCESS_THREAD(test_Bayes_laplace, ev, data)
   event.row = 35;
   prob_100_btp = calculate_probability_of_event( frequency_table_btp,   event );
 
+  //normalizar
   prob_0_btp_N    = prob_0_btp / (prob_0_btp + prob_10_btp + prob_20_btp + prob_30_btp + prob_40_btp + prob_50_btp + prob_60_btp + prob_70_btp + prob_80_btp + prob_90_btp + prob_100_btp );
   prob_10_btp_N   = prob_10_btp / (prob_0_btp + prob_10_btp + prob_20_btp + prob_30_btp + prob_40_btp + prob_50_btp + prob_60_btp + prob_70_btp + prob_80_btp + prob_90_btp + prob_100_btp );
   prob_20_btp_N   = prob_20_btp / (prob_0_btp + prob_10_btp + prob_20_btp + prob_30_btp + prob_40_btp + prob_50_btp + prob_60_btp + prob_70_btp + prob_80_btp + prob_90_btp + prob_100_btp );
@@ -244,6 +245,7 @@ PROCESS_THREAD(test_Bayes_laplace, ev, data)
   event.row = 35;
   prob_100_ppl = calculate_probability_of_event( frequency_table_ppl,   event );
 
+  //normalizar
   prob_0_ppl_N    = prob_0_ppl / (prob_0_ppl + prob_10_ppl + prob_20_ppl + prob_30_ppl + prob_40_ppl + prob_50_ppl + prob_60_ppl + prob_70_ppl + prob_80_ppl + prob_90_ppl + prob_100_ppl );
   prob_10_ppl_N   = prob_10_ppl / (prob_0_ppl + prob_10_ppl + prob_20_ppl + prob_30_ppl + prob_40_ppl + prob_50_ppl + prob_60_ppl + prob_70_ppl + prob_80_ppl + prob_90_ppl + prob_100_ppl );
   prob_20_ppl_N   = prob_20_ppl / (prob_0_ppl + prob_10_ppl + prob_20_ppl + prob_30_ppl + prob_40_ppl + prob_50_ppl + prob_60_ppl + prob_70_ppl + prob_80_ppl + prob_90_ppl + prob_100_ppl );

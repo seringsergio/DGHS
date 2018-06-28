@@ -149,9 +149,9 @@ const uint8_t frequency_table_ppl[ROWS_T][COLUMNS_T] =
 void calculate_likelihood(const uint8_t frequency_table[ROWS_T][COLUMNS_T], float likelihood[ROWS_T][COLUMNS_T])
 {
   uint8_t i,j;
-  char res[20]; //to print the float variable
+  //char res[20]; //to print the float variable
 
-  uint8_t N_array[COLUMNS_T] = {0,0}  ;
+  uint8_t N_array[COLUMNS_T] = {0,0,0,0,0,0,0,0,0,0,0};
 
   //
   calculate_N(frequency_table,N_array);
@@ -170,7 +170,7 @@ void calculate_likelihood(const uint8_t frequency_table[ROWS_T][COLUMNS_T], floa
       likelihood[i][j] = ( (float) frequency_table[i][j] + (float) K_laplace ) /
                          ( (float) N_array[j] + ( (float) K_laplace * (float) ROWS_T )  );
 
-      ftoa(likelihood[i][j], res, 4);
+      //ftoa(likelihood[i][j], res, 4);
       //printf("%s ", res);
     }
     //printf("\n");
@@ -203,19 +203,56 @@ void calculate_N(const uint8_t frequency_table[ROWS_T][COLUMNS_T], uint8_t N_arr
 
 float calculate_probability_of_event(const uint8_t frequency_table[ROWS_T][COLUMNS_T], struct event event )
 {
-  float class_prob[COLUMNS_T] = {0};
-  float likelihood[ROWS_T][COLUMNS_T]=
+  static float class_prob[COLUMNS_T] = {0,0,0,0,0,0,0,0,0,0,0};
+  static float likelihood[ROWS_T][COLUMNS_T] =
   {
-    {0, 0},
-    {0, 0},
-    {0, 0}
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0},
+    {0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   ,  0  ,   0  ,   0}
   };
 
   float probability_of_event = 0;
 
-  char res1[20]; //to print the float variable
-  char res2[20]; //to print the float variable
-  char res3[20]; //to print the float variable
+  //char res1[20]; //to print the float variable
+  //char res2[20]; //to print the float variable
+  //char res3[20]; //to print the float variable
 
   //calculate the prob of the class
   calculate_class_prob(frequency_table, class_prob);
@@ -225,10 +262,9 @@ float calculate_probability_of_event(const uint8_t frequency_table[ROWS_T][COLUM
 
   probability_of_event = class_prob[event.column] * likelihood[event.row][event.column];
 
-  ftoa(probability_of_event, res1, 4);
-  ftoa(class_prob[event.column], res2, 4);
-  ftoa(likelihood[event.row][event.column], res3, 4);
-
+  //ftoa(probability_of_event, res1, 4);
+  //ftoa(class_prob[event.column], res2, 4);
+  //ftoa(likelihood[event.row][event.column], res3, 4);
   //printf("%s = %s * %s \n", res1, res2, res3);
 
   return probability_of_event;
@@ -238,8 +274,8 @@ float calculate_probability_of_event(const uint8_t frequency_table[ROWS_T][COLUM
 void calculate_class_prob(const uint8_t frequency_table[ROWS_T][COLUMNS_T], float class_prob[COLUMNS_T])
 {
   uint8_t j;
-  uint8_t N_array[COLUMNS_T] = {0,0}  ;
-  char res[20]; //to print the float variable
+  uint8_t N_array[COLUMNS_T] = {0,0,0,0,0,0,0,0,0,0,0};
+  //char res[20]; //to print the float variable
 
   calculate_N(frequency_table,N_array);
 
@@ -251,7 +287,7 @@ void calculate_class_prob(const uint8_t frequency_table[ROWS_T][COLUMNS_T], floa
     /*printf("%d + %d / %d + %d*%d     ", N_array[j], K_laplace, calculate_N_class(frequency_table)
                                         ,K_laplace, COLUMNS_T );*/
 
-    ftoa(class_prob[j], res, 4);
+    //ftoa(class_prob[j], res, 4);
     //printf("%s ", res);
   }
   //printf("\n");
