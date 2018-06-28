@@ -80,7 +80,7 @@ msp430-size example-ghs_neigh.sky
 
 // Subir codigo al remote
 make NODEID=0x0001 MOTES=/dev/ttyUSB0 TARGET=zoul BOARD=remote-reva zoul-demo.upload
-make NODEID=0x0100 MOTES=/dev/ttyUSB4 TARGET=zoul BOARD=remote-reva rx.upload
+make NODEID=0x0100 MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva rx.upload
 make NODEID=0x0200 MOTES=/dev/ttyUSB5 TARGET=zoul BOARD=remote-reva tx.upload
 make NODEID=0x0200 MOTES=/dev/ttyUSB0 TARGET=zoul BOARD=remote-reva DGHS_Bayes_Laplace_Classify.upload
 

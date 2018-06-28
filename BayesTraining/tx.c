@@ -167,7 +167,6 @@ PROCESS_THREAD(example_unicast_process, ev, data)
 
     //etimer_set(&et,  CLOCK_SECOND ); // Configure timer et to a random time between 0 and 2
     etimer_set(&et,  random_rand() % (CLOCK_SECOND * 2) ); // Configure timer et to a random time between 0 and 2
-
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
 
     packetbuf_copyfrom("Hello", 5);

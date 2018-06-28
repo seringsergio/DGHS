@@ -52,6 +52,25 @@
 #define ROWS_T       40  //Rows of the table
 #define COLUMNS_T    11  //Columns of the table
 
+//matlab
+#define range_EWMA_btp_01   1050.4f
+#define range_ppl           1.0f
+#define num_divisions_ppl   ROWS_T
+#define num_divisions_btp   ROWS_T
+//////////////////////////
+
+// Exponential weighted moving average (EWMA)
+#define WINDOW_NUM_PACKETS 10
+#define EWMA_ALPHA_01 0.10f //The f indicates it is a float value
+#define EWMA_ALPHA_02 0.20f //The f indicates it is a float value
+#define EWMA_ALPHA_03 0.30f //The f indicates it is a float value
+#define EWMA_ALPHA_04 0.40f //The f indicates it is a float value
+#define EWMA_ALPHA_05 0.50f //The f indicates it is a float value
+#define EWMA_ALPHA_06 0.60f //The f indicates it is a float value
+#define EWMA_ALPHA_07 0.70f //The f indicates it is a float value
+#define EWMA_ALPHA_08 0.80f //The f indicates it is a float value
+#define EWMA_ALPHA_09 0.90f //The f indicates it is a float value
+
 //Defines for the Naive Bayesian Classifier with Laplace Smoothing
 
 #define K_laplace 1
@@ -77,13 +96,18 @@ typedef enum
 struct csma_stats
 {
  uint16_t packets_dropped; //We can count up to 65535 message lost
- //uint16_t packets_transmitted; //We can count up to 65535 message lost
- //uint16_t total_packets; //the total of transmitted packets + dropped packets in this round
  uint16_t delay;
- //clock_time_t delay;
- //uint16_t num_retx;
- //uint16_t num_collision;
 };
+
+struct csma_results
+{
+  float ppl; // ppl (Percentage of Packet Loss)
+  float btp; // btp (Backoff Time per packet)
+  float EWMA_btp_01;
+  float EWMA_ppl_01;
+};
+
+
 
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////// ARRAY ///////////////////////////////////////////////
@@ -104,6 +128,11 @@ struct event
   uint8_t column;
 };
 
+struct detected_event
+{
+  uint8_t event_btp;
+  uint8_t event_ppl;
+};
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////FUNCTIONS/////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
