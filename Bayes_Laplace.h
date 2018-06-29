@@ -90,7 +90,7 @@ void calculate_likelihood(const uint8_t frequency_table[ROWS_T][COLUMNS_T], floa
 void calculate_N(const uint8_t frequency_table[ROWS_T][COLUMNS_T], uint8_t N_array[COLUMNS_T]);
 uint8_t calculate_N_class(const uint8_t frequency_table[ROWS_T][COLUMNS_T] );
 void calculate_class_prob(const uint8_t frequency_table[ROWS_T][COLUMNS_T], float class_prob[COLUMNS_T]);
-float calculate_probability_of_event(const uint8_t frequency_table[ROWS_T][COLUMNS_T], struct event event ); 
+float calculate_probability_of_event(const uint8_t frequency_table[ROWS_T][COLUMNS_T], struct event event );
 
 
 //-----------------------------------------------------------------------------
