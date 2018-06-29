@@ -3708,7 +3708,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a
 LOAD /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv7-m/libc.a
 END GROUP
 
-.text           0x0000000000202000     0x682e
+.text           0x0000000000202000     0x6826
                 0x0000000000202000                _text = .
  *(SORT(.vectors))
  .vectors       0x0000000000202000      0x28c obj_zoul/startup-gcc.o
@@ -4627,37 +4627,37 @@ END GROUP
  .rodata.str1.1
                 0x0000000000208312        0x8 obj_zoul/nullsec.o
  .rodata.str1.1
-                0x000000000020831a      0x1a4 DGHS_Bayes_Laplace_Classify_v2.co
-                                        0x1cd (size before relaxing)
+                0x000000000020831a      0x19c DGHS_Bayes_Laplace_Classify_v2.co
+                                        0x1c5 (size before relaxing)
  .rodata.frequency_table_btp
-                0x00000000002084be      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
-                0x00000000002084be                frequency_table_btp
+                0x00000000002084b6      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
+                0x00000000002084b6                frequency_table_btp
  .rodata.frequency_table_ppl
-                0x0000000000208676      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
-                0x0000000000208676                frequency_table_ppl
-                0x000000000020882e                _etext = .
+                0x000000000020866e      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
+                0x000000000020866e                frequency_table_ppl
+                0x0000000000208826                _etext = .
 
-.glue_7         0x0000000000208830        0x0
- .glue_7        0x0000000000208830        0x0 linker stubs
+.glue_7         0x0000000000208828        0x0
+ .glue_7        0x0000000000208828        0x0 linker stubs
 
-.glue_7t        0x0000000000208830        0x0
- .glue_7t       0x0000000000208830        0x0 linker stubs
+.glue_7t        0x0000000000208828        0x0
+ .glue_7t       0x0000000000208828        0x0 linker stubs
 
-.vfp11_veneer   0x0000000000208830        0x0
- .vfp11_veneer  0x0000000000208830        0x0 linker stubs
+.vfp11_veneer   0x0000000000208828        0x0
+ .vfp11_veneer  0x0000000000208828        0x0 linker stubs
 
-.v4_bx          0x0000000000208830        0x0
- .v4_bx         0x0000000000208830        0x0 linker stubs
+.v4_bx          0x0000000000208828        0x0
+ .v4_bx         0x0000000000208828        0x0 linker stubs
 
-.iplt           0x0000000000208830        0x0
- .iplt          0x0000000000208830        0x0 obj_zoul/startup-gcc.o
+.iplt           0x0000000000208828        0x0
+ .iplt          0x0000000000208828        0x0 obj_zoul/startup-gcc.o
 
 .socdata        0x0000000020004000       0x40
  *(SORT(.udma_channel_control_table))
  .udma_channel_control_table
                 0x0000000020004000       0x40 obj_zoul/udma.o
 
-.data           0x0000000020004040       0xd8 load address 0x0000000000208830
+.data           0x0000000020004040       0xd8 load address 0x0000000000208828
                 0x0000000020004040                _data = .
  *(SORT(.data*))
  .data.sensors  0x0000000020004040       0x10 obj_zoul/zoul-sensors.o
@@ -4703,15 +4703,15 @@ END GROUP
  .data.rf_channel
                 0x0000000020004117        0x1 obj_zoul/cc2538-rf.o
                 0x0000000020004118                _edata = .
-                0x0000000000208830                _ldata = LOADADDR (.data)
+                0x0000000000208828                _ldata = LOADADDR (.data)
 
-.igot.plt       0x0000000020004118        0x0 load address 0x0000000000208908
+.igot.plt       0x0000000020004118        0x0 load address 0x0000000000208900
  .igot.plt      0x0000000020004118        0x0 obj_zoul/startup-gcc.o
 
-.ARM.exidx      0x0000000000208908        0x8
+.ARM.exidx      0x0000000000208900        0x8
  *(SORT(.ARM.exidx*))
- .ARM.exidx     0x0000000000208908        0x8 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_divdi3.o)
- .ARM.exidx     0x0000000000208910        0x0 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_udivdi3.o)
+ .ARM.exidx     0x0000000000208900        0x8 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_divdi3.o)
+ .ARM.exidx     0x0000000000208908        0x0 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_udivdi3.o)
                                           0x8 (size before relaxing)
 
 .bss            0x0000000020004118     0x1649

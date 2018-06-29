@@ -4743,7 +4743,7 @@ END GROUP
                 0x00000000200046ec      0x600 obj_zoul/queuebuf.o
  .bss.buflen    0x0000000020004cec        0x2 obj_zoul/packetbuf.o
  .bss.bufptr    0x0000000020004cee        0x2 obj_zoul/packetbuf.o
- .bss.seqno.8487
+ .bss.seqno.8495
                 0x0000000020004cf0        0x2 obj_zoul/csma.o
  .bss.pt        0x0000000020004cf2        0x2 obj_zoul/contikimac.o
  .bss.leds      0x0000000020004cf4        0x1 obj_zoul/leds.o
@@ -4782,10 +4782,10 @@ END GROUP
                 0x0000000020004e15        0x1 obj_zoul/framer-802154.o
  .bss.packet_memb_memb_count
                 0x0000000020004e16        0x8 obj_zoul/csma.o
- .bss.initialized.8486
-                0x0000000020004e1e        0x1 obj_zoul/csma.o
  .bss.metadata_memb_memb_count
-                0x0000000020004e1f        0x8 obj_zoul/csma.o
+                0x0000000020004e1e        0x8 obj_zoul/csma.o
+ .bss.initialized.8494
+                0x0000000020004e26        0x1 obj_zoul/csma.o
  .bss.neighbor_memb_memb_count
                 0x0000000020004e27        0x2 obj_zoul/csma.o
  .bss.count.7484

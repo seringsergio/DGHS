@@ -58,7 +58,7 @@ void reset_csma_stats()
 static void
 recv_uc(struct unicast_conn *c, const linkaddr_t *from)
 {
-  printf("unicast message received from %d.%d\n",
+  printf("unicast message / received from %d.%d\n",
 	 from->u8[0], from->u8[1]);
 }
 /*---------------------------------------------------------------------------*/
@@ -210,8 +210,8 @@ PROCESS_THREAD(analyze_csma_results, ev, data)
                csma_results.EWMA_btp_01 <  upper_interval   )
             {
                 detected_event.event_btp = i - 1; //Resto 1 porq aca es de 0-39...en matlab es de 1-40
-                printf(" %s < %s < %s \n", res1,res2,res3);
-                printf("event_btp = %d\n", detected_event.event_btp);
+                printf(" %s < /%s/ < %s \n", res1,res2,res3);
+                printf("event_btp =/ %d\n", detected_event.event_btp);
                 break;
             }
         }
@@ -229,8 +229,8 @@ PROCESS_THREAD(analyze_csma_results, ev, data)
                csma_results.EWMA_ppl_01 <  upper_interval   )
             {
                 detected_event.event_ppl = i - 1; //Resto 1 porq aca es de 0-39...en matlab es de 1-40
-                printf(" %s < %s < %s \n", res1,res2,res3);
-                printf("event_ppl = %d\n", detected_event.event_ppl);
+                printf(" %s < /%s/ < %s \n", res1,res2,res3);
+                printf("event_ppl =/ %d\n", detected_event.event_ppl);
                 break;
             }
         }
@@ -296,11 +296,11 @@ PROCESS_THREAD(detect_interference, ev, data)
         {
           prob_btp_N[i] = prob_btp[i] / total_prob; //Normalize
           ftoa(prob_btp_N[i], res1, 4);
-          printf("prob_btp(%d) = %s \n", i, res1);
+          printf("prob_btp(%d) =/ %s \n", i, res1);
           total_prob_N += prob_btp_N[i];
         }
         ftoa(total_prob_N, res1, 4);
-        printf("SUM(prob_btp) = %s \n", res1);
+        printf("SUM(prob_btp) =/ %s \n", res1);
 
 
         //////////////////////////////////////////////
@@ -327,11 +327,11 @@ PROCESS_THREAD(detect_interference, ev, data)
        {
          prob_ppl_N[i] = prob_ppl[i] / total_prob; //Normalize
          ftoa(prob_ppl_N[i], res1, 4);
-         printf("prob_ppl(%d) = %s \n", i, res1);
+         printf("prob_ppl(%d) =/ %s \n", i, res1);
          total_prob_N += prob_ppl_N[i];
        }
        ftoa(total_prob_N, res1, 4);
-       printf("SUM(prob_ppl) = %s \n", res1);
+       printf("SUM(prob_ppl) =/ %s \n", res1);
 
 
        //////////////////////////////////////////////
@@ -346,7 +346,7 @@ PROCESS_THREAD(detect_interference, ev, data)
         {
           prob_btp_ppl[i] = prob_btp_N[i] * prob_ppl_N[i];
           ftoa(prob_btp_ppl[i], res1, 4);
-          printf("prob_btp_ppl(%d) = %s \n", i, res1);
+          printf("prob_btp_ppl(%d) =/ %s\n", i, res1);
 
           if(prob_btp_ppl[i] > max_prob)
           {
@@ -360,7 +360,9 @@ PROCESS_THREAD(detect_interference, ev, data)
         {
           if(index == i)
           {
-            printf("Detected interference = %d %%\n", i*10 );
+            //Det_int = detected_interference
+            //format DET_INT detected_interference
+            printf("DET_INT/%d/\n", i*10 );
             break;
           }
         }

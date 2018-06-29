@@ -119,10 +119,20 @@ EWMA_ppl_01 FLOAT(8,2),
 date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+//For recording statistics when the interference is 50%
+create table det_int_30 (
+id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+det_int INT(11) NOT NULL,
+det_int_redundant INT(11) NOT NULL,
+date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
 //Mostrar Tablas:
 show tables;
 
 //Insertar: Insertar algo dentro de la tabla.
+INSERT INTO det_int_10 (id, det_int, det_int_redundant) VALUES (NULL, 10, 10);
+
 INSERT INTO int_50_tx (id,num_packets,btp,EWMA_btp_09,EWMA_btp_08,EWMA_btp_07,EWMA_btp_06,EWMA_btp_05,EWMA_btp_04,
                        EWMA_btp_03,EWMA_btp_02,EWMA_btp_01,ppl,EWMA_ppl_09,EWMA_ppl_08,EWMA_ppl_07,EWMA_ppl_06,EWMA_ppl_05,
                        EWMA_ppl_04,EWMA_ppl_03,EWMA_ppl_02,EWMA_ppl_01)
@@ -144,6 +154,7 @@ select * from LinkStatisticsPaper;
 select * from LinkStatisticsPaper where id=1;
 select * from msg;
 select * from int_50_tx;
+select * from det_int_0;
 
 //Eliminar: Elimina tabla
 DROP TABLE weatherData;
@@ -157,11 +168,13 @@ DELETE FROM LinkStatistics;
 DELETE FROM LinkStatisticsPaper;
 DELETE FROM msg;
 DELETE FROM int_50_tx;
+DELETE FROM det_int_30;
 
 //Reset AUTO_INCREMENT a 1
 ALTER TABLE weatherData AUTO_INCREMENT = 1;
 ALTER TABLE LinkStatisticsPaper AUTO_INCREMENT = 1;
 ALTER TABLE msg AUTO_INCREMENT = 1;
+ALTER TABLE det_int_30 AUTO_INCREMENT = 1;
 
 //Propiedades: Ver las propiedades de una tabla
 SHOW COLUMNS FROM weatherData;
@@ -195,6 +208,15 @@ UNION ALL
 SELECT *
 FROM int_100_tx
 INTO OUTFILE "/var/lib/mysql-files/int_100_tx.csv"
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n';
+
+SELECT "id","det_int","det_int_redundant","date"
+UNION ALL
+SELECT *
+FROM det_int_30
+INTO OUTFILE "/var/lib/mysql-files/det_int_30.csv"
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n';

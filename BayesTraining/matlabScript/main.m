@@ -5,10 +5,11 @@ clc
 
 %% Read file
 
-% readFiles
+%  readFiles_training
+%  readFiles_classify
 
 %% Save workspace
-% save('/home/seringsergio/Desktop/DGHS/BayesTraining/results/vary_int_csv_v1/consolidado_int.mat') 
+%  save('/home/seringsergio/Desktop/DGHS/BayesTraining/results/vary_int_csv_v1/consolidado_int.mat') 
 
 %% Upload workspace
 load('/home/seringsergio/Desktop/DGHS/BayesTraining/results/vary_int_csv_v1/consolidado_int.mat') 
