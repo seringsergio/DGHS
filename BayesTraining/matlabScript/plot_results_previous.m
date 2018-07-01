@@ -143,3 +143,19 @@ title('count-EWMA-ppl 01')
 % title('count-EWMA-ppl 07')
 % 
 % 
+
+figure;
+plot(int_vec_0_100, mean_int_vec)
+hold on 
+plot(int_vec_0_100, int_vec_0_100);
+
+figure;
+plot(int_vec_0_100, error_int_vec)
+
+
+%% detection accuracy
+
+figure
+plot(int_vec_0_100,percentage_det_int_vec)
+
+
