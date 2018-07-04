@@ -56,7 +56,10 @@
 #include <stdio.h>
 
 //#include "/home/seringsergio/Desktop/DGHS/BayesTraining/tx_rx.h"
-#include "/home/seringsergio/Desktop/DGHS/BayesClassification/Bayes_Laplace_Classify.h"
+
+//#include "/home/seringsergio/Desktop/DGHS/BayesClassification/Bayes_Laplace_Classify.h"
+
+#include "/home/seringsergio/Desktop/DGHS/basicTree/basicTree.h"
 extern struct csma_stats csma_stats;
 
 #define DEBUG 0
