@@ -48,7 +48,7 @@ void initialize_tree()
 
    t_node.est_int = INITIAL_T_INT;
    linkaddr_copy(&t_node.parent,&linkaddr_node_addr);
-
+   t_node.flags = 0; 
 }
 
 void fill_beacon(struct t_beacon *t_beacon, float weight, linkaddr_t *from)
@@ -68,4 +68,10 @@ uint8_t I_am_the_sink()
        return 0;
    }
 
+}
+
+void reset_csma_stats()
+{
+  csma_stats.packets_dropped = 0;
+  csma_stats.delay = 0;
 }

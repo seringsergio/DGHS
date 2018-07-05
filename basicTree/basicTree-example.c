@@ -32,8 +32,23 @@
 
 #include "basicTree.h"
 
+/////////////////////////////////////////////////////////////////////////////
+///////////////////////STATUS////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
 
-extern struct t_node t_node;
+// In file mac.h
+// Generic MAC return values.
+// 0. MAC_TX_OK:         The MAC layer transmission was OK.
+// 1. MAC_TX_COLLISION:  The MAC layer transmission could not be performed due to a collision.
+// 2. MAC_TX_NOACK:      The MAC layer did not get an acknowledgement for the packet.
+// 3. MAC_TX_DEFERRED:   The MAC layer deferred (aplazo) the transmission for a later time.
+// 4. MAC_TX_ERR:        The MAC layer transmission could not be performed because of an error.
+//                       The upper layer may try again later.
+// 5.MAC_TX_ERR_FATAL:   The MAC layer transmission could not be performed because of a
+//                       fatal error. The upper layer does not need to try again, as the
+//                       error will be fatal then as well.
+
+struct t_node t_node;
 struct csma_stats csma_stats;
 
 /*---------------------------------------------------------------------------*/
@@ -43,10 +58,13 @@ PROCESS(out_evaluation_tree, "out_evaluation_tree");
 PROCESS(in_evaluation_tree, "in_evaluation_tree");
 PROCESS(response_to_t_beacon, "response_to_t_beacon");
 PROCESS(send_basicTree, "send_basicTree");
+PROCESS(analyze_csma_results, "analyze_csma_results");
+PROCESS(detect_interference, "detect_interference");
 
 
 
-AUTOSTART_PROCESSES(&prepare_beacon,&update_parent,&out_evaluation_tree,&in_evaluation_tree,&response_to_t_beacon,&send_basicTree);
+AUTOSTART_PROCESSES(&prepare_beacon,&update_parent,&out_evaluation_tree,&in_evaluation_tree,
+                    &response_to_t_beacon,&send_basicTree,&analyze_csma_results,&detect_interference);
 /*---------------------------------------------------------------------------*/
 
 //List of neighbors
@@ -104,7 +122,7 @@ PROCESS_THREAD(update_parent, ev, data)
   static struct t_neighbor *n;
   static float lowest_weight;  //The weight of the parent = lowest_weight
   static linkaddr_t new_parent;
-  static char res1[20];
+  static char res1[20],res2[20];
 
   PROCESS_BEGIN();
 
@@ -138,11 +156,17 @@ PROCESS_THREAD(update_parent, ev, data)
               linkaddr_copy(&t_node.parent, &new_parent);
               printf("#L %d 1\n", t_node.parent.u8[0]); //: 1: new parent
 
-              //update weight
-              //The weight of the node is: The estimated interference + the weight of the parent
-              t_node.weight = t_node.est_int + lowest_weight;
-              ftoa(t_node.weight, res1, 2);
-              printf("t_node.weight = %s t_node.parent = %d.%d\n", res1, t_node.parent.u8[0], t_node.parent.u8[1] );
+              printf("t_node.flags = %d\n", t_node.flags);
+              //if(t_node.flags == DATA_EST_INT_READY) //Only change the weight when I have the FIRST estimation of Interference
+              //{
+                //update weight
+                //The weight of the node is: The estimated interference + the weight of the parent
+                t_node.weight = t_node.est_int + lowest_weight;
+                ftoa(t_node.weight, res1, 2);
+                ftoa(t_node.est_int, res2, 2);
+                printf("t_node.weight = %s t_node.est_int = %s t_node.parent = %d.%d\n",
+                res1, res2, t_node.parent.u8[0], t_node.parent.u8[1] );
+              //}
 
             }
         }
@@ -173,7 +197,8 @@ PROCESS_THREAD(prepare_beacon, ev, data)
   while(1)
   {
       //execute periodically
-      etimer_set(&et, TIME_INTERVAL_T_BEACON );
+      //etimer_set(&et, TIME_INTERVAL_T_BEACON );
+      etimer_set(&et,  random_rand() % (CLOCK_SECOND * 2) ); // Configure timer et to a random time between 0 and 2
       PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
 
       if( t_node.weight < INFINITE_T_WEIGHT )
@@ -364,7 +389,13 @@ PROCESS_THREAD(out_evaluation_tree, ev, data)
 PROCESS_THREAD(send_basicTree, ev, data)
 {
   static struct t_beacon t_beacon;
-
+  static uint16_t num_packets;
+  static float ppl; // ppl (Percentage of Packet Loss)
+  static float btp; // btp (Backoff Time per packet)
+  static float EWMA_btp_01;
+  static float EWMA_ppl_01;
+  static struct csma_results csma_results;
+  static char res1[20], res2[20];
   PROCESS_EXITHANDLER(broadcast_close(&t_broadcast);)
 
   PROCESS_BEGIN();
@@ -373,6 +404,8 @@ PROCESS_THREAD(send_basicTree, ev, data)
   e_execute     = process_alloc_event();
   broadcast_open(&t_broadcast, 129, &t_broadcast_call);
 
+  num_packets = 0;
+  reset_csma_stats();
   while(1)
   {
     PROCESS_YIELD();
@@ -389,9 +422,318 @@ PROCESS_THREAD(send_basicTree, ev, data)
     {
       printf("ERROR:Unknown msg to send (send_basicTree) in basicTree\n ");
     }
+
+    //////////////////////////////////////////////////////////////////////////////
+    /////////////////CSMA STATS COMPUTATION///////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////
+
+    num_packets++;
+    //modulo para hacerlo ciclico
+    if(num_packets % WINDOW_NUM_PACKETS == 0)
+    {
+      btp = (float) 1000 * (float) csma_stats.delay  / (float) CLOCK_SECOND / (float) WINDOW_NUM_PACKETS;
+      ppl = (float) csma_stats.packets_dropped / (float) WINDOW_NUM_PACKETS;
+
+      //Exponential weighted moving average (EWMA)
+      //REF: https://en.wikipedia.org/wiki/Moving_average
+      //REF: Also, see the example of contiki called example-neighbors.c It implements a EWMA
+      if(num_packets == WINDOW_NUM_PACKETS) //It is the first calculation of EWMA_btp. We do not have previous data, so we use the first data
+      {
+        EWMA_btp_01 = btp;
+        EWMA_ppl_01 = ppl;
+      }else
+      {
+        EWMA_btp_01 = ( (float) EWMA_ALPHA_01 * (float) btp) + (( (float) 1 - (float) EWMA_ALPHA_01) * (float) EWMA_btp_01);
+        EWMA_ppl_01 = ( (float) EWMA_ALPHA_01 * (float) ppl) + (( (float) 1 - (float) EWMA_ALPHA_01) * (float) EWMA_ppl_01);
+      }
+
+      //csma_results
+      csma_results.btp = btp;
+      csma_results.ppl = ppl;
+      csma_results.EWMA_btp_01 = EWMA_btp_01;
+      csma_results.EWMA_ppl_01 = EWMA_ppl_01;
+
+      //print
+      ftoa( btp, res1, 2); //Uses the library print_float.h
+      ftoa( EWMA_btp_01, res2, 2); //Uses the library print_float.h
+      printf("BTP/%d/%s/%s/\n",num_packets,  res1 , res2);
+
+      ftoa( ppl, res1, 2); //Uses the library print_float.h
+      ftoa( EWMA_ppl_01, res2, 2); //Uses the library print_float.h
+      printf("PPL/%d/%s/%s/\n",num_packets,  res1 , res2);
+
+      process_post(&analyze_csma_results, e_execute, &csma_results);
+
+      reset_csma_stats();
+    }
+
+
+  }
+  PROCESS_END();
+}
+
+PROCESS_THREAD(analyze_csma_results, ev, data)
+{
+  static struct csma_results csma_results;
+  static uint8_t i;
+  static float upper_interval, lower_interval;
+  static char res1[20], res2[20], res3[20];
+  static struct detected_event detected_event;
+  PROCESS_BEGIN();
+
+  while(1)
+  {
+    PROCESS_YIELD();
+    if(ev == e_execute)
+    {
+        csma_results = * ( (struct csma_results *) data );
+
+
+        //////////////////////////////////////////////////////////////////////////////
+        /////////////////DETERMINE EVENT//////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////
+
+        //see for in matlab count_EWMA_btp_01
+        for(i=1; i <= num_divisions_btp; i++ )
+        {
+          lower_interval = (float) (i-1) * (float) range_EWMA_btp_01 / (float) num_divisions_btp;
+          upper_interval = (float) (i)   * (float) range_EWMA_btp_01 / (float) num_divisions_btp;
+          ftoa(lower_interval, res1, 2);
+          ftoa(csma_results.EWMA_btp_01, res2, 2);
+          ftoa(upper_interval, res3, 2);
+
+          if(  csma_results.EWMA_btp_01 >= lower_interval &&
+               csma_results.EWMA_btp_01 <  upper_interval   )
+            {
+                detected_event.event_btp = i - 1; //Resto 1 porq aca es de 0-39...en matlab es de 1-40
+                printf(" %s < /%s/ < %s \n", res1,res2,res3);
+                printf("event_btp =/ %d\n", detected_event.event_btp);
+                break;
+            }
+        }
+
+        //see for in matlab count_EWMA_ppl_01
+        for(i=1; i <= num_divisions_ppl; i++ )
+        {
+          lower_interval = (float) (i-1) * (float) range_ppl / (float) num_divisions_ppl;
+          upper_interval = (float) (i)   * (float) range_ppl / (float) num_divisions_ppl;
+          ftoa(lower_interval, res1, 2);
+          ftoa(csma_results.EWMA_ppl_01, res2, 2);
+          ftoa(upper_interval, res3, 2);
+
+          if(  csma_results.EWMA_ppl_01 >= lower_interval &&
+               csma_results.EWMA_ppl_01 <  upper_interval   )
+            {
+                detected_event.event_ppl = i - 1; //Resto 1 porq aca es de 0-39...en matlab es de 1-40
+                printf(" %s < /%s/ < %s \n", res1,res2,res3);
+                printf("event_ppl =/ %d\n", detected_event.event_ppl);
+                break;
+            }
+        }
+
+        process_post(&detect_interference, e_execute, &detected_event);
+
+    }else
+    {
+      printf("ERROR: unknown event in analyze_csma_results\n");
+    }
   }
 
   PROCESS_END();
 
+}
 
+
+PROCESS_THREAD(detect_interference, ev, data)
+{
+
+  static struct event event;
+  static float prob_btp[COLUMNS_T];
+  static float prob_btp_N[COLUMNS_T]; //The N means normalized
+  static float prob_ppl[COLUMNS_T];
+  static float prob_ppl_N[COLUMNS_T]; //The N means normalized
+  static float prob_btp_ppl[COLUMNS_T]; //This is the combined prob. Assuming that the events are independent
+  static char res1[20],res2[20],res3[20],res4[20],res5[20],res6[20],res7[20],res8[20],res9[20],res10[20];
+  static uint8_t i;
+  static float total_prob, total_prob_N;
+  static float max_prob;
+  static uint8_t index;
+  static struct detected_event detected_event;
+  static uint16_t count;
+  static float est_int; // est_int: Estimared interference
+  static float EWMA_est_int_01;
+  static float EWMA_est_int_02;
+  static float EWMA_est_int_03;
+  static float EWMA_est_int_04;
+  static float EWMA_est_int_05;
+  static float EWMA_est_int_06;
+  static float EWMA_est_int_07;
+  static float EWMA_est_int_08;
+  static float EWMA_est_int_09;
+
+  PROCESS_BEGIN();
+
+  count = 0;
+
+  while(1)
+  {
+    PROCESS_YIELD();
+    if(ev == e_execute)
+    {
+        detected_event = *( (struct detected_event*) data );
+        //////////////////////////////////////////////
+        //prob_btp
+        //////////////////////////////////////////////
+
+        //Define event
+        //event.row = 35;
+        event.row = detected_event.event_btp;
+
+        //Compute prob_btp
+        total_prob = 0;
+        for(i=0; i < COLUMNS_T; i++)
+        {
+          event.column = i;
+          prob_btp[i] = calculate_probability_of_event( frequency_table_btp,   event );
+          total_prob += prob_btp[i];
+          PROCESS_PAUSE(); //La funcion calculate_probability_of_event() llama muchas subfunciones. Por eso espero.
+        }
+
+        //Normalize and print
+        total_prob_N = 0;
+        for(i=0; i < COLUMNS_T; i++)
+        {
+          prob_btp_N[i] = prob_btp[i] / total_prob; //Normalize
+          ftoa(prob_btp_N[i], res1, 4);
+          printf("prob_btp(%d) =/ %s \n", i, res1);
+          total_prob_N += prob_btp_N[i];
+        }
+        ftoa(total_prob_N, res1, 4);
+        printf("SUM(prob_btp) =/ %s \n", res1);
+
+
+        //////////////////////////////////////////////
+        //prob_ppl
+        //////////////////////////////////////////////
+
+       //Define event
+       //event.row = 35;
+       event.row = detected_event.event_ppl;
+
+       //Compute prob_ppl
+       total_prob = 0;
+       for(i=0; i < COLUMNS_T; i++)
+       {
+         event.column = i;
+         prob_ppl[i] = calculate_probability_of_event( frequency_table_ppl,   event );
+         total_prob += prob_ppl[i];
+         PROCESS_PAUSE(); //La funcion calculate_probability_of_event() llama muchas subfunciones. Por eso espero.
+       }
+
+       //Normalize and print
+       total_prob_N = 0;
+       for(i=0; i < COLUMNS_T; i++)
+       {
+         prob_ppl_N[i] = prob_ppl[i] / total_prob; //Normalize
+         ftoa(prob_ppl_N[i], res1, 4);
+         printf("prob_ppl(%d) =/ %s \n", i, res1);
+         total_prob_N += prob_ppl_N[i];
+       }
+       ftoa(total_prob_N, res1, 4);
+       printf("SUM(prob_ppl) =/ %s \n", res1);
+
+
+       //////////////////////////////////////////////
+       //prob_btp and prob_ppl
+       //////////////////////////////////////////////
+
+
+        //Combined probability AND max probability
+        max_prob = 0;
+        index    = 0;
+        for(i=0; i < COLUMNS_T; i++)
+        {
+          prob_btp_ppl[i] = prob_btp_N[i] * prob_ppl_N[i]; //MULTIPLY independent probabilities
+          ftoa(prob_btp_ppl[i], res1, 4);
+          printf("prob_btp_ppl(%d) =/ %s\n", i, res1);
+
+          if(prob_btp_ppl[i] > max_prob)
+          {
+            max_prob = prob_btp_ppl[i];
+            index = i;
+          }
+        }
+
+        //Print max_probability
+        for(i=0; i < COLUMNS_T; i++)
+        {
+          if(index == i)
+          {
+            //Det_int = detected_interference
+            //format DET_INT detected_interference
+            count++;
+            est_int = (float) i * (float) 10;
+            ftoa(est_int, res1, 2); //Uses the library print_float.h
+            printf("DET_INT/%d/%s/%d\n",count, res1, i*10 );
+            //printf("DET_INT/%d/\n", i*10 );
+            break;
+          }
+        }
+
+        //////////////////////////////////////////////////////////
+        //////////////EWMA of Interference////////////////////////
+        //////////////////////////////////////////////////////////
+        //Exponential weighted moving average (EWMA)
+        //REF: https://en.wikipedia.org/wiki/Moving_average
+        //REF: Also, see the example of contiki called example-neighbors.c It implements a EWMA
+        if(count == 1) //It is the first calculation of EWMA_btp. We do not have previous data, so we use the first data
+        {
+          EWMA_est_int_01 = est_int;
+          EWMA_est_int_02 = est_int;
+          EWMA_est_int_03 = est_int;
+          EWMA_est_int_04 = est_int;
+          EWMA_est_int_05 = est_int;
+          EWMA_est_int_06 = est_int;
+          EWMA_est_int_07 = est_int;
+          EWMA_est_int_08 = est_int;
+          EWMA_est_int_09 = est_int;
+
+        }else
+        {
+          EWMA_est_int_01 = ( (float) EWMA_ALPHA_01 * (float) est_int) + (( (float) 1 - (float) EWMA_ALPHA_01) * (float) EWMA_est_int_01);
+          EWMA_est_int_02 = ( (float) EWMA_ALPHA_02 * (float) est_int) + (( (float) 1 - (float) EWMA_ALPHA_02) * (float) EWMA_est_int_02);
+          EWMA_est_int_03 = ( (float) EWMA_ALPHA_03 * (float) est_int) + (( (float) 1 - (float) EWMA_ALPHA_03) * (float) EWMA_est_int_03);
+          EWMA_est_int_04 = ( (float) EWMA_ALPHA_04 * (float) est_int) + (( (float) 1 - (float) EWMA_ALPHA_04) * (float) EWMA_est_int_04);
+          EWMA_est_int_05 = ( (float) EWMA_ALPHA_05 * (float) est_int) + (( (float) 1 - (float) EWMA_ALPHA_05) * (float) EWMA_est_int_05);
+          EWMA_est_int_06 = ( (float) EWMA_ALPHA_06 * (float) est_int) + (( (float) 1 - (float) EWMA_ALPHA_06) * (float) EWMA_est_int_06);
+          EWMA_est_int_07 = ( (float) EWMA_ALPHA_07 * (float) est_int) + (( (float) 1 - (float) EWMA_ALPHA_07) * (float) EWMA_est_int_07);
+          EWMA_est_int_08 = ( (float) EWMA_ALPHA_08 * (float) est_int) + (( (float) 1 - (float) EWMA_ALPHA_08) * (float) EWMA_est_int_08);
+          EWMA_est_int_09 = ( (float) EWMA_ALPHA_09 * (float) est_int) + (( (float) 1 - (float) EWMA_ALPHA_09) * (float) EWMA_est_int_09);
+
+        }
+
+        ftoa( est_int, res1, 2); //Uses the library print_float.h
+        ftoa( EWMA_est_int_09, res2, 2); //Uses the library print_float.h
+        ftoa( EWMA_est_int_08, res3, 2); //Uses the library print_float.h
+        ftoa( EWMA_est_int_07, res4, 2); //Uses the library print_float.h
+        ftoa( EWMA_est_int_06, res5, 2); //Uses the library print_float.h
+        ftoa( EWMA_est_int_05, res6, 2); //Uses the library print_float.h
+        ftoa( EWMA_est_int_04, res7, 2); //Uses the library print_float.h
+        ftoa( EWMA_est_int_03, res8, 2); //Uses the library print_float.h
+        ftoa( EWMA_est_int_02, res9, 2); //Uses the library print_float.h
+        ftoa( EWMA_est_int_01, res10, 2); //Uses the library print_float.h
+
+        printf("EWMA_est_int/%d/%s/%s/%s/%s/%s/%s/%s/%s/%s/%s/\n",count,res1,res2,res3,res4,res5,res6,res7,res8,res9,res10);
+
+        //t_node.flags   = DATA_EST_INT_READY;
+        t_node.est_int = EWMA_est_int_01;
+
+   }else
+   {
+      printf("ERROR: unknown event in detect_interference\n");
+   }
+
+  } //END while(1)
+
+  PROCESS_END();
 }

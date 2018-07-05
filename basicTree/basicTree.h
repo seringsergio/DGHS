@@ -51,22 +51,27 @@
 ////////////////////////////////////////////////////////////////////////
 
 #define MAX_NEIGHBORS         16
-#define INITIAL_T_WEIGHT      1//100% of interference
-#define INITIAL_T_INT         1//100% of interference
+#define INITIAL_T_WEIGHT      100  //Asume that the interference is the worst case: 100%
+#define INITIAL_T_INT         100 //Asume that the interference is the worst case: 100%
 #define INFINITE_T_WEIGHT     9999.9F /* max value of a float */
 #define QUEUE_SIZE_T_BEACONS  MAX_NEIGHBORS * 2
 
 //types of messages
 #define T_BEACON     0x01
 
-#define TIME_INTERVAL_T_BEACON           CLOCK_SECOND * 1
+//#define TIME_INTERVAL_T_BEACON           CLOCK_SECOND * 1
 #define TIME_UNION_IN_OUT                0.25f  // tengo que sacar los msg en menos tiempo de lo q entran (TIME_INTERVAL_T_BEACON) - repetido con la implementacion completa
 #define TIME_PREVIOUS_MSG_IN_OUT_UNION   0.25f //  tengo que sacar los msg en menos tiempo de lo q entran (TIME_INTERVAL_T_BEACON)  - repetido con la implementacion completa
+
+//FLAGS t_node.flags
+//#define DATA_EST_INT_READY     0x01
+
+
 ////////////////////////////////////////////////////////////////////////
 ///////////////////GLOBALS//////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 
-struct t_node t_node;
+extern struct t_node t_node;
 extern struct csma_stats csma_stats;
 
 
@@ -105,6 +110,7 @@ struct t_node
    float weight;
    linkaddr_t parent;
    float est_int; //Estimated interference
+   uint8_t flags;
 };
 
 struct t_neighbor
