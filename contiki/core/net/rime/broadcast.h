@@ -71,7 +71,8 @@
 struct broadcast_conn;
 
 #define BROADCAST_ATTRIBUTES  { PACKETBUF_ADDR_SENDER, PACKETBUF_ADDRSIZE }, \
-                        ABC_ATTRIBUTES
+                              { PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG, PACKETBUF_ATTR_BYTE }, \
+                              ABC_ATTRIBUTES
 
 /**
  * \brief     Callback structure for broadcast

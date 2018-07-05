@@ -107,7 +107,6 @@ PROCESS_THREAD(compute_csma_stats, ev, data)
   static float EWMA_btp_01;
   static float EWMA_ppl_01;
   static struct csma_results csma_results;
-
   static char res1[20], res2[20];
 
   PROCESS_BEGIN();

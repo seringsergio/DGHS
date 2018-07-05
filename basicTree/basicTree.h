@@ -43,32 +43,62 @@
 #include <stdio.h>
 //
 #include "print_float.h"
+#include "Bayes_Laplace_Classify.h"
 
 
 ////////////////////////////////////////////////////////////////////////
 ///////////////////DEFINE///////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 
-#define MAX_NEIGHBORS     16
-#define INITIAL_T_WEIGHT  1
-#define INITIAL_T_INT     1
-#define INFINITE_T_WEIGHT 9999.9F /* max value of a float */
+#define MAX_NEIGHBORS         16
+#define INITIAL_T_WEIGHT      1//100% of interference
+#define INITIAL_T_INT         1//100% of interference
+#define INFINITE_T_WEIGHT     9999.9F /* max value of a float */
+#define QUEUE_SIZE_T_BEACONS  MAX_NEIGHBORS * 2
 
+//types of messages
+#define T_BEACON     0x01
+
+#define TIME_INTERVAL_T_BEACON           CLOCK_SECOND * 1
+#define TIME_UNION_IN_OUT                0.25f  // tengo que sacar los msg en menos tiempo de lo q entran (TIME_INTERVAL_T_BEACON) - repetido con la implementacion completa
+#define TIME_PREVIOUS_MSG_IN_OUT_UNION   0.25f //  tengo que sacar los msg en menos tiempo de lo q entran (TIME_INTERVAL_T_BEACON)  - repetido con la implementacion completa
 ////////////////////////////////////////////////////////////////////////
 ///////////////////GLOBALS//////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 
 struct t_node t_node;
+extern struct csma_stats csma_stats;
 
+
+/////////////////////////////////////////////////////////////////////////////
+///////////////////////EVENTS////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+
+process_event_t e_send_bacon;
+process_event_t e_execute;
 ////////////////////////////////////////////////////////////////////////
 ///////////////////STRUCT///////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 
+
+
 struct t_beacon
 {
    float weight;
+   linkaddr_t from;
 };
 
+union types_msg_tree
+{
+  struct t_beacon t_beacon;
+};
+
+struct in_out_list_tree
+{
+  struct in_out_list_tree *next;
+  uint8_t uniontype;
+  union types_msg_tree type_msg;
+};
 
 struct t_node
 {
@@ -84,19 +114,16 @@ struct t_neighbor
   float weight;
 };
 
-//Stores the stats comming from csma.c
-struct csma_stats
-{
- uint16_t packets_dropped; //We can count up to 65535 message lost
- uint16_t delay;
-};
+
 
 ////////////////////////////////////////////////////////////////////////
 ///////////////////FUNCTION/////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 
 void initialize_tree();
-void fill_beacon(struct t_beacon *t_beacon, float weight);
+void fill_beacon(struct t_beacon *t_beacon, float weight, linkaddr_t *from);
 uint8_t I_am_the_sink();
+void reset_csma_stats();
 
- #endif /* BASIC_TREE_H */
+
+#endif /* BASIC_TREE_H */

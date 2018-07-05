@@ -1,6 +1,6 @@
 CONTIKI = ../contiki
 
-PROJECT_SOURCEFILES +=  basicTree.c print_float.c
+PROJECT_SOURCEFILES +=  basicTree.c print_float.c Bayes_Laplace_Classify.c
 
 
 CONTIKI_WITH_RIME = 1

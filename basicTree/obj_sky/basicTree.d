@@ -42,7 +42,7 @@ obj_sky/basicTree.o: basicTree.c basicTree.h ../contiki/core/./contiki.h \
  ../contiki/core/./net/rime/route.h ../contiki/core/./net/rime/rucb.h \
  ../contiki/core/./net/rime/timesynch.h ../contiki/core/./net/mac/mac.h \
  ../contiki/core/./dev/radio.h ../contiki/core/./net/rime/trickle.h \
- print_float.h
+ print_float.h Bayes_Laplace_Classify.h ../contiki/core/./lib/random.h
 basicTree.c basicTree.h ../contiki/core/./contiki.h :
  ../contiki/core/./contiki-version.h :
  ../contiki/platform/sky/./contiki-conf.h project-conf.h :
@@ -87,4 +87,4 @@ basicTree.c basicTree.h ../contiki/core/./contiki.h :
  ../contiki/core/./net/rime/route.h ../contiki/core/./net/rime/rucb.h :
  ../contiki/core/./net/rime/timesynch.h ../contiki/core/./net/mac/mac.h :
  ../contiki/core/./dev/radio.h ../contiki/core/./net/rime/trickle.h :
- print_float.h :
+ print_float.h Bayes_Laplace_Classify.h ../contiki/core/./lib/random.h :

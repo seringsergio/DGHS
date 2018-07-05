@@ -46,14 +46,15 @@ void initialize_tree()
     t_node.weight = INFINITE_T_WEIGHT;  //The initial weight of each node is 1
   }
 
-   t_node.est_int = INITIAL_T_INT; 
+   t_node.est_int = INITIAL_T_INT;
    linkaddr_copy(&t_node.parent,&linkaddr_node_addr);
 
 }
 
-void fill_beacon(struct t_beacon *t_beacon, float weight)
+void fill_beacon(struct t_beacon *t_beacon, float weight, linkaddr_t *from)
 {
     t_beacon->weight = weight;
+    linkaddr_copy(&t_beacon->from,from);
 }
 
 uint8_t I_am_the_sink()
