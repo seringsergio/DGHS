@@ -60,11 +60,16 @@ PROCESS(response_to_t_beacon, "response_to_t_beacon");
 PROCESS(send_basicTree, "send_basicTree");
 PROCESS(analyze_csma_results, "analyze_csma_results");
 PROCESS(detect_interference, "detect_interference");
+//Data Collection
+PROCESS(prepare_data_col, "prepare_data_col");
+PROCESS(response_to_t_data, "response_to_t_data");
 
 
 
 AUTOSTART_PROCESSES(&prepare_beacon,&update_parent,&out_evaluation_tree,&in_evaluation_tree,
-                    &response_to_t_beacon,&send_basicTree,&analyze_csma_results,&detect_interference);
+                    &response_to_t_beacon,&send_basicTree,&analyze_csma_results,&detect_interference
+                    ,&prepare_data_col,&response_to_t_data
+                    );
 /*---------------------------------------------------------------------------*/
 
 //List of neighbors
@@ -102,10 +107,14 @@ t_broadcast_recv(struct broadcast_conn *c, const linkaddr_t *from)
         in_l->type_msg.t_beacon     = *((struct t_beacon*) msg);
         in_l->uniontype             = T_BEACON;
         list_push(in_union_list,in_l); // Add an item to the start of the list.
-        printf("runicast message received T_BEACON from %d.%d \n",
-        in_l->type_msg.t_beacon.from.u8[0], in_l->type_msg.t_beacon.from.u8[1] );
+        printf("runicast message received T_BEACON from %d.%d from %d.%d \n",
+        in_l->type_msg.t_beacon.from.u8[0], in_l->type_msg.t_beacon.from.u8[1],from->u8[0],from->u8[1] );
     }
 
+  }else
+  if(msg_type ==  T_DATA)
+  {
+    printf("ERROR: no debo recibir T_DATA por el canal broadcast\n");
   }else
   {
     printf("ERROR: the type of msg in basicTree is unknown\n");
@@ -115,6 +124,110 @@ t_broadcast_recv(struct broadcast_conn *c, const linkaddr_t *from)
 static const struct broadcast_callbacks t_broadcast_call = {t_broadcast_recv};
 static struct broadcast_conn t_broadcast;
 
+
+/*---------------------------------------------------------------------------*/
+static void t_recv_uc(struct unicast_conn *c, const linkaddr_t *from)
+{
+
+  struct in_out_list_tree *in_l;
+  static packetbuf_attr_t msg_type;
+  void *msg = packetbuf_dataptr();
+
+  msg_type = packetbuf_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG);
+
+  //Adds the message to the list in_union_list according the type of message
+  if(msg_type ==  T_DATA)
+  {
+
+    //ADD to the list
+    in_l = memb_alloc(&in_union_mem);
+    if(in_l == NULL) {            // If we could not allocate a new entry, we give up.
+      printf("ERROR: we could not allocate a new entry for <<in_union_list>> in basicTree\n");
+    }else
+    {
+        in_l->type_msg.t_data     = *((struct t_data*) msg);
+        in_l->uniontype           = T_DATA;
+        list_push(in_union_list,in_l); // Add an item to the start of the list.
+        printf("unicast message received T_DATA from %d.%d \n",
+        in_l->type_msg.t_data.from.u8[0], in_l->type_msg.t_data.from.u8[1] );
+    }
+
+  }else
+  if(msg_type ==  T_BEACON)
+  {
+    printf("ERROR: no debo recibir T_BEACON por el canal unicast\n");
+
+  }else
+  {
+    printf("ERROR: the type of msg in basicTree is unknown\n");
+  }
+
+
+}
+/*---------------------------------------------------------------------------*/
+static void t_sent_uc(struct unicast_conn *c, int status, int num_tx)
+{
+  const linkaddr_t *dest = packetbuf_addr(PACKETBUF_ADDR_RECEIVER);
+  if(linkaddr_cmp(dest, &linkaddr_null)) {
+    return;
+  }
+  printf("unicast (t_data) message sent to %d.%d: status %d num_tx %d\n",
+    dest->u8[0], dest->u8[1], status, num_tx);
+}
+/*---------------------------------------------------------------------------*/
+static const struct unicast_callbacks t_unicast_callbacks = {t_recv_uc, t_sent_uc};
+static struct unicast_conn t_uc;
+
+////////////////////////////////////////////////////////////////////////
+///////////////////NODE POSITIONS///////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+
+uint8_t x_pos[NUM_NODES] =  {10  ,  20  ,   30  ,   40  ,   50  ,   60  ,   70  ,   80  ,   90  ,   100 };
+uint8_t y_pos[NUM_NODES] =  {10  ,  20  ,   30  ,   40  ,   50  ,   60  ,   70  ,   80  ,   90  ,   100 };
+
+PROCESS_THREAD(prepare_data_col, ev, data)
+{
+  static struct etimer et;
+  static struct t_data t_data;
+  static uint16_t seqno;
+  static struct in_out_list_tree *out_l;
+
+
+  PROCESS_BEGIN();
+
+  seqno = 0;
+
+  while(1)
+  {
+    etimer_set(&et,  CLOCK_SECOND   );
+    PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
+
+    if(!linkaddr_cmp(&linkaddr_node_addr,&t_node.parent) )//si ya tengo un padre. Al inicio yo soy mi mismo padre
+    {
+        seqno++;
+        fill_data(&t_data, seqno, x_pos[linkaddr_node_addr.u8[0]-1], y_pos[linkaddr_node_addr.u8[0]-1],
+                  t_node.est_int, &linkaddr_node_addr, &t_node.parent, &t_node.parent);
+
+        //printf("x_pos = %d\n", x_pos[linkaddr_node_addr.u8[0]-1]);
+        //printf("y_pos = %d\n", y_pos[linkaddr_node_addr.u8[0]-1]);
+
+        //ADD to the list a runicast message END_GHS_MSG
+        out_l = memb_alloc(&out_union_mem);
+        if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
+          printf("ERROR: we could not allocate a new entry for <<prepare_data_col>> in basicTree\n");
+        }else
+        {
+            out_l->type_msg.t_data    = t_data;
+            out_l->uniontype          = T_DATA;
+            list_push(out_union_list,out_l); // Add an item to the start of the list.
+        }
+    }
+  }
+
+
+  PROCESS_END();
+
+}
 
 PROCESS_THREAD(update_parent, ev, data)
 {
@@ -300,6 +413,57 @@ PROCESS_THREAD(response_to_t_beacon, ev, data)
 
 }
 
+
+PROCESS_THREAD(response_to_t_data, ev, data)
+{
+
+  static struct t_data t_data;
+  static struct t_data t_data_new;
+  static struct in_out_list_tree *out_l;
+  static char res1[20];
+  PROCESS_BEGIN();
+
+  while(1)
+  {
+    PROCESS_YIELD();
+    if(ev == e_execute)
+    {
+        t_data = *( (struct t_data *) data);
+
+        if(I_am_the_sink())
+        {
+          //format TREE_PLOT nodeID seqno x y parent_plot estimated_interference
+          ftoa(t_data.est_int, res1, 4);
+          printf("TREE_PLOT/%d/%d/%d/%d/%d/%s/\n",t_data.from.u8[0], t_data.seqno, t_data.x, t_data.y,
+                                                  t_data.parent_plot.u8[0], res1 );
+
+        }else
+        {
+          //Re Send the t_data to the next hop
+          fill_data(&t_data_new, t_data.seqno, t_data.x, t_data.y,
+                    t_data.est_int, &t_data.from, &t_node.parent, &t_data.parent_plot);
+
+          //ADD to the list a runicast message END_GHS_MSG
+          out_l = memb_alloc(&out_union_mem);
+          if(out_l == NULL) {            // If we could not allocate a new entry, we give up.
+            printf("ERROR: we could not allocate a new entry for <<prepare_data_col>> in basicTree\n");
+          }else
+          {
+              out_l->type_msg.t_data    = t_data_new;
+              out_l->uniontype          = T_DATA;
+              list_push(out_union_list,out_l); // Add an item to the start of the list.
+          }
+
+        }
+    }
+
+
+  }
+
+  PROCESS_END();
+
+}
+
 // take out an element from the list in_union_list
 PROCESS_THREAD(in_evaluation_tree, ev, data)
 {
@@ -327,9 +491,13 @@ PROCESS_THREAD(in_evaluation_tree, ev, data)
               {
                   process_post(&response_to_t_beacon, e_execute, &in_l->type_msg.t_beacon);
               }else
-                {
+              if(in_l->uniontype == T_DATA)
+              {
+                  process_post(&response_to_t_data, e_execute, &in_l->type_msg.t_data);
+              }else
+              {
                   printf("ERROR: The type of msg in in_evaluation_tree is unkown (basicTree) \n");
-                }
+              }
               memb_free(&in_union_mem,in_l);
             } //while(list_length(in_union_list))
         //}
@@ -342,6 +510,7 @@ PROCESS_THREAD(out_evaluation_tree, ev, data)
 {
   static struct etimer et1, et2;
   static struct in_out_list_tree *out_l;
+  static char res1[20];
 
   PROCESS_BEGIN();
 
@@ -368,10 +537,18 @@ PROCESS_THREAD(out_evaluation_tree, ev, data)
                   out_l = list_chop(out_union_list); // Remove the last object on the list.
                   if(out_l->uniontype == T_BEACON)
                   {
-                    process_post(&send_basicTree, e_send_bacon, &out_l->type_msg.t_beacon);
+                    ftoa( out_l->type_msg.t_beacon.weight, res1, 2); //Uses the library print_float.h
+                    printf("//Send broadcast with e_send_t_beacon: t_beacon.from = %d t_beacon.weight = %s\n", out_l->type_msg.t_beacon.from.u8[0], res1 );
+                    process_post(&send_basicTree, e_send_t_beacon, &out_l->type_msg.t_beacon );
+                    //process_post_synch(&send_basicTree, e_send_t_beacon, &out_l->type_msg.t_beacon);
+                  }else
+                  if(out_l->uniontype == T_DATA)
+                  {
+                    process_post(&send_basicTree, e_send_t_data, &out_l->type_msg.t_data );
+                    //process_post_synch(&send_basicTree, e_send_t_data, &out_l->type_msg.t_data);
                   }else
                   {
-                      printf("ERROR: The type of msg in out_union_list is unkown (dghs) \n");
+                      printf("ERROR: The type of msg in out_union_list is unkown (basicTree) \n");
                   }
                   memb_free(&out_union_mem,out_l);
               //}else
@@ -388,7 +565,9 @@ PROCESS_THREAD(out_evaluation_tree, ev, data)
 
 PROCESS_THREAD(send_basicTree, ev, data)
 {
+
   static struct t_beacon t_beacon;
+  static struct t_data t_data;
   static uint16_t num_packets;
   static float ppl; // ppl (Percentage of Packet Loss)
   static float btp; // btp (Backoff Time per packet)
@@ -396,27 +575,45 @@ PROCESS_THREAD(send_basicTree, ev, data)
   static float EWMA_ppl_01;
   static struct csma_results csma_results;
   static char res1[20], res2[20];
+
   PROCESS_EXITHANDLER(broadcast_close(&t_broadcast);)
 
   PROCESS_BEGIN();
 
-  e_send_bacon  = process_alloc_event();
-  e_execute     = process_alloc_event();
+  e_send_t_beacon  = process_alloc_event();
+  e_send_t_data   = process_alloc_event();
+  e_execute       = process_alloc_event();
   broadcast_open(&t_broadcast, 129, &t_broadcast_call);
+  unicast_open(&t_uc, 146, &t_unicast_callbacks);
 
   num_packets = 0;
   reset_csma_stats();
+
   while(1)
   {
     PROCESS_YIELD();
-    if(ev == e_send_bacon)
+    if(ev == e_send_t_beacon)
     {
+      //t_beacon = *( (struct t_beacon*) data );
       t_beacon = *( (struct t_beacon*) data );
 
       packetbuf_copyfrom(&t_beacon, sizeof(struct t_beacon));
       packetbuf_set_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG, T_BEACON);
       broadcast_send(&t_broadcast);
-      printf("Send broadcast with e_send_bacon\n" );
+
+      ftoa( t_beacon.weight, res1, 2); //Uses the library print_float.h
+      printf("Send broadcast with e_send_t_beacon: t_beacon.from = %d t_beacon.weight = %s\n", t_beacon.from.u8[0], res1 );
+
+    }else
+    if(ev == e_send_t_data)
+    {
+
+      t_data = *( (struct t_data*) data );
+
+      packetbuf_copyfrom(&t_data, sizeof(struct t_data));
+      packetbuf_set_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG, T_DATA);
+      unicast_send(&t_uc, &t_data.to);
+      printf("Send e_send_t_data to %d.%d\n", t_data.to.u8[0], t_data.to.u8[1] );
 
     }else
     {

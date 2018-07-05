@@ -48,7 +48,7 @@ void initialize_tree()
 
    t_node.est_int = INITIAL_T_INT;
    linkaddr_copy(&t_node.parent,&linkaddr_node_addr);
-   t_node.flags = 0; 
+   t_node.flags = 0;
 }
 
 void fill_beacon(struct t_beacon *t_beacon, float weight, linkaddr_t *from)
@@ -56,6 +56,20 @@ void fill_beacon(struct t_beacon *t_beacon, float weight, linkaddr_t *from)
     t_beacon->weight = weight;
     linkaddr_copy(&t_beacon->from,from);
 }
+
+void fill_data(struct t_data *t_data, uint16_t seqno, uint8_t x, uint8_t y, float est_int,
+               linkaddr_t *from, linkaddr_t *to, linkaddr_t *parent_plot)
+{
+  t_data->seqno    = seqno;
+  t_data->x        = x;
+  t_data->y        = y;
+  t_data->est_int  = est_int;
+  linkaddr_copy(&t_data->from,from);
+  linkaddr_copy(&t_data->to,to);
+  linkaddr_copy(&t_data->parent_plot,parent_plot);
+
+}
+
 
 uint8_t I_am_the_sink()
 {
