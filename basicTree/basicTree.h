@@ -52,7 +52,7 @@
 
 #define MAX_NEIGHBORS         16
 #define INITIAL_T_WEIGHT      100  //Asume that the interference is the worst case: 100%
-#define INITIAL_T_INT         100 //Asume that the interference is the worst case: 100%
+#define INITIAL_T_INT         100.0f //Asume that the interference is the worst case: 100%
 #define INFINITE_T_WEIGHT     9999.9F /* max value of a float */
 #define QUEUE_SIZE_T_BEACONS  MAX_NEIGHBORS * 3
 
@@ -94,7 +94,7 @@ struct t_data
    uint16_t seqno;
    uint8_t x;
    uint8_t y;
-   float est_int; //Estimated interference
+   //uint8_t est_int; //Estimated interference
    linkaddr_t from;
    linkaddr_t to;
    linkaddr_t parent_plot;
@@ -142,7 +142,8 @@ struct t_neighbor
 
 void initialize_tree();
 void fill_beacon(struct t_beacon *t_beacon, float weight, linkaddr_t *from);
-void fill_data(struct t_data *t_data, uint16_t seqno, uint8_t x, uint8_t y, float est_int,
+void fill_data(struct t_data *t_data, uint16_t seqno, uint8_t x, uint8_t y,
+               //uint8_t est_int,
                linkaddr_t *from, linkaddr_t *to, linkaddr_t *parent_plot);
 uint8_t I_am_the_sink();
 void reset_csma_stats();
