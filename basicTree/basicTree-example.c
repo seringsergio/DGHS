@@ -90,7 +90,7 @@ static void
 t_broadcast_recv(struct broadcast_conn *c, const linkaddr_t *from)
 {
   struct in_out_list_tree *in_l;
-  static packetbuf_attr_t msg_type;
+  packetbuf_attr_t msg_type;
   void *msg = packetbuf_dataptr();
 
   if(msg == NULL)
@@ -113,7 +113,7 @@ t_broadcast_recv(struct broadcast_conn *c, const linkaddr_t *from)
         in_l->type_msg.t_beacon     = *((struct t_beacon*) msg);
         in_l->uniontype             = T_BEACON;
         list_push(in_union_list,in_l); // Add an item to the start of the list.
-        printf("runicast message received T_BEACON from %d.%d from %d.%d \n",
+        printf("unicast message received T_BEACON from %d.%d from %d.%d \n",
         in_l->type_msg.t_beacon.from.u8[0], in_l->type_msg.t_beacon.from.u8[1],from->u8[0],from->u8[1] );
     }
 
@@ -136,8 +136,8 @@ static void t_recv_uc(struct unicast_conn *c, const linkaddr_t *from)
 {
 
   struct in_out_list_tree *in_l;
-  static packetbuf_attr_t msg_type;
-  void *msg = packetbuf_dataptr();
+  packetbuf_attr_t msg_type;
+  struct t_data *t_data = packetbuf_dataptr();
 
   msg_type = packetbuf_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG);
 
@@ -151,7 +151,14 @@ static void t_recv_uc(struct unicast_conn *c, const linkaddr_t *from)
       printf("ERROR: we could not allocate a new entry for <<in_union_list>> in basicTree\n");
     }else
     {
-        in_l->type_msg.t_data     = *((struct t_data*) msg);
+        in_l->type_msg.t_data.seqno       =  t_data->seqno ;
+        in_l->type_msg.t_data.x           =  t_data->x ;
+        in_l->type_msg.t_data.y           =  t_data->y ;
+        in_l->type_msg.t_data.est_int     =  t_data->est_int ;
+        linkaddr_copy(&in_l->type_msg.t_data.from,&t_data->from);
+        linkaddr_copy(&in_l->type_msg.t_data.to,&t_data->to);
+        linkaddr_copy(&in_l->type_msg.t_data.parent_plot,&t_data->parent_plot);
+
         in_l->uniontype           = T_DATA;
         list_push(in_union_list,in_l); // Add an item to the start of the list.
         printf("unicast message received T_DATA from %d.%d \n",
@@ -201,6 +208,7 @@ PROCESS_THREAD(prepare_data_col, ev, data)
 
   PROCESS_BEGIN();
 
+  printf("Rime address %d.%d\n", linkaddr_node_addr.u8[0], linkaddr_node_addr.u8[1]);
   seqno = 0;
 
   while(1)
@@ -440,12 +448,17 @@ PROCESS_THREAD(response_to_t_data, ev, data)
         if(I_am_the_sink())
         {
           //format TREE_PLOT nodeID seqno x y parent_plot estimated_interference
-          ftoa(t_data.est_int, res1, 4);
+          ftoa(t_data.est_int, res1, 2);
           printf("TREE_PLOT/%d/%d/%d/%d/%d/%s/\n",t_data.from.u8[0], t_data.seqno, t_data.x, t_data.y,
                                                   t_data.parent_plot.u8[0]
                                                   , res1
                                                   );
-
+          //Datos del sink
+          ftoa(t_node.est_int, res1, 2);
+          printf("TREE_PLOT/%d/%d/%d/%d/%d/%s/\n", linkaddr_node_addr.u8[0], 0, x_pos[linkaddr_node_addr.u8[0]-1], y_pos[linkaddr_node_addr.u8[0]-1],
+                                                   linkaddr_node_addr.u8[0]
+                                                  , res1
+                                                  );
         }else
         {
           //Re Send the t_data to the next hop
@@ -524,7 +537,7 @@ PROCESS_THREAD(out_evaluation_tree, ev, data)
 {
   static struct etimer et1, et2;
   static struct in_out_list_tree *out_l;
-  static char res1[20];
+  //static char res1[20];
   static struct t_beacon t_beacon;
   static struct t_data t_data;
 
@@ -554,8 +567,8 @@ PROCESS_THREAD(out_evaluation_tree, ev, data)
                   if(out_l->uniontype == T_BEACON)
                   {
                     t_beacon = out_l->type_msg.t_beacon;
-                    ftoa( out_l->type_msg.t_beacon.weight, res1, 2); //Uses the library print_float.h
-                    printf("//Send broadcast with e_send_t_beacon: t_beacon.from = %d t_beacon.weight = %s\n", out_l->type_msg.t_beacon.from.u8[0], res1 );
+                    //ftoa( out_l->type_msg.t_beacon.weight, res1, 2); //Uses the library print_float.h
+                    //printf("//Send broadcast with e_send_t_beacon: t_beacon.from = %d t_beacon.weight = %s\n", out_l->type_msg.t_beacon.from.u8[0], res1 );
                     process_post(&send_basicTree, e_send_t_beacon,  &t_beacon );
                     //process_post_synch(&send_basicTree, e_send_t_beacon, &out_l->type_msg.t_beacon);
                   }else

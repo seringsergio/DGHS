@@ -127,6 +127,21 @@ det_int_redundant INT(11) NOT NULL,
 date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+
+//format TREE_PLOT nodeID seqno x y parent_plot estimated_interference
+
+//For plotting the tree in python in real-time
+create table tree_plot (
+id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+nodeID DECIMAL(5,2) NOT NULL,
+seqno INT(11) NOT NULL,
+x INT(5) NOT NULL,
+y INT(5) NOT NULL,
+parent_plot DECIMAL(5,2) NOT NULL,
+est_int FLOAT(8,2),
+date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
 //Mostrar Tablas:
 show tables;
 
@@ -155,6 +170,7 @@ select * from LinkStatisticsPaper where id=1;
 select * from msg;
 select * from int_50_tx;
 select * from det_int_0;
+select * from tree_plot;
 
 //Eliminar: Elimina tabla
 DROP TABLE weatherData;
