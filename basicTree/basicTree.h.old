@@ -81,9 +81,9 @@ extern struct csma_stats csma_stats;
 ///////////////////////EVENTS////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 
- process_event_t e_send_t_beacon;
- process_event_t e_send_t_data;
- process_event_t e_execute;
+process_event_t e_send_t_beacon;
+process_event_t e_send_t_data;
+process_event_t e_execute;
 ////////////////////////////////////////////////////////////////////////
 ///////////////////STRUCT///////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
@@ -94,12 +94,10 @@ struct t_data
    uint16_t seqno;
    uint8_t x;
    uint8_t y;
-   float est_int; //Estimated interference
+   uint8_t est_int; //Estimated interference
    linkaddr_t from;
    linkaddr_t to;
    linkaddr_t parent_plot;
-   //uint8_t est_int; //Estimated interference
-   //uint8_t variableX; //Estimated interference
 };
 
 struct t_beacon
@@ -145,7 +143,7 @@ struct t_neighbor
 void initialize_tree();
 void fill_beacon(struct t_beacon *t_beacon, float weight, linkaddr_t *from);
 void fill_data(struct t_data *t_data, uint16_t seqno, uint8_t x, uint8_t y,
-               float est_int,
+               //uint8_t est_int,
                linkaddr_t *from, linkaddr_t *to, linkaddr_t *parent_plot);
 uint8_t I_am_the_sink();
 void reset_csma_stats();

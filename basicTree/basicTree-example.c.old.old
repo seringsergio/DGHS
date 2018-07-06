@@ -211,8 +211,7 @@ PROCESS_THREAD(prepare_data_col, ev, data)
     {
         seqno++;
         fill_data(&t_data, seqno, x_pos[linkaddr_node_addr.u8[0]-1], y_pos[linkaddr_node_addr.u8[0]-1],
-                  t_node.est_int,
-                 &linkaddr_node_addr, &t_node.parent, &t_node.parent);
+                  t_node.est_int, &linkaddr_node_addr, &t_node.parent, &t_node.parent);
 
         //printf("x_pos = %d\n", x_pos[linkaddr_node_addr.u8[0]-1]);
         //printf("y_pos = %d\n", y_pos[linkaddr_node_addr.u8[0]-1]);
@@ -311,6 +310,7 @@ PROCESS_THREAD(prepare_beacon, ev, data)
   PROCESS_BEGIN();
 
   initialize_tree();
+  broadcast_open(&t_broadcast, 129, &t_broadcast_call);
 
   while(1)
   {
@@ -426,7 +426,6 @@ PROCESS_THREAD(response_to_t_data, ev, data)
   static struct t_data t_data_new;
   static struct in_out_list_tree *out_l;
   static char res1[20];
-
   PROCESS_BEGIN();
 
   while(1)
@@ -441,16 +440,13 @@ PROCESS_THREAD(response_to_t_data, ev, data)
           //format TREE_PLOT nodeID seqno x y parent_plot estimated_interference
           ftoa(t_data.est_int, res1, 4);
           printf("TREE_PLOT/%d/%d/%d/%d/%d/%s/\n",t_data.from.u8[0], t_data.seqno, t_data.x, t_data.y,
-                                                  t_data.parent_plot.u8[0]
-                                                  , res1
-                                                  );
+                                                  t_data.parent_plot.u8[0], res1 );
 
         }else
         {
           //Re Send the t_data to the next hop
           fill_data(&t_data_new, t_data.seqno, t_data.x, t_data.y,
-                     t_data.est_int,
-                     &t_data.from, &t_node.parent, &t_data.parent_plot);
+                    t_data.est_int, &t_data.from, &t_node.parent, &t_data.parent_plot);
 
           //ADD to the list a runicast message END_GHS_MSG
           out_l = memb_alloc(&out_union_mem);
@@ -520,8 +516,6 @@ PROCESS_THREAD(out_evaluation_tree, ev, data)
   static struct etimer et1, et2;
   static struct in_out_list_tree *out_l;
   static char res1[20];
-  static struct t_beacon t_beacon;
-  static struct t_data t_data;
 
   PROCESS_BEGIN();
 
@@ -548,16 +542,14 @@ PROCESS_THREAD(out_evaluation_tree, ev, data)
                   out_l = list_chop(out_union_list); // Remove the last object on the list.
                   if(out_l->uniontype == T_BEACON)
                   {
-                    t_beacon = out_l->type_msg.t_beacon;
                     ftoa( out_l->type_msg.t_beacon.weight, res1, 2); //Uses the library print_float.h
                     printf("//Send broadcast with e_send_t_beacon: t_beacon.from = %d t_beacon.weight = %s\n", out_l->type_msg.t_beacon.from.u8[0], res1 );
-                    process_post(&send_basicTree, e_send_t_beacon,  &t_beacon );
+                    process_post(&send_basicTree, e_send_t_beacon, (void *) &(out_l->type_msg.t_beacon) );
                     //process_post_synch(&send_basicTree, e_send_t_beacon, &out_l->type_msg.t_beacon);
                   }else
                   if(out_l->uniontype == T_DATA)
                   {
-                    t_data = out_l->type_msg.t_data;
-                    process_post(&send_basicTree, e_send_t_data, &t_data );
+                    process_post(&send_basicTree, e_send_t_data, &out_l->type_msg.t_data );
                     //process_post_synch(&send_basicTree, e_send_t_data, &out_l->type_msg.t_data);
                   }else
                   {
@@ -608,7 +600,7 @@ PROCESS_THREAD(send_basicTree, ev, data)
     if(ev == e_send_t_beacon)
     {
       //t_beacon = *( (struct t_beacon*) data );
-      t_beacon =  *((struct t_beacon*) data) ;
+      t_beacon = *( (struct t_beacon*) data );
 
       packetbuf_copyfrom(&t_beacon, sizeof(struct t_beacon));
       packetbuf_set_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG, T_BEACON);
@@ -621,7 +613,7 @@ PROCESS_THREAD(send_basicTree, ev, data)
     if(ev == e_send_t_data)
     {
 
-      t_data =  *((struct t_data*) data) ;
+      t_data = *( (struct t_data*) data );
 
       packetbuf_copyfrom(&t_data, sizeof(struct t_data));
       packetbuf_set_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG, T_DATA);
@@ -935,7 +927,7 @@ PROCESS_THREAD(detect_interference, ev, data)
 
         printf("EWMA_est_int/%d/%s/%s/%s/%s/%s/%s/%s/%s/%s/%s/\n",count,res1,res2,res3,res4,res5,res6,res7,res8,res9,res10);
 
-        //IMPORTANT line: this line saves the estimated interference of the node
+        //t_node.flags   = DATA_EST_INT_READY;
         t_node.est_int = EWMA_est_int_01;
 
    }else

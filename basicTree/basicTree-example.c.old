@@ -211,7 +211,8 @@ PROCESS_THREAD(prepare_data_col, ev, data)
     {
         seqno++;
         fill_data(&t_data, seqno, x_pos[linkaddr_node_addr.u8[0]-1], y_pos[linkaddr_node_addr.u8[0]-1],
-                  t_node.est_int, &linkaddr_node_addr, &t_node.parent, &t_node.parent);
+                 //(uint8_t) t_node.est_int,
+                 &linkaddr_node_addr, &t_node.parent, &t_node.parent);
 
         //printf("x_pos = %d\n", x_pos[linkaddr_node_addr.u8[0]-1]);
         //printf("y_pos = %d\n", y_pos[linkaddr_node_addr.u8[0]-1]);
@@ -310,7 +311,6 @@ PROCESS_THREAD(prepare_beacon, ev, data)
   PROCESS_BEGIN();
 
   initialize_tree();
-  broadcast_open(&t_broadcast, 129, &t_broadcast_call);
 
   while(1)
   {
@@ -438,15 +438,18 @@ PROCESS_THREAD(response_to_t_data, ev, data)
         if(I_am_the_sink())
         {
           //format TREE_PLOT nodeID seqno x y parent_plot estimated_interference
-          ftoa(t_data.est_int, res1, 4);
-          printf("TREE_PLOT/%d/%d/%d/%d/%d/%s/\n",t_data.from.u8[0], t_data.seqno, t_data.x, t_data.y,
-                                                  t_data.parent_plot.u8[0], res1 );
+          //ftoa(t_data.est_int, res1, 4);
+          printf("TREE_PLOT/%d/%d/%d/%d/%d/-d/\n",t_data.from.u8[0], t_data.seqno, t_data.x, t_data.y,
+                                                  t_data.parent_plot.u8[0]
+                                                  //, t_data.est_int
+                                                  );
 
         }else
         {
           //Re Send the t_data to the next hop
           fill_data(&t_data_new, t_data.seqno, t_data.x, t_data.y,
-                    t_data.est_int, &t_data.from, &t_node.parent, &t_data.parent_plot);
+                    // t_data.est_int,
+                     &t_data.from, &t_node.parent, &t_data.parent_plot);
 
           //ADD to the list a runicast message END_GHS_MSG
           out_l = memb_alloc(&out_union_mem);
@@ -544,7 +547,7 @@ PROCESS_THREAD(out_evaluation_tree, ev, data)
                   {
                     ftoa( out_l->type_msg.t_beacon.weight, res1, 2); //Uses the library print_float.h
                     printf("//Send broadcast with e_send_t_beacon: t_beacon.from = %d t_beacon.weight = %s\n", out_l->type_msg.t_beacon.from.u8[0], res1 );
-                    process_post(&send_basicTree, e_send_t_beacon, (void *) &(out_l->type_msg.t_beacon) );
+                    process_post(&send_basicTree, e_send_t_beacon,  &out_l->type_msg.t_beacon );
                     //process_post_synch(&send_basicTree, e_send_t_beacon, &out_l->type_msg.t_beacon);
                   }else
                   if(out_l->uniontype == T_DATA)
@@ -927,7 +930,7 @@ PROCESS_THREAD(detect_interference, ev, data)
 
         printf("EWMA_est_int/%d/%s/%s/%s/%s/%s/%s/%s/%s/%s/%s/\n",count,res1,res2,res3,res4,res5,res6,res7,res8,res9,res10);
 
-        //t_node.flags   = DATA_EST_INT_READY;
+        //IMPORTANT line: this line saves the estimated interference of the node
         t_node.est_int = EWMA_est_int_01;
 
    }else
