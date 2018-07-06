@@ -42,7 +42,7 @@ while True:
 
        #Here we are going to insert the data into the Database
        try:
-         cursor.execute("INSERT INTO msg (id, nodeID, seqno, x, y, parent_plot, est_int) VALUES (NULL,%s,%s,%s,%s,%s,%s)", (pieces[1],pieces[2],pieces[3],pieces[4],pieces[5],pieces[6]))
+         cursor.execute("INSERT INTO tree_plot (id, nodeID, seqno, x, y, parent_plot, est_int) VALUES (NULL,%s,%s,%s,%s,%s,%s)", (pieces[1],pieces[2],pieces[3],pieces[4],pieces[5],pieces[6]))
          dbConn.commit() #commit the insert
          cursor.close()  #close the cursor
        except MySQLdb.IntegrityError:

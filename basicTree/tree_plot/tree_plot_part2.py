@@ -89,7 +89,7 @@ while True:
            print "parent_old = ", parent_old
 
            # IF the node changes its parent
-           if ( (parent_new - 1) != parent_old ) or (nodeID == 1):
+           if ( (parent_new - 1) != parent_old ) :
 
                #Build the edges and layout (X and Y position)
                edges [nodeID - 1] =  (nodeID - 1 , parent_new - 1)
