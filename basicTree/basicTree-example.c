@@ -58,6 +58,7 @@ PROCESS(out_evaluation_tree, "out_evaluation_tree");
 PROCESS(in_evaluation_tree, "in_evaluation_tree");
 PROCESS(response_to_t_beacon, "response_to_t_beacon");
 PROCESS(send_basicTree, "send_basicTree");
+PROCESS(csma_stats_computation, "csma_stats_computation");
 PROCESS(analyze_csma_results, "analyze_csma_results");
 PROCESS(detect_interference, "detect_interference");
 //Data Collection
@@ -67,7 +68,7 @@ PROCESS(response_to_t_data, "response_to_t_data");
 
 
 AUTOSTART_PROCESSES(&prepare_beacon,&update_parent,&out_evaluation_tree,&in_evaluation_tree,
-                    &response_to_t_beacon,&send_basicTree,&analyze_csma_results,&detect_interference
+                    &response_to_t_beacon,&send_basicTree,&csma_stats_computation,&analyze_csma_results,&detect_interference
                     ,&prepare_data_col,&response_to_t_data
                     );
 /*---------------------------------------------------------------------------*/
@@ -478,6 +479,8 @@ PROCESS_THREAD(in_evaluation_tree, ev, data)
 {
   static struct etimer et1, et2;
   static struct in_out_list_tree *in_l;
+  static struct t_beacon t_beacon;
+  static struct t_data t_data;
   PROCESS_BEGIN();
   while(1)
   {
@@ -498,11 +501,13 @@ PROCESS_THREAD(in_evaluation_tree, ev, data)
               in_l = list_chop(in_union_list); // Remove the last object on the list.
               if(in_l->uniontype == T_BEACON)
               {
-                  process_post(&response_to_t_beacon, e_execute, &in_l->type_msg.t_beacon);
+                  t_beacon = in_l->type_msg.t_beacon;
+                  process_post(&response_to_t_beacon, e_execute, &t_beacon);
               }else
               if(in_l->uniontype == T_DATA)
               {
-                  process_post(&response_to_t_data, e_execute, &in_l->type_msg.t_data);
+                  t_data = in_l->type_msg.t_data;
+                  process_post(&response_to_t_data, e_execute, &t_data);
               }else
               {
                   printf("ERROR: The type of msg in in_evaluation_tree is unkown (basicTree) \n");
@@ -582,12 +587,8 @@ PROCESS_THREAD(send_basicTree, ev, data)
   static struct t_beacon t_beacon;
   static struct t_data t_data;
   static uint16_t num_packets;
-  static float ppl; // ppl (Percentage of Packet Loss)
-  static float btp; // btp (Backoff Time per packet)
-  static float EWMA_btp_01;
-  static float EWMA_ppl_01;
-  static struct csma_results csma_results;
-  static char res1[20], res2[20];
+  static char res1[20];
+
 
   PROCESS_EXITHANDLER(broadcast_close(&t_broadcast);)
 
@@ -600,7 +601,6 @@ PROCESS_THREAD(send_basicTree, ev, data)
   unicast_open(&t_uc, 146, &t_unicast_callbacks);
 
   num_packets = 0;
-  reset_csma_stats();
 
   while(1)
   {
@@ -617,6 +617,8 @@ PROCESS_THREAD(send_basicTree, ev, data)
       ftoa( t_beacon.weight, res1, 2); //Uses the library print_float.h
       printf("Send broadcast with e_send_t_beacon: t_beacon.from = %d t_beacon.weight = %s\n", t_beacon.from.u8[0], res1 );
 
+      num_packets++;
+      process_post(&csma_stats_computation, e_execute, &num_packets);
     }else
     if(ev == e_send_t_data)
     {
@@ -628,6 +630,8 @@ PROCESS_THREAD(send_basicTree, ev, data)
       unicast_send(&t_uc, &t_data.to);
       printf("Send e_send_t_data to %d.%d\n", t_data.to.u8[0], t_data.to.u8[1] );
 
+      num_packets++;
+      process_post(&csma_stats_computation, e_execute, &num_packets);
     }else
     {
       printf("ERROR:Unknown msg to send (send_basicTree) in basicTree\n ");
@@ -637,8 +641,9 @@ PROCESS_THREAD(send_basicTree, ev, data)
     /////////////////CSMA STATS COMPUTATION///////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////
 
-    /*num_packets++;
-    //modulo para hacerlo ciclico
+
+
+    /*//modulo para hacerlo ciclico
     if(num_packets % WINDOW_NUM_PACKETS == 0)
     {
       btp = (float) 1000 * (float) csma_stats.delay  / (float) CLOCK_SECOND / (float) WINDOW_NUM_PACKETS;
@@ -680,6 +685,75 @@ PROCESS_THREAD(send_basicTree, ev, data)
 
   }
   PROCESS_END();
+}
+
+
+
+PROCESS_THREAD(csma_stats_computation, ev, data)
+{
+  static uint16_t num_packets;
+  static float ppl; // ppl (Percentage of Packet Loss)
+  static float btp; // btp (Backoff Time per packet)
+  static float EWMA_btp_01;
+  static float EWMA_ppl_01;
+  static struct csma_results csma_results;
+  static char res1[20], res2[20];
+
+  PROCESS_BEGIN();
+
+  reset_csma_stats();
+
+  while(1)
+  {
+    PROCESS_YIELD();
+    if(ev == e_execute)
+    {
+      num_packets = *( (uint16_t *) data );
+
+      //modulo para hacerlo ciclico
+      if(num_packets % WINDOW_NUM_PACKETS == 0)
+      {
+        btp = (float) 1000 * (float) csma_stats.delay  / (float) CLOCK_SECOND / (float) WINDOW_NUM_PACKETS;
+        ppl = (float) csma_stats.packets_dropped / (float) WINDOW_NUM_PACKETS;
+
+        //Exponential weighted moving average (EWMA)
+        //REF: https://en.wikipedia.org/wiki/Moving_average
+        //REF: Also, see the example of contiki called example-neighbors.c It implements a EWMA
+        if(num_packets == WINDOW_NUM_PACKETS) //It is the first calculation of EWMA_btp. We do not have previous data, so we use the first data
+        {
+          EWMA_btp_01 = btp;
+          EWMA_ppl_01 = ppl;
+        }else
+        {
+          EWMA_btp_01 = ( (float) EWMA_ALPHA_01 * (float) btp) + (( (float) 1 - (float) EWMA_ALPHA_01) * (float) EWMA_btp_01);
+          EWMA_ppl_01 = ( (float) EWMA_ALPHA_01 * (float) ppl) + (( (float) 1 - (float) EWMA_ALPHA_01) * (float) EWMA_ppl_01);
+        }
+
+        //csma_results
+        csma_results.btp = btp;
+        csma_results.ppl = ppl;
+        csma_results.EWMA_btp_01 = EWMA_btp_01;
+        csma_results.EWMA_ppl_01 = EWMA_ppl_01;
+
+        //print
+        ftoa( btp, res1, 2); //Uses the library print_float.h
+        ftoa( EWMA_btp_01, res2, 2); //Uses the library print_float.h
+        printf("BTP/%d/%s/%s/\n",num_packets,  res1 , res2);
+
+        ftoa( ppl, res1, 2); //Uses the library print_float.h
+        ftoa( EWMA_ppl_01, res2, 2); //Uses the library print_float.h
+        printf("PPL/%d/%s/%s/\n",num_packets,  res1 , res2);
+
+        process_post(&analyze_csma_results, e_execute, &csma_results);
+
+        reset_csma_stats();
+      }
+
+    }
+  }
+
+  PROCESS_END();
+
 }
 
 PROCESS_THREAD(analyze_csma_results, ev, data)
