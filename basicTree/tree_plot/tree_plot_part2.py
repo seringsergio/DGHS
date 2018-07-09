@@ -16,6 +16,12 @@ from igraph import *
 import time
 from multiprocessing import Process,Pipe
 from tree_plot_part3 import f
+from colour import Color
+
+num_colors = 10
+# Define a vector of colors from green to red with 10 positions
+green = Color("green")
+colors_green_red = list(green.range_to(Color("red"),num_colors))
 
 print "usage: python tree-plot_part2.py <Number of nodes> "
 print "Number of nodes = ", sys.argv[1]
@@ -43,14 +49,16 @@ layout = [ (0,0) for i in range( int(sys.argv[1]) )] # (x,y)
 
 # Distance from the center of the node. To fix the position of the labels (text)
 # -0.5 is de distance from the node. - is upwards, + is downwards
-LabelDist = [ (-0.5) for i in range( int(sys.argv[1]) )] # (x,y)
+LabelDist = [ (-0.5) for i in range( int(sys.argv[1]) )]
 
 # Text of each node
-node_text = [ ("") for i in range( int(sys.argv[1]) )] # (x,y)
+node_text = [ ("") for i in range( int(sys.argv[1]) )]
 
 #estimated_interference
-est_int = [ (0) for i in range( int(sys.argv[1]) )] # (x,y)
+est_int = [ (0) for i in range( int(sys.argv[1]) )]
 
+# Color of the nodes according to the interference. We assign colors.
+node_color = [ (str(colors_green_red[i%num_colors])) for i in range( int(sys.argv[1]) )]
 
 while True:
     #open a cursor to the database
@@ -115,18 +123,45 @@ while True:
            # IF the node changes its parent or The difference between the est_int_new and est_int_old is larger than 1%
            if ( ( (parent_new - 1) != parent_old )  or ( abs(est_int_new - est_int_old) > 1 )  ) :
 
-               #Build the edges, layout (X and Y position), estimated_interference, text_of_the_node
+               #Build the edges, layout (X and Y position)
                edges [nodeID - 1]      =  (nodeID - 1 , parent_new - 1)
                layout[nodeID - 1]      =  (x,y)
+
+               #Estimated_interference, text_of_the_node
                est_int[nodeID - 1]     =  est_int_new
                node_text[nodeID - 1]   =  str(vertices[nodeID - 1]) + "\n\n" + str(est_int_new)
 
-               print(edges)
-               print(layout)
+               # Node color according to the interference
+               if( (est_int_new >= 0) and (est_int_new < 10)  ) :
+                    node_color[nodeID - 1]    =  str(colors_green_red[0])
+               elif( (est_int_new >= 10) and (est_int_new < 20)  ) : #else if
+                    node_color[nodeID - 1]    =  str(colors_green_red[1])
+               elif( (est_int_new >= 20) and (est_int_new < 30)  ) : #else if
+                    node_color[nodeID - 1]    =  str(colors_green_red[2])
+               elif( (est_int_new >= 30) and (est_int_new < 40)  ) : #else if
+                    node_color[nodeID - 1]    =  str(colors_green_red[3])
+               elif( (est_int_new >= 40) and (est_int_new < 50)  ) : #else if
+                    node_color[nodeID - 1]    =  str(colors_green_red[4])
+               elif( (est_int_new >= 50) and (est_int_new < 60)  ) : #else if
+                    node_color[nodeID - 1]    =  str(colors_green_red[5])
+               elif( (est_int_new >= 60) and (est_int_new < 70)  ) : #else if
+                    node_color[nodeID - 1]    =  str(colors_green_red[6])
+               elif( (est_int_new >= 70) and (est_int_new < 80)  ) : #else if
+                    node_color[nodeID - 1]    =  str(colors_green_red[7])
+               elif( (est_int_new >= 80) and (est_int_new < 90)  ) : #else if
+                    node_color[nodeID - 1]    =  str(colors_green_red[8])
+               elif( (est_int_new >= 90) and (est_int_new <= 100) ) : #else if
+                    node_color[nodeID - 1]    =  str(colors_green_red[9])
+
+               print"node_color =",node_color
+               print"edges =",edges
+               print"layout =",layout
 
                # Build the igraph
                g = Graph(vertex_attrs={"label": node_text, "label_dist": LabelDist } , \
                          edges=edges, directed=True )
+               #Color of the node according to the interference
+               g.vs["color"] = node_color
 
                #send the graph via a PIPE. We also send the layout (X and Y positions)
                parent_conn,child_conn = Pipe()
