@@ -179,4 +179,4 @@ while True:
     except MySQLdb.IntegrityError:
        print "failed to fetch data"
     finally:
-       cursor.close()  #close just incase it failed
+       cursor.close()  #close just incase it failed.
