@@ -10,6 +10,9 @@
 # You are done, you do not have to run tree_plot_part3 because it is a function that is called from tree_plot_part2
 
 
+##The first 10 nodes represent the different interference where a node can be. We plot 10 nodes with 10 colors,
+# representing a degree of interference
+
 import MySQLdb
 import sys
 from igraph import *
@@ -39,26 +42,26 @@ dbConn = MySQLdb.connect("localhost","root","1234","sink") or die ("Could not co
 cursor = dbConn.cursor()
 
 # Vertices of the graph
-vertices = [ (i+1) for i in range( int(sys.argv[1]) )] # (nodeID)
+vertices = [ (i+1) for i in range( int(sys.argv[1]) + num_colors )] # (nodeID)
 
 #Edges of the graph
-edges = [ (i,i) for i in range( int(sys.argv[1]) )] #(node,parent) ...we have to subtract 1...in other words, node - 1 and parent - 1
+edges = [ (i,i) for i in range( int(sys.argv[1]) + num_colors )] #(node,parent) ...we have to subtract 1...in other words, node - 1 and parent - 1
 
 # X and Y position of the graph = layout
-layout = [ (0,0) for i in range( int(sys.argv[1]) )] # (x,y)
+layout = [ (i*num_colors,0) for i in range( int(sys.argv[1]) + num_colors )] # (x,y)
 
 # Distance from the center of the node. To fix the position of the labels (text)
 # -0.5 is de distance from the node. - is upwards, + is downwards
-LabelDist = [ (-0.5) for i in range( int(sys.argv[1]) )]
+LabelDist = [ (-0.5) for i in range( int(sys.argv[1]) + num_colors )]
 
 # Text of each node
-node_text = [ ("") for i in range( int(sys.argv[1]) )]
+node_text = [ (i*10) for i in range( int(sys.argv[1]) + num_colors )]
 
 #estimated_interference
-est_int = [ (0) for i in range( int(sys.argv[1]) )]
+est_int = [ (0) for i in range( int(sys.argv[1]) + num_colors )]
 
 # Color of the nodes according to the interference. We assign colors.
-node_color = [ (str(colors_green_red[i%num_colors])) for i in range( int(sys.argv[1]) )]
+node_color = [ (str(colors_green_red[i%num_colors])) for i in range( int(sys.argv[1]) + num_colors )]
 
 while True:
     #open a cursor to the database
@@ -111,47 +114,47 @@ while True:
            print "est_int_new = ", est_int_new
 
            #Parent_old
-           (nodeID_old, parent_old) = edges [nodeID - 1]
+           (nodeID_old, parent_old) = edges [(nodeID - 1) + num_colors]
 
-           print "parent_new = ", (parent_new - 1)
+           print "parent_new = ", (parent_new - 1 + num_colors)
            print "parent_old = ", parent_old
            print ""
 
            #estimated_interference_old
-           est_int_old = est_int[nodeID - 1]
+           est_int_old = est_int[(nodeID - 1) + num_colors]
 
            # IF the node changes its parent or The difference between the est_int_new and est_int_old is larger than 1%
-           if ( ( (parent_new - 1) != parent_old )  or ( abs(est_int_new - est_int_old) > 1 )  ) :
+           if ( ( (parent_new - 1 + num_colors) != parent_old )  or ( abs(est_int_new - est_int_old) > 1 )  ) :
 
                #Build the edges, layout (X and Y position)
-               edges [nodeID - 1]      =  (nodeID - 1 , parent_new - 1)
-               layout[nodeID - 1]      =  (x,y)
+               edges [(nodeID - 1) + num_colors]      =  ((nodeID - 1) + num_colors , parent_new - 1 + num_colors)
+               layout[(nodeID - 1) + num_colors]      =  (x,y)
 
                #Estimated_interference, text_of_the_node
-               est_int[nodeID - 1]     =  est_int_new
-               node_text[nodeID - 1]   =  str(vertices[nodeID - 1]) + "\n\n" + str(est_int_new)
+               est_int[(nodeID - 1) + num_colors]     =  est_int_new
+               node_text[(nodeID - 1) + num_colors]   =  str(vertices[(nodeID - 1)]) + "\n\n" + str(est_int_new)
 
                # Node color according to the interference
                if( (est_int_new >= 0) and (est_int_new < 10)  ) :
-                    node_color[nodeID - 1]    =  str(colors_green_red[0])
+                    node_color[(nodeID - 1) + num_colors]    =  str(colors_green_red[0])
                elif( (est_int_new >= 10) and (est_int_new < 20)  ) : #else if
-                    node_color[nodeID - 1]    =  str(colors_green_red[1])
+                    node_color[(nodeID - 1) + num_colors]    =  str(colors_green_red[1])
                elif( (est_int_new >= 20) and (est_int_new < 30)  ) : #else if
-                    node_color[nodeID - 1]    =  str(colors_green_red[2])
+                    node_color[(nodeID - 1) + num_colors]    =  str(colors_green_red[2])
                elif( (est_int_new >= 30) and (est_int_new < 40)  ) : #else if
-                    node_color[nodeID - 1]    =  str(colors_green_red[3])
+                    node_color[(nodeID - 1) + num_colors]    =  str(colors_green_red[3])
                elif( (est_int_new >= 40) and (est_int_new < 50)  ) : #else if
-                    node_color[nodeID - 1]    =  str(colors_green_red[4])
+                    node_color[(nodeID - 1) + num_colors]    =  str(colors_green_red[4])
                elif( (est_int_new >= 50) and (est_int_new < 60)  ) : #else if
-                    node_color[nodeID - 1]    =  str(colors_green_red[5])
+                    node_color[(nodeID - 1) + num_colors]    =  str(colors_green_red[5])
                elif( (est_int_new >= 60) and (est_int_new < 70)  ) : #else if
-                    node_color[nodeID - 1]    =  str(colors_green_red[6])
+                    node_color[(nodeID - 1) + num_colors]    =  str(colors_green_red[6])
                elif( (est_int_new >= 70) and (est_int_new < 80)  ) : #else if
-                    node_color[nodeID - 1]    =  str(colors_green_red[7])
+                    node_color[(nodeID - 1) + num_colors]    =  str(colors_green_red[7])
                elif( (est_int_new >= 80) and (est_int_new < 90)  ) : #else if
-                    node_color[nodeID - 1]    =  str(colors_green_red[8])
+                    node_color[(nodeID - 1) + num_colors]    =  str(colors_green_red[8])
                elif( (est_int_new >= 90) and (est_int_new <= 100) ) : #else if
-                    node_color[nodeID - 1]    =  str(colors_green_red[9])
+                    node_color[(nodeID - 1) + num_colors]    =  str(colors_green_red[9])
 
                print"node_color =",node_color
                print"edges =",edges

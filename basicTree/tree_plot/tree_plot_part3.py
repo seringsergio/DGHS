@@ -24,7 +24,6 @@ def f(child_conn):
     #Get the two objects
     g            = recv[0]
     layout       = recv[1]
-
     #Print the graph
     print g
     g.es["color"] = "black"
