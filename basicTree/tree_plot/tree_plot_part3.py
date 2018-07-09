@@ -14,6 +14,12 @@ import os
 from igraph import *
 
 
+font = {'family': 'serif',
+        'color':  'darkred',
+        'weight': 'normal',
+        'size': 16,
+        }
+
 def f(child_conn):
     #Close the window. The program is called eog (Image viewer)
     os.system("kill -9 $(pidof eog)")
@@ -22,11 +28,13 @@ def f(child_conn):
     recv = child_conn.recv()
 
     #Get the two objects
-    g = recv[0]
-    layout = recv[1]
+    g            = recv[0]
+    layout       = recv[1]
 
     #Print the graph
     print g
     g.es["color"] = "black"
     g.vs['color'] = "white"
-    plot(g, layout = layout )
+    # bbox: Size of the figure in pixels
+    # margin: margen de la imagen hacia los lados en numero de pixeles
+    plot(g, layout = layout, bbox = (500, 500), margin = 80)

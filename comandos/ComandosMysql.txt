@@ -197,6 +197,7 @@ SHOW COLUMNS FROM weatherData;
 SHOW COLUMNS FROM LinkStatistics;
 SHOW COLUMNS FROM LinkStatisticsPaper;
 SHOW COLUMNS FROM LinkStatisticsPaper2;
+SHOW COLUMNS FROM tree_plot;
 
 //Sacar datos en un csv file.Get a csv file.
 

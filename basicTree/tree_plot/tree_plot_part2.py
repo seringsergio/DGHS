@@ -41,6 +41,17 @@ edges = [ (i,i) for i in range( int(sys.argv[1]) )] #(node,parent) ...we have to
 # X and Y position of the graph = layout
 layout = [ (0,0) for i in range( int(sys.argv[1]) )] # (x,y)
 
+# Distance from the center of the node. To fix the position of the labels (text)
+# -0.5 is de distance from the node. - is upwards, + is downwards
+LabelDist = [ (-0.5) for i in range( int(sys.argv[1]) )] # (x,y)
+
+# Text of each node
+node_text = [ ("") for i in range( int(sys.argv[1]) )] # (x,y)
+
+#estimated_interference
+est_int = [ (0) for i in range( int(sys.argv[1]) )] # (x,y)
+
+
 while True:
     #open a cursor to the database
     cursor = dbConn.cursor()
@@ -51,6 +62,7 @@ while True:
        out = cursor.fetchall()
        id_new = int(out[0][0])
 
+       #Avoid plotting the same message
        if id_new != id_old:
 
            id_old = id_new;
@@ -83,23 +95,38 @@ while True:
            y = int(out[0][0])
            print "y = ", y
 
+           #Fetch data: est_int
+           cursor.execute("SELECT est_int FROM tree_plot ORDER BY id DESC LIMIT 1;")
+           dbConn.commit() #commit the insert
+           out = cursor.fetchall()
+           est_int_new = float(out[0][0])
+           print "est_int_new = ", est_int_new
+
+           #Parent_old
            (nodeID_old, parent_old) = edges [nodeID - 1]
 
            print "parent_new = ", (parent_new - 1)
            print "parent_old = ", parent_old
+           print ""
 
-           # IF the node changes its parent
-           if ( (parent_new - 1) != parent_old ) :
+           #estimated_interference_old
+           est_int_old = est_int[nodeID - 1]
 
-               #Build the edges and layout (X and Y position)
-               edges [nodeID - 1] =  (nodeID - 1 , parent_new - 1)
-               layout[nodeID - 1] =  (x,y)
+           # IF the node changes its parent or The difference between the est_int_new and est_int_old is larger than 1%
+           if ( ( (parent_new - 1) != parent_old )  or ( abs(est_int_new - est_int_old) > 1 )  ) :
+
+               #Build the edges, layout (X and Y position), estimated_interference, text_of_the_node
+               edges [nodeID - 1]      =  (nodeID - 1 , parent_new - 1)
+               layout[nodeID - 1]      =  (x,y)
+               est_int[nodeID - 1]     =  est_int_new
+               node_text[nodeID - 1]   =  str(vertices[nodeID - 1]) + "\n\n" + str(est_int_new)
 
                print(edges)
                print(layout)
 
-               # Build Graph
-               g = Graph(vertex_attrs={"label": vertices}, edges=edges, directed=True)
+               # Build the igraph
+               g = Graph(vertex_attrs={"label": node_text, "label_dist": LabelDist } , \
+                         edges=edges, directed=True )
 
                #send the graph via a PIPE. We also send the layout (X and Y positions)
                parent_conn,child_conn = Pipe()

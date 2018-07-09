@@ -16,7 +16,7 @@ import MySQLdb
 dbConn = MySQLdb.connect("localhost","root","1234","sink") or die ("Could not connect to database")
 
 #this will have to be changed to the serial port you are using
-device = '/dev/ttyUSB0'
+device = '/dev/ttyUSB1'
 
 try:
   print "Trying...",device
@@ -39,7 +39,7 @@ while True:
        print "pieces[4]=",pieces[4]
        print "pieces[5]=",pieces[5]
        print "pieces[6]=",pieces[6]
-
+       print ""
        #Here we are going to insert the data into the Database
        try:
          cursor.execute("INSERT INTO tree_plot (id, nodeID, seqno, x, y, parent_plot, est_int) VALUES (NULL,%s,%s,%s,%s,%s,%s)", (pieces[1],pieces[2],pieces[3],pieces[4],pieces[5],pieces[6]))
