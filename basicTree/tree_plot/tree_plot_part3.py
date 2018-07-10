@@ -30,4 +30,4 @@ def f(child_conn):
     ############plot##################
     # bbox: Size of the figure in pixels
     # margin: margen de la imagen hacia los lados en numero de pixeles
-    plot(g, layout = layout, bbox = (500, 500), margin = 80)
+    plot( g , "tree_plot.pdf", layout = layout, bbox = (500, 500), margin = 80)

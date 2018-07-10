@@ -45,7 +45,8 @@ cursor = dbConn.cursor()
 vertices = [ (i+1) for i in range( int(sys.argv[1]) + num_colors )] # (nodeID)
 
 #Edges of the graph
-edges = [ (i,i) for i in range( int(sys.argv[1]) + num_colors )] #(node,parent) ...we have to subtract 1...in other words, node - 1 and parent - 1
+edges               = [ (i,i) for i in range( int(sys.argv[1]) + num_colors )] #(node,parent) ...we have to subtract 1...in other words, node - 1 and parent - 1
+edges_without_loops = [ (i,i) for i in range( int(sys.argv[1]) + num_colors )] #(node,parent) ...we have to subtract 1...in other words, node - 1 and parent - 1
 
 # X and Y position of the graph = layout
 layout = [ (i*num_colors,0) for i in range( int(sys.argv[1]) + num_colors )] # (x,y)
@@ -123,12 +124,14 @@ while True:
            #estimated_interference_old
            est_int_old = est_int[(nodeID - 1) + num_colors]
 
+           #Build the layout (X and Y position)
+           layout[(nodeID - 1) + num_colors]      =  (x,y)
+
            # IF the node changes its parent or The difference between the est_int_new and est_int_old is larger than 1%
            if ( ( (parent_new - 1 + num_colors) != parent_old )  or ( abs(est_int_new - est_int_old) > 1 )  ) :
 
-               #Build the edges, layout (X and Y position)
+               #Build the edges
                edges [(nodeID - 1) + num_colors]      =  ((nodeID - 1) + num_colors , parent_new - 1 + num_colors)
-               layout[(nodeID - 1) + num_colors]      =  (x,y)
 
                #Estimated_interference, text_of_the_node
                est_int[(nodeID - 1) + num_colors]     =  est_int_new
@@ -156,13 +159,25 @@ while True:
                elif( (est_int_new >= 90) and (est_int_new <= 100) ) : #else if
                     node_color[(nodeID - 1) + num_colors]    =  str(colors_green_red[9])
 
-               print"node_color =",node_color
+
+               ####################BUILD edges_without_loops #########################
+               #Initialize edges_without_loops
+               edges_without_loops = [ (i,i) for i in range( int(sys.argv[1]) + num_colors )] #(node,parent) ...we have to subtract 1...in other words, node - 1 and parent - 1
+               #Backward for: Starts from 12, Ends in 0
+               for i in range( int(sys.argv[1]) + num_colors - 1, -1, -1): # range(start, stop, step)
+                   edges_without_loops[i] = edges[i] # Guardo edges en el vector donde no van a haber loops
+                   (nodeID_temp, parent_temp) = edges[i]
+                   if(nodeID_temp == parent_temp):
+                       del edges_without_loops[i]
+
                print"edges =",edges
                print"layout =",layout
+               print"edges_without_loops =",edges_without_loops
+               ########################################################################
 
                # Build the igraph
                g = Graph(vertex_attrs={"label": node_text, "label_dist": LabelDist } , \
-                         edges=edges, directed=True )
+                         edges=edges_without_loops, directed=True )
                #Color of the node according to the interference
                g.vs["color"] = node_color
 
