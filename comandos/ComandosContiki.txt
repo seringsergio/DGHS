@@ -85,7 +85,7 @@ make NODEID=0x0001 MOTES=/dev/ttyUSB0 TARGET=zoul BOARD=remote-reva zoul-demo.up
 make NODEID=0x0100 MOTES=/dev/ttyUSB0 TARGET=zoul BOARD=remote-reva rx.upload
 make NODEID=0x0200 MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva tx.upload
 make NODEID=0x0100 MOTES=/dev/ttyUSB0 TARGET=zoul BOARD=remote-reva basicTree-example.upload
-make NODEID=0x0200 MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva basicTree-example.upload
+make NODEID=0x0100 MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva basicTree-example.upload
 
 //Seleccionar puerto
 make MOTES=/dev/ttyUSB0

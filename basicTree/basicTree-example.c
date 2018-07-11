@@ -195,8 +195,8 @@ static struct unicast_conn t_uc;
 ///////////////////NODE POSITIONS///////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 
-uint8_t x_pos[NUM_NODES] =  {10  ,  20  ,   30  ,   40  ,   50  ,   60  ,   70  ,   80  ,   90  ,   100 };
-uint8_t y_pos[NUM_NODES] =  {10  ,  20  ,   30  ,   40  ,   50  ,   60  ,   70  ,   80  ,   90  ,   100 };
+uint8_t x_pos[NUM_NODES] =  {80, 10, 50, 110, 150, 10, 50, 110, 150 };
+uint8_t y_pos[NUM_NODES] =  {80, 120, 140, 120, 140, 40, 20, 40, 20 };
 
 PROCESS_THREAD(prepare_data_col, ev, data)
 {
@@ -606,6 +606,17 @@ PROCESS_THREAD(send_basicTree, ev, data)
   PROCESS_EXITHANDLER(broadcast_close(&t_broadcast);)
 
   PROCESS_BEGIN();
+
+  // Set Transmission Power in the Zolertia
+  #if REMOTE
+    if(NETSTACK_RADIO.set_value(RADIO_PARAM_TXPOWER, MINUS24_DBM) == RADIO_RESULT_OK)
+    {
+      printf("Transmission Power Set = %04X\n", MINUS24_DBM);
+    }else
+    {
+      printf("ERROR: The Transmission Power could not be set\n");
+    }
+  #endif
 
   e_send_t_beacon  = process_alloc_event();
   e_send_t_data   = process_alloc_event();
