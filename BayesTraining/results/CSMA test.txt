@@ -1,0 +1,1298 @@
+csma: preparing number 0 #0x200045dc, queue len 7
+csma: rexmit collision 0
+csma: scheduling transmission in 76 ticks, NB=4, BE=4
+csma: send_packet, queue length 8, free packets 0
+csma: preparing number 0 #0x200045dc, queue len 8
+csma: rexmit collision 0
+csma: scheduling transmission in 98 ticks, NB=5, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 0 #0x200045dc, queue len 8
+	csma: rexmit collision 1
+	csma: scheduling transmission in 0 ticks, NB=0, BE=0
+	
+	csma: preparing number 1 #0x200045dc, queue len 8
+	csma: rexmit collision 1
+	csma: scheduling transmission in 12 ticks, NB=1, BE=1
+
+	csma: preparing number 1 #0x200045dc, queue len 8
+	csma: rexmit collision 1
+	csma: scheduling transmission in 18 ticks, NB=2, BE=2
+
+	csma: preparing number 1 #0x200045dc, queue len 8
+	csma: rexmit collision 1
+	csma: scheduling transmission in 44 ticks, NB=3, BE=3
+
+	csma: preparing number 1 #0x200045dc, queue len 8
+	csma: rexmit collision 1
+	csma: scheduling transmission in 158 ticks, NB=4, BE=4
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 1 #0x200045dc, queue len 8
+	csma: rexmit collision 1
+	csma: scheduling transmission in 229 ticks, NB=5, BE=4
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 1 #0x200045dc, queue len 8
+	csma: rexmit collision 2
+	csma: scheduling transmission in 0 ticks, NB=0, BE=0
+
+	csma: preparing number 2 #0x200045dc, queue len 8
+	csma: rexmit collision 2
+	csma: scheduling transmission in 3 ticks, NB=1, BE=1
+
+	csma: preparing number 2 #0x200045dc, queue len 8
+	csma: rexmit collision 2
+	csma: scheduling transmission in 7 ticks, NB=2, BE=2
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 2 #0x200045dc, queue len 8
+	csma: rexmit collision 2
+	csma: scheduling transmission in 92 ticks, NB=3, BE=3
+
+	csma: preparing number 2 #0x200045dc, queue len 8
+	csma: rexmit collision 2
+	csma: scheduling transmission in 222 ticks, NB=4, BE=4
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 2 #0x200045dc, queue len 8
+	csma: rexmit collision 2
+	csma: scheduling transmission in 141 ticks, NB=5, BE=4
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 2 #0x200045dc, queue len 8
+	csma: rexmit collision 3
+	csma: scheduling transmission in 0 ticks, NB=0, BE=0
+
+	csma: preparing number 3 #0x200045dc, queue len 8
+	csma: rexmit collision 3
+	csma: scheduling transmission in 9 ticks, NB=1, BE=1
+
+	csma: preparing number 3 #0x200045dc, queue len 8
+	csma: rexmit collision 3
+	csma: scheduling transmission in 18 ticks, NB=2, BE=2
+
+	csma: preparing number 3 #0x200045dc, queue len 8
+	csma: rexmit collision 3
+	csma: scheduling transmission in 8 ticks, NB=3, BE=3
+
+	csma: preparing number 3 #0x200045dc, queue len 8
+	csma: rexmit collision 3
+	csma: scheduling transmission in 85 ticks, NB=4, BE=4
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 3 #0x200045dc, queue len 8
+	csma: rexmit collision 3
+	csma: scheduling transmission in 39 ticks, NB=5, BE=4
+
+	csma: preparing number 3 #0x200045dc, queue len 8
+	csma: rexmit collision 4
+	csma: scheduling transmission in 0 ticks, NB=0, BE=0
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 4 #0x200045dc, queue len 8
+	csma: rexmit collision 4
+	csma: scheduling transmission in 4 ticks, NB=1, BE=1
+
+	csma: preparing number 4 #0x200045dc, queue len 8
+	csma: rexmit collision 4
+	csma: scheduling transmission in 36 ticks, NB=2, BE=2
+
+	csma: preparing number 4 #0x200045dc, queue len 8
+	csma: rexmit collision 4
+	csma: scheduling transmission in 36 ticks, NB=3, BE=3
+
+	csma: preparing number 4 #0x200045dc, queue len 8
+	csma: rexmit collision 4
+	csma: scheduling transmission in 104 ticks, NB=4, BE=4
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 4 #0x200045dc, queue len 8
+	csma: rexmit collision 4
+	csma: scheduling transmission in 165 ticks, NB=5, BE=4
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 4 #0x200045dc, queue len 8
+	csma: rexmit collision 5
+	csma: scheduling transmission in 0 ticks, NB=0, BE=0
+
+	csma: preparing number 5 #0x200045dc, queue len 8
+	csma: rexmit collision 5
+	csma: scheduling transmission in 15 ticks, NB=1, BE=1
+	
+	csma: preparing number 5 #0x200045dc, queue len 8
+	csma: rexmit collision 5
+	csma: scheduling transmission in 22 ticks, NB=2, BE=2
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 5 #0x200045dc, queue len 8
+	csma: rexmit collision 5
+	csma: scheduling transmission in 87 ticks, NB=3, BE=3
+
+	csma: preparing number 5 #0x200045dc, queue len 8
+	csma: rexmit collision 5
+	csma: scheduling transmission in 168 ticks, NB=4, BE=4
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 5 #0x200045dc, queue len 8
+	csma: rexmit collision 5
+	csma: scheduling transmission in 237 ticks, NB=5, BE=4
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 5 #0x200045dc, queue len 8
+	csma: rexmit collision 6
+	csma: scheduling transmission in 0 ticks, NB=0, BE=0
+
+	csma: preparing number 6 #0x200045dc, queue len 8
+	csma: rexmit collision 6
+	csma: scheduling transmission in 5 ticks, NB=1, BE=1
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 6 #0x200045dc, queue len 8
+	csma: rexmit collision 6
+	csma: scheduling transmission in 7 ticks, NB=2, BE=2
+
+	csma: preparing number 6 #0x200045dc, queue len 8
+	csma: rexmit collision 6
+	csma: scheduling transmission in 96 ticks, NB=3, BE=3
+
+	csma: preparing number 6 #0x200045dc, queue len 8
+	csma: rexmit collision 6
+	csma: scheduling transmission in 11 ticks, NB=4, BE=4
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 6 #0x200045dc, queue len 8
+	csma: rexmit collision 6
+	csma: scheduling transmission in 201 ticks, NB=5, BE=4
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 6 #0x200045dc, queue len 8
+	csma: rexmit collision 7
+	csma: scheduling transmission in 0 ticks, NB=0, BE=0
+
+	csma: preparing number 7 #0x200045dc, queue len 8
+	csma: rexmit collision 7
+	csma: scheduling transmission in 14 ticks, NB=1, BE=1
+
+	csma: preparing number 7 #0x200045dc, queue len 8
+	csma: rexmit collision 7
+	csma: scheduling transmission in 1 ticks, NB=2, BE=2
+
+	csma: preparing number 7 #0x200045dc, queue len 8
+	csma: rexmit collision 7
+	csma: scheduling transmission in 96 ticks, NB=3, BE=3
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 7 #0x200045dc, queue len 8
+	csma: rexmit collision 7
+	csma: scheduling transmission in 223 ticks, NB=4, BE=4
+	
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 7 #0x200045dc, queue len 8
+	csma: rexmit collision 7
+	csma: scheduling transmission in 186 ticks, NB=5, BE=4
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+
+	csma: preparing number 7 #0x200045dc, queue len 8
+	csma: drop with status 1 after 8 transmissions, 0 collisions
+	csma: free_queued_packet, queue length 7, free packets 1
+	csma: scheduling transmission in 0 ticks, NB=0, BE=0
+
+unicast message sent to 1.0: status 1 num_tx 8
+	csma: preparing number 0 #0x200045e8, queue len 7
+	csma: rexmit collision 0
+	csma: scheduling transmission in 2 ticks, NB=1, BE=1
+
+	csma: preparing number 0 #0x200045e8, queue len 7
+	csma: rexmit collision 0
+	csma: scheduling transmission in 28 ticks, NB=2, BE=2
+
+	csma: preparing number 0 #0x200045e8, queue len 7
+	csma: rexmit collision 0
+	csma: scheduling transmission in 22 ticks, NB=3, BE=3
+
+	csma: send_packet, queue length 8, free packets 0
+	csma: preparing number 0 #0x200045e8, queue len 8
+	csma: rexmit collision 0
+	csma: scheduling transmission in 227 ticks, NB=4, BE=4
+	
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 0 #0x200045e8, queue len 8
+	csma: rexmit collision 0
+	csma: scheduling transmission in 115 ticks, NB=5, BE=4
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 0 #0x200045e8, queue len 8
+	csma: rexmit collision 1
+	csma: scheduling transmission in 0 ticks, NB=0, BE=0
+
+	csma: preparing number 1 #0x200045e8, queue len 8
+	csma: rexmit collision 1
+	csma: scheduling transmission in 11 ticks, NB=1, BE=1
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 1 #0x200045e8, queue len 8
+	csma: rexmit collision 1
+	csma: scheduling transmission in 41 ticks, NB=2, BE=2
+
+	csma: preparing number 1 #0x200045e8, queue len 8
+	csma: rexmit collision 1
+	csma: scheduling transmission in 74 ticks, NB=3, BE=3
+
+	csma: preparing number 1 #0x200045e8, queue len 8
+	csma: rexmit collision 1
+	csma: scheduling transmission in 22 ticks, NB=4, BE=4
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 1 #0x200045e8, queue len 8
+	csma: rexmit collision 1
+	csma: scheduling transmission in 43 ticks, NB=5, BE=4
+
+	csma: preparing number 1 #0x200045e8, queue len 8
+	csma: rexmit collision 2
+	csma: scheduling transmission in 0 ticks, NB=0, BE=0
+
+	csma: preparing number 2 #0x200045e8, queue len 8
+	csma: rexmit collision 2
+	csma: scheduling transmission in 9 ticks, NB=1, BE=1
+
+	csma: preparing number 2 #0x200045e8, queue len 8
+	csma: rexmit collision 2
+	csma: scheduling transmission in 34 ticks, NB=2, BE=2
+
+	csma: preparing number 2 #0x200045e8, queue len 8
+	csma: rexmit collision 2
+	csma: scheduling transmission in 20 ticks, NB=3, BE=3
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 2 #0x200045e8, queue len 8
+	csma: rexmit collision 2
+	csma: scheduling transmission in 208 ticks, NB=4, BE=4
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 2 #0x200045e8, queue len 8
+	csma: rexmit collision 2
+	csma: scheduling transmission in 227 ticks, NB=5, BE=4
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 2 #0x200045e8, queue len 8
+	csma: rexmit collision 3
+	csma: scheduling transmission in 0 ticks, NB=0, BE=0
+
+	csma: preparing number 3 #0x200045e8, queue len 8
+	csma: rexmit collision 3
+	csma: scheduling transmission in 11 ticks, NB=1, BE=1
+
+	csma: preparing number 3 #0x200045e8, queue len 8
+	csma: rexmit collision 3
+	csma: scheduling transmission in 37 ticks, NB=2, BE=2
+
+	csma: preparing number 3 #0x200045e8, queue len 8
+	csma: rexmit collision 3
+	csma: scheduling transmission in 19 ticks, NB=3, BE=3
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 3 #0x200045e8, queue len 8
+	csma: rexmit collision 3
+	csma: scheduling transmission in 211 ticks, NB=4, BE=4
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 3 #0x200045e8, queue len 8
+	csma: rexmit collision 3
+	csma: scheduling transmission in 195 ticks, NB=5, BE=4
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 3 #0x200045e8, queue len 8
+	csma: rexmit collision 4
+	csma: scheduling transmission in 0 ticks, NB=0, BE=0
+	
+	csma: preparing number 4 #0x200045e8, queue len 8
+	csma: rexmit collision 4
+	csma: scheduling transmission in 11 ticks, NB=1, BE=1
+
+	csma: preparing number 4 #0x200045e8, queue len 8
+	csma: rexmit collision 4
+	csma: scheduling transmission in 41 ticks, NB=2, BE=2
+
+	csma: preparing number 4 #0x200045e8, queue len 8
+	csma: rexmit collision 4
+	csma: scheduling transmission in 14 ticks, NB=3, BE=3
+
+	csma: preparing number 4 #0x200045e8, queue len 8
+	csma: rexmit collision 4
+	csma: scheduling transmission in 141 ticks, NB=4, BE=4
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 4 #0x200045e8, queue len 8
+	csma: rexmit collision 4
+	csma: scheduling transmission in 105 ticks, NB=5, BE=4
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 4 #0x200045e8, queue len 8
+	csma: rexmit collision 5
+	csma: scheduling transmission in 0 ticks, NB=0, BE=0
+	
+	csma: preparing number 5 #0x200045e8, queue len 8
+	csma: rexmit collision 5
+	csma: scheduling transmission in 10 ticks, NB=1, BE=1
+	
+	csma: preparing number 5 #0x200045e8, queue len 8
+	csma: rexmit collision 5
+	csma: scheduling transmission in 6 ticks, NB=2, BE=2
+
+	csma: preparing number 5 #0x200045e8, queue len 8
+	csma: rexmit collision 5
+	csma: scheduling transmission in 79 ticks, NB=3, BE=3
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 5 #0x200045e8, queue len 8
+	csma: rexmit collision 5
+	csma: scheduling transmission in 214 ticks, NB=4, BE=4
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 5 #0x200045e8, queue len 8
+	csma: rexmit collision 5
+	csma: scheduling transmission in 63 ticks, NB=5, BE=4
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 5 #0x200045e8, queue len 8
+	csma: rexmit collision 6
+	csma: scheduling transmission in 0 ticks, NB=0, BE=0
+
+	csma: preparing number 6 #0x200045e8, queue len 8
+	csma: rexmit collision 6
+	csma: scheduling transmission in 10 ticks, NB=1, BE=1
+
+	csma: preparing number 6 #0x200045e8, queue len 8
+	csma: rexmit collision 6
+	csma: scheduling transmission in 6 ticks, NB=2, BE=2
+
+	csma: preparing number 6 #0x200045e8, queue len 8
+	csma: rexmit collision 6
+	csma: scheduling transmission in 111 ticks, NB=3, BE=3
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 6 #0x200045e8, queue len 8
+	csma: rexmit collision 6
+	csma: scheduling transmission in 146 ticks, NB=4, BE=4
+	
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 6 #0x200045e8, queue len 8
+	csma: rexmit collision 6
+	csma: scheduling transmission in 16 ticks, NB=5, BE=4
+
+	csma: preparing number 6 #0x200045e8, queue len 8
+	csma: rexmit collision 7
+	csma: scheduling transmission in 0 ticks, NB=0, BE=0
+
+	csma: preparing number 7 #0x200045e8, queue len 8
+	csma: rexmit collision 7
+	csma: scheduling transmission in 11 ticks, NB=1, BE=1
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 7 #0x200045e8, queue len 8
+	csma: rexmit collision 7
+	csma: scheduling transmission in 41 ticks, NB=2, BE=2
+
+	csma: preparing number 7 #0x200045e8, queue len 8
+	csma: rexmit collision 7
+	csma: scheduling transmission in 106 ticks, NB=3, BE=3
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 7 #0x200045e8, queue len 8
+	csma: rexmit collision 7
+	csma: scheduling transmission in 94 ticks, NB=4, BE=4
+
+	csma: preparing number 7 #0x200045e8, queue len 8
+	csma: rexmit collision 7
+	csma: scheduling transmission in 69 ticks, NB=5, BE=4
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 7 #0x200045e8, queue len 8
+	csma: drop with status 1 after 8 transmissions, 0 collisions
+	csma: free_queued_packet, queue length 7, free packets 1
+	csma: scheduling transmission in 0 ticks, NB=0, BE=0
+
+unicast message sent to 1.0: status 1 num_tx 8
+	csma: preparing number 0 #0x200045f4, queue len 7
+	csma: rexmit collision 0
+	csma: scheduling transmission in 15 ticks, NB=1, BE=1
+
+	csma: preparing number 0 #0x200045f4, queue len 7
+	csma: rexmit collision 0
+	csma: scheduling transmission in 14 ticks, NB=2, BE=2
+
+	csma: preparing number 0 #0x200045f4, queue len 7
+	csma: rexmit collision 0
+	csma: scheduling transmission in 93 ticks, NB=3, BE=3
+	csma: send_packet, queue length 8, free packets 0
+
+	csma: preparing number 0 #0x200045f4, queue len 8
+	csma: rexmit collision 0
+	csma: scheduling transmission in 77 ticks, NB=4, BE=4
+
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 0 #0x200045f4, queue len 8
+	csma: rexmit collision 0
+	csma: scheduling transmission in 29 ticks, NB=5, BE=4
+
+	csma: preparing number 0 #0x200045f4, queue len 8
+	csma: rexmit collision 1
+	csma: scheduling transmission in 0 ticks, NB=0, BE=0
+
+	csma: preparing number 1 #0x200045f4, queue len 8
+	csma: rexmit collision 1
+	csma: scheduling transmission in 1 ticks, NB=1, BE=1
+
+	csma: preparing number 1 #0x200045f4, queue len 8
+	csma: rexmit collision 1
+	csma: scheduling transmission in 28 ticks, NB=2, BE=2
+
+	csma: preparing number 1 #0x200045f4, queue len 8
+	csma: rexmit collision 1
+	csma: scheduling transmission in 14 ticks, NB=3, BE=3
+	
+	csma: preparing number 1 #0x200045f4, queue len 8
+	csma: rexmit collision 1
+	csma: scheduling transmission in 41 ticks, NB=4, BE=4
+	
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+
+unicast message sent to 1.0: status 4 num_tx 1
+	csma: preparing number 1 #0x200045f4, queue len 8
+	csma: rexmit collision 1
+	csma: scheduling transmission in 138 ticks, NB=5, BE=4
+	
+	csma: Neighbor queue full
+	csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 1 #0x200045f4, queue len 8
+csma: rexmit collision 2
+csma: scheduling transmission in 0 ticks, NB=0, BE=0
+csma: preparing number 2 #0x200045f4, queue len 8
+csma: rexmit collision 2
+csma: scheduling transmission in 6 ticks, NB=1, BE=1
+csma: preparing number 2 #0x200045f4, queue len 8
+csma: rexmit collision 2
+csma: scheduling transmission in 11 ticks, NB=2, BE=2
+csma: preparing number 2 #0x200045f4, queue len 8
+csma: rexmit collision 2
+csma: scheduling transmission in 93 ticks, NB=3, BE=3
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 2 #0x200045f4, queue len 8
+csma: rexmit collision 2
+csma: scheduling transmission in 117 ticks, NB=4, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 2 #0x200045f4, queue len 8
+csma: rexmit collision 2
+csma: scheduling transmission in 135 ticks, NB=5, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+Contiki 3.x
+Zolertia RE-Mote revision A platform
+CC2538: ID: 0xb964, rev.: PG2.0, Flash: 512 KiB, SRAM: 32 KiB, AES/SHA: 1, ECC/RSA: 1
+System clock: 16000000 Hz
+I/O clock: 16000000 Hz
+Reset cause: External reset
+Rime configured with address 02:00
+ Net: Rime
+ MAC: CSMA
+ RDC: ContikiMAC
+2.0
+csma: send_packet, queue length 1, free packets 7
+csma: scheduling transmission in 0 ticks, NB=0, BE=0
+csma: preparing number 0 #0x200045d0, queue len 1
+csma: rexmit collision 0
+csma: scheduling transmission in 10 ticks, NB=1, BE=1
+csma: preparing number 0 #0x200045d0, queue len 1
+csma: rexmit collision 0
+csma: scheduling transmission in 13 ticks, NB=2, BE=2
+csma: preparing number 0 #0x200045d0, queue len 1
+csma: rexmit collision 0
+csma: scheduling transmission in 110 ticks, NB=3, BE=3
+csma: send_packet, queue length 2, free packets 6
+csma: preparing number 0 #0x200045d0, queue len 2
+csma: rexmit collision 0
+csma: scheduling transmission in 54 ticks, NB=4, BE=4
+csma: preparing number 0 #0x200045d0, queue len 2
+csma: rexmit collision 0
+csma: scheduling transmission in 32 ticks, NB=5, BE=4
+csma: preparing number 0 #0x200045d0, queue len 2
+csma: rexmit collision 1
+csma: scheduling transmission in 0 ticks, NB=0, BE=0
+csma: preparing number 1 #0x200045d0, queue len 2
+csma: rexmit collision 1
+csma: scheduling transmission in 0 ticks, NB=1, BE=1
+csma: preparing number 1 #0x200045d0, queue len 2
+csma: rexmit collision 1
+csma: scheduling transmission in 12 ticks, NB=2, BE=2
+csma: send_packet, queue length 3, free packets 5
+csma: preparing number 1 #0x200045d0, queue len 3
+csma: rexmit collision 1
+csma: scheduling transmission in 105 ticks, NB=3, BE=3
+csma: preparing number 1 #0x200045d0, queue len 3
+csma: rexmit collision 1
+csma: scheduling transmission in 85 ticks, NB=4, BE=4
+csma: send_packet, queue length 4, free packets 4
+csma: preparing number 1 #0x200045d0, queue len 4
+csma: rexmit collision 1
+csma: scheduling transmission in 96 ticks, NB=5, BE=4
+csma: send_packet, queue length 5, free packets 3
+csma: preparing number 1 #0x200045d0, queue len 5
+csma: rexmit collision 2
+csma: scheduling transmission in 0 ticks, NB=0, BE=0
+csma: preparing number 2 #0x200045d0, queue len 5
+csma: rexmit collision 2
+csma: scheduling transmission in 0 ticks, NB=1, BE=1
+csma: preparing number 2 #0x200045d0, queue len 5
+csma: rexmit collision 2
+csma: scheduling transmission in 40 ticks, NB=2, BE=2
+csma: preparing number 2 #0x200045d0, queue len 5
+csma: rexmit collision 2
+csma: scheduling transmission in 74 ticks, NB=3, BE=3
+csma: send_packet, queue length 6, free packets 2
+csma: preparing number 2 #0x200045d0, queue len 6
+csma: rexmit collision 2
+csma: scheduling transmission in 197 ticks, NB=4, BE=4
+csma: send_packet, queue length 7, free packets 1
+csma: send_packet, queue length 8, free packets 0
+csma: preparing number 2 #0x200045d0, queue len 8
+csma: rexmit collision 2
+csma: scheduling transmission in 56 ticks, NB=5, BE=4
+csma: preparing number 2 #0x200045d0, queue len 8
+csma: rexmit collision 3
+csma: scheduling transmission in 0 ticks, NB=0, BE=0
+csma: preparing number 3 #0x200045d0, queue len 8
+csma: rexmit collision 3
+csma: scheduling transmission in 10 ticks, NB=1, BE=1
+csma: preparing number 3 #0x200045d0, queue len 8
+csma: rexmit collision 3
+csma: scheduling transmission in 25 ticks, NB=2, BE=2
+csma: preparing number 3 #0x200045d0, queue len 8
+csma: rexmit collision 3
+csma: scheduling transmission in 93 ticks, NB=3, BE=3
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 3 #0x200045d0, queue len 8
+csma: rexmit collision 3
+csma: scheduling transmission in 90 ticks, NB=4, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 3 #0x200045d0, queue len 8
+csma: rexmit collision 3
+csma: scheduling transmission in 189 ticks, NB=5, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 3 #0x200045d0, queue len 8
+csma: rexmit collision 4
+csma: scheduling transmission in 0 ticks, NB=0, BE=0
+csma: preparing number 4 #0x200045d0, queue len 8
+csma: rexmit collision 4
+csma: scheduling transmission in 2 ticks, NB=1, BE=1
+csma: preparing number 4 #0x200045d0, queue len 8
+csma: rexmit collision 4
+csma: scheduling transmission in 15 ticks, NB=2, BE=2
+csma: preparing number 4 #0x200045d0, queue len 8
+csma: rexmit collision 4
+csma: scheduling transmission in 49 ticks, NB=3, BE=3
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 4 #0x200045d0, queue len 8
+csma: rexmit collision 4
+csma: scheduling transmission in 15 ticks, NB=4, BE=4
+csma: preparing number 4 #0x200045d0, queue len 8
+csma: rexmit collision 4
+csma: scheduling transmission in 81 ticks, NB=5, BE=4
+csma: preparing number 4 #0x200045d0, queue len 8
+csma: rexmit collision 5
+csma: scheduling transmission in 0 ticks, NB=0, BE=0
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 5 #0x200045d0, queue len 8
+csma: rexmit collision 5
+csma: scheduling transmission in 3 ticks, NB=1, BE=1
+csma: preparing number 5 #0x200045d0, queue len 8
+csma: rexmit collision 5
+csma: scheduling transmission in 8 ticks, NB=2, BE=2
+csma: preparing number 5 #0x200045d0, queue len 8
+csma: rexmit collision 5
+csma: scheduling transmission in 42 ticks, NB=3, BE=3
+csma: preparing number 5 #0x200045d0, queue len 8
+csma: rexmit collision 5
+csma: scheduling transmission in 81 ticks, NB=4, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 5 #0x200045d0, queue len 8
+csma: rexmit collision 5
+csma: scheduling transmission in 187 ticks, NB=5, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 5 #0x200045d0, queue len 8
+csma: rexmit collision 6
+csma: scheduling transmission in 0 ticks, NB=0, BE=0
+csma: preparing number 6 #0x200045d0, queue len 8
+csma: rexmit collision 6
+csma: scheduling transmission in 10 ticks, NB=1, BE=1
+csma: preparing number 6 #0x200045d0, queue len 8
+csma: rexmit collision 6
+csma: scheduling transmission in 45 ticks, NB=2, BE=2
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 6 #0x200045d0, queue len 8
+csma: rexmit collision 6
+csma: scheduling transmission in 6 ticks, NB=3, BE=3
+csma: preparing number 6 #0x200045d0, queue len 8
+csma: rexmit collision 6
+csma: scheduling transmission in 24 ticks, NB=4, BE=4
+csma: preparing number 6 #0x200045d0, queue len 8
+csma: rexmit collision 6
+csma: scheduling transmission in 234 ticks, NB=5, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 6 #0x200045d0, queue len 8
+csma: rexmit collision 7
+csma: scheduling transmission in 0 ticks, NB=0, BE=0
+csma: preparing number 7 #0x200045d0, queue len 8
+csma: rexmit collision 7
+csma: scheduling transmission in 1 ticks, NB=1, BE=1
+csma: preparing number 7 #0x200045d0, queue len 8
+csma: rexmit collision 7
+csma: scheduling transmission in 43 ticks, NB=2, BE=2
+csma: preparing number 7 #0x200045d0, queue len 8
+csma: rexmit collision 7
+csma: scheduling transmission in 22 ticks, NB=3, BE=3
+csma: preparing number 7 #0x200045d0, queue len 8
+csma: rexmit collision 7
+csma: scheduling transmission in 52 ticks, NB=4, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 7 #0x200045d0, queue len 8
+csma: rexmit collision 7
+csma: scheduling transmission in 215 ticks, NB=5, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 7 #0x200045d0, queue len 8
+csma: drop with status 1 after 8 transmissions, 0 collisions
+csma: free_queued_packet, queue length 7, free packets 1
+csma: scheduling transmission in 0 ticks, NB=0, BE=0
+unicast message sent to 1.0: status 1 num_tx 8
+csma: preparing number 0 #0x200045dc, queue len 7
+csma: rexmit collision 0
+csma: scheduling transmission in 11 ticks, NB=1, BE=1
+csma: preparing number 0 #0x200045dc, queue len 7
+csma: rexmit collision 0
+csma: scheduling transmission in 6 ticks, NB=2, BE=2
+csma: send_packet, queue length 8, free packets 0
+csma: preparing number 0 #0x200045dc, queue len 8
+csma: rexmit collision 0
+csma: scheduling transmission in 88 ticks, NB=3, BE=3
+csma: preparing number 0 #0x200045dc, queue len 8
+csma: rexmit collision 0
+csma: scheduling transmission in 182 ticks, NB=4, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 0 #0x200045dc, queue len 8
+csma: rexmit collision 0
+csma: scheduling transmission in 128 ticks, NB=5, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 0 #0x200045dc, queue len 8
+csma: rexmit collision 1
+csma: scheduling transmission in 0 ticks, NB=0, BE=0
+csma: preparing number 1 #0x200045dc, queue len 8
+csma: rexmit collision 1
+csma: scheduling transmission in 4 ticks, NB=1, BE=1
+csma: preparing number 1 #0x200045dc, queue len 8
+csma: rexmit collision 1
+csma: scheduling transmission in 27 ticks, NB=2, BE=2
+csma: preparing number 1 #0x200045dc, queue len 8
+csma: rexmit collision 1
+csma: scheduling transmission in 54 ticks, NB=3, BE=3
+csma: preparing number 1 #0x200045dc, queue len 8
+csma: rexmit collision 1
+csma: scheduling transmission in 84 ticks, NB=4, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 1 #0x200045dc, queue len 8
+csma: rexmit collision 1
+csma: scheduling transmission in 235 ticks, NB=5, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 1 #0x200045dc, queue len 8
+csma: rexmit collision 2
+csma: scheduling transmission in 0 ticks, NB=0, BE=0
+csma: preparing number 2 #0x200045dc, queue len 8
+csma: rexmit collision 2
+csma: scheduling transmission in 6 ticks, NB=1, BE=1
+csma: preparing number 2 #0x200045dc, queue len 8
+csma: rexmit collision 2
+csma: scheduling transmission in 16 ticks, NB=2, BE=2
+csma: preparing number 2 #0x200045dc, queue len 8
+csma: rexmit collision 2
+csma: scheduling transmission in 72 ticks, NB=3, BE=3
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 2 #0x200045dc, queue len 8
+csma: rexmit collision 2
+csma: scheduling transmission in 154 ticks, NB=4, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 2 #0x200045dc, queue len 8
+csma: rexmit collision 2
+csma: scheduling transmission in 77 ticks, NB=5, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 2 #0x200045dc, queue len 8
+csma: rexmit collision 3
+csma: scheduling transmission in 0 ticks, NB=0, BE=0
+csma: preparing number 3 #0x200045dc, queue len 8
+csma: rexmit collision 3
+csma: scheduling transmission in 14 ticks, NB=1, BE=1
+csma: preparing number 3 #0x200045dc, queue len 8
+csma: rexmit collision 3
+csma: scheduling transmission in 10 ticks, NB=2, BE=2
+csma: preparing number 3 #0x200045dc, queue len 8
+csma: rexmit collision 3
+csma: scheduling transmission in 21 ticks, NB=3, BE=3
+csma: preparing number 3 #0x200045dc, queue len 8
+csma: rexmit collision 3
+csma: scheduling transmission in 116 ticks, NB=4, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 3 #0x200045dc, queue len 8
+csma: rexmit collision 3
+csma: scheduling transmission in 15 ticks, NB=5, BE=4
+csma: preparing number 3 #0x200045dc, queue len 8
+csma: rexmit collision 4
+csma: scheduling transmission in 0 ticks, NB=0, BE=0
+csma: preparing number 4 #0x200045dc, queue len 8
+csma: rexmit collision 4
+csma: scheduling transmission in 5 ticks, NB=1, BE=1
+csma: preparing number 4 #0x200045dc, queue len 8
+csma: rexmit collision 4
+csma: scheduling transmission in 16 ticks, NB=2, BE=2
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 4 #0x200045dc, queue len 8
+csma: rexmit collision 4
+csma: scheduling transmission in 40 ticks, NB=3, BE=3
+csma: preparing number 4 #0x200045dc, queue len 8
+csma: rexmit collision 4
+csma: scheduling transmission in 154 ticks, NB=4, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 4 #0x200045dc, queue len 8
+csma: rexmit collision 4
+csma: scheduling transmission in 17 ticks, NB=5, BE=4
+csma: preparing number 4 #0x200045dc, queue len 8
+csma: rexmit collision 5
+csma: scheduling transmission in 0 ticks, NB=0, BE=0
+csma: preparing number 5 #0x200045dc, queue len 8
+csma: rexmit collision 5
+csma: scheduling transmission in 11 ticks, NB=1, BE=1
+csma: preparing number 5 #0x200045dc, queue len 8
+csma: rexmit collision 5
+csma: scheduling transmission in 46 ticks, NB=2, BE=2
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 5 #0x200045dc, queue len 8
+csma: rexmit collision 5
+csma: scheduling transmission in 106 ticks, NB=3, BE=3
+csma: preparing number 5 #0x200045dc, queue len 8
+csma: rexmit collision 5
+csma: scheduling transmission in 217 ticks, NB=4, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 5 #0x200045dc, queue len 8
+csma: rexmit collision 5
+csma: scheduling transmission in 121 ticks, NB=5, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 5 #0x200045dc, queue len 8
+csma: rexmit collision 6
+csma: scheduling transmission in 0 ticks, NB=0, BE=0
+csma: preparing number 6 #0x200045dc, queue len 8
+csma: rexmit collision 6
+csma: scheduling transmission in 13 ticks, NB=1, BE=1
+csma: preparing number 6 #0x200045dc, queue len 8
+csma: rexmit collision 6
+csma: scheduling transmission in 6 ticks, NB=2, BE=2
+csma: preparing number 6 #0x200045dc, queue len 8
+csma: rexmit collision 6
+csma: scheduling transmission in 0 ticks, NB=3, BE=3
+csma: preparing number 6 #0x200045dc, queue len 8
+csma: rexmit collision 6
+csma: scheduling transmission in 212 ticks, NB=4, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 6 #0x200045dc, queue len 8
+csma: rexmit collision 6
+csma: scheduling transmission in 199 ticks, NB=5, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 6 #0x200045dc, queue len 8
+csma: rexmit collision 7
+csma: scheduling transmission in 0 ticks, NB=0, BE=0
+csma: preparing number 7 #0x200045dc, queue len 8
+csma: rexmit collision 7
+csma: scheduling transmission in 3 ticks, NB=1, BE=1
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 7 #0x200045dc, queue len 8
+csma: rexmit collision 7
+csma: scheduling transmission in 0 ticks, NB=2, BE=2
+csma: preparing number 7 #0x200045dc, queue len 8
+csma: rexmit collision 7
+csma: scheduling transmission in 104 ticks, NB=3, BE=3
+csma: preparing number 7 #0x200045dc, queue len 8
+csma: rexmit collision 7
+csma: scheduling transmission in 90 ticks, NB=4, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 7 #0x200045dc, queue len 8
+csma: rexmit collision 7
+csma: scheduling transmission in 197 ticks, NB=5, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 7 #0x200045dc, queue len 8
+csma: drop with status 1 after 8 transmissions, 0 collisions
+csma: free_queued_packet, queue length 7, free packets 1
+csma: scheduling transmission in 0 ticks, NB=0, BE=0
+unicast message sent to 1.0: status 1 num_tx 8
+csma: preparing number 0 #0x200045e8, queue len 7
+csma: rexmit collision 0
+csma: scheduling transmission in 0 ticks, NB=1, BE=1
+csma: preparing number 0 #0x200045e8, queue len 7
+csma: rexmit collision 0
+csma: scheduling transmission in 32 ticks, NB=2, BE=2
+csma: preparing number 0 #0x200045e8, queue len 7
+csma: rexmit collision 0
+csma: scheduling transmission in 4 ticks, NB=3, BE=3
+csma: preparing number 0 #0x200045e8, queue len 7
+csma: rexmit collision 0
+csma: scheduling transmission in 47 ticks, NB=4, BE=4
+csma: preparing number 0 #0x200045e8, queue len 7
+csma: rexmit collision 0
+csma: scheduling transmission in 33 ticks, NB=5, BE=4
+csma: send_packet, queue length 8, free packets 0
+csma: preparing number 0 #0x200045e8, queue len 8
+csma: rexmit collision 1
+csma: scheduling transmission in 0 ticks, NB=0, BE=0
+csma: preparing number 1 #0x200045e8, queue len 8
+csma: rexmit collision 1
+csma: scheduling transmission in 7 ticks, NB=1, BE=1
+csma: preparing number 1 #0x200045e8, queue len 8
+csma: rexmit collision 1
+csma: scheduling transmission in 7 ticks, NB=2, BE=2
+csma: preparing number 1 #0x200045e8, queue len 8
+csma: rexmit collision 1
+csma: scheduling transmission in 15 ticks, NB=3, BE=3
+csma: preparing number 1 #0x200045e8, queue len 8
+csma: rexmit collision 1
+csma: scheduling transmission in 229 ticks, NB=4, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 1 #0x200045e8, queue len 8
+csma: rexmit collision 1
+csma: scheduling transmission in 204 ticks, NB=5, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 1 #0x200045e8, queue len 8
+csma: rexmit collision 2
+csma: scheduling transmission in 0 ticks, NB=0, BE=0
+csma: preparing number 2 #0x200045e8, queue len 8
+csma: rexmit collision 2
+csma: scheduling transmission in 5 ticks, NB=1, BE=1
+csma: preparing number 2 #0x200045e8, queue len 8
+csma: rexmit collision 2
+csma: scheduling transmission in 12 ticks, NB=2, BE=2
+csma: preparing number 2 #0x200045e8, queue len 8
+csma: rexmit collision 2
+csma: scheduling transmission in 73 ticks, NB=3, BE=3
+csma: preparing number 2 #0x200045e8, queue len 8
+csma: rexmit collision 2
+csma: scheduling transmission in 73 ticks, NB=4, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 2 #0x200045e8, queue len 8
+csma: rexmit collision 2
+csma: scheduling transmission in 65 ticks, NB=5, BE=4
+csma: preparing number 2 #0x200045e8, queue len 8
+csma: rexmit collision 3
+csma: scheduling transmission in 0 ticks, NB=0, BE=0
+csma: preparing number 3 #0x200045e8, queue len 8
+csma: rexmit collision 3
+csma: scheduling transmission in 3 ticks, NB=1, BE=1
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 3 #0x200045e8, queue len 8
+csma: rexmit collision 3
+csma: scheduling transmission in 0 ticks, NB=2, BE=2
+csma: preparing number 3 #0x200045e8, queue len 8
+csma: rexmit collision 3
+csma: scheduling transmission in 36 ticks, NB=3, BE=3
+csma: preparing number 3 #0x200045e8, queue len 8
+csma: rexmit collision 3
+csma: scheduling transmission in 231 ticks, NB=4, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 3 #0x200045e8, queue len 8
+csma: rexmit collision 3
+csma: scheduling transmission in 55 ticks, NB=5, BE=4
+csma: preparing number 3 #0x200045e8, queue len 8
+csma: rexmit collision 4
+csma: scheduling transmission in 0 ticks, NB=0, BE=0
+csma: preparing number 4 #0x200045e8, queue len 8
+csma: rexmit collision 4
+csma: scheduling transmission in 15 ticks, NB=1, BE=1
+csma: preparing number 4 #0x200045e8, queue len 8
+csma: rexmit collision 4
+csma: scheduling transmission in 17 ticks, NB=2, BE=2
+csma: preparing number 4 #0x200045e8, queue len 8
+csma: rexmit collision 4
+csma: scheduling transmission in 75 ticks, NB=3, BE=3
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 4 #0x200045e8, queue len 8
+csma: rexmit collision 4
+csma: scheduling transmission in 34 ticks, NB=4, BE=4
+csma: preparing number 4 #0x200045e8, queue len 8
+csma: rexmit collision 4
+csma: scheduling transmission in 159 ticks, NB=5, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 4 #0x200045e8, queue len 8
+csma: rexmit collision 5
+csma: scheduling transmission in 0 ticks, NB=0, BE=0
+csma: preparing number 5 #0x200045e8, queue len 8
+csma: rexmit collision 5
+csma: scheduling transmission in 13 ticks, NB=1, BE=1
+csma: preparing number 5 #0x200045e8, queue len 8
+csma: rexmit collision 5
+csma: scheduling transmission in 30 ticks, NB=2, BE=2
+csma: preparing number 5 #0x200045e8, queue len 8
+csma: rexmit collision 5
+csma: scheduling transmission in 50 ticks, NB=3, BE=3
+csma: preparing number 5 #0x200045e8, queue len 8
+csma: rexmit collision 5
+csma: scheduling transmission in 67 ticks, NB=4, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 5 #0x200045e8, queue len 8
+csma: rexmit collision 5
+csma: scheduling transmission in 24 ticks, NB=5, BE=4
+csma: preparing number 5 #0x200045e8, queue len 8
+csma: rexmit collision 6
+csma: scheduling transmission in 0 ticks, NB=0, BE=0
+csma: preparing number 6 #0x200045e8, queue len 8
+csma: rexmit collision 6
+csma: scheduling transmission in 10 ticks, NB=1, BE=1
+csma: preparing number 6 #0x200045e8, queue len 8
+csma: rexmit collision 6
+csma: scheduling transmission in 29 ticks, NB=2, BE=2
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 6 #0x200045e8, queue len 8
+csma: rexmit collision 6
+csma: scheduling transmission in 22 ticks, NB=3, BE=3
+csma: preparing number 6 #0x200045e8, queue len 8
+csma: rexmit collision 6
+csma: scheduling transmission in 92 ticks, NB=4, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 6 #0x200045e8, queue len 8
+csma: rexmit collision 6
+csma: scheduling transmission in 129 ticks, NB=5, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 6 #0x200045e8, queue len 8
+csma: rexmit collision 7
+csma: scheduling transmission in 0 ticks, NB=0, BE=0
+csma: preparing number 7 #0x200045e8, queue len 8
+csma: rexmit collision 7
+csma: scheduling transmission in 11 ticks, NB=1, BE=1
+csma: preparing number 7 #0x200045e8, queue len 8
+csma: rexmit collision 7
+csma: scheduling transmission in 6 ticks, NB=2, BE=2
+csma: preparing number 7 #0x200045e8, queue len 8
+csma: rexmit collision 7
+csma: scheduling transmission in 32 ticks, NB=3, BE=3
+csma: preparing number 7 #0x200045e8, queue len 8
+csma: rexmit collision 7
+csma: scheduling transmission in 76 ticks, NB=4, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 7 #0x200045e8, queue len 8
+csma: rexmit collision 7
+csma: scheduling transmission in 153 ticks, NB=5, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 7 #0x200045e8, queue len 8
+csma: drop with status 1 after 8 transmissions, 0 collisions
+csma: free_queued_packet, queue length 7, free packets 1
+csma: scheduling transmission in 0 ticks, NB=0, BE=0
+unicast message sent to 1.0: status 1 num_tx 8
+csma: preparing number 0 #0x200045f4, queue len 7
+csma: rexmit collision 0
+csma: scheduling transmission in 9 ticks, NB=1, BE=1
+csma: preparing number 0 #0x200045f4, queue len 7
+csma: rexmit collision 0
+csma: scheduling transmission in 29 ticks, NB=2, BE=2
+csma: preparing number 0 #0x200045f4, queue len 7
+csma: rexmit collision 0
+csma: scheduling transmission in 62 ticks, NB=3, BE=3
+csma: preparing number 0 #0x200045f4, queue len 7
+csma: rexmit collision 0
+csma: scheduling transmission in 6 ticks, NB=4, BE=4
+csma: send_packet, queue length 8, free packets 0
+csma: preparing number 0 #0x200045f4, queue len 8
+csma: rexmit collision 0
+csma: scheduling transmission in 196 ticks, NB=5, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 0 #0x200045f4, queue len 8
+csma: rexmit collision 1
+csma: scheduling transmission in 0 ticks, NB=0, BE=0
+csma: preparing number 1 #0x200045f4, queue len 8
+csma: rexmit collision 1
+csma: scheduling transmission in 11 ticks, NB=1, BE=1
+csma: preparing number 1 #0x200045f4, queue len 8
+csma: rexmit collision 1
+csma: scheduling transmission in 10 ticks, NB=2, BE=2
+csma: preparing number 1 #0x200045f4, queue len 8
+csma: rexmit collision 1
+csma: scheduling transmission in 5 ticks, NB=3, BE=3
+csma: preparing number 1 #0x200045f4, queue len 8
+csma: rexmit collision 1
+csma: scheduling transmission in 208 ticks, NB=4, BE=4
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: Neighbor queue full
+csma: could not allocate packet, dropping packet
+unicast message sent to 1.0: status 4 num_tx 1
+csma: preparing number 1 #0x200045f4, queue len 8
+csma: rexmit collision 1
+csma: scheduling transmission in 120 ticks, NB=5, BE=4

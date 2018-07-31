@@ -42,7 +42,9 @@ obj_sky/basicTree.o: basicTree.c basicTree.h ../contiki/core/./contiki.h \
  ../contiki/core/./net/rime/route.h ../contiki/core/./net/rime/rucb.h \
  ../contiki/core/./net/rime/timesynch.h ../contiki/core/./net/mac/mac.h \
  ../contiki/core/./dev/radio.h ../contiki/core/./net/rime/trickle.h \
- print_float.h Bayes_Laplace_Classify.h ../contiki/core/./lib/random.h
+ print_float.h Bayes_Laplace_Classify.h ../contiki/core/./lib/random.h \
+ ../contiki/core/./net/netstack.h ../contiki/core/./net/llsec/llsec.h \
+ ../contiki/core/./net/mac/rdc.h ../contiki/core/./net/mac/framer.h
 basicTree.c basicTree.h ../contiki/core/./contiki.h :
  ../contiki/core/./contiki-version.h :
  ../contiki/platform/sky/./contiki-conf.h project-conf.h :
@@ -88,3 +90,5 @@ basicTree.c basicTree.h ../contiki/core/./contiki.h :
  ../contiki/core/./net/rime/timesynch.h ../contiki/core/./net/mac/mac.h :
  ../contiki/core/./dev/radio.h ../contiki/core/./net/rime/trickle.h :
  print_float.h Bayes_Laplace_Classify.h ../contiki/core/./lib/random.h :
+ ../contiki/core/./net/netstack.h ../contiki/core/./net/llsec/llsec.h :
+ ../contiki/core/./net/mac/rdc.h ../contiki/core/./net/mac/framer.h :

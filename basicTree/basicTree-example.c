@@ -287,13 +287,13 @@ PROCESS_THREAD(update_parent, ev, data)
               printf("t_node.flags = %d\n", t_node.flags);
               //if(t_node.flags == DATA_EST_INT_READY) //Only change the weight when I have the FIRST estimation of Interference
               //{
-                //update weight
-                //The weight of the node is: The estimated interference + the weight of the parent
-                t_node.weight = t_node.est_int + lowest_weight;
-                ftoa(t_node.weight, res1, 2);
-                ftoa(t_node.est_int, res2, 2);
-                printf("t_node.weight = %s t_node.est_int = %s t_node.parent = %d.%d\n",
-                res1, res2, t_node.parent.u8[0], t_node.parent.u8[1] );
+              //UPDATE weight
+              //The weight of the node is: The estimated interference + the weight of the parent
+              t_node.weight = t_node.est_int + lowest_weight;
+              ftoa(t_node.weight, res1, 2);
+              ftoa(t_node.est_int, res2, 2);
+              printf("t_node.weight = %s t_node.est_int = %s t_node.parent = %d.%d\n",
+              res1, res2, t_node.parent.u8[0], t_node.parent.u8[1] );
               //}
 
             }
@@ -652,6 +652,7 @@ PROCESS_THREAD(send_basicTree, ev, data)
       packetbuf_copyfrom(&t_data, sizeof(struct t_data));
       packetbuf_set_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG, T_DATA);
       unicast_send(&t_uc, &t_data.to);
+      printf("sizeof(struct t_data) = %d\n", sizeof(struct t_data) );
       printf("Send e_send_t_data to %d.%d\n", t_data.to.u8[0], t_data.to.u8[1] );
 
       num_packets++;

@@ -69,10 +69,13 @@ tcpip_is_forwarding
 resolv_event_found  0x1               obj_zoul/resolv.o
 errno               0x4               /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv7-m/libc.a(lib_a-reent.o)
 slip_active         0x1               obj_zoul/slip.o
+e_send_t_beacon     0x1               obj_zoul/csma.o
 rimestats           0x48              obj_zoul/rimestats.o
+e_execute           0x1               obj_zoul/csma.o
 packetbuf_addrs     0x8               obj_zoul/packetbuf.o
 periodic_timer      0x20              obj_zoul/link-stats.o
 linkaddr_node_addr  0x2               obj_zoul/linkaddr.o
+e_send_t_data       0x1               obj_zoul/csma.o
 packetbuf_attrs     0x36              obj_zoul/packetbuf.o
 tcpip_event         0x1               obj_zoul/tcpip.o
 stats               0x38              obj_zoul/collect.o
@@ -1586,7 +1589,7 @@ Discarded input sections
                 0x0000000000000000       0x3e obj_zoul/trickle.o
  .rodata.bc     0x0000000000000000        0x8 obj_zoul/trickle.o
  .rodata.attributes
-                0x0000000000000000        0x6 obj_zoul/trickle.o
+                0x0000000000000000        0x8 obj_zoul/trickle.o
  .comment       0x0000000000000000       0x39 obj_zoul/trickle.o
  .ARM.attributes
                 0x0000000000000000       0x33 obj_zoul/trickle.o
@@ -1607,7 +1610,7 @@ Discarded input sections
  .text.multihop_resend
                 0x0000000000000000        0x4 obj_zoul/multihop.o
  .rodata.attributes
-                0x0000000000000000        0xe obj_zoul/multihop.o
+                0x0000000000000000       0x10 obj_zoul/multihop.o
  .rodata.data_callbacks
                 0x0000000000000000        0x8 obj_zoul/multihop.o
  .comment       0x0000000000000000       0x39 obj_zoul/multihop.o
@@ -1643,7 +1646,7 @@ Discarded input sections
  .text.runicast_send
                 0x0000000000000000       0x54 obj_zoul/runicast.o
  .rodata.attributes
-                0x0000000000000000        0xe obj_zoul/runicast.o
+                0x0000000000000000       0x10 obj_zoul/runicast.o
  .rodata.runicast
                 0x0000000000000000        0x8 obj_zoul/runicast.o
  .comment       0x0000000000000000       0x39 obj_zoul/runicast.o
@@ -1932,7 +1935,7 @@ Discarded input sections
  .text.collect_print_stats
                 0x0000000000000000        0x2 obj_zoul/collect.o
  .rodata.attributes
-                0x0000000000000000       0x16 obj_zoul/collect.o
+                0x0000000000000000       0x18 obj_zoul/collect.o
  .bss.send_queue_memb_memb_count
                 0x0000000000000000        0x6 obj_zoul/collect.o
  .data.send_queue_memb
@@ -2596,6 +2599,7 @@ Discarded input sections
  .text          0x0000000000000000        0x0 obj_zoul/csma.o
  .data          0x0000000000000000        0x0 obj_zoul/csma.o
  .bss           0x0000000000000000        0x0 obj_zoul/csma.o
+ COMMON         0x0000000000000000        0x3 obj_zoul/csma.o
  .text          0x0000000000000000        0x0 obj_zoul/frame802154.o
  .data          0x0000000000000000        0x0 obj_zoul/frame802154.o
  .bss           0x0000000000000000        0x0 obj_zoul/frame802154.o
@@ -3730,7 +3734,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a
 LOAD /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv7-m/libc.a
 END GROUP
 
-.text           0x0000000000202000     0x5532
+.text           0x0000000000202000     0x5536
                 0x0000000000202000                _text = .
  *(SORT(.vectors))
  .vectors       0x0000000000202000      0x28c obj_zoul/startup-gcc.o
@@ -4571,45 +4575,45 @@ END GROUP
  .rodata.bitmask
                 0x00000000002074a2        0x9 obj_zoul/chameleon-bitopt.o
  .rodata.attributes
-                0x00000000002074ab        0x4 obj_zoul/broadcast.o
+                0x00000000002074ab        0x6 obj_zoul/broadcast.o
  .rodata.attributes
-                0x00000000002074af        0x2 obj_zoul/abc.o
+                0x00000000002074b1        0x2 obj_zoul/abc.o
  .rodata.str1.1
-                0x00000000002074b1        0x5 obj_zoul/rime.o
+                0x00000000002074b3        0x5 obj_zoul/rime.o
  .rodata.attributes
-                0x00000000002074b6        0x8 obj_zoul/unicast.o
+                0x00000000002074b8        0xa obj_zoul/unicast.o
  .rodata.str1.1
-                0x00000000002074be        0x5 obj_zoul/csma.o
+                0x00000000002074c2        0x5 obj_zoul/csma.o
  .rodata.str1.1
-                0x00000000002074c3        0xb obj_zoul/contikimac.o
+                0x00000000002074c7        0xb obj_zoul/contikimac.o
  .rodata.str1.1
-                0x00000000002074ce        0x8 obj_zoul/nullsec.o
+                0x00000000002074d2        0x8 obj_zoul/nullsec.o
  .rodata.str1.1
-                0x00000000002074d6       0x5c rx.co
+                0x00000000002074da       0x5c rx.co
                                          0x63 (size before relaxing)
-                0x0000000000207532                _etext = .
+                0x0000000000207536                _etext = .
 
-.glue_7         0x0000000000207534        0x0
- .glue_7        0x0000000000207534        0x0 linker stubs
+.glue_7         0x0000000000207538        0x0
+ .glue_7        0x0000000000207538        0x0 linker stubs
 
-.glue_7t        0x0000000000207534        0x0
- .glue_7t       0x0000000000207534        0x0 linker stubs
+.glue_7t        0x0000000000207538        0x0
+ .glue_7t       0x0000000000207538        0x0 linker stubs
 
-.vfp11_veneer   0x0000000000207534        0x0
- .vfp11_veneer  0x0000000000207534        0x0 linker stubs
+.vfp11_veneer   0x0000000000207538        0x0
+ .vfp11_veneer  0x0000000000207538        0x0 linker stubs
 
-.v4_bx          0x0000000000207534        0x0
- .v4_bx         0x0000000000207534        0x0 linker stubs
+.v4_bx          0x0000000000207538        0x0
+ .v4_bx         0x0000000000207538        0x0 linker stubs
 
-.iplt           0x0000000000207534        0x0
- .iplt          0x0000000000207534        0x0 obj_zoul/startup-gcc.o
+.iplt           0x0000000000207538        0x0
+ .iplt          0x0000000000207538        0x0 obj_zoul/startup-gcc.o
 
 .socdata        0x0000000020004000       0x40
  *(SORT(.udma_channel_control_table))
  .udma_channel_control_table
                 0x0000000020004000       0x40 obj_zoul/udma.o
 
-.data           0x0000000020004040       0xb8 load address 0x0000000000207534
+.data           0x0000000020004040       0xb8 load address 0x0000000000207538
                 0x0000000020004040                _data = .
  *(SORT(.data*))
  .data.sensors  0x0000000020004040       0x10 obj_zoul/zoul-sensors.o
@@ -4649,15 +4653,15 @@ END GROUP
  .data.rf_channel
                 0x00000000200040f7        0x1 obj_zoul/cc2538-rf.o
                 0x00000000200040f8                _edata = .
-                0x0000000000207534                _ldata = LOADADDR (.data)
+                0x0000000000207538                _ldata = LOADADDR (.data)
 
-.igot.plt       0x00000000200040f8        0x0 load address 0x00000000002075ec
+.igot.plt       0x00000000200040f8        0x0 load address 0x00000000002075f0
  .igot.plt      0x00000000200040f8        0x0 obj_zoul/startup-gcc.o
 
-.ARM.exidx      0x00000000002075ec        0x8
+.ARM.exidx      0x00000000002075f0        0x8
  *(SORT(.ARM.exidx*))
- .ARM.exidx     0x00000000002075ec        0x8 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_divdi3.o)
- .ARM.exidx     0x00000000002075f4        0x0 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_udivdi3.o)
+ .ARM.exidx     0x00000000002075f0        0x8 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_divdi3.o)
+ .ARM.exidx     0x00000000002075f8        0x0 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_udivdi3.o)
                                           0x8 (size before relaxing)
 
 .bss            0x00000000200040f8      0xd85
@@ -4743,7 +4747,7 @@ END GROUP
                 0x00000000200046ec      0x600 obj_zoul/queuebuf.o
  .bss.buflen    0x0000000020004cec        0x2 obj_zoul/packetbuf.o
  .bss.bufptr    0x0000000020004cee        0x2 obj_zoul/packetbuf.o
- .bss.seqno.8495
+ .bss.seqno.8543
                 0x0000000020004cf0        0x2 obj_zoul/csma.o
  .bss.pt        0x0000000020004cf2        0x2 obj_zoul/contikimac.o
  .bss.leds      0x0000000020004cf4        0x1 obj_zoul/leds.o
@@ -4780,11 +4784,11 @@ END GROUP
  .bss.mac_dsn   0x0000000020004e14        0x1 obj_zoul/framer-802154.o
  .bss.initialized
                 0x0000000020004e15        0x1 obj_zoul/framer-802154.o
- .bss.packet_memb_memb_count
-                0x0000000020004e16        0x8 obj_zoul/csma.o
  .bss.metadata_memb_memb_count
+                0x0000000020004e16        0x8 obj_zoul/csma.o
+ .bss.packet_memb_memb_count
                 0x0000000020004e1e        0x8 obj_zoul/csma.o
- .bss.initialized.8494
+ .bss.initialized.8542
                 0x0000000020004e26        0x1 obj_zoul/csma.o
  .bss.neighbor_memb_memb_count
                 0x0000000020004e27        0x2 obj_zoul/csma.o
@@ -5685,6 +5689,9 @@ disk_status                                       obj_zoul/diskio.o
                                                   obj_zoul/ff.o
 disk_write                                        obj_zoul/diskio.o
                                                   obj_zoul/ff.o
+e_execute                                         obj_zoul/csma.o
+e_send_t_beacon                                   obj_zoul/csma.o
+e_send_t_data                                     obj_zoul/csma.o
 ecb_crypt_check_status                            obj_zoul/ecb.o
                                                   obj_zoul/cc2538-aes-128.o
 ecb_crypt_start                                   obj_zoul/ecb.o

@@ -86,6 +86,7 @@ make NODEID=0x0100 MOTES=/dev/ttyUSB0 TARGET=zoul BOARD=remote-reva rx.upload
 make NODEID=0x0200 MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva tx.upload
 make NODEID=0x0100 MOTES=/dev/ttyUSB0 TARGET=zoul BOARD=remote-reva basicTree-example.upload
 make NODEID=0x0100 MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva basicTree-example.upload
+make NODEID=0x0200 MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva DGHS_Bayes_Laplace_Classify_v2.upload
 
 //Seleccionar puerto
 make MOTES=/dev/ttyUSB0

@@ -54,6 +54,15 @@
 
 //matlab
 #define range_EWMA_btp_01   1050.4f
+#define range_EWMA_btp_02   1050.4f
+#define range_EWMA_btp_03   1050.4f
+#define range_EWMA_btp_04   1050.4f
+#define range_EWMA_btp_05   1050.4f
+#define range_EWMA_btp_06   1050.4f
+#define range_EWMA_btp_07   1050.4f
+#define range_EWMA_btp_08   1050.4f
+#define range_EWMA_btp_09   1050.4f
+
 #define range_ppl           1.0f
 #define num_divisions_ppl   ROWS_T
 #define num_divisions_btp   ROWS_T
@@ -105,6 +114,22 @@ struct csma_results
   float btp; // btp (Backoff Time per packet)
   float EWMA_btp_01;
   float EWMA_ppl_01;
+  float EWMA_btp_02;
+  float EWMA_ppl_02;
+  float EWMA_btp_03;
+  float EWMA_ppl_03;
+  float EWMA_btp_04;
+  float EWMA_ppl_04;
+  float EWMA_btp_05;
+  float EWMA_ppl_05;
+  float EWMA_btp_06;
+  float EWMA_ppl_06;
+  float EWMA_btp_07;
+  float EWMA_ppl_07;
+  float EWMA_btp_08;
+  float EWMA_ppl_08;
+  float EWMA_btp_09;
+  float EWMA_ppl_09;
 };
 
 

@@ -33,7 +33,7 @@ obj_zoul/csma.o: ../contiki/core/net/mac/csma.c \
  ../contiki/core/./net/llsec/llsec.h ../contiki/core/./net/mac/rdc.h \
  ../contiki/core/./net/mac/framer.h ../contiki/core/./lib/list.h \
  ../contiki/core/./lib/memb.h \
- /home/seringsergio/Desktop/DGHS/BayesClassification/Bayes_Laplace_Classify.h \
+ /home/seringsergio/Desktop/DGHS/basicTree/basicTree.h \
  ../contiki/core/./net/rime/rime.h \
  ../contiki/core/./net/rime/announcement.h \
  ../contiki/core/./net/rime/collect.h \
@@ -56,7 +56,9 @@ obj_zoul/csma.o: ../contiki/core/net/mac/csma.c \
  ../contiki/core/./net/rime/rimestats.h ../contiki/core/./net/rime/rmh.h \
  ../contiki/core/./net/rime/route.h ../contiki/core/./net/rime/rucb.h \
  ../contiki/core/./net/rime/timesynch.h \
- ../contiki/core/./net/rime/trickle.h
+ ../contiki/core/./net/rime/trickle.h \
+ /home/seringsergio/Desktop/DGHS/basicTree/print_float.h \
+ /home/seringsergio/Desktop/DGHS/basicTree/Bayes_Laplace_Classify.h
 ../contiki/core/net/mac/csma.c :
  ../contiki/core/./net/mac/csma.h ../contiki/core/./net/mac/mac.h :
  ../contiki/platform/zoul/./contiki-conf.h project-conf.h :
@@ -92,7 +94,7 @@ obj_zoul/csma.o: ../contiki/core/net/mac/csma.c \
  ../contiki/core/./net/llsec/llsec.h ../contiki/core/./net/mac/rdc.h :
  ../contiki/core/./net/mac/framer.h ../contiki/core/./lib/list.h :
  ../contiki/core/./lib/memb.h :
- /home/seringsergio/Desktop/DGHS/BayesClassification/Bayes_Laplace_Classify.h :
+ /home/seringsergio/Desktop/DGHS/basicTree/basicTree.h :
  ../contiki/core/./net/rime/rime.h :
  ../contiki/core/./net/rime/announcement.h :
  ../contiki/core/./net/rime/collect.h :
@@ -116,3 +118,5 @@ obj_zoul/csma.o: ../contiki/core/net/mac/csma.c \
  ../contiki/core/./net/rime/route.h ../contiki/core/./net/rime/rucb.h :
  ../contiki/core/./net/rime/timesynch.h :
  ../contiki/core/./net/rime/trickle.h :
+ /home/seringsergio/Desktop/DGHS/basicTree/print_float.h :
+ /home/seringsergio/Desktop/DGHS/basicTree/Bayes_Laplace_Classify.h :
