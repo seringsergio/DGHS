@@ -120,7 +120,7 @@ date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 //For recording statistics when the interference is 50%
-create table det_int_0_EWMA_04 (
+create table det_int_0_EWMA_09 (
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 det_int INT(11) NOT NULL,
 det_int_redundant INT(11) NOT NULL,
@@ -171,7 +171,7 @@ select * from msg;
 select * from int_50_tx;
 select * from det_int_0;
 select * from tree_plot;
-select * from det_int_0_EWMA_04;
+select * from det_int_0_EWMA_02;
 
 
 //Eliminar: Elimina tabla
@@ -188,6 +188,8 @@ DELETE FROM msg;
 DELETE FROM int_50_tx;
 DELETE FROM det_int_30;
 DELETE FROM tree_plot;
+DELETE FROM det_int_0_EWMA_04;
+
 
 //Reset AUTO_INCREMENT a 1
 ALTER TABLE weatherData AUTO_INCREMENT = 1;
@@ -195,6 +197,7 @@ ALTER TABLE LinkStatisticsPaper AUTO_INCREMENT = 1;
 ALTER TABLE msg AUTO_INCREMENT = 1;
 ALTER TABLE det_int_30 AUTO_INCREMENT = 1;
 ALTER TABLE tree_plot AUTO_INCREMENT = 1;
+ALTER TABLE det_int_0_EWMA_04 AUTO_INCREMENT = 1;
 
 //Propiedades: Ver las propiedades de una tabla
 SHOW COLUMNS FROM weatherData;

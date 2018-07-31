@@ -3195,9 +3195,37 @@ Discarded input sections
  .text          0x0000000000000000        0x0 obj_zoul/Bayes_Laplace_Classify.o
  .data          0x0000000000000000        0x0 obj_zoul/Bayes_Laplace_Classify.o
  .bss           0x0000000000000000        0x0 obj_zoul/Bayes_Laplace_Classify.o
+ .rodata.frequency_table_btp_07
+                0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
+ .rodata.frequency_table_btp_03
+                0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
+ .rodata.frequency_table_btp_08
+                0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
+ .rodata.frequency_table_btp_09
+                0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
+ .rodata.frequency_table_btp_04
+                0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
  .rodata.frequency_table_ppl_01
                 0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
+ .rodata.frequency_table_ppl_05
+                0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
  .rodata.frequency_table_btp_01
+                0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
+ .rodata.frequency_table_ppl_03
+                0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
+ .rodata.frequency_table_ppl_04
+                0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
+ .rodata.frequency_table_ppl_06
+                0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
+ .rodata.frequency_table_ppl_07
+                0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
+ .rodata.frequency_table_ppl_08
+                0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
+ .rodata.frequency_table_ppl_09
+                0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
+ .rodata.frequency_table_btp_05
+                0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
+ .rodata.frequency_table_btp_06
                 0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
  COMMON         0x0000000000000000      0x6e0 obj_zoul/Bayes_Laplace_Classify.o
  .text          0x0000000000000000       0x18 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_ashldi3.o)
@@ -4637,12 +4665,12 @@ END GROUP
  .rodata.str1.1
                 0x000000000020831e      0x1aa DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
                                         0x1d3 (size before relaxing)
- .rodata.frequency_table_ppl_02
-                0x00000000002084c8      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
-                0x00000000002084c8                frequency_table_ppl_02
  .rodata.frequency_table_btp_02
+                0x00000000002084c8      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
+                0x00000000002084c8                frequency_table_btp_02
+ .rodata.frequency_table_ppl_02
                 0x0000000000208680      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
-                0x0000000000208680                frequency_table_btp_02
+                0x0000000000208680                frequency_table_ppl_02
                 0x0000000000208838                _etext = .
 
 .glue_7         0x0000000000208838        0x0
@@ -4832,11 +4860,11 @@ END GROUP
                 0x000000002000488c        0x4 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
  .bss.prob_btp.8423
                 0x0000000020004890       0x2c DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.class_prob.8378
+ .bss.class_prob.8392
                 0x00000000200048bc       0x2c obj_zoul/Bayes_Laplace_Classify.o
- .bss.likelihood.8379
+ .bss.likelihood.8393
                 0x00000000200048e8      0x6e0 obj_zoul/Bayes_Laplace_Classify.o
- .bss.probability_of_event.8380
+ .bss.probability_of_event.8394
                 0x0000000020004fc8        0x4 obj_zoul/Bayes_Laplace_Classify.o
  .bss.buframmem_memb_mem
                 0x0000000020004fcc      0x600 obj_zoul/queuebuf.o
@@ -6014,9 +6042,23 @@ free                                              /usr/lib/gcc/arm-none-eabi/4.9
 frequency_table_btp_01                            obj_zoul/Bayes_Laplace_Classify.o
 frequency_table_btp_02                            obj_zoul/Bayes_Laplace_Classify.o
                                                   DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+frequency_table_btp_03                            obj_zoul/Bayes_Laplace_Classify.o
+frequency_table_btp_04                            obj_zoul/Bayes_Laplace_Classify.o
+frequency_table_btp_05                            obj_zoul/Bayes_Laplace_Classify.o
+frequency_table_btp_06                            obj_zoul/Bayes_Laplace_Classify.o
+frequency_table_btp_07                            obj_zoul/Bayes_Laplace_Classify.o
+frequency_table_btp_08                            obj_zoul/Bayes_Laplace_Classify.o
+frequency_table_btp_09                            obj_zoul/Bayes_Laplace_Classify.o
 frequency_table_ppl_01                            obj_zoul/Bayes_Laplace_Classify.o
 frequency_table_ppl_02                            obj_zoul/Bayes_Laplace_Classify.o
                                                   DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+frequency_table_ppl_03                            obj_zoul/Bayes_Laplace_Classify.o
+frequency_table_ppl_04                            obj_zoul/Bayes_Laplace_Classify.o
+frequency_table_ppl_05                            obj_zoul/Bayes_Laplace_Classify.o
+frequency_table_ppl_06                            obj_zoul/Bayes_Laplace_Classify.o
+frequency_table_ppl_07                            obj_zoul/Bayes_Laplace_Classify.o
+frequency_table_ppl_08                            obj_zoul/Bayes_Laplace_Classify.o
+frequency_table_ppl_09                            obj_zoul/Bayes_Laplace_Classify.o
 ftoa                                              obj_zoul/Bayes_Laplace_Classify.o
                                                   DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
 gcm_auth_decrypt_get_result                       obj_zoul/gcm.o

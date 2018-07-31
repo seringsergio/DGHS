@@ -144,7 +144,20 @@ extern const uint8_t frequency_table_btp_01[ROWS_T][COLUMNS_T];
 extern const uint8_t frequency_table_ppl_01[ROWS_T][COLUMNS_T];
 extern const uint8_t frequency_table_btp_02[ROWS_T][COLUMNS_T];
 extern const uint8_t frequency_table_ppl_02[ROWS_T][COLUMNS_T];
-
+extern const uint8_t frequency_table_btp_03[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_ppl_03[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_btp_04[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_ppl_04[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_btp_05[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_ppl_05[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_btp_06[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_ppl_06[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_btp_07[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_ppl_07[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_btp_08[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_ppl_08[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_btp_09[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_ppl_09[ROWS_T][COLUMNS_T];
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////STRUCTS///////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
