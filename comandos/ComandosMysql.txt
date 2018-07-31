@@ -239,8 +239,8 @@ LINES TERMINATED BY '\n';
 SELECT "id","det_int","det_int_redundant","date"
 UNION ALL
 SELECT *
-FROM det_int_0_EWMA_04
-INTO OUTFILE "/var/lib/mysql-files/det_int_0_EWMA_04.csv"
+FROM det_int_0_EWMA_06
+INTO OUTFILE "/var/lib/mysql-files/det_int_0_EWMA_06.csv"
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n';

@@ -13,3 +13,5 @@ det_int_100        = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassificatio
 det_int_0_EWMA_02  = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results/det_int_0_EWMA_02.xlsx','det_int_0_EWMA_02','B2:B89');
 det_int_0_EWMA_03  = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results/det_int_0_EWMA_03.xlsx','det_int_0_EWMA_03','B2:B89');
 det_int_0_EWMA_04  = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results/det_int_0_EWMA_04.xlsx','det_int_0_EWMA_04','B2:B89');
+det_int_0_EWMA_05  = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results/det_int_0_EWMA_05.xlsx','det_int_0_EWMA_05','B2:B89');
+det_int_0_EWMA_06  = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results/det_int_0_EWMA_06.xlsx','det_int_0_EWMA_06','B2:B89');
