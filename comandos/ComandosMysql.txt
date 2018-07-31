@@ -120,7 +120,7 @@ date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 //For recording statistics when the interference is 50%
-create table det_int_100 (
+create table det_int_0_EWMA_04 (
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 det_int INT(11) NOT NULL,
 det_int_redundant INT(11) NOT NULL,
@@ -171,6 +171,8 @@ select * from msg;
 select * from int_50_tx;
 select * from det_int_0;
 select * from tree_plot;
+select * from det_int_0_EWMA_04;
+
 
 //Eliminar: Elimina tabla
 DROP TABLE weatherData;
@@ -234,8 +236,8 @@ LINES TERMINATED BY '\n';
 SELECT "id","det_int","det_int_redundant","date"
 UNION ALL
 SELECT *
-FROM det_int_100
-INTO OUTFILE "/var/lib/mysql-files/det_int_100.csv"
+FROM det_int_0_EWMA_04
+INTO OUTFILE "/var/lib/mysql-files/det_int_0_EWMA_04.csv"
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n';

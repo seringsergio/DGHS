@@ -113,6 +113,7 @@ PROCESS_THREAD(compute_csma_stats, ev, data)
 
   unicast_open(&uc, 146, &unicast_callbacks);
 
+  printf("EWMA_ALPHA_08\n"); 
 
   num_packets = 0;
   reset_csma_stats();

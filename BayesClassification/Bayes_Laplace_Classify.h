@@ -54,14 +54,14 @@
 
 //matlab
 #define range_EWMA_btp_01   1050.4f
-#define range_EWMA_btp_02   1050.4f
-#define range_EWMA_btp_03   1050.4f
-#define range_EWMA_btp_04   1050.4f
-#define range_EWMA_btp_05   1050.4f
-#define range_EWMA_btp_06   1050.4f
-#define range_EWMA_btp_07   1050.4f
-#define range_EWMA_btp_08   1050.4f
-#define range_EWMA_btp_09   1050.4f
+#define range_EWMA_btp_02   1137.5f
+#define range_EWMA_btp_03   1180.0f
+#define range_EWMA_btp_04   1205.4f
+#define range_EWMA_btp_05   1264.4f
+#define range_EWMA_btp_06   1311.4f
+#define range_EWMA_btp_07   1347.8f
+#define range_EWMA_btp_08   1377.2f
+#define range_EWMA_btp_09   1403.0f
 
 #define range_ppl           1.0f
 #define num_divisions_ppl   ROWS_T
@@ -140,8 +140,10 @@ struct csma_results
 
 extern float likelihood[ROWS_T][COLUMNS_T];
 
-extern const uint8_t frequency_table_btp[ROWS_T][COLUMNS_T];
-extern const uint8_t frequency_table_ppl[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_btp_01[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_ppl_01[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_btp_02[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_ppl_02[ROWS_T][COLUMNS_T];
 
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////STRUCTS///////////////////////////////////////////////

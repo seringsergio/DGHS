@@ -113,6 +113,7 @@ PROCESS_THREAD(compute_csma_stats, ev, data)
 
   unicast_open(&uc, 146, &unicast_callbacks);
 
+  printf("EWMA_ALPHA_02\n");
 
   num_packets = 0;
   reset_csma_stats();
@@ -284,7 +285,7 @@ PROCESS_THREAD(detect_interference, ev, data)
         for(i=0; i < COLUMNS_T; i++)
         {
           event.column = i;
-          prob_btp[i] = calculate_probability_of_event( frequency_table_btp,   event );
+          prob_btp[i] = calculate_probability_of_event( frequency_table_btp_02,   event );
           total_prob += prob_btp[i];
           PROCESS_PAUSE(); //La funcion calculate_probability_of_event() llama muchas subfunciones. Por eso espero.
         }
@@ -315,7 +316,7 @@ PROCESS_THREAD(detect_interference, ev, data)
        for(i=0; i < COLUMNS_T; i++)
        {
          event.column = i;
-         prob_ppl[i] = calculate_probability_of_event( frequency_table_ppl,   event );
+         prob_ppl[i] = calculate_probability_of_event( frequency_table_ppl_02,   event );
          total_prob += prob_ppl[i];
          PROCESS_PAUSE(); //La funcion calculate_probability_of_event() llama muchas subfunciones. Por eso espero.
        }
