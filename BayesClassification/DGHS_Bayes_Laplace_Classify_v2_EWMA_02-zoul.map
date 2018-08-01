@@ -3203,17 +3203,17 @@ Discarded input sections
                 0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
  .rodata.frequency_table_btp_09
                 0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
- .rodata.frequency_table_btp_04
-                0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
  .rodata.frequency_table_ppl_01
                 0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
- .rodata.frequency_table_ppl_05
+ .rodata.frequency_table_btp_04
                 0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
  .rodata.frequency_table_btp_01
                 0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
  .rodata.frequency_table_ppl_03
                 0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
  .rodata.frequency_table_ppl_04
+                0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
+ .rodata.frequency_table_ppl_05
                 0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
  .rodata.frequency_table_ppl_06
                 0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
@@ -4609,11 +4609,11 @@ END GROUP
  .rodata.nullsec_driver
                 0x00000000002080d4       0x10 obj_zoul/nullsec.o
                 0x00000000002080d4                nullsec_driver
- .rodata.autostart_processes
-                0x00000000002080e4       0x10 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
-                0x00000000002080e4                autostart_processes
  .rodata.unicast_callbacks
-                0x00000000002080f4        0x8 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+                0x00000000002080e4        0x8 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+ .rodata.autostart_processes
+                0x00000000002080ec       0x10 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+                0x00000000002080ec                autostart_processes
  .rodata.linkaddr_null
                 0x00000000002080fc        0x2 obj_zoul/linkaddr.o
                 0x00000000002080fc                linkaddr_null
@@ -4723,15 +4723,15 @@ END GROUP
                 0x00000000200040cc        0xc obj_zoul/csma.o
  .data.packet_memb
                 0x00000000200040d8        0xc obj_zoul/csma.o
- .data.compute_csma_stats
-                0x00000000200040e4       0x10 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
-                0x00000000200040e4                compute_csma_stats
  .data.analyze_csma_results
-                0x00000000200040f4       0x10 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
-                0x00000000200040f4                analyze_csma_results
+                0x00000000200040e4       0x10 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+                0x00000000200040e4                analyze_csma_results
  .data.detect_interference
+                0x00000000200040f4       0x10 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+                0x00000000200040f4                detect_interference
+ .data.compute_csma_stats
                 0x0000000020004104       0x10 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
-                0x0000000020004104                detect_interference
+                0x0000000020004104                compute_csma_stats
  .data.mac_pan_id
                 0x0000000020004114        0x2 obj_zoul/frame802154.o
  .data.send_on_cca
@@ -4828,44 +4828,44 @@ END GROUP
  .bss.ct.7564   0x00000000200046cc       0x20 obj_zoul/contikimac.o
  .bss.start.7489
                 0x00000000200046ec        0x4 obj_zoul/contikimac.o
- .bss.upper_interval.8401
+ .bss.total_prob.8444
                 0x00000000200046f0        0x4 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.EWMA_ppl_02.8386
+ .bss.lower_interval.8416
                 0x00000000200046f4        0x4 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
  .bss.uc        0x00000000200046f8       0x1c DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.prob_btp_ppl.8427
-                0x0000000020004714       0x2c DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.prob_ppl.8425
-                0x0000000020004740       0x2c DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.max_prob.8432
-                0x000000002000476c        0x4 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.total_prob_N.8431
-                0x0000000020004770        0x4 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.prob_btp_N.8424
-                0x0000000020004774       0x2c DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.total_prob.8430
-                0x00000000200047a0        0x4 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.EWMA_btp_02.8385
-                0x00000000200047a4        0x4 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.prob_ppl_N.8426
-                0x00000000200047a8       0x2c DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.btp.8384  0x00000000200047d4        0x4 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.csma_results.8387
-                0x00000000200047d8       0x50 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.ppl.8383  0x0000000020004828        0x4 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.csma_results.8399
-                0x000000002000482c       0x50 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.et.8380   0x000000002000487c       0x10 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.lower_interval.8402
-                0x000000002000488c        0x4 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.prob_btp.8423
-                0x0000000020004890       0x2c DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.class_prob.8392
-                0x00000000200048bc       0x2c obj_zoul/Bayes_Laplace_Classify.o
- .bss.likelihood.8393
-                0x00000000200048e8      0x6e0 obj_zoul/Bayes_Laplace_Classify.o
- .bss.probability_of_event.8394
-                0x0000000020004fc8        0x4 obj_zoul/Bayes_Laplace_Classify.o
+ .bss.upper_interval.8415
+                0x0000000020004714        0x4 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+ .bss.EWMA_ppl_02.8400
+                0x0000000020004718        0x4 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+ .bss.prob_btp.8437
+                0x000000002000471c       0x2c DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+ .bss.et.8394   0x0000000020004748       0x10 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+ .bss.prob_btp_ppl.8441
+                0x0000000020004758       0x2c DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+ .bss.total_prob_N.8445
+                0x0000000020004784        0x4 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+ .bss.prob_ppl.8439
+                0x0000000020004788       0x2c DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+ .bss.csma_results.8401
+                0x00000000200047b4       0x50 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+ .bss.max_prob.8446
+                0x0000000020004804        0x4 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+ .bss.prob_btp_N.8438
+                0x0000000020004808       0x2c DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+ .bss.csma_results.8413
+                0x0000000020004834       0x50 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+ .bss.prob_ppl_N.8440
+                0x0000000020004884       0x2c DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+ .bss.EWMA_btp_02.8399
+                0x00000000200048b0        0x4 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+ .bss.btp.8398  0x00000000200048b4        0x4 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+ .bss.ppl.8397  0x00000000200048b8        0x4 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+ .bss.probability_of_event.8408
+                0x00000000200048bc        0x4 obj_zoul/Bayes_Laplace_Classify.o
+ .bss.class_prob.8406
+                0x00000000200048c0       0x2c obj_zoul/Bayes_Laplace_Classify.o
+ .bss.likelihood.8407
+                0x00000000200048ec      0x6e0 obj_zoul/Bayes_Laplace_Classify.o
  .bss.buframmem_memb_mem
                 0x0000000020004fcc      0x600 obj_zoul/queuebuf.o
  .bss.buflen    0x00000000200055cc        0x2 obj_zoul/packetbuf.o
@@ -4873,9 +4873,9 @@ END GROUP
  .bss.seqno.8543
                 0x00000000200055d0        0x2 obj_zoul/csma.o
  .bss.pt        0x00000000200055d2        0x2 obj_zoul/contikimac.o
- .bss.addr.8381
+ .bss.addr.8395
                 0x00000000200055d4        0x2 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.num_packets.8382
+ .bss.num_packets.8396
                 0x00000000200055d6        0x2 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
  .bss.leds      0x00000000200055d8        0x1 obj_zoul/leds.o
  .bss.press_event_counter
@@ -4935,28 +4935,28 @@ END GROUP
                 0x0000000020005713        0x1 obj_zoul/contikimac.o
  .bss.contikimac_is_on
                 0x0000000020005714        0x1 obj_zoul/contikimac.o
- .bss.res3.8405
+ .bss.res1.8402
                 0x0000000020005715       0x14 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.index.8433
-                0x0000000020005729        0x1 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.res1.8428
-                0x000000002000572a       0x14 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.res2.8389
-                0x000000002000573e       0x14 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.res1.8388
-                0x0000000020005752       0x14 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.detected_event.8406
-                0x0000000020005766        0x2 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.event.8422
-                0x0000000020005768        0x2 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.i.8429    0x000000002000576a        0x1 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.detected_event.8434
-                0x000000002000576b        0x2 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.i.8400    0x000000002000576d        0x1 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.res2.8404
-                0x000000002000576e       0x14 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
- .bss.res1.8403
-                0x0000000020005782       0x14 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+ .bss.res1.8417
+                0x0000000020005729       0x14 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+ .bss.res3.8419
+                0x000000002000573d       0x14 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+ .bss.res1.8442
+                0x0000000020005751       0x14 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+ .bss.res2.8403
+                0x0000000020005765       0x14 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+ .bss.i.8414    0x0000000020005779        0x1 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+ .bss.detected_event.8420
+                0x000000002000577a        0x2 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+ .bss.res2.8418
+                0x000000002000577c       0x14 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+ .bss.event.8436
+                0x0000000020005790        0x2 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+ .bss.i.8443    0x0000000020005792        0x1 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+ .bss.index.8447
+                0x0000000020005793        0x1 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
+ .bss.detected_event.8448
+                0x0000000020005794        0x2 DGHS_Bayes_Laplace_Classify_v2_EWMA_02.co
  *(SORT(COMMON))
  COMMON         0x0000000020005796       0x3e obj_zoul/packetbuf.o
                 0x0000000020005796                packetbuf_addrs

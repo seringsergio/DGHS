@@ -110,6 +110,9 @@ make RF_CHANNEL=20
 //rssi-scanner
 0. cd /home/seringsergio/Desktop/DGHS/contiki/examples/rssi-scanner
 1. subir el codigo rssi-scanner-cc2420.c al sky node
+
+  make MOTES=/dev/ttyUSB4 TARGET=sky rssi-scanner-cc2420.upload
+
 2. Compilar la clase ViewRSSI.class
 3. ejecutar en el terminal
-make MOTES=/dev/ttyUSB3 TARGET=sky login | java ViewRSSI
+make MOTES=/dev/ttyUSB4 TARGET=sky login | java ViewRSSI

@@ -5,14 +5,14 @@ clc
 
 %% Read file
 
-%  readFiles_training
-%  readFiles_classify
+%   readFiles_training
+%   readFiles_classify
 
 % Save workspace
-%  save('/home/seringsergio/Desktop/DGHS/BayesTraining/results/vary_int_csv_v1/consolidado_int.mat') 
+%   save('/home/seringsergio/Desktop/DGHS/BayesTraining/results/vary_int_csv_v1/consolidado_int.mat') 
 
 %% Upload workspace
-load('/home/seringsergio/Desktop/DGHS/BayesTraining/results/vary_int_csv_v1/consolidado_int.mat') 
+ load('/home/seringsergio/Desktop/DGHS/BayesTraining/results/vary_int_csv_v1/consolidado_int.mat') 
 
  
 %% Count values in a range [0-100]
@@ -76,7 +76,16 @@ frecuency_table_btp_09 = [ count_EWMA_btp_09_0_tx' count_EWMA_btp_09_10_tx' coun
 frecuency_table_ppl_09 = [ count_EWMA_ppl_09_0_tx' count_EWMA_ppl_09_10_tx' count_EWMA_ppl_09_20_tx' count_EWMA_ppl_09_30_tx' count_EWMA_ppl_09_40_tx' count_EWMA_ppl_09_50_tx' count_EWMA_ppl_09_60_tx' count_EWMA_ppl_09_70_tx' count_EWMA_ppl_09_80_tx' count_EWMA_ppl_09_90_tx' count_EWMA_ppl_09_100_tx'];
 
 %% detection interference
-detection_interference
+
+detection_interference_EWMA_01
+% detection_interference_EWMA_02
+% detection_interference_EWMA_03
+% detection_interference_EWMA_04
+% detection_interference_EWMA_05
+% detection_interference_EWMA_06
+% detection_interference_EWMA_07
+% detection_interference_EWMA_08
+% detection_interference_EWMA_09
 
 %% Calculate mean and standard deviation (std)
 mean_std

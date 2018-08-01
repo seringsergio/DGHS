@@ -45,26 +45,26 @@ figure;
 
 subplot(10,1,1:2);
 
-h1  = errorbar(int_vec_0_100,vec_zeros,error_int_vec,'r-','LineWidth',4);
+h1  = errorbar(int_vec_0_100,vec_zeros,error_int_vec_EWMA_01,'r-','LineWidth',4);
 set(gca,'fontsize',16) % Colocar mas grandes los numeros de los ejes
 set(gca,'XTickLabel',{}) % quitar los numeros en el eje x
 xlim([0 100]);
-ylim([min(error_int_vec*-1)-2.00 max(error_int_vec)+2.00 ]);
+ylim([min(error_int_vec_EWMA_01*-1)-2.00 max(error_int_vec_EWMA_01)+2.00 ]);
 ylabel('Error','FontSize', 20,'fontweight','bold');
-title('Detection of the interference', 'FontSize', 22, 'fontweight','bold');
+title('Detection of the interference EWMA 0.1', 'FontSize', 22, 'fontweight','bold');
 
 subplot(10,1,3:4);
 
-h1  = errorbar(int_vec_0_100,vec_zeros,std_int_vec,'k-s','LineWidth',4);
+h1  = errorbar(int_vec_0_100,vec_zeros,std_int_vec_EWMA_01,'k-s','LineWidth',4);
 set(gca,'fontsize',16) % Colocar mas grandes los numeros de los ejes
 set(gca,'XTickLabel',{}) % quitar los numeros en el eje x
 xlim([0 100]);
-ylim([min(std_int_vec*-1)-2.00 max(std_int_vec)+2.00 ]);
+ylim([min(std_int_vec_EWMA_01*-1)-2.00 max(std_int_vec_EWMA_01)+2.00 ]);
 ylabel('Std Dev','FontSize', 20,'fontweight','bold');
 
 subplot(10,1,5:10);
 
-plot(int_vec_0_100, mean_int_vec,'b-o','LineWidth',4)
+plot(int_vec_0_100, mean_int_vec_EWMA_01,'b-o','LineWidth',4)
 hold on 
 plot(int_vec_0_100, int_vec_0_100,'--','color',dark_green,'LineWidth',4);
 set(gca,'fontsize',16) % Colocar mas grandes los numeros de los ejes
