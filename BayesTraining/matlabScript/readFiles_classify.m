@@ -24,7 +24,13 @@ det_int_10_EWMA_09  = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassificati
 % interference 20 %
 det_int_20_EWMA_01  = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results/det_int_20.xlsx','det_int_20','B2:B176');
 det_int_20_EWMA_02  = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results/det_int_20_EWMA_02.xlsx','det_int_20_EWMA_02','B2:B89');
-
+det_int_20_EWMA_03  = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results/det_int_20_EWMA_03.xlsx','det_int_20_EWMA_03','B2:B89');
+det_int_20_EWMA_04  = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results/det_int_20_EWMA_04.xlsx','det_int_20_EWMA_04','B2:B89');
+det_int_20_EWMA_05  = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results/det_int_20_EWMA_05.xlsx','det_int_20_EWMA_05','B2:B56');
+det_int_20_EWMA_06  = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results/det_int_20_EWMA_06.xlsx','det_int_20_EWMA_06','B2:B56');
+det_int_20_EWMA_07  = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results/det_int_20_EWMA_07.xlsx','det_int_20_EWMA_07','B2:B56');
+det_int_20_EWMA_08  = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results/det_int_20_EWMA_08.xlsx','det_int_20_EWMA_08','B2:B56');
+det_int_20_EWMA_09  = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results/det_int_20_EWMA_09.xlsx','det_int_20_EWMA_09','B2:B56');
 
 % interference 30 %
 det_int_30_EWMA_01  = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results/det_int_30.xlsx','det_int_30','B2:B176');
