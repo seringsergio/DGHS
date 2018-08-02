@@ -120,7 +120,7 @@ date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 //For recording statistics when the interference is 50%
-create table det_int_20_EWMA_09 (
+create table det_int_60_EWMA_02 (
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 det_int INT(11) NOT NULL,
 det_int_redundant INT(11) NOT NULL,
@@ -239,8 +239,8 @@ LINES TERMINATED BY '\n';
 SELECT "id","det_int","det_int_redundant","date"
 UNION ALL
 SELECT *
-FROM det_int_20_EWMA_09
-INTO OUTFILE "/var/lib/mysql-files/det_int_20_EWMA_09.csv"
+FROM det_int_60_EWMA_09
+INTO OUTFILE "/var/lib/mysql-files/det_int_60_EWMA_09.csv"
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n';

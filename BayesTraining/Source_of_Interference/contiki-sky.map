@@ -18,7 +18,7 @@ contiki-sky.a(clock.o)        obj_sky/contiki-sky-main.o (clock_init)
 contiki-sky.a(leds.o)         obj_sky/contiki-sky-main.o (leds_init)
 contiki-sky.a(leds-arch.o)    contiki-sky.a(leds.o) (leds_arch_init)
 contiki-sky.a(watchdog.o)     obj_sky/contiki-sky-main.o (watchdog_start)
-contiki-sky.a(rtimer-arch.o)  modulated_carrier_On20Off80.co (rtimer_arch_now)
+contiki-sky.a(rtimer-arch.o)  modulated_carrier_On60Off40.co (rtimer_arch_now)
 contiki-sky.a(autostart.o)    obj_sky/contiki-sky-main.o (autostart_start)
 contiki-sky.a(energest.o)     obj_sky/contiki-sky-main.o (energest_init)
 contiki-sky.a(ctimer.o)       obj_sky/contiki-sky-main.o (ctimer_init)
@@ -58,9 +58,9 @@ contiki-sky.a(chameleon-bitop)
 /lib/gcc/msp430/4.7.0/mmpy-16/libgcc.a(_udivmod32.o)
                               obj_sky/contiki-sky-main.o (__udivsi3)
 /lib/gcc/msp430/4.7.0/mmpy-16/libgcc.a(_fixunssfsi.o)
-                              modulated_carrier_On20Off80.co (__fixunssfsi)
+                              modulated_carrier_On60Off40.co (__fixunssfsi)
 /lib/gcc/msp430/4.7.0/mmpy-16/libgcc.a(_addsub_sf.o)
-                              modulated_carrier_On20Off80.co (__addsf3)
+                              modulated_carrier_On60Off40.co (__addsf3)
 /lib/gcc/msp430/4.7.0/mmpy-16/libgcc.a(_ge_sf.o)
                               /lib/gcc/msp430/4.7.0/mmpy-16/libgcc.a(_fixunssfsi.o) (__gesf2)
 /lib/gcc/msp430/4.7.0/mmpy-16/libgcc.a(_sf_to_si.o)
@@ -68,7 +68,7 @@ contiki-sky.a(chameleon-bitop)
 /lib/gcc/msp430/4.7.0/mmpy-16/libgcc.a(_thenan_sf.o)
                               /lib/gcc/msp430/4.7.0/mmpy-16/libgcc.a(_addsub_sf.o) (__thenan_sf)
 /lib/gcc/msp430/4.7.0/mmpy-16/libgcc.a(_usi_to_sf.o)
-                              modulated_carrier_On20Off80.co (__floatunsisf)
+                              modulated_carrier_On60Off40.co (__floatunsisf)
 /lib/gcc/msp430/4.7.0/mmpy-16/libgcc.a(_clzsi2.o)
                               /lib/gcc/msp430/4.7.0/mmpy-16/libgcc.a(_usi_to_sf.o) (__clzsi2)
 /lib/gcc/msp430/4.7.0/mmpy-16/libgcc.a(_pack_sf.o)
@@ -138,7 +138,7 @@ energest_current_mode
                     0xc               contiki-sky.a(energest.o)
 packetbuf_addrs     0x8               contiki-sky.a(packetbuf.o)
 process_maxevents   0x1               contiki-sky.a(process.o)
-state               0x2               modulated_carrier_On20Off80.co
+state               0x2               modulated_carrier_On60Off40.co
 cc2420_last_correlation
                     0x1               contiki-sky.a(cc2420.o)
 linkaddr_node_addr  0x2               contiki-sky.a(linkaddr.o)
@@ -163,7 +163,7 @@ Discarded input sections
  .data          0x0000000000000000        0x0 /lib/gcc/msp430/4.7.0/mmpy-16/crt0ivtbl16.o
  .bss           0x0000000000000000        0x0 /lib/gcc/msp430/4.7.0/mmpy-16/crt0ivtbl16.o
  .text.crt0     0x0000000000000000        0x0 /lib/gcc/msp430/4.7.0/mmpy-16/crt0ivtbl16.o
- .text          0x0000000000000000        0x0 modulated_carrier_On20Off80.co
+ .text          0x0000000000000000        0x0 modulated_carrier_On60Off40.co
  .text          0x0000000000000000        0x0 obj_sky/contiki-sky-main.o
  .data          0x0000000000000000        0x0 obj_sky/contiki-sky-main.o
  .text.uip_log  0x0000000000000000        0x6 obj_sky/contiki-sky-main.o
@@ -563,7 +563,7 @@ far_rom          0x0000000000000000 0x0000000000000000
 Linker script and memory map
 
 LOAD /lib/gcc/msp430/4.7.0/mmpy-16/crt0ivtbl16.o
-LOAD modulated_carrier_On20Off80.co
+LOAD modulated_carrier_On60Off40.co
 LOAD obj_sky/contiki-sky-main.o
 LOAD contiki-sky.a
 LOAD /lib/gcc/msp430/4.7.0/mmpy-16/libgcc.a
@@ -879,13 +879,13 @@ LOAD /lib/gcc/msp430/4.7.0/mmpy-16/libcrt0.a
                 0x000000000000431c                __isr_12
                 0x000000000000431c                __isr_13
                 0x000000000000431c                __isr_9
- .text.setreg   0x0000000000004320       0x4c modulated_carrier_On20Off80.co
+ .text.setreg   0x0000000000004320       0x4c modulated_carrier_On60Off40.co
  .text.process_thread_turn_carrier_OnOff
-                0x000000000000436c       0x32 modulated_carrier_On20Off80.co
+                0x000000000000436c       0x32 modulated_carrier_On60Off40.co
  .text.strobe.constprop.1
-                0x000000000000439e       0x1c modulated_carrier_On20Off80.co
+                0x000000000000439e       0x1c modulated_carrier_On60Off40.co
  .text.carrier_On1sOff1s
-                0x00000000000043ba       0x9e modulated_carrier_On20Off80.co
+                0x00000000000043ba       0x9e modulated_carrier_On60Off40.co
  .text.init_platform
                 0x0000000000004458        0xc contiki-sky.a(contiki-sky-pla)
                 0x0000000000004458                init_platform
@@ -1516,7 +1516,7 @@ LOAD /lib/gcc/msp430/4.7.0/mmpy-16/libcrt0.a
 .rodata         0x0000000000008d0c      0x331
                 0x0000000000008d0c                . = ALIGN (0x2)
  *(.rodata .rodata.* .gnu.linkonce.r.*)
- .rodata        0x0000000000008d0c       0x1c modulated_carrier_On20Off80.co
+ .rodata        0x0000000000008d0c       0x1c modulated_carrier_On60Off40.co
                 0x0000000000008d0c                autostart_processes
  .rodata        0x0000000000008d28       0xd7 obj_sky/contiki-sky-main.o
  *fill*         0x0000000000008dff        0x1 00
@@ -1568,7 +1568,7 @@ LOAD /lib/gcc/msp430/4.7.0/mmpy-16/libcrt0.a
                 0x0000000000001100                . = ALIGN (0x2)
                 0x0000000000001100                __data_start = .
  *(.data .data.* .gnu.linkonce.d.*)
- .data          0x0000000000001100        0xa modulated_carrier_On20Off80.co
+ .data          0x0000000000001100        0xa modulated_carrier_On60Off40.co
                 0x0000000000001100                turn_carrier_OnOff
  .data          0x000000000000110a        0x4 contiki-sky.a(contiki-sky-pla)
                 0x000000000000110a                sensors
@@ -1595,7 +1595,7 @@ LOAD /lib/gcc/msp430/4.7.0/mmpy-16/libcrt0.a
 .bss            0x000000000000115a      0xff2 load address 0x0000000000009098
                 0x000000000000115a                __bss_start = .
  *(.bss .bss.*)
- .bss           0x000000000000115a        0x6 modulated_carrier_On20Off80.co
+ .bss           0x000000000000115a        0x6 modulated_carrier_On60Off40.co
  .bss           0x0000000000001160        0xc obj_sky/contiki-sky-main.o
  .bss           0x000000000000116c        0x8 contiki-sky.a(button-sensor.o)
  .bss           0x0000000000001174        0x2 contiki-sky.a(node-id.o)
@@ -1623,7 +1623,7 @@ LOAD /lib/gcc/msp430/4.7.0/mmpy-16/libcrt0.a
  .bss           0x0000000000002092        0x2 contiki-sky.a(framer-802154.o)
  *(.near.bss .near.bss.*)
  *(COMMON)
- COMMON         0x0000000000002094        0x2 modulated_carrier_On20Off80.co
+ COMMON         0x0000000000002094        0x2 modulated_carrier_On60Off40.co
                 0x0000000000002094                state
  COMMON         0x0000000000002096        0x2 contiki-sky.a(contiki-sky-pla)
                 0x0000000000002096                sensors_flags
@@ -1773,7 +1773,7 @@ LOAD /lib/gcc/msp430/4.7.0/mmpy-16/libcrt0.a
 
 .stab           0x0000000000000000    0x17244
  *(.stab)
- .stab          0x0000000000000000      0x864 modulated_carrier_On20Off80.co
+ .stab          0x0000000000000000      0x864 modulated_carrier_On60Off40.co
  .stab          0x0000000000000864     0x1488 obj_sky/contiki-sky-main.o
                                        0x17a0 (size before relaxing)
  .stab          0x0000000000001cec      0x258 contiki-sky.a(contiki-sky-pla)
@@ -1873,7 +1873,7 @@ LOAD /lib/gcc/msp430/4.7.0/mmpy-16/libcrt0.a
 
 .stabstr        0x0000000000000000    0x14ca5
  *(.stabstr)
- .stabstr       0x0000000000000000    0x14ca5 modulated_carrier_On20Off80.co
+ .stabstr       0x0000000000000000    0x14ca5 modulated_carrier_On60Off40.co
 
 .stab.excl
  *(.stab.excl)
@@ -1889,7 +1889,7 @@ LOAD /lib/gcc/msp430/4.7.0/mmpy-16/libcrt0.a
 
 .comment        0x0000000000000000       0x30
  *(.comment)
- .comment       0x0000000000000000       0x30 modulated_carrier_On20Off80.co
+ .comment       0x0000000000000000       0x30 modulated_carrier_On60Off40.co
                                          0x31 (size before relaxing)
  .comment       0x0000000000000000       0x31 obj_sky/contiki-sky-main.o
  .comment       0x0000000000000000       0x31 contiki-sky.a(contiki-sky-pla)
@@ -2226,4 +2226,4 @@ LOAD /lib/gcc/msp430/4.7.0/mmpy-16/libcrt0.a
                 0x0000000000003900                PROVIDE (__stack, (ORIGIN (ram) + 0x2800))
                 0x000000000000903e                __data_start_rom = _etext
                 0x0000000000009098                __data_end_rom = (_etext + SIZEOF (.data))
-OUTPUT(modulated_carrier_On20Off80.sky elf32-msp430)
+OUTPUT(modulated_carrier_On60Off40.sky elf32-msp430)
