@@ -9,7 +9,7 @@ dbConn = MySQLdb.connect("localhost","root","1234","sink") or die ("Could not co
 #cursor = dbConn.cursor()
 
 #device = '/dev/tty.usbmodem1411' #this will have to be changed to the serial port you are using
-device = '/dev/ttyUSB4' #this will have to be changed to the serial port you are using
+device = '/dev/ttyUSB5' #this will have to be changed to the serial port you are using
 try:
   print "Trying...",device
   skyMote = serial.Serial(device, 115200)
@@ -30,7 +30,7 @@ while True:
        #Here we are going to insert the data into the Database
        try:
           # I have to insert minimum 2 data plus id. So, it is necesary to have 1 redundant data: det_int_redundant
-          cursor.execute("INSERT INTO det_int_90_EWMA_08 (id, det_int, det_int_redundant) VALUES (NULL,%s,%s)", (pieces[1],pieces[1]))
+          cursor.execute("INSERT INTO det_int_100_EWMA_08 (id, det_int, det_int_redundant) VALUES (NULL,%s,%s)", (pieces[1],pieces[1]))
           dbConn.commit() #commit the insert
           cursor.close()  #close the cursor
        except MySQLdb.IntegrityError:
