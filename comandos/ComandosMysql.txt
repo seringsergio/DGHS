@@ -93,7 +93,7 @@ date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 //For recording statistics when the interference is 50%
-create table int_10_tx_v2 (
+create table int_0_tx_wind_50 (
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 num_packets INT(11) NOT NULL,
 btp FLOAT(8,2),
@@ -120,7 +120,7 @@ date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 //For recording statistics when the interference is 50%
-create table det_int_60_EWMA_02 (
+create table det_int_0_wind_15 (
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 det_int INT(11) NOT NULL,
 det_int_redundant INT(11) NOT NULL,
@@ -172,6 +172,7 @@ select * from int_50_tx;
 select * from det_int_0;
 select * from tree_plot;
 select * from det_int_0_EWMA_02;
+select * from int_0_tx_wind_5;
 
 
 //Eliminar: Elimina tabla
@@ -230,8 +231,8 @@ LINES TERMINATED BY '\n';
 SELECT "id","num_packets","btp","EWMA_btp_09","EWMA_btp_08","EWMA_btp_07","EWMA_btp_06","EWMA_btp_05","EWMA_btp_04","EWMA_btp_03","EWMA_btp_02","EWMA_btp_01","ppl","EWMA_ppl_09","EWMA_ppl_08","EWMA_ppl_07","EWMA_ppl_06","EWMA_ppl_05","EWMA_ppl_04","EWMA_ppl_03","EWMA_ppl_02","EWMA_ppl_01","date"
 UNION ALL
 SELECT *
-FROM int_100_tx
-INTO OUTFILE "/var/lib/mysql-files/int_100_tx.csv"
+FROM int_0_tx_wind_5
+INTO OUTFILE "/var/lib/mysql-files/int_0_tx_wind_5.csv"
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n';

@@ -160,6 +160,7 @@ PROCESS_THREAD(example_unicast_process, ev, data)
 //  printf("RF_CHANNEL %d\n", RF_CHANNEL );
 //  printf("CC2538_RF_CONF_CHANNEL %d\n", CC2538_RF_CONF_CHANNEL );
 
+  printf("WINDOW_NUM_PACKETS = %d \n", WINDOW_NUM_PACKETS); 
 
   while(1) {
     static struct etimer et;

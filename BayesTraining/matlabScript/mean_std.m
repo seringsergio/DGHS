@@ -1,503 +1,503 @@
 %% Exponential weighted moving average 
 
 % _100_
-[ rows, columns ] = size(EWMA_btp_01_100_tx);
+[ rows, columns ] = size(EWMA_btp_01_100_tx_wind_10);
 
 for i = 1:rows
     
     if(i == 1)
-        EWMA2_btp_01_100_tx(i) =  EWMA_btp_01_100_tx(i);
+        EWMA2_btp_01_100_tx_wind_10(i) =  EWMA_btp_01_100_tx_wind_10(i);
     else
-        EWMA2_btp_01_100_tx(i) = alpha * EWMA_btp_01_100_tx(i) + (1-alpha)*EWMA2_btp_01_100_tx(i-1);        
+        EWMA2_btp_01_100_tx_wind_10(i) = alpha * EWMA_btp_01_100_tx_wind_10(i) + (1-alpha)*EWMA2_btp_01_100_tx_wind_10(i-1);        
     end
     
 end
 
-EWMA2_mean_btp_01_100_tx = mean(EWMA2_btp_01_100_tx); 
-EWMA1_mean_btp_01_100_tx = mean(EWMA_btp_01_100_tx);
-EWMA1_std_btp_01_100_tx  = std(EWMA_btp_01_100_tx);
+EWMA2_mean_btp_01_100_tx_wind_10 = mean(EWMA2_btp_01_100_tx_wind_10); 
+EWMA1_mean_btp_01_100_tx_wind_10 = mean(EWMA_btp_01_100_tx_wind_10);
+EWMA1_std_btp_01_100_tx_wind_10  = std(EWMA_btp_01_100_tx_wind_10);
 
 
 % _95_
-[ rows, columns ] = size(EWMA_btp_01_95_tx);
+[ rows, columns ] = size(EWMA_btp_01_95_tx_wind_10);
 
 for i = 1:rows
     
     if(i == 1)
-        EWMA2_btp_01_95_tx(i) =  EWMA_btp_01_95_tx(i);
+        EWMA2_btp_01_95_tx_wind_10(i) =  EWMA_btp_01_95_tx_wind_10(i);
     else
-        EWMA2_btp_01_95_tx(i) = alpha * EWMA_btp_01_95_tx(i) + (1-alpha)*EWMA2_btp_01_95_tx(i-1);        
+        EWMA2_btp_01_95_tx_wind_10(i) = alpha * EWMA_btp_01_95_tx_wind_10(i) + (1-alpha)*EWMA2_btp_01_95_tx_wind_10(i-1);        
     end
     
 end
 
-EWMA2_mean_btp_01_95_tx = mean(EWMA2_btp_01_95_tx);
-EWMA1_mean_btp_01_95_tx = mean(EWMA_btp_01_95_tx);
-EWMA1_std_btp_01_95_tx  = std(EWMA_btp_01_95_tx);
+EWMA2_mean_btp_01_95_tx_wind_10 = mean(EWMA2_btp_01_95_tx_wind_10);
+EWMA1_mean_btp_01_95_tx_wind_10 = mean(EWMA_btp_01_95_tx_wind_10);
+EWMA1_std_btp_01_95_tx_wind_10  = std(EWMA_btp_01_95_tx_wind_10);
 
 
 % _90_
-[ rows, columns ] = size(EWMA_btp_01_90_tx);
+[ rows, columns ] = size(EWMA_btp_01_90_tx_wind_10);
 
 for i = 1:rows
     
     if(i == 1)
-        EWMA2_btp_01_90_tx(i) =  EWMA_btp_01_90_tx(i);
+        EWMA2_btp_01_90_tx_wind_10(i) =  EWMA_btp_01_90_tx_wind_10(i);
     else
-        EWMA2_btp_01_90_tx(i) = alpha * EWMA_btp_01_90_tx(i) + (1-alpha)*EWMA2_btp_01_90_tx(i-1);        
+        EWMA2_btp_01_90_tx_wind_10(i) = alpha * EWMA_btp_01_90_tx_wind_10(i) + (1-alpha)*EWMA2_btp_01_90_tx_wind_10(i-1);        
     end
     
 end
 
-EWMA2_mean_btp_01_90_tx = mean(EWMA2_btp_01_90_tx); 
-EWMA1_mean_btp_01_90_tx = mean(EWMA_btp_01_90_tx);
-EWMA1_std_btp_01_90_tx  = std(EWMA_btp_01_90_tx);
+EWMA2_mean_btp_01_90_tx_wind_10 = mean(EWMA2_btp_01_90_tx_wind_10); 
+EWMA1_mean_btp_01_90_tx_wind_10 = mean(EWMA_btp_01_90_tx_wind_10);
+EWMA1_std_btp_01_90_tx_wind_10  = std(EWMA_btp_01_90_tx_wind_10);
 
 
 % _80_
-[ rows, columns ] = size(EWMA_btp_01_80_tx);
+[ rows, columns ] = size(EWMA_btp_01_80_tx_wind_10);
 
 for i = 1:rows
     
     if(i == 1)
-        EWMA2_btp_01_80_tx(i) =  EWMA_btp_01_80_tx(i);
+        EWMA2_btp_01_80_tx_wind_10(i) =  EWMA_btp_01_80_tx_wind_10(i);
     else
-        EWMA2_btp_01_80_tx(i) = alpha * EWMA_btp_01_80_tx(i) + (1-alpha)*EWMA2_btp_01_80_tx(i-1);        
+        EWMA2_btp_01_80_tx_wind_10(i) = alpha * EWMA_btp_01_80_tx_wind_10(i) + (1-alpha)*EWMA2_btp_01_80_tx_wind_10(i-1);        
     end
     
 end
 
-EWMA2_mean_btp_01_80_tx = mean(EWMA2_btp_01_80_tx); 
-EWMA1_mean_btp_01_80_tx = mean(EWMA_btp_01_80_tx);
-EWMA1_std_btp_01_80_tx  = std(EWMA_btp_01_80_tx);
+EWMA2_mean_btp_01_80_tx_wind_10 = mean(EWMA2_btp_01_80_tx_wind_10); 
+EWMA1_mean_btp_01_80_tx_wind_10 = mean(EWMA_btp_01_80_tx_wind_10);
+EWMA1_std_btp_01_80_tx_wind_10  = std(EWMA_btp_01_80_tx_wind_10);
 
 
 % _70_
-[ rows, columns ] = size(EWMA_btp_01_70_tx);
+[ rows, columns ] = size(EWMA_btp_01_70_tx_wind_10);
 
 for i = 1:rows
     
     if(i == 1)
-        EWMA2_btp_01_70_tx(i) =  EWMA_btp_01_70_tx(i);
+        EWMA2_btp_01_70_tx_wind_10(i) =  EWMA_btp_01_70_tx_wind_10(i);
     else
-        EWMA2_btp_01_70_tx(i) = alpha * EWMA_btp_01_70_tx(i) + (1-alpha)*EWMA2_btp_01_70_tx(i-1);       
+        EWMA2_btp_01_70_tx_wind_10(i) = alpha * EWMA_btp_01_70_tx_wind_10(i) + (1-alpha)*EWMA2_btp_01_70_tx_wind_10(i-1);       
     end
     
 end
 
-EWMA2_mean_btp_01_70_tx = mean(EWMA2_btp_01_70_tx);
-EWMA1_mean_btp_01_70_tx = mean(EWMA_btp_01_70_tx);
-EWMA1_std_btp_01_70_tx  = std(EWMA_btp_01_70_tx);
+EWMA2_mean_btp_01_70_tx_wind_10 = mean(EWMA2_btp_01_70_tx_wind_10);
+EWMA1_mean_btp_01_70_tx_wind_10 = mean(EWMA_btp_01_70_tx_wind_10);
+EWMA1_std_btp_01_70_tx_wind_10  = std(EWMA_btp_01_70_tx_wind_10);
 
 
 % _60_
-[ rows, columns ] = size(EWMA_btp_01_60_tx);
+[ rows, columns ] = size(EWMA_btp_01_60_tx_wind_10);
 
 for i = 1:rows
     
     if(i == 1)
-        EWMA2_btp_01_60_tx(i) =  EWMA_btp_01_60_tx(i);
+        EWMA2_btp_01_60_tx_wind_10(i) =  EWMA_btp_01_60_tx_wind_10(i);
     else
-        EWMA2_btp_01_60_tx(i) = alpha * EWMA_btp_01_60_tx(i) + (1-alpha)*EWMA2_btp_01_60_tx(i-1);        
+        EWMA2_btp_01_60_tx_wind_10(i) = alpha * EWMA_btp_01_60_tx_wind_10(i) + (1-alpha)*EWMA2_btp_01_60_tx_wind_10(i-1);        
     end
     
 end
 
-EWMA2_mean_btp_01_60_tx = mean(EWMA2_btp_01_60_tx); 
-EWMA1_mean_btp_01_60_tx = mean(EWMA_btp_01_60_tx);
-EWMA1_std_btp_01_60_tx  = std(EWMA_btp_01_60_tx);
+EWMA2_mean_btp_01_60_tx_wind_10 = mean(EWMA2_btp_01_60_tx_wind_10); 
+EWMA1_mean_btp_01_60_tx_wind_10 = mean(EWMA_btp_01_60_tx_wind_10);
+EWMA1_std_btp_01_60_tx_wind_10  = std(EWMA_btp_01_60_tx_wind_10);
 
 
 % _50_
-[ rows, columns ] = size(EWMA_btp_01_50_tx);
+[ rows, columns ] = size(EWMA_btp_01_50_tx_wind_10);
 
 for i = 1:rows
     
     if(i == 1)
-        EWMA2_btp_01_50_tx(i) =  EWMA_btp_01_50_tx(i);
+        EWMA2_btp_01_50_tx_wind_10(i) =  EWMA_btp_01_50_tx_wind_10(i);
     else
-        EWMA2_btp_01_50_tx(i) = alpha * EWMA_btp_01_50_tx(i) + (1-alpha)*EWMA2_btp_01_50_tx(i-1);        
+        EWMA2_btp_01_50_tx_wind_10(i) = alpha * EWMA_btp_01_50_tx_wind_10(i) + (1-alpha)*EWMA2_btp_01_50_tx_wind_10(i-1);        
     end
     
 end
 
-EWMA2_mean_btp_01_50_tx = mean(EWMA2_btp_01_50_tx); 
-EWMA1_mean_btp_01_50_tx = mean(EWMA_btp_01_50_tx);
-EWMA1_std_btp_01_50_tx  = std(EWMA_btp_01_50_tx);
+EWMA2_mean_btp_01_50_tx_wind_10 = mean(EWMA2_btp_01_50_tx_wind_10); 
+EWMA1_mean_btp_01_50_tx_wind_10 = mean(EWMA_btp_01_50_tx_wind_10);
+EWMA1_std_btp_01_50_tx_wind_10  = std(EWMA_btp_01_50_tx_wind_10);
 
 % _40_
-[ rows, columns ] = size(EWMA_btp_01_40_tx);
+[ rows, columns ] = size(EWMA_btp_01_40_tx_wind_10);
 
 for i = 1:rows
     
     if(i == 1)
-        EWMA2_btp_01_40_tx(i) =  EWMA_btp_01_40_tx(i);
+        EWMA2_btp_01_40_tx_wind_10(i) =  EWMA_btp_01_40_tx_wind_10(i);
     else
-        EWMA2_btp_01_40_tx(i) = alpha * EWMA_btp_01_40_tx(i) + (1-alpha)*EWMA2_btp_01_40_tx(i-1);        
+        EWMA2_btp_01_40_tx_wind_10(i) = alpha * EWMA_btp_01_40_tx_wind_10(i) + (1-alpha)*EWMA2_btp_01_40_tx_wind_10(i-1);        
     end
     
 end
 
-EWMA2_mean_btp_01_40_tx = mean(EWMA2_btp_01_40_tx);
-EWMA1_mean_btp_01_40_tx = mean(EWMA_btp_01_40_tx);
-EWMA1_std_btp_01_40_tx  = std(EWMA_btp_01_40_tx);
+EWMA2_mean_btp_01_40_tx_wind_10 = mean(EWMA2_btp_01_40_tx_wind_10);
+EWMA1_mean_btp_01_40_tx_wind_10 = mean(EWMA_btp_01_40_tx_wind_10);
+EWMA1_std_btp_01_40_tx_wind_10  = std(EWMA_btp_01_40_tx_wind_10);
 
 % _30_
-[ rows, columns ] = size(EWMA_btp_01_30_tx);
+[ rows, columns ] = size(EWMA_btp_01_30_tx_wind_10);
 
 for i = 1:rows
     
     if(i == 1)
-        EWMA2_btp_01_30_tx(i) =  EWMA_btp_01_30_tx(i);
+        EWMA2_btp_01_30_tx_wind_10(i) =  EWMA_btp_01_30_tx_wind_10(i);
     else
-        EWMA2_btp_01_30_tx(i) = alpha * EWMA_btp_01_30_tx(i) + (1-alpha)*EWMA2_btp_01_30_tx(i-1);        
+        EWMA2_btp_01_30_tx_wind_10(i) = alpha * EWMA_btp_01_30_tx_wind_10(i) + (1-alpha)*EWMA2_btp_01_30_tx_wind_10(i-1);        
     end
     
 end
 
-EWMA2_mean_btp_01_30_tx = mean(EWMA2_btp_01_30_tx); 
-EWMA1_mean_btp_01_30_tx = mean(EWMA_btp_01_30_tx);
-EWMA1_std_btp_01_30_tx  = std(EWMA_btp_01_30_tx);
+EWMA2_mean_btp_01_30_tx_wind_10 = mean(EWMA2_btp_01_30_tx_wind_10); 
+EWMA1_mean_btp_01_30_tx_wind_10 = mean(EWMA_btp_01_30_tx_wind_10);
+EWMA1_std_btp_01_30_tx_wind_10  = std(EWMA_btp_01_30_tx_wind_10);
 
 % _20_
-[ rows, columns ] = size(EWMA_btp_01_20_tx);
+[ rows, columns ] = size(EWMA_btp_01_20_tx_wind_10);
 
 for i = 1:rows
     
     if(i == 1)
-        EWMA2_btp_01_20_tx(i) =  EWMA_btp_01_20_tx(i);
+        EWMA2_btp_01_20_tx_wind_10(i) =  EWMA_btp_01_20_tx_wind_10(i);
     else
-        EWMA2_btp_01_20_tx(i) = alpha * EWMA_btp_01_20_tx(i) + (1-alpha)*EWMA2_btp_01_20_tx(i-1);        
+        EWMA2_btp_01_20_tx_wind_10(i) = alpha * EWMA_btp_01_20_tx_wind_10(i) + (1-alpha)*EWMA2_btp_01_20_tx_wind_10(i-1);        
     end
     
 end
 
-EWMA2_mean_btp_01_20_tx = mean(EWMA2_btp_01_20_tx);
-EWMA1_mean_btp_01_20_tx = mean(EWMA_btp_01_20_tx);
-EWMA1_std_btp_01_20_tx  = std(EWMA_btp_01_20_tx);
+EWMA2_mean_btp_01_20_tx_wind_10 = mean(EWMA2_btp_01_20_tx_wind_10);
+EWMA1_mean_btp_01_20_tx_wind_10 = mean(EWMA_btp_01_20_tx_wind_10);
+EWMA1_std_btp_01_20_tx_wind_10  = std(EWMA_btp_01_20_tx_wind_10);
 
 % _10_
-[ rows, columns ] = size(EWMA_btp_01_10_tx);
+[ rows, columns ] = size(EWMA_btp_01_10_tx_wind_10);
 
 for i = 1:rows
     
     if(i == 1)
-        EWMA2_btp_01_10_tx(i) =  EWMA_btp_01_10_tx(i);
+        EWMA2_btp_01_10_tx_wind_10(i) =  EWMA_btp_01_10_tx_wind_10(i);
     else
-        EWMA2_btp_01_10_tx(i) = alpha * EWMA_btp_01_10_tx(i) + (1-alpha)*EWMA2_btp_01_10_tx(i-1);        
+        EWMA2_btp_01_10_tx_wind_10(i) = alpha * EWMA_btp_01_10_tx_wind_10(i) + (1-alpha)*EWMA2_btp_01_10_tx_wind_10(i-1);        
     end
     
 end
 
-EWMA2_mean_btp_01_10_tx = mean(EWMA2_btp_01_10_tx); 
-EWMA1_mean_btp_01_10_tx = mean(EWMA_btp_01_10_tx);
-EWMA1_std_btp_01_10_tx  = std(EWMA_btp_01_10_tx);
+EWMA2_mean_btp_01_10_tx_wind_10 = mean(EWMA2_btp_01_10_tx_wind_10); 
+EWMA1_mean_btp_01_10_tx_wind_10 = mean(EWMA_btp_01_10_tx_wind_10);
+EWMA1_std_btp_01_10_tx_wind_10  = std(EWMA_btp_01_10_tx_wind_10);
 
 % _0_
-[ rows, columns ] = size(EWMA_btp_01_0_tx);
+[ rows, columns ] = size(EWMA_btp_01_0_tx_wind_10);
 
 for i = 1:rows
     
     if(i == 1)
-        EWMA2_btp_01_0_tx(i) =  EWMA_btp_01_0_tx(i);
+        EWMA2_btp_01_0_tx_wind_10(i) =  EWMA_btp_01_0_tx_wind_10(i);
     else
-        EWMA2_btp_01_0_tx(i) = alpha * EWMA_btp_01_0_tx(i) + (1-alpha)*EWMA2_btp_01_0_tx(i-1);        
+        EWMA2_btp_01_0_tx_wind_10(i) = alpha * EWMA_btp_01_0_tx_wind_10(i) + (1-alpha)*EWMA2_btp_01_0_tx_wind_10(i-1);        
     end
     
 end
 
-EWMA2_mean_btp_01_0_tx = mean(EWMA2_btp_01_0_tx); 
-EWMA1_mean_btp_01_0_tx = mean(EWMA_btp_01_0_tx);
-EWMA1_std_btp_01_0_tx  = std(EWMA_btp_01_0_tx);
+EWMA2_mean_btp_01_0_tx_wind_10 = mean(EWMA2_btp_01_0_tx_wind_10); 
+EWMA1_mean_btp_01_0_tx_wind_10 = mean(EWMA_btp_01_0_tx_wind_10);
+EWMA1_std_btp_01_0_tx_wind_10  = std(EWMA_btp_01_0_tx_wind_10);
 
 % consolidado
-EWMA2_mean_btp_01_vec = [ EWMA2_mean_btp_01_0_tx
-                          EWMA2_mean_btp_01_10_tx
-                          EWMA2_mean_btp_01_20_tx
-                          EWMA2_mean_btp_01_30_tx
-                          EWMA2_mean_btp_01_40_tx
-                          EWMA2_mean_btp_01_50_tx
-                          EWMA2_mean_btp_01_60_tx
-                          EWMA2_mean_btp_01_70_tx
-                          EWMA2_mean_btp_01_80_tx
-                          EWMA2_mean_btp_01_90_tx
-                          EWMA2_mean_btp_01_100_tx
+EWMA2_mean_btp_01_vec = [ EWMA2_mean_btp_01_0_tx_wind_10
+                          EWMA2_mean_btp_01_10_tx_wind_10
+                          EWMA2_mean_btp_01_20_tx_wind_10
+                          EWMA2_mean_btp_01_30_tx_wind_10
+                          EWMA2_mean_btp_01_40_tx_wind_10
+                          EWMA2_mean_btp_01_50_tx_wind_10
+                          EWMA2_mean_btp_01_60_tx_wind_10
+                          EWMA2_mean_btp_01_70_tx_wind_10
+                          EWMA2_mean_btp_01_80_tx_wind_10
+                          EWMA2_mean_btp_01_90_tx_wind_10
+                          EWMA2_mean_btp_01_100_tx_wind_10
                           ]; 
 
-EWMA1_mean_btp_01_vec = [ EWMA1_mean_btp_01_0_tx
-                          EWMA1_mean_btp_01_10_tx
-                          EWMA1_mean_btp_01_20_tx
-                          EWMA1_mean_btp_01_30_tx
-                          EWMA1_mean_btp_01_40_tx
-                          EWMA1_mean_btp_01_50_tx
-                          EWMA1_mean_btp_01_60_tx
-                          EWMA1_mean_btp_01_70_tx
-                          EWMA1_mean_btp_01_80_tx
-                          EWMA1_mean_btp_01_90_tx
-                          EWMA1_mean_btp_01_100_tx
+EWMA1_mean_btp_01_vec = [ EWMA1_mean_btp_01_0_tx_wind_10
+                          EWMA1_mean_btp_01_10_tx_wind_10
+                          EWMA1_mean_btp_01_20_tx_wind_10
+                          EWMA1_mean_btp_01_30_tx_wind_10
+                          EWMA1_mean_btp_01_40_tx_wind_10
+                          EWMA1_mean_btp_01_50_tx_wind_10
+                          EWMA1_mean_btp_01_60_tx_wind_10
+                          EWMA1_mean_btp_01_70_tx_wind_10
+                          EWMA1_mean_btp_01_80_tx_wind_10
+                          EWMA1_mean_btp_01_90_tx_wind_10
+                          EWMA1_mean_btp_01_100_tx_wind_10
                           ];   
                       
-EWMA1_std_btp_01_vec = [  EWMA1_std_btp_01_0_tx
-                          EWMA1_std_btp_01_10_tx
-                          EWMA1_std_btp_01_20_tx
-                          EWMA1_std_btp_01_30_tx
-                          EWMA1_std_btp_01_40_tx
-                          EWMA1_std_btp_01_50_tx
-                          EWMA1_std_btp_01_60_tx
-                          EWMA1_std_btp_01_70_tx
-                          EWMA1_std_btp_01_80_tx
-                          EWMA1_std_btp_01_90_tx
-                          EWMA1_std_btp_01_100_tx
+EWMA1_std_btp_01_vec = [  EWMA1_std_btp_01_0_tx_wind_10
+                          EWMA1_std_btp_01_10_tx_wind_10
+                          EWMA1_std_btp_01_20_tx_wind_10
+                          EWMA1_std_btp_01_30_tx_wind_10
+                          EWMA1_std_btp_01_40_tx_wind_10
+                          EWMA1_std_btp_01_50_tx_wind_10
+                          EWMA1_std_btp_01_60_tx_wind_10
+                          EWMA1_std_btp_01_70_tx_wind_10
+                          EWMA1_std_btp_01_80_tx_wind_10
+                          EWMA1_std_btp_01_90_tx_wind_10
+                          EWMA1_std_btp_01_100_tx_wind_10
                           ];              
                       
 %% ppl (Percentage of Packet Loss)
 
 % _100_
-[ rows, columns ] = size(EWMA_ppl_01_100_tx);
+[ rows, columns ] = size(EWMA_ppl_01_100_tx_wind_10);
 
 for i = 1:rows
     
     if(i == 1)
-        EWMA2_ppl_01_100_tx(i) =  EWMA_ppl_01_100_tx(i);
+        EWMA2_ppl_01_100_tx_wind_10(i) =  EWMA_ppl_01_100_tx_wind_10(i);
     else
-        EWMA2_ppl_01_100_tx(i) = alpha * EWMA_ppl_01_100_tx(i) + (1-alpha)*EWMA2_ppl_01_100_tx(i-1);        
+        EWMA2_ppl_01_100_tx_wind_10(i) = alpha * EWMA_ppl_01_100_tx_wind_10(i) + (1-alpha)*EWMA2_ppl_01_100_tx_wind_10(i-1);        
     end
     
 end
 
-EWMA2_mean_ppl_01_100_tx = mean(EWMA2_ppl_01_100_tx); 
-EWMA1_mean_ppl_01_100_tx = mean(EWMA_ppl_01_100_tx);
-EWMA1_std_ppl_01_100_tx  = std(EWMA_ppl_01_100_tx);
+EWMA2_mean_ppl_01_100_tx_wind_10 = mean(EWMA2_ppl_01_100_tx_wind_10); 
+EWMA1_mean_ppl_01_100_tx_wind_10 = mean(EWMA_ppl_01_100_tx_wind_10);
+EWMA1_std_ppl_01_100_tx_wind_10  = std(EWMA_ppl_01_100_tx_wind_10);
 
 
 % _95_
-[ rows, columns ] = size(EWMA_ppl_01_95_tx);
+[ rows, columns ] = size(EWMA_ppl_01_95_tx_wind_10);
 
 for i = 1:rows
     
     if(i == 1)
-        EWMA2_ppl_01_95_tx(i) =  EWMA_ppl_01_95_tx(i);
+        EWMA2_ppl_01_95_tx_wind_10(i) =  EWMA_ppl_01_95_tx_wind_10(i);
     else
-        EWMA2_ppl_01_95_tx(i) = alpha * EWMA_ppl_01_95_tx(i) + (1-alpha)*EWMA2_ppl_01_95_tx(i-1);        
+        EWMA2_ppl_01_95_tx_wind_10(i) = alpha * EWMA_ppl_01_95_tx_wind_10(i) + (1-alpha)*EWMA2_ppl_01_95_tx_wind_10(i-1);        
     end
     
 end
 
-EWMA2_mean_ppl_01_95_tx = mean(EWMA2_ppl_01_95_tx);
-EWMA1_mean_ppl_01_95_tx = mean(EWMA_ppl_01_95_tx);
-EWMA1_std_ppl_01_95_tx  = std(EWMA_ppl_01_95_tx);
+EWMA2_mean_ppl_01_95_tx_wind_10 = mean(EWMA2_ppl_01_95_tx_wind_10);
+EWMA1_mean_ppl_01_95_tx_wind_10 = mean(EWMA_ppl_01_95_tx_wind_10);
+EWMA1_std_ppl_01_95_tx_wind_10  = std(EWMA_ppl_01_95_tx_wind_10);
 
 
 % _90_
-[ rows, columns ] = size(EWMA_ppl_01_90_tx);
+[ rows, columns ] = size(EWMA_ppl_01_90_tx_wind_10);
 
 for i = 1:rows
     
     if(i == 1)
-        EWMA2_ppl_01_90_tx(i) =  EWMA_ppl_01_90_tx(i);
+        EWMA2_ppl_01_90_tx_wind_10(i) =  EWMA_ppl_01_90_tx_wind_10(i);
     else
-        EWMA2_ppl_01_90_tx(i) = alpha * EWMA_ppl_01_90_tx(i) + (1-alpha)*EWMA2_ppl_01_90_tx(i-1);        
+        EWMA2_ppl_01_90_tx_wind_10(i) = alpha * EWMA_ppl_01_90_tx_wind_10(i) + (1-alpha)*EWMA2_ppl_01_90_tx_wind_10(i-1);        
     end
     
 end
 
-EWMA2_mean_ppl_01_90_tx = mean(EWMA2_ppl_01_90_tx); 
-EWMA1_mean_ppl_01_90_tx = mean(EWMA_ppl_01_90_tx);
-EWMA1_std_ppl_01_90_tx  = std(EWMA_ppl_01_90_tx);
+EWMA2_mean_ppl_01_90_tx_wind_10 = mean(EWMA2_ppl_01_90_tx_wind_10); 
+EWMA1_mean_ppl_01_90_tx_wind_10 = mean(EWMA_ppl_01_90_tx_wind_10);
+EWMA1_std_ppl_01_90_tx_wind_10  = std(EWMA_ppl_01_90_tx_wind_10);
 
 
 % _80_
-[ rows, columns ] = size(EWMA_ppl_01_80_tx);
+[ rows, columns ] = size(EWMA_ppl_01_80_tx_wind_10);
 
 for i = 1:rows
     
     if(i == 1)
-        EWMA2_ppl_01_80_tx(i) =  EWMA_ppl_01_80_tx(i);
+        EWMA2_ppl_01_80_tx_wind_10(i) =  EWMA_ppl_01_80_tx_wind_10(i);
     else
-        EWMA2_ppl_01_80_tx(i) = alpha * EWMA_ppl_01_80_tx(i) + (1-alpha)*EWMA2_ppl_01_80_tx(i-1);        
+        EWMA2_ppl_01_80_tx_wind_10(i) = alpha * EWMA_ppl_01_80_tx_wind_10(i) + (1-alpha)*EWMA2_ppl_01_80_tx_wind_10(i-1);        
     end
     
 end
 
-EWMA2_mean_ppl_01_80_tx = mean(EWMA2_ppl_01_80_tx); 
-EWMA1_mean_ppl_01_80_tx = mean(EWMA_ppl_01_80_tx);
-EWMA1_std_ppl_01_80_tx  = std(EWMA_ppl_01_80_tx);
+EWMA2_mean_ppl_01_80_tx_wind_10 = mean(EWMA2_ppl_01_80_tx_wind_10); 
+EWMA1_mean_ppl_01_80_tx_wind_10 = mean(EWMA_ppl_01_80_tx_wind_10);
+EWMA1_std_ppl_01_80_tx_wind_10  = std(EWMA_ppl_01_80_tx_wind_10);
 
 
 % _70_
-[ rows, columns ] = size(EWMA_ppl_01_70_tx);
+[ rows, columns ] = size(EWMA_ppl_01_70_tx_wind_10);
 
 for i = 1:rows
     
     if(i == 1)
-        EWMA2_ppl_01_70_tx(i) =  EWMA_ppl_01_70_tx(i);
+        EWMA2_ppl_01_70_tx_wind_10(i) =  EWMA_ppl_01_70_tx_wind_10(i);
     else
-        EWMA2_ppl_01_70_tx(i) = alpha * EWMA_ppl_01_70_tx(i) + (1-alpha)*EWMA2_ppl_01_70_tx(i-1);       
+        EWMA2_ppl_01_70_tx_wind_10(i) = alpha * EWMA_ppl_01_70_tx_wind_10(i) + (1-alpha)*EWMA2_ppl_01_70_tx_wind_10(i-1);       
     end
     
 end
 
-EWMA2_mean_ppl_01_70_tx = mean(EWMA2_ppl_01_70_tx);
-EWMA1_mean_ppl_01_70_tx = mean(EWMA_ppl_01_70_tx);
-EWMA1_std_ppl_01_70_tx  = std(EWMA_ppl_01_70_tx);
+EWMA2_mean_ppl_01_70_tx_wind_10 = mean(EWMA2_ppl_01_70_tx_wind_10);
+EWMA1_mean_ppl_01_70_tx_wind_10 = mean(EWMA_ppl_01_70_tx_wind_10);
+EWMA1_std_ppl_01_70_tx_wind_10  = std(EWMA_ppl_01_70_tx_wind_10);
 
 
 % _60_
-[ rows, columns ] = size(EWMA_ppl_01_60_tx);
+[ rows, columns ] = size(EWMA_ppl_01_60_tx_wind_10);
 
 for i = 1:rows
     
     if(i == 1)
-        EWMA2_ppl_01_60_tx(i) =  EWMA_ppl_01_60_tx(i);
+        EWMA2_ppl_01_60_tx_wind_10(i) =  EWMA_ppl_01_60_tx_wind_10(i);
     else
-        EWMA2_ppl_01_60_tx(i) = alpha * EWMA_ppl_01_60_tx(i) + (1-alpha)*EWMA2_ppl_01_60_tx(i-1);        
+        EWMA2_ppl_01_60_tx_wind_10(i) = alpha * EWMA_ppl_01_60_tx_wind_10(i) + (1-alpha)*EWMA2_ppl_01_60_tx_wind_10(i-1);        
     end
     
 end
 
-EWMA2_mean_ppl_01_60_tx = mean(EWMA2_ppl_01_60_tx); 
-EWMA1_mean_ppl_01_60_tx = mean(EWMA_ppl_01_60_tx);
-EWMA1_std_ppl_01_60_tx  = std(EWMA_ppl_01_60_tx);
+EWMA2_mean_ppl_01_60_tx_wind_10 = mean(EWMA2_ppl_01_60_tx_wind_10); 
+EWMA1_mean_ppl_01_60_tx_wind_10 = mean(EWMA_ppl_01_60_tx_wind_10);
+EWMA1_std_ppl_01_60_tx_wind_10  = std(EWMA_ppl_01_60_tx_wind_10);
 
 
 % _50_
-[ rows, columns ] = size(EWMA_ppl_01_50_tx);
+[ rows, columns ] = size(EWMA_ppl_01_50_tx_wind_10);
 
 for i = 1:rows
     
     if(i == 1)
-        EWMA2_ppl_01_50_tx(i) =  EWMA_ppl_01_50_tx(i);
+        EWMA2_ppl_01_50_tx_wind_10(i) =  EWMA_ppl_01_50_tx_wind_10(i);
     else
-        EWMA2_ppl_01_50_tx(i) = alpha * EWMA_ppl_01_50_tx(i) + (1-alpha)*EWMA2_ppl_01_50_tx(i-1);        
+        EWMA2_ppl_01_50_tx_wind_10(i) = alpha * EWMA_ppl_01_50_tx_wind_10(i) + (1-alpha)*EWMA2_ppl_01_50_tx_wind_10(i-1);        
     end
     
 end
 
-EWMA2_mean_ppl_01_50_tx = mean(EWMA2_ppl_01_50_tx); 
-EWMA1_mean_ppl_01_50_tx = mean(EWMA_ppl_01_50_tx);
-EWMA1_std_ppl_01_50_tx  = std(EWMA_ppl_01_50_tx);
+EWMA2_mean_ppl_01_50_tx_wind_10 = mean(EWMA2_ppl_01_50_tx_wind_10); 
+EWMA1_mean_ppl_01_50_tx_wind_10 = mean(EWMA_ppl_01_50_tx_wind_10);
+EWMA1_std_ppl_01_50_tx_wind_10  = std(EWMA_ppl_01_50_tx_wind_10);
 
 % _40_
-[ rows, columns ] = size(EWMA_ppl_01_40_tx);
+[ rows, columns ] = size(EWMA_ppl_01_40_tx_wind_10);
 
 for i = 1:rows
     
     if(i == 1)
-        EWMA2_ppl_01_40_tx(i) =  EWMA_ppl_01_40_tx(i);
+        EWMA2_ppl_01_40_tx_wind_10(i) =  EWMA_ppl_01_40_tx_wind_10(i);
     else
-        EWMA2_ppl_01_40_tx(i) = alpha * EWMA_ppl_01_40_tx(i) + (1-alpha)*EWMA2_ppl_01_40_tx(i-1);        
+        EWMA2_ppl_01_40_tx_wind_10(i) = alpha * EWMA_ppl_01_40_tx_wind_10(i) + (1-alpha)*EWMA2_ppl_01_40_tx_wind_10(i-1);        
     end
     
 end
 
-EWMA2_mean_ppl_01_40_tx = mean(EWMA2_ppl_01_40_tx);
-EWMA1_mean_ppl_01_40_tx = mean(EWMA_ppl_01_40_tx);
-EWMA1_std_ppl_01_40_tx  = std(EWMA_ppl_01_40_tx);
+EWMA2_mean_ppl_01_40_tx_wind_10 = mean(EWMA2_ppl_01_40_tx_wind_10);
+EWMA1_mean_ppl_01_40_tx_wind_10 = mean(EWMA_ppl_01_40_tx_wind_10);
+EWMA1_std_ppl_01_40_tx_wind_10  = std(EWMA_ppl_01_40_tx_wind_10);
 
 % _30_
-[ rows, columns ] = size(EWMA_ppl_01_30_tx);
+[ rows, columns ] = size(EWMA_ppl_01_30_tx_wind_10);
 
 for i = 1:rows
     
     if(i == 1)
-        EWMA2_ppl_01_30_tx(i) =  EWMA_ppl_01_30_tx(i);
+        EWMA2_ppl_01_30_tx_wind_10(i) =  EWMA_ppl_01_30_tx_wind_10(i);
     else
-        EWMA2_ppl_01_30_tx(i) = alpha * EWMA_ppl_01_30_tx(i) + (1-alpha)*EWMA2_ppl_01_30_tx(i-1);        
+        EWMA2_ppl_01_30_tx_wind_10(i) = alpha * EWMA_ppl_01_30_tx_wind_10(i) + (1-alpha)*EWMA2_ppl_01_30_tx_wind_10(i-1);        
     end
     
 end
 
-EWMA2_mean_ppl_01_30_tx = mean(EWMA2_ppl_01_30_tx); 
-EWMA1_mean_ppl_01_30_tx = mean(EWMA_ppl_01_30_tx);
-EWMA1_std_ppl_01_30_tx  = std(EWMA_ppl_01_30_tx);
+EWMA2_mean_ppl_01_30_tx_wind_10 = mean(EWMA2_ppl_01_30_tx_wind_10); 
+EWMA1_mean_ppl_01_30_tx_wind_10 = mean(EWMA_ppl_01_30_tx_wind_10);
+EWMA1_std_ppl_01_30_tx_wind_10  = std(EWMA_ppl_01_30_tx_wind_10);
 
 % _20_
-[ rows, columns ] = size(EWMA_ppl_01_20_tx);
+[ rows, columns ] = size(EWMA_ppl_01_20_tx_wind_10);
 
 for i = 1:rows
     
     if(i == 1)
-        EWMA2_ppl_01_20_tx(i) =  EWMA_ppl_01_20_tx(i);
+        EWMA2_ppl_01_20_tx_wind_10(i) =  EWMA_ppl_01_20_tx_wind_10(i);
     else
-        EWMA2_ppl_01_20_tx(i) = alpha * EWMA_ppl_01_20_tx(i) + (1-alpha)*EWMA2_ppl_01_20_tx(i-1);        
+        EWMA2_ppl_01_20_tx_wind_10(i) = alpha * EWMA_ppl_01_20_tx_wind_10(i) + (1-alpha)*EWMA2_ppl_01_20_tx_wind_10(i-1);        
     end
     
 end
 
-EWMA2_mean_ppl_01_20_tx = mean(EWMA2_ppl_01_20_tx);
-EWMA1_mean_ppl_01_20_tx = mean(EWMA_ppl_01_20_tx);
-EWMA1_std_ppl_01_20_tx  = std(EWMA_ppl_01_20_tx);
+EWMA2_mean_ppl_01_20_tx_wind_10 = mean(EWMA2_ppl_01_20_tx_wind_10);
+EWMA1_mean_ppl_01_20_tx_wind_10 = mean(EWMA_ppl_01_20_tx_wind_10);
+EWMA1_std_ppl_01_20_tx_wind_10  = std(EWMA_ppl_01_20_tx_wind_10);
 
 % _10_
-[ rows, columns ] = size(EWMA_ppl_01_10_tx);
+[ rows, columns ] = size(EWMA_ppl_01_10_tx_wind_10);
 
 for i = 1:rows
     
     if(i == 1)
-        EWMA2_ppl_01_10_tx(i) =  EWMA_ppl_01_10_tx(i);
+        EWMA2_ppl_01_10_tx_wind_10(i) =  EWMA_ppl_01_10_tx_wind_10(i);
     else
-        EWMA2_ppl_01_10_tx(i) = alpha * EWMA_ppl_01_10_tx(i) + (1-alpha)*EWMA2_ppl_01_10_tx(i-1);        
+        EWMA2_ppl_01_10_tx_wind_10(i) = alpha * EWMA_ppl_01_10_tx_wind_10(i) + (1-alpha)*EWMA2_ppl_01_10_tx_wind_10(i-1);        
     end
     
 end
 
-EWMA2_mean_ppl_01_10_tx = mean(EWMA2_ppl_01_10_tx); 
-EWMA1_mean_ppl_01_10_tx = mean(EWMA_ppl_01_10_tx);
-EWMA1_std_ppl_01_10_tx  = std(EWMA_ppl_01_10_tx);
+EWMA2_mean_ppl_01_10_tx_wind_10 = mean(EWMA2_ppl_01_10_tx_wind_10); 
+EWMA1_mean_ppl_01_10_tx_wind_10 = mean(EWMA_ppl_01_10_tx_wind_10);
+EWMA1_std_ppl_01_10_tx_wind_10  = std(EWMA_ppl_01_10_tx_wind_10);
 
 % _0_
-[ rows, columns ] = size(EWMA_ppl_01_0_tx);
+[ rows, columns ] = size(EWMA_ppl_01_0_tx_wind_10);
 
 for i = 1:rows
     
     if(i == 1)
-        EWMA2_ppl_01_0_tx(i) =  EWMA_ppl_01_0_tx(i);
+        EWMA2_ppl_01_0_tx_wind_10(i) =  EWMA_ppl_01_0_tx_wind_10(i);
     else
-        EWMA2_ppl_01_0_tx(i) = alpha * EWMA_ppl_01_0_tx(i) + (1-alpha)*EWMA2_ppl_01_0_tx(i-1);        
+        EWMA2_ppl_01_0_tx_wind_10(i) = alpha * EWMA_ppl_01_0_tx_wind_10(i) + (1-alpha)*EWMA2_ppl_01_0_tx_wind_10(i-1);        
     end
     
 end
 
-EWMA2_mean_ppl_01_0_tx = mean(EWMA2_ppl_01_0_tx); 
-EWMA1_mean_ppl_01_0_tx = mean(EWMA_ppl_01_0_tx);
-EWMA1_std_ppl_01_0_tx  = std(EWMA_ppl_01_0_tx);
+EWMA2_mean_ppl_01_0_tx_wind_10 = mean(EWMA2_ppl_01_0_tx_wind_10); 
+EWMA1_mean_ppl_01_0_tx_wind_10 = mean(EWMA_ppl_01_0_tx_wind_10);
+EWMA1_std_ppl_01_0_tx_wind_10  = std(EWMA_ppl_01_0_tx_wind_10);
 
 % consolidado
-EWMA2_mean_ppl_01_vec = [ EWMA2_mean_ppl_01_0_tx
-                          EWMA2_mean_ppl_01_10_tx
-                          EWMA2_mean_ppl_01_20_tx
-                          EWMA2_mean_ppl_01_30_tx
-                          EWMA2_mean_ppl_01_40_tx
-                          EWMA2_mean_ppl_01_50_tx
-                          EWMA2_mean_ppl_01_60_tx
-                          EWMA2_mean_ppl_01_70_tx
-                          EWMA2_mean_ppl_01_80_tx
-                          EWMA2_mean_ppl_01_90_tx
-                          EWMA2_mean_ppl_01_100_tx
+EWMA2_mean_ppl_01_vec = [ EWMA2_mean_ppl_01_0_tx_wind_10
+                          EWMA2_mean_ppl_01_10_tx_wind_10
+                          EWMA2_mean_ppl_01_20_tx_wind_10
+                          EWMA2_mean_ppl_01_30_tx_wind_10
+                          EWMA2_mean_ppl_01_40_tx_wind_10
+                          EWMA2_mean_ppl_01_50_tx_wind_10
+                          EWMA2_mean_ppl_01_60_tx_wind_10
+                          EWMA2_mean_ppl_01_70_tx_wind_10
+                          EWMA2_mean_ppl_01_80_tx_wind_10
+                          EWMA2_mean_ppl_01_90_tx_wind_10
+                          EWMA2_mean_ppl_01_100_tx_wind_10
                           ]; 
 
-EWMA1_mean_ppl_01_vec = [ EWMA1_mean_ppl_01_0_tx
-                          EWMA1_mean_ppl_01_10_tx
-                          EWMA1_mean_ppl_01_20_tx
-                          EWMA1_mean_ppl_01_30_tx
-                          EWMA1_mean_ppl_01_40_tx
-                          EWMA1_mean_ppl_01_50_tx
-                          EWMA1_mean_ppl_01_60_tx
-                          EWMA1_mean_ppl_01_70_tx
-                          EWMA1_mean_ppl_01_80_tx
-                          EWMA1_mean_ppl_01_90_tx
-                          EWMA1_mean_ppl_01_100_tx
+EWMA1_mean_ppl_01_vec = [ EWMA1_mean_ppl_01_0_tx_wind_10
+                          EWMA1_mean_ppl_01_10_tx_wind_10
+                          EWMA1_mean_ppl_01_20_tx_wind_10
+                          EWMA1_mean_ppl_01_30_tx_wind_10
+                          EWMA1_mean_ppl_01_40_tx_wind_10
+                          EWMA1_mean_ppl_01_50_tx_wind_10
+                          EWMA1_mean_ppl_01_60_tx_wind_10
+                          EWMA1_mean_ppl_01_70_tx_wind_10
+                          EWMA1_mean_ppl_01_80_tx_wind_10
+                          EWMA1_mean_ppl_01_90_tx_wind_10
+                          EWMA1_mean_ppl_01_100_tx_wind_10
                           ];   
                       
-EWMA1_std_ppl_01_vec = [  EWMA1_std_ppl_01_0_tx
-                          EWMA1_std_ppl_01_10_tx
-                          EWMA1_std_ppl_01_20_tx
-                          EWMA1_std_ppl_01_30_tx
-                          EWMA1_std_ppl_01_40_tx
-                          EWMA1_std_ppl_01_50_tx
-                          EWMA1_std_ppl_01_60_tx
-                          EWMA1_std_ppl_01_70_tx
-                          EWMA1_std_ppl_01_80_tx
-                          EWMA1_std_ppl_01_90_tx
-                          EWMA1_std_ppl_01_100_tx
+EWMA1_std_ppl_01_vec = [  EWMA1_std_ppl_01_0_tx_wind_10
+                          EWMA1_std_ppl_01_10_tx_wind_10
+                          EWMA1_std_ppl_01_20_tx_wind_10
+                          EWMA1_std_ppl_01_30_tx_wind_10
+                          EWMA1_std_ppl_01_40_tx_wind_10
+                          EWMA1_std_ppl_01_50_tx_wind_10
+                          EWMA1_std_ppl_01_60_tx_wind_10
+                          EWMA1_std_ppl_01_70_tx_wind_10
+                          EWMA1_std_ppl_01_80_tx_wind_10
+                          EWMA1_std_ppl_01_90_tx_wind_10
+                          EWMA1_std_ppl_01_100_tx_wind_10
                           ];                      

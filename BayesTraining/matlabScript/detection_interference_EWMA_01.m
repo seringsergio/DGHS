@@ -97,8 +97,19 @@ error_int_90_EWMA_01 = abs(90 - mean(det_int_90_EWMA_01));
 error_int_100_EWMA_01 = abs(100 - mean(det_int_100_EWMA_01));
 
 % vectors 
-mean_int_vec_EWMA_01   = [mean_int_0_EWMA_01 mean_int_10_EWMA_01 mean_int_20_EWMA_01 mean_int_30_EWMA_01 mean_int_40_EWMA_01 mean_int_50_EWMA_01 mean_int_60_EWMA_01 mean_int_70_EWMA_01 mean_int_80_EWMA_01 mean_int_90_EWMA_01 mean_int_100_EWMA_01]
-std_int_vec_EWMA_01   = [std_int_0_EWMA_01 std_int_10_EWMA_01 std_int_20_EWMA_01 std_int_30_EWMA_01 std_int_40_EWMA_01 std_int_50_EWMA_01 std_int_60_EWMA_01 std_int_70_EWMA_01 std_int_80_EWMA_01 std_int_90_EWMA_01 std_int_100_EWMA_01]
-error_int_vec_EWMA_01  = [error_int_0_EWMA_01 error_int_10_EWMA_01 error_int_20_EWMA_01 error_int_30_EWMA_01 error_int_40_EWMA_01 error_int_50_EWMA_01 error_int_60_EWMA_01 error_int_70_EWMA_01 error_int_80_EWMA_01 error_int_90_EWMA_01 error_int_100_EWMA_01]
+mean_int_vec_EWMA_01   = [mean_int_0_EWMA_01 mean_int_10_EWMA_01 mean_int_20_EWMA_01 mean_int_30_EWMA_01 mean_int_40_EWMA_01 mean_int_50_EWMA_01 mean_int_60_EWMA_01 mean_int_70_EWMA_01 mean_int_80_EWMA_01 mean_int_90_EWMA_01 mean_int_100_EWMA_01];
+std_int_vec_EWMA_01   = [std_int_0_EWMA_01 std_int_10_EWMA_01 std_int_20_EWMA_01 std_int_30_EWMA_01 std_int_40_EWMA_01 std_int_50_EWMA_01 std_int_60_EWMA_01 std_int_70_EWMA_01 std_int_80_EWMA_01 std_int_90_EWMA_01 std_int_100_EWMA_01];
+error_int_vec_EWMA_01  = [error_int_0_EWMA_01 error_int_10_EWMA_01 error_int_20_EWMA_01 error_int_30_EWMA_01 error_int_40_EWMA_01 error_int_50_EWMA_01 error_int_60_EWMA_01 error_int_70_EWMA_01 error_int_80_EWMA_01 error_int_90_EWMA_01 error_int_100_EWMA_01];
 
+% Para graficar 
+mean_error_int_vec_EWMA_01 = mean(error_int_vec_EWMA_01);
+std_error_int_vec_EWMA_01 = std(error_int_vec_EWMA_01);
 
+mean_percentage_det_int_vec_EWMA_01 = mean(percentage_det_int_vec_EWMA_01); 
+std_percentage_det_int_vec_EWMA_01 = std(percentage_det_int_vec_EWMA_01); 
+
+% Identificar donde el error es menor de 1% (porcent_value)
+where_error_int_vec_EWMA_01 = (error_int_vec_EWMA_01 <= porcent_value); % identificar valores menores a 1%
+where_error_int_vec_EWMA_01 = double(where_error_int_vec_EWMA_01); % convertir los valores de logical a double
+where_error_int_vec_EWMA_01(where_error_int_vec_EWMA_01 == 0) = NaN;% convertir los Zeros en NaN
+where_error_int_vec_EWMA_01(where_error_int_vec_EWMA_01 == 1) = 0; % convertir los 1 en zeros
