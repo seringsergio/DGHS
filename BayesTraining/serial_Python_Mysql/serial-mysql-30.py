@@ -9,7 +9,7 @@ dbConn = MySQLdb.connect("localhost","root","1234","sink") or die ("Could not co
 #cursor = dbConn.cursor()
 
 #device = '/dev/tty.usbmodem1411' #this will have to be changed to the serial port you are using
-device = '/dev/ttyUSB6' #this will have to be changed to the serial port you are using
+device = '/dev/ttyUSB1' #this will have to be changed to the serial port you are using
 try:
   print "Trying...",device
   skyMote = serial.Serial(device, 115200)
@@ -49,7 +49,7 @@ while True:
        print ""
        #Here we are going to insert the data into the Database
        try:
-          cursor.execute("INSERT INTO int_30_tx (id,num_packets,btp,EWMA_btp_09,EWMA_btp_08,\
+          cursor.execute("INSERT INTO int_30_tx_wind_35 (id,num_packets,btp,EWMA_btp_09,EWMA_btp_08,\
                           EWMA_btp_07,EWMA_btp_06,EWMA_btp_05,EWMA_btp_04,                  \
                           EWMA_btp_03,EWMA_btp_02,EWMA_btp_01,ppl,                          \
                           EWMA_ppl_09,EWMA_ppl_08,EWMA_ppl_07,EWMA_ppl_06,EWMA_ppl_05,      \

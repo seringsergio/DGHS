@@ -49,7 +49,7 @@ while True:
        print ""
        #Here we are going to insert the data into the Database
        try:
-          cursor.execute("INSERT INTO int_0_tx_wind_5 (id,num_packets,btp,EWMA_btp_09,EWMA_btp_08,\
+          cursor.execute("INSERT INTO int_0_tx_wind_35 (id,num_packets,btp,EWMA_btp_09,EWMA_btp_08,\
                           EWMA_btp_07,EWMA_btp_06,EWMA_btp_05,EWMA_btp_04,                  \
                           EWMA_btp_03,EWMA_btp_02,EWMA_btp_01,ppl,                          \
                           EWMA_ppl_09,EWMA_ppl_08,EWMA_ppl_07,EWMA_ppl_06,EWMA_ppl_05,      \

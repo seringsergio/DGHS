@@ -53,7 +53,7 @@ make login MOTES=/dev/ttyUSB0 | java ViewRSSI
 
 //Recordar como no sale el error de wrong password
 make MOTES=/dev/ttyUSB3 TARGET=sky node-environment.upload
-make MOTES=/dev/ttyUSB2 TARGET=sky modulated_carrier_On100Off0.upload
+make MOTES=/dev/ttyUSB3 TARGET=sky modulated_carrier_On100Off0.upload
 make MOTES=/dev/ttyUSB3 TARGET=sky modulated_carrier_On95Off5.upload
 make MOTES=/dev/ttyUSB3 TARGET=sky modulated_carrier_On90Off10.upload
 make MOTES=/dev/ttyUSB3 TARGET=sky modulated_carrier_On80Off20.upload
@@ -111,7 +111,7 @@ make RF_CHANNEL=20
 0. cd /home/seringsergio/Desktop/DGHS/contiki/examples/rssi-scanner
 1. subir el codigo rssi-scanner-cc2420.c al sky node
 
-  make MOTES=/dev/ttyUSB4 TARGET=sky rssi-scanner-cc2420.upload
+  make MOTES=/dev/ttyUSB2 TARGET=sky rssi-scanner-cc2420.upload
 
 2. Compilar la clase ViewRSSI.class
 3. ejecutar en el terminal

@@ -1,9 +1,18 @@
 
 %% Window 10 
+
+readFiles_training_wind_5
 readFiles_training_wind_10
+readFiles_training_wind_15
+readFiles_training_wind_20
+readFiles_training_wind_25
+readFiles_training_wind_30
+readFiles_training_wind_35
+readFiles_training_wind_40
+readFiles_training_wind_45
+readFiles_training_wind_50
 
 
-% 
 % btp_100_tx = xlsread('/home/seringsergio/Desktop/DGHS/BayesTraining/results/vary_int_csv_v1/int_100_tx.xlsx','int_100_tx','C2:C179');
 % EWMA_btp_09_100_tx = xlsread('/home/seringsergio/Desktop/DGHS/BayesTraining/results/vary_int_csv_v1/int_100_tx.xlsx','int_100_tx','D2:D179');
 % EWMA_btp_08_100_tx = xlsread('/home/seringsergio/Desktop/DGHS/BayesTraining/results/vary_int_csv_v1/int_100_tx.xlsx','int_100_tx','E2:E179');
