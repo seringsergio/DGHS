@@ -145,17 +145,17 @@ title('count-EWMA-ppl 01')
 % 
 
 figure;
-plot(int_vec_0_100, mean_int_vec_EWMA_01)
+plot(int_vec_0_100, mean_int_vec_EWMA_01_wind_10)
 hold on 
 plot(int_vec_0_100, int_vec_0_100);
 
 figure;
-plot(int_vec_0_100, error_int_vec_EWMA_01)
+plot(int_vec_0_100, error_int_vec_EWMA_01_wind_10)
 
 
 %% detection accuracy
 
 figure
-plot(int_vec_0_100,percentage_det_int_vec_EWMA_01)
+plot(int_vec_0_100,percentage_det_int_vec_EWMA_01_wind_10)
 
 

@@ -231,8 +231,8 @@ LINES TERMINATED BY '\n';
 SELECT "id","num_packets","btp","EWMA_btp_09","EWMA_btp_08","EWMA_btp_07","EWMA_btp_06","EWMA_btp_05","EWMA_btp_04","EWMA_btp_03","EWMA_btp_02","EWMA_btp_01","ppl","EWMA_ppl_09","EWMA_ppl_08","EWMA_ppl_07","EWMA_ppl_06","EWMA_ppl_05","EWMA_ppl_04","EWMA_ppl_03","EWMA_ppl_02","EWMA_ppl_01","date"
 UNION ALL
 SELECT *
-FROM int_40_tx_wind_35
-INTO OUTFILE "/var/lib/mysql-files/int_40_tx_wind_35.csv"
+FROM int_80_tx_wind_20
+INTO OUTFILE "/var/lib/mysql-files/int_80_tx_wind_20.csv"
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n';

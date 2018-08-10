@@ -41,7 +41,7 @@
 ///////////////////////DEFINE////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 
-#define WINDOW_NUM_PACKETS 15
+#define WINDOW_NUM_PACKETS 25
 #define EWMA_ALPHA_01 0.10f //The f indicates it is a float value
 #define EWMA_ALPHA_02 0.20f //The f indicates it is a float value
 #define EWMA_ALPHA_03 0.30f //The f indicates it is a float value
