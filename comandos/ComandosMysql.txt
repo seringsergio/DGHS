@@ -138,7 +138,7 @@ date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 # 15. idle_transmit
 # 16. idle_listen
 
-//For recording statistics when the interference is 50%
+//For recording statistics when the window varies
 create table powertrace_wind_5 (
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 clock_time INT(11) NOT NULL,
@@ -277,6 +277,19 @@ INTO OUTFILE "/var/lib/mysql-files/det_int_100_EWMA_09.csv"
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n';
+
+
+SELECT "id", "clock_time", "linkaddr_node_addr", "seqno", "all_cpu", "all_lpm", "all_transmit",
+       "all_listen", "all_idle_transmit", "all_idle_listen", "cpu", "lpm", "transmit", "listen",
+       "idle_transmit", "idle_listen", "date"
+UNION ALL
+SELECT *
+FROM powertrace_wind_5
+INTO OUTFILE "/var/lib/mysql-files/powertrace_wind_5.csv"
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n';
+
 
 cp /var/lib/mysql-files/LinkStatisticsPaperV3_21_2.csv /home/sink/Desktop/contiki/examples/paperInterferingNode/Results_Paper_Interfering_Node/
 
