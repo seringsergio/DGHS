@@ -119,11 +119,43 @@ EWMA_ppl_01 FLOAT(8,2),
 date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+#Valores que llegan de Powertrace
+# 0.  str: No envio ninguna string. Entonces esta vacia. No se ve nada
+# 1.  clock_time
+# 2.  P
+# 3.  linkaddr_node_addr
+# 4.  seqno
+# 5.  all_cpu
+# 6.  all_lpm
+# 7.  all_transmit
+# 8.  all_listen
+# 9.  all_idle_transmit
+# 10. all_idle_listen
+# 11. cpu
+# 12. lpm
+# 13. transmit
+# 14. listen
+# 15. idle_transmit
+# 16. idle_listen
+
 //For recording statistics when the interference is 50%
-create table det_int_0_wind_15 (
+create table powertrace_wind_5 (
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-det_int INT(11) NOT NULL,
-det_int_redundant INT(11) NOT NULL,
+clock_time INT(11) NOT NULL,
+linkaddr_node_addr DECIMAL(5,2) NOT NULL,
+seqno INT(11) NOT NULL,
+all_cpu INT(11) NOT NULL,
+all_lpm INT(11) NOT NULL,
+all_transmit INT(11) NOT NULL,
+all_listen INT(11) NOT NULL,
+all_idle_transmit INT(11) NOT NULL,
+all_idle_listen INT(11) NOT NULL,
+cpu INT(11) NOT NULL,
+lpm INT(11) NOT NULL,
+transmit INT(11) NOT NULL,
+listen INT(11) NOT NULL,
+idle_transmit INT(11) NOT NULL,
+idle_listen INT(11) NOT NULL,
 date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -231,8 +263,8 @@ LINES TERMINATED BY '\n';
 SELECT "id","num_packets","btp","EWMA_btp_09","EWMA_btp_08","EWMA_btp_07","EWMA_btp_06","EWMA_btp_05","EWMA_btp_04","EWMA_btp_03","EWMA_btp_02","EWMA_btp_01","ppl","EWMA_ppl_09","EWMA_ppl_08","EWMA_ppl_07","EWMA_ppl_06","EWMA_ppl_05","EWMA_ppl_04","EWMA_ppl_03","EWMA_ppl_02","EWMA_ppl_01","date"
 UNION ALL
 SELECT *
-FROM int_100_tx_wind_5
-INTO OUTFILE "/var/lib/mysql-files/int_100_tx_wind_5.csv"
+FROM int_100_tx_wind_15
+INTO OUTFILE "/var/lib/mysql-files/int_100_tx_wind_15.csv"
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n';

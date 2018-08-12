@@ -48,6 +48,16 @@
 #include "dev/leds.h"
 
 #include <stdio.h>
+
+//Stores the stats comming from csma.c
+struct csma_stats
+{
+ uint16_t packets_dropped; //We can count up to 65535 message lost
+ uint16_t delay;
+};
+
+struct csma_stats csma_stats;
+
 /*---------------------------------------------------------------------------*/
 PROCESS(example_broadcast_process, "BROADCAST example");
 AUTOSTART_PROCESSES(&example_broadcast_process);
@@ -72,7 +82,7 @@ PROCESS_THREAD(example_broadcast_process, ev, data)
 
   /* Start powertracing, once every two seconds. */
   powertrace_start(CLOCK_SECOND * 2);
-  
+
   broadcast_open(&broadcast, 129, &broadcast_call);
 
   while(1) {

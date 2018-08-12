@@ -61,7 +61,7 @@ frecuency_table_ppl_01_wind_35 = [ count_EWMA_ppl_01_0_tx_wind_35' count_EWMA_pp
 
 %% detection interference
 
-detection_interference_EWMA_01_wind_35
+% detection_interference_EWMA_01_wind_35
 % detection_interference_EWMA_02_wind_35
 % detection_interference_EWMA_03_wind_35
 % detection_interference_EWMA_04_wind_35

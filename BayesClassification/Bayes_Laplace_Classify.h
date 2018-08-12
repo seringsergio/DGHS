@@ -69,7 +69,7 @@
 //////////////////////////
 
 // Exponential weighted moving average (EWMA)
-#define WINDOW_NUM_PACKETS 10
+#define WINDOW_NUM_PACKETS 35
 #define EWMA_ALPHA_01 0.10f //The f indicates it is a float value
 #define EWMA_ALPHA_02 0.20f //The f indicates it is a float value
 #define EWMA_ALPHA_03 0.30f //The f indicates it is a float value
@@ -140,6 +140,7 @@ struct csma_results
 
 extern float likelihood[ROWS_T][COLUMNS_T];
 
+//Varying the EWMA_ALPHA_0X
 extern const uint8_t frequency_table_btp_01[ROWS_T][COLUMNS_T];
 extern const uint8_t frequency_table_ppl_01[ROWS_T][COLUMNS_T];
 extern const uint8_t frequency_table_btp_02[ROWS_T][COLUMNS_T];
@@ -158,6 +159,23 @@ extern const uint8_t frequency_table_btp_08[ROWS_T][COLUMNS_T];
 extern const uint8_t frequency_table_ppl_08[ROWS_T][COLUMNS_T];
 extern const uint8_t frequency_table_btp_09[ROWS_T][COLUMNS_T];
 extern const uint8_t frequency_table_ppl_09[ROWS_T][COLUMNS_T];
+
+//Varying the window: WINDOW_NUM_PACKETS
+extern const uint8_t frequency_table_btp_wind_5[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_ppl_wind_5[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_btp_wind_10[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_ppl_wind_10[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_btp_wind_15[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_ppl_wind_15[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_btp_wind_20[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_ppl_wind_20[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_btp_wind_25[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_ppl_wind_25[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_btp_wind_30[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_ppl_wind_30[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_btp_wind_35[ROWS_T][COLUMNS_T];
+extern const uint8_t frequency_table_ppl_wind_35[ROWS_T][COLUMNS_T];
+
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////STRUCTS///////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
