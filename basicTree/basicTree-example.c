@@ -601,6 +601,7 @@ PROCESS_THREAD(send_basicTree, ev, data)
   static struct t_data t_data;
   static uint16_t num_packets;
   static char res1[20];
+  static radio_value_t val;
 
 
   PROCESS_EXITHANDLER(broadcast_close(&t_broadcast);)
@@ -608,13 +609,20 @@ PROCESS_THREAD(send_basicTree, ev, data)
   PROCESS_BEGIN();
 
   // Set Transmission Power in the Zolertia
+  // NETSTACK_RADIO.set_value(RADIO_PARAM_TXPOWER,<power in dbm>)
+  // Ref: https://github.com/contiki-os/contiki/issues/1259
   #if REMOTE
-    if(NETSTACK_RADIO.set_value(RADIO_PARAM_TXPOWER, MINUS24_DBM) == RADIO_RESULT_OK)
+    if(NETSTACK_RADIO.set_value(RADIO_PARAM_TXPOWER, MY_TX_POWER_DBM) == RADIO_RESULT_OK)
     {
-      printf("Transmission Power Set = %04X\n", MINUS24_DBM);
+      NETSTACK_RADIO.get_value(RADIO_PARAM_TXPOWER, &val);
+      printf("Transmission Power Set : %d dBm\n", val);
+    }
+    else if(NETSTACK_RADIO.set_value(RADIO_PARAM_TXPOWER, MY_TX_POWER_DBM) == RADIO_RESULT_INVALID_VALUE)
+    {
+      printf("ERROR: RADIO_RESULT_INVALID_VALUE\n");
     }else
     {
-      printf("ERROR: The Transmission Power could not be set\n");
+      printf("ERROR: The TX power could not be set\n");
     }
   #endif
 

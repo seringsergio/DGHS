@@ -105,7 +105,7 @@ make NODEID=0x0200 MOTES=/dev/ttyUSB2 TARGET=zoul BOARD=remote-reva DGHS_Bayes_L
 make NODEID=0x0200 MOTES=/dev/ttyUSB2 TARGET=zoul BOARD=remote-reva DGHS_Bayes_Laplace_Classify_v2_wind_30.upload
 make NODEID=0x0200 MOTES=/dev/ttyUSB2 TARGET=zoul BOARD=remote-reva DGHS_Bayes_Laplace_Classify_v2_wind_35.upload
 
-make NODEID=0x0200 MOTES=/dev/ttyUSB2 TARGET=zoul BOARD=remote-reva powertrace-broadcast.upload
+make NODEID=0x0200 MOTES=/dev/ttyUSB2 TARGET=zoul BOARD=remote-reva example-powertrace.upload
 
 //Seleccionar puerto
 make MOTES=/dev/ttyUSB0

@@ -1,0 +1,22 @@
+%% Remote constants
+
+rtimer_second_remote     = 32768; % RTIMER_SECOND: It is the number of ticks per second  for the remote
+powertrace_period        = 10; % powertrace_start(CLOCK_SECOND * POWERTRACE_PERIOD); //En la pagina este valor se llama runtime.
+current_CPU_remote       =    ; % Esta en miliamperios
+current_LPM_remote       =    ; % Esta en miliamperios
+current_TX_remote_0_dBm  = 24 ; % Esta en miliamTX_remote_0_dBm  = 24 ; % Esta en miliamperios para 0 dBm
+current_RX_remote        = 20 ; % Esta en miliamperios
+voltage_remote           =    ; % Esta en voltios
+
+%TelosB CM5000 (3V,       Voltage --
+%               330 uA,   CPU
+%               1.1 uA,   LPM 
+%               17.4mA,  TX --++
+%               18.8mA   RX) --++
+
+%
+% ENERGEST_TYPE_CPU //full power cpu time
+% ENERGEST_TYPE_LPM //reduced power cpu time
+% ENERGEST_TYPE_LISTEN //radio rx time
+% ENERGEST_TYPE_TRANSMIT //radio tx time
+

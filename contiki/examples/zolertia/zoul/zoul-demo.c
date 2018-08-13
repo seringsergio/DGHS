@@ -81,6 +81,16 @@
 
 #include <stdio.h>
 #include <stdint.h>
+
+//Stores the stats comming from csma.c
+struct csma_stats
+{
+ uint16_t packets_dropped; //We can count up to 65535 message lost
+ uint16_t delay;
+};
+
+struct csma_stats csma_stats;
+
 /*---------------------------------------------------------------------------*/
 #define LOOP_PERIOD         8
 #define LOOP_INTERVAL       (CLOCK_SECOND * LOOP_PERIOD)
@@ -196,4 +206,3 @@ PROCESS_THREAD(zoul_demo_process, ev, data)
  * @}
  * @}
  */
-

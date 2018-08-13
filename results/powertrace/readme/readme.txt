@@ -7,4 +7,4 @@ Adjunto un pdf de la pg en esta misma carpeta
 2. La pg anterior incluye un archivo en excel donde se hacen los calculos. Tambien lo incluyo en estado
 misma carpeta.
 
-3. 
+3. Incluyo el datasheet de cc2538 para ver la corriente consumida (ma) en TX y RX

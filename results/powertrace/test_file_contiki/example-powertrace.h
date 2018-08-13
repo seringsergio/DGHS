@@ -33,6 +33,35 @@
 #define EXAMPLE_POWERTRACE_H
 
 /////////////////////////////////////////////////////////////////////////////
+///////////////////////DEFINE///////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+
+#define POWERTRACE_PERIOD 10 //Number of seconds between executions of the powertrace measurements
+#define REMOTE            1 // Indico que estoy usando el remote
+
+// Set Transmission Power in the Zolertia
+// NETSTACK_RADIO.set_value(RADIO_PARAM_TXPOWER,<power in dbm>)
+// Ref: https://github.com/contiki-os/contiki/issues/1259
+#define MY_TX_POWER_DBM  0 //This number is in dBm e.g., "0" "7"  "-24"
+
+//Transmission Power for the Zolertia
+//REF: https://zolertia.io/docs/IoT_in_five_days-v1.0.pdf
+//     Table 4.1. CC2538 Transmission power recommended values
+/*#define PLUS7_DBM     0xFF
+#define PLUS5_DBM     0xED
+#define PLUS3_DBM     0xD5
+#define PLUS1_DBM     0xC5
+#define ZERO_DBM      0xB6
+#define MINUS1_DBM    0xB0
+#define MINUS3_DBM    0xA1
+#define MINUS5_DBM    0x91
+#define MINUS7_DBM    0x88
+#define MINUS9_DBM    0x72
+#define MINUS11_DBM   0x62
+#define MINUS13_DBM   0x58
+#define MINUS15_DBM   0x42
+#define MINUS24_DBM   0x00*/
+/////////////////////////////////////////////////////////////////////////////
 ///////////////////////STRUCTS///////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 

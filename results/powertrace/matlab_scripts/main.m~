@@ -5,7 +5,8 @@
 
 % La pg menciona las referencias:
 % A. Dunkels, “The contikimac radio duty cycling protocol,” Swedish Institute of Computer Science report, 2011.
-% A. Dunkels, F. Osterlind, N. Tsiftes, and Z. He, “Software-based on-line energy estimation for sensor nodes,” in Proceedings of the 4th workshop on Embedded networked sensors. ACM, 2007, pp. 28–32.
+
+A. Dunkels, F. Osterlind, N. Tsiftes, and Z. He, “Software-based on-line energy estimation for sensor nodes,” in Proceedings of the 4th workshop on Embedded networked sensors. ACM, 2007, pp. 28–32.
 
 %% init
 close all

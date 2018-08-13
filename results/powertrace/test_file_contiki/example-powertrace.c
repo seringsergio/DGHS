@@ -51,6 +51,8 @@
 
 //My includes
 #include "example-powertrace.h"
+//To set the Transmission Power
+#include "net/netstack.h"
 
 struct csma_stats csma_stats;
 
@@ -70,14 +72,36 @@ static struct broadcast_conn broadcast;
 PROCESS_THREAD(example_broadcast_process, ev, data)
 {
   static struct etimer et;
-
+  static radio_value_t val;
   PROCESS_EXITHANDLER(broadcast_close(&broadcast);)
 
   PROCESS_BEGIN();
 
 
-  /* Start powertracing, once every two seconds. */
-  powertrace_start(CLOCK_SECOND * 2);
+  // Set Transmission Power in the Zolertia
+  // NETSTACK_RADIO.set_value(RADIO_PARAM_TXPOWER,<power in dbm>)
+  // Ref: https://github.com/contiki-os/contiki/issues/1259
+  #if REMOTE
+    if(NETSTACK_RADIO.set_value(RADIO_PARAM_TXPOWER, MY_TX_POWER_DBM) == RADIO_RESULT_OK)
+    {
+      NETSTACK_RADIO.get_value(RADIO_PARAM_TXPOWER, &val);
+      printf("Transmission Power Set : %d dBm\n", val);
+    }
+    else if(NETSTACK_RADIO.set_value(RADIO_PARAM_TXPOWER, MY_TX_POWER_DBM) == RADIO_RESULT_INVALID_VALUE)
+    {
+      printf("ERROR: RADIO_RESULT_INVALID_VALUE\n");
+    }else
+    {
+      printf("ERROR: The TX power could not be set\n");
+    }
+  #endif
+
+
+
+  /* Start powertracing, once every 10 seconds. */
+  powertrace_start(CLOCK_SECOND * POWERTRACE_PERIOD);
+
+  printf("Ticks per second, RTIMER_SECOND: %u\n", RTIMER_SECOND);
 
   broadcast_open(&broadcast, 129, &broadcast_call);
 
