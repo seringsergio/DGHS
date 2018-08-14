@@ -102,6 +102,7 @@ PROCESS_THREAD(example_broadcast_process, ev, data)
   powertrace_start(CLOCK_SECOND * POWERTRACE_PERIOD);
 
   printf("Ticks per second, RTIMER_SECOND: %u\n", RTIMER_SECOND);
+  printf("POWERTRACE_PERIOD: %d\n", POWERTRACE_PERIOD);
 
   broadcast_open(&broadcast, 129, &broadcast_call);
 

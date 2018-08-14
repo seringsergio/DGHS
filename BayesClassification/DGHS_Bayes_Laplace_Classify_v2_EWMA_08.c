@@ -200,8 +200,8 @@ PROCESS_THREAD(analyze_csma_results, ev, data)
         //see for in matlab count_EWMA_btp_08
         for(i=1; i <= num_divisions_btp; i++ )
         {
-          lower_interval = (float) (i-1) * (float) range_EWMA_btp_08 / (float) num_divisions_btp;
-          upper_interval = (float) (i)   * (float) range_EWMA_btp_08 / (float) num_divisions_btp;
+          lower_interval = (float) (i-1) * (float) range_EWMA_btp_08_wind_10 / (float) num_divisions_btp;
+          upper_interval = (float) (i)   * (float) range_EWMA_btp_08_wind_10 / (float) num_divisions_btp;
           ftoa(lower_interval, res1, 2);
           ftoa(csma_results.EWMA_btp_08, res2, 2);
           ftoa(upper_interval, res3, 2);

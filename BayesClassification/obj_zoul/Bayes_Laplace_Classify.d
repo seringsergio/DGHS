@@ -49,7 +49,10 @@ obj_zoul/Bayes_Laplace_Classify.o: Bayes_Laplace_Classify.c \
  ../contiki/core/./net/rime/rimestats.h ../contiki/core/./net/rime/rmh.h \
  ../contiki/core/./net/rime/route.h ../contiki/core/./net/rime/rucb.h \
  ../contiki/core/./net/rime/timesynch.h ../contiki/core/./net/mac/mac.h \
- ../contiki/core/./dev/radio.h ../contiki/core/./net/rime/trickle.h
+ ../contiki/core/./dev/radio.h ../contiki/core/./net/rime/trickle.h \
+ ../contiki/core/./net/netstack.h ../contiki/core/./net/llsec/llsec.h \
+ ../contiki/core/./net/mac/rdc.h ../contiki/core/./net/mac/framer.h \
+ ../contiki/apps/powertrace/powertrace.h
 Bayes_Laplace_Classify.c :
  Bayes_Laplace_Classify.h ../contiki/core/./lib/list.h :
  ../contiki/core/./contiki.h ../contiki/core/./contiki-version.h :
@@ -102,3 +105,6 @@ Bayes_Laplace_Classify.c :
  ../contiki/core/./net/rime/route.h ../contiki/core/./net/rime/rucb.h :
  ../contiki/core/./net/rime/timesynch.h ../contiki/core/./net/mac/mac.h :
  ../contiki/core/./dev/radio.h ../contiki/core/./net/rime/trickle.h :
+ ../contiki/core/./net/netstack.h ../contiki/core/./net/llsec/llsec.h :
+ ../contiki/core/./net/mac/rdc.h ../contiki/core/./net/mac/framer.h :
+ ../contiki/apps/powertrace/powertrace.h :

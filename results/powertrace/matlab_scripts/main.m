@@ -21,10 +21,21 @@ save('/home/seringsergio/Desktop/DGHS/results/powertrace/excel_files/consolidado
 
 
 %% Upload workspace
-load('/home/seringsergio/Desktop/DGHS/results/powertrace/excel_files/consolidado_powertrace.mat') 
+% load('/home/seringsergio/Desktop/DGHS/results/powertrace/excel_files/consolidado_powertrace.mat') 
 
 %% def_constants
 
 def_constants
+
+
+%% Calculo de potencia en mW
+
+calc_power_consumption
+
+%% plot
+
+plot_in_time
+
+
 
 

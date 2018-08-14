@@ -9,7 +9,7 @@ dbConn = MySQLdb.connect("localhost","root","1234","sink") or die ("Could not co
 #cursor = dbConn.cursor()
 
 #device = '/dev/tty.usbmodem1411' #this will have to be changed to the serial port you are using
-device = '/dev/ttyUSB2' #this will have to be changed to the serial port you are using
+device = '/dev/ttyUSB0' #this will have to be changed to the serial port you are using
 try:
   print "Trying...",device
   skyMote = serial.Serial(device, 115200)

@@ -49,19 +49,40 @@
 ///////////////////////DEFINE////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 
+//////////////////////////////
+/////POWERTRACE///////////////
+//To set the Transmission Power
+#include "net/netstack.h"
+#include "powertrace.h"
+
+#define REMOTE            1 // Indico que estoy usando el remote
+#define MY_TX_POWER_DBM   0 //This number is in dBm e.g., "0" "7"  "-24"
+#define POWERTRACE_PERIOD 10 //Number of seconds between executions of the powertrace measurements
+
+//////////////////////////////
+
 #define ROWS_T       40  //Rows of the table
 #define COLUMNS_T    11  //Columns of the table
 
 //matlab
-#define range_EWMA_btp_01   1050.4f
-#define range_EWMA_btp_02   1137.5f
-#define range_EWMA_btp_03   1180.0f
-#define range_EWMA_btp_04   1205.4f
-#define range_EWMA_btp_05   1264.4f
-#define range_EWMA_btp_06   1311.4f
-#define range_EWMA_btp_07   1347.8f
-#define range_EWMA_btp_08   1377.2f
-#define range_EWMA_btp_09   1403.0f
+#define range_EWMA_btp_01_wind_5    1125.9f
+#define range_EWMA_btp_01_wind_10   1050.4f
+#define range_EWMA_btp_01_wind_15   1015.8f
+#define range_EWMA_btp_01_wind_20   1025.8f
+#define range_EWMA_btp_01_wind_25   1107.3f
+#define range_EWMA_btp_01_wind_30    971.0f
+#define range_EWMA_btp_01_wind_35    976.9f
+
+#define range_EWMA_btp_02_wind_10   1137.5f
+#define range_EWMA_btp_03_wind_10   1180.0f
+#define range_EWMA_btp_04_wind_10   1205.4f
+#define range_EWMA_btp_05_wind_10   1264.4f
+#define range_EWMA_btp_06_wind_10   1311.4f
+#define range_EWMA_btp_07_wind_10   1347.8f
+#define range_EWMA_btp_08_wind_10   1377.2f
+#define range_EWMA_btp_09_wind_10   1403.0f
+
+
 
 #define range_ppl           1.0f
 #define num_divisions_ppl   ROWS_T
@@ -69,7 +90,7 @@
 //////////////////////////
 
 // Exponential weighted moving average (EWMA)
-#define WINDOW_NUM_PACKETS 35
+#define WINDOW_NUM_PACKETS 5
 #define EWMA_ALPHA_01 0.10f //The f indicates it is a float value
 #define EWMA_ALPHA_02 0.20f //The f indicates it is a float value
 #define EWMA_ALPHA_03 0.30f //The f indicates it is a float value

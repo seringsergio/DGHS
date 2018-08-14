@@ -33,3 +33,12 @@ voltage_remote           = 3.2    ; % Ejemplo zoul-demo.c en Contiki. Esta en vo
 % 
 % This section describes the mechanisms for entering sleep mode, and the conditions for waking up from sleep mode.
 
+%% define plot constants
+num_muestras = 33; % numero de columnas de las variables all_cpu, all_lpm, all_transmit, all_listen
+X_axis_time  = 0:powertrace_period:( (num_muestras-2)*powertrace_period); 
+
+num_nodes    = 2; % numero de nodos
+X_axis_nodes = 1:1:num_nodes;
+
+int_vec_nodes = zeros(num_nodes);
+

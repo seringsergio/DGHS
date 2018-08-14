@@ -108,8 +108,32 @@ PROCESS_THREAD(compute_csma_stats, ev, data)
   static float EWMA_ppl_01;
   static struct csma_results csma_results;
   static char res1[20], res2[20];
+  static radio_value_t val;
 
   PROCESS_BEGIN();
+
+
+  // Set Transmission Power in the Zolertia
+  // NETSTACK_RADIO.set_value(RADIO_PARAM_TXPOWER,<power in dbm>)
+  // Ref: https://github.com/contiki-os/contiki/issues/1259
+  #if REMOTE
+    if(NETSTACK_RADIO.set_value(RADIO_PARAM_TXPOWER, MY_TX_POWER_DBM) == RADIO_RESULT_OK)
+    {
+      NETSTACK_RADIO.get_value(RADIO_PARAM_TXPOWER, &val);
+      printf("Transmission Power Set : %d dBm\n", val);
+    }
+    else if(NETSTACK_RADIO.set_value(RADIO_PARAM_TXPOWER, MY_TX_POWER_DBM) == RADIO_RESULT_INVALID_VALUE)
+    {
+      printf("ERROR: RADIO_RESULT_INVALID_VALUE\n");
+    }else
+    {
+      printf("ERROR: The TX power could not be set\n");
+    }
+  #endif
+
+  /* Start powertracing, once every POWERTRACE_PERIOD seconds. */
+  powertrace_start(CLOCK_SECOND * POWERTRACE_PERIOD);
+  printf("POWERTRACE_PERIOD: %d\n", POWERTRACE_PERIOD);
 
   unicast_open(&uc, 146, &unicast_callbacks);
 
@@ -200,8 +224,8 @@ PROCESS_THREAD(analyze_csma_results, ev, data)
         //see for in matlab count_EWMA_btp_01
         for(i=1; i <= num_divisions_btp; i++ )
         {
-          lower_interval = (float) (i-1) * (float) range_EWMA_btp_01 / (float) num_divisions_btp;
-          upper_interval = (float) (i)   * (float) range_EWMA_btp_01 / (float) num_divisions_btp;
+          lower_interval = (float) (i-1) * (float) range_EWMA_btp_01_wind_25 / (float) num_divisions_btp;
+          upper_interval = (float) (i)   * (float) range_EWMA_btp_01_wind_25 / (float) num_divisions_btp;
           ftoa(lower_interval, res1, 2);
           ftoa(csma_results.EWMA_btp_01, res2, 2);
           ftoa(upper_interval, res3, 2);
