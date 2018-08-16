@@ -85,7 +85,7 @@ while True:
           # );
 
           # I have to insert minimum 2 data plus id. So, it is necesary to have 1 redundant data: det_int_redundant
-          cursor.execute("INSERT INTO powertrace_wind_5 (id, clock_time, linkaddr_node_addr,                      \
+          cursor.execute("INSERT INTO powertrace_wind_5_int_0 (id, clock_time, linkaddr_node_addr,                \
                           seqno, all_cpu, all_lpm, all_transmit, all_listen, all_idle_transmit, all_idle_listen,  \
                           cpu, lpm, transmit, listen, idle_transmit, idle_listen)                                 \
           VALUES (NULL,%s,%s,%s,%s,                                                                               \

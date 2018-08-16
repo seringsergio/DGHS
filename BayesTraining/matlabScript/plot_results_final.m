@@ -264,3 +264,6 @@ title('Error for different α', 'FontSize', 22, 'fontweight','bold');
 % hold on
 % plot(x_eje_btp_01, count_EWMA_btp_01_0_tx)
 % title('count-EWMA-btp 01')
+
+
+

@@ -3808,7 +3808,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a
 LOAD /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv7-m/libc.a
 END GROUP
 
-.text           0x0000000000202000     0x72e2
+.text           0x0000000000202000     0x72b6
                 0x0000000000202000                _text = .
  *(SORT(.vectors))
  .vectors       0x0000000000202000      0x28c obj_zoul/startup-gcc.o
@@ -4349,444 +4349,443 @@ END GROUP
  .text.send     0x0000000000206578       0x20 obj_zoul/nullsec.o
  .text.recv_uc  0x0000000000206598       0x10 DGHS_Bayes_Laplace_Classify_v2_wind_5.co
  .text.process_thread_detect_interference
-                0x00000000002065a8      0x2e8 DGHS_Bayes_Laplace_Classify_v2_wind_5.co
+                0x00000000002065a8      0x2e0 DGHS_Bayes_Laplace_Classify_v2_wind_5.co
  .text.process_thread_analyze_csma_results
-                0x0000000000206890      0x1b0 DGHS_Bayes_Laplace_Classify_v2_wind_5.co
- .text.sent_uc  0x0000000000206a40       0x30 DGHS_Bayes_Laplace_Classify_v2_wind_5.co
+                0x0000000000206888      0x1b0 DGHS_Bayes_Laplace_Classify_v2_wind_5.co
+ .text.sent_uc  0x0000000000206a38       0x30 DGHS_Bayes_Laplace_Classify_v2_wind_5.co
  .text.reset_csma_stats
-                0x0000000000206a70       0x10 DGHS_Bayes_Laplace_Classify_v2_wind_5.co
-                0x0000000000206a70                reset_csma_stats
+                0x0000000000206a68       0x10 DGHS_Bayes_Laplace_Classify_v2_wind_5.co
+                0x0000000000206a68                reset_csma_stats
  .text.process_thread_compute_csma_stats
-                0x0000000000206a80      0x234 DGHS_Bayes_Laplace_Classify_v2_wind_5.co
+                0x0000000000206a78      0x20c DGHS_Bayes_Laplace_Classify_v2_wind_5.co
  .text.calculate_likelihood
-                0x0000000000206cb4       0x6c obj_zoul/Bayes_Laplace_Classify.o
-                0x0000000000206cb4                calculate_likelihood
+                0x0000000000206c84       0x6c obj_zoul/Bayes_Laplace_Classify.o
+                0x0000000000206c84                calculate_likelihood
  .text.calculate_class_prob
-                0x0000000000206d20       0x60 obj_zoul/Bayes_Laplace_Classify.o
-                0x0000000000206d20                calculate_class_prob
+                0x0000000000206cf0       0x60 obj_zoul/Bayes_Laplace_Classify.o
+                0x0000000000206cf0                calculate_class_prob
  .text.calculate_probability_of_event
-                0x0000000000206d80       0x48 obj_zoul/Bayes_Laplace_Classify.o
-                0x0000000000206d80                calculate_probability_of_event
- .text          0x0000000000206dc8      0x21c /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_arm_addsubsf3.o)
-                0x0000000000206dc8                __aeabi_frsub
-                0x0000000000206dd0                __subsf3
-                0x0000000000206dd0                __aeabi_fsub
-                0x0000000000206dd4                __aeabi_fadd
-                0x0000000000206dd4                __addsf3
-                0x0000000000206f34                __aeabi_ui2f
-                0x0000000000206f34                __floatunsisf
-                0x0000000000206f3c                __aeabi_i2f
-                0x0000000000206f3c                __floatsisf
-                0x0000000000206f58                __floatundisf
-                0x0000000000206f58                __aeabi_ul2f
-                0x0000000000206f68                __floatdisf
-                0x0000000000206f68                __aeabi_l2f
- .text          0x0000000000206fe4      0x2a0 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_arm_muldivsf3.o)
-                0x0000000000206fe4                __mulsf3
-                0x0000000000206fe4                __aeabi_fmul
-                0x000000000020714c                __divsf3
-                0x000000000020714c                __aeabi_fdiv
- .text          0x0000000000207284       0xec /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_arm_cmpsf2.o)
-                0x0000000000207284                __gtsf2
-                0x0000000000207284                __gesf2
-                0x000000000020728c                __lesf2
-                0x000000000020728c                __ltsf2
-                0x0000000000207294                __nesf2
-                0x0000000000207294                __eqsf2
-                0x0000000000207294                __cmpsf2
-                0x00000000002072f4                __aeabi_cfrcmple
-                0x00000000002072fc                __aeabi_cfcmple
-                0x00000000002072fc                __aeabi_cfcmpeq
-                0x000000000020730c                __aeabi_fcmpeq
-                0x0000000000207320                __aeabi_fcmplt
-                0x0000000000207334                __aeabi_fcmple
-                0x0000000000207348                __aeabi_fcmpge
-                0x000000000020735c                __aeabi_fcmpgt
- .text          0x0000000000207370       0x4c /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_arm_fixsfsi.o)
-                0x0000000000207370                __fixsfsi
-                0x0000000000207370                __aeabi_f2iz
- .text          0x00000000002073bc       0x30 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_aeabi_uldivmod.o)
-                0x00000000002073bc                __aeabi_uldivmod
- .text          0x00000000002073ec       0x60 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(bpabi.o)
-                0x00000000002073ec                __gnu_ldivmod_helper
-                0x000000000020741c                __gnu_uldivmod_helper
- .text          0x000000000020744c        0x4 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_dvmd_tls.o)
-                0x000000000020744c                __aeabi_ldiv0
-                0x000000000020744c                __aeabi_idiv0
- .text          0x0000000000207450      0x2ac /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_divdi3.o)
-                0x0000000000207450                __divdi3
- .text          0x00000000002076fc      0x270 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_udivdi3.o)
-                0x00000000002076fc                __udivdi3
- .text.memcmp   0x000000000020796c       0x64 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv7-m/libc.a(lib_a-memcmp.o)
-                0x000000000020796c                memcmp
- .text          0x00000000002079d0       0xec /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv7-m/libc.a(lib_a-memcpy.o)
-                0x00000000002079d0                memcpy
- .text.memset   0x0000000000207abc       0x9c /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv7-m/libc.a(lib_a-memset.o)
-                0x0000000000207abc                memset
+                0x0000000000206d50       0x48 obj_zoul/Bayes_Laplace_Classify.o
+                0x0000000000206d50                calculate_probability_of_event
+ .text          0x0000000000206d98      0x21c /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_arm_addsubsf3.o)
+                0x0000000000206d98                __aeabi_frsub
+                0x0000000000206da0                __subsf3
+                0x0000000000206da0                __aeabi_fsub
+                0x0000000000206da4                __aeabi_fadd
+                0x0000000000206da4                __addsf3
+                0x0000000000206f04                __aeabi_ui2f
+                0x0000000000206f04                __floatunsisf
+                0x0000000000206f0c                __aeabi_i2f
+                0x0000000000206f0c                __floatsisf
+                0x0000000000206f28                __floatundisf
+                0x0000000000206f28                __aeabi_ul2f
+                0x0000000000206f38                __floatdisf
+                0x0000000000206f38                __aeabi_l2f
+ .text          0x0000000000206fb4      0x2a0 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_arm_muldivsf3.o)
+                0x0000000000206fb4                __mulsf3
+                0x0000000000206fb4                __aeabi_fmul
+                0x000000000020711c                __divsf3
+                0x000000000020711c                __aeabi_fdiv
+ .text          0x0000000000207254       0xec /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_arm_cmpsf2.o)
+                0x0000000000207254                __gtsf2
+                0x0000000000207254                __gesf2
+                0x000000000020725c                __lesf2
+                0x000000000020725c                __ltsf2
+                0x0000000000207264                __nesf2
+                0x0000000000207264                __eqsf2
+                0x0000000000207264                __cmpsf2
+                0x00000000002072c4                __aeabi_cfrcmple
+                0x00000000002072cc                __aeabi_cfcmple
+                0x00000000002072cc                __aeabi_cfcmpeq
+                0x00000000002072dc                __aeabi_fcmpeq
+                0x00000000002072f0                __aeabi_fcmplt
+                0x0000000000207304                __aeabi_fcmple
+                0x0000000000207318                __aeabi_fcmpge
+                0x000000000020732c                __aeabi_fcmpgt
+ .text          0x0000000000207340       0x4c /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_arm_fixsfsi.o)
+                0x0000000000207340                __fixsfsi
+                0x0000000000207340                __aeabi_f2iz
+ .text          0x000000000020738c       0x30 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_aeabi_uldivmod.o)
+                0x000000000020738c                __aeabi_uldivmod
+ .text          0x00000000002073bc       0x60 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(bpabi.o)
+                0x00000000002073bc                __gnu_ldivmod_helper
+                0x00000000002073ec                __gnu_uldivmod_helper
+ .text          0x000000000020741c        0x4 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_dvmd_tls.o)
+                0x000000000020741c                __aeabi_ldiv0
+                0x000000000020741c                __aeabi_idiv0
+ .text          0x0000000000207420      0x2ac /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_divdi3.o)
+                0x0000000000207420                __divdi3
+ .text          0x00000000002076cc      0x270 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_udivdi3.o)
+                0x00000000002076cc                __udivdi3
+ .text.memcmp   0x000000000020793c       0x64 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv7-m/libc.a(lib_a-memcmp.o)
+                0x000000000020793c                memcmp
+ .text          0x00000000002079a0       0xec /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv7-m/libc.a(lib_a-memcpy.o)
+                0x00000000002079a0                memcpy
+ .text.memset   0x0000000000207a8c       0x9c /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv7-m/libc.a(lib_a-memset.o)
+                0x0000000000207a8c                memset
  .text.default_handler
-                0x0000000000207b58        0x2 obj_zoul/startup-gcc.o
-                0x0000000000207b58                default_handler
+                0x0000000000207b28        0x2 obj_zoul/startup-gcc.o
+                0x0000000000207b28                default_handler
  .text.nmi_handler
-                0x0000000000207b5a        0x6 obj_zoul/startup-gcc.o
-                0x0000000000207b5a                nmi_handler
- .text.fade     0x0000000000207b60       0x54 obj_zoul/contiki-main.o
+                0x0000000000207b2a        0x6 obj_zoul/startup-gcc.o
+                0x0000000000207b2a                nmi_handler
+ .text.fade     0x0000000000207b30       0x54 obj_zoul/contiki-main.o
  .text.board_init
-                0x0000000000207bb4        0x4 obj_zoul/board.o
-                0x0000000000207bb4                board_init
+                0x0000000000207b84        0x4 obj_zoul/board.o
+                0x0000000000207b84                board_init
  .text.rtimer_arch_init
-                0x0000000000207bb8        0x2 obj_zoul/rtimer-arch.o
-                0x0000000000207bb8                rtimer_arch_init
+                0x0000000000207b88        0x2 obj_zoul/rtimer-arch.o
+                0x0000000000207b88                rtimer_arch_init
  .text.uart0_isr
-                0x0000000000207bba        0x6 obj_zoul/uart.o
-                0x0000000000207bba                uart0_isr
+                0x0000000000207b8a        0x6 obj_zoul/uart.o
+                0x0000000000207b8a                uart0_isr
  .text.uart1_isr
-                0x0000000000207bc0        0x6 obj_zoul/uart.o
-                0x0000000000207bc0                uart1_isr
+                0x0000000000207b90        0x6 obj_zoul/uart.o
+                0x0000000000207b90                uart1_isr
  .text.gpio_port_a_isr
-                0x0000000000207bc6        0x6 obj_zoul/gpio.o
-                0x0000000000207bc6                gpio_port_a_isr
+                0x0000000000207b96        0x6 obj_zoul/gpio.o
+                0x0000000000207b96                gpio_port_a_isr
  .text.gpio_port_b_isr
-                0x0000000000207bcc        0x6 obj_zoul/gpio.o
-                0x0000000000207bcc                gpio_port_b_isr
+                0x0000000000207b9c        0x6 obj_zoul/gpio.o
+                0x0000000000207b9c                gpio_port_b_isr
  .text.gpio_port_c_isr
-                0x0000000000207bd2        0x6 obj_zoul/gpio.o
-                0x0000000000207bd2                gpio_port_c_isr
+                0x0000000000207ba2        0x6 obj_zoul/gpio.o
+                0x0000000000207ba2                gpio_port_c_isr
  .text.gpio_port_d_isr
-                0x0000000000207bd8        0x6 obj_zoul/gpio.o
-                0x0000000000207bd8                gpio_port_d_isr
- .text.send     0x0000000000207bde       0x12 obj_zoul/cc2538-rf.o
- .text.putchar  0x0000000000207bf0       0x10 obj_zoul/dbg.o
-                0x0000000000207bf0                putchar
+                0x0000000000207ba8        0x6 obj_zoul/gpio.o
+                0x0000000000207ba8                gpio_port_d_isr
+ .text.send     0x0000000000207bae       0x12 obj_zoul/cc2538-rf.o
+ .text.putchar  0x0000000000207bc0       0x10 obj_zoul/dbg.o
+                0x0000000000207bc0                putchar
  .text.dbg_send_bytes
-                0x0000000000207c00       0x20 obj_zoul/dbg.o
-                0x0000000000207c00                dbg_send_bytes
- .text.puts     0x0000000000207c20       0x20 obj_zoul/dbg.o
-                0x0000000000207c20                puts
+                0x0000000000207bd0       0x20 obj_zoul/dbg.o
+                0x0000000000207bd0                dbg_send_bytes
+ .text.puts     0x0000000000207bf0       0x20 obj_zoul/dbg.o
+                0x0000000000207bf0                puts
  .text.configure
-                0x0000000000207c40        0x4 obj_zoul/cc2538-temp-sensor.o
- .text.status   0x0000000000207c44        0x4 obj_zoul/cc2538-temp-sensor.o
- .text.value    0x0000000000207c48       0x34 obj_zoul/cc2538-temp-sensor.o
+                0x0000000000207c10        0x4 obj_zoul/cc2538-temp-sensor.o
+ .text.status   0x0000000000207c14        0x4 obj_zoul/cc2538-temp-sensor.o
+ .text.value    0x0000000000207c18       0x34 obj_zoul/cc2538-temp-sensor.o
  .text.configure
-                0x0000000000207c7c        0x4 obj_zoul/vdd3-sensor.o
- .text.status   0x0000000000207c80        0x4 obj_zoul/vdd3-sensor.o
- .text.value    0x0000000000207c84       0x2a obj_zoul/vdd3-sensor.o
+                0x0000000000207c4c        0x4 obj_zoul/vdd3-sensor.o
+ .text.status   0x0000000000207c50        0x4 obj_zoul/vdd3-sensor.o
+ .text.value    0x0000000000207c54       0x2a obj_zoul/vdd3-sensor.o
  .text.write_str
-                0x0000000000207cae       0x10 obj_zoul/dbg-printf.o
+                0x0000000000207c7e       0x10 obj_zoul/dbg-printf.o
  .text.autostart_start
-                0x0000000000207cbe       0x14 obj_zoul/autostart.o
-                0x0000000000207cbe                autostart_start
+                0x0000000000207c8e       0x14 obj_zoul/autostart.o
+                0x0000000000207c8e                autostart_start
  .text.etimer_set
-                0x0000000000207cd2       0x12 obj_zoul/etimer.o
-                0x0000000000207cd2                etimer_set
+                0x0000000000207ca2       0x12 obj_zoul/etimer.o
+                0x0000000000207ca2                etimer_set
  .text.etimer_reset
-                0x0000000000207ce4       0x12 obj_zoul/etimer.o
-                0x0000000000207ce4                etimer_reset
+                0x0000000000207cb4       0x12 obj_zoul/etimer.o
+                0x0000000000207cb4                etimer_reset
  .text.etimer_expired
-                0x0000000000207cf6        0xa obj_zoul/etimer.o
-                0x0000000000207cf6                etimer_expired
+                0x0000000000207cc6        0xa obj_zoul/etimer.o
+                0x0000000000207cc6                etimer_expired
  .text.call_process
-                0x0000000000207d00        0xc obj_zoul/process.o
+                0x0000000000207cd0        0xc obj_zoul/process.o
  .text.rtimer_init
-                0x0000000000207d0c        0x4 obj_zoul/rtimer.o
-                0x0000000000207d0c                rtimer_init
+                0x0000000000207cdc        0x4 obj_zoul/rtimer.o
+                0x0000000000207cdc                rtimer_init
  .text.timer_set
-                0x0000000000207d10        0xe obj_zoul/timer.o
-                0x0000000000207d10                timer_set
+                0x0000000000207ce0        0xe obj_zoul/timer.o
+                0x0000000000207ce0                timer_set
  .text.timer_reset
-                0x0000000000207d1e        0xa obj_zoul/timer.o
-                0x0000000000207d1e                timer_reset
+                0x0000000000207cee        0xa obj_zoul/timer.o
+                0x0000000000207cee                timer_reset
  .text.timer_expired
-                0x0000000000207d28       0x1c obj_zoul/timer.o
-                0x0000000000207d28                timer_expired
+                0x0000000000207cf8       0x1c obj_zoul/timer.o
+                0x0000000000207cf8                timer_expired
  .text.list_init
-                0x0000000000207d44        0x6 obj_zoul/list.o
-                0x0000000000207d44                list_init
+                0x0000000000207d14        0x6 obj_zoul/list.o
+                0x0000000000207d14                list_init
  .text.list_head
-                0x0000000000207d4a        0x4 obj_zoul/list.o
-                0x0000000000207d4a                list_head
+                0x0000000000207d1a        0x4 obj_zoul/list.o
+                0x0000000000207d1a                list_head
  .text.list_tail
-                0x0000000000207d4e       0x10 obj_zoul/list.o
-                0x0000000000207d4e                list_tail
+                0x0000000000207d1e       0x10 obj_zoul/list.o
+                0x0000000000207d1e                list_tail
  .text.list_remove
-                0x0000000000207d5e       0x28 obj_zoul/list.o
-                0x0000000000207d5e                list_remove
+                0x0000000000207d2e       0x28 obj_zoul/list.o
+                0x0000000000207d2e                list_remove
  .text.list_add
-                0x0000000000207d86       0x1e obj_zoul/list.o
-                0x0000000000207d86                list_add
+                0x0000000000207d56       0x1e obj_zoul/list.o
+                0x0000000000207d56                list_add
  .text.list_push
-                0x0000000000207da4       0x12 obj_zoul/list.o
-                0x0000000000207da4                list_push
+                0x0000000000207d74       0x12 obj_zoul/list.o
+                0x0000000000207d74                list_push
  .text.list_length
-                0x0000000000207db6        0xe obj_zoul/list.o
-                0x0000000000207db6                list_length
+                0x0000000000207d86        0xe obj_zoul/list.o
+                0x0000000000207d86                list_length
  .text.list_item_next
-                0x0000000000207dc4        0x6 obj_zoul/list.o
-                0x0000000000207dc4                list_item_next
+                0x0000000000207d94        0x6 obj_zoul/list.o
+                0x0000000000207d94                list_item_next
  .text.memb_init
-                0x0000000000207dca       0x20 obj_zoul/memb.o
-                0x0000000000207dca                memb_init
+                0x0000000000207d9a       0x20 obj_zoul/memb.o
+                0x0000000000207d9a                memb_init
  .text.memb_alloc
-                0x0000000000207dea       0x28 obj_zoul/memb.o
-                0x0000000000207dea                memb_alloc
+                0x0000000000207dba       0x28 obj_zoul/memb.o
+                0x0000000000207dba                memb_alloc
  .text.memb_free
-                0x0000000000207e12       0x2c obj_zoul/memb.o
-                0x0000000000207e12                memb_free
+                0x0000000000207de2       0x2c obj_zoul/memb.o
+                0x0000000000207de2                memb_free
  .text.memb_inmemb
-                0x0000000000207e3e       0x1c obj_zoul/memb.o
-                0x0000000000207e3e                memb_inmemb
+                0x0000000000207e0e       0x1c obj_zoul/memb.o
+                0x0000000000207e0e                memb_inmemb
  .text.ringbuf_init
-                0x0000000000207e5a        0xe obj_zoul/ringbuf.o
-                0x0000000000207e5a                ringbuf_init
+                0x0000000000207e2a        0xe obj_zoul/ringbuf.o
+                0x0000000000207e2a                ringbuf_init
  .text.ringbuf_put
-                0x0000000000207e68       0x28 obj_zoul/ringbuf.o
-                0x0000000000207e68                ringbuf_put
+                0x0000000000207e38       0x28 obj_zoul/ringbuf.o
+                0x0000000000207e38                ringbuf_put
  .text.ringbuf_get
-                0x0000000000207e90       0x20 obj_zoul/ringbuf.o
-                0x0000000000207e90                ringbuf_get
+                0x0000000000207e60       0x20 obj_zoul/ringbuf.o
+                0x0000000000207e60                ringbuf_get
  .text.header_size
-                0x0000000000207eb0       0x16 obj_zoul/chameleon-bitopt.o
+                0x0000000000207e80       0x16 obj_zoul/chameleon-bitopt.o
  .text.get_bits
-                0x0000000000207ec6       0x74 obj_zoul/chameleon-bitopt.o
-                0x0000000000207ec6                get_bits
+                0x0000000000207e96       0x74 obj_zoul/chameleon-bitopt.o
+                0x0000000000207e96                get_bits
  .text.unpack_header
-                0x0000000000207f3a       0xa6 obj_zoul/chameleon-bitopt.o
+                0x0000000000207f0a       0xa6 obj_zoul/chameleon-bitopt.o
  .text.set_bits
-                0x0000000000207fe0       0xa0 obj_zoul/chameleon-bitopt.o
-                0x0000000000207fe0                set_bits
+                0x0000000000207fb0       0xa0 obj_zoul/chameleon-bitopt.o
+                0x0000000000207fb0                set_bits
  .text.pack_header
-                0x0000000000208080       0x8a obj_zoul/chameleon-bitopt.o
+                0x0000000000208050       0x8a obj_zoul/chameleon-bitopt.o
  .text.adv_packet_sent
-                0x000000000020810a        0x2 obj_zoul/broadcast-announcement.o
+                0x00000000002080da        0x2 obj_zoul/broadcast-announcement.o
  .text.adv_packet_received
-                0x000000000020810c       0x44 obj_zoul/broadcast-announcement.o
+                0x00000000002080dc       0x44 obj_zoul/broadcast-announcement.o
  .text.sent_by_abc
-                0x0000000000208150        0xa obj_zoul/broadcast.o
+                0x0000000000208120        0xa obj_zoul/broadcast.o
  .text.recv_from_abc
-                0x000000000020815a       0x22 obj_zoul/broadcast.o
+                0x000000000020812a       0x22 obj_zoul/broadcast.o
  .text.channel_set_attributes
-                0x000000000020817c       0x18 obj_zoul/channel.o
-                0x000000000020817c                channel_set_attributes
+                0x000000000020814c       0x18 obj_zoul/channel.o
+                0x000000000020814c                channel_set_attributes
  .text.chameleon_init
-                0x0000000000208194        0x4 obj_zoul/chameleon.o
-                0x0000000000208194                chameleon_init
+                0x0000000000208164        0x4 obj_zoul/chameleon.o
+                0x0000000000208164                chameleon_init
  .text.abc_send
-                0x0000000000208198        0x4 obj_zoul/abc.o
-                0x0000000000208198                abc_send
+                0x0000000000208168        0x4 obj_zoul/abc.o
+                0x0000000000208168                abc_send
  .text.abc_input
-                0x000000000020819c        0xa obj_zoul/abc.o
-                0x000000000020819c                abc_input
+                0x000000000020816c        0xa obj_zoul/abc.o
+                0x000000000020816c                abc_input
  .text.abc_sent
-                0x00000000002081a6        0xa obj_zoul/abc.o
-                0x00000000002081a6                abc_sent
- .text.init     0x00000000002081b0       0x28 obj_zoul/rime.o
+                0x0000000000208176        0xa obj_zoul/abc.o
+                0x0000000000208176                abc_sent
+ .text.init     0x0000000000208180       0x28 obj_zoul/rime.o
  .text.sent_by_broadcast
-                0x00000000002081d8        0xa obj_zoul/unicast.o
+                0x00000000002081a8        0xa obj_zoul/unicast.o
  .text.unicast_send
-                0x00000000002081e2       0x14 obj_zoul/unicast.o
-                0x00000000002081e2                unicast_send
+                0x00000000002081b2       0x14 obj_zoul/unicast.o
+                0x00000000002081b2                unicast_send
  .text.svcall_handler
-                0x00000000002081f6       0x1e obj_zoul/mtarch.o
-                0x00000000002081f6                svcall_handler
+                0x00000000002081c6       0x1e obj_zoul/mtarch.o
+                0x00000000002081c6                svcall_handler
  .text.pendsv_handler
-                0x0000000000208214       0x18 obj_zoul/mtarch.o
-                0x0000000000208214                pendsv_handler
+                0x00000000002081e4       0x18 obj_zoul/mtarch.o
+                0x00000000002081e4                pendsv_handler
  .text.queuebuf_update_attr_from_packetbuf
-                0x000000000020822c        0xc obj_zoul/queuebuf.o
-                0x000000000020822c                queuebuf_update_attr_from_packetbuf
+                0x00000000002081fc        0xc obj_zoul/queuebuf.o
+                0x00000000002081fc                queuebuf_update_attr_from_packetbuf
  .text.queuebuf_update_from_packetbuf
-                0x0000000000208238       0x1c obj_zoul/queuebuf.o
-                0x0000000000208238                queuebuf_update_from_packetbuf
+                0x0000000000208208       0x1c obj_zoul/queuebuf.o
+                0x0000000000208208                queuebuf_update_from_packetbuf
  .text.queuebuf_attr
-                0x0000000000208254        0xc obj_zoul/queuebuf.o
-                0x0000000000208254                queuebuf_attr
+                0x0000000000208224        0xc obj_zoul/queuebuf.o
+                0x0000000000208224                queuebuf_attr
  .text.linkaddr_copy
-                0x0000000000208260        0x6 obj_zoul/linkaddr.o
-                0x0000000000208260                linkaddr_copy
+                0x0000000000208230        0x6 obj_zoul/linkaddr.o
+                0x0000000000208230                linkaddr_copy
  .text.linkaddr_cmp
-                0x0000000000208266       0x10 obj_zoul/linkaddr.o
-                0x0000000000208266                linkaddr_cmp
- .text.parse    0x0000000000208276       0x9e obj_zoul/framer-802154.o
- .text.create   0x0000000000208314        0x6 obj_zoul/framer-802154.o
+                0x0000000000208236       0x10 obj_zoul/linkaddr.o
+                0x0000000000208236                linkaddr_cmp
+ .text.parse    0x0000000000208246       0x9e obj_zoul/framer-802154.o
+ .text.create   0x00000000002082e4        0x6 obj_zoul/framer-802154.o
  .text.hdr_length
-                0x000000000020831a        0x6 obj_zoul/framer-802154.o
+                0x00000000002082ea        0x6 obj_zoul/framer-802154.o
  .text.packet_sent
-                0x0000000000208320       0xca obj_zoul/csma.o
+                0x00000000002082f0       0xca obj_zoul/csma.o
  .text.frame802154_has_panid
-                0x00000000002083ea       0xb0 obj_zoul/frame802154.o
-                0x00000000002083ea                frame802154_has_panid
+                0x00000000002083ba       0xb0 obj_zoul/frame802154.o
+                0x00000000002083ba                frame802154_has_panid
  .text.field_len
-                0x000000000020849a       0x84 obj_zoul/frame802154.o
+                0x000000000020846a       0x84 obj_zoul/frame802154.o
  .text.frame802154_is_broadcast_addr
-                0x000000000020851e       0x1e obj_zoul/frame802154.o
-                0x000000000020851e                frame802154_is_broadcast_addr
+                0x00000000002084ee       0x1e obj_zoul/frame802154.o
+                0x00000000002084ee                frame802154_is_broadcast_addr
  .text.frame802154_hdrlen
-                0x000000000020853c       0x32 obj_zoul/frame802154.o
-                0x000000000020853c                frame802154_hdrlen
+                0x000000000020850c       0x32 obj_zoul/frame802154.o
+                0x000000000020850c                frame802154_hdrlen
  .text.frame802154_create_fcf
-                0x000000000020856e       0x62 obj_zoul/frame802154.o
-                0x000000000020856e                frame802154_create_fcf
+                0x000000000020853e       0x62 obj_zoul/frame802154.o
+                0x000000000020853e                frame802154_create_fcf
  .text.frame802154_create
-                0x00000000002085d0       0x92 obj_zoul/frame802154.o
-                0x00000000002085d0                frame802154_create
+                0x00000000002085a0       0x92 obj_zoul/frame802154.o
+                0x00000000002085a0                frame802154_create
  .text.frame802154_parse_fcf
-                0x0000000000208662       0x40 obj_zoul/frame802154.o
-                0x0000000000208662                frame802154_parse_fcf
+                0x0000000000208632       0x40 obj_zoul/frame802154.o
+                0x0000000000208632                frame802154_parse_fcf
  .text.mac_call_sent_callback
-                0x00000000002086a2       0x16 obj_zoul/mac.o
-                0x00000000002086a2                mac_call_sent_callback
+                0x0000000000208672       0x16 obj_zoul/mac.o
+                0x0000000000208672                mac_call_sent_callback
  .text.duty_cycle
-                0x00000000002086b8        0x4 obj_zoul/contikimac.o
+                0x0000000000208688        0x4 obj_zoul/contikimac.o
  .text.qsend_packet
-                0x00000000002086bc       0x22 obj_zoul/contikimac.o
- .text.init     0x00000000002086de        0x2 obj_zoul/nullsec.o
+                0x000000000020868c       0x22 obj_zoul/contikimac.o
+ .text.init     0x00000000002086ae        0x2 obj_zoul/nullsec.o
  .text.calculate_N
-                0x00000000002086e0       0x20 obj_zoul/Bayes_Laplace_Classify.o
-                0x00000000002086e0                calculate_N
+                0x00000000002086b0       0x20 obj_zoul/Bayes_Laplace_Classify.o
+                0x00000000002086b0                calculate_N
  .text.calculate_N_class
-                0x0000000000208700       0x20 obj_zoul/Bayes_Laplace_Classify.o
-                0x0000000000208700                calculate_N_class
- .text.reverse  0x0000000000208720       0x1a obj_zoul/Bayes_Laplace_Classify.o
-                0x0000000000208720                reverse
+                0x00000000002086d0       0x20 obj_zoul/Bayes_Laplace_Classify.o
+                0x00000000002086d0                calculate_N_class
+ .text.reverse  0x00000000002086f0       0x1a obj_zoul/Bayes_Laplace_Classify.o
+                0x00000000002086f0                reverse
  .text.intToStr
-                0x000000000020873a       0x3c obj_zoul/Bayes_Laplace_Classify.o
-                0x000000000020873a                intToStr
- .text.ipow     0x0000000000208776       0x14 obj_zoul/Bayes_Laplace_Classify.o
-                0x0000000000208776                ipow
- .text.ftoa     0x000000000020878a       0x5e obj_zoul/Bayes_Laplace_Classify.o
-                0x000000000020878a                ftoa
+                0x000000000020870a       0x3c obj_zoul/Bayes_Laplace_Classify.o
+                0x000000000020870a                intToStr
+ .text.ipow     0x0000000000208746       0x14 obj_zoul/Bayes_Laplace_Classify.o
+                0x0000000000208746                ipow
+ .text.ftoa     0x000000000020875a       0x5e obj_zoul/Bayes_Laplace_Classify.o
+                0x000000000020875a                ftoa
  *(SORT(.rodata*))
  .rodata.button_sensor
-                0x00000000002087e8       0x10 obj_zoul/button-sensor.o
-                0x00000000002087e8                button_sensor
+                0x00000000002087b8       0x10 obj_zoul/button-sensor.o
+                0x00000000002087b8                button_sensor
  .rodata.uart_regs
-                0x00000000002087f8       0x58 obj_zoul/uart.o
+                0x00000000002087c8       0x58 obj_zoul/uart.o
  .rodata.reset_cause.5162
-                0x0000000000208850       0x10 obj_zoul/sys-ctrl.o
+                0x0000000000208820       0x10 obj_zoul/sys-ctrl.o
  .rodata.output_power
-                0x0000000000208860       0x70 obj_zoul/cc2538-rf.o
+                0x0000000000208830       0x70 obj_zoul/cc2538-rf.o
  .rodata.cc2538_rf_driver
-                0x00000000002088d0       0x38 obj_zoul/cc2538-rf.o
-                0x00000000002088d0                cc2538_rf_driver
+                0x00000000002088a0       0x38 obj_zoul/cc2538-rf.o
+                0x00000000002088a0                cc2538_rf_driver
  .rodata.cc2538_temp_sensor
-                0x0000000000208908       0x10 obj_zoul/cc2538-temp-sensor.o
-                0x0000000000208908                cc2538_temp_sensor
+                0x00000000002088d8       0x10 obj_zoul/cc2538-temp-sensor.o
+                0x00000000002088d8                cc2538_temp_sensor
  .rodata.vdd3_sensor
-                0x0000000000208918       0x10 obj_zoul/vdd3-sensor.o
-                0x0000000000208918                vdd3_sensor
+                0x00000000002088e8       0x10 obj_zoul/vdd3-sensor.o
+                0x00000000002088e8                vdd3_sensor
  .rodata.chameleon_bitopt
-                0x0000000000208928        0xc obj_zoul/chameleon-bitopt.o
-                0x0000000000208928                chameleon_bitopt
+                0x00000000002088f8        0xc obj_zoul/chameleon-bitopt.o
+                0x00000000002088f8                chameleon_bitopt
  .rodata.broadcast_callbacks
-                0x0000000000208934        0x8 obj_zoul/broadcast-announcement.o
+                0x0000000000208904        0x8 obj_zoul/broadcast-announcement.o
  .rodata.broadcast
-                0x000000000020893c        0x8 obj_zoul/broadcast.o
+                0x000000000020890c        0x8 obj_zoul/broadcast.o
  .rodata.rime_driver
-                0x0000000000208944        0xc obj_zoul/rime.o
-                0x0000000000208944                rime_driver
- .rodata.uc     0x0000000000208950        0x8 obj_zoul/unicast.o
+                0x0000000000208914        0xc obj_zoul/rime.o
+                0x0000000000208914                rime_driver
+ .rodata.uc     0x0000000000208920        0x8 obj_zoul/unicast.o
  .rodata.framer_802154
-                0x0000000000208958        0xc obj_zoul/framer-802154.o
-                0x0000000000208958                framer_802154
+                0x0000000000208928        0xc obj_zoul/framer-802154.o
+                0x0000000000208928                framer_802154
  .rodata.csma_driver
-                0x0000000000208964       0x1c obj_zoul/csma.o
-                0x0000000000208964                csma_driver
+                0x0000000000208934       0x1c obj_zoul/csma.o
+                0x0000000000208934                csma_driver
  .rodata.contikimac_driver
-                0x0000000000208980       0x20 obj_zoul/contikimac.o
-                0x0000000000208980                contikimac_driver
+                0x0000000000208950       0x20 obj_zoul/contikimac.o
+                0x0000000000208950                contikimac_driver
  .rodata.contikimac_framer
-                0x00000000002089a0        0xc obj_zoul/contikimac-framer.o
-                0x00000000002089a0                contikimac_framer
+                0x0000000000208970        0xc obj_zoul/contikimac-framer.o
+                0x0000000000208970                contikimac_framer
  .rodata.nullsec_driver
-                0x00000000002089ac       0x10 obj_zoul/nullsec.o
-                0x00000000002089ac                nullsec_driver
+                0x000000000020897c       0x10 obj_zoul/nullsec.o
+                0x000000000020897c                nullsec_driver
  .rodata.autostart_processes
-                0x00000000002089bc       0x10 DGHS_Bayes_Laplace_Classify_v2_wind_5.co
-                0x00000000002089bc                autostart_processes
+                0x000000000020898c       0x10 DGHS_Bayes_Laplace_Classify_v2_wind_5.co
+                0x000000000020898c                autostart_processes
  .rodata.unicast_callbacks
-                0x00000000002089cc        0x8 DGHS_Bayes_Laplace_Classify_v2_wind_5.co
+                0x000000000020899c        0x8 DGHS_Bayes_Laplace_Classify_v2_wind_5.co
  .rodata.linkaddr_null
-                0x00000000002089d4        0x2 obj_zoul/linkaddr.o
-                0x00000000002089d4                linkaddr_null
+                0x00000000002089a4        0x2 obj_zoul/linkaddr.o
+                0x00000000002089a4                linkaddr_null
  .rodata.str1.1
-                0x00000000002089d6      0x147 obj_zoul/powertrace.o
+                0x00000000002089a6      0x147 obj_zoul/powertrace.o
                                         0x148 (size before relaxing)
  .rodata.str1.1
-                0x0000000000208b1d       0x70 obj_zoul/contiki-main.o
+                0x0000000000208aed       0x70 obj_zoul/contiki-main.o
  .rodata.str1.1
-                0x0000000000208b8d        0x7 obj_zoul/button-sensor.o
+                0x0000000000208b5d        0x7 obj_zoul/button-sensor.o
  .rodata.str1.1
-                0x0000000000208b94       0x94 obj_zoul/soc.o
+                0x0000000000208b64       0x94 obj_zoul/soc.o
  .rodata.str1.1
-                0x0000000000208c28       0x2d obj_zoul/sys-ctrl.o
+                0x0000000000208bf8       0x2d obj_zoul/sys-ctrl.o
  .rodata.str1.1
-                0x0000000000208c55       0x11 obj_zoul/cc2538-rf.o
+                0x0000000000208c25       0x11 obj_zoul/cc2538-rf.o
  .rodata.str1.1
-                0x0000000000208c66       0x14 obj_zoul/cc2538-temp-sensor.o
+                0x0000000000208c36       0x14 obj_zoul/cc2538-temp-sensor.o
  .rodata.str1.1
-                0x0000000000208c7a        0x5 obj_zoul/vdd3-sensor.o
+                0x0000000000208c4a        0x5 obj_zoul/vdd3-sensor.o
  .rodata.buffer.4159
-                0x0000000000208c7f       0x10 obj_zoul/strformat.o
+                0x0000000000208c4f       0x10 obj_zoul/strformat.o
  .rodata.str1.1
-                0x0000000000208c8f       0x35 obj_zoul/strformat.o
+                0x0000000000208c5f       0x35 obj_zoul/strformat.o
                                          0x37 (size before relaxing)
  .rodata.buffer.4150
-                0x0000000000208cc4       0x10 obj_zoul/strformat.o
+                0x0000000000208c94       0x10 obj_zoul/strformat.o
  .rodata.str1.1
-                0x0000000000208cd4        0xf obj_zoul/ctimer.o
+                0x0000000000208ca4        0xf obj_zoul/ctimer.o
  .rodata.str1.1
-                0x0000000000208ce3        0xc obj_zoul/etimer.o
+                0x0000000000208cb3        0xc obj_zoul/etimer.o
  .rodata.str1.1
-                0x0000000000208cef        0xe obj_zoul/serial-line.o
+                0x0000000000208cbf        0xe obj_zoul/serial-line.o
  .rodata.str1.1
-                0x0000000000208cfd        0x8 obj_zoul/sensors.o
+                0x0000000000208ccd        0x8 obj_zoul/sensors.o
  .rodata.bitmask
-                0x0000000000208d05        0x9 obj_zoul/chameleon-bitopt.o
+                0x0000000000208cd5        0x9 obj_zoul/chameleon-bitopt.o
  .rodata.attributes
-                0x0000000000208d0e        0x6 obj_zoul/broadcast.o
+                0x0000000000208cde        0x6 obj_zoul/broadcast.o
  .rodata.attributes
-                0x0000000000208d14        0x2 obj_zoul/abc.o
+                0x0000000000208ce4        0x2 obj_zoul/abc.o
  .rodata.str1.1
-                0x0000000000208d16        0x5 obj_zoul/rime.o
+                0x0000000000208ce6        0x5 obj_zoul/rime.o
  .rodata.attributes
-                0x0000000000208d1b        0xa obj_zoul/unicast.o
+                0x0000000000208ceb        0xa obj_zoul/unicast.o
  .rodata.str1.1
-                0x0000000000208d25        0x5 obj_zoul/csma.o
+                0x0000000000208cf5        0x5 obj_zoul/csma.o
  .rodata.str1.1
-                0x0000000000208d2a        0xb obj_zoul/contikimac.o
+                0x0000000000208cfa        0xb obj_zoul/contikimac.o
  .rodata.str1.1
-                0x0000000000208d35        0x8 obj_zoul/nullsec.o
+                0x0000000000208d05        0x8 obj_zoul/nullsec.o
  .rodata.str1.1
-                0x0000000000208d3d      0x235 DGHS_Bayes_Laplace_Classify_v2_wind_5.co
-                                        0x25e (size before relaxing)
+                0x0000000000208d0d      0x239 DGHS_Bayes_Laplace_Classify_v2_wind_5.co
  .rodata.frequency_table_ppl_wind_5
-                0x0000000000208f72      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
-                0x0000000000208f72                frequency_table_ppl_wind_5
+                0x0000000000208f46      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
+                0x0000000000208f46                frequency_table_ppl_wind_5
  .rodata.frequency_table_btp_wind_5
-                0x000000000020912a      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
-                0x000000000020912a                frequency_table_btp_wind_5
-                0x00000000002092e2                _etext = .
+                0x00000000002090fe      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
+                0x00000000002090fe                frequency_table_btp_wind_5
+                0x00000000002092b6                _etext = .
 
-.glue_7         0x00000000002092e4        0x0
- .glue_7        0x00000000002092e4        0x0 linker stubs
+.glue_7         0x00000000002092b8        0x0
+ .glue_7        0x00000000002092b8        0x0 linker stubs
 
-.glue_7t        0x00000000002092e4        0x0
- .glue_7t       0x00000000002092e4        0x0 linker stubs
+.glue_7t        0x00000000002092b8        0x0
+ .glue_7t       0x00000000002092b8        0x0 linker stubs
 
-.vfp11_veneer   0x00000000002092e4        0x0
- .vfp11_veneer  0x00000000002092e4        0x0 linker stubs
+.vfp11_veneer   0x00000000002092b8        0x0
+ .vfp11_veneer  0x00000000002092b8        0x0 linker stubs
 
-.v4_bx          0x00000000002092e4        0x0
- .v4_bx         0x00000000002092e4        0x0 linker stubs
+.v4_bx          0x00000000002092b8        0x0
+ .v4_bx         0x00000000002092b8        0x0 linker stubs
 
-.iplt           0x00000000002092e4        0x0
- .iplt          0x00000000002092e4        0x0 obj_zoul/startup-gcc.o
+.iplt           0x00000000002092b8        0x0
+ .iplt          0x00000000002092b8        0x0 obj_zoul/startup-gcc.o
 
 .socdata        0x0000000020004000       0x40
  *(SORT(.udma_channel_control_table))
  .udma_channel_control_table
                 0x0000000020004000       0x40 obj_zoul/udma.o
 
-.data           0x0000000020004040       0xe8 load address 0x00000000002092e4
+.data           0x0000000020004040       0xe8 load address 0x00000000002092b8
                 0x0000000020004040                _data = .
  *(SORT(.data*))
  .data.powertrace_process
@@ -4835,15 +4834,15 @@ END GROUP
  .data.rf_channel
                 0x0000000020004127        0x1 obj_zoul/cc2538-rf.o
                 0x0000000020004128                _edata = .
-                0x00000000002092e4                _ldata = LOADADDR (.data)
+                0x00000000002092b8                _ldata = LOADADDR (.data)
 
-.igot.plt       0x0000000020004128        0x0 load address 0x00000000002093cc
+.igot.plt       0x0000000020004128        0x0 load address 0x00000000002093a0
  .igot.plt      0x0000000020004128        0x0 obj_zoul/startup-gcc.o
 
-.ARM.exidx      0x00000000002093cc        0x8
+.ARM.exidx      0x00000000002093a0        0x8
  *(SORT(.ARM.exidx*))
- .ARM.exidx     0x00000000002093cc        0x8 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_divdi3.o)
- .ARM.exidx     0x00000000002093d4        0x0 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_udivdi3.o)
+ .ARM.exidx     0x00000000002093a0        0x8 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_divdi3.o)
+ .ARM.exidx     0x00000000002093a8        0x0 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7-m/libgcc.a(_udivdi3.o)
                                           0x8 (size before relaxing)
 
 .bss            0x0000000020004128     0x177b

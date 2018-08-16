@@ -159,3 +159,96 @@ figure
 plot(int_vec_0_100,percentage_det_int_vec_EWMA_01_wind_10)
 
 
+% figure
+% plot(consolidado_power_wind_X_mean)
+
+
+% figure
+% 
+% subplot(10,1,1:2);
+% 
+% h1  = errorbar(window_vec,vec_wind_zeros,consolidado_power_wind_X_std,'r-','LineWidth',4);
+% set(gca,'fontsize',16) % Colocar mas grandes los numeros de los ejes
+% set(gca,'XTickLabel',{}) % quitar los numeros en el eje x
+% xlim([min(window_vec) max(window_vec)]);
+% ylim([min(consolidado_power_wind_X_std*-1)-1.00 max(consolidado_power_wind_X_std)+1.00 ]);
+% ylabel('Power (mW)','FontSize', 20,'fontweight','bold');
+% xlabel('Window size (Num packets)','FontSize', 20,'fontweight','bold');
+% title('Power consumption', 'FontSize', 22, 'fontweight','bold');
+% 
+% subplot(10,1,3:10);
+% 
+% plot(window_vec, consolidado_power_wind_X_mean)
+
+% figure
+% plot(window_vec, consolidado_all_cpu_wind_X_int_0_mean)
+
+
+figure
+
+subplot(10,1,1:2);
+
+h1  = errorbar(window_vec,vec_wind_zeros,consolidado_all_cpu_wind_X_int_0_std,'r-','LineWidth',4);
+set(gca,'fontsize',16) % Colocar mas grandes los numeros de los ejes
+set(gca,'XTickLabel',{}) % quitar los numeros en el eje x
+xlim([min(window_vec) max(window_vec)]);
+ylim([min(consolidado_all_cpu_wind_X_int_0_std*-1)-0.050 max(consolidado_all_cpu_wind_X_int_0_std)+0.050 ]);
+title('Power consumption CPU', 'FontSize', 22, 'fontweight','bold');
+
+subplot(10,1,3:10);
+
+plot(window_vec, consolidado_all_cpu_wind_X_int_0_mean)
+ylabel('Power (mW)','FontSize', 20,'fontweight','bold');
+xlabel('Window size (Num packets)','FontSize', 20,'fontweight','bold');
+
+figure
+
+subplot(10,1,1:2);
+
+h1  = errorbar(window_vec,vec_wind_zeros,consolidado_all_lpm_wind_X_int_0_std,'r-','LineWidth',4);
+set(gca,'fontsize',16) % Colocar mas grandes los numeros de los ejes
+set(gca,'XTickLabel',{}) % quitar los numeros en el eje x
+xlim([min(window_vec) max(window_vec)]);
+ylim([min(consolidado_all_lpm_wind_X_int_0_std*-1)-0.050 max(consolidado_all_lpm_wind_X_int_0_std)+0.050 ]);
+title('Power consumption lpm', 'FontSize', 22, 'fontweight','bold');
+
+subplot(10,1,3:10);
+
+plot(window_vec, consolidado_all_lpm_wind_X_int_0_mean)
+ylabel('Power (mW)','FontSize', 20,'fontweight','bold');
+xlabel('Window size (Num packets)','FontSize', 20,'fontweight','bold');
+
+figure
+
+subplot(10,1,1:2);
+
+h1  = errorbar(window_vec,vec_wind_zeros,consolidado_all_transmit_wind_X_int_0_std,'r-','LineWidth',4);
+set(gca,'fontsize',16) % Colocar mas grandes los numeros de los ejes
+set(gca,'XTickLabel',{}) % quitar los numeros en el eje x
+xlim([min(window_vec) max(window_vec)]);
+ylim([min(consolidado_all_transmit_wind_X_int_0_std*-1)-0.050 max(consolidado_all_transmit_wind_X_int_0_std)+0.050 ]);
+title('Power consumption transmit', 'FontSize', 22, 'fontweight','bold');
+
+subplot(10,1,3:10);
+
+plot(window_vec, consolidado_all_transmit_wind_X_int_0_mean)
+ylabel('Power (mW)','FontSize', 20,'fontweight','bold');
+xlabel('Window size (Num packets)','FontSize', 20,'fontweight','bold');
+
+figure
+
+subplot(10,1,1:2);
+
+h1  = errorbar(window_vec,vec_wind_zeros,consolidado_all_listen_wind_X_int_0_std,'r-','LineWidth',4);
+set(gca,'fontsize',16) % Colocar mas grandes los numeros de los ejes
+set(gca,'XTickLabel',{}) % quitar los numeros en el eje x
+xlim([min(window_vec) max(window_vec)]);
+ylim([min(consolidado_all_listen_wind_X_int_0_std*-1)-0.050 max(consolidado_all_listen_wind_X_int_0_std)+0.050 ]);
+title('Power consumption listen', 'FontSize', 22, 'fontweight','bold');
+
+subplot(10,1,3:10);
+
+plot(window_vec, consolidado_all_listen_wind_X_int_0_mean)
+ylabel('Power (mW)','FontSize', 20,'fontweight','bold');
+xlabel('Window size (Num packets)','FontSize', 20,'fontweight','bold');
+

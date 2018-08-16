@@ -241,4 +241,10 @@ xtext2 = -10;
 ytext1 = 0;
 ytext2 = 17;
 
+%%vector ventanas
+num_windows = 7; 
+window_vec = [5 10 15 20 25 30 35];
+
+vec_wind_zeros = zeros(1,num_windows);
+
 

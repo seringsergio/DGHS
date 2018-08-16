@@ -58,7 +58,7 @@ void reset_csma_stats()
 static void
 recv_uc(struct unicast_conn *c, const linkaddr_t *from)
 {
-  printf("unicast message / received from %d.%d\n",
+  printf(" unicast message / received from %d.%d \n",
 	 from->u8[0], from->u8[1]);
 }
 /*---------------------------------------------------------------------------*/
@@ -69,7 +69,7 @@ sent_uc(struct unicast_conn *c, int status, int num_tx)
   if(linkaddr_cmp(dest, &linkaddr_null)) {
     return;
   }
-  printf("unicast message sent / to %d.%d: status %d num_tx %d\n",
+  printf(" unicast message sent / to %d.%d: status %d num_tx %d \n",
     dest->u8[0], dest->u8[1], status, num_tx);
 }
 /*---------------------------------------------------------------------------*/
@@ -116,28 +116,31 @@ PROCESS_THREAD(compute_csma_stats, ev, data)
   // Set Transmission Power in the Zolertia
   // NETSTACK_RADIO.set_value(RADIO_PARAM_TXPOWER,<power in dbm>)
   // Ref: https://github.com/contiki-os/contiki/issues/1259
-  #if REMOTE
+  /*#if REMOTE
     if(NETSTACK_RADIO.set_value(RADIO_PARAM_TXPOWER, MY_TX_POWER_DBM) == RADIO_RESULT_OK)
     {
       NETSTACK_RADIO.get_value(RADIO_PARAM_TXPOWER, &val);
-      printf("Transmission Power Set : %d dBm\n", val);
+      printf(" Transmission Power Set : %d dBm \n", val);
     }
     else if(NETSTACK_RADIO.set_value(RADIO_PARAM_TXPOWER, MY_TX_POWER_DBM) == RADIO_RESULT_INVALID_VALUE)
     {
-      printf("ERROR: RADIO_RESULT_INVALID_VALUE\n");
+      printf(" ERROR: RADIO_RESULT_INVALID_VALUE \n");
     }else
     {
-      printf("ERROR: The TX power could not be set\n");
+      printf(" ERROR: The TX power could not be set \n");
     }
-  #endif
+  #endif*/
+
+  NETSTACK_RADIO.get_value(RADIO_PARAM_TXPOWER, &val);
+  printf(" Transmission Power Set : %d dBm \n", val);
 
   /* Start powertracing, once every POWERTRACE_PERIOD seconds. */
   powertrace_start(CLOCK_SECOND * POWERTRACE_PERIOD);
-  printf("POWERTRACE_PERIOD: %d\n", POWERTRACE_PERIOD);
+  printf(" POWERTRACE_PERIOD: %d \n", POWERTRACE_PERIOD);
 
   unicast_open(&uc, 146, &unicast_callbacks);
 
-  printf("WINDOW_NUM_PACKETS = %d \n", WINDOW_NUM_PACKETS);
+  printf(" WINDOW_NUM_PACKETS = %d  \n", WINDOW_NUM_PACKETS);
 
   num_packets = 0;
   reset_csma_stats();
@@ -183,11 +186,11 @@ PROCESS_THREAD(compute_csma_stats, ev, data)
         //print
         ftoa( btp, res1, 2); //Uses the library print_float.h
         ftoa( EWMA_btp_01, res2, 2); //Uses the library print_float.h
-        printf("BTP/%d/%s/%s/\n",num_packets,  res1 , res2);
+        printf(" BTP/%d/%s/%s/ \n",num_packets,  res1 , res2);
 
         ftoa( ppl, res1, 2); //Uses the library print_float.h
         ftoa( EWMA_ppl_01, res2, 2); //Uses the library print_float.h
-        printf("PPL/%d/%s/%s/\n",num_packets,  res1 , res2);
+        printf(" PPL/%d/%s/%s/ \n",num_packets,  res1 , res2);
 
         process_post(&analyze_csma_results, PROCESS_EVENT_CONTINUE, &csma_results);
 
@@ -234,8 +237,8 @@ PROCESS_THREAD(analyze_csma_results, ev, data)
                csma_results.EWMA_btp_01 <  upper_interval   )
             {
                 detected_event.event_btp = i - 1; //Resto 1 porq aca es de 0-39...en matlab es de 1-40
-                printf(" %s < /%s/ < %s \n", res1,res2,res3);
-                printf("event_btp =/ %d\n", detected_event.event_btp);
+                printf("  %s < /%s/ < %s  \n", res1,res2,res3);
+                printf(" event_btp =/ %d \n", detected_event.event_btp);
                 break;
             }
         }
@@ -253,8 +256,8 @@ PROCESS_THREAD(analyze_csma_results, ev, data)
                csma_results.EWMA_ppl_01 <  upper_interval   )
             {
                 detected_event.event_ppl = i - 1; //Resto 1 porq aca es de 0-39...en matlab es de 1-40
-                printf(" %s < /%s/ < %s \n", res1,res2,res3);
-                printf("event_ppl =/ %d\n", detected_event.event_ppl);
+                printf("  %s < /%s/ < %s  \n", res1,res2,res3);
+                printf(" event_ppl =/ %d \n", detected_event.event_ppl);
                 break;
             }
         }
@@ -263,7 +266,7 @@ PROCESS_THREAD(analyze_csma_results, ev, data)
 
     }else
     {
-      printf("ERROR: unknown event in analyze_csma_results\n");
+      printf(" ERROR: unknown event in analyze_csma_results \n");
     }
   }
 
@@ -320,11 +323,11 @@ PROCESS_THREAD(detect_interference, ev, data)
         {
           prob_btp_N[i] = prob_btp[i] / total_prob; //Normalize
           ftoa(prob_btp_N[i], res1, 4);
-          printf("prob_btp(%d) =/ %s \n", i, res1);
+          printf(" prob_btp(%d) =/ %s  \n", i, res1);
           total_prob_N += prob_btp_N[i];
         }
         ftoa(total_prob_N, res1, 4);
-        printf("SUM(prob_btp) =/ %s \n", res1);
+        printf(" SUM(prob_btp) =/ %s  \n", res1);
 
 
         //////////////////////////////////////////////
@@ -351,11 +354,11 @@ PROCESS_THREAD(detect_interference, ev, data)
        {
          prob_ppl_N[i] = prob_ppl[i] / total_prob; //Normalize
          ftoa(prob_ppl_N[i], res1, 4);
-         printf("prob_ppl(%d) =/ %s \n", i, res1);
+         printf(" prob_ppl(%d) =/ %s  \n", i, res1);
          total_prob_N += prob_ppl_N[i];
        }
        ftoa(total_prob_N, res1, 4);
-       printf("SUM(prob_ppl) =/ %s \n", res1);
+       printf(" SUM(prob_ppl) =/ %s  \n", res1);
 
 
        //////////////////////////////////////////////
@@ -370,7 +373,7 @@ PROCESS_THREAD(detect_interference, ev, data)
         {
           prob_btp_ppl[i] = prob_btp_N[i] * prob_ppl_N[i];
           ftoa(prob_btp_ppl[i], res1, 4);
-          printf("prob_btp_ppl(%d) =/ %s\n", i, res1);
+          printf(" prob_btp_ppl(%d) =/ %s \n", i, res1);
 
           if(prob_btp_ppl[i] > max_prob)
           {
@@ -386,14 +389,14 @@ PROCESS_THREAD(detect_interference, ev, data)
           {
             //Det_int = detected_interference
             //format DET_INT detected_interference
-            printf("DET_INT/%d/\n", i*10 );
+            printf("DET_INT %d \n", i*10 );
             break;
           }
         }
 
    }else
    {
-      printf("ERROR: unknown event in detect_interference\n");
+      printf(" ERROR: unknown event in detect_interference \n");
    }
 
   } //END while(1)

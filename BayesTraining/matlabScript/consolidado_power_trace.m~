@@ -1,0 +1,22 @@
+%vec de means
+consolidado_power_wind_X_mean = [remote_power_consumption_int_0_wind_5_mean
+                                 remote_power_consumption_int_0_wind_10_mean
+                                 remote_power_consumption_int_0_wind_15_mean
+                                 remote_power_consumption_int_0_wind_20_mean
+                                 remote_power_consumption_int_0_wind_25_mean
+                                 remote_power_consumption_int_0_wind_30_mean
+                                 remote_power_consumption_int_0_wind_35_mean
+                                 ];
+
+%vec de desviacion estandar                             
+consolidado_power_wind_X_std  = [remote_power_consumption_int_0_wind_5_std
+                                 remote_power_consumption_int_0_wind_10_std
+                                 remote_power_consumption_int_0_wind_15_std
+                                 remote_power_consumption_int_0_wind_20_std
+                                 remote_power_consumption_int_0_wind_25_std
+                                 remote_power_consumption_int_0_wind_30_std
+                                 remote_power_consumption_int_0_wind_35_std
+                                 ];                            
+
+consolidado_all_cpu_wind_5_diff_mW_int_0_mean       = [ all_cpu_wind_5_diff_mW_int_0_mean
+                                ];                             
