@@ -6,6 +6,23 @@ all_lpm_wind_25_diff_int_0      = diff(all_lpm_wind_25_int_0);
 all_transmit_wind_25_diff_int_0 = diff(all_transmit_wind_25_int_0); 
 all_listen_wind_25_diff_int_0   = diff(all_listen_wind_25_int_0); 
 
+%% Dado que el contador de powertrace se reinicia, en un punto la diff da negativa.
+%  Por lo tanto toca eliminar los datos negativos de los datos.
+%  Para eliminar los Zeros de un vector ejecuto A(A>=0)
+
+all_cpu_wind_25_diff_int_0 = all_cpu_wind_25_diff_int_0( all_cpu_wind_25_diff_int_0>=0 );
+all_lpm_wind_25_diff_int_0 = all_lpm_wind_25_diff_int_0( all_lpm_wind_25_diff_int_0>=0 );
+all_transmit_wind_25_diff_int_0 = all_transmit_wind_25_diff_int_0( all_transmit_wind_25_diff_int_0>=0 );
+all_listen_wind_25_diff_int_0 = all_listen_wind_25_diff_int_0( all_listen_wind_25_diff_int_0>=0 );
+
+% Hacer los vectores del mismo tamaño. Del minimo tamaño.
+
+minLength = min( [length(all_cpu_wind_25_diff_int_0),length(all_lpm_wind_25_diff_int_0),length(all_transmit_wind_25_diff_int_0),length(all_listen_wind_25_diff_int_0)]   );
+
+all_cpu_wind_25_diff_int_0 = all_cpu_wind_25_diff_int_0(1:minLength);
+all_lpm_wind_25_diff_int_0 = all_lpm_wind_25_diff_int_0(1:minLength);
+all_transmit_wind_25_diff_int_0 = all_transmit_wind_25_diff_int_0(1:minLength);
+all_listen_wind_25_diff_int_0 = all_listen_wind_25_diff_int_0(1:minLength);
 
 %% power en miliWatios mW
 

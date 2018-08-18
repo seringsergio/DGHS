@@ -46,6 +46,15 @@
 #include "dev/leds.h"
 
 #include <stdio.h>
+
+struct csma_stats
+{
+ uint16_t packets_dropped; //We can count up to 65535 message lost
+ uint16_t delay;
+};
+
+struct csma_stats csma_stats;
+
 /*---------------------------------------------------------------------------*/
 PROCESS(example_broadcast_process, "Broadcast example");
 AUTOSTART_PROCESSES(&example_broadcast_process);

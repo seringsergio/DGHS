@@ -93,7 +93,7 @@ date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 //For recording statistics when the interference is 50%
-create table int_100_tx_wind_50 (
+create table int_100_tx_wind_250 (
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 num_packets INT(11) NOT NULL,
 btp FLOAT(8,2),
@@ -139,7 +139,7 @@ date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 # 16. idle_listen
 
 //For recording statistics when the window varies
-create table powertrace_wind_20_int_10 (
+create table powertrace_wind_25_int_10 (
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 clock_time INT(11) NOT NULL,
 linkaddr_node_addr DECIMAL(5,2) NOT NULL,
@@ -175,7 +175,7 @@ date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 //For recording statistics when the interference is 50%
-create table det_int_0_wind_5 (
+create table det_int_0_wind_25 (
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 det_int INT(11) NOT NULL,
 det_int_redundant INT(11) NOT NULL,
@@ -212,7 +212,7 @@ select * from int_50_tx;
 select * from det_int_0;
 select * from tree_plot;
 select * from det_int_0_EWMA_02;
-select * from int_0_tx_wind_5;
+select * from int_0_tx_wind_25;
 
 
 //Eliminar: Elimina tabla
@@ -271,8 +271,8 @@ LINES TERMINATED BY '\n';
 SELECT "id","num_packets","btp","EWMA_btp_09","EWMA_btp_08","EWMA_btp_07","EWMA_btp_06","EWMA_btp_05","EWMA_btp_04","EWMA_btp_03","EWMA_btp_02","EWMA_btp_01","ppl","EWMA_ppl_09","EWMA_ppl_08","EWMA_ppl_07","EWMA_ppl_06","EWMA_ppl_05","EWMA_ppl_04","EWMA_ppl_03","EWMA_ppl_02","EWMA_ppl_01","date"
 UNION ALL
 SELECT *
-FROM int_100_tx_wind_15
-INTO OUTFILE "/var/lib/mysql-files/int_100_tx_wind_15.csv"
+FROM int_100_tx_wind_25
+INTO OUTFILE "/var/lib/mysql-files/int_100_tx_wind_25.csv"
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n';
@@ -280,8 +280,8 @@ LINES TERMINATED BY '\n';
 SELECT "id","det_int","det_int_redundant","date"
 UNION ALL
 SELECT *
-FROM det_int_0_wind_15
-INTO OUTFILE "/var/lib/mysql-files/det_int_0_wind_15.csv"
+FROM det_int_70_wind_25
+INTO OUTFILE "/var/lib/mysql-files/det_int_70_wind_25_v2.csv"
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n';
@@ -292,8 +292,8 @@ SELECT "id", "clock_time", "linkaddr_node_addr", "seqno", "all_cpu", "all_lpm", 
        "idle_transmit", "idle_listen", "date"
 UNION ALL
 SELECT *
-FROM powertrace_wind_15_int_0
-INTO OUTFILE "/var/lib/mysql-files/powertrace_wind_15_int_0.csv"
+FROM powertrace_wind_25_int_70
+INTO OUTFILE "/var/lib/mysql-files/powertrace_wind_25_int_70_v2.csv"
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n';

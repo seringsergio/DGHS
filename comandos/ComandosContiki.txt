@@ -57,7 +57,7 @@ make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On100Off0.upload
 make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On95Off5.upload
 make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On90Off10.upload
 make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On80Off20.upload
-make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On70Off30.upload
+make MOTES=/dev/ttyUSB0 TARGET=sky modulated_carrier_On70Off30.upload
 make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On60Off40.upload
 make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On50Off50.upload
 make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On40Off60.upload
@@ -83,7 +83,7 @@ msp430-size example-ghs_neigh.sky
 // Subir codigo al remote
 make NODEID=0x0001 MOTES=/dev/ttyUSB2 TARGET=zoul BOARD=remote-reva zoul-demo.upload
 make NODEID=0x0100 MOTES=/dev/ttyUSB0 TARGET=zoul BOARD=remote-reva rx.upload
-make NODEID=0x0200 MOTES=/dev/ttyUSB2 TARGET=zoul BOARD=remote-reva tx.upload
+make NODEID=0x0200 MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva tx.upload
 make NODEID=0x0100 MOTES=/dev/ttyUSB2 TARGET=zoul BOARD=remote-reva basicTree-example.upload
 make NODEID=0x0100 MOTES=/dev/ttyUSB2 TARGET=zoul BOARD=remote-reva basicTree-example.upload
 make NODEID=0x0200 MOTES=/dev/ttyUSB2 TARGET=zoul BOARD=remote-reva DGHS_Bayes_Laplace_Classify_v2.upload
@@ -97,13 +97,13 @@ make NODEID=0x0200 MOTES=/dev/ttyUSB2 TARGET=zoul BOARD=remote-reva DGHS_Bayes_L
 make NODEID=0x0200 MOTES=/dev/ttyUSB2 TARGET=zoul BOARD=remote-reva DGHS_Bayes_Laplace_Classify_v2_EWMA_08.upload
 make NODEID=0x0200 MOTES=/dev/ttyUSB2 TARGET=zoul BOARD=remote-reva DGHS_Bayes_Laplace_Classify_v2_EWMA_09.upload
 
-make NODEID=0x0200 MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva DGHS_Bayes_Laplace_Classify_v2_wind_5.upload
-make NODEID=0x0200 MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva DGHS_Bayes_Laplace_Classify_v2_wind_10.upload
-make NODEID=0x0200 MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva DGHS_Bayes_Laplace_Classify_v2_wind_15.upload
-make NODEID=0x0200 MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva DGHS_Bayes_Laplace_Classify_v2_wind_20.upload
-make NODEID=0x0200 MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva DGHS_Bayes_Laplace_Classify_v2_wind_25.upload
-make NODEID=0x0200 MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva DGHS_Bayes_Laplace_Classify_v2_wind_30.upload
-make NODEID=0x0200 MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva DGHS_Bayes_Laplace_Classify_v2_wind_35.upload
+make NODEID=0x0200 MOTES=/dev/ttyUSB3 TARGET=zoul BOARD=remote-reva DGHS_Bayes_Laplace_Classify_v2_wind_5.upload
+make NODEID=0x0200 MOTES=/dev/ttyUSB3 TARGET=zoul BOARD=remote-reva DGHS_Bayes_Laplace_Classify_v2_wind_10.upload
+make NODEID=0x0200 MOTES=/dev/ttyUSB3 TARGET=zoul BOARD=remote-reva DGHS_Bayes_Laplace_Classify_v2_wind_15.upload
+make NODEID=0x0200 MOTES=/dev/ttyUSB3 TARGET=zoul BOARD=remote-reva DGHS_Bayes_Laplace_Classify_v2_wind_20.upload
+make NODEID=0x0200 MOTES=/dev/ttyUSB3 TARGET=zoul BOARD=remote-reva DGHS_Bayes_Laplace_Classify_v2_wind_25.upload
+make NODEID=0x0200 MOTES=/dev/ttyUSB3 TARGET=zoul BOARD=remote-reva DGHS_Bayes_Laplace_Classify_v2_wind_30.upload
+make NODEID=0x0200 MOTES=/dev/ttyUSB3 TARGET=zoul BOARD=remote-reva DGHS_Bayes_Laplace_Classify_v2_wind_35.upload
 
 make NODEID=0x0200 MOTES=/dev/ttyUSB0 TARGET=zoul BOARD=remote-reva example-powertrace.upload
 
@@ -122,8 +122,8 @@ make RF_CHANNEL=20
 0. cd /home/seringsergio/Desktop/DGHS/contiki/examples/rssi-scanner
 1. subir el codigo rssi-scanner-cc2420.c al sky node
 
-  make MOTES=/dev/ttyUSB2 TARGET=sky rssi-scanner-cc2420.upload
+  make MOTES=/dev/ttyUSB0 TARGET=sky rssi-scanner-cc2420.upload
 
 2. Compilar la clase ViewRSSI.class
 3. ejecutar en el terminal
-make MOTES=/dev/ttyUSB2 TARGET=sky login | java ViewRSSI
+make MOTES=/dev/ttyUSB0 TARGET=sky login | java ViewRSSI

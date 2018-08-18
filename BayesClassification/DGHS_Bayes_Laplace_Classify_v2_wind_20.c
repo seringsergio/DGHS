@@ -147,7 +147,9 @@ PROCESS_THREAD(compute_csma_stats, ev, data)
 
   while(1)
   {
-    etimer_set(&et,  random_rand() % (CLOCK_SECOND * 2) ); // Configure timer et to a random time between 0 and 2
+    //etimer_set(&et,  random_rand() % (CLOCK_SECOND * 2) ); // Configure timer et to a random time between 0 and 2
+    etimer_set(&et,  CLOCK_SECOND * PACKET_FREQUENCY ); //Lo dejo deterministico (Cada 5 segundos) para medir la energia que se gasta procesando
+
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
 
     packetbuf_copyfrom("Hello", 5);

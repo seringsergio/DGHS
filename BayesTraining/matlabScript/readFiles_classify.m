@@ -1,26 +1,79 @@
-% windows = 5
-det_int_0_wind_5         = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_0_wind_5.xlsx','det_int_0_wind_5','B2:B115');
 
-% windows = 10
-det_int_0_wind_10        = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_0_wind_10.xlsx','det_int_0_wind_10','B2:B65');
+% La diferencia entre det_int_0_wind_5_v2 y det_int_0_wind_5 es que:
+% 1.   det_int_0_wind_5_v2: Se envia el paquete de manera deterministica: cada 1
+%      segundo
+% 2.   det_int_0_wind_5: Se envia el paquete de manera aleatoria, entre
+%      [0,2] segundos
 
-% windows = 15
-det_int_0_wind_15        = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_0_wind_15.xlsx','det_int_0_wind_15','B2:B40');
+% windows = 5 _v2 int_0
+det_int_0_wind_5         = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_0_wind_5_v2.xlsx','det_int_0_wind_5_v2','B2:B120');
 
-% windows = 20
-det_int_0_wind_20        = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_0_wind_20.xlsx','det_int_0_wind_20','B2:B30');
+% windows = 10 _v2 int_0
+det_int_0_wind_10        = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_0_wind_10_v2.xlsx','det_int_0_wind_10_v2','B2:B61');
 
-% windows = 25
-det_int_0_wind_25        = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_0_wind_25.xlsx','det_int_0_wind_25','B2:B24');
+% windows = 15 _v2 int_0
+det_int_0_wind_15        = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_0_wind_15_v2.xlsx','det_int_0_wind_15_v2','B2:B43');
 
-% windows = 30
-det_int_0_wind_30        = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_0_wind_30.xlsx','det_int_0_wind_30','B2:B252');
+% windows = 20 _v2 int_0
+det_int_0_wind_20        = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_0_wind_20_v2.xlsx','det_int_0_wind_20_v2','B2:B33');
 
-% windows = 35
-det_int_0_wind_35        = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_0_wind_35.xlsx','det_int_0_wind_35','B2:B43');
+% windows = 25 _v2 int_0
+det_int_0_wind_25        = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_0_wind_25_v2.xlsx','det_int_0_wind_25_v2','B2:B26');
+
+% windows = 30 _v2 int_0
+det_int_0_wind_30        = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_0_wind_30_v2.xlsx','det_int_0_wind_30_v2','B2:B23');
+
+% windows = 35 _v2 int_0
+det_int_0_wind_35        = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_0_wind_35_v2.xlsx','det_int_0_wind_35_v2','B2:B20');
 
 
-% windows = 10
+% windows = 5 int_70
+det_int_70_wind_5         = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_70_wind_5.xlsx','det_int_70_wind_5','B2:B354');
+
+% windows = 10 int_70
+det_int_70_wind_10         = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_70_wind_10.xlsx','det_int_70_wind_10','B2:B420');
+
+% windows = 15 int_70
+det_int_70_wind_15         = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_70_wind_15.xlsx','det_int_70_wind_15','B2:B122');
+
+% windows = 20 int_70
+det_int_70_wind_20         = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_70_wind_20.xlsx','det_int_70_wind_20','B2:B95');
+
+% windows = 25 int_70
+det_int_70_wind_25         = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_70_wind_25_v2.xlsx','det_int_70_wind_25_v2','B2:B82');
+
+% windows = 30 int_70
+det_int_70_wind_30         = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_70_wind_30_v2.xlsx','det_int_70_wind_30_v2','B2:B532');
+
+% windows = 35 int_70
+det_int_70_wind_35         = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_70_wind_35_v2.xlsx','det_int_70_wind_35_v2','B2:B158');
+
+
+
+% % windows = 5
+% det_int_0_wind_5         = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_0_wind_5.xlsx','det_int_0_wind_5','B2:B115');
+% 
+% % windows = 10
+% det_int_0_wind_10        = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_0_wind_10.xlsx','det_int_0_wind_10','B2:B65');
+% 
+% % windows = 15
+% det_int_0_wind_15        = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_0_wind_15.xlsx','det_int_0_wind_15','B2:B40');
+% 
+% % windows = 20
+% det_int_0_wind_20        = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_0_wind_20.xlsx','det_int_0_wind_20','B2:B30');
+% 
+% % windows = 25
+% det_int_0_wind_25        = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_0_wind_25.xlsx','det_int_0_wind_25','B2:B24');
+% 
+% % windows = 30
+% det_int_0_wind_35        = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_0_wind_35.xlsx','det_int_0_wind_35','B2:B252');
+% 
+% % windows = 35
+% det_int_0_wind_35        = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results_powertrace_wind/det_int_0_wind_35.xlsx','det_int_0_wind_35','B2:B43');
+
+
+
+%% windows = 10
 
 % interference 0 %
 det_int_0_EWMA_01_wind_10   = xlsread('/home/seringsergio/Desktop/DGHS/BayesClassification/results/det_int_0.xlsx','det_int_0','B2:B176');

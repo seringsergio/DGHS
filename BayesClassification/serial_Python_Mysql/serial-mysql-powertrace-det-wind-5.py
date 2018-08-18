@@ -9,7 +9,7 @@ dbConn = MySQLdb.connect("localhost","root","1234","sink") or die ("Could not co
 #cursor = dbConn.cursor()
 
 #device = '/dev/tty.usbmodem1411' #this will have to be changed to the serial port you are using
-device = '/dev/ttyUSB1' #this will have to be changed to the serial port you are using
+device = '/dev/ttyUSB4' #this will have to be changed to the serial port you are using
 try:
     print "Trying...",device
     skyMote = serial.Serial(device, 115200)
@@ -29,7 +29,7 @@ while True:
             #Here we are going to insert the data into the Database
             try:
                 # I have to insert minimum 2 data plus id. So, it is necesary to have 1 redundant data: det_int_redundant
-                cursor.execute("INSERT INTO det_int_0_wind_15 (id, det_int, det_int_redundant) VALUES (NULL,%s,%s)", (pieces[1],pieces[1]))
+                cursor.execute("INSERT INTO det_int_70_wind_25 (id, det_int, det_int_redundant) VALUES (NULL,%s,%s)", (pieces[1],pieces[1]))
                 dbConn.commit() #commit the insert
                 cursor.close()  #close the cursor
             except MySQLdb.IntegrityError:
@@ -78,7 +78,7 @@ while True:
             #Here we are going to insert the data into the Database
             try:
 
-                # create table powertrace_wind_15 (
+                # create table powertrace_wind_x (
                 # id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
                 # clock_time INT(11) NOT NULL,
                 # linkaddr_node_addr DECIMAL(5,2) NOT NULL,
@@ -99,7 +99,7 @@ while True:
                 # );
 
                 # I have to insert minimum 2 data plus id. So, it is necesary to have 1 redundant data: det_int_redundant
-                cursor.execute("INSERT INTO powertrace_wind_15_int_0 (id, clock_time, linkaddr_node_addr,                \
+                cursor.execute("INSERT INTO powertrace_wind_25_int_70 (id, clock_time, linkaddr_node_addr,                \
                                 seqno, all_cpu, all_lpm, all_transmit, all_listen, all_idle_transmit, all_idle_listen,  \
                                 cpu, lpm, transmit, listen, idle_transmit, idle_listen)                                 \
                 VALUES (NULL,%s,%s,%s,%s,                                                                               \
