@@ -24,7 +24,7 @@
       <identifier>sky1</identifier>
       <description>Sky Mote Type #sky1</description>
       <source EXPORT="discard">[CONTIKI_DIR]/examples/ipv6/rpl-udp/udp-server.c</source>
-      <commands EXPORT="discard">make udp-server.sky TARGET=sky WITH_COMPOWER=1</commands>
+      <commands EXPORT="discard">make udp-server.sky TARGET_MEMORY_MODEL=large TARGET=sky WITH_COMPOWER=1 </commands>
       <firmware EXPORT="copy">[CONTIKI_DIR]/examples/ipv6/rpl-udp/udp-server.sky</firmware>
       <moteinterface>org.contikios.cooja.interfaces.Position</moteinterface>
       <moteinterface>org.contikios.cooja.interfaces.RimeAddress</moteinterface>
@@ -47,7 +47,7 @@
       <identifier>sky2</identifier>
       <description>Sky Mote Type #sky2</description>
       <source EXPORT="discard">[CONTIKI_DIR]/examples/ipv6/rpl-udp/udp-client.c</source>
-      <commands EXPORT="discard">make udp-client.sky TARGET=sky WITH_COMPOWER=1</commands>
+      <commands EXPORT="discard">make udp-client.sky TARGET_MEMORY_MODEL=large TARGET=sky WITH_COMPOWER=1 </commands>
       <firmware EXPORT="copy">[CONTIKI_DIR]/examples/ipv6/rpl-udp/udp-client.sky</firmware>
       <moteinterface>org.contikios.cooja.interfaces.Position</moteinterface>
       <moteinterface>org.contikios.cooja.interfaces.RimeAddress</moteinterface>
@@ -581,4 +581,3 @@ while(1) {
     <location_y>6</location_y>
   </plugin>
 </simconf>
-

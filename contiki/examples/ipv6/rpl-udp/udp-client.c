@@ -43,6 +43,19 @@
 #include "dev/serial-line.h"
 #include "net/ipv6/uip-ds6-route.h"
 
+struct csma_stats
+{
+ uint16_t packets_dropped; //We can count up to 65535 message lost
+ //uint16_t packets_transmitted; //We can count up to 65535 message lost
+ //uint16_t total_packets; //the total of transmitted packets + dropped packets in this round
+ uint16_t delay;
+ //clock_time_t delay;
+ //uint16_t num_retx;
+ //uint16_t num_collision;
+};
+
+struct csma_stats csma_stats;
+
 #define UDP_CLIENT_PORT 8765
 #define UDP_SERVER_PORT 5678
 
@@ -52,7 +65,7 @@
 #include "net/ip/uip-debug.h"
 
 #ifndef PERIOD
-#define PERIOD 60
+#define PERIOD 2 //Antes el periodo era de 60 segundos. Yo lo modifique
 #endif
 
 #define START_INTERVAL		(15 * CLOCK_SECOND)
@@ -157,7 +170,7 @@ set_global_address(void)
  * Note the IPCMV6 checksum verification depends on the correct uncompressed
  * addresses.
  */
- 
+
 #if 0
 /* Mode 1 - 64 bits inline */
    uip_ip6addr(&server_ipaddr, UIP_DS6_DEFAULT_PREFIX, 0, 0, 0, 0, 0, 0, 1);
@@ -190,12 +203,12 @@ PROCESS_THREAD(udp_client_process, ev, data)
   print_local_addresses();
 
   /* new connection with remote host */
-  client_conn = udp_new(NULL, UIP_HTONS(UDP_SERVER_PORT), NULL); 
+  client_conn = udp_new(NULL, UIP_HTONS(UDP_SERVER_PORT), NULL);
   if(client_conn == NULL) {
     PRINTF("No UDP connection available, exiting the process!\n");
     PROCESS_EXIT();
   }
-  udp_bind(client_conn, UIP_HTONS(UDP_CLIENT_PORT)); 
+  udp_bind(client_conn, UIP_HTONS(UDP_CLIENT_PORT));
 
   PRINTF("Created a connection with the server ");
   PRINT6ADDR(&client_conn->ripaddr);
@@ -253,7 +266,7 @@ PROCESS_THREAD(udp_client_process, ev, data)
 
 #if WITH_COMPOWER
       if (print == 0) {
-	powertrace_print("#P");
+	powertrace_print("#P");  
       }
       if (++print == 3) {
 	print = 0;

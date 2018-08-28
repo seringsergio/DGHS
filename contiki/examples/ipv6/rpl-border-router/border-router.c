@@ -54,11 +54,26 @@
 #include <string.h>
 #include <ctype.h>
 
-#define DEBUG DEBUG_NONE
+//#define DEBUG DEBUG_NONE
+#define DEBUG DEBUG_PRINT
 #include "net/ip/uip-debug.h"
 
 static uip_ipaddr_t prefix;
 static uint8_t prefix_set;
+
+struct csma_stats
+{
+ uint16_t packets_dropped; //We can count up to 65535 message lost
+ //uint16_t packets_transmitted; //We can count up to 65535 message lost
+ //uint16_t total_packets; //the total of transmitted packets + dropped packets in this round
+ uint16_t delay;
+ //clock_time_t delay;
+ //uint16_t num_retx;
+ //uint16_t num_collision;
+};
+
+struct csma_stats csma_stats;
+
 
 PROCESS(border_router_process, "Border router process");
 

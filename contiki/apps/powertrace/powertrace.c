@@ -83,7 +83,7 @@ powertrace_print(char *str)
   static unsigned long seqno;
 
   unsigned long time, all_time, radio, all_radio;
-  
+
   struct powertrace_sniff_stats *s;
 
   energest_flush();
@@ -186,7 +186,7 @@ powertrace_print(char *str)
     s->last_input_rxtime = s->input_rxtime;
     s->last_output_txtime = s->output_txtime;
     s->last_output_rxtime = s->output_rxtime;
-    
+
   }
   seqno++;
 }
@@ -304,7 +304,7 @@ sniffprint(char *prefix, int seqno)
 static void
 input_printsniffer(void)
 {
-  static int seqno = 0; 
+  static int seqno = 0;
   sniffprint("I", seqno++);
 
   if(packetbuf_attr(PACKETBUF_ATTR_CHANNEL) == 0) {

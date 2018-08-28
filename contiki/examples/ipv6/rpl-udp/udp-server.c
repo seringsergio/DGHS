@@ -40,6 +40,19 @@
 #include <string.h>
 #include <ctype.h>
 
+struct csma_stats
+{
+ uint16_t packets_dropped; //We can count up to 65535 message lost
+ //uint16_t packets_transmitted; //We can count up to 65535 message lost
+ //uint16_t total_packets; //the total of transmitted packets + dropped packets in this round
+ uint16_t delay;
+ //clock_time_t delay;
+ //uint16_t num_retx;
+ //uint16_t num_collision;
+};
+
+struct csma_stats csma_stats;
+
 #define DEBUG DEBUG_PRINT
 #include "net/ip/uip-debug.h"
 
@@ -123,7 +136,7 @@ PROCESS_THREAD(udp_server_process, ev, data)
  * Note Wireshark's IPCMV6 checksum verification depends on the correct
  * uncompressed addresses.
  */
- 
+
 #if 0
 /* Mode 1 - 64 bits inline */
    uip_ip6addr(&ipaddr, UIP_DS6_DEFAULT_PREFIX, 0, 0, 0, 0, 0, 0, 1);
@@ -148,10 +161,10 @@ PROCESS_THREAD(udp_server_process, ev, data)
     PRINTF("failed to create a new RPL DAG\n");
   }
 #endif /* UIP_CONF_ROUTER */
-  
+
   print_local_addresses();
 
-  /* The data sink runs with a 100% duty cycle in order to ensure high 
+  /* The data sink runs with a 100% duty cycle in order to ensure high
      packet reception rates. */
   NETSTACK_MAC.off(1);
 
