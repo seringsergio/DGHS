@@ -102,8 +102,14 @@ PROCESS_THREAD(udp_server_process, ev, data)
 {
   uip_ipaddr_t ipaddr;
   struct uip_ds6_addr *root_if;
+  static radio_value_t val;
 
   PROCESS_BEGIN();
+
+  NETSTACK_RADIO.get_value(RADIO_PARAM_TXPOWER, &val);
+  printf(" Transmission Power Set : %d dBm \n", val);
+
+  printf("RTIMER_SECOND: %u\n", RTIMER_SECOND);
 
   PROCESS_PAUSE();
 

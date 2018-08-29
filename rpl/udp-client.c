@@ -44,6 +44,7 @@
 #include "net/ipv6/uip-ds6-route.h"
 
 #include "client_server.h"
+#include "powertrace.h"
 
 #define UDP_CLIENT_PORT 8765
 #define UDP_SERVER_PORT 5678
@@ -54,12 +55,14 @@
 #include "net/ip/uip-debug.h"
 
 #ifndef PERIOD
-#define PERIOD 60
+//#define PERIOD 60
+#define PERIOD 1
 #endif
 
 #define START_INTERVAL		(15 * CLOCK_SECOND)
 #define SEND_INTERVAL		(PERIOD * CLOCK_SECOND)
-#define SEND_TIME		(random_rand() % (SEND_INTERVAL))
+//#define SEND_TIME		(random_rand() % (SEND_INTERVAL))
+#define SEND_TIME		    SEND_INTERVAL
 #define MAX_PAYLOAD_LEN		30
 
 static struct uip_udp_conn *client_conn;
@@ -180,7 +183,13 @@ PROCESS_THREAD(udp_client_process, ev, data)
   static int print = 0;
 #endif
 
+  static radio_value_t val;
   PROCESS_BEGIN();
+
+  NETSTACK_RADIO.get_value(RADIO_PARAM_TXPOWER, &val);
+  printf(" Transmission Power Set : %d dBm \n", val);
+
+  printf("RTIMER_SECOND: %u\n", RTIMER_SECOND);
 
   PROCESS_PAUSE();
 

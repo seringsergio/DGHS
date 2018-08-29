@@ -311,8 +311,8 @@ SELECT "id", "clock_time", "linkaddr_node_addr", "seqno", "all_cpu", "all_lpm", 
        "idle_transmit", "idle_listen", "date"
 UNION ALL
 SELECT *
-FROM powertrace_wind_25_int_70
-INTO OUTFILE "/var/lib/mysql-files/powertrace_wind_25_int_70_v2.csv"
+FROM powertrace_rpl_leaf
+INTO OUTFILE "/var/lib/mysql-files/powertrace_rpl_leaf.csv"
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n';

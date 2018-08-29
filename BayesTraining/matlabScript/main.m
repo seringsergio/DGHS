@@ -8,6 +8,8 @@ clc
   readFiles_training
   readFiles_classify
   readFiles_powertrace
+  readFiles_rpl
+  
 %% Save workspace
   save('/home/seringsergio/Desktop/DGHS/BayesTraining/results/vary_int_csv_v1/consolidado_int.mat') 
 
@@ -36,6 +38,11 @@ mean_std_wind_10
 %% Calculate power consumption (mW)
 
 compute_power_comsumption
+
+
+%% rpl_metrics
+
+rpl_metrics
 
 %% plot
 

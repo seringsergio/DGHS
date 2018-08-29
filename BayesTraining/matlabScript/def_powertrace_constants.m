@@ -1,12 +1,15 @@
 %% Remote constants
 
-rtimer_second_remote     = 32768  ; % RTIMER_SECOND: It is the number of ticks per second  for the remote
-powertrace_period        = 10     ; % powertrace_start(CLOCK_SECOND * POWERTRACE_PERIOD); //En la pagina este valor se llama runtime.
-current_CPU_remote       = 0.6    ; % REmote datasheet. Esta en miliamperios
-current_LPM_remote       = 0.0004 ; % REmote datasheet. Esta en miliamperios
-current_TX_remote_0_dBm  = 24     ; % REmote datasheet. Esta en miliamTX_remote_0_dBm  = 24 ; % Esta en miliamperios para 0 dBm
-current_RX_remote        = 20     ; % REmote datasheet. Esta en miliamperios
-voltage_remote           = 3.2    ; % Ejemplo zoul-demo.c en Contiki. Esta en voltios
+rtimer_second_remote         = 32768  ; % RTIMER_SECOND: It is the number of ticks per second  for the remote
+
+powertrace_period_basictree  = 10     ; % powertrace_start(CLOCK_SECOND * POWERTRACE_PERIOD); //En la pagina este valor se llama runtime. Esta en segundos
+powertrace_period_rpl        = 3      ; % powertrace_start(CLOCK_SECOND * POWERTRACE_PERIOD); //En la pagina este valor se llama runtime. Esta en segundos
+
+current_CPU_remote           = 0.6    ; % REmote datasheet. Esta en miliamperios
+current_LPM_remote           = 0.0004 ; % REmote datasheet. Esta en miliamperios
+current_TX_remote_0_dBm      = 24     ; % REmote datasheet. Esta en miliamTX_remote_0_dBm  = 24 ; % Esta en miliamperios para 0 dBm
+current_RX_remote            = 20     ; % REmote datasheet. Esta en miliamperios
+voltage_remote               = 3.2    ; % Ejemplo zoul-demo.c en Contiki. Esta en voltios
 
 %TelosB CM5000 (3V,       Voltage --
 %               330 uA = 0.33 mA,   CPU
@@ -35,10 +38,13 @@ voltage_remote           = 3.2    ; % Ejemplo zoul-demo.c en Contiki. Esta en vo
 
 %% define plot constants
 num_muestras = 33; % numero de columnas de las variables all_cpu, all_lpm, all_transmit, all_listen
-X_axis_time  = 0:powertrace_period:( (num_muestras-2)*powertrace_period); 
+X_axis_time  = 0:powertrace_period_basictree:( (num_muestras-2)*powertrace_period_basictree); 
 
 num_nodes    = 2; % numero de nodos
 X_axis_nodes = 1:1:num_nodes;
 
 int_vec_nodes = zeros(num_nodes);
 
+%% Para plotear incremento LPM por 45... Solo para verlo en la grafica
+factor_ploteo     = 100; 
+factor_ploteo_cpu = 2; 

@@ -26,10 +26,10 @@ all_listen_wind_35_diff_int_70 = all_listen_wind_35_diff_int_70(1:minLength);
 
 %% power en miliWatios mW
 
-all_cpu_wind_35_diff_mW_int_70 = all_cpu_wind_35_diff_int_70 * current_CPU_remote * voltage_remote / rtimer_second_remote / powertrace_period;
-all_lpm_wind_35_diff_mW_int_70 = all_lpm_wind_35_diff_int_70 * current_LPM_remote * voltage_remote / rtimer_second_remote / powertrace_period;
-all_transmit_wind_35_diff_mW_int_70 = all_transmit_wind_35_diff_int_70 * current_TX_remote_0_dBm * voltage_remote / rtimer_second_remote / powertrace_period;
-all_listen_wind_35_diff_mW_int_70 = all_listen_wind_35_diff_int_70 * current_RX_remote * voltage_remote / rtimer_second_remote / powertrace_period;
+all_cpu_wind_35_diff_mW_int_70 = all_cpu_wind_35_diff_int_70 * current_CPU_remote * voltage_remote / rtimer_second_remote / powertrace_period_basictree;
+all_lpm_wind_35_diff_mW_int_70 = all_lpm_wind_35_diff_int_70 * current_LPM_remote * voltage_remote / rtimer_second_remote / powertrace_period_basictree;
+all_transmit_wind_35_diff_mW_int_70 = all_transmit_wind_35_diff_int_70 * current_TX_remote_0_dBm * voltage_remote / rtimer_second_remote / powertrace_period_basictree;
+all_listen_wind_35_diff_mW_int_70 = all_listen_wind_35_diff_int_70 * current_RX_remote * voltage_remote / rtimer_second_remote / powertrace_period_basictree;
 
 %% total power consumption in mW
 
