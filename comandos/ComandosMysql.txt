@@ -317,6 +317,16 @@ FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n';
 
+SELECT "id", "clock_time", "linkaddr_node_addr", "seqno", "all_cpu", "all_lpm", "all_transmit",
+       "all_listen", "all_idle_transmit", "all_idle_listen", "cpu", "lpm", "transmit", "listen",
+       "idle_transmit", "idle_listen", "date"
+UNION ALL
+SELECT *
+FROM powertrace_wind_25_int_0
+INTO OUTFILE "/var/lib/mysql-files/powertrace_wind_25_int_0_v2.csv"
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n';
 
 cp /var/lib/mysql-files/LinkStatisticsPaperV3_21_2.csv /home/sink/Desktop/contiki/examples/paperInterferingNode/Results_Paper_Interfering_Node/
 
