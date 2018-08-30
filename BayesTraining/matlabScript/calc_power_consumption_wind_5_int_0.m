@@ -1,4 +1,6 @@
 
+
+
 %% power en miliWatios mW
 
 cpu_wind_5_mW_int_0 = cpu_wind_5_int_0 * current_CPU_remote * voltage_remote / rtimer_second_remote / powertrace_period_basictree;

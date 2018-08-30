@@ -10,16 +10,17 @@ clc
   readFiles_powertrace
   readFiles_rpl
   
-%% Remove Outliers
-  %remove_outliers_powertrace
-
-  
+ 
 %% Save workspace
   save('/home/seringsergio/Desktop/DGHS/BayesTraining/results/vary_int_csv_v1/consolidado_int.mat') 
 
 %% Upload workspace
 % load('/home/seringsergio/Desktop/DGHS/BayesTraining/results/vary_int_csv_v1/consolidado_int.mat') 
 
+%% Remove Outliers
+
+% remove_outliers_powertrace
+% remove_outliers_rpl
 
 %% definir rangos
 

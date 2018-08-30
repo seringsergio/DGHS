@@ -90,7 +90,7 @@
 //////////////////////////
 
 // Exponential weighted moving average (EWMA)
-#define WINDOW_NUM_PACKETS 25
+#define WINDOW_NUM_PACKETS 24
 #define PACKET_FREQUENCY   1  //La frecuencia del paquete esta dada en segundos
 
 #define EWMA_ALPHA_01 0.10f //The f indicates it is a float value

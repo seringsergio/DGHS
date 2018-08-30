@@ -229,8 +229,8 @@ PROCESS_THREAD(analyze_csma_results, ev, data)
         //see for in matlab count_EWMA_btp_01
         for(i=1; i <= num_divisions_btp; i++ )
         {
-          lower_interval = (float) (i-1) * (float) range_EWMA_btp_01_wind_25 / (float) num_divisions_btp;
-          upper_interval = (float) (i)   * (float) range_EWMA_btp_01_wind_25 / (float) num_divisions_btp;
+          lower_interval = (float) (i-1) * (float) range_EWMA_btp_01_wind_20 / (float) num_divisions_btp;
+          upper_interval = (float) (i)   * (float) range_EWMA_btp_01_wind_20 / (float) num_divisions_btp;
           ftoa(lower_interval, res1, 2);
           ftoa(csma_results.EWMA_btp_01, res2, 2);
           ftoa(upper_interval, res3, 2);
@@ -314,7 +314,7 @@ PROCESS_THREAD(detect_interference, ev, data)
         for(i=0; i < COLUMNS_T; i++)
         {
           event.column = i;
-          prob_btp[i] = calculate_probability_of_event( frequency_table_btp_wind_25,   event );
+          prob_btp[i] = calculate_probability_of_event( frequency_table_btp_wind_20,   event );
           total_prob += prob_btp[i];
           PROCESS_PAUSE(); //La funcion calculate_probability_of_event() llama muchas subfunciones. Por eso espero.
         }
@@ -345,7 +345,7 @@ PROCESS_THREAD(detect_interference, ev, data)
        for(i=0; i < COLUMNS_T; i++)
        {
          event.column = i;
-         prob_ppl[i] = calculate_probability_of_event( frequency_table_ppl_wind_25,   event );
+         prob_ppl[i] = calculate_probability_of_event( frequency_table_ppl_wind_20,   event );
          total_prob += prob_ppl[i];
          PROCESS_PAUSE(); //La funcion calculate_probability_of_event() llama muchas subfunciones. Por eso espero.
        }

@@ -3254,7 +3254,7 @@ Discarded input sections
                 0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
  .rodata.frequency_table_ppl_wind_15
                 0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
- .rodata.frequency_table_ppl_wind_20
+ .rodata.frequency_table_btp_wind_25
                 0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
  .rodata.frequency_table_ppl_wind_5
                 0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
@@ -3266,11 +3266,11 @@ Discarded input sections
                 0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
  .rodata.frequency_table_ppl_wind_35
                 0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
+ .rodata.frequency_table_ppl_wind_25
+                0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
  .rodata.frequency_table_btp_wind_10
                 0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
  .rodata.frequency_table_btp_wind_15
-                0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
- .rodata.frequency_table_btp_wind_20
                 0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
  .rodata.frequency_table_ppl_01
                 0x0000000000000000      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
@@ -4757,12 +4757,12 @@ END GROUP
                 0x0000000000208cf9        0x8 obj_zoul/nullsec.o
  .rodata.str1.1
                 0x0000000000208d01      0x239 DGHS_Bayes_Laplace_Classify_v2_wind_25.co
- .rodata.frequency_table_btp_wind_25
+ .rodata.frequency_table_ppl_wind_20
                 0x0000000000208f3a      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
-                0x0000000000208f3a                frequency_table_btp_wind_25
- .rodata.frequency_table_ppl_wind_25
+                0x0000000000208f3a                frequency_table_ppl_wind_20
+ .rodata.frequency_table_btp_wind_20
                 0x00000000002090f2      0x1b8 obj_zoul/Bayes_Laplace_Classify.o
-                0x00000000002090f2                frequency_table_ppl_wind_25
+                0x00000000002090f2                frequency_table_btp_wind_20
                 0x00000000002092aa                _etext = .
 
 .glue_7         0x00000000002092ac        0x0
@@ -6233,8 +6233,8 @@ frequency_table_btp_09                            obj_zoul/Bayes_Laplace_Classif
 frequency_table_btp_wind_10                       obj_zoul/Bayes_Laplace_Classify.o
 frequency_table_btp_wind_15                       obj_zoul/Bayes_Laplace_Classify.o
 frequency_table_btp_wind_20                       obj_zoul/Bayes_Laplace_Classify.o
-frequency_table_btp_wind_25                       obj_zoul/Bayes_Laplace_Classify.o
                                                   DGHS_Bayes_Laplace_Classify_v2_wind_25.co
+frequency_table_btp_wind_25                       obj_zoul/Bayes_Laplace_Classify.o
 frequency_table_btp_wind_30                       obj_zoul/Bayes_Laplace_Classify.o
 frequency_table_btp_wind_35                       obj_zoul/Bayes_Laplace_Classify.o
 frequency_table_btp_wind_5                        obj_zoul/Bayes_Laplace_Classify.o
@@ -6250,8 +6250,8 @@ frequency_table_ppl_09                            obj_zoul/Bayes_Laplace_Classif
 frequency_table_ppl_wind_10                       obj_zoul/Bayes_Laplace_Classify.o
 frequency_table_ppl_wind_15                       obj_zoul/Bayes_Laplace_Classify.o
 frequency_table_ppl_wind_20                       obj_zoul/Bayes_Laplace_Classify.o
-frequency_table_ppl_wind_25                       obj_zoul/Bayes_Laplace_Classify.o
                                                   DGHS_Bayes_Laplace_Classify_v2_wind_25.co
+frequency_table_ppl_wind_25                       obj_zoul/Bayes_Laplace_Classify.o
 frequency_table_ppl_wind_30                       obj_zoul/Bayes_Laplace_Classify.o
 frequency_table_ppl_wind_35                       obj_zoul/Bayes_Laplace_Classify.o
 frequency_table_ppl_wind_5                        obj_zoul/Bayes_Laplace_Classify.o

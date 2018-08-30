@@ -104,4 +104,15 @@ consolidado_bar_x_wind_X_int_0_mean = ...
   cpu_wind_25_mW_int_0_mean lpm_wind_25_mW_int_0_mean transmit_wind_25_mW_int_0_mean listen_wind_25_mW_int_0_mean;
   cpu_wind_30_mW_int_0_mean lpm_wind_30_mW_int_0_mean transmit_wind_30_mW_int_0_mean listen_wind_30_mW_int_0_mean;
   cpu_wind_35_mW_int_0_mean lpm_wind_35_mW_int_0_mean transmit_wind_35_mW_int_0_mean listen_wind_35_mW_int_0_mean];
-                                     
+
+% Este vector es para plotear. Por eso multiplico el lpm por un factor de
+% factor_ploteo
+consolidado_bar_x_wind_X_int_0_mean_mod = ...
+[ cpu_wind_5_mW_int_0_mean  lpm_wind_5_mW_int_0_mean*factor_ploteo  transmit_wind_5_mW_int_0_mean  listen_wind_5_mW_int_0_mean;
+  cpu_wind_10_mW_int_0_mean lpm_wind_10_mW_int_0_mean*factor_ploteo transmit_wind_10_mW_int_0_mean listen_wind_10_mW_int_0_mean;
+  cpu_wind_15_mW_int_0_mean lpm_wind_15_mW_int_0_mean*factor_ploteo transmit_wind_15_mW_int_0_mean listen_wind_15_mW_int_0_mean;
+  cpu_wind_20_mW_int_0_mean lpm_wind_20_mW_int_0_mean*factor_ploteo transmit_wind_20_mW_int_0_mean listen_wind_20_mW_int_0_mean;
+  cpu_wind_25_mW_int_0_mean lpm_wind_25_mW_int_0_mean*factor_ploteo transmit_wind_25_mW_int_0_mean listen_wind_25_mW_int_0_mean;
+  cpu_wind_30_mW_int_0_mean lpm_wind_30_mW_int_0_mean*factor_ploteo transmit_wind_30_mW_int_0_mean listen_wind_30_mW_int_0_mean;
+  cpu_wind_35_mW_int_0_mean lpm_wind_35_mW_int_0_mean*factor_ploteo transmit_wind_35_mW_int_0_mean listen_wind_35_mW_int_0_mean];
+
