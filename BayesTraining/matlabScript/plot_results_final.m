@@ -292,6 +292,7 @@ hold on
 h = bar(min(window_vec):min(window_vec):max(window_vec),consolidado_bar_x_wind_X_int_0_mean_mod,'stacked');
 set(h,{'FaceColor'},{color_1;color_2;color_3;color_4});
 set(gca,'fontsize',16) % Colocar mas grandes los numeros de los ejes
+ylim([0 12])
 % Esta funcion (terrorbar) la descargue de internet para variar la longitud
 % del errorbar. Width. CapSize. 
 % Ref: https://la.mathworks.com/matlabcentral/fileexchange/52367-terrorbar-m-error-bars-with-controlled-widths-post-r2014b
@@ -304,7 +305,7 @@ legenda1 = 'cpu';
 legenda2 = 'lpm';
 legenda3 = 'Tx';
 legenda4 = 'Rx';
-legenda =legend(legenda1,legenda2,legenda3,legenda4,'Location','SouthEast');
+legenda =legend(legenda1,legenda2,legenda3,legenda4,'Location','NorthEast');
 set(legenda,'FontSize',14);
 
 figure

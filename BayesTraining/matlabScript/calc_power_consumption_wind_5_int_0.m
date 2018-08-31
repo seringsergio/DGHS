@@ -1,4 +1,14 @@
+%% remove outliers
 
+transmit_wind_5_int_0 = transmit_wind_5_int_0(~Isoutlier(transmit_wind_5_int_0));
+
+% Volver los vectores del mismo tamaño luego de quitar los outliers
+minLength = min ( [ length(cpu_wind_5_int_0) length(lpm_wind_5_int_0) length(transmit_wind_5_int_0) length(listen_wind_5_int_0) ] );
+
+cpu_wind_5_int_0      = cpu_wind_5_int_0(1:minLength);
+lpm_wind_5_int_0      = lpm_wind_5_int_0(1:minLength);
+transmit_wind_5_int_0 = transmit_wind_5_int_0(1:minLength);
+listen_wind_5_int_0   = listen_wind_5_int_0(1:minLength);
 
 
 %% power en miliWatios mW
