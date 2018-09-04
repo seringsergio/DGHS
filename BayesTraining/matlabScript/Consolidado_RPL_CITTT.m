@@ -71,6 +71,19 @@ consolidado_listen_wind_35_mW_int_0_citt_mean = [listen_wind_35_mW_int_0_citt_me
                                                  listen_wind_35_mW_int_90_citt_mean
                                                  listen_wind_35_mW_int_100_citt_mean
                                                  ];
+                                             
+consolidado_listen_wind_35_mW_int_0_citt_std = [listen_wind_35_mW_int_0_citt_std                                               
+                                                 listen_wind_35_mW_int_10_citt_std
+                                                 listen_wind_35_mW_int_20_citt_std
+                                                 listen_wind_35_mW_int_30_citt_std
+                                                 listen_wind_35_mW_int_40_citt_std
+                                                 listen_wind_35_mW_int_50_citt_std
+                                                 listen_wind_35_mW_int_60_citt_std
+                                                 listen_wind_35_mW_int_70_citt_std
+                                                 listen_wind_35_mW_int_80_citt_std
+                                                 listen_wind_35_mW_int_90_citt_std
+                                                 listen_wind_35_mW_int_100_citt_std
+                                                 ];
 
 consolidado_cpu_rpl_leaf_int_x_mW_mean = [cpu_rpl_leaf_int_0_mW_mean
                                           cpu_rpl_leaf_int_10_mW_mean
@@ -123,4 +136,18 @@ consolidado_listen_rpl_leaf_int_x_mW_mean = [listen_rpl_leaf_int_0_mW_mean
                                           listen_rpl_leaf_int_80_mW_mean
                                           listen_rpl_leaf_int_90_mW_mean
                                           listen_rpl_leaf_int_100_mW_mean
-                                          ];                                       
+                                          ];
+                                      
+consolidado_listen_rpl_leaf_int_x_mW_std = [listen_rpl_leaf_int_0_mW_std
+                                          listen_rpl_leaf_int_10_mW_std
+                                          listen_rpl_leaf_int_20_mW_std
+                                          listen_rpl_leaf_int_30_mW_std
+                                          listen_rpl_leaf_int_40_mW_std
+                                          listen_rpl_leaf_int_50_mW_std
+                                          listen_rpl_leaf_int_60_mW_std
+                                          listen_rpl_leaf_int_70_mW_std
+                                          listen_rpl_leaf_int_80_mW_std
+                                          listen_rpl_leaf_int_90_mW_std
+                                          listen_rpl_leaf_int_100_mW_std
+                                          ];                                      
+                                      

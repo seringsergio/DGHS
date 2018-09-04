@@ -405,54 +405,54 @@
 % legenda =legend(legenda1,legenda2,legenda3,legenda4,'Location','SouthEast');
 % set(legenda,'FontSize',14);
 
-figure
-label_mech={'CITT'; 'RPL' };
-hold on
-h = bar(1:2,power_rpl_citt_leaf_mean_plot,'stacked');
-set(h,{'FaceColor'},{color_1;color_2;color_3;color_4});
-set(gca,'xticklabel',label_mech)
-set(gca,'xtick',1:2) % para que solo muestre numeros enteros en el eje X
-set(gca,'fontsize',16) % Colocar mas grandes los numeros de los ejes
-% Esta funcion (terrorbar) la descargue de internet para variar la longitud
-% del errorbar. Width. CapSize. 
-% Ref: https://la.mathworks.com/matlabcentral/fileexchange/52367-terrorbar-m-error-bars-with-controlled-widths-post-r2014b
-terrorbar(1:2,consolidado_rpl_citt_leaf_mean, consolidado_rpl_citt_leaf_std',0.7,'centi');
-
-ylabel('Power (mW)','FontSize', 20,'fontweight','bold');
-xlabel('Mechanism','FontSize', 20,'fontweight','bold');
-title('Power consumption', 'FontSize', 22, 'fontweight','bold');
-legenda1 = 'cpu';
-legenda2 = 'lpm';
-legenda3 = 'Tx';
-legenda4 = 'Rx';
-legenda =legend(legenda1,legenda2,legenda3,legenda4,'Location','NorthEast');
-set(legenda,'FontSize',14);
+% figure
+% label_mech={'CITT'; 'RPL' };
+% hold on
+% h = bar(1:2,power_rpl_citt_leaf_mean_plot,'stacked');
+% set(h,{'FaceColor'},{color_1;color_2;color_3;color_4});
+% set(gca,'xticklabel',label_mech)
+% set(gca,'xtick',1:2) % para que solo muestre numeros enteros en el eje X
+% set(gca,'fontsize',16) % Colocar mas grandes los numeros de los ejes
+% % Esta funcion (terrorbar) la descargue de internet para variar la longitud
+% % del errorbar. Width. CapSize. 
+% % Ref: https://la.mathworks.com/matlabcentral/fileexchange/52367-terrorbar-m-error-bars-with-controlled-widths-post-r2014b
+% terrorbar(1:2,consolidado_rpl_citt_leaf_mean, consolidado_rpl_citt_leaf_std',0.7,'centi');
+% 
+% ylabel('Power (mW)','FontSize', 20,'fontweight','bold');
+% xlabel('Mechanism','FontSize', 20,'fontweight','bold');
+% title('Power consumption', 'FontSize', 22, 'fontweight','bold');
+% legenda1 = 'cpu';
+% legenda2 = 'lpm';
+% legenda3 = 'Tx';
+% legenda4 = 'Rx';
+% legenda =legend(legenda1,legenda2,legenda3,legenda4,'Location','NorthEast');
+% set(legenda,'FontSize',14);
 
 
 %%
 
 
 % h = bar(min(window_vec):min(window_vec):max(window_vec),consolidado_bar_x_wind_X_int_70_mean_mod,'stacked');
-figure
-h = bar(min(window_vec):min(window_vec):max(window_vec),consolidado_bar_x_wind_X_int_0_mean,'stacked');
-legenda1 = 'cpu';
-legenda2 = 'lpm';
-legenda3 = 'Tx';
-legenda4 = 'Rx';
-legenda =legend(legenda1,legenda2,legenda3,legenda4,'Location','NorthEastOutside');
-set(legenda,'FontSize',14);
+% figure
+% h = bar(min(window_vec):min(window_vec):max(window_vec),consolidado_bar_x_wind_X_int_0_mean,'stacked');
+% legenda1 = 'cpu';
+% legenda2 = 'lpm';
+% legenda3 = 'Tx';
+% legenda4 = 'Rx';
+% legenda =legend(legenda1,legenda2,legenda3,legenda4,'Location','NorthEastOutside');
+% set(legenda,'FontSize',14);
+% 
+% figure
+% h = bar(min(window_vec):min(window_vec):max(window_vec),consolidado_bar_x_wind_X_int_70_mean_mod,'stacked');
+% legenda1 = 'cpu';
+% legenda2 = 'lpm';
+% legenda3 = 'Tx';
+% legenda4 = 'Rx';
+% legenda =legend(legenda1,legenda2,legenda3,legenda4,'Location','NorthEastOutside');
+% set(legenda,'FontSize',14);
 
-figure
-h = bar(min(window_vec):min(window_vec):max(window_vec),consolidado_bar_x_wind_X_int_70_mean_mod,'stacked');
-legenda1 = 'cpu';
-legenda2 = 'lpm';
-legenda3 = 'Tx';
-legenda4 = 'Rx';
-legenda =legend(legenda1,legenda2,legenda3,legenda4,'Location','NorthEastOutside');
-set(legenda,'FontSize',14);
 
-
-figure 
-plot(consolidado_listen_wind_35_mW_int_0_citt_mean)
-hold on
-plot(consolidado_listen_rpl_leaf_int_x_mW_mean)
+% figure 
+% plot(consolidado_listen_wind_35_mW_int_0_citt_mean)
+% hold on
+% plot(consolidado_listen_rpl_leaf_int_x_mW_mean)
