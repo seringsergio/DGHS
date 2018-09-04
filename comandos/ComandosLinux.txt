@@ -31,3 +31,6 @@ msp430-size example-ghs_neigh.sky
 
 //abrir matlab R2014b desde el terminal. Just type matlab.
 matlab
+
+//Abrir octave
+octave --force-gui

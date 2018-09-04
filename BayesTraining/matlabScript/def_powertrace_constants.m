@@ -46,5 +46,6 @@ X_axis_nodes = 1:1:num_nodes;
 int_vec_nodes = zeros(num_nodes);
 
 %% Para plotear incremento LPM por 45... Solo para verlo en la grafica
-factor_ploteo     = 100; 
+factor_ploteo     = 60; 
 factor_ploteo_cpu = 2; 
+

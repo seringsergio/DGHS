@@ -450,3 +450,9 @@ legenda3 = 'Tx';
 legenda4 = 'Rx';
 legenda =legend(legenda1,legenda2,legenda3,legenda4,'Location','NorthEastOutside');
 set(legenda,'FontSize',14);
+
+
+figure 
+plot(consolidado_listen_wind_35_mW_int_0_citt_mean)
+hold on
+plot(consolidado_listen_rpl_leaf_int_x_mW_mean)

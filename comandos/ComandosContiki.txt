@@ -57,7 +57,7 @@ make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On100Off0.upload
 make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On95Off5.upload
 make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On90Off10.upload
 make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On80Off20.upload
-make MOTES=/dev/ttyUSB0 TARGET=sky modulated_carrier_On70Off30.upload
+make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On70Off30.upload
 make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On60Off40.upload
 make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On50Off50.upload
 make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On40Off60.upload
@@ -105,12 +105,12 @@ make NODEID=0x0200 MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva DGHS_Bayes_L
 make NODEID=0x0200 MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva DGHS_Bayes_Laplace_Classify_v2_wind_20.upload
 make NODEID=0x0200 MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva DGHS_Bayes_Laplace_Classify_v2_wind_25.upload
 make NODEID=0x0200 MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva DGHS_Bayes_Laplace_Classify_v2_wind_30.upload
-make NODEID=0x0200 MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva DGHS_Bayes_Laplace_Classify_v2_wind_35.upload
+make NODEID=0x0200 MOTES=/dev/ttyUSB3 TARGET=zoul BOARD=remote-reva DGHS_Bayes_Laplace_Classify_v2_wind_35.upload
 
 make  MOTES=/dev/ttyUSB0 TARGET=zoul BOARD=remote-reva border-router.upload
 
-make  MOTES=/dev/ttyUSB0 TARGET=zoul BOARD=remote-reva WITH_COMPOWER=1 udp-server.upload
-make  MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva WITH_COMPOWER=1 udp-client.upload
+make  MOTES=/dev/ttyUSB2 TARGET=zoul BOARD=remote-reva WITH_COMPOWER=1 udp-client.upload
+make  MOTES=/dev/ttyUSB3 TARGET=zoul BOARD=remote-reva WITH_COMPOWER=1 udp-server.upload
 
 make NODEID=0x0200 MOTES=/dev/ttyUSB0 TARGET=zoul BOARD=remote-reva example-powertrace.upload
 
@@ -124,7 +124,7 @@ make NODEID=0x0100
 make RF_CHANNEL=20
 
 
-
+////////////////////////////////////////////////////////////
 //rssi-scanner
 0. cd /home/seringsergio/Desktop/DGHS/contiki/examples/rssi-scanner
 1. subir el codigo rssi-scanner-cc2420.c al sky node
@@ -135,7 +135,7 @@ make RF_CHANNEL=20
 3. ejecutar en el terminal
 make MOTES=/dev/ttyUSB0 TARGET=sky login | java ViewRSSI
 
-
+//////////////////////////////////////////////////
 //Configurar el PREFIX (e.g. aaaa::1/64) en RPL
 cd /home/seringsergio/Desktop/DGHS/contiki/tools
 sudo ./tunslip6 -s /dev/ttyUSB0 aaaa::1/64

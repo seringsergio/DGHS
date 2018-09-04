@@ -179,6 +179,26 @@ idle_listen INT(11) NOT NULL,
 date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+create table powertrace_rpl_int_0 (
+id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+clock_time INT(11) NOT NULL,
+linkaddr_node_addr DECIMAL(5,2) NOT NULL,
+seqno INT(11) NOT NULL,
+all_cpu INT(11) NOT NULL,
+all_lpm INT(11) NOT NULL,
+all_transmit INT(11) NOT NULL,
+all_listen INT(11) NOT NULL,
+all_idle_transmit INT(11) NOT NULL,
+all_idle_listen INT(11) NOT NULL,
+cpu INT(11) NOT NULL,
+lpm INT(11) NOT NULL,
+transmit INT(11) NOT NULL,
+listen INT(11) NOT NULL,
+idle_transmit INT(11) NOT NULL,
+idle_listen INT(11) NOT NULL,
+date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
 //format TREE_PLOT nodeID seqno x y parent_plot estimated_interference
 
 //For plotting the tree in python in real-time
@@ -322,8 +342,20 @@ SELECT "id", "clock_time", "linkaddr_node_addr", "seqno", "all_cpu", "all_lpm", 
        "idle_transmit", "idle_listen", "date"
 UNION ALL
 SELECT *
-FROM powertrace_wind_5_int_0
-INTO OUTFILE "/var/lib/mysql-files/powertrace_wind_5_int_0_v2.csv"
+FROM powertrace_wind_35_int_0
+INTO OUTFILE "/var/lib/mysql-files/powertrace_wind_35_int_0_v2.csv"
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n';
+
+
+SELECT "id", "clock_time", "linkaddr_node_addr", "seqno", "all_cpu", "all_lpm", "all_transmit",
+       "all_listen", "all_idle_transmit", "all_idle_listen", "cpu", "lpm", "transmit", "listen",
+       "idle_transmit", "idle_listen", "date"
+UNION ALL
+SELECT *
+FROM powertrace_rpl_int_100
+INTO OUTFILE "/var/lib/mysql-files/powertrace_rpl_int_100.csv"
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n';

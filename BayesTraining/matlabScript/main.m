@@ -9,7 +9,12 @@ clc
   readFiles_classify
   readFiles_powertrace
   readFiles_rpl
-  
+
+%% definir rangos
+def_range
+
+%% definir las constantes para el nodo: Re-Mote
+def_powertrace_constants
  
 %% Save workspace
   save('/home/seringsergio/Desktop/DGHS/BayesTraining/results/vary_int_csv_v1/consolidado_int.mat') 
@@ -22,9 +27,7 @@ clc
 % remove_outliers_powertrace
 % remove_outliers_rpl
 
-%% definir rangos
 
-def_range
 
 %% para las diferentes ventanas 
 
@@ -53,3 +56,4 @@ rpl_metrics
 
 plot_results_previous
 plot_results_final
+
