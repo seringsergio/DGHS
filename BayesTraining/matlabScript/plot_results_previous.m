@@ -456,3 +456,111 @@
 % plot(consolidado_listen_wind_35_mW_int_0_citt_mean)
 % hold on
 % plot(consolidado_listen_rpl_leaf_int_x_mW_mean)
+
+% close all
+
+% figure
+% plot(consolidado_listen_wind_35_mW_int_x_citt_mean)
+% hold on
+% plot(consolidado_listen_rpl_leaf_int_x_mW_mean)
+% title('Power listen', 'FontSize', 22, 'fontweight','bold');
+% 
+% 
+% figure
+% plot(consolidado_transmit_wind_35_mW_int_x_citt_mean)
+% hold on
+% plot(consolidado_transmit_rpl_leaf_int_x_mW_mean)
+% title('Power transmit', 'FontSize', 22, 'fontweight','bold');
+% 
+% figure
+% plot(consolidado_cpu_wind_35_mW_int_x_citt_mean)
+% hold on
+% plot(consolidado_cpu_rpl_leaf_int_x_mW_mean)
+% title('Power cpu', 'FontSize', 22, 'fontweight','bold');
+% 
+% figure
+% plot(consolidado_lpm_wind_35_mW_int_x_citt_mean)
+% hold on
+% plot(consolidado_lpm_rpl_leaf_int_x_mW_mean)
+% title('Power lpm', 'FontSize', 22, 'fontweight','bold');
+
+
+% figure 
+% bar([1 2], [ 1 4;2 8])
+
+% figure
+% plotBarStackGroups( [ [0.5 0.5]  [1.5 1.5]; [2.5 2.5] [1.0 1.0]], { 'a', 'because' } )
+% plotBarStackGroups( [ [0.5 1.5 2.5 3.5];[0.5 1.5 2.5 3.5]], { 'a', 'because' } )
+
+% Y = round(rand(5,3,2)*10);
+% Y(1:5,1:2,1) = 0; % setting extra zeros to simulate original groups.
+% 
+% groupLabels = { 1, 2, 3, 4, 5};     % set labels
+
+% groupLabels = { 0, 1,2,3,4,5,6,7,8,9,0,1};
+%    
+% %CPU        CITT                      RPL
+% Y(:,:,1) = [10                        10; % int_0
+%             15                        15; % int_10
+%             20                        20; % int_20
+%             8                         16; % int_30
+%             2                         4;  % int_40
+%             8                         16; % int_50
+%             2                         4;  % int_60
+%             8                         16; % int_70
+%             2                         4;  % int_80
+%             8                         16; % int_90
+%             2                         4   % int_100
+%         
+%             ];
+% 
+% %LPM        CITT                      RPL
+% Y(:,:,2) = [1                         5; % int_0
+%             1                         5; % int_10
+%             1                         5; % int_20
+%             8                         16;% int_30
+%             2                         4; % int_40
+%             8                         16;% int_50
+%             2                         4; % int_60
+%             8                         16;% int_70
+%             2                         4; % int_80
+%             8                         16;% int_90
+%             2                         4  % int_100
+%             
+%             ];
+% %Transmit   CITT                      RPL
+% Y(:,:,3) = [10                        5; % int_0
+%             10                        5; % int_10
+%             10                        5; % int_20
+%             8                         16;% int_30
+%             2                         4; % int_40
+%             8                         16;% int_50
+%             2                         4; % int_60
+%             8                         16;% int_70
+%             2                         4; % int_80
+%             8                         16;% int_90
+%             2                         4  % int_100
+%             
+%             ];
+%         
+% %listen     CITT                      RPL     
+% Y(:,:,4) = [20                        10; % int_0
+%             20                        10; % int_10
+%             20                        10; % int_20
+%             20                        10; % int_30
+%             2                         4;  % int_40
+%             8                         16; % int_50
+%             2                         4;  % int_60
+%             8                         16; % int_70
+%             2                         4;  % int_80
+%             8                         16; % int_90
+%             2                         4   % int_100
+%             
+%             ];    
+%         
+% plotBarStackGroups(Y, groupLabels); % plot groups of stacked bars
+
+groupLabels = { 0, 1,2,3,4,5,6,7,8,9,0,1};
+   
+        
+plotBarStackGroups(consolidado_power_citt_rpl_int_x, groupLabels); % plot groups of stacked bars

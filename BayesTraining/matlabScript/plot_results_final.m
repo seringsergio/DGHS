@@ -498,13 +498,13 @@ set(legenda,'FontSize',14);
 
 figure
 subplot(10,1,1:2);
-h1  = errorbar(int_vec_0_100,vec_zeros,consolidado_listen_wind_35_mW_int_0_citt_std,'k-o','LineWidth',4);
+h1  = errorbar(int_vec_0_100,vec_zeros,consolidado_listen_wind_35_mW_int_x_citt_std,'k-o','LineWidth',4);
 text(xtext1,ytext1,'CITT','FontSize', 20, 'fontweight','bold');
 ylabel('Std','FontSize', 20,'fontweight','bold');
 set(gca,'fontsize',16) % Colocar mas grandes los numeros de los ejes
 set(gca,'XTickLabel',{}) % quitar los numeros en el eje x
 xlim([min(int_vec_0_100) max(int_vec_0_100)]);
-ylim([min(consolidado_listen_wind_35_mW_int_0_citt_std*-1)-0.050 max(consolidado_listen_wind_35_mW_int_0_citt_std)+0.050 ]);
+ylim([min(consolidado_listen_wind_35_mW_int_x_citt_std*-1)-0.050 max(consolidado_listen_wind_35_mW_int_x_citt_std)+0.050 ]);
 set(gca,'ytick',-0.4:0.4:+0.4) % para q muestre en el eje numeros desde -0.4 hasta +0.4, en intervalos de 0.4
 title('Power consumption RX', 'FontSize', 22, 'fontweight','bold');
 subplot(10,1,3:4);
@@ -518,7 +518,7 @@ ylim([min(consolidado_listen_rpl_leaf_int_x_mW_std*-1)-0.050 max(consolidado_lis
 % set(gca,'ytick',-0.4:0.4:+0.4) % para q muestre en el eje numeros desde -0.4 hasta +0.4, en intervalos de 0.4
 % title('Power consumption RX', 'FontSize', 22, 'fontweight','bold');
 subplot(10,1,5:10);
-plot(int_vec_0_100, consolidado_listen_wind_35_mW_int_0_citt_mean,'b-o','LineWidth',4)
+plot(int_vec_0_100, consolidado_listen_wind_35_mW_int_x_citt_mean,'b-o','LineWidth',4)
 set(gca,'fontsize',16) % Colocar mas grandes los numeros de los ejes
 % set(gca,'XTickLabel',{}) % quitar los numeros en el eje x
 % xlim([min(window_vec) max(window_vec)]);

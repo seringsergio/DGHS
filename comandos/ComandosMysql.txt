@@ -79,6 +79,34 @@ latency   INT(4) NOT NULL,
 date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+create table temp (
+id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+date TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+);
+
+//I am very confused by your question. There are 1000 milliseconds in a second,
+//so 1 second and 543 milliseconds is 1.534 seconds. What exactly is your problem?
+
+
+//DATETIME(6)
+
+INSERT INTO latency_PRR_citt (id,seqno,nodeID) VALUES (NULL,65,15);
+
+
+create table latency_PRR_sink_citt_int_0 (
+id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+seqno INT(11) NOT NULL,
+nodeID DECIMAL(5,2) NOT NULL,
+date TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+);
+
+create table latency_PRR_leaf_citt_int_0 (
+id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+seqno INT(11) NOT NULL,
+nodeID DECIMAL(5,2) NOT NULL,
+date TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+);
+
 //For plotting the tree in python in real-time
 create table msg (
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -356,6 +384,25 @@ UNION ALL
 SELECT *
 FROM powertrace_rpl_int_100
 INTO OUTFILE "/var/lib/mysql-files/powertrace_rpl_int_100.csv"
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n';
+
+
+SELECT "id","seqno","nodeID","date"
+UNION ALL
+SELECT *
+FROM latency_PRR_sink_citt_int_0
+INTO OUTFILE "/var/lib/mysql-files/latency_PRR_sink_citt_int_0.csv"
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n';
+
+SELECT "id","seqno","nodeID","date"
+UNION ALL
+SELECT *
+FROM latency_PRR_leaf_citt_int_0
+INTO OUTFILE "/var/lib/mysql-files/latency_PRR_leaf_citt_int_0.csv"
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n';

@@ -33,4 +33,4 @@ msp430-size example-ghs_neigh.sky
 matlab
 
 //Abrir octave
-octave --force-gui
+octave --force-gui &

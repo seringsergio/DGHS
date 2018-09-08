@@ -213,7 +213,7 @@ PROCESS_THREAD(prepare_data_col, ev, data)
 
   while(1)
   {
-    etimer_set(&et,  CLOCK_SECOND   );
+    etimer_set(&et,  CLOCK_SECOND * FREQUENCY_DATA_COL  );
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
 
     if(!linkaddr_cmp(&linkaddr_node_addr,&t_node.parent) )//si ya tengo un padre. Al inicio yo soy mi mismo padre
@@ -459,6 +459,8 @@ PROCESS_THREAD(response_to_t_data, ev, data)
                                                    linkaddr_node_addr.u8[0]
                                                   , res1
                                                   );
+
+          printf("Latency-PRR/%d/%d/\n",t_data.seqno, t_data.from.u8[0]);
         }else
         {
           //Re Send the t_data to the next hop
@@ -663,6 +665,7 @@ PROCESS_THREAD(send_basicTree, ev, data)
       printf("sizeof(struct t_data) = %d\n", sizeof(struct t_data) );
       printf("Send e_send_t_data to %d.%d\n", t_data.to.u8[0], t_data.to.u8[1] );
 
+      printf("Latency-PRR/%d/%d/\n",t_data.seqno, t_data.from.u8[0]);
       num_packets++;
       process_post(&csma_stats_computation, e_execute, &num_packets);
     }else
@@ -681,7 +684,6 @@ PROCESS_THREAD(send_basicTree, ev, data)
     {
       btp = (float) 1000 * (float) csma_stats.delay  / (float) CLOCK_SECOND / (float) WINDOW_NUM_PACKETS;
       ppl = (float) csma_stats.packets_dropped / (float) WINDOW_NUM_PACKETS;
-
       //Exponential weighted moving average (EWMA)
       //REF: https://en.wikipedia.org/wiki/Moving_average
       //REF: Also, see the example of contiki called example-neighbors.c It implements a EWMA
@@ -694,24 +696,19 @@ PROCESS_THREAD(send_basicTree, ev, data)
         EWMA_btp_01 = ( (float) EWMA_ALPHA_01 * (float) btp) + (( (float) 1 - (float) EWMA_ALPHA_01) * (float) EWMA_btp_01);
         EWMA_ppl_01 = ( (float) EWMA_ALPHA_01 * (float) ppl) + (( (float) 1 - (float) EWMA_ALPHA_01) * (float) EWMA_ppl_01);
       }
-
       //csma_results
       csma_results.btp = btp;
       csma_results.ppl = ppl;
       csma_results.EWMA_btp_01 = EWMA_btp_01;
       csma_results.EWMA_ppl_01 = EWMA_ppl_01;
-
       //print
       ftoa( btp, res1, 2); //Uses the library print_float.h
       ftoa( EWMA_btp_01, res2, 2); //Uses the library print_float.h
       printf("BTP/%d/%s/%s/\n",num_packets,  res1 , res2);
-
       ftoa( ppl, res1, 2); //Uses the library print_float.h
       ftoa( EWMA_ppl_01, res2, 2); //Uses the library print_float.h
       printf("PPL/%d/%s/%s/\n",num_packets,  res1 , res2);
-
       process_post(&analyze_csma_results, e_execute, &csma_results);
-
       reset_csma_stats();
     }*/
 
