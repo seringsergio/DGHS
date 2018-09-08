@@ -38,6 +38,7 @@ total_seqno = 0;
 for i = min_seqno:1:max_seqno
     total_seqno = total_seqno + 1;
     if isempty(find(seqno_sink_citt_int_0 == i))
+        i % Cuales fueron los seqno que se perdieron? Rta: i
         num_missing = num_missing + 1;
     end    
 end 
