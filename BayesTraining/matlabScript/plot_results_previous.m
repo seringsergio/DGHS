@@ -564,3 +564,27 @@ groupLabels = { 0, 1,2,3,4,5,6,7,8,9,0,1};
    
         
 plotBarStackGroups(consolidado_power_citt_rpl_int_x, groupLabels); % plot groups of stacked bars
+
+
+figure
+plot(latency_RPL_int_0_vec,'b-','LineWidth',2)
+hold on
+plot(latency_citt_int_0_vec,'r-','LineWidth',2)
+set(gca,'fontsize',16) % Colocar mas grandes los numeros de los ejes
+xlabel('Número de paquete','FontSize', 20,'fontweight','bold');
+ylabel('Latencia (us)','FontSize', 20,'fontweight','bold');
+title('Latencia - Interferencia 0%', 'FontSize', 22, 'fontweight','bold');
+legenda1 = 'RPL';
+legenda2 = 'CITT';
+legenda =legend(legenda1,legenda2,'Location','NorthEast');
+set(legenda,'FontSize',14);
+
+figure
+label_mech={'RPL'; 'CITT' };
+bar([PRR_RPL_int_0 PRR_citt_int_0])
+ylabel('Packet Reception Rate','FontSize', 20,'fontweight','bold');
+title('PRR - Interference 0%', 'FontSize', 22, 'fontweight','bold');
+set(gca,'fontsize',16) % Colocar mas grandes los numeros de los ejes
+set(gca,'xticklabel',label_mech)
+
+

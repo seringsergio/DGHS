@@ -2,3 +2,8 @@
 
 
 compute_latency_PRR_citt_int_0
+compute_latency_PRR_RPL_int_0
+
+%% consolidar informacion
+
+consolidar_latency_PRR_citt_RPL_int_0

@@ -43,4 +43,4 @@ for i = min_seqno:1:max_seqno
     end    
 end 
 
-PRR = (total_seqno - num_missing) / total_seqno * 100;
+PRR_citt_int_0 = (total_seqno - num_missing) / total_seqno * 100;

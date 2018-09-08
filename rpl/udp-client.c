@@ -44,7 +44,7 @@
 #include "net/ipv6/uip-ds6-route.h"
 
 #include "client_server.h"
-#include "powertrace.h"
+//#include "powertrace.h"
 
 #define UDP_CLIENT_PORT 8765
 #define UDP_SERVER_PORT 5678
@@ -56,7 +56,7 @@
 
 #ifndef PERIOD
 //#define PERIOD 60
-#define PERIOD 1
+#define PERIOD 2
 #endif
 
 #define START_INTERVAL		(15 * CLOCK_SECOND)
@@ -112,6 +112,15 @@ send_packet(void *ptr)
   seq_id++;
   PRINTF("DATA send to %d 'Hello %d'\n",
          server_ipaddr.u8[sizeof(server_ipaddr.u8) - 1], seq_id);
+
+  printf("RIME addrs = %02x.%02x.%02x.%02x.%02x.%02x.%02x.%02x\n",
+  linkaddr_node_addr.u8[0], linkaddr_node_addr.u8[1],
+  linkaddr_node_addr.u8[2], linkaddr_node_addr.u8[3],
+  linkaddr_node_addr.u8[4], linkaddr_node_addr.u8[5],
+  linkaddr_node_addr.u8[6], linkaddr_node_addr.u8[7] );
+
+  printf("Latency-PRR/%d/%02x/\n",seq_id,linkaddr_node_addr.u8[7]  );
+
   sprintf(buf, "Hello %d from the client", seq_id);
   uip_udp_packet_sendto(client_conn, buf, strlen(buf),
                         &server_ipaddr, UIP_HTONS(UDP_SERVER_PORT));

@@ -107,6 +107,20 @@ nodeID DECIMAL(5,2) NOT NULL,
 date TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
 );
 
+create table latency_PRR_sink_RPL_int_0 (
+id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+seqno INT(11) NOT NULL,
+nodeID DECIMAL(5,2) NOT NULL,
+date TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+);
+
+create table latency_PRR_leaf_RPL_int_0 (
+id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+seqno INT(11) NOT NULL,
+nodeID DECIMAL(5,2) NOT NULL,
+date TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+);
+
 //For plotting the tree in python in real-time
 create table msg (
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -403,6 +417,24 @@ UNION ALL
 SELECT *
 FROM latency_PRR_leaf_citt_int_0
 INTO OUTFILE "/var/lib/mysql-files/latency_PRR_leaf_citt_int_0.csv"
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n';
+
+SELECT "id","seqno","nodeID","date"
+UNION ALL
+SELECT *
+FROM latency_PRR_sink_RPL_int_0
+INTO OUTFILE "/var/lib/mysql-files/latency_PRR_sink_RPL_int_0.csv"
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n';
+
+SELECT "id","seqno","nodeID","date"
+UNION ALL
+SELECT *
+FROM latency_PRR_leaf_RPL_int_0
+INTO OUTFILE "/var/lib/mysql-files/latency_PRR_leaf_RPL_int_0.csv"
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n';

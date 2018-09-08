@@ -61,14 +61,35 @@ static void
 tcpip_handler(void)
 {
   char *appdata;
+  uint16_t i;
+  uint16_t count_spaces = 0;
 
   if(uip_newdata()) {
     appdata = (char *)uip_appdata;
     appdata[uip_datalen()] = 0;
     PRINTF("DATA recv '%s' from ", appdata);
-    PRINTF("%d",
+    //PRINTF("%d",
+      PRINTF("%02x",
            UIP_IP_BUF->srcipaddr.u8[sizeof(UIP_IP_BUF->srcipaddr.u8) - 1]);
     PRINTF("\n");
+
+    ////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////  Latency-PRR  //////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////
+    printf("Latency-PRR/");
+    for (i = 0; appdata[i] != NULL; i++)
+    {
+      if(appdata[i] == ' ')
+      {
+        count_spaces = count_spaces + 1;
+      }
+      if(count_spaces == 1 && appdata[i] != ' ' )
+      {
+        printf("%c",appdata[i] );
+      }
+    }
+    PRINTF("/%02x/\n", UIP_IP_BUF->srcipaddr.u8[sizeof(UIP_IP_BUF->srcipaddr.u8) - 1]);
+
 #if SERVER_REPLY
     PRINTF("DATA sending reply\n");
     uip_ipaddr_copy(&server_conn->ripaddr, &UIP_IP_BUF->srcipaddr);
