@@ -27,6 +27,10 @@ for i = min_seqno:1:max_seqno
 
 end
 
+% Quitar los outliers
+% a = a(~Isoutlier(a));
+latency_RPL_int_0_vec = latency_RPL_int_0_vec(~Isoutlier(latency_RPL_int_0_vec));
+
 %latencia media y desviacion estandar
 latency_RPL_int_0_vec_mean = mean(latency_RPL_int_0_vec);
 latency_RPL_int_0_vec_std  = std(latency_RPL_int_0_vec);

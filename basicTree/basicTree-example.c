@@ -145,6 +145,8 @@ static void t_recv_uc(struct unicast_conn *c, const linkaddr_t *from)
   if(msg_type ==  T_DATA)
   {
 
+    printf("Latency-PRR/%d/%d/\n",t_data->seqno, t_data->from.u8[0]);
+
     //ADD to the list
     in_l = memb_alloc(&in_union_mem);
     if(in_l == NULL) {            // If we could not allocate a new entry, we give up.
@@ -460,7 +462,7 @@ PROCESS_THREAD(response_to_t_data, ev, data)
                                                   , res1
                                                   );
 
-          printf("Latency-PRR/%d/%d/\n",t_data.seqno, t_data.from.u8[0]);
+          //printf("Latency-PRR/%d/%d/\n",t_data.seqno, t_data.from.u8[0]);
         }else
         {
           //Re Send the t_data to the next hop
