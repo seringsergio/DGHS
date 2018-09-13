@@ -77,7 +77,9 @@ tcpip_handler(void)
     ///////////////////////  Latency-PRR  //////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////
     printf("Latency-PRR/");
-    for (i = 0; appdata[i] != NULL; i++)
+    for (i = 0; appdata[i] != '\0'; i++) // '\0' es igual a NULL
+
+
     {
       if(appdata[i] == ' ')
       {

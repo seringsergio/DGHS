@@ -5,23 +5,23 @@ clc
 
 %% Read file
 
-readFiles_training
-readFiles_classify
-readFiles_powertrace
-readFiles_rpl
-readFiles_latency_PRR
+% readFiles_training
+% readFiles_classify
+% readFiles_powertrace
+% readFiles_rpl
+% readFiles_latency_PRR
 
 %% definir rangos
-def_range
+% def_range
 
 %% definir las constantes para el nodo: Re-Mote
-def_powertrace_constants
+% def_powertrace_constants
  
 %% Save workspace
-save('/home/seringsergio/Desktop/DGHS/BayesTraining/results/vary_int_csv_v1/consolidado_int.mat') 
+% save('/home/seringsergio/Desktop/DGHS/BayesTraining/results/vary_int_csv_v1/consolidado_int.mat') 
 
 %% Upload workspace
-% load('/home/seringsergio/Desktop/DGHS/BayesTraining/results/vary_int_csv_v1/consolidado_int.mat') 
+load('/home/seringsergio/Desktop/DGHS/BayesTraining/results/vary_int_csv_v1/consolidado_int.mat') 
 
 %% Remove Outliers
 

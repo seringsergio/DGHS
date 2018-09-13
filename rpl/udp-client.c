@@ -110,8 +110,12 @@ send_packet(void *ptr)
 #endif /* SERVER_REPLY */
 
   seq_id++;
-  PRINTF("DATA send to %d 'Hello %d'\n",
-         server_ipaddr.u8[sizeof(server_ipaddr.u8) - 1], seq_id);
+  /*PRINTF("DATA send to %d 'Hello %d'\n",
+         server_ipaddr.u8[sizeof(server_ipaddr.u8) - 1], seq_id);*/
+
+  PRINTF("DATA send to %d 'TREE_PLOT/%02x/%d/%d/%d/%d/%d/'\n",
+        server_ipaddr.u8[sizeof(server_ipaddr.u8) - 1], linkaddr_node_addr.u8[7],seq_id,MY_X_POS,MY_Y_POS,
+                                                       server_ipaddr.u8[sizeof(server_ipaddr.u8) - 1],0);
 
   printf("RIME addrs = %02x.%02x.%02x.%02x.%02x.%02x.%02x.%02x\n",
   linkaddr_node_addr.u8[0], linkaddr_node_addr.u8[1],
@@ -121,7 +125,15 @@ send_packet(void *ptr)
 
   printf("Latency-PRR/%d/%02x/\n",seq_id,linkaddr_node_addr.u8[7]  );
 
-  sprintf(buf, "Hello %d from the client", seq_id);
+  /*printf("TREE_PLOT/%d/%d/%d/%d/%d/%s/\n",t_data.from.u8[0], t_data.seqno, t_data.x, t_data.y,
+                                          t_data.parent_plot.u8[0]
+                                          , res1
+                                        );*/
+
+  //format TREE_PLOT nodeID seqno x y parent_plot estimated_interference
+  //sprintf(buf, "Hello %d from the client", seq_id);
+  sprintf(buf, "TREE_PLOT/%02x/%d/%d/%d/%d/%d/",linkaddr_node_addr.u8[7],seq_id,MY_X_POS,MY_Y_POS,
+                                                 server_ipaddr.u8[sizeof(server_ipaddr.u8) - 1],0);
   uip_udp_packet_sendto(client_conn, buf, strlen(buf),
                         &server_ipaddr, UIP_HTONS(UDP_SERVER_PORT));
 }

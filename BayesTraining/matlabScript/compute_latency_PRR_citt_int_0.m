@@ -14,7 +14,7 @@ for i = min_seqno:1:max_seqno
 
     % Algun paquete se perdio? Evaluo que el paquete salio del leaf y llego
     % al sink. 
-    if ~isempty(pos_seqno_leaf_citt_int_0) && ~isempty(pos_seqno_sink_citt_int_0)
+    if ~isempty(pos_seqno_leaf_citt_int_0) && ~isempty(pos_seqno_sink_citt_int_0) && length(pos_seqno_leaf_citt_int_0) == 1 && length(pos_seqno_sink_citt_int_0) == 1
         
     date_leaf_citt_int_0_temp = datetime(date_leaf_citt_int_0(pos_seqno_leaf_citt_int_0)   ,'Format','yyyy-MM-dd HH:mm:ss.SSSSSS');% pasarlo al formato de matlab
     date_sink_citt_int_0_temp = datetime(date_sink_citt_int_0(pos_seqno_sink_citt_int_0),'Format','yyyy-MM-dd HH:mm:ss.SSSSSS');% pasarlo al formato de matlab
