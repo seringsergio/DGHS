@@ -6,10 +6,13 @@ CFLAGS += -DPROJECT_CONF_H=\"project-conf.h\"
 
 $(info MY_X_POS is ${MY_X_POS})
 $(info MY_Y_POS is ${MY_Y_POS})
-
+$(info MY_NODEID is ${MY_NODEID})
+$(info MY_TX_POWER_DBM is ${MY_TX_POWER_DBM})
 
 CFLAGS += -DMY_X_POS=${MY_X_POS}
 CFLAGS += -DMY_Y_POS=${MY_Y_POS}
+CFLAGS += -DMY_NODEID=${MY_NODEID}
+CFLAGS += -DMY_TX_POWER_DBM=${MY_TX_POWER_DBM}
 
 ifdef WITH_COMPOWER
 APPS+=powertrace

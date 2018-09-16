@@ -73,21 +73,27 @@ tcpip_handler(void)
            UIP_IP_BUF->srcipaddr.u8[sizeof(UIP_IP_BUF->srcipaddr.u8) - 1]);
     PRINTF("\n");
 
+    /////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////  TREE-PLOT  /////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////
+    printf("%s\n",appdata); // La info del paquete recibido TREE_PLOT/
+
+    //format TREE_PLOT nodeID seqno x y parent_plot estimated_interference
+    printf("TREE_PLOT/%d/%d/%d/%d/%d/%d/\n",MY_NODEID, 0 , MY_X_POS, MY_Y_POS, MY_NODEID, 0 ); // La info del mismo sink
     ////////////////////////////////////////////////////////////////////////////////
     ///////////////////////  Latency-PRR  //////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////
     printf("Latency-PRR/");
-    for (i = 0; appdata[i] != '\0'; i++) // '\0' es igual a NULL
-
-
+    for (i = 0; appdata[i] ; i++) // '\0' es igual a NULL
     {
-      if(appdata[i] == ' ')
+      if(appdata[i] == '/')
       {
         count_spaces = count_spaces + 1;
       }
-      if(count_spaces == 1 && appdata[i] != ' ' )
+      if(count_spaces == 2 && appdata[i] != '/' )
       {
         printf("%c",appdata[i] );
+        //printf("%c", *appdata );
       }
     }
     PRINTF("/%02x/\n", UIP_IP_BUF->srcipaddr.u8[sizeof(UIP_IP_BUF->srcipaddr.u8) - 1]);
@@ -129,8 +135,25 @@ PROCESS_THREAD(udp_server_process, ev, data)
 
   PROCESS_BEGIN();
 
-  NETSTACK_RADIO.get_value(RADIO_PARAM_TXPOWER, &val);
-  printf(" Transmission Power Set : %d dBm \n", val);
+  // Set Transmission Power in the Zolertia
+  // NETSTACK_RADIO.set_value(RADIO_PARAM_TXPOWER,<power in dbm>)
+  // Ref: https://github.com/contiki-os/contiki/issues/1259
+  #if REMOTE
+    if(NETSTACK_RADIO.set_value(RADIO_PARAM_TXPOWER, MY_TX_POWER_DBM) == RADIO_RESULT_OK)
+    {
+      NETSTACK_RADIO.get_value(RADIO_PARAM_TXPOWER, &val);
+      printf("Transmission Power Set : %d dBm\n", val);
+    }
+    else if(NETSTACK_RADIO.set_value(RADIO_PARAM_TXPOWER, MY_TX_POWER_DBM) == RADIO_RESULT_INVALID_VALUE)
+    {
+      printf("ERROR: RADIO_RESULT_INVALID_VALUE\n");
+    }else
+    {
+      printf("ERROR: The TX power could not be set\n");
+    }
+  #endif
+  //NETSTACK_RADIO.get_value(RADIO_PARAM_TXPOWER, &val);
+  //printf(" Transmission Power Set : %d dBm \n", val);
 
   printf("RTIMER_SECOND: %u\n", RTIMER_SECOND);
 

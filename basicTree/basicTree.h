@@ -76,7 +76,7 @@
 // Set Transmission Power in the Zolertia
 // NETSTACK_RADIO.set_value(RADIO_PARAM_TXPOWER,<power in dbm>)
 // Ref: https://github.com/contiki-os/contiki/issues/1259
-#define MY_TX_POWER_DBM  0 //This number is in dBm e.g., "0" "7"  "-24"
+//#define MY_TX_POWER_DBM  0 //This number is in dBm e.g., "0" "7"  "-24"
 
 //Transmission Power for the Zolertia
 //REF: https://zolertia.io/docs/IoT_in_five_days-v1.0.pdf

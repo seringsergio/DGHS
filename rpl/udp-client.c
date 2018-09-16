@@ -113,9 +113,10 @@ send_packet(void *ptr)
   /*PRINTF("DATA send to %d 'Hello %d'\n",
          server_ipaddr.u8[sizeof(server_ipaddr.u8) - 1], seq_id);*/
 
-  PRINTF("DATA send to %d 'TREE_PLOT/%02x/%d/%d/%d/%d/%d/'\n",
-        server_ipaddr.u8[sizeof(server_ipaddr.u8) - 1], linkaddr_node_addr.u8[7],seq_id,MY_X_POS,MY_Y_POS,
-                                                       server_ipaddr.u8[sizeof(server_ipaddr.u8) - 1],0);
+  //format TREE_PLOT nodeID seqno x y parent_plot estimated_interference/seq_id
+  PRINTF("DATA send to %d 'TREE_PLOT/%d/%d/%d/%d/%d/%d/'\n",
+        server_ipaddr.u8[sizeof(server_ipaddr.u8) - 1], MY_NODEID,seq_id,MY_X_POS,MY_Y_POS,
+                                                       server_ipaddr.u8[sizeof(server_ipaddr.u8) - 1],seq_id);
 
   printf("RIME addrs = %02x.%02x.%02x.%02x.%02x.%02x.%02x.%02x\n",
   linkaddr_node_addr.u8[0], linkaddr_node_addr.u8[1],
@@ -130,10 +131,10 @@ send_packet(void *ptr)
                                           , res1
                                         );*/
 
-  //format TREE_PLOT nodeID seqno x y parent_plot estimated_interference
+  //format TREE_PLOT nodeID seqno x y parent_plot estimated_interference/seq_id
   //sprintf(buf, "Hello %d from the client", seq_id);
-  sprintf(buf, "TREE_PLOT/%02x/%d/%d/%d/%d/%d/",linkaddr_node_addr.u8[7],seq_id,MY_X_POS,MY_Y_POS,
-                                                 server_ipaddr.u8[sizeof(server_ipaddr.u8) - 1],0);
+  sprintf(buf, "TREE_PLOT/%d/%d/%d/%d/%d/%d/",MY_NODEID,seq_id,MY_X_POS,MY_Y_POS,
+                                                 server_ipaddr.u8[sizeof(server_ipaddr.u8) - 1],seq_id);
   uip_udp_packet_sendto(client_conn, buf, strlen(buf),
                         &server_ipaddr, UIP_HTONS(UDP_SERVER_PORT));
 }
@@ -207,8 +208,26 @@ PROCESS_THREAD(udp_client_process, ev, data)
   static radio_value_t val;
   PROCESS_BEGIN();
 
-  NETSTACK_RADIO.get_value(RADIO_PARAM_TXPOWER, &val);
-  printf(" Transmission Power Set : %d dBm \n", val);
+  // Set Transmission Power in the Zolertia
+  // NETSTACK_RADIO.set_value(RADIO_PARAM_TXPOWER,<power in dbm>)
+  // Ref: https://github.com/contiki-os/contiki/issues/1259
+  #if REMOTE
+    if(NETSTACK_RADIO.set_value(RADIO_PARAM_TXPOWER, MY_TX_POWER_DBM) == RADIO_RESULT_OK)
+    {
+      NETSTACK_RADIO.get_value(RADIO_PARAM_TXPOWER, &val);
+      printf("Transmission Power Set : %d dBm\n", val);
+    }
+    else if(NETSTACK_RADIO.set_value(RADIO_PARAM_TXPOWER, MY_TX_POWER_DBM) == RADIO_RESULT_INVALID_VALUE)
+    {
+      printf("ERROR: RADIO_RESULT_INVALID_VALUE\n");
+    }else
+    {
+      printf("ERROR: The TX power could not be set\n");
+    }
+  #endif
+
+  //NETSTACK_RADIO.get_value(RADIO_PARAM_TXPOWER, &val);
+  //printf(" Transmission Power Set : %d dBm \n", val);
 
   printf("RTIMER_SECOND: %u\n", RTIMER_SECOND);
 

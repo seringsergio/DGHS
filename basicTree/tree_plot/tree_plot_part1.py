@@ -16,7 +16,7 @@ import MySQLdb
 dbConn = MySQLdb.connect("localhost","root","1234","sink") or die ("Could not connect to database")
 
 #this will have to be changed to the serial port you are using
-device = '/dev/ttyUSB1'
+device = '/dev/ttyUSB5'
 
 try:
   print "Trying...",device
