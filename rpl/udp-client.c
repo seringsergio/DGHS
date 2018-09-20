@@ -87,11 +87,73 @@ tcpip_handler(void)
     printf("DATA recv '%s' (s:%d, r:%d)\n", str, seq_id, reply);
   }
 }
+
+/****************************************************************************/
+
+//Dado que las direcciones de los nodos estan en el rango de 00-FF en hexadecimal para dibujar el
+//arbol con python necesito el nodeID que va de 1-9.
+//Entonces en esta funcion convierto de las direcciones hexadecimales a los nodeID correspondientes.
+uint8_t find_my_nodeID(uip_ds6_defrt_t *defrt)
+{
+
+  //El nodo numero 1 tiene direccion en hexadecimal 0x49
+  if(defrt->ipaddr.u8[15] == 0x49)
+  {
+    return 1;
+  }else
+  //El nodo numero 2 tiene direccion en hexadecimal 0x80
+  if(defrt->ipaddr.u8[15] == 0x80)
+  {
+      return 2;
+  }else
+  //El nodo numero 3 tiene direccion en hexadecimal 0x19
+  if(defrt->ipaddr.u8[15] == 0x19)
+  {
+      return 3;
+  }else
+  //El nodo numero 4 tiene direccion en hexadecimal 0x4F
+  if(defrt->ipaddr.u8[15] == 0x4F)
+  {
+      return 4;
+  }else
+  //El nodo numero 5 tiene direccion en hexadecimal 0x05
+  if(defrt->ipaddr.u8[15] == 0x05)
+  {
+      return 5;
+  }else
+  //El nodo numero 6 tiene direccion en hexadecimal 0xe3
+  if(defrt->ipaddr.u8[15] == 0xe3)
+  {
+      return 6;
+  }else
+  //El nodo numero 7 tiene direccion en hexadecimal 0x50
+  if(defrt->ipaddr.u8[15] == 0x50)
+  {
+      return 7;
+  }else
+  //El nodo numero 8 tiene direccion en hexadecimal 0x70
+  if(defrt->ipaddr.u8[15] == 0x70)
+  {
+      return 8;
+  }else
+  //El nodo numero 9 tiene direccion en hexadecimal 0x3f
+  if(defrt->ipaddr.u8[15] == 0x3f)
+  {
+      return 9;
+  }else
+  {
+    printf("Warning: La direccion rime(linkaddr_node_addr.u8[7] no corresponde a ningun NodeID. No tengo padre aun?\n");
+    return 99;
+  }
+
+}
 /*---------------------------------------------------------------------------*/
 static void
 send_packet(void *ptr)
 {
   char buf[MAX_PAYLOAD_LEN];
+  uip_ds6_defrt_t *defrt;
+  uip_ipaddr_t *ipaddr;
 
 #ifdef SERVER_REPLY
   uint8_t num_used = 0;
@@ -110,13 +172,29 @@ send_packet(void *ptr)
 #endif /* SERVER_REPLY */
 
   seq_id++;
-  /*PRINTF("DATA send to %d 'Hello %d'\n",
+  /*printf("DATA send to %d 'Hello %d'\n",
          server_ipaddr.u8[sizeof(server_ipaddr.u8) - 1], seq_id);*/
 
+  //////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////KNOW NEXT HOP ////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////
+
+  defrt = NULL;
+  if((ipaddr = uip_ds6_defrt_choose()) != NULL) {
+    defrt = uip_ds6_defrt_lookup(ipaddr); //Lookup default router for address.
+  }
+  if(defrt != NULL) {
+    printf("DefRT: :: -> %02x", defrt->ipaddr.u8[15]);
+    printf(" lt:%lu inf:%d\n", stimer_remaining(&defrt->lifetime),
+           defrt->isinfinite);
+  } else {
+    printf("DefRT: :: -> NULL\n");
+  }
+
   //format TREE_PLOT nodeID seqno x y parent_plot estimated_interference/seq_id
-  PRINTF("DATA send to %d 'TREE_PLOT/%d/%d/%d/%d/%d/%d/'\n",
+  printf("DATA send to %d 'TREE_PLOT/%d/%d/%d/%d/%d/%d/'\n",
         server_ipaddr.u8[sizeof(server_ipaddr.u8) - 1], MY_NODEID,seq_id,MY_X_POS,MY_Y_POS,
-                                                       server_ipaddr.u8[sizeof(server_ipaddr.u8) - 1],seq_id);
+                                                        find_my_nodeID(defrt),seq_id);
 
   printf("RIME addrs = %02x.%02x.%02x.%02x.%02x.%02x.%02x.%02x\n",
   linkaddr_node_addr.u8[0], linkaddr_node_addr.u8[1],
@@ -134,7 +212,7 @@ send_packet(void *ptr)
   //format TREE_PLOT nodeID seqno x y parent_plot estimated_interference/seq_id
   //sprintf(buf, "Hello %d from the client", seq_id);
   sprintf(buf, "TREE_PLOT/%d/%d/%d/%d/%d/%d/",MY_NODEID,seq_id,MY_X_POS,MY_Y_POS,
-                                                 server_ipaddr.u8[sizeof(server_ipaddr.u8) - 1],seq_id);
+                                                 find_my_nodeID(defrt),seq_id);
   uip_udp_packet_sendto(client_conn, buf, strlen(buf),
                         &server_ipaddr, UIP_HTONS(UDP_SERVER_PORT));
 }
@@ -145,13 +223,13 @@ print_local_addresses(void)
   int i;
   uint8_t state;
 
-  PRINTF("Client IPv6 addresses: ");
+  printf("Client IPv6 addresses: ");
   for(i = 0; i < UIP_DS6_ADDR_NB; i++) {
     state = uip_ds6_if.addr_list[i].state;
     if(uip_ds6_if.addr_list[i].isused &&
        (state == ADDR_TENTATIVE || state == ADDR_PREFERRED)) {
       PRINT6ADDR(&uip_ds6_if.addr_list[i].ipaddr);
-      PRINTF("\n");
+      printf("\n");
       /* hack to make address "final" */
       if (state == ADDR_TENTATIVE) {
 	uip_ds6_if.addr_list[i].state = ADDR_PREFERRED;
@@ -235,7 +313,7 @@ PROCESS_THREAD(udp_client_process, ev, data)
 
   set_global_address();
 
-  PRINTF("UDP client process started nbr:%d routes:%d\n",
+  printf("UDP client process started nbr:%d routes:%d\n",
          NBR_TABLE_CONF_MAX_NEIGHBORS, UIP_CONF_MAX_ROUTES);
 
   print_local_addresses();
@@ -243,14 +321,14 @@ PROCESS_THREAD(udp_client_process, ev, data)
   /* new connection with remote host */
   client_conn = udp_new(NULL, UIP_HTONS(UDP_SERVER_PORT), NULL);
   if(client_conn == NULL) {
-    PRINTF("No UDP connection available, exiting the process!\n");
+    printf("No UDP connection available, exiting the process!\n");
     PROCESS_EXIT();
   }
   udp_bind(client_conn, UIP_HTONS(UDP_CLIENT_PORT));
 
-  PRINTF("Created a connection with the server ");
+  printf("Created a connection with the server ");
   PRINT6ADDR(&client_conn->ripaddr);
-  PRINTF(" local/remote port %u/%u\n",
+  printf(" local/remote port %u/%u\n",
 	UIP_HTONS(client_conn->lport), UIP_HTONS(client_conn->rport));
 
 #if WITH_COMPOWER
@@ -274,25 +352,25 @@ PROCESS_THREAD(udp_client_process, ev, data)
         uip_ipaddr_t *ipaddr;
         defrt = NULL;
         if((ipaddr = uip_ds6_defrt_choose()) != NULL) {
-          defrt = uip_ds6_defrt_lookup(ipaddr);
+          defrt = uip_ds6_defrt_lookup(ipaddr); //Lookup default router for address.
         }
         if(defrt != NULL) {
-          PRINTF("DefRT: :: -> %02d", defrt->ipaddr.u8[15]);
-          PRINTF(" lt:%lu inf:%d\n", stimer_remaining(&defrt->lifetime),
+          printf("DefRT: :: -> %02d", defrt->ipaddr.u8[15]);
+          printf(" lt:%lu inf:%d\n", stimer_remaining(&defrt->lifetime),
                  defrt->isinfinite);
         } else {
-          PRINTF("DefRT: :: -> NULL\n");
+          printf("DefRT: :: -> NULL\n");
         }
 
         for(r = uip_ds6_route_head();
             r != NULL;
             r = uip_ds6_route_next(r)) {
           nexthop = uip_ds6_route_nexthop(r);
-          PRINTF("Route: %02d -> %02d", r->ipaddr.u8[15], nexthop->u8[15]);
+          printf("Route: %02d -> %02d", r->ipaddr.u8[15], nexthop->u8[15]);
           /* PRINT6ADDR(&r->ipaddr); */
-          /* PRINTF(" -> "); */
+          /* printf(" -> "); */
           /* PRINT6ADDR(nexthop); */
-          PRINTF(" lt:%lu\n", r->state.lifetime);
+          printf(" lt:%lu\n", r->state.lifetime);
 
         }
       }
