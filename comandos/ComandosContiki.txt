@@ -123,13 +123,13 @@ make MOTES=/dev/ttyUSB3 TARGET=zoul BOARD=remote-reva udp-server.upload
 
 
 
-make MOTES=/dev/ttyUSB0 TARGET=zoul BOARD=remote-reva MY_X_POS=110 MY_Y_POS=30 MY_NODEID=1 MY_TX_POWER_DBM=-7 udp-server.upload
-make MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva MY_X_POS=90 MY_Y_POS=30 MY_NODEID=2 MY_TX_POWER_DBM=-7 udp-client.upload
-make MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva MY_X_POS=70 MY_Y_POS=30 MY_NODEID=3 MY_TX_POWER_DBM=-7 udp-client.upload
-make MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva MY_X_POS=50 MY_Y_POS=30 MY_NODEID=4 MY_TX_POWER_DBM=-7 udp-client.upload
-make MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva MY_X_POS=30 MY_Y_POS=30 MY_NODEID=5 MY_TX_POWER_DBM=-7 udp-client.upload
-make MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva MY_X_POS=30 MY_Y_POS=20 MY_NODEID=6 MY_TX_POWER_DBM=-7 udp-client.upload
-make MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva MY_X_POS=10 MY_Y_POS=30 MY_NODEID=7 MY_TX_POWER_DBM=-7 udp-client.upload
+make MOTES=/dev/ttyUSB0 TARGET=zoul BOARD=remote-reva MY_X_POS=110 MY_Y_POS=30 MY_NODEID=1 MY_TX_POWER_DBM=7 udp-server.upload
+make MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva MY_X_POS=60 MY_Y_POS=30 MY_NODEID=2 MY_TX_POWER_DBM=7 udp-client.upload
+make MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva MY_X_POS=10 MY_Y_POS=30 MY_NODEID=3 MY_TX_POWER_DBM=7 udp-client.upload
+make MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva MY_X_POS=60 MY_Y_POS=20 MY_NODEID=4 MY_TX_POWER_DBM=7 udp-client.upload
+make MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva MY_X_POS=10 MY_Y_POS=20 MY_NODEID=5 MY_TX_POWER_DBM=7 udp-client.upload
+make MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva MY_X_POS=60 MY_Y_POS=10 MY_NODEID=6 MY_TX_POWER_DBM=7 udp-client.upload
+make MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva MY_X_POS=10 MY_Y_POS=10 MY_NODEID=7 MY_TX_POWER_DBM=7 udp-client.upload
 
 //Seleccionar puerto
 make MOTES=/dev/ttyUSB0

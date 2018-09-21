@@ -439,6 +439,16 @@ FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n';
 
+SELECT "id","nodeID","seqno","x","y","parent_plot","est_int","date"
+UNION ALL
+SELECT *
+FROM tree_plot
+INTO OUTFILE "/var/lib/mysql-files/tree_plot_7dBm_RPL.csv"
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n';
+
+
 cp /var/lib/mysql-files/LinkStatisticsPaperV3_21_2.csv /home/sink/Desktop/contiki/examples/paperInterferingNode/Results_Paper_Interfering_Node/
 
 
