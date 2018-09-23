@@ -57,7 +57,7 @@ while True:
        #Here we are going to insert the data into the Database
        try:
          # I have to insert minimum 2 data plus id. So, it is necesary to have 1 redundant data: det_int_redundant
-         cursor.execute("INSERT INTO latency_PRR_sink_RPL_int_0 (id,seqno,nodeID) VALUES (NULL,%s,%s)", (pieces[1],pieces[2]))
+         cursor.execute("INSERT INTO latency_PRR_sink_citt_int_0 (id,seqno,nodeID) VALUES (NULL,%s,%s)", (pieces[1],pieces[2]))
          dbConn.commit() #commit the insert
          cursor.close()  #close the cursor
        except MySQLdb.IntegrityError:

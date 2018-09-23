@@ -197,14 +197,14 @@ static struct unicast_conn t_uc;
 ///////////////////NODE POSITIONS///////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 
-uint8_t x_pos[NUM_NODES] =  {80, 10, 50, 110, 150, 10, 50, 110, 150 };
-uint8_t y_pos[NUM_NODES] =  {80, 120, 140, 120, 140, 40, 20, 40, 20 };
+uint8_t x_pos[NUM_NODES] =  {160,110,60,10,110,60,10,110,10};
+uint8_t y_pos[NUM_NODES] =  {30 ,30 ,30,30,20 ,20,20,10 ,10};
 
 PROCESS_THREAD(prepare_data_col, ev, data)
 {
   static struct etimer et;
   static struct t_data t_data;
-  static uint16_t seqno;
+  static int seqno;
   static struct in_out_list_tree *out_l;
 
 
@@ -215,7 +215,8 @@ PROCESS_THREAD(prepare_data_col, ev, data)
 
   while(1)
   {
-    etimer_set(&et,  CLOCK_SECOND * FREQUENCY_DATA_COL  );
+    //etimer_set(&et,  CLOCK_SECOND * FREQUENCY_DATA_COL  );
+    etimer_set(&et,  random_rand() % (CLOCK_SECOND * FREQUENCY_DATA_COL) ); // Configure timer et to a random time between 0 and 2
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
 
     if(!linkaddr_cmp(&linkaddr_node_addr,&t_node.parent) )//si ya tengo un padre. Al inicio yo soy mi mismo padre
@@ -286,7 +287,7 @@ PROCESS_THREAD(update_parent, ev, data)
               linkaddr_copy(&t_node.parent, &new_parent);
               printf("#L %d 1\n", t_node.parent.u8[0]); //: 1: new parent
 
-              printf("t_node.flags = %d\n", t_node.flags);
+              DGHS_DBG_2("t_node.flags = %d\n", t_node.flags);
               //if(t_node.flags == DATA_EST_INT_READY) //Only change the weight when I have the FIRST estimation of Interference
               //{
               //UPDATE weight
@@ -294,7 +295,7 @@ PROCESS_THREAD(update_parent, ev, data)
               t_node.weight = t_node.est_int + lowest_weight;
               ftoa(t_node.weight, res1, 2);
               ftoa(t_node.est_int, res2, 2);
-              printf("t_node.weight = %s t_node.est_int = %s t_node.parent = %d.%d\n",
+              DGHS_DBG_2("t_node.weight = %s t_node.est_int = %s t_node.parent = %d.%d\n",
               res1, res2, t_node.parent.u8[0], t_node.parent.u8[1] );
               //}
 
@@ -327,7 +328,7 @@ PROCESS_THREAD(prepare_beacon, ev, data)
   {
       //execute periodically
       //etimer_set(&et, TIME_INTERVAL_T_BEACON );
-      etimer_set(&et,  random_rand() % (CLOCK_SECOND * 2) ); // Configure timer et to a random time between 0 and 2
+      etimer_set(&et,  random_rand() % (CLOCK_SECOND * FREQUENCY_BEACON) ); // Configure timer et to a random time between 0 and 2
       PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
 
       if( t_node.weight < INFINITE_T_WEIGHT )
@@ -664,7 +665,7 @@ PROCESS_THREAD(send_basicTree, ev, data)
       packetbuf_copyfrom(&t_data, sizeof(struct t_data));
       packetbuf_set_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG, T_DATA);
       unicast_send(&t_uc, &t_data.to);
-      printf("sizeof(struct t_data) = %d\n", sizeof(struct t_data) );
+      DGHS_DBG_2("sizeof(struct t_data) = %d\n", sizeof(struct t_data) );
       printf("Send e_send_t_data to %d.%d\n", t_data.to.u8[0], t_data.to.u8[1] );
 
       printf("Latency-PRR/%d/%d/\n",t_data.seqno, t_data.from.u8[0]);
@@ -770,11 +771,11 @@ PROCESS_THREAD(csma_stats_computation, ev, data)
         //print
         ftoa( btp, res1, 2); //Uses the library print_float.h
         ftoa( EWMA_btp_01, res2, 2); //Uses the library print_float.h
-        printf("BTP/%d/%s/%s/\n",num_packets,  res1 , res2);
+        DGHS_DBG_2("BTP/%d/%s/%s/\n",num_packets,  res1 , res2);
 
         ftoa( ppl, res1, 2); //Uses the library print_float.h
         ftoa( EWMA_ppl_01, res2, 2); //Uses the library print_float.h
-        printf("PPL/%d/%s/%s/\n",num_packets,  res1 , res2);
+        DGHS_DBG_2("PPL/%d/%s/%s/\n",num_packets,  res1 , res2);
 
         process_post(&analyze_csma_results, e_execute, &csma_results);
 
@@ -822,8 +823,8 @@ PROCESS_THREAD(analyze_csma_results, ev, data)
                csma_results.EWMA_btp_01 <  upper_interval   )
             {
                 detected_event.event_btp = i - 1; //Resto 1 porq aca es de 0-39...en matlab es de 1-40
-                printf(" %s < /%s/ < %s \n", res1,res2,res3);
-                printf("event_btp =/ %d\n", detected_event.event_btp);
+                DGHS_DBG_2(" %s < /%s/ < %s \n", res1,res2,res3);
+                DGHS_DBG_2("event_btp =/ %d\n", detected_event.event_btp);
                 break;
             }
         }
@@ -841,8 +842,8 @@ PROCESS_THREAD(analyze_csma_results, ev, data)
                csma_results.EWMA_ppl_01 <  upper_interval   )
             {
                 detected_event.event_ppl = i - 1; //Resto 1 porq aca es de 0-39...en matlab es de 1-40
-                printf(" %s < /%s/ < %s \n", res1,res2,res3);
-                printf("event_ppl =/ %d\n", detected_event.event_ppl);
+                DGHS_DBG_2(" %s < /%s/ < %s \n", res1,res2,res3);
+                DGHS_DBG_2("event_ppl =/ %d\n", detected_event.event_ppl);
                 break;
             }
         }
@@ -921,11 +922,11 @@ PROCESS_THREAD(detect_interference, ev, data)
         {
           prob_btp_N[i] = prob_btp[i] / total_prob; //Normalize
           ftoa(prob_btp_N[i], res1, 4);
-          printf("prob_btp(%d) =/ %s \n", i, res1);
+          DGHS_DBG_2("prob_btp(%d) =/ %s \n", i, res1);
           total_prob_N += prob_btp_N[i];
         }
         ftoa(total_prob_N, res1, 4);
-        printf("SUM(prob_btp) =/ %s \n", res1);
+        DGHS_DBG_2("SUM(prob_btp) =/ %s \n", res1);
 
 
         //////////////////////////////////////////////
@@ -952,11 +953,11 @@ PROCESS_THREAD(detect_interference, ev, data)
        {
          prob_ppl_N[i] = prob_ppl[i] / total_prob; //Normalize
          ftoa(prob_ppl_N[i], res1, 4);
-         printf("prob_ppl(%d) =/ %s \n", i, res1);
+         DGHS_DBG_2("prob_ppl(%d) =/ %s \n", i, res1);
          total_prob_N += prob_ppl_N[i];
        }
        ftoa(total_prob_N, res1, 4);
-       printf("SUM(prob_ppl) =/ %s \n", res1);
+       DGHS_DBG_2("SUM(prob_ppl) =/ %s \n", res1);
 
 
        //////////////////////////////////////////////
@@ -971,7 +972,7 @@ PROCESS_THREAD(detect_interference, ev, data)
         {
           prob_btp_ppl[i] = prob_btp_N[i] * prob_ppl_N[i]; //MULTIPLY independent probabilities
           ftoa(prob_btp_ppl[i], res1, 4);
-          printf("prob_btp_ppl(%d) =/ %s\n", i, res1);
+          DGHS_DBG_2("prob_btp_ppl(%d) =/ %s\n", i, res1);
 
           if(prob_btp_ppl[i] > max_prob)
           {
@@ -1039,7 +1040,7 @@ PROCESS_THREAD(detect_interference, ev, data)
         ftoa( EWMA_est_int_02, res9, 2); //Uses the library print_float.h
         ftoa( EWMA_est_int_01, res10, 2); //Uses the library print_float.h
 
-        printf("EWMA_est_int/%d/%s/%s/%s/%s/%s/%s/%s/%s/%s/%s/\n",count,res1,res2,res3,res4,res5,res6,res7,res8,res9,res10);
+        DGHS_DBG_2("EWMA_est_int/%d/%s/%s/%s/%s/%s/%s/%s/%s/%s/%s/\n",count,res1,res2,res3,res4,res5,res6,res7,res8,res9,res10);
 
         //IMPORTANT line: this line saves the estimated interference of the node
         t_node.est_int = EWMA_est_int_01;

@@ -57,7 +57,7 @@ void fill_beacon(struct t_beacon *t_beacon, float weight, linkaddr_t *from)
     linkaddr_copy(&t_beacon->from,from);
 }
 
-void fill_data(struct t_data *t_data, uint16_t seqno, uint8_t x, uint8_t y
+void fill_data(struct t_data *t_data, int seqno, uint8_t x, uint8_t y
                , float est_int
                , linkaddr_t *from, linkaddr_t *to, linkaddr_t *parent_plot)
 {

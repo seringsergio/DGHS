@@ -49,9 +49,22 @@
 #include "net/netstack.h"
 
 ////////////////////////////////////////////////////////////////////////
+///////////////////DEBUGUEAR////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+//Priority 2
+#define DGHS_DEBUG_2 0
+#if DGHS_DEBUG_2
+#include <stdio.h>
+#define DGHS_DBG_2(...) printf(__VA_ARGS__)
+#else
+#define DGHS_DBG_2(...)
+#endif
+
+////////////////////////////////////////////////////////////////////////
 ///////////////////DEFINE///////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 #define FREQUENCY_DATA_COL    2
+#define FREQUENCY_BEACON      2
 #define MAX_NEIGHBORS         16
 #define INITIAL_T_WEIGHT      100  //Asume that the interference is the worst case: 100%
 #define INITIAL_T_INT         100.0f //Asume that the interference is the worst case: 100%
@@ -76,7 +89,6 @@
 // Set Transmission Power in the Zolertia
 // NETSTACK_RADIO.set_value(RADIO_PARAM_TXPOWER,<power in dbm>)
 // Ref: https://github.com/contiki-os/contiki/issues/1259
-//#define MY_TX_POWER_DBM  0 //This number is in dBm e.g., "0" "7"  "-24"
 
 //Transmission Power for the Zolertia
 //REF: https://zolertia.io/docs/IoT_in_five_days-v1.0.pdf
@@ -118,7 +130,7 @@ extern struct csma_stats csma_stats;
 struct t_data
 {
    //seqno | X | Y | parent
-   uint16_t seqno;
+   int seqno;
    uint8_t x;
    uint8_t y;
    float est_int; //Estimated interference
@@ -171,7 +183,7 @@ struct t_neighbor
 
 void initialize_tree();
 void fill_beacon(struct t_beacon *t_beacon, float weight, linkaddr_t *from);
-void fill_data(struct t_data *t_data, uint16_t seqno, uint8_t x, uint8_t y,
+void fill_data(struct t_data *t_data, int seqno, uint8_t x, uint8_t y,
                float est_int,
                linkaddr_t *from, linkaddr_t *to, linkaddr_t *parent_plot);
 uint8_t I_am_the_sink();

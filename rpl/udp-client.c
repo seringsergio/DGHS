@@ -202,7 +202,6 @@ send_packet(void *ptr)
   linkaddr_node_addr.u8[4], linkaddr_node_addr.u8[5],
   linkaddr_node_addr.u8[6], linkaddr_node_addr.u8[7] );
 
-  printf("Latency-PRR/%d/%d/\n",seq_id, find_my_nodeID(linkaddr_node_addr.u8[7])  );
 
   /*printf("TREE_PLOT/%d/%d/%d/%d/%d/%s/\n",t_data.from.u8[0], t_data.seqno, t_data.x, t_data.y,
                                           t_data.parent_plot.u8[0]
@@ -215,6 +214,9 @@ send_packet(void *ptr)
                                                  find_my_nodeID(defrt->ipaddr.u8[15]),seq_id);
   uip_udp_packet_sendto(client_conn, buf, strlen(buf),
                         &server_ipaddr, UIP_HTONS(UDP_SERVER_PORT));
+
+  printf("Latency-PRR/%d/%d/\n",seq_id, find_my_nodeID(linkaddr_node_addr.u8[7])  );
+
 }
 /*---------------------------------------------------------------------------*/
 static void
