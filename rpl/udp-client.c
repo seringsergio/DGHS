@@ -93,51 +93,51 @@ tcpip_handler(void)
 //Dado que las direcciones de los nodos estan en el rango de 00-FF en hexadecimal para dibujar el
 //arbol con python necesito el nodeID que va de 1-9.
 //Entonces en esta funcion convierto de las direcciones hexadecimales a los nodeID correspondientes.
-uint8_t find_my_nodeID(uip_ds6_defrt_t *defrt)
-{
+uint8_t find_my_nodeID(uint8_t addr)
+{//linkaddr_node_addr.u8[7]
 
   //El nodo numero 1 tiene direccion en hexadecimal 0x49
-  if(defrt->ipaddr.u8[15] == 0x49)
+  if(addr == 0x49)
   {
     return 1;
   }else
   //El nodo numero 2 tiene direccion en hexadecimal 0x80
-  if(defrt->ipaddr.u8[15] == 0x80)
+  if(addr == 0x80)
   {
       return 2;
   }else
   //El nodo numero 3 tiene direccion en hexadecimal 0x19
-  if(defrt->ipaddr.u8[15] == 0x19)
+  if(addr == 0x19)
   {
       return 3;
   }else
   //El nodo numero 4 tiene direccion en hexadecimal 0x4F
-  if(defrt->ipaddr.u8[15] == 0x4F)
+  if(addr == 0x4F)
   {
       return 4;
   }else
   //El nodo numero 5 tiene direccion en hexadecimal 0x05
-  if(defrt->ipaddr.u8[15] == 0x05)
+  if(addr == 0x05)
   {
       return 5;
   }else
   //El nodo numero 6 tiene direccion en hexadecimal 0xe3
-  if(defrt->ipaddr.u8[15] == 0xe3)
+  if(addr == 0xe3)
   {
       return 6;
   }else
   //El nodo numero 7 tiene direccion en hexadecimal 0x50
-  if(defrt->ipaddr.u8[15] == 0x50)
+  if(addr == 0x50)
   {
       return 7;
   }else
   //El nodo numero 8 tiene direccion en hexadecimal 0x70
-  if(defrt->ipaddr.u8[15] == 0x70)
+  if(addr == 0x70)
   {
       return 8;
   }else
   //El nodo numero 9 tiene direccion en hexadecimal 0x3f
-  if(defrt->ipaddr.u8[15] == 0x3f)
+  if(addr == 0x3f)
   {
       return 9;
   }else
@@ -194,7 +194,7 @@ send_packet(void *ptr)
   //format TREE_PLOT nodeID seqno x y parent_plot estimated_interference/seq_id
   printf("DATA send to %d 'TREE_PLOT/%d/%d/%d/%d/%d/%d/'\n",
         server_ipaddr.u8[sizeof(server_ipaddr.u8) - 1], MY_NODEID,seq_id,MY_X_POS,MY_Y_POS,
-                                                        find_my_nodeID(defrt),seq_id);
+                                                        find_my_nodeID(defrt->ipaddr.u8[15]),seq_id);
 
   printf("RIME addrs = %02x.%02x.%02x.%02x.%02x.%02x.%02x.%02x\n",
   linkaddr_node_addr.u8[0], linkaddr_node_addr.u8[1],
@@ -202,7 +202,7 @@ send_packet(void *ptr)
   linkaddr_node_addr.u8[4], linkaddr_node_addr.u8[5],
   linkaddr_node_addr.u8[6], linkaddr_node_addr.u8[7] );
 
-  printf("Latency-PRR/%d/%02x/\n",seq_id,linkaddr_node_addr.u8[7]  );
+  printf("Latency-PRR/%d/%d/\n",seq_id, find_my_nodeID(linkaddr_node_addr.u8[7])  );
 
   /*printf("TREE_PLOT/%d/%d/%d/%d/%d/%s/\n",t_data.from.u8[0], t_data.seqno, t_data.x, t_data.y,
                                           t_data.parent_plot.u8[0]
@@ -212,7 +212,7 @@ send_packet(void *ptr)
   //format TREE_PLOT nodeID seqno x y parent_plot estimated_interference/seq_id
   //sprintf(buf, "Hello %d from the client", seq_id);
   sprintf(buf, "TREE_PLOT/%d/%d/%d/%d/%d/%d/",MY_NODEID,seq_id,MY_X_POS,MY_Y_POS,
-                                                 find_my_nodeID(defrt),seq_id);
+                                                 find_my_nodeID(defrt->ipaddr.u8[15]),seq_id);
   uip_udp_packet_sendto(client_conn, buf, strlen(buf),
                         &server_ipaddr, UIP_HTONS(UDP_SERVER_PORT));
 }

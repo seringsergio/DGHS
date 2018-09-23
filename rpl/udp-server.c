@@ -54,6 +54,65 @@
 
 static struct uip_udp_conn *server_conn;
 
+
+//Dado que las direcciones de los nodos estan en el rango de 00-FF en hexadecimal para dibujar el
+//arbol con python necesito el nodeID que va de 1-9.
+//Entonces en esta funcion convierto de las direcciones hexadecimales a los nodeID correspondientes.
+uint8_t find_my_nodeID(uint8_t addr)
+{//linkaddr_node_addr.u8[7]
+
+  //El nodo numero 1 tiene direccion en hexadecimal 0x49
+  if(addr == 0x49)
+  {
+    return 1;
+  }else
+  //El nodo numero 2 tiene direccion en hexadecimal 0x80
+  if(addr == 0x80)
+  {
+      return 2;
+  }else
+  //El nodo numero 3 tiene direccion en hexadecimal 0x19
+  if(addr == 0x19)
+  {
+      return 3;
+  }else
+  //El nodo numero 4 tiene direccion en hexadecimal 0x4F
+  if(addr == 0x4F)
+  {
+      return 4;
+  }else
+  //El nodo numero 5 tiene direccion en hexadecimal 0x05
+  if(addr == 0x05)
+  {
+      return 5;
+  }else
+  //El nodo numero 6 tiene direccion en hexadecimal 0xe3
+  if(addr == 0xe3)
+  {
+      return 6;
+  }else
+  //El nodo numero 7 tiene direccion en hexadecimal 0x50
+  if(addr == 0x50)
+  {
+      return 7;
+  }else
+  //El nodo numero 8 tiene direccion en hexadecimal 0x70
+  if(addr == 0x70)
+  {
+      return 8;
+  }else
+  //El nodo numero 9 tiene direccion en hexadecimal 0x3f
+  if(addr == 0x3f)
+  {
+      return 9;
+  }else
+  {
+    printf("Warning: La direccion rime(linkaddr_node_addr.u8[7] no corresponde a ningun NodeID. No tengo padre aun?\n");
+    return 99;
+  }
+
+}
+
 PROCESS(udp_server_process, "UDP server process");
 AUTOSTART_PROCESSES(&udp_server_process);
 /*---------------------------------------------------------------------------*/
@@ -96,7 +155,7 @@ tcpip_handler(void)
         //printf("%c", *appdata );
       }
     }
-    printf("/%02x/\n", UIP_IP_BUF->srcipaddr.u8[sizeof(UIP_IP_BUF->srcipaddr.u8) - 1]);
+    printf("/%d/\n", find_my_nodeID(UIP_IP_BUF->srcipaddr.u8[sizeof(UIP_IP_BUF->srcipaddr.u8) - 1]) );
 
 #if SERVER_REPLY
     printf("DATA sending reply\n");
