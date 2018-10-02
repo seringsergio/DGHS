@@ -50,7 +50,8 @@ obj_zoul/basicTree.o: basicTree.c basicTree.h ../contiki/core/./contiki.h \
  ../contiki/core/./dev/radio.h ../contiki/core/./net/rime/trickle.h \
  print_float.h Bayes_Laplace_Classify.h ../contiki/core/./lib/random.h \
  ../contiki/core/./net/netstack.h ../contiki/core/./net/llsec/llsec.h \
- ../contiki/core/./net/mac/rdc.h ../contiki/core/./net/mac/framer.h
+ ../contiki/core/./net/mac/rdc.h ../contiki/core/./net/mac/framer.h \
+ ../contiki/core/./sys/stimer.h
 basicTree.c basicTree.h ../contiki/core/./contiki.h :
  ../contiki/core/./contiki-version.h :
  ../contiki/platform/zoul/./contiki-conf.h project-conf.h :
@@ -104,3 +105,4 @@ basicTree.c basicTree.h ../contiki/core/./contiki.h :
  print_float.h Bayes_Laplace_Classify.h ../contiki/core/./lib/random.h :
  ../contiki/core/./net/netstack.h ../contiki/core/./net/llsec/llsec.h :
  ../contiki/core/./net/mac/rdc.h ../contiki/core/./net/mac/framer.h :
+ ../contiki/core/./sys/stimer.h :

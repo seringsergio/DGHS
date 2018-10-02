@@ -47,7 +47,7 @@
 
 //To set the Transmission Power
 #include "net/netstack.h"
-
+#include "sys/stimer.h" //Para el lifetime de la ruta
 ////////////////////////////////////////////////////////////////////////
 ///////////////////DEBUGUEAR////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
@@ -63,8 +63,16 @@
 ////////////////////////////////////////////////////////////////////////
 ///////////////////DEFINE///////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
-#define FREQUENCY_DATA_COL    2
+
+
+//Tiempo de los BEACONS, DATOS, RUTAS
+#define DOBLE                 2
 #define FREQUENCY_BEACON      2
+#define TOLERANCIA_BEACON     4  //Cuantos beacons antes de un paquete de datos
+#define FREQUENCY_DATA_COL    FREQUENCY_BEACON * TOLERANCIA_BEACON //Envio un paquete por cada 4 beacons
+#define TOLERANCIA_DATA_COL   2  //Cuantos datos antes de que una ruta expire
+#define LIFETIME_ROUTE        (FREQUENCY_DATA_COL*DOBLE) * TOLERANCIA_DATA_COL //Maximo se envia un beacon cada (FREQUENCY_BEACON * 2). Espero el tiempo de 4 beacons: q se pierdan 4 beacons . La ruta que me da un vecino es valida por X segundos
+///////////////////////////////////////////////////////////////////////////////////
 #define MAX_NEIGHBORS         16
 #define INITIAL_T_WEIGHT      100  //Asume that the interference is the worst case: 100%
 #define INITIAL_T_INT         100.0f //Asume that the interference is the worst case: 100%
@@ -173,6 +181,7 @@ struct t_neighbor
   struct t_neighbor *next;
   linkaddr_t neigh;
   float weight;
+  struct stimer lifetime; //Colocarle un tiempo de caducidad al vecino. Si no llega despues de cierto tiempo, se elimina la ruta
 };
 
 

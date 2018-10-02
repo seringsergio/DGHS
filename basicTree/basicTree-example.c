@@ -61,6 +61,7 @@ PROCESS(send_basicTree, "send_basicTree");
 PROCESS(csma_stats_computation, "csma_stats_computation");
 PROCESS(analyze_csma_results, "analyze_csma_results");
 PROCESS(detect_interference, "detect_interference");
+PROCESS(eliminate_old_routes, "eliminate_old_routes");
 //Data Collection
 PROCESS(prepare_data_col, "prepare_data_col");
 PROCESS(response_to_t_data, "response_to_t_data");
@@ -69,7 +70,7 @@ PROCESS(response_to_t_data, "response_to_t_data");
 
 AUTOSTART_PROCESSES(&prepare_beacon,&update_parent,&out_evaluation_tree,&in_evaluation_tree,
                     &response_to_t_beacon,&send_basicTree,&csma_stats_computation,&analyze_csma_results,&detect_interference
-                    ,&prepare_data_col,&response_to_t_data
+                    ,&prepare_data_col,&response_to_t_data, &eliminate_old_routes
                     );
 /*---------------------------------------------------------------------------*/
 
@@ -216,7 +217,7 @@ PROCESS_THREAD(prepare_data_col, ev, data)
   while(1)
   {
     //etimer_set(&et,  CLOCK_SECOND * FREQUENCY_DATA_COL  );
-    etimer_set(&et,  random_rand() % (CLOCK_SECOND * FREQUENCY_DATA_COL) ); // Configure timer et to a random time between 0 and 2
+    etimer_set(&et, (CLOCK_SECOND * FREQUENCY_DATA_COL) +  random_rand() % (CLOCK_SECOND * FREQUENCY_DATA_COL) ); // Configure timer et to a random time between 0 and 2
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
 
     if(!linkaddr_cmp(&linkaddr_node_addr,&t_node.parent) )//si ya tengo un padre. Al inicio yo soy mi mismo padre
@@ -266,6 +267,16 @@ PROCESS_THREAD(update_parent, ev, data)
 
         if( ! I_am_the_sink() )
         {
+            /*-------PRINT LIST ---------*/
+            printf("Route:-------------neighbor list------------------\n");
+            for(n = list_head(t_neighbors_list); n != NULL; n = list_item_next(n))
+            {
+              ftoa(n->weight, res1, 2);
+              //FORMATO nodeID Weight Lifetime
+              printf("Route: %d.%d %s %d\n", n->neigh.u8[0],n->neigh.u8[1], res1 ,stimer_expired(&n->lifetime) );
+            }
+            printf("Route:--------------------------------------------\n");
+
             if(list_length(t_neighbors_list) >= 1)
             {
 
@@ -328,7 +339,9 @@ PROCESS_THREAD(prepare_beacon, ev, data)
   {
       //execute periodically
       //etimer_set(&et, TIME_INTERVAL_T_BEACON );
-      etimer_set(&et,  random_rand() % (CLOCK_SECOND * FREQUENCY_BEACON) ); // Configure timer et to a random time between 0 and 2
+
+      // Envio un beacon cada [FREQUENCY_BEACON, FREQUENCY_BEACON*2]
+      etimer_set(&et, (CLOCK_SECOND * FREQUENCY_BEACON) + random_rand() % (CLOCK_SECOND * FREQUENCY_BEACON) ); // Configure timer et to a random time between [FREQUENCY_BEACON,2*FREQUENCY_BEACON]
       PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
 
       if( t_node.weight < INFINITE_T_WEIGHT )
@@ -405,6 +418,8 @@ PROCESS_THREAD(response_to_t_beacon, ev, data)
       /* Initialize the fields. */
       linkaddr_copy(&n->neigh, &t_beacon.from);
       n->weight = t_beacon.weight;
+      stimer_set(&n->lifetime, LIFETIME_ROUTE);
+      printf("Route: Set por nodo %d.%d\n", n->neigh.u8[0],n->neigh.u8[1]);
 
        /* Place the neighbor on the neighbor list. */
        list_add(t_neighbors_list, n);
@@ -412,10 +427,17 @@ PROCESS_THREAD(response_to_t_beacon, ev, data)
 
       //Get the weight of the neighbor
       n->weight = t_beacon.weight;
+      stimer_restart(&n->lifetime); // Restart the stimer from current time.
+      printf("Route: Restart por nodo %d.%d\n", n->neigh.u8[0],n->neigh.u8[1]);
 
       ftoa(n->weight, res1, 2);
       printf("t_broadcast message received from %d.%d with weight = %s \n",
              t_beacon.from.u8[0], t_beacon.from.u8[1], res1  );
+
+    //////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////ELIMINATE OLD ROUTES//////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////
+    process_post(&eliminate_old_routes, e_execute, NULL );
 
      /////////////////////////////////////////////////////////////////////////////
      ///////////////////Update the parent///////////////////// ///////////////////
@@ -430,6 +452,38 @@ PROCESS_THREAD(response_to_t_beacon, ev, data)
 
 }
 
+
+PROCESS_THREAD(eliminate_old_routes, ev, data)
+{
+
+  static struct t_neighbor *n;
+
+  PROCESS_BEGIN();
+
+  while(1)
+  {
+    PROCESS_YIELD();
+    if(ev == e_execute)
+    {
+
+      /* moverse por la lista */
+      for(n = list_head(t_neighbors_list); n != NULL; n = list_item_next(n))
+      {
+        if(stimer_expired(&n->lifetime)) // If the timer has expired
+        {
+          printf("Route: Expired. La ruta por el nodo %d.%d se ha eliminado por antigua\n",n->neigh.u8[0],n->neigh.u8[1] );
+          //Tener en cuenta que n-next queda apuntando a NULL ver list.c
+          // Por eso en algun momento use my_list_remove, donde comentareo la linea  l->next = NULL;
+          list_remove(t_neighbors_list, n); //Remover el elemento
+          memb_free(&t_neighbors_memb, n);   //Deallocar el bloque de memoria
+        }
+      }
+
+    }
+  }
+  PROCESS_END();
+
+}
 
 PROCESS_THREAD(response_to_t_data, ev, data)
 {

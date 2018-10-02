@@ -314,6 +314,8 @@ PROCESS_THREAD(broadcast_control, ev, data)
     PROCESS_END();
 }
 
+//Dado que los pesos de los link son diferentes en ambas direcciones. Lo que se hace aca es asumir
+//que el peso del enlace es el peor caso. El peor link de los dos: direcciona A->B y B->A
 PROCESS_THREAD(analyze_agreement, ev, data)
 {
     static struct neighbor *n;
