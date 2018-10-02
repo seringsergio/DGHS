@@ -73,6 +73,8 @@
 #define TOLERANCIA_DATA_COL   2  //Cuantos datos antes de que una ruta expire
 #define LIFETIME_ROUTE        (FREQUENCY_DATA_COL*DOBLE) * TOLERANCIA_DATA_COL //Maximo se envia un beacon cada (FREQUENCY_BEACON * 2). Espero el tiempo de 4 beacons: q se pierdan 4 beacons . La ruta que me da un vecino es valida por X segundos
 ///////////////////////////////////////////////////////////////////////////////////
+#define FRECUENCIA_REVISAR_IN_OUT 16 //Este valor puede ser MAXIMO 128 porque CLOCK_SECOND = 128. Resolucion max 7.8ms REF: http://contiki-iot.blogspot.com/2016/08/timers-etimer-and-rtimer-lowest.html
+///////////////////////////////////////////////////////////////////////////////////
 #define MAX_NEIGHBORS         16
 #define INITIAL_T_WEIGHT      100  //Asume that the interference is the worst case: 100%
 #define INITIAL_T_INT         100.0f //Asume that the interference is the worst case: 100%
@@ -84,8 +86,6 @@
 #define T_DATA       0x02
 
 //#define TIME_INTERVAL_T_BEACON           CLOCK_SECOND * 1
-#define TIME_UNION_IN_OUT                0.25f  // tengo que sacar los msg en menos tiempo de lo q entran (TIME_INTERVAL_T_BEACON) - repetido con la implementacion completa
-#define TIME_PREVIOUS_MSG_IN_OUT_UNION   0.25f //  tengo que sacar los msg en menos tiempo de lo q entran (TIME_INTERVAL_T_BEACON)  - repetido con la implementacion completa
 
 #define NUM_NODES 10
 //FLAGS t_node.flags

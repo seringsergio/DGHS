@@ -549,7 +549,8 @@ PROCESS_THREAD(response_to_t_data, ev, data)
 // take out an element from the list in_union_list
 PROCESS_THREAD(in_evaluation_tree, ev, data)
 {
-  static struct etimer et1, et2;
+  static struct etimer et1;
+  //static struct etimer et1, et2;
   static struct in_out_list_tree *in_l;
   static struct t_beacon t_beacon;
   static struct t_data t_data;
@@ -558,7 +559,7 @@ PROCESS_THREAD(in_evaluation_tree, ev, data)
   {
     //REMOVE from the list
     //execute periodically
-    etimer_set(&et1, CLOCK_SECOND * TIME_UNION_IN_OUT);
+    etimer_set(&et1, CLOCK_SECOND / FRECUENCIA_REVISAR_IN_OUT); // CLOCK_SECOND / CLOCK_SECOND es la resolucion minima
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et1));
         //We start to analize incoming messages when GHS_HAS_ENDED
         //if(node.control_flags & GHS_HAS_ENDED)
@@ -567,8 +568,8 @@ PROCESS_THREAD(in_evaluation_tree, ev, data)
             {
               //printf("while(list_length(in_union_list))\n");
               //Give enough time to transmit the previous msg
-              etimer_set(&et2, CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION);
-              PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et2));
+              //etimer_set(&et2, CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION);
+              //PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et2));
               //remove from list
               in_l = list_chop(in_union_list); // Remove the last object on the list.
               if(in_l->uniontype == T_BEACON)
@@ -594,7 +595,8 @@ PROCESS_THREAD(in_evaluation_tree, ev, data)
 // take out an element from the list out_union_list
 PROCESS_THREAD(out_evaluation_tree, ev, data)
 {
-  static struct etimer et1, et2;
+  static struct etimer et1;
+  //static struct etimer et1, et2;
   static struct in_out_list_tree *out_l;
   //static char res1[20];
   static struct t_beacon t_beacon;
@@ -606,7 +608,7 @@ PROCESS_THREAD(out_evaluation_tree, ev, data)
   {
     //REMOVE from the list
     //execute periodically
-    etimer_set(&et1, CLOCK_SECOND * TIME_UNION_IN_OUT);
+    etimer_set(&et1, CLOCK_SECOND / FRECUENCIA_REVISAR_IN_OUT); // CLOCK_SECOND / CLOCK_SECOND es la resolucion minima
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et1));
 
         //We start to analize outgoing messages when the GHS_HAS_ENDED
@@ -616,8 +618,8 @@ PROCESS_THREAD(out_evaluation_tree, ev, data)
           {
               //printf("while(list_length(out_union_list))\n");
               //Give enough time to transmit the previous msg
-              etimer_set(&et2, CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION);
-              PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et2));
+              //etimer_set(&et2, CLOCK_SECOND * TIME_PREVIOUS_MSG_IN_OUT_UNION);
+              //PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et2));
 
               //if(!runicast_is_transmitting(&runicast_3))
               //{
