@@ -268,14 +268,14 @@ PROCESS_THREAD(update_parent, ev, data)
         if( ! I_am_the_sink() )
         {
             /*-------PRINT LIST ---------*/
-            printf("Route:-------------neighbor list------------------\n");
+            DGHS_DBG_2("Route:-------------neighbor list------------------\n");
             for(n = list_head(t_neighbors_list); n != NULL; n = list_item_next(n))
             {
               ftoa(n->weight, res1, 2);
               //FORMATO nodeID Weight Lifetime
-              printf("Route: %d.%d %s %d\n", n->neigh.u8[0],n->neigh.u8[1], res1 ,stimer_expired(&n->lifetime) );
+              DGHS_DBG_2("Route: %d.%d %s %d\n", n->neigh.u8[0],n->neigh.u8[1], res1 ,stimer_expired(&n->lifetime) );
             }
-            printf("Route:--------------------------------------------\n");
+            DGHS_DBG_2("Route:--------------------------------------------\n");
 
             if(list_length(t_neighbors_list) >= 1)
             {
@@ -419,7 +419,7 @@ PROCESS_THREAD(response_to_t_beacon, ev, data)
       linkaddr_copy(&n->neigh, &t_beacon.from);
       n->weight = t_beacon.weight;
       stimer_set(&n->lifetime, LIFETIME_ROUTE);
-      printf("Route: Set por nodo %d.%d\n", n->neigh.u8[0],n->neigh.u8[1]);
+      DGHS_DBG_2("Route: Set por nodo %d.%d\n", n->neigh.u8[0],n->neigh.u8[1]);
 
        /* Place the neighbor on the neighbor list. */
        list_add(t_neighbors_list, n);
@@ -428,10 +428,10 @@ PROCESS_THREAD(response_to_t_beacon, ev, data)
       //Get the weight of the neighbor
       n->weight = t_beacon.weight;
       stimer_restart(&n->lifetime); // Restart the stimer from current time.
-      printf("Route: Restart por nodo %d.%d\n", n->neigh.u8[0],n->neigh.u8[1]);
+      DGHS_DBG_2("Route: Restart por nodo %d.%d\n", n->neigh.u8[0],n->neigh.u8[1]);
 
       ftoa(n->weight, res1, 2);
-      printf("t_broadcast message received from %d.%d with weight = %s \n",
+      DGHS_DBG_2("t_broadcast message received from %d.%d with weight = %s \n",
              t_beacon.from.u8[0], t_beacon.from.u8[1], res1  );
 
     //////////////////////////////////////////////////////////////////////////////
@@ -471,7 +471,7 @@ PROCESS_THREAD(eliminate_old_routes, ev, data)
       {
         if(stimer_expired(&n->lifetime)) // If the timer has expired
         {
-          printf("Route: Expired. La ruta por el nodo %d.%d se ha eliminado por antigua\n",n->neigh.u8[0],n->neigh.u8[1] );
+          DGHS_DBG_2("Route: Expired. La ruta por el nodo %d.%d se ha eliminado por antigua\n",n->neigh.u8[0],n->neigh.u8[1] );
           //Tener en cuenta que n-next queda apuntando a NULL ver list.c
           // Por eso en algun momento use my_list_remove, donde comentareo la linea  l->next = NULL;
           list_remove(t_neighbors_list, n); //Remover el elemento
@@ -729,7 +729,7 @@ PROCESS_THREAD(send_basicTree, ev, data)
       process_post(&csma_stats_computation, e_execute, &num_packets);
     }else
     {
-      printf("ERROR:Unknown msg to send (send_basicTree) in basicTree\n ");
+      printf("ERROR: Unknown msg to send (send_basicTree) in basicTree\n ");
     }
 
     //////////////////////////////////////////////////////////////////////////////
