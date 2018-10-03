@@ -76,7 +76,7 @@ uint8_t I_am_the_sink()
 {
    if( (linkaddr_node_addr.u8[0] == 1) && (linkaddr_node_addr.u8[1] == 0) )
    {
-       printf("I am the sink\n");
+       DGHS_DBG_2("I am the sink\n");
        return 1;
    }else
    {

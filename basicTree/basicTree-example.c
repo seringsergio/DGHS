@@ -471,7 +471,7 @@ PROCESS_THREAD(eliminate_old_routes, ev, data)
       {
         if(stimer_expired(&n->lifetime)) // If the timer has expired
         {
-          DGHS_DBG_2("Route: Expired. La ruta por el nodo %d.%d se ha eliminado por antigua\n",n->neigh.u8[0],n->neigh.u8[1] );
+          printf("Route: Expired. La ruta por el nodo %d.%d se ha eliminado por antigua\n",n->neigh.u8[0],n->neigh.u8[1] );
           //Tener en cuenta que n-next queda apuntando a NULL ver list.c
           // Por eso en algun momento use my_list_remove, donde comentareo la linea  l->next = NULL;
           list_remove(t_neighbors_list, n); //Remover el elemento

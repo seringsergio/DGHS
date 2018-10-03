@@ -68,7 +68,7 @@
 //Tiempo de los BEACONS, DATOS, RUTAS
 #define DOBLE                 2
 #define FREQUENCY_BEACON      2
-#define TOLERANCIA_BEACON     4  //Cuantos beacons antes de un paquete de datos
+#define TOLERANCIA_BEACON     8  //Cuantos beacons antes de un paquete de datos
 #define FREQUENCY_DATA_COL    FREQUENCY_BEACON * TOLERANCIA_BEACON //Envio un paquete por cada 4 beacons
 #define TOLERANCIA_DATA_COL   2  //Cuantos datos antes de que una ruta expire
 #define LIFETIME_ROUTE        (FREQUENCY_DATA_COL*DOBLE) * TOLERANCIA_DATA_COL //Maximo se envia un beacon cada (FREQUENCY_BEACON * 2). Espero el tiempo de 4 beacons: q se pierdan 4 beacons . La ruta que me da un vecino es valida por X segundos
