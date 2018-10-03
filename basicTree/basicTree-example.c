@@ -254,7 +254,7 @@ PROCESS_THREAD(update_parent, ev, data)
   static struct t_neighbor *n;
   static float lowest_weight;  //The weight of the parent = lowest_weight
   static linkaddr_t new_parent;
-  static char res1[20],res2[20];
+  /*static char res1[20],res2[20];*/
 
   PROCESS_BEGIN();
 
@@ -271,9 +271,11 @@ PROCESS_THREAD(update_parent, ev, data)
             DGHS_DBG_2("Route:-------------neighbor list------------------\n");
             for(n = list_head(t_neighbors_list); n != NULL; n = list_item_next(n))
             {
-              ftoa(n->weight, res1, 2);
+              /*ftoa(n->weight, res1, 2);*/
               //FORMATO nodeID Weight Lifetime
-              DGHS_DBG_2("Route: %d.%d %s %d\n", n->neigh.u8[0],n->neigh.u8[1], res1 ,stimer_expired(&n->lifetime) );
+              //DGHS_DBG_2("Route: %d.%d %s %d\n", n->neigh.u8[0],n->neigh.u8[1], res1 ,stimer_expired(&n->lifetime) );
+              //FORMATO nodeID Weight  Lifetime
+              DGHS_DBG_2("Route: %d.%d Weight %d\n", n->neigh.u8[0],n->neigh.u8[1], stimer_expired(&n->lifetime) );
             }
             DGHS_DBG_2("Route:--------------------------------------------\n");
 
@@ -304,10 +306,12 @@ PROCESS_THREAD(update_parent, ev, data)
               //UPDATE weight
               //The weight of the node is: The estimated interference + the weight of the parent
               t_node.weight = t_node.est_int + lowest_weight;
-              ftoa(t_node.weight, res1, 2);
-              ftoa(t_node.est_int, res2, 2);
-              DGHS_DBG_2("t_node.weight = %s t_node.est_int = %s t_node.parent = %d.%d\n",
-              res1, res2, t_node.parent.u8[0], t_node.parent.u8[1] );
+              //ftoa(t_node.weight, res1, 2);
+              //ftoa(t_node.est_int, res2, 2);
+              //DGHS_DBG_2("t_node.weight = %s t_node.est_int = %s t_node.parent = %d.%d\n",
+              //res1, res2, t_node.parent.u8[0], t_node.parent.u8[1] );
+              DGHS_DBG_2("t_node.weight = X t_node.est_int = X t_node.parent = %d.%d\n",
+              t_node.parent.u8[0], t_node.parent.u8[1] );
               //}
 
             }
@@ -374,7 +378,7 @@ PROCESS_THREAD(response_to_t_beacon, ev, data)
 {
   static struct t_beacon t_beacon;
   static struct t_neighbor *n;
-  char res1[20];
+  /*char res1[20];*/
 
   PROCESS_BEGIN();
 
@@ -430,9 +434,11 @@ PROCESS_THREAD(response_to_t_beacon, ev, data)
       stimer_restart(&n->lifetime); // Restart the stimer from current time.
       DGHS_DBG_2("Route: Restart por nodo %d.%d\n", n->neigh.u8[0],n->neigh.u8[1]);
 
-      ftoa(n->weight, res1, 2);
-      DGHS_DBG_2("t_broadcast message received from %d.%d with weight = %s \n",
-             t_beacon.from.u8[0], t_beacon.from.u8[1], res1  );
+      /*ftoa(n->weight, res1, 2);*/
+      /*DGHS_DBG_2("t_broadcast message received from %d.%d with weight = %s \n",
+             t_beacon.from.u8[0], t_beacon.from.u8[1], res1  );*/
+        DGHS_DBG_2("t_broadcast message received from %d.%d with weight = X \n",
+             t_beacon.from.u8[0], t_beacon.from.u8[1] );
 
     //////////////////////////////////////////////////////////////////////////////
     ////////////////////////////ELIMINATE OLD ROUTES//////////////////////////////
@@ -661,7 +667,7 @@ PROCESS_THREAD(send_basicTree, ev, data)
   static struct t_beacon t_beacon;
   static struct t_data t_data;
   static uint16_t num_packets;
-  static char res1[20];
+  /*static char res1[20];*/
   static radio_value_t val;
 
 
@@ -707,8 +713,9 @@ PROCESS_THREAD(send_basicTree, ev, data)
       packetbuf_set_attr(PACKETBUF_ATTR_PACKET_GHS_TYPE_MSG, T_BEACON);
       broadcast_send(&t_broadcast);
 
-      ftoa( t_beacon.weight, res1, 2); //Uses the library print_float.h
-      printf("Send broadcast with e_send_t_beacon: t_beacon.from = %d t_beacon.weight = %s\n", t_beacon.from.u8[0], res1 );
+      /*ftoa( t_beacon.weight, res1, 2); //Uses the library print_float.h*/
+      //printf("Send broadcast with e_send_t_beacon: t_beacon.from = %d t_beacon.weight = %s\n", t_beacon.from.u8[0], res1 );
+      printf("Send broadcast with e_send_t_beacon: t_beacon.from = %d t_beacon.weight = X \n", t_beacon.from.u8[0] );
 
       num_packets++;
       process_post(&csma_stats_computation, e_execute, &num_packets);
@@ -786,7 +793,7 @@ PROCESS_THREAD(csma_stats_computation, ev, data)
   static float EWMA_btp_01;
   static float EWMA_ppl_01;
   static struct csma_results csma_results;
-  static char res1[20], res2[20];
+  /*static char res1[20], res2[20];*/
 
   PROCESS_BEGIN();
 
@@ -825,13 +832,15 @@ PROCESS_THREAD(csma_stats_computation, ev, data)
         csma_results.EWMA_ppl_01 = EWMA_ppl_01;
 
         //print
-        ftoa( btp, res1, 2); //Uses the library print_float.h
+        /*ftoa( btp, res1, 2); //Uses the library print_float.h
         ftoa( EWMA_btp_01, res2, 2); //Uses the library print_float.h
-        DGHS_DBG_2("BTP/%d/%s/%s/\n",num_packets,  res1 , res2);
+        DGHS_DBG_2("BTP/%d/%s/%s/\n",num_packets,  res1 , res2);*/
+        DGHS_DBG_2("BTP/%d/X/X/\n",num_packets);
 
-        ftoa( ppl, res1, 2); //Uses the library print_float.h
+        /*ftoa( ppl, res1, 2); //Uses the library print_float.h
         ftoa( EWMA_ppl_01, res2, 2); //Uses the library print_float.h
-        DGHS_DBG_2("PPL/%d/%s/%s/\n",num_packets,  res1 , res2);
+        DGHS_DBG_2("PPL/%d/%s/%s/\n",num_packets,  res1 , res2);*/
+        DGHS_DBG_2("PPL/%d/X/X/\n",num_packets);
 
         process_post(&analyze_csma_results, e_execute, &csma_results);
 
@@ -850,7 +859,7 @@ PROCESS_THREAD(analyze_csma_results, ev, data)
   static struct csma_results csma_results;
   static uint8_t i;
   static float upper_interval, lower_interval;
-  static char res1[20], res2[20], res3[20];
+  /*static char res1[20], res2[20], res3[20];*/
   static struct detected_event detected_event;
   PROCESS_BEGIN();
 
@@ -871,15 +880,16 @@ PROCESS_THREAD(analyze_csma_results, ev, data)
         {
           lower_interval = (float) (i-1) * (float) range_EWMA_btp_01 / (float) num_divisions_btp;
           upper_interval = (float) (i)   * (float) range_EWMA_btp_01 / (float) num_divisions_btp;
-          ftoa(lower_interval, res1, 2);
+          /*ftoa(lower_interval, res1, 2);
           ftoa(csma_results.EWMA_btp_01, res2, 2);
-          ftoa(upper_interval, res3, 2);
+          ftoa(upper_interval, res3, 2);*/
 
           if(  csma_results.EWMA_btp_01 >= lower_interval &&
                csma_results.EWMA_btp_01 <  upper_interval   )
             {
                 detected_event.event_btp = i - 1; //Resto 1 porq aca es de 0-39...en matlab es de 1-40
-                DGHS_DBG_2(" %s < /%s/ < %s \n", res1,res2,res3);
+                //DGHS_DBG_2(" %s < /%s/ < %s \n", res1,res2,res3);
+                DGHS_DBG_2(" X < /X/ < X \n");
                 DGHS_DBG_2("event_btp =/ %d\n", detected_event.event_btp);
                 break;
             }
@@ -890,15 +900,16 @@ PROCESS_THREAD(analyze_csma_results, ev, data)
         {
           lower_interval = (float) (i-1) * (float) range_ppl / (float) num_divisions_ppl;
           upper_interval = (float) (i)   * (float) range_ppl / (float) num_divisions_ppl;
-          ftoa(lower_interval, res1, 2);
+          /*ftoa(lower_interval, res1, 2);
           ftoa(csma_results.EWMA_ppl_01, res2, 2);
-          ftoa(upper_interval, res3, 2);
+          ftoa(upper_interval, res3, 2);*/
 
           if(  csma_results.EWMA_ppl_01 >= lower_interval &&
                csma_results.EWMA_ppl_01 <  upper_interval   )
             {
                 detected_event.event_ppl = i - 1; //Resto 1 porq aca es de 0-39...en matlab es de 1-40
-                DGHS_DBG_2(" %s < /%s/ < %s \n", res1,res2,res3);
+                //DGHS_DBG_2(" %s < /%s/ < %s \n", res1,res2,res3);
+                DGHS_DBG_2(" X < /X/ < X \n");
                 DGHS_DBG_2("event_ppl =/ %d\n", detected_event.event_ppl);
                 break;
             }
@@ -926,7 +937,8 @@ PROCESS_THREAD(detect_interference, ev, data)
   static float prob_ppl[COLUMNS_T];
   static float prob_ppl_N[COLUMNS_T]; //The N means normalized
   static float prob_btp_ppl[COLUMNS_T]; //This is the combined prob. Assuming that the events are independent
-  static char res1[20],res2[20],res3[20],res4[20],res5[20],res6[20],res7[20],res8[20],res9[20],res10[20];
+  /*static char res1[20],res2[20],res3[20],res4[20],res5[20],res6[20],res7[20],res8[20],res9[20],res10[20];*/
+  static char res1[20];
   static uint8_t i;
   static float total_prob, total_prob_N;
   static float max_prob;
@@ -935,14 +947,14 @@ PROCESS_THREAD(detect_interference, ev, data)
   static uint16_t count;
   static float est_int; // est_int: Estimared interference
   static float EWMA_est_int_01;
-  static float EWMA_est_int_02;
+  /*static float EWMA_est_int_02;
   static float EWMA_est_int_03;
   static float EWMA_est_int_04;
   static float EWMA_est_int_05;
   static float EWMA_est_int_06;
   static float EWMA_est_int_07;
   static float EWMA_est_int_08;
-  static float EWMA_est_int_09;
+  static float EWMA_est_int_09;*/
 
   PROCESS_BEGIN();
 
@@ -977,12 +989,15 @@ PROCESS_THREAD(detect_interference, ev, data)
         for(i=0; i < COLUMNS_T; i++)
         {
           prob_btp_N[i] = prob_btp[i] / total_prob; //Normalize
-          ftoa(prob_btp_N[i], res1, 4);
-          DGHS_DBG_2("prob_btp(%d) =/ %s \n", i, res1);
+          /*ftoa(prob_btp_N[i], res1, 4);*/
+          //DGHS_DBG_2("prob_btp(%d) =/ %s \n", i, res1);
+          DGHS_DBG_2("prob_btp(%d) =/ X \n", i);
+
           total_prob_N += prob_btp_N[i];
         }
-        ftoa(total_prob_N, res1, 4);
-        DGHS_DBG_2("SUM(prob_btp) =/ %s \n", res1);
+        /*ftoa(total_prob_N, res1, 4);*/
+        //DGHS_DBG_2("SUM(prob_btp) =/ %s \n", res1);
+        DGHS_DBG_2("SUM(prob_btp) =/ X \n");
 
 
         //////////////////////////////////////////////
@@ -1008,12 +1023,14 @@ PROCESS_THREAD(detect_interference, ev, data)
        for(i=0; i < COLUMNS_T; i++)
        {
          prob_ppl_N[i] = prob_ppl[i] / total_prob; //Normalize
-         ftoa(prob_ppl_N[i], res1, 4);
-         DGHS_DBG_2("prob_ppl(%d) =/ %s \n", i, res1);
+         /*ftoa(prob_ppl_N[i], res1, 4);*/
+         //DGHS_DBG_2("prob_ppl(%d) =/ %s \n", i, res1);
+         DGHS_DBG_2("prob_ppl(%d) =/ X \n", i);
          total_prob_N += prob_ppl_N[i];
        }
-       ftoa(total_prob_N, res1, 4);
-       DGHS_DBG_2("SUM(prob_ppl) =/ %s \n", res1);
+       /*ftoa(total_prob_N, res1, 4);*/
+       //DGHS_DBG_2("SUM(prob_ppl) =/ %s \n", res1);
+       DGHS_DBG_2("SUM(prob_ppl) =/ X \n");
 
 
        //////////////////////////////////////////////
@@ -1027,8 +1044,9 @@ PROCESS_THREAD(detect_interference, ev, data)
         for(i=0; i < COLUMNS_T; i++)
         {
           prob_btp_ppl[i] = prob_btp_N[i] * prob_ppl_N[i]; //MULTIPLY independent probabilities
-          ftoa(prob_btp_ppl[i], res1, 4);
-          DGHS_DBG_2("prob_btp_ppl(%d) =/ %s\n", i, res1);
+          /*ftoa(prob_btp_ppl[i], res1, 4);*/
+          //DGHS_DBG_2("prob_btp_ppl(%d) =/ %s\n", i, res1);
+          DGHS_DBG_2("prob_btp_ppl(%d) =/ X\n", i);
 
           if(prob_btp_ppl[i] > max_prob)
           {
@@ -1062,30 +1080,30 @@ PROCESS_THREAD(detect_interference, ev, data)
         if(count == 1) //It is the first calculation of EWMA_btp. We do not have previous data, so we use the first data
         {
           EWMA_est_int_01 = est_int;
-          EWMA_est_int_02 = est_int;
+          /*EWMA_est_int_02 = est_int;
           EWMA_est_int_03 = est_int;
           EWMA_est_int_04 = est_int;
           EWMA_est_int_05 = est_int;
           EWMA_est_int_06 = est_int;
           EWMA_est_int_07 = est_int;
           EWMA_est_int_08 = est_int;
-          EWMA_est_int_09 = est_int;
+          EWMA_est_int_09 = est_int;*/
 
         }else
         {
           EWMA_est_int_01 = ( (float) EWMA_ALPHA_01 * (float) est_int) + (( (float) 1 - (float) EWMA_ALPHA_01) * (float) EWMA_est_int_01);
-          EWMA_est_int_02 = ( (float) EWMA_ALPHA_02 * (float) est_int) + (( (float) 1 - (float) EWMA_ALPHA_02) * (float) EWMA_est_int_02);
+          /*EWMA_est_int_02 = ( (float) EWMA_ALPHA_02 * (float) est_int) + (( (float) 1 - (float) EWMA_ALPHA_02) * (float) EWMA_est_int_02);
           EWMA_est_int_03 = ( (float) EWMA_ALPHA_03 * (float) est_int) + (( (float) 1 - (float) EWMA_ALPHA_03) * (float) EWMA_est_int_03);
           EWMA_est_int_04 = ( (float) EWMA_ALPHA_04 * (float) est_int) + (( (float) 1 - (float) EWMA_ALPHA_04) * (float) EWMA_est_int_04);
           EWMA_est_int_05 = ( (float) EWMA_ALPHA_05 * (float) est_int) + (( (float) 1 - (float) EWMA_ALPHA_05) * (float) EWMA_est_int_05);
           EWMA_est_int_06 = ( (float) EWMA_ALPHA_06 * (float) est_int) + (( (float) 1 - (float) EWMA_ALPHA_06) * (float) EWMA_est_int_06);
           EWMA_est_int_07 = ( (float) EWMA_ALPHA_07 * (float) est_int) + (( (float) 1 - (float) EWMA_ALPHA_07) * (float) EWMA_est_int_07);
           EWMA_est_int_08 = ( (float) EWMA_ALPHA_08 * (float) est_int) + (( (float) 1 - (float) EWMA_ALPHA_08) * (float) EWMA_est_int_08);
-          EWMA_est_int_09 = ( (float) EWMA_ALPHA_09 * (float) est_int) + (( (float) 1 - (float) EWMA_ALPHA_09) * (float) EWMA_est_int_09);
+          EWMA_est_int_09 = ( (float) EWMA_ALPHA_09 * (float) est_int) + (( (float) 1 - (float) EWMA_ALPHA_09) * (float) EWMA_est_int_09);*/
 
         }
 
-        ftoa( est_int, res1, 2); //Uses the library print_float.h
+        /*ftoa( est_int, res1, 2); //Uses the library print_float.h
         ftoa( EWMA_est_int_09, res2, 2); //Uses the library print_float.h
         ftoa( EWMA_est_int_08, res3, 2); //Uses the library print_float.h
         ftoa( EWMA_est_int_07, res4, 2); //Uses the library print_float.h
@@ -1094,9 +1112,10 @@ PROCESS_THREAD(detect_interference, ev, data)
         ftoa( EWMA_est_int_04, res7, 2); //Uses the library print_float.h
         ftoa( EWMA_est_int_03, res8, 2); //Uses the library print_float.h
         ftoa( EWMA_est_int_02, res9, 2); //Uses the library print_float.h
-        ftoa( EWMA_est_int_01, res10, 2); //Uses the library print_float.h
+        ftoa( EWMA_est_int_01, res10, 2); //Uses the library print_float.h*/
 
-        DGHS_DBG_2("EWMA_est_int/%d/%s/%s/%s/%s/%s/%s/%s/%s/%s/%s/\n",count,res1,res2,res3,res4,res5,res6,res7,res8,res9,res10);
+        //DGHS_DBG_2("EWMA_est_int/%d/%s/%s/%s/%s/%s/%s/%s/%s/%s/%s/\n",count,res1,res2,res3,res4,res5,res6,res7,res8,res9,res10);
+        DGHS_DBG_2("EWMA_est_int/%d/X/X/X/X/X/X/X/X/X/X/\n",count);
 
         //IMPORTANT line: this line saves the estimated interference of the node
         t_node.est_int = EWMA_est_int_01;
