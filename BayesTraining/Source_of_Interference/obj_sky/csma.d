@@ -57,7 +57,8 @@ obj_sky/csma.o: ../../contiki/core/net/mac/csma.c \
  ../../contiki/core/./net/rime/timesynch.h \
  ../../contiki/core/./net/rime/trickle.h \
  /home/seringsergio/Desktop/DGHS/basicTree/print_float.h \
- /home/seringsergio/Desktop/DGHS/basicTree/Bayes_Laplace_Classify.h
+ /home/seringsergio/Desktop/DGHS/basicTree/Bayes_Laplace_Classify.h \
+ ../../contiki/core/./sys/stimer.h
 ../../contiki/core/net/mac/csma.c :
  ../../contiki/core/./net/mac/csma.h ../../contiki/core/./net/mac/mac.h :
  ../../contiki/platform/sky/./contiki-conf.h project-conf.h :
@@ -118,3 +119,4 @@ obj_sky/csma.o: ../../contiki/core/net/mac/csma.c \
  ../../contiki/core/./net/rime/trickle.h :
  /home/seringsergio/Desktop/DGHS/basicTree/print_float.h :
  /home/seringsergio/Desktop/DGHS/basicTree/Bayes_Laplace_Classify.h :
+ ../../contiki/core/./sys/stimer.h :

@@ -516,6 +516,7 @@ PROCESS_THREAD(response_to_t_data, ev, data)
                                                   t_data.parent_plot.u8[0]
                                                   , res1
                                                   );
+          printf("Espero para imprimir el siguiente TREE_PLOT. O sino MySQL se enreda!\n");
           //Datos del sink
           ftoa(t_node.est_int, res1, 2);
           printf("TREE_PLOT/%d/%d/%d/%d/%d/%s/\n", linkaddr_node_addr.u8[0], 0, x_pos[linkaddr_node_addr.u8[0]-1], y_pos[linkaddr_node_addr.u8[0]-1],
@@ -893,6 +894,14 @@ PROCESS_THREAD(analyze_csma_results, ev, data)
                 DGHS_DBG_2("event_btp =/ %d\n", detected_event.event_btp);
                 break;
             }
+
+            // Si el valor de EWMA_btp_01 sobrepasa el maximo (range_EWMA_btp_01). Digo que la int es 100 %
+            if(csma_results.EWMA_btp_01 >= range_EWMA_btp_01)
+            {
+              detected_event.event_btp = num_divisions_btp - 1; //Este es el evento maximo..donde la int es 100%. Resto 1 porq aca es de 0-39...en matlab es de 1-40
+              break;
+            }
+            //if (csma_results.EWMA_btp_01 > range_EWMA_btp_01) Evento es el maximo e interferencia es 100%
         }
 
         //see for in matlab count_EWMA_ppl_01
@@ -912,6 +921,13 @@ PROCESS_THREAD(analyze_csma_results, ev, data)
                 DGHS_DBG_2(" X < /X/ < X \n");
                 DGHS_DBG_2("event_ppl =/ %d\n", detected_event.event_ppl);
                 break;
+            }
+
+            // Si el valor de EWMA_ppl_01 sobrepasa el maximo (range_ppl). Digo que la int es 100 %
+            if(csma_results.EWMA_ppl_01 >= range_ppl)
+            {
+              detected_event.event_ppl = num_divisions_ppl - 1; //Este es el evento maximo..donde la int es 100%. Resto 1 porq aca es de 0-39...en matlab es de 1-40
+              break;
             }
         }
 
@@ -981,7 +997,7 @@ PROCESS_THREAD(detect_interference, ev, data)
           event.column = i;
           prob_btp[i] = calculate_probability_of_event( frequency_table_btp,   event );
           total_prob += prob_btp[i];
-          PROCESS_PAUSE(); //La funcion calculate_probability_of_event() llama muchas subfunciones. Por eso espero.
+          //PROCESS_PAUSE(); //La funcion calculate_probability_of_event() llama muchas subfunciones. Por eso espero.
         }
 
         //Normalize and print
@@ -1015,7 +1031,7 @@ PROCESS_THREAD(detect_interference, ev, data)
          event.column = i;
          prob_ppl[i] = calculate_probability_of_event( frequency_table_ppl,   event );
          total_prob += prob_ppl[i];
-         PROCESS_PAUSE(); //La funcion calculate_probability_of_event() llama muchas subfunciones. Por eso espero.
+         //PROCESS_PAUSE(); //La funcion calculate_probability_of_event() llama muchas subfunciones. Por eso espero.
        }
 
        //Normalize and print

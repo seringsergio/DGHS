@@ -67,7 +67,7 @@
 
 //Tiempo de los BEACONS, DATOS, RUTAS
 #define DOBLE                 2
-#define FREQUENCY_BEACON      2
+#define FREQUENCY_BEACON      2 //Creo q no puede cambiar porque el modelo se hizo enviando BEACONS entre [0,2] seconds
 #define TOLERANCIA_BEACON     8  //Cuantos beacons antes de un paquete de datos
 #define FREQUENCY_DATA_COL    FREQUENCY_BEACON * TOLERANCIA_BEACON //Envio un paquete por cada 4 beacons
 #define TOLERANCIA_DATA_COL   2  //Cuantos datos antes de que una ruta expire

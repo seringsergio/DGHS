@@ -59,10 +59,10 @@ make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On90Off10.upload
 make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On80Off20.upload
 make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On70Off30.upload
 make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On60Off40.upload
-make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On50Off50.upload
+make MOTES=/dev/ttyUSB2 TARGET=sky modulated_carrier_On50Off50.upload
 make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On40Off60.upload
-make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On30Off70.upload
-make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On20Off80.upload
+make MOTES=/dev/ttyUSB2 TARGET=sky modulated_carrier_On30Off70.upload
+make MOTES=/dev/ttyUSB2 TARGET=sky modulated_carrier_On20Off80.upload
 make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On10Off90.upload
 
 //Entrar al serial de un sky
@@ -113,8 +113,8 @@ make  MOTES=/dev/ttyUSB0 TARGET=zoul BOARD=remote-reva border-router.upload
 make NODEID=0x0200 MOTES=/dev/ttyUSB0 TARGET=zoul BOARD=remote-reva example-powertrace.upload
 
 make MOTES=/dev/ttyUSB0 TARGET=zoul BOARD=remote-reva MY_TX_POWER_DBM=7 NODEID=0x0100 basicTree-example.upload
-make MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva MY_TX_POWER_DBM=7 NODEID=0x0200 basicTree-example.upload
-make MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva MY_TX_POWER_DBM=7 NODEID=0x0300 basicTree-example.upload
+make MOTES=/dev/ttyUSB2 TARGET=zoul BOARD=remote-reva MY_TX_POWER_DBM=7 NODEID=0x0200 basicTree-example.upload
+make MOTES=/dev/ttyUSB2 TARGET=zoul BOARD=remote-reva MY_TX_POWER_DBM=7 NODEID=0x0300 basicTree-example.upload
 make MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva MY_TX_POWER_DBM=7 NODEID=0x0400 basicTree-example.upload
 make MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva MY_TX_POWER_DBM=7 NODEID=0x0500 basicTree-example.upload
 make MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva MY_TX_POWER_DBM=7 NODEID=0x0600 basicTree-example.upload
@@ -155,11 +155,11 @@ make RF_CHANNEL=20
 0. cd /home/seringsergio/Desktop/DGHS/contiki/examples/rssi-scanner
 1. subir el codigo rssi-scanner-cc2420.c al sky node
 
-  make MOTES=/dev/ttyUSB0 TARGET=sky rssi-scanner-cc2420.upload
+  make MOTES=/dev/ttyUSB1 TARGET=sky rssi-scanner-cc2420.upload
 
 2. Compilar la clase ViewRSSI.class
 3. ejecutar en el terminal
-make MOTES=/dev/ttyUSB0 TARGET=sky login | java ViewRSSI
+make MOTES=/dev/ttyUSB1 TARGET=sky login | java ViewRSSI
 
 //////////////////////////////////////////////////
 //Configurar el PREFIX (e.g. aaaa::1/64) en RPL

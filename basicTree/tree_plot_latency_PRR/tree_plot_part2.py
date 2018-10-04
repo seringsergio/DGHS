@@ -127,8 +127,8 @@ while True:
            #Build the layout (X and Y position)
            layout[(nodeID - 1) + num_colors]      =  (x,y)
 
-           # IF the node changes its parent or The difference between the est_int_new and est_int_old is larger than 1%
-           if ( ( (parent_new - 1 + num_colors) != parent_old )  or ( abs(est_int_new - est_int_old) >= 1 )  ) :
+           # IF the node changes its parent or The difference between the est_int_new and est_int_old is larger than 0.5%
+           if ( ( (parent_new - 1 + num_colors) != parent_old )  or ( abs(est_int_new - est_int_old) >= 0.5 )  ) :
 
                #Build the edges
                edges [(nodeID - 1) + num_colors]      =  ((nodeID - 1) + num_colors , parent_new - 1 + num_colors)

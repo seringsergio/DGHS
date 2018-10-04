@@ -6,7 +6,7 @@
 #
 # Execute/run:
 # 1. In a terminal run < python tree_plot_part1.py >
-# 2. Next, run < python tree_plot_part2.py 7 > Where 7 is the number_of_nodes
+# 2. Next, run < python tree_plot_part2.py 9 > Where 9 is the number_of_nodes
 # You are done, you do not have to run tree_plot_part3 because it is a function that is called from tree_plot_part2
 
 import serial
