@@ -443,7 +443,7 @@ SELECT "id","nodeID","seqno","x","y","parent_plot","est_int","date"
 UNION ALL
 SELECT *
 FROM tree_plot
-INTO OUTFILE "/var/lib/mysql-files/tree_plot_Corr_PacketLoss_Int.csv"
+INTO OUTFILE "/var/lib/mysql-files/tree_plot_Corr_PacketLoss_Int_50_30.csv"
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n';

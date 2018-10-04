@@ -11,7 +11,7 @@ seqno_node_3   = xlsread('/home/seringsergio/Desktop/DGHS/results/Corr_PacketLos
 est_int_node_3 = xlsread('/home/seringsergio/Desktop/DGHS/results/Corr_PacketLoss_Int/tree_plot_Corr_PacketLoss_Int_nodeID_3.xlsx','tree_plot_Corr_PacketLoss_Int_nodeID_3','G2:G217');
 
 %% Constantes
-% num_paq_anl = 20; % MEDIAN Es el numero de paquetes analizados
+ num_paq_anl = 20; % MEDIAN Es el numero de paquetes analizados
 % num_paq_anl = 40; % MEDIAN Es el numero de paquetes analizados
 
 % num_paq_anl = 15; % MEAN Es el numero de paquetes analizados
@@ -91,3 +91,5 @@ end
 %% Calculo de la correlacion
 corrplot([est_int_node_2_vec' PRR_node_2'],'Type','Pearson')
 corrplot([est_int_node_3_vec' PRR_node_3'],'Type','Pearson')
+corr([est_int_node_2_vec' PRR_node_2'],'Type','Pearson')
+corr([est_int_node_3_vec' PRR_node_3'],'Type','Pearson')
