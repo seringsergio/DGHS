@@ -406,7 +406,7 @@ LINES TERMINATED BY '\n';
 SELECT "id","seqno","nodeID","date"
 UNION ALL
 SELECT *
-FROM latency_PRR_sink_citt_int_0
+FROM latency_PRR_sink_citt_int_0_7dBm
 INTO OUTFILE "/var/lib/mysql-files/latency_PRR_sink_citt_int_0_7dBm.csv"
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'

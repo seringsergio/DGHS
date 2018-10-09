@@ -579,27 +579,6 @@ legenda2 = 'CITT';
 legenda =legend(legenda1,legenda2,'Location','NorthEast');
 set(legenda,'FontSize',14);
 
-figure
-label_mech={'RPL'; 'CITT' };
-bar([PRR_RPL_int_0 PRR_citt_int_0])
-ylabel('Packet Reception Rate','FontSize', 20,'fontweight','bold');
-title('PRR - Interference 0%', 'FontSize', 22, 'fontweight','bold');
-set(gca,'fontsize',16) % Colocar mas grandes los numeros de los ejes
-set(gca,'xticklabel',label_mech)
-
-figure
-label_mech={'RPL'; 'CITT' };
-hold on
-bar(1:2,[latency_RPL_int_0_vec_mean latency_citt_int_0_vec_mean])
-% Esta funcion (terrorbar) la descargue de internet para variar la longitud
-% del errorbar. Width. CapSize. 
-% Ref: https://la.mathworks.com/matlabcentral/fileexchange/52367-terrorbar-m-error-bars-with-controlled-widths-post-r2014b
-terrorbar(1:2,[latency_RPL_int_0_vec_mean latency_citt_int_0_vec_mean], [latency_RPL_int_0_vec_std latency_citt_int_0_vec_std],0.7,'centi');
-ylabel('Latency (us)','FontSize', 20,'fontweight','bold');
-title('Latency - Interference 0%', 'FontSize', 22, 'fontweight','bold');
-set(gca,'fontsize',16) % Colocar mas grandes los numeros de los ejes
-set(gca,'xticklabel',label_mech)% mostrar los mecanismos RPL y CITT
-set(gca,'xtick',1:2) % para que solo muestre numeros enteros en el eje X
 
 
 
