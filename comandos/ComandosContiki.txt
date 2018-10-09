@@ -113,8 +113,8 @@ make  MOTES=/dev/ttyUSB0 TARGET=zoul BOARD=remote-reva border-router.upload
 make NODEID=0x0200 MOTES=/dev/ttyUSB0 TARGET=zoul BOARD=remote-reva example-powertrace.upload
 
 make MOTES=/dev/ttyUSB0 TARGET=zoul BOARD=remote-reva MY_TX_POWER_DBM=7 NODEID=0x0100 basicTree-example.upload
-make MOTES=/dev/ttyUSB2 TARGET=zoul BOARD=remote-reva MY_TX_POWER_DBM=7 NODEID=0x0200 basicTree-example.upload
-make MOTES=/dev/ttyUSB2 TARGET=zoul BOARD=remote-reva MY_TX_POWER_DBM=7 NODEID=0x0300 basicTree-example.upload
+make MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva MY_TX_POWER_DBM=7 NODEID=0x0200 basicTree-example.upload
+make MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva MY_TX_POWER_DBM=7 NODEID=0x0300 basicTree-example.upload
 make MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva MY_TX_POWER_DBM=7 NODEID=0x0400 basicTree-example.upload
 make MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva MY_TX_POWER_DBM=7 NODEID=0x0500 basicTree-example.upload
 make MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva MY_TX_POWER_DBM=7 NODEID=0x0600 basicTree-example.upload
@@ -123,10 +123,10 @@ make MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva MY_TX_POWER_DBM=7 NODEID=0
 make MOTES=/dev/ttyUSB1 TARGET=zoul BOARD=remote-reva MY_TX_POWER_DBM=7 NODEID=0x0900 basicTree-example.upload
 
 make  MOTES=/dev/ttyUSB2 TARGET=zoul BOARD=remote-reva WITH_COMPOWER=1 udp-client.upload
-make  MOTES=/dev/ttyUSB2 TARGET=zoul BOARD=remote-reva WITH_COMPOWER=1 udp-server.upload
+make  MOTES=/dev/ttyUSB0 TARGET=zoul BOARD=remote-reva WITH_COMPOWER=1 udp-server.upload
 
 make MOTES=/dev/ttyUSB3 TARGET=zoul BOARD=remote-reva udp-client.upload
-make MOTES=/dev/ttyUSB3 TARGET=zoul BOARD=remote-reva udp-server.upload
+make MOTES=/dev/ttyUSB0 TARGET=zoul BOARD=remote-reva udp-server.upload
 
 
 

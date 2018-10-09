@@ -694,6 +694,15 @@ PROCESS_THREAD(send_basicTree, ev, data)
     }
   #endif
 
+  /* The data sink runs with a 100% duty cycle in order to ensure high
+     packet reception rates. */
+  if(I_am_the_sink())
+  {
+      NETSTACK_MAC.off(1);
+      printf("The sink runs with a 100 percent duty cycle\n");
+  }
+
+
   e_send_t_beacon  = process_alloc_event();
   e_send_t_data   = process_alloc_event();
   e_execute       = process_alloc_event();
