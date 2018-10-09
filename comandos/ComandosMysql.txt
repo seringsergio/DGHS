@@ -93,7 +93,7 @@ date TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
 INSERT INTO latency_PRR_citt (id,seqno,nodeID) VALUES (NULL,65,15);
 
 
-create table latency_PRR_sink_citt_int_0 (
+create table latency_PRR_sink_citt_int_0_7dBm (
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 seqno INT(11) NOT NULL,
 nodeID DECIMAL(5,2) NOT NULL,
