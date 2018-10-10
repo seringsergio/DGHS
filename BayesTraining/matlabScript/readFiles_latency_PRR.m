@@ -1,15 +1,29 @@
 %% sink int_0 citt
 
-seqno_sink_citt_int_0_7dBm        = xlsread('/home/seringsergio/Desktop/DGHS/results/9_nodes/Latency_PRR/latency_PRR_sink_citt_int_0_7dBm_v2.xlsx','latency_PRR_sink_citt_int_0_7dBm','B2:B251');
-nodeID_sink_citt_int_0_7dBm       = xlsread('/home/seringsergio/Desktop/DGHS/results/9_nodes/Latency_PRR/latency_PRR_sink_citt_int_0_7dBm_v2.xlsx','latency_PRR_sink_citt_int_0_7dBm','C2:C251');
-[temp, date_sink_citt_int_0_7dBm] = xlsread('/home/seringsergio/Desktop/DGHS/results/9_nodes/Latency_PRR/latency_PRR_sink_citt_int_0_7dBm_v2.xlsx','latency_PRR_sink_citt_int_0_7dBm','D2:D251');
+seqno_sink_citt_int_0_7dBm        = xlsread('/home/seringsergio/Desktop/DGHS/results/9_nodes/Latency_PRR/latency_PRR_sink_citt_int_0_7dBm_v3.xlsx','latency_PRR_sink_citt_int_0_7dBm','B2:B747');
+nodeID_sink_citt_int_0_7dBm       = xlsread('/home/seringsergio/Desktop/DGHS/results/9_nodes/Latency_PRR/latency_PRR_sink_citt_int_0_7dBm_v3.xlsx','latency_PRR_sink_citt_int_0_7dBm','C2:C747');
+[temp, date_sink_citt_int_0_7dBm] = xlsread('/home/seringsergio/Desktop/DGHS/results/9_nodes/Latency_PRR/latency_PRR_sink_citt_int_0_7dBm_v3.xlsx','latency_PRR_sink_citt_int_0_7dBm','D2:D747');
 
 
 %% leaf node int_0 citt
 
-seqno_leaf_citt_int_0_7dBm        = xlsread('/home/seringsergio/Desktop/DGHS/results/9_nodes/Latency_PRR/latency_PRR_leaf_citt_int_0_7dBm_v2.xlsx','latency_PRR_leaf_citt_int_0_7dBm','B2:B279');
-nodeID_leaf_citt_int_0_7dBm       = xlsread('/home/seringsergio/Desktop/DGHS/results/9_nodes/Latency_PRR/latency_PRR_leaf_citt_int_0_7dBm_v2.xlsx','latency_PRR_leaf_citt_int_0_7dBm','C2:C279');
-[temp, date_leaf_citt_int_0_7dBm] = xlsread('/home/seringsergio/Desktop/DGHS/results/9_nodes/Latency_PRR/latency_PRR_leaf_citt_int_0_7dBm_v2.xlsx','latency_PRR_leaf_citt_int_0_7dBm','D2:D279');
+seqno_leaf_citt_int_0_7dBm        = xlsread('/home/seringsergio/Desktop/DGHS/results/9_nodes/Latency_PRR/latency_PRR_leaf_citt_int_0_7dBm_v3.xlsx','latency_PRR_leaf_citt_int_0_7dBm','B2:B905');
+nodeID_leaf_citt_int_0_7dBm       = xlsread('/home/seringsergio/Desktop/DGHS/results/9_nodes/Latency_PRR/latency_PRR_leaf_citt_int_0_7dBm_v3.xlsx','latency_PRR_leaf_citt_int_0_7dBm','C2:C905');
+[temp, date_leaf_citt_int_0_7dBm] = xlsread('/home/seringsergio/Desktop/DGHS/results/9_nodes/Latency_PRR/latency_PRR_leaf_citt_int_0_7dBm_v3.xlsx','latency_PRR_leaf_citt_int_0_7dBm','D2:D905');
+
+
+% %% sink int_0 citt
+% 
+% seqno_sink_citt_int_0_7dBm        = xlsread('/home/seringsergio/Desktop/DGHS/results/9_nodes/Latency_PRR/latency_PRR_sink_citt_int_0_7dBm_v2.xlsx','latency_PRR_sink_citt_int_0_7dBm','B2:B251');
+% nodeID_sink_citt_int_0_7dBm       = xlsread('/home/seringsergio/Desktop/DGHS/results/9_nodes/Latency_PRR/latency_PRR_sink_citt_int_0_7dBm_v2.xlsx','latency_PRR_sink_citt_int_0_7dBm','C2:C251');
+% [temp, date_sink_citt_int_0_7dBm] = xlsread('/home/seringsergio/Desktop/DGHS/results/9_nodes/Latency_PRR/latency_PRR_sink_citt_int_0_7dBm_v2.xlsx','latency_PRR_sink_citt_int_0_7dBm','D2:D251');
+% 
+% 
+% %% leaf node int_0 citt
+% 
+% seqno_leaf_citt_int_0_7dBm        = xlsread('/home/seringsergio/Desktop/DGHS/results/9_nodes/Latency_PRR/latency_PRR_leaf_citt_int_0_7dBm_v2.xlsx','latency_PRR_leaf_citt_int_0_7dBm','B2:B279');
+% nodeID_leaf_citt_int_0_7dBm       = xlsread('/home/seringsergio/Desktop/DGHS/results/9_nodes/Latency_PRR/latency_PRR_leaf_citt_int_0_7dBm_v2.xlsx','latency_PRR_leaf_citt_int_0_7dBm','C2:C279');
+% [temp, date_leaf_citt_int_0_7dBm] = xlsread('/home/seringsergio/Desktop/DGHS/results/9_nodes/Latency_PRR/latency_PRR_leaf_citt_int_0_7dBm_v2.xlsx','latency_PRR_leaf_citt_int_0_7dBm','D2:D279');
 
 
 % %% sink int_0 citt
