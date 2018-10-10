@@ -29,13 +29,14 @@ end
 
 % Quitar los outliers
 % a = a(~Isoutlier(a));
-% latency_RPL_int_0_vec = latency_RPL_int_0_vec(~Isoutlier(latency_RPL_int_0_vec));
+% latency_RPL_int_0_vec =
+% latency_RPL_int_0_vec(~Isoutlier(latency_RPL_int_0_vec)); % coment v1
 
 % Volverlo todo positivo
-% latency_RPL_int_0_vec = abs(latency_RPL_int_0_vec);
+% latency_RPL_int_0_vec = abs(latency_RPL_int_0_vec); % coment v1
 
 %latencia media y desviacion estandar
-latency_RPL_int_0_vec_mean = mean(latency_RPL_int_0_vec);
+latency_RPL_int_0_vec_mean = mean(latency_RPL_int_0_vec); % mean v1
 latency_RPL_int_0_vec_std  = std(latency_RPL_int_0_vec);
 
 %% Compute PRR (Packet Reception Rate)
