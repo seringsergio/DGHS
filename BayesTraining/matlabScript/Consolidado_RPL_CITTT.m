@@ -10,7 +10,7 @@ power_rpl_citt_leaf_mean = [cpu_wind_X_int_0_mean  lpm_wind_X_int_0_mean  transm
 % factor_ploteo
 power_rpl_citt_leaf_mean_plot = [cpu_wind_X_int_0_mean               lpm_wind_X_int_0_mean*factor_ploteo  transmit_wind_X_int_0_mean  listen_wind_X_int_0_mean;
                                  cpu_rpl_leaf_mW_mean*factor_ploteo_cpu  lpm_rpl_leaf_mW_mean*factor_ploteo       transmit_rpl_leaf_mW_mean       listen_rpl_leaf_mW_mean   
-                                ];
+                                ]; % Este es el valor consolidado
                    
 consolidado_rpl_citt_leaf_mean = [ cpu_wind_X_int_0_mean+lpm_wind_X_int_0_mean+transmit_wind_X_int_0_mean+listen_wind_X_int_0_mean
                                   remote_power_consumption_rpl_leaf_mean + cpu_rpl_leaf_mW_mean*factor_ploteo_cpu + lpm_rpl_leaf_mW_mean*factor_ploteo  % las sumas son para colocar las lineas de desviacion standard en la posicion correcta                        
