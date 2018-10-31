@@ -43,6 +43,7 @@
 /*INCLUDES*/
 #include "contiki.h"
 #include "/home/seringsergio/Desktop/DGHS/contiki/dev/cc2420/cc2420_const.h" // Include the CC2420 constants
+#include "/home/seringsergio/Desktop/DGHS/contiki/dev/cc2420/cc2420.h"
 #include "/home/seringsergio/Desktop/DGHS/contiki/core/dev/spi.h" // Include basic SPI macros
 #include "dev/leds.h" // Include Leds to debbug
 #include "sys/rtimer.h" //Include the real time library
@@ -189,6 +190,7 @@ PROCESS_THREAD(turn_carrier_OnOff, ev, data) // Process to turn carrier on and o
   //cc2420_set_txpower(3); //Set the output tx power
   //node_id_burn(id); //Burn node id
   //Execute the next real-time task
+  printf("cc2420_get_txpower = %d\n", cc2420_get_txpower());
   rtimer_set(&rtimer, RTIMER_NOW() + RTIMER_ARCH_SECOND, 1, carrier_On1sOff1s, NULL); //Initiates the rtimer 1 second after boot
   //SHOW_DEFINE(CLOCK_SECOND); // Show the value of the CLOCK_SECOND in console. To be aware of the etimer resolution
   //SHOW_DEFINE(RTIMER_ARCH_SECOND); // Show the value of the RTIMER_ARCH_SECOND in console. To be aware of the rtimer resolution

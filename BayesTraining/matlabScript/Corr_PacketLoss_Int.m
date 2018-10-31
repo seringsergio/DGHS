@@ -125,10 +125,10 @@ est_int_node_3 = xlsread('/home/seringsergio/Desktop/DGHS/results/Corr_PacketLos
 %% plot 
 figure
 scatter(est_int_node_3_mean,PRR_node_3,'o','filled','LineWidth',4,'MarkerEdgeColor', 'b', 'MarkerFaceColor', 'b' )
-set(gca,'fontsize',16) % Colocar mas grandes los numeros de los ejes
-xlabel('Percentage of interference (%)','FontSize', 20,'fontweight','bold');
-ylabel('Packet reception rate (%)','FontSize', 20,'fontweight','bold');
-title(['Correlation =  ' num2str(matriz_corr_node_3_mean(1,2),'%.2f')], 'FontSize', 22, 'fontweight','bold');
+set(gca,'fontsize',24) % Colocar mas grandes los numeros de los ejes
+xlabel('Estimated level of interference (%)','FontSize', 28,'fontweight','bold');
+ylabel('Packet reception rate (%)','FontSize', 28,'fontweight','bold');
+title(['Correlation =  ' num2str(matriz_corr_node_3_mean(1,2),'%.2f')], 'FontSize', 30, 'fontweight','bold');
 
 %Find line that fits
 coeffs = polyfit(est_int_node_3_mean, PRR_node_3, 1);

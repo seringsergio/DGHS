@@ -59,7 +59,7 @@ make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On90Off10.upload
 make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On80Off20.upload
 make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On70Off30.upload
 make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On60Off40.upload
-make MOTES=/dev/ttyUSB2 TARGET=sky modulated_carrier_On50Off50.upload
+make MOTES=/dev/ttyUSB0 TARGET=sky modulated_carrier_On50Off50.upload
 make MOTES=/dev/ttyUSB1 TARGET=sky modulated_carrier_On40Off60.upload
 make MOTES=/dev/ttyUSB2 TARGET=sky modulated_carrier_On30Off70.upload
 make MOTES=/dev/ttyUSB2 TARGET=sky modulated_carrier_On20Off80.upload
